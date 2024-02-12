@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
-  selector: 'app-error',
+  selector: 'app-form-error',
   standalone: true,
   imports: [],
   templateUrl: './error.component.html',
