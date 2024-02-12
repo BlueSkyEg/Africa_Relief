@@ -1,0 +1,9 @@
+@if (type === 'button') {
+<button class="icon-button">
+<ng-content select="[button]"></ng-content>
+</button>
+} @else {
+<a class="icon-button" [href]="url" target="_blank" rel="nofollow">
+<ng-content select="[link]"></ng-content>
+</a>
+}
