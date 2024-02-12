@@ -1,0 +1,70 @@
+<footer>
+  <div class="container flex flex-col gap-[48px]">
+    <div class="flex flex-col lg:flex-row gap-[24px] lg:gap-[88px]">
+      <div class="basis-2/6 flex flex-col gap-[16px]">
+        <div class="w-[112px] h-[112px]">
+          <img class="w-full" src="assets/images/logo.webp" alt="Africa Relief Logo">
+        </div>
+        <p class="font-roboto">Help Africa Relief fight poverty and inequality, and respond to pressing
+          emergencies by making a donation today.</p>
+        <app-button-link appearance="filled-secondary" label="Donate Now" path="/projects"/>
+      </div>
+      <div class="basis-1/6">
+        <div class="footer-section-header" (click)="openExploreAccordion = !openExploreAccordion">
+          <h2 class="text-body-2 mb-[8px]">Explore</h2>
+          <div class="toggle-accordion lg:hidden" [ngClass]="{'active': openExploreAccordion}"></div>
+        </div>
+        <ul class="footer-links" [ngClass]="{'active': openExploreAccordion}">
+          <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+          <li><a routerLink="/projects" routerLinkActive="active">Our Projects</a></li>
+          <li><a routerLink="/get-involved" routerLinkActive="active">Get Involved</a></li>
+          <li><a routerLink="/blog" routerLinkActive="active">Blog</a></li>
+          <li><a routerLink="/gallery" routerLinkActive="active">Gallery</a></li>
+          <li><a routerLink="/about-us" routerLinkActive="active">About Us</a></li>
+          <li><a routerLink="/contact-us" routerLinkActive="active">Contact Us</a></li>
+          <li><a routerLink="/careers" routerLinkActive="active">Careers</a></li>
+        </ul>
+      </div>
+      <div class="basis-1/6">
+        <div class="footer-section-header" (click)="openProjectsAccordion = !openProjectsAccordion">
+          <h2 class="text-body-2 mb-[8px]">Our Projects</h2>
+          <div class="toggle-accordion lg:hidden" [ngClass]="{'active': openProjectsAccordion}"></div>
+        </div>
+        <ul class="footer-links" [ngClass]="{'active': openProjectsAccordion}">
+          <li><a routerLink="/crisis" routerLinkActive="active">Crisis</a></li>
+          <li><a routerLink="/water" routerLinkActive="active">Water</a></li>
+          <li><a routerLink="/education" routerLinkActive="active">Education</a></li>
+          <li><a routerLink="/food-aid" routerLinkActive="active">Food Aid</a></li>
+          <li><a routerLink="/medical-help" routerLinkActive="active">Medical help</a></li>
+          <li><a routerLink="/orphan-sponsorship" routerLinkActive="active">Orphan Sponsorship</a></li>
+          <li><a routerLink="/zakat" routerLinkActive="active">Zakat</a></li>
+          <li><a routerLink="/ramadan" routerLinkActive="active">Ramadan</a></li>
+        </ul>
+      </div>
+      <div class="basis-2/6">
+        <h2 class="text-body-1-inter mb-[8px] w-2/3">Subscribe to Our Newsletter</h2>
+        <div class="news-letter-form" [formGroup]="newsLetterForm">
+          <input formControlName="email" placeholder="Enter your email">
+          <app-button-link appearance="filled-secondary" label="Subscribe" (click)="onSubmit(newsLetterForm.value)"/>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col lg:flex-row justify-between items-center gap-[24px]">
+      <p>&copy; <a routerLink="/">Africa Relief.</a> All rights reserved. Powered by <a href="https://bluskyint.com">BlueSky</a></p>
+      <div class="flex gap-[8px]">
+        <app-button-icon type="link" url="">
+          <app-icon-linkedin link/>
+        </app-button-icon>
+        <app-button-icon type="link" url="https://www.youtube.com/channel/UCW3Kf6GLj8npphZGEaCb7Zw">
+          <app-icon-youtube link/>
+        </app-button-icon>
+        <app-button-icon type="link" url="https://www.instagram.com/africa_relief/">
+          <app-icon-instagram link/>
+        </app-button-icon>
+        <app-button-icon type="link" url="https://www.facebook.com/AfricaReliefUS">
+          <app-icon-facebook link/>
+        </app-button-icon>
+      </div>
+    </div>
+  </div>
+</footer>
