@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-field',
+  selector: 'app-form-field',
   standalone: true,
   imports: [],
   templateUrl: './field.component.html',
