@@ -1,0 +1,44 @@
+nav {
+
+  .close-nav {
+    background-color: var(--white-color);
+    outline: none;
+    border: none;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+  }
+
+  ul {
+
+    li {
+      border-top: 1px solid var(--light-gray-color);
+
+      a {
+        display: flex;
+        padding: 16px;
+
+        &.active {
+          color: var(--accent-text-color);
+          background-color: #205926;
+        }
+      }
+
+      &:last-of-type {
+        border-bottom: 1px solid var(--light-gray-color);
+      }
+    }
+  }
+
+  .child-menu {
+    height: auto;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.3s linear;
+
+    &.active {
+      max-height: 400px;
+    }
+  }
+}
