@@ -4,10 +4,10 @@ import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ButtonLinkComponent} from "../../../shared/components/button-link/button-link.component";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
-import {IconLinkedinComponent} from "../../../shared/icons/linkedin/icon-linkedin.component";
-import {IconYoutubeComponent} from "../../../shared/icons/youtube/icon-youtube.component";
-import {IconInstagramComponent} from "../../../shared/icons/instagram/icon-instagram.component";
-import {IconFacebookComponent} from "../../../shared/icons/facebook/icon-facebook.component";
+import {IconLinkedinComponent} from "../../../shared/icons/social-media/linkedin/icon-linkedin.component";
+import {IconYoutubeComponent} from "../../../shared/icons/social-media/youtube/icon-youtube.component";
+import {IconInstagramComponent} from "../../../shared/icons/social-media/instagram/icon-instagram.component";
+import {IconFacebookComponent} from "../../../shared/icons/social-media/facebook/icon-facebook.component";
 
 @Component({
   selector: 'app-footer',
