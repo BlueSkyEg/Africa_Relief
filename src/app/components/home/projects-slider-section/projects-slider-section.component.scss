@@ -1,0 +1,70 @@
+.project-slider-section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 580px;
+
+      h2 {
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  .keen-slider {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+
+    .slide-item {
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+      padding: 16px;
+      gap: 16px;
+      border: 1px solid var(--light-gray-color);
+      background-color: var(--white-color);
+      //min-width: 327px !important;
+      //max-width: 327px !important;
+
+      .project-card-header {
+        position: relative;
+        width: 100%;
+
+        img {
+          height: 288px;
+          object-fit: cover;
+          object-position: center;
+        }
+
+        .category-tag {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          display: flex;
+          height: 32px;
+          padding: 4px 12px;
+          justify-content: center;
+          align-items: center;
+          background-color: var(--secondary-color);
+        }
+      }
+    }
+  }
+
+  .slider-navigation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+  }
+}

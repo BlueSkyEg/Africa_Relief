@@ -3,8 +3,8 @@ import KeenSlider, { KeenSliderInstance } from "keen-slider"
 import {IMainSliderSlide} from "../../../core/interfaces/home/main-slider-slide-interface";
 import {HomeService} from "../../../core/services/home/home.service";
 import {ButtonLinkComponent} from "../../../shared/components/button-link/button-link.component";
-import {ArrowLeftComponent} from "../../../shared/icons/arrow-left/arrow-left.component";
-import {ArrowRightComponent} from "../../../shared/icons/arrow-right/arrow-right.component";
+import {IconArrowLeftComponent} from "../../../shared/icons/arrow-left/icon-arrow-left.component";
+import {IconArrowRightComponent} from "../../../shared/icons/arrow-right/icon-arrow-right.component";
 import {IconDirective} from "../../../shared/directives/icon.directive";
 
 @Component({
@@ -12,8 +12,8 @@ import {IconDirective} from "../../../shared/directives/icon.directive";
   standalone: true,
   imports: [
     ButtonLinkComponent,
-    ArrowLeftComponent,
-    ArrowRightComponent,
+    IconArrowLeftComponent,
+    IconArrowRightComponent,
     IconDirective
   ],
   templateUrl: './main-slider.component.html',

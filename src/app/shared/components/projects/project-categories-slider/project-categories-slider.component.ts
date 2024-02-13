@@ -8,8 +8,8 @@ import {IconOrphanComponent} from "../../../icons/projects/orphan/icon-orphan.co
 import {IconZakatComponent} from "../../../icons/projects/zakat/icon-zakat.component";
 import {IconRamadanComponent} from "../../../icons/projects/ramadan/icon-ramadan.component";
 import {ButtonLinkComponent} from "../../button-link/button-link.component";
-import {ArrowLeftComponent} from "../../../icons/arrow-left/arrow-left.component";
-import {ArrowRightComponent} from "../../../icons/arrow-right/arrow-right.component";
+import {IconArrowLeftComponent} from "../../../icons/arrow-left/icon-arrow-left.component";
+import {IconArrowRightComponent} from "../../../icons/arrow-right/icon-arrow-right.component";
 import {IconDirective} from "../../../directives/icon.directive";
 
 @Component({
@@ -24,8 +24,8 @@ import {IconDirective} from "../../../directives/icon.directive";
     IconZakatComponent,
     IconRamadanComponent,
     ButtonLinkComponent,
-    ArrowLeftComponent,
-    ArrowRightComponent,
+    IconArrowLeftComponent,
+    IconArrowRightComponent,
     IconDirective
   ],
   templateUrl: './project-categories-slider.component.html',

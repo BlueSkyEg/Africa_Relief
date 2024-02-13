@@ -4,6 +4,7 @@ import {DonationCardSectionComponent} from "./donation-card-section/donation-car
 import {
   ProjectCategoriesSliderComponent
 } from "../../shared/components/projects/project-categories-slider/project-categories-slider.component";
+import {ProjectsSliderSectionComponent} from "./projects-slider-section/projects-slider-section.component";
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,8 @@ import {
   imports: [
     MainSliderComponent,
     DonationCardSectionComponent,
-    ProjectCategoriesSliderComponent
+    ProjectCategoriesSliderComponent,
+    ProjectsSliderSectionComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

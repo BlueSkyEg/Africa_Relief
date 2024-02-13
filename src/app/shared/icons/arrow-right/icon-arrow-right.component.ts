@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
   `,
   styles: ``
 })
-export class ArrowRightComponent {
+export class IconArrowRightComponent {
 
 }
