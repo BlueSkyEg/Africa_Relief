@@ -1,0 +1,29 @@
+<div class="slider-container">
+  <div class="keen-slider" #sliderRef>
+    @for (slide of slides; track slide.destinationUri) {
+    <div class="keen-slider__slide slide-item"  [style.background-image]="'url(' + slide.imageUrl + ')'">
+  <!--    <div class="bg-black w-full h-full absolute top-0 start-0 opacity-30"></div>-->
+      <div class="container">
+        <div class="slide-details">
+          <h2 class="text-body-1-inter">{{ slide.summary }}</h2>
+          <h3 class="text-heading-1 mb-[24px] mt-[8px]">{{ slide.description }}</h3>
+         <app-button-link appearance="filled-secondary" label="Donate Now" path="/projects" />
+        </div>
+      </div>
+    </div>
+    } @empty {
+    <span>Loading</span>
+    }
+  </div>
+
+  <div class="slider-navigation">
+    <div class="container flex justify-normal lg:justify-between items-center gap-[24px]">
+      <app-button-icon type="button" (click)="slider.prev()">
+        <app-icon-arrow-left button/>
+      </app-button-icon>
+      <app-button-icon type="button" (click)="slider.next()">
+        <app-icon-arrow-right button/>
+      </app-button-icon>
+    </div>
+  </div>
+</div>
