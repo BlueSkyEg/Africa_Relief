@@ -1,0 +1,47 @@
+.project-categories-slider-section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 580px;
+
+      h2 {
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  .keen-slider {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+
+    .slide-item {
+      display: flex;
+      width: 327px;
+      padding: 24px;
+      flex-direction: column;
+      gap: 16px;
+      border: 1px solid var(--light-gray-color);
+      background-color: var(--white-color);
+      //min-width: 327px !important;
+      //max-width: 327px !important;
+    }
+  }
+
+  .slider-navigation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+  }
+}

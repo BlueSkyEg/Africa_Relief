@@ -2,19 +2,19 @@ import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from
 import KeenSlider, { KeenSliderInstance } from "keen-slider"
 import {IMainSliderSlide} from "../../../core/interfaces/home/main-slider-slide-interface";
 import {HomeService} from "../../../core/services/home/home.service";
-import {ButtonIconComponent} from "../../../shared/components/button-icon/button-icon.component";
 import {ButtonLinkComponent} from "../../../shared/components/button-link/button-link.component";
 import {ArrowLeftComponent} from "../../../shared/icons/arrow-left/arrow-left.component";
 import {ArrowRightComponent} from "../../../shared/icons/arrow-right/arrow-right.component";
+import {IconDirective} from "../../../shared/directives/icon.directive";
 
 @Component({
   selector: 'app-main-slider',
   standalone: true,
   imports: [
-    ButtonIconComponent,
     ButtonLinkComponent,
     ArrowLeftComponent,
-    ArrowRightComponent
+    ArrowRightComponent,
+    IconDirective
   ],
   templateUrl: './main-slider.component.html',
   styleUrls: [

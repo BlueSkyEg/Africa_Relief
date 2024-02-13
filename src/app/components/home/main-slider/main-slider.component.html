@@ -18,12 +18,8 @@
 
   <div class="slider-navigation">
     <div class="container flex justify-normal lg:justify-between items-center gap-[24px]">
-      <app-button-icon type="button" (click)="slider.prev()">
-        <app-icon-arrow-left button/>
-      </app-button-icon>
-      <app-button-icon type="button" (click)="slider.next()">
-        <app-icon-arrow-right button/>
-      </app-button-icon>
+      <app-icon-arrow-left class="cursor-pointer" appIcon (click)="slider.prev()"/>
+      <app-icon-arrow-right class="cursor-pointer" appIcon (click)="slider.next()"/>
     </div>
   </div>
 </div>
