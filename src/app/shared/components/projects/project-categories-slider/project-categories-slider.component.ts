@@ -58,15 +58,6 @@ export class ProjectCategoriesSliderComponent {
     })
   }
 
-  ngOnInit(): void {
-    this.getWindowWidth();
-  }
-
-  getWindowWidth() {
-    let num = Math.ceil(window.innerWidth / 327);
-    this.slidersPerView =  num > 4 ? 4 : num;
-  }
-
   ngOnDestroy() {
     if (this.slider) this.slider.destroy()
   }
