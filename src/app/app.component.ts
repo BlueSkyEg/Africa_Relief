@@ -6,11 +6,12 @@ import {HeaderComponent} from "./components/layout/header/header.component";
 import {FooterComponent} from "./components/layout/footer/footer.component";
 import {SideNavComponent} from "./components/layout/side-nav/side-nav.component";
 import {SideNavService} from "./core/services/layout/side-nav.service";
+import {DonationModalComponent} from "./shared/components/donation-modal/donation-modal.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, MatSidenavModule, CommonModule, HeaderComponent, FooterComponent, SideNavComponent],
+  imports: [RouterModule, MatSidenavModule, CommonModule, HeaderComponent, FooterComponent, SideNavComponent, DonationModalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
