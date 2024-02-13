@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {IconArrowLeftComponent} from "../arrow-left/arrow-left.component";
 
 @Component({
   selector: 'app-icon-arrow-right',
@@ -12,6 +11,6 @@ import {IconArrowLeftComponent} from "../arrow-left/arrow-left.component";
   `,
   styles: ``
 })
-export class IconArrowRightComponent {
+export class ArrowRightComponent {
 
 }
