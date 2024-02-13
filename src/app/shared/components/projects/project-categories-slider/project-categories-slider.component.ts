@@ -38,7 +38,6 @@ export class ProjectCategoriesSliderComponent {
   @ViewChild("sliderRef") sliderRef: ElementRef<HTMLElement>
 
   slider: KeenSliderInstance = null;
-  slidersPerView: number;
 
   ngAfterViewInit() {
     this.slider = new KeenSlider(this.sliderRef.nativeElement, {
