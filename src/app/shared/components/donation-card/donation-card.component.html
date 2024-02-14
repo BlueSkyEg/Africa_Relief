@@ -1,27 +1,37 @@
-<div class="donation-card-container">
-  <div class="latest-donors">
+<div class="flex flex-col gap-6 max-w-[506px] p-4 bg-white border border-gray-light">
+  <div class="flex justify-center items-center gap-2 p-4 border border-gray-medium">
     <app-icon-donor-avatars/>
     <p>+1650 Others Donated</p>
   </div>
-  <div class="card-amounts">
+  <div class="flex flex-col gap-2">
     <h3>Choose amount</h3>
-    <input class="custom-amount" type="text" [(ngModel)]="amount" placeholder="$ Custom Amount"/>
-    <div class="donation-levels">
-      <label>
-        <input type="radio" name="amount" [value]="100" [(ngModel)]="amount"/>
-        <div class="level">$100</div>
+    <input class="py-3 px-6 text-center border border-gray-medium outline-none" type="text" [(ngModel)]="amount"
+           placeholder="$ Custom Amount"/>
+    <div class="flex flex-wrap gap-3">
+      <label class="flex flex-1">
+        <input class="peer appearance-none" type="radio" name="amount" [value]="100" [(ngModel)]="amount"/>
+        <div
+          class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-primary hover:border-primary hover:text-white peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white">
+          $100
+        </div>
       </label>
-      <label>
-        <input type="radio" name="amount" [value]="200" [(ngModel)]="amount"/>
-        <div class="level">$200</div>
+      <label class="flex flex-1">
+        <input class="peer appearance-none" type="radio" name="amount" [value]="100" [(ngModel)]="amount"/>
+        <div
+          class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-primary hover:border-primary hover:text-white peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white">
+          $200
+        </div>
       </label>
-      <label>
-        <input type="radio" name="amount" [value]="300" [(ngModel)]="amount"/>
-        <div class="level">$300</div>
+      <label class="flex flex-1">
+        <input class="peer appearance-none" type="radio" name="amount" [value]="100" [(ngModel)]="amount"/>
+        <div
+          class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-primary hover:border-primary hover:text-white peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white">
+          $300
+        </div>
       </label>
     </div>
   </div>
-  <div class="card-recurring">
+  <div class="flex justify-between items-center gap-1 py-3 px-4 border border-gray-medium">
     <mat-checkbox color="primary" [checked]="makeRecurringDonation">Make this donation every</mat-checkbox>
     <div class="min-w-[90px] shrink-0">
       <mat-select [ngModel]="recurringPeriod">
@@ -33,5 +43,6 @@
       </mat-select>
     </div>
   </div>
-  <app-form-button appearance="filled" [fullWidth]="true" (click)="openModal()" [disabled]="!amount">Donate Now</app-form-button>
+  <app-form-button appearance="filled" [fullWidth]="true" (click)="openModal()" [disabled]="!amount">Donate Now
+  </app-form-button>
 </div>
