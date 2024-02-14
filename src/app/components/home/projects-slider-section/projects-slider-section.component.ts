@@ -27,13 +27,12 @@ export class ProjectsSliderSectionComponent implements OnInit {
     const swiperElementConstructor: SwiperContainer = document.querySelector('.projects-slider');
     const  swiperOptions: SwiperOptions = {
       loop: true,
-      speed: 500,
       slidesPerView: 1,
       spaceBetween: 24,
       navigation: {
         enabled: true,
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: '.project-slide-next',
+        prevEl: '.project-slide-prev',
       },
       breakpoints: {
         640: {
