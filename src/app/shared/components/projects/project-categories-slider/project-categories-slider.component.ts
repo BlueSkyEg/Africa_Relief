@@ -39,21 +39,12 @@ export class ProjectCategoriesSliderComponent implements OnInit {
     const swiperElementConstructor: SwiperContainer = document.querySelector('.project-categories-slider');
     const  swiperOptions: SwiperOptions = {
       loop: true,
-      speed: 500,
-      slidesPerView: 1,
+      slidesPerView: "auto",
       spaceBetween: 24,
       navigation: {
         enabled: true,
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      breakpoints: {
-        640: {
-          slidesPerView: 2
-        },
-        1024: {
-          slidesPerView: 4
-        }
+        nextEl: '.category-slide-next',
+        prevEl: '.category-slide-prev',
       }
     };
     Object.assign(swiperElementConstructor!, swiperOptions);
