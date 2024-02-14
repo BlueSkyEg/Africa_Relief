@@ -41,9 +41,6 @@ export class ProjectsSliderSectionComponent implements OnInit {
         },
         1024: {
           slidesPerView: 3
-        },
-        1536: {
-          slidesPerView: 4
         }
       }
     };
