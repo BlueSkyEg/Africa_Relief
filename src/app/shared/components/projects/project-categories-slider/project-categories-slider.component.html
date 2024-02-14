@@ -1,71 +1,67 @@
-<div class="project-categories-slider-section">
+<div class="project-categories-slider-section container">
   <!-- Section Header -->
-  <div class="container">
-    <div class="section-header items-start lg:items-end flex-col lg:flex-row">
+  <div class="section-header items-start lg:items-end flex-col lg:flex-row">
       <div class="details">
         <h2 class="text-body-1-inter">About Us</h2>
         <h3 class="text-heading-2">We are In a Mission to Help the Helpless</h3>
       </div>
       <app-button-link path="/projects" label="Learn More" appearance="outlined-secondary" [icon]="true"/>
     </div>
-  </div>
   <!-- Slider -->
-  <div class="keen-slider container" #sliderRef>
-    <div class="keen-slider__slide slide-item">
+  <swiper-container class="project-categories-slider" init="false">
+    <swiper-slide class="slide-item">
       <app-icon-food appIcon/>
       <h4 class="text-body-1-inter">Food Aid</h4>
       <p class="text-body-2">Our Healthy Food initiatives are not just about sustenance; they're about cultivating
         healthier, happier lives. Join us in providing nourishing meals to communities across Africa.</p>
       <app-button-link label="Browse Projects" appearance="outlined-primary" [fullWidth]="true"/>
-    </div>
-    <div class="keen-slider__slide slide-item">
+    </swiper-slide>
+    <swiper-slide class="slide-item">
       <app-icon-education appIcon/>
       <h4 class="text-body-1-inter">Education</h4>
       <p class="text-body-2">Every passing moment without education is a missed opportunity, allowing ignorance to
         triumph and keep minds unlit. Join Africa Relief's urgent Education Drive.</p>
       <app-button-link label="Browse Projects" appearance="outlined-primary" [fullWidth]="true"/>
-    </div>
-    <div class="keen-slider__slide slide-item">
+    </swiper-slide>
+    <swiper-slide class="slide-item">
       <app-icon-medical appIcon/>
       <h4 class="text-body-1-inter">Medical Help</h4>
       <p class="text-body-2">In the pursuit of health and well-being, Africa Relief extends its Healing Hands. Your
         contribution can be the lifeline for those in desperate need of vital medical assistance.</p>
       <app-button-link label="Browse Projects" appearance="outlined-primary" [fullWidth]="true"/>
-    </div>
-    <div class="keen-slider__slide slide-item">
+    </swiper-slide>
+    <swiper-slide class="slide-item">
       <app-icon-water appIcon/>
       <h4 class="text-body-1-inter">Clean Water</h4>
       <p class="text-body-2">At Africa Relief, we're creating ripples of change. Your donation can be the drop that
         creates a transformative wave, ensuring universal access to safe and clean water for all</p>
       <app-button-link label="Browse Projects" appearance="outlined-primary" [fullWidth]="true"/>
-    </div>
-    <div class="keen-slider__slide slide-item">
+    </swiper-slide>
+    <swiper-slide class="slide-item">
       <app-icon-orphan appIcon/>
       <h4 class="text-body-1-inter">Orphan Sponsorship</h4>
       <p class="text-body-2">Help orphan children. we provide basic needs for orphan children such as food, water,
         clothing, education, and health care. Your contribution can make a difference. </p>
       <app-button-link label="Browse Projects" appearance="outlined-primary" [fullWidth]="true"/>
-    </div>
-    <div class="keen-slider__slide slide-item">
+    </swiper-slide>
+    <swiper-slide class="slide-item">
       <app-icon-zakat appIcon/>
       <h4 class="text-body-1-inter">Zakat</h4>
       <p class="text-body-2">As outlined in the Qur’an (9:60), there are 8 categories eligible to receive Zakat.
         Contribute your Zakat today to Africa Relief and make a meaningful impact with your compulsory giving!</p>
       <app-button-link label="Browse Projects" appearance="outlined-primary" [fullWidth]="true"/>
-    </div>
-    <div class="keen-slider__slide slide-item">
+    </swiper-slide>
+    <swiper-slide class="slide-item">
       <app-icon-ramadan appIcon/>
       <h4 class="text-body-1-inter">Ramadan</h4>
       <p class="text-body-2">Ramadan is a time to reflect, rejuvenate, and purify ourselves. It's an opportunity to
         extend our hands and uplift those facing hardship. Join us in sharing your kindness</p>
       <app-button-link label="Browse Projects" appearance="outlined-primary" [fullWidth]="true"/>
-    </div>
-  </div>
+    </swiper-slide>
+  </swiper-container>
   <!-- Slider Navigation -->
-  <div class="container">
-    <div class="slider-navigation">
-      <app-icon-arrow-left appIcon appearance="outlined" class="cursor-pointer" (click)="slider.prev()"/>
-      <app-icon-arrow-right appIcon appearance="outlined" class="cursor-pointer" (click)="slider.next()"/>
+  <div class="slider-navigation">
+    <app-icon-arrow-left appIcon appearance="outlined" class="swiper-button-prev cursor-pointer"/>
+    <app-icon-arrow-right appIcon appearance="outlined" class="swiper-button-next cursor-pointer"/>
     </div>
-  </div>
 </div>

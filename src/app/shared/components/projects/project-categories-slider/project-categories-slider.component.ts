@@ -1,5 +1,4 @@
-import { Component, ElementRef, ViewChild } from "@angular/core"
-import KeenSlider, { KeenSliderInstance } from "keen-slider"
+import {Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, signal} from "@angular/core"
 import {IconFoodComponent} from "../../../icons/projects/food/icon-food.component";
 import {IconEducationComponent} from "../../../icons/projects/education/icon-education.component";
 import {IconMedicalComponent} from "../../../icons/projects/medical/icon-medical.component";
@@ -11,6 +10,8 @@ import {ButtonLinkComponent} from "../../button-link/button-link.component";
 import {IconArrowLeftComponent} from "../../../icons/arrow-left/icon-arrow-left.component";
 import {IconArrowRightComponent} from "../../../icons/arrow-right/icon-arrow-right.component";
 import {IconDirective} from "../../../directives/icon.directive";
+import {SwiperContainer} from "swiper/swiper-element";
+import {SwiperOptions} from "swiper/types";
 
 @Component({
   selector: 'app-project-categories-slider',
@@ -29,35 +30,34 @@ import {IconDirective} from "../../../directives/icon.directive";
     IconDirective
   ],
   templateUrl: './project-categories-slider.component.html',
-  styleUrls: [
-    '../../../../../../node_modules/keen-slider/keen-slider.min.css',
-    './project-categories-slider.component.scss'
-  ]
+  styleUrl: './project-categories-slider.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class ProjectCategoriesSliderComponent {
-  @ViewChild("sliderRef") sliderRef: ElementRef<HTMLElement>
-
-  slider: KeenSliderInstance = null;
-
-  ngAfterViewInit() {
-    this.slider = new KeenSlider(this.sliderRef.nativeElement, {
+export class ProjectCategoriesSliderComponent implements OnInit {
+  swiperElement = signal<SwiperContainer | null>(null);
+  ngOnInit(): void {
+    const swiperElementConstructor: SwiperContainer = document.querySelector('.project-categories-slider');
+    const  swiperOptions: SwiperOptions = {
       loop: true,
-      breakpoints: {
-        "(min-width: 700px)": {
-          slides: { perView: 2 },
-        },
-        "(min-width: 1100px)": {
-          slides: { perView: 3 },
-        },
-        "(min-width: 1400px)": {
-          slides: { perView: 4 },
-        },
+      speed: 500,
+      slidesPerView: 1,
+      spaceBetween: 24,
+      navigation: {
+        enabled: true,
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
       },
-      slides: { perView: 1 },
-    })
-  }
-
-  ngOnDestroy() {
-    if (this.slider) this.slider.destroy()
+      breakpoints: {
+        640: {
+          slidesPerView: 2
+        },
+        1024: {
+          slidesPerView: 4
+        }
+      }
+    };
+    Object.assign(swiperElementConstructor!, swiperOptions);
+    this.swiperElement.set(swiperElementConstructor as SwiperContainer);
+    this.swiperElement()?.initialize();
   }
 }
