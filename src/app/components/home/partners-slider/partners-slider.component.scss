@@ -1,0 +1,18 @@
+.partners-slider-container {
+  padding: 40px 0;
+  border-top: 1px solid var(--light-gray-color);
+  border-bottom: 1px solid var(--light-gray-color);
+  background-color: var(--white-color);
+
+  .slide-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100px;
+      height: 100px;
+      flex-shrink: 0;
+    }
+  }
+}
