@@ -12,7 +12,7 @@ import {IconPinComponent} from "../../../shared/icons/pin/icon-pin.component";
     IconPinComponent
   ],
   templateUrl: './donate-by-zelle.component.html',
-  styleUrl: './donate-by-zelle.component.scss'
+  styles: ''
 })
 export class DonateByZelleComponent {
 
