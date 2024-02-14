@@ -1,7 +1,8 @@
-<div class="slider-container">
-  <div class="keen-slider" #sliderRef>
+<div class="main-slider-container">
+  <!-- Slider -->
+  <swiper-container class="main-slider" init="false">
     @for (slide of slides; track slide.destinationUri) {
-    <div class="keen-slider__slide slide-item"  [style.background-image]="'url(' + slide.imageUrl + ')'">
+    <swiper-slide class="slide-item"  [style.background-image]="'url(' + slide.imageUrl + ')'">
   <!--    <div class="bg-black w-full h-full absolute top-0 start-0 opacity-30"></div>-->
       <div class="container">
         <div class="slide-details">
@@ -10,16 +11,17 @@
          <app-button-link appearance="filled-secondary" label="Donate Now" path="/projects" />
         </div>
       </div>
-    </div>
+    </swiper-slide>
     } @empty {
     <span>Loading</span>
     }
-  </div>
+  </swiper-container>
 
+  <!-- Slider Navigation -->
   <div class="slider-navigation">
     <div class="container flex justify-normal lg:justify-between items-center gap-[24px]">
-      <app-icon-arrow-left class="cursor-pointer" appIcon (click)="slider.prev()"/>
-      <app-icon-arrow-right class="cursor-pointer" appIcon (click)="slider.next()"/>
+      <app-icon-arrow-left appIcon class="main-slider-next cursor-pointer"/>
+      <app-icon-arrow-right appIcon class="main-slider-prev cursor-pointer"/>
     </div>
   </div>
 </div>
