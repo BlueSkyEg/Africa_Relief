@@ -24,7 +24,7 @@ import {SwiperOptions} from "swiper/types";
 export class ProjectsSliderSectionComponent implements OnInit {
   swiperElement = signal<SwiperContainer | null>(null);
   ngOnInit(): void {
-    const swiperElementConstructor: SwiperContainer = document.querySelector('swiper-container');
+    const swiperElementConstructor: SwiperContainer = document.querySelector('.projects-slider');
     const  swiperOptions: SwiperOptions = {
       loop: true,
       speed: 500,
