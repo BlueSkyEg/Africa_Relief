@@ -8,7 +8,7 @@ import {DonationCardComponent} from "../../../shared/components/donation-card/do
     DonationCardComponent
   ],
   templateUrl: './donation-card-section.component.html',
-  styleUrl: './donation-card-section.component.scss'
+  styles: ''
 })
 export class DonationCardSectionComponent {
 
