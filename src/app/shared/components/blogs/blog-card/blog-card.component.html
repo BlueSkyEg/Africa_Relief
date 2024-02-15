@@ -1,0 +1,22 @@
+<div class="flex flex-col gap-4 bg-white border border-gray-light w-[400px] p-4">
+  <div class="flex flex-col gap-2">
+    <div class="relative w-full">
+      <img class="h-72 object-cover object-center" [src]="blog.featuredImage.src" [alt]="blog.featuredImage.alt" loading="lazy">
+      <div class="absolute bottom-0 end-0 bg-secondary py-1 px-3">
+        @for (category of blog.categories; track category.slug; let idx = $index) {
+          <a [routerLink]="category.slug">{{ category.name }}</a>
+          @if (blog.categories.length > idx + 1 ) {
+            <span>, </span>
+          }
+        }
+      </div>
+    </div>
+    <p class="text-body-3 text-gray-dark">{{blog.date}}</p>
+    <h4 class="text-body-1-inter">{{blog.title}}</h4>
+  </div>
+  <div class="border-t border-gray-light"></div>
+  <a [routerLink]="'/blogs/' + blog.slug" class="flex justify-between items-center text-primary">
+    <span>Read More</span>
+    <app-icon-arrow-right/>
+  </a>
+</div>

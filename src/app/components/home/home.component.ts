@@ -8,6 +8,8 @@ import {DonateByZelleComponent} from "./donate-by-zelle/donate-by-zelle.componen
 import {
   SafeAndEasyDonationComponent
 } from "../../shared/components/safe-and-easy-donation/safe-and-easy-donation.component";
+import {BecomeVolunteerSectionComponent} from "./become-volunteer-section/become-volunteer-section.component";
+import {LatestBlogsComponent} from "./latest-blogs/latest-blogs.component";
 
 @Component({
   selector: 'app-home',
@@ -19,7 +21,9 @@ import {
     ProjectsSliderSectionComponent,
     PartnersSliderComponent,
     DonateByZelleComponent,
-    SafeAndEasyDonationComponent
+    SafeAndEasyDonationComponent,
+    BecomeVolunteerSectionComponent,
+    LatestBlogsComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
