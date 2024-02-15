@@ -1,6 +1,7 @@
-<div class="modal-container">
-  <div @overlayAnimation *ngIf="modalOpened" class="bg-black w-full h-full fixed top-0 start-0 opacity-75 z-[999]" (click)="modalOpened = false"></div>
-  <div @modalAnimation *ngIf="modalOpened" class="modal-body">
+<div @overlayAnimation *ngIf="modalOpened" class="bg-black w-full h-full fixed top-0 start-0 opacity-75 z-[999]" (click)="modalOpened = false"></div>
+<div @modalAnimation *ngIf="modalOpened" class="modal-container">
+  <div class="modal-body">
+    <div class="modal-main">
     <!-- Modal Header -->
     <div class="modal-header flex justify-between items-center px-[24px] py-[16px]">
       <h2 class="text-body-1-inter font-semibold">Donation</h2>
@@ -76,6 +77,7 @@
     <div class="modal-footer">
       <p class="donation-details">Donation Details: <span class="text-body-1-inter">$100.00</span></p>
       <app-form-button appearance="filled" [fullWidth]="true" [disabled]="donationForm.invalid" (click)="onSubmit()">Donate Now</app-form-button>
+    </div>
     </div>
   </div>
 </div>
