@@ -1,0 +1,12 @@
+<div class="container flex flex-col items-center gap-8">
+  <div class="flex flex-col gap-2 text-center">
+    <h2 class="text-body-1-inter text-primary">Stay Informed</h2>
+    <h3 class="text-heading-2">Read Our Latest Updates</h3>
+  </div>
+  <div class="flex flex-col lg:flex-row gap-6">
+    @for (blog of blogs; track blog.slug) {
+      <app-blog-card [blog]="blog"/>
+    }
+  </div>
+  <app-button-link label="See All Blogs" path="/blogs" appearance="outlined-secondary" [icon]="true"/>
+</div>
