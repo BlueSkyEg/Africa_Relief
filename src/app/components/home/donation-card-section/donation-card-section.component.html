@@ -1,8 +1,8 @@
-<div class="container flex flex-col lg:flex-row justify-between gap-8 lg:gap-24">
-  <div class="flex flex-col gap-8 max-w-[718px]">
-    <h2 class="text-heading-2 max-w-[652px]">ALL Children Deserve an Equal Opportunity to Succeed in Life</h2>
-    <div class="relative">
-      <img src="/assets/images/home/Equal-Opportunity-to-Children.webp"
+<div class="container flex flex-col xl:flex-row justify-between gap-6">
+  <div class="flex flex-col gap-6 xl:gap-8 xl:max-w-[718px]">
+    <h2 class="text-heading-2 xl:max-w-[652px]">ALL Children Deserve an Equal Opportunity to Succeed in Life</h2>
+    <div class="relative flex justify-center">
+      <img class="w-full" src="/assets/images/home/Equal-Opportunity-to-Children.webp"
            alt="ALL Children Deserve an Equal Opportunity to Succeed in Life.webp">
       <div class="flex items-center absolute gap-1 top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 pe-4 bg-black text-white cursor-pointer">
         <div class="play-icon">
@@ -20,5 +20,13 @@
       </div>
     </div>
   </div>
-  <app-donation-card/>
+  <app-donation-card class="flex-1 xl:max-w-[600px]">
+    <div class="flex justify-between items-center py-2 px-4">
+      <div class="flex items-center gap-2">
+        <app-icon-zelle class="scale-75"/>
+        <span class="text-body-3">Donate through Zelle</span>
+      </div>
+      <a class="text-primary" href="#donate-through-zelle">Click here</a>
+    </div>
+  </app-donation-card>
 </div>
