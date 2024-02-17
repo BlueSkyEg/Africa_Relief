@@ -4,7 +4,7 @@
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 2148482499;
+  z-index: 1000;
   overflow: hidden auto;
 }
 
@@ -12,7 +12,6 @@
   position: absolute;
   left: 0;
   top: 0;
-  height: 100%;
   width: 100%;
   padding: 0 8px;
 
@@ -23,7 +22,7 @@
     max-width: 612px;
     position: relative;
     width: auto;
-    z-index: 2148482599;
+    z-index: 1000;
   }
 
   .modal-content {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {animate, style, transition, trigger} from "@angular/animations";
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CommonModule} from "@angular/common";
@@ -62,7 +62,7 @@ export class DonationModalComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     phone: ['', [Validators.required]],
     comment: ['', [Validators.maxLength(500)]],
-    anonymousDonation: ['', [Validators.required]],
+    anonymousDonation: [''],
     country: ['', [Validators.required, Validators.pattern('^[A-Z]{2}$')]],
     addressLine1: ['', [Validators.required]],
     addressLine2: ['', []],
@@ -93,7 +93,14 @@ export class DonationModalComponent implements OnInit {
     );
 
     this.donationModalService.donationModal().subscribe({
-      next: (value: boolean) => this.modalOpened = value
+      next: (value: boolean) => {
+        this.modalOpened = value;
+        this.modalOpened ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto';
+      }
     })
+  }
+
+  closeModal() {
+    this.donationModalService.modalOpened.next(false);
   }
 }
