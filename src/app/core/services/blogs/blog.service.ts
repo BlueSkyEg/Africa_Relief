@@ -8,7 +8,7 @@ import { IBlogCard } from '../../../shared/interfaces/blog-card-interface';
 @Injectable({
   providedIn: 'root'
 })
-export class BlogsService {
+export class BlogService {
 
   constructor(private http: HttpClient) { }
 
@@ -16,7 +16,10 @@ export class BlogsService {
     return this.http.get<ICategory[]>(environment.apiUrl + '/blogs/data/blog-categories.json');
   }
 
-  getBlogs(): Observable<IBlogCard[]> {
-    return this.http.get<IBlogCard[]>(environment.apiUrl + '/blogs/data/blogs-cards.json');
+  getBlogs(categorySlug: string|null): Observable<IBlogCard[]> {
+    if(!categorySlug) {
+      return this.http.get<IBlogCard[]>(environment.apiUrl + '/blogs/data/blogs-cards.json');
+    }
+    return this.http.get<IBlogCard[]>(environment.apiUrl + '/blogs/data/category-blogs-cards/' + categorySlug + '.json');
   }
 }

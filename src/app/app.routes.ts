@@ -5,6 +5,8 @@ import { ProjectsComponent } from './components/projects/projects.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'blogs/category/:slug', component: BlogsComponent},
   {path: 'blogs', component: BlogsComponent},
-  {path: 'projects', component: ProjectsComponent}
+  {path: 'projects/category/:slug', component: ProjectsComponent},
+  {path: 'projects', component: ProjectsComponent},
 ];

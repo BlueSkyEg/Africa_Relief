@@ -1,9 +1,9 @@
 <div class="container flex gap-3 overflow-x-scroll no-scrollbar">
-  <a [routerLink]="basePath" routerLinkActive="bg-primary text-white" class="flex whitespace-nowrap justify-center items-center py-3 px-4 hover:bg-primary hover:text-white transition-colors ease-in-out">
+  <a [routerLink]="basePath" routerLinkActive="bg-primary text-white hover:text-white" [routerLinkActiveOptions]="{exact: true}" class="flex whitespace-nowrap justify-center items-center py-3 px-4 border border-gray-light hover:border-primary hover:text-primary transition-colors ease-in-out">
     {{ baseTitle | titlecase }}
   </a>
   @for (category of categories; track category.slug) {
-  <a [routerLink]="basePath + '/' + category.slug" routerLinkActive="bg-primary text-white" class="flex whitespace-nowrap justify-center items-center py-3 px-4 border border-gray-light hover:border-primary hover:text-primary transition-colors ease-in-out">
+  <a [routerLink]="basePath + '/category/' + category.slug" routerLinkActive="bg-primary text-white hover:text-white" [routerLinkActiveOptions]="{exact: true}" class="flex whitespace-nowrap justify-center items-center py-3 px-4 border border-gray-light hover:border-primary hover:text-primary transition-colors ease-in-out">
     {{category.name}}
   </a>
   }

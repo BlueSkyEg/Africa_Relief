@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CategoriesFilterComponent } from "../../shared/components/categories-filter/categories-filter.component";
-import { BlogsService } from '../../core/services/blogs/blogs.service';
+import { BlogService } from '../../core/services/blogs/blog.service';
 import { ICategory } from '../../shared/interfaces/category-interface';
 import { BlogCardComponent } from "../../shared/components/blogs/blog-card/blog-card.component";
 import { IBlogCard } from '../../shared/interfaces/blog-card-interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-blogs',
@@ -15,16 +16,22 @@ import { IBlogCard } from '../../shared/interfaces/blog-card-interface';
 export class BlogsComponent implements OnInit {
   blogCategories: ICategory[];
   blogs: IBlogCard[];
-
-  constructor(private blogsService: BlogsService) {}
+  activeRoute: ActivatedRoute = inject(ActivatedRoute);
+  blogService: BlogService = inject(BlogService);
 
   ngOnInit(): void {
-    this.blogsService.getBlogCategories().subscribe({
+    // Get blog categories
+    this.blogService.getBlogCategories().subscribe({
       next: (value: ICategory[]) => this.blogCategories = value
     });
 
-    this.blogsService.getBlogs().subscribe({
-      next: (value: IBlogCard[]) => this.blogs = value
-    });
+    // Get Blogs
+    this.activeRoute.paramMap.subscribe({
+      next: (route) => {
+        this.blogService.getBlogs(route.get('slug')).subscribe({
+          next: (value: IBlogCard[]) => this.blogs = value
+        });
+      }
+    })
   }
 }
