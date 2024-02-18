@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IMainSliderSlide} from "../../interfaces/home/main-slider-slide-interface";
 import {environment} from "../../../../environments/environment";
-import {IBlogCard} from "../../../shared/interfaces/blog-card-interface";
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +13,5 @@ export class HomeService {
 
   getMainSliderSlides(): Observable<IMainSliderSlide[]> {
     return this.http.get<IMainSliderSlide[]>(environment.apiUrl + '/home-slider/home-slider.json');
-  }
-
-  getLatestBlogs(): Observable<IBlogCard[]> {
-    return this.http.get<IBlogCard[]>(environment.apiUrl + '/home-latest-blogs/home-latest-blogs.json');
   }
 }

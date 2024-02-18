@@ -1,48 +1,53 @@
-[
-  {
-    "title": "Strengthening Partnerships in Ghana",
-    "slug": "strengthening-partnerships-in-ghana",
-    "categories": [
-      {
-        "name": "education",
-        "slug": "education"
-      },
-      {
-        "name": "health",
-        "slug": "health"
-      },
-      {
-        "name": "orphan Support",
-        "slug": "orphan-support"
-      },
-      {
-        "name": "sustainable-community",
-        "slug": "sustainable-community"
+{
+  "success": true,
+  "message": "projects retrived successfully",
+  "data": [
+    {
+      "title": "Strengthening Partnerships in Ghana",
+      "slug": "strengthening-partnerships-in-ghana",
+      "categories": [
+        {
+          "name": "education",
+          "slug": "education"
+        },
+        {
+          "name": "health",
+          "slug": "health"
+        },
+        {
+          "name": "orphan Support",
+          "slug": "orphan-support"
+        },
+        {
+          "name": "sustainable-community",
+          "slug": "sustainable-community"
+        }
+      ],
+      "date": "August 23, 2023",
+      "featuredImage": {
+        "src": "assets/db/blogs/images/strengthening-partnerships-in-ghana/20230821_140424-1024x461.webp",
+        "alt": "Vibrant Ghanaian marketplace bustling with activity, showcasing Africa relief efforts and development cooperation in Ghana"
       }
-    ],
-    "date": "August 23, 2023",
-    "featuredImage": {
-      "src": "assets/db/blogs/images/strengthening-partnerships-in-ghana/20230821_140424-1024x461.webp",
-      "alt": "Vibrant Ghanaian marketplace bustling with activity, showcasing Africa relief efforts and development cooperation in Ghana"
-    }
-  },
-  {
-    "title": "Strategic Partnerships in Tanzania",
-    "slug": "strategic-partnerships-in-tanzania",
-    "categories": [
-      {
-        "name": "health",
-        "slug": "health"
-      },
-      {
-        "name": "orphan support",
-        "slug": "orphan-support"
+    },
+    {
+      "title": "Strategic Partnerships in Tanzania",
+      "slug": "strategic-partnerships-in-tanzania",
+      "categories": [
+        {
+          "name": "health",
+          "slug": "health"
+        },
+        {
+          "name": "orphan support",
+          "slug": "orphan-support"
+        }
+      ],
+      "date": "September 1, 2023",
+      "featuredImage": {
+        "src": "assets/db/blogs/images/strategic-partnerships-in-tanzania/Tanzania2.webp",
+        "alt": "Impact non profit: Team analyzing data for community improvement projects"
       }
-    ],
-    "date": "September 1, 2023",
-    "featuredImage": {
-      "src": "assets/db/blogs/images/strategic-partnerships-in-tanzania/Tanzania2.webp",
-      "alt": "Impact non profit: Team analyzing data for community improvement projects"
     }
-  }
-]
+  ],
+  "errors": null
+}

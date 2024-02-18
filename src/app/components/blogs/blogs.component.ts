@@ -5,6 +5,7 @@ import { ICategory } from '../../shared/interfaces/category-interface';
 import { BlogCardComponent } from "../../shared/components/blogs/blog-card/blog-card.component";
 import { IBlogCard } from '../../shared/interfaces/blog-card-interface';
 import { ActivatedRoute } from '@angular/router';
+import { IApiResponse } from '../../shared/interfaces/api-response-interface';
 
 @Component({
     selector: 'app-blogs',
@@ -22,14 +23,14 @@ export class BlogsComponent implements OnInit {
   ngOnInit(): void {
     // Get blog categories
     this.blogService.getBlogCategories().subscribe({
-      next: (value: ICategory[]) => this.blogCategories = value
+      next: (res: IApiResponse<ICategory[]>) => this.blogCategories = res.data
     });
 
     // Get Blogs
     this.activeRoute.paramMap.subscribe({
       next: (route) => {
         this.blogService.getBlogs(route.get('slug')).subscribe({
-          next: (value: IBlogCard[]) => this.blogs = value
+          next: (res: IApiResponse<IBlogCard[]>) => this.blogs = res.data
         });
       }
     })

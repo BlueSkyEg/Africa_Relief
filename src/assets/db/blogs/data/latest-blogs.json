@@ -1,0 +1,52 @@
+{
+  "success": true,
+  "message": "projects retrived successfully",
+  "data": [
+    {
+      "title": "Starting Small Businesses for Families",
+      "slug": "starting-small-businesses-for-families",
+      "categories": [
+        {
+          "name": "Sustainable Community",
+          "slug": "sustainable-community"
+        }
+      ],
+      "date": "October 19, 2023",
+      "featuredImage": {
+        "src": "assets/db/blogs/images/starting-small-businesses-for-families/cow6-1024x581.webp",
+        "alt": "Local farmers' market promoting small business initiatives and local products"
+      }
+    },
+    {
+      "title": "Medical Equipment Delivery: Boosting Health Infrastructure",
+      "slug": "medical-equipment-delivery",
+      "categories": [
+        {
+          "name": "health",
+          "slug": "health"
+        }
+      ],
+      "date": "October 19, 2023",
+      "featuredImage": {
+        "src": "assets/db/blogs/images/medical-equipment-delivery/DSC07827-1024x683.webp",
+        "alt": "Click here to donate for medical aid."
+      }
+    },
+    {
+      "title": "Nurturing Families: Meat Distribution Initiative",
+      "slug": "nurturing-families-meat-distribution-initiative",
+      "categories": [
+        {
+          "name": "food aid",
+          "slug": "food-aid"
+        }
+      ],
+      "date": "October 12, 2023",
+      "featuredImage": {
+        "src": "assets/db/blogs/images/nurturing-families-meat-distribution-initiative/Zabiha-1024x768.webp",
+        "alt": "Nurturing Families - A Key Africa Relief Projects"
+      }
+    }
+  ],
+  "errors": null
+}
