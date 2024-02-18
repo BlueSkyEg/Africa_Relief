@@ -1,0 +1,23 @@
+<main class="flex flex-col gap-6 mb-10 lg:mb-20">
+  <!-- Blogs Header -->
+  <div class="blogs-header">
+    <div class="container flex flex-col lg:flex-row gap-4 text-white">
+        <div class="basis-1/2 flex flex-col gap-2">
+          Home >> Blogs
+          <h1 class="text-heading-1">Blogs</h1>
+        </div>
+        <p class="basis-1/2 text-body-2">THANKS TO THE GENEROSITY OF OUR DONORS
+        <br>and the hard work of our expanding team, we have made a serious positive impact in more than 15 countries.</p>
+    </div>
+  </div>
+
+  <!-- Blogs Filter -->
+  <app-categories-filter [categories]="blogCategories"/>
+
+  <!-- Blogs Cards -->
+  <div class="container grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+    @for (blog of blogs; track blog.slug) {
+    <app-blog-card class="flex justify-center" [blog]="blog"/>
+    }
+  </div>
+</main>

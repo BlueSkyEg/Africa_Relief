@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Water",
+    "slug": "water"
+  },
+  {
+    "name": "Education",
+    "slug": "education"
+  },
+  {
+    "name": "Orphan Support",
+    "slug": "orphan-support"
+  },
+  {
+    "name": "Food Aid",
+    "slug": "food-aid"
+  },
+  {
+    "name": "Health",
+    "slug": "health"
+  },
+  {
+    "name": "Zakat",
+    "slug": "zakat"
+  },
+  {
+    "name": "Ramadan",
+    "slug": "ramadan"
+  },
+  {
+    "name": "Sustainable Community",
+    "slug": "sustainable-community"
+  }
+]
