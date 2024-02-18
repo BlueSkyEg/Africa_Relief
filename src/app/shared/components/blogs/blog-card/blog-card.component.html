@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-4 bg-white border border-gray-light max-w-[400px] p-4">
+<div class="flex flex-col gap-4 bg-white border border-gray-light max-w-[400px] p-4 justify-between">
   <div class="flex flex-col gap-2">
     <div class="relative w-full">
       <img class="h-72 object-cover object-center" [src]="blog.featuredImage.src" [alt]="blog.featuredImage.alt" loading="lazy">
@@ -12,10 +12,9 @@
       </div>
     </div>
     <p class="text-body-3 text-gray-dark">{{blog.date}}</p>
-    <h4 class="text-body-1-inter lg:min-h-16 line-clamp-2">{{blog.title}}</h4>
+    <h4 class="text-body-1-inter line-clamp-2">{{blog.title}}</h4>
   </div>
-  <div class="border-t border-gray-light"></div>
-  <a [routerLink]="'/blogs/' + blog.slug" class="flex justify-between items-center text-primary">
+  <a [routerLink]="'/blogs/' + blog.slug" class="flex justify-between items-center border-t border-gray-light pt-4 text-primary">
     <span>Read More</span>
     <app-icon-arrow-right/>
   </a>
