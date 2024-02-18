@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "message": "projects retrived successfully",
+  "data": [
+    {
+      "title": "Educational Center",
+      "slug": "educational-center",
+      "category": {
+        "name": "education",
+        "slug": "education"
+      },
+      "summary": "In Africa, where knowledge is power, 20% lack formal schooling, while 28% completed primary, 37% secondary, and 15% higher education, these statistics highligh the importance of accessible learning opportunities",
+      "featuredImage": {
+        "src": "assets/db/projects/images/educational-center.webp",
+        "alt": "Image of a classroom project funded through DonorsChoose, illustrating direct support to public school teachers"
+      }
+    },
+    {
+      "title": "Students Sponsorship",
+      "slug": "students-sponsorship",
+      "category": {
+        "name": "education",
+        "slug": "education"
+      },
+      "summary": "In Africa, the journey to education is marred by staggering statistics. Over 20% of children aged 6 to 11 miss the chance to enter the classroom, a figure that balloons to one-third for youths aged 12 to 14. Shockingly, almost 60% of youths between 15 and 17 are deprived of the school experience.",
+      "featuredImage": {
+        "src": "assets/db/projects/images/students-sponsorship.webp",
+        "alt": "A sponsored child studying diligently, empowered by African education sponsorship."
+      }
+    }
+  ],
+  "errors": null
+}

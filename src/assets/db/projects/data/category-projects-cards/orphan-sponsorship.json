@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "message": "projects retrived successfully",
+  "data":  [
+    {
+      "title": "Orphans Sponsorship",
+      "slug": "orphans-sponsorship",
+      "category": {
+        "name": "Orphan Sponsorship",
+        "slug": "orphan-sponsorship"
+      },
+      "summary": "In the past, hearts were filled with care for orphans, embracing them with love. Today, their numbers have grown, and many who could have aided them are gone. Orphanhood, once uncommon, now prevails. The few remaining struggle to provide, unable to meet the rising tide of need.",
+      "featuredImage": {
+        "src": "assets/db/projects/images/orphans-sponsorship.webp",
+        "alt": "Learn about orphan sponsorship project at Africa Relief"
+      }
+    }
+  ],
+  "errors": null
+}

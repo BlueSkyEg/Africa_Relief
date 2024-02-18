@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "message": "projects retrived successfully",
+  "data": [
+    {
+      "title": "Iftar Meal",
+      "slug": "iftar-meal",
+      "category": {
+        "name": "ramadan",
+        "slug": "ramadan"
+      },
+      "summary": "It’s more than just a meal, Having the Iftar meal together fosters unity and kindness, creating bonds that transcend hunger.",
+      "featuredImage": {
+        "src": "assets/db/projects/images/iftar-meal.webp",
+        "alt": "A community gathering for a Ramadan Iftar, where donated meals are shared among attendees"
+      }
+    }
+  ],
+  "errors": null
+}
