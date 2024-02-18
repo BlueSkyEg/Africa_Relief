@@ -1,0 +1,55 @@
+[
+  {
+    "title": "Emergency Morocco Earthquake Response",
+    "slug": "emergency-morocco-earthquake-response",
+    "categories": [
+      {
+        "name": "food aid",
+        "slug": "food-aid"
+      },
+      {
+        "name": "health",
+        "slug": "health"
+      },
+      {
+        "name": "water",
+        "slug": "water"
+      }
+    ],
+    "date": "October 12, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/emergency-morocco-earthquake-response/Moroc2.webp",
+      "alt": "Ruins of buildings in Morocco following a devastating earthquake, with rescue workers in action."
+    }
+  },
+  {
+    "title": "Nurturing Families: Meat Distribution Initiative",
+    "slug": "nurturing-families-meat-distribution-initiative",
+    "categories": [
+      {
+        "name": "food aid",
+        "slug": "food-aid"
+      }
+    ],
+    "date": "October 12, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/nurturing-families-meat-distribution-initiative/Zabiha-1024x768.webp",
+      "alt": "Nurturing Families - A Key Africa Relief Projects"
+    }
+  },
+  {
+    "title": "Brushy Creek Islamic Center Food Project",
+    "slug": "brushy-creek-islamic-center-food-project",
+    "categories": [
+      {
+        "name": "food aid",
+        "slug": "food-aid"
+      }
+    ],
+    "date": "August 31, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/brushy-creek-islamic-center-food-project/brush2-1024x768.webp",
+      "alt": "Brushy Creek Islamic Center Food Project - Africa Relief"
+    }
+  }
+]

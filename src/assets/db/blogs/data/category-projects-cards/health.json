@@ -1,0 +1,86 @@
+[
+  {
+    "title": "Emergency Morocco Earthquake Response",
+    "slug": "emergency-morocco-earthquake-response",
+    "categories": [
+      {
+        "name": "food aid",
+        "slug": "food-aid"
+      },
+      {
+        "name": "health",
+        "slug": "health"
+      },
+      {
+        "name": "water",
+        "slug": "water"
+      }
+    ],
+    "date": "October 12, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/emergency-morocco-earthquake-response/Moroc2.webp",
+      "alt": "Ruins of buildings in Morocco following a devastating earthquake, with rescue workers in action."
+    }
+  },
+  {
+    "title": "Strengthening Partnerships in Ghana",
+    "slug": "strengthening-partnerships-in-ghana",
+    "categories": [
+      {
+        "name": "education",
+        "slug": "education"
+      },
+      {
+        "name": "health",
+        "slug": "health"
+      },
+      {
+        "name": "orphan Support",
+        "slug": "orphan-support"
+      },
+      {
+        "name": "sustainable-community",
+        "slug": "sustainable-community"
+      }
+    ],
+    "date": "August 23, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/strengthening-partnerships-in-ghana/20230821_140424-1024x461.webp",
+      "alt": "Vibrant Ghanaian marketplace bustling with activity, showcasing Africa relief efforts and development cooperation in Ghana"
+    }
+  },
+  {
+    "title": "Medical Equipment Delivery: Boosting Health Infrastructure",
+    "slug": "medical-equipment-delivery",
+  "categories": [
+    {
+      "name": "health",
+      "slug": "health"
+    }
+  ],
+    "date": "October 19, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/medical-equipment-delivery/DSC07827-1024x683.webp",
+      "alt": "Click here to donate for medical aid."
+    }
+  },
+  {
+    "title": "Strategic Partnerships in Tanzania",
+    "slug": "strategic-partnerships-in-tanzania",
+    "categories": [
+      {
+        "name": "health",
+        "slug": "health"
+      },
+      {
+        "name": "orphan support",
+        "slug": "orphan-support"
+      }
+    ],
+    "date": "September 1, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/strategic-partnerships-in-tanzania/Tanzania2.webp",
+      "alt": "Impact non profit: Team analyzing data for community improvement projects"
+    }
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Strengthening Partnerships in Ghana",
+    "slug": "strengthening-partnerships-in-ghana",
+    "categories": [
+      {
+        "name": "education",
+        "slug": "education"
+      },
+      {
+        "name": "health",
+        "slug": "health"
+      },
+      {
+        "name": "orphan Support",
+        "slug": "orphan-support"
+      },
+      {
+        "name": "sustainable-community",
+        "slug": "sustainable-community"
+      }
+    ],
+    "date": "August 23, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/strengthening-partnerships-in-ghana/20230821_140424-1024x461.webp",
+      "alt": "Vibrant Ghanaian marketplace bustling with activity, showcasing Africa relief efforts and development cooperation in Ghana"
+    }
+  },
+  {
+    "title": "Starting Small Businesses for Families",
+    "slug": "starting-small-businesses-for-families",
+    "categories": [
+      {
+        "name": "Sustainable Community",
+        "slug": "sustainable-community"
+      }
+    ],
+    "date": "October 19, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/starting-small-businesses-for-families/cow6-1024x581.webp",
+      "alt": "Local farmers' market promoting small business initiatives and local products"
+    }
+  },
+  {
+    "title": "Empowering Mobility and Livelihoods",
+    "slug": "empowering-mobility-and-livelihoods",
+    "categories": [
+      {
+        "name": "Sustainable Community",
+        "slug": "sustainable-community"
+      }
+    ],
+    "date": "September 19, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/empowering-mobility-and-livelihoods/Bicycles3-1024x683.webp",
+      "alt": "Enhancing Livelihoods project by Africa Relief"
+    }
+  },
+  {
+    "title": "Sustainable Income Initiative",
+    "slug": "sustainable-income-initiative",
+    "categories": [
+      {
+        "name": "Sustainable Community",
+        "slug": "sustainable-community"
+      }
+    ],
+    "date": "September 19, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/sustainable-income-initiative/sewing-2-1024x683.webp",
+      "alt": "showcasing economic empowerment through collaboration and entrepreneurship"
+    }
+  }
+]
