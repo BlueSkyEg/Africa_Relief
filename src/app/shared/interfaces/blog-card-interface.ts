@@ -1,7 +1,7 @@
 import {ICategory} from "./category-interface";
 import {IImage} from "./image-interface";
 
-export interface IBlog {
+export interface IBlogCard {
   title: string
   slug: string
   categories: ICategory[]

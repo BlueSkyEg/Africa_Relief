@@ -1,7 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {RouterModule} from "@angular/router";
 import {IconArrowRightComponent} from "../../../icons/arrow-right/icon-arrow-right.component";
-import {IBlog} from "../../../interfaces/blog-interface";
+import {IBlogCard} from "../../../../shared/interfaces/blog-card-interface";
+
 @Component({
   selector: 'app-blog-card',
   standalone: true,
@@ -10,5 +11,5 @@ import {IBlog} from "../../../interfaces/blog-interface";
   styleUrl: './blog-card.component.scss'
 })
 export class BlogCardComponent {
-  @Input() blog: IBlog;
+  @Input() blog: IBlogCard;
 }
