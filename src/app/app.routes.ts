@@ -4,7 +4,8 @@ import { BlogsComponent } from './components/blogs/blogs.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 
 export const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
   {path: 'blogs/category/:slug', component: BlogsComponent},
   {path: 'blogs', component: BlogsComponent},
   {path: 'projects/category/:slug', component: ProjectsComponent},

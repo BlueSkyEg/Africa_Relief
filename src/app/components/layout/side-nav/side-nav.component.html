@@ -6,10 +6,10 @@
     </svg>
   </button>
   <ul>
-    <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
     <li>
       <div class="flex justify-between items-center">
-        <a class="flex-1" routerLink="/our-projects" routerLinkActive="active">Our Projects</a>
+        <a class="flex-1" routerLink="/projects" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Our Projects</a>
         <span class="p-[16px]" (click)="openChildMenu = !openChildMenu">
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
                 <path d="M6 8.37498L0 2.37498L1.4 0.974976L6 5.57498L10.6 0.974976L12 2.37498L6 8.37498Z" fill="#403F3E"/>
@@ -17,19 +17,19 @@
             </span>
       </div>
       <ul class="child-menu" [ngClass]="{'active': openChildMenu}">
-        <li><a class="ms-6" routelink="/our-projects/water" routerLinkActive="active">Water</a></li>
-        <li><a class="ms-6" routelink="/our-projects/education" routerLinkActive="active">Education</a></li>
-        <li><a class="ms-6" routelink="/our-projects/food-aid" routerLinkActive="active">Food Aid</a></li>
-        <li><a class="ms-6" routelink="/our-projects/medical-help" routerLinkActive="active">Medical Help</a></li>
-        <li><a class="ms-6" routelink="/our-projects/orphan-sponsorship" routerLinkActive="active">Orphan
+        <li><a class="ms-6" routelink="/projects/water" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Water</a></li>
+        <li><a class="ms-6" routelink="/projects/education" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Education</a></li>
+        <li><a class="ms-6" routelink="/projects/food-aid" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Food Aid</a></li>
+        <li><a class="ms-6" routelink="/projects/medical-help" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Medical Help</a></li>
+        <li><a class="ms-6" routelink="/projects/orphan-sponsorship" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Orphan
           Sponsorship</a></li>
-        <li><a class="ms-6" routelink="/our-projects/zakat" routerLinkActive="active">Zakat</a></li>
-        <li><a class="ms-6" routelink="/our-projects/ramadan" routerLinkActive="active">Ramadan</a></li>
+        <li><a class="ms-6" routelink="/projects/zakat" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Zakat</a></li>
+        <li><a class="ms-6" routelink="/projects/ramadan" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Ramadan</a></li>
       </ul>
     </li>
-    <li><a routerLink="/get-involved" routerLinkActive="active">Get Involved</a></li>
-    <li><a routerLink="/blog" routerLinkActive="active">Blog</a></li>
-    <li><a routerLink="/gallery" routerLinkActive="active">Gallery</a></li>
-    <li><a routerLink="/careers" routerLinkActive="active">Careers</a></li>
+    <li><a routerLink="/get-involved" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Get Involved</a></li>
+    <li><a routerLink="/blogs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Blog</a></li>
+    <li><a routerLink="/gallery" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Gallery</a></li>
+    <li><a routerLink="/careers" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Careers</a></li>
   </ul>
 </nav>

@@ -15,14 +15,14 @@
           <div class="toggle-accordion lg:hidden" [ngClass]="{'active': openExploreAccordion}"></div>
         </div>
         <ul class="footer-links" [ngClass]="{'active': openExploreAccordion}">
-          <li><a routerLink="/" routerLinkActive="active">Home</a></li>
-          <li><a routerLink="/projects" routerLinkActive="active">Our Projects</a></li>
-          <li><a routerLink="/get-involved" routerLinkActive="active">Get Involved</a></li>
-          <li><a routerLink="/blog" routerLinkActive="active">Blog</a></li>
-          <li><a routerLink="/gallery" routerLinkActive="active">Gallery</a></li>
-          <li><a routerLink="/about-us" routerLinkActive="active">About Us</a></li>
-          <li><a routerLink="/contact-us" routerLinkActive="active">Contact Us</a></li>
-          <li><a routerLink="/careers" routerLinkActive="active">Careers</a></li>
+          <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+          <li><a routerLink="/projects" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Our Projects</a></li>
+          <li><a routerLink="/get-involved" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Get Involved</a></li>
+          <li><a routerLink="/blogs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Blog</a></li>
+          <li><a routerLink="/gallery" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Gallery</a></li>
+          <li><a routerLink="/about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">About Us</a></li>
+          <li><a routerLink="/contact-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Contact Us</a></li>
+          <li><a routerLink="/careers" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Careers</a></li>
         </ul>
       </div>
       <div class="basis-1/6">
