@@ -1,0 +1,68 @@
+<div class="container mt-4 mb-10 lg:mb-20">
+  <!-- Breadcrumb -->
+  <app-breadcrumb basePath="/blogs" baseName="Blogs" [currentName]="blog.title"/>
+
+  <!-- blog Container -->
+  <div class="flex flex-col lg:flex-row gap-6 mt-6">
+    <!-- blog Details -->
+    <div class="flex flex-col gap-6 basis-2/3">
+      <!-- blog title -->
+      <h1 class="text-heading-1">{{blog.title | titlecase}}</h1>
+
+      <p class="text-body-2-md">{{blog.date}}</p>
+
+      <!-- blog image -->
+      <div class="relative">
+        <img class="w-full lg:h-[480px] object-cover object-center" [src]="blog.featuredImage.src" [alt]="blog.featuredImage.alt" loading="lazy">
+        <div class="absolute bottom-0 start-0 bg-secondary py-1 px-3">
+          @for (category of blog.categories; track category; let idx = $index) {
+            <a [routerLink]="'/blogs/category/' + category.slug">{{ category.name }}</a>
+            @if (blog.categories.length > idx + 1 ) {
+              <span>, </span>
+            }
+          }
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <p class="text-body-2">Location: <span class="text-body-2-md">{{blog.location | titlecase}}</span></p>
+        <p class="text-body-2">Implementation Date: <span class="text-body-2-md">{{blog.ImplementationDate| titlecase}}</span></p>
+      </div>
+
+      <!-- Donation Card for mobile -->
+      <div class="block lg:hidden">
+        <app-donation-card [donationLevels]="blog.donationLevels" [recurringPeriods]="blog.recurringPeriods" [fullyFundLevel]="blog.fullyFundLevel"/>
+      </div>
+
+      <!-- blog content -->
+      <div class="flex flex-col gap-6">
+        @for (paragraph of blog.content; track paragraph; let idx = $index) {
+        <div class="flex flex-col gap-3">
+          @if (!idx) {
+          <div class="flex items-start gap-2">
+            <app-icon-quote class="mt-2"/>
+            <h2 class="text-body-1-inter">{{paragraph.heading}}</h2>
+          </div>
+          } @else {
+            <h2 class="text-body-1-inter">{{paragraph.heading}}</h2>
+          }
+          <p class="text-body-2">{{paragraph.description}}</p>
+        </div>
+        }
+      </div>
+
+      <!-- blog gallery -->
+      @if (blog.gallery.length) {
+        <app-blog-slider [slides]="blog.gallery"/>
+      }
+
+      <!-- Share Buttons -->
+      <app-share-buttons />
+    </div>
+
+    <!-- Donation Card -->
+    <div class="hidden lg:block basis-1/3">
+      <app-donation-card [donationLevels]="blog.donationLevels" [recurringPeriods]="blog.recurringPeriods" [fullyFundLevel]="blog.fullyFundLevel"/>
+    </div>
+  </div>
+</div>
