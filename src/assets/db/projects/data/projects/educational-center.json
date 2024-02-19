@@ -1,0 +1,105 @@
+{
+  "success": true,
+  "message": "projects retrived successfully",
+  "data": {
+    "title": "Educational Center",
+    "slug": "educational-center",
+    "category": {
+      "name": "education",
+      "slug": "education"
+    },
+    "summary": "In Africa, where knowledge is power, 20% lack formal schooling, while 28% completed primary, 37% secondary, and 15% higher education, these statistics highligh the importance of accessible learning opportunities",
+    "featuredImage": {
+      "src": "assets/db/projects/images/educational-center.webp",
+      "alt": "Image of a classroom project funded through DonorsChoose, illustrating direct support to public school teachers"
+    },
+    "content": [
+      {
+        "heading": "Educational Centers, where minds flourish and futures bloom",
+        "description": "In Africa, the pursuit of education remains pivotal, with staggering statistics showing that one in five adults lacks formal education. ARCD’s Relief champions start the change through Educational Centers, bridging this gap by providing accessible and quality education. These centers serve as catalysts for transformation, nurturing young minds, and illuminating paths to a brighter future."
+      },
+      {
+        "heading": "How is ARCD's Relief responding?",
+        "description": "ARCD’s Relief is committed to breaking barriers by establishing Educational Centers across communities in Africa. These centers are not just buildings; they’re havens of knowledge and hope, offering educational opportunities to those who’ve been marginalized"
+      },
+      {
+        "heading": "Education: Building Bridges, Transforming Lives",
+        "description": "In the heart of every Educational Center lies the seed of change, nurturing minds and fostering brighter tomorrows.Your support propels , enabling education for all and fostering a more empowered, educated Africa."
+      }
+    ],
+    "donationLevels": {
+      "690": null,
+      "920": null,
+      "1150": null,
+      "27600": null
+    },
+    "fullyFundLevel": 27600,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ],
+    "latestUpdates": [
+      {
+        "title": "Salah Alzoobi Mosque",
+        "slug": "salah-alzoobi-mosquesalah-alzoobi-mosque",
+        "categories": [
+          {
+            "name": "education",
+            "slug": "education"
+          }
+        ],
+        "date": "September 8, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/salah-alzoobi-mosque/Szuabi3-1024x450.webp",
+          "alt": "A sustainable and eco-friendly mosque in Africa, blending modern design with environmental consciousness."
+        }
+      },
+      {
+        "title": "Strengthening Partnerships in Ghana",
+        "slug": "strengthening-partnerships-in-ghana",
+        "categories": [
+          {
+            "name": "education",
+            "slug": "education"
+          },
+          {
+            "name": "health",
+            "slug": "health"
+          },
+          {
+            "name": "orphan Support",
+            "slug": "orphan-support"
+          },
+          {
+            "name": "sustainable-community",
+            "slug": "sustainable-community"
+          }
+        ],
+        "date": "August 23, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/strengthening-partnerships-in-ghana/20230821_140424-1024x461.webp",
+          "alt": "Vibrant Ghanaian marketplace bustling with activity, showcasing Africa relief efforts and development cooperation in Ghana"
+        }
+      },
+      {
+        "title": "Bir Al-Walidayn School",
+        "slug": "bir-al-walidayn-school",
+        "categories": [
+          {
+            "name": "education",
+            "slug": "education"
+          }
+        ],
+        "date": "August 16, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/bir-al-walidayn-school/Bir-Al-Walidayn-School1-1024x450.webp",
+          "alt": "Completed school building in an African village, a result of Africa Relief's school-building initiative"
+        }
+      }
+    ]
+  },
+  "errors": null
+}

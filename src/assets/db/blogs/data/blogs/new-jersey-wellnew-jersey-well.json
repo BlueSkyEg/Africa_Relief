@@ -1,0 +1,72 @@
+{
+  "success": true,
+  "message": "blogs retrived successfully",
+  "data": {
+    "title": "Qur’an Circle in the Islamic Center of Passaic County Well",
+    "slug": "new-jersey-wellnew-jersey-well",
+    "categories": [
+      {
+        "name": "water",
+        "slug": "water"
+      }
+    ],
+    "date": "June 22, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/new-jersey-well/NJ6-1024x768.webp",
+      "alt": "new jersey well"
+    },
+    "gallery": [
+      {
+        "src": "assets/db/blogs/images/new-jersey-well/IMG-20230528-WA0028.webp",
+        "alt": "Qur'an Circle study session at the Islamic Center in Passaic County"
+      },
+      {
+        "src": "assets/db/blogs/images/new-jersey-well/NJ1.webp",
+        "alt": "Inside view of the Islamic Center of Passaic County's Qur'an Circle"
+      },
+      {
+        "src": "assets/db/blogs/images/new-jersey-well/NJ4.webp",
+        "alt": "new jersey well"
+      },
+      {
+        "src": "assets/db/blogs/images/new-jersey-well/NJ5.webp",
+        "alt": "new jersey well"
+      }
+    ],
+    "location": "Ghana",
+    "ImplementationDate": "June 2023",
+    "content": [
+      {
+        "heading": "Hydration and hope, hand in hand. Join us.",
+        "description": "Every well we construct is a milestone in our journey to hydrate communities. This surface water well, named in honor of the Qur’an Circle, serves as a testament to the blend of faith and service."
+      },
+      {
+        "heading": "Beneficiaries",
+        "description": "Between 200-400 villagers now have a more convenient and cleaner source of water."
+      }
+    ],
+    "nextBlog": {
+      "title": "Bir Al-Walidayn School",
+      "slug": "bir-al-walidayn-school"
+    },
+    "previousBlog": {
+      "title": "Fā’il Khair Well",
+      "slug": "fail-khair-well"
+    },
+    "donationLevels": {
+      "100": null,
+      "300": null,
+      "500": null,
+      "2500": null
+    },
+    "fullyFundLevel": 2500,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ]
+  },
+  "errors": null
+}

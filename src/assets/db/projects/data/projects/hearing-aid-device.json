@@ -1,0 +1,112 @@
+{
+  "success": true,
+  "message": "projects retrived successfully",
+  "data": {
+    "title": "Hearing Aid Device",
+    "slug": "hearing-aid-device",
+    "category": {
+      "name": "Medical help",
+      "slug": "medical-help"
+    },
+    "summary": "A world of sound, a world of possibilities—gifted by the power of hearing",
+    "featuredImage": {
+      "src": "assets/db/projects/images/hearing-aid-device.webp",
+      "alt": "A person receiving a hearing aid, a life-changing moment thanks to generous donations."
+    },
+    "content": [
+      {
+        "heading": "Hearing isn't just a sense; it's a connection to life's symphony, restoring joy and communication.",
+        "description": "The WHO estimates that 136 million Africans face some level of hearing loss. Particularly concerning is the prevalence of childhood hearing loss due to ear infections and inadequate treatment, urging immediate hearing aid device support."
+      },
+      {
+        "heading": "How is ARCD's Relief responding?",
+        "description": "ARCD’s Relief addresses hearing loss by providing advanced hearing aid devices, fostering inclusion and empowering individuals to engage fully in life’s conversations."
+      },
+      {
+        "heading": "Enabling Sound. Empowering Lives.",
+        "description": "Your donation enables us to provide hearing aid devices, transforming the lives of those facing hearing loss, fostering confidence, and facilitating their active participation in society’s conversations and experiences."
+      }
+    ],
+    "donationLevels": {
+      "250": "$250 / 1 Device",
+      "500": "$500 / 2 Device",
+      "750": "$750 / 3 Device"
+    },
+    "fullyFundLevel": null,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ],
+    "latestUpdates": [
+      {
+        "title": "Emergency Morocco Earthquake Response",
+        "slug": "emergency-morocco-earthquake-response",
+        "categories": [
+          {
+            "name": "food aid",
+            "slug": "food-aid"
+          },
+          {
+            "name": "health",
+            "slug": "health"
+          },
+          {
+            "name": "water",
+            "slug": "water"
+          }
+        ],
+        "date": "October 12, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/emergency-morocco-earthquake-response/Moroc2.webp",
+          "alt": "Ruins of buildings in Morocco following a devastating earthquake, with rescue workers in action."
+        }
+      },
+      {
+        "title": "Strengthening Partnerships in Ghana",
+        "slug": "strengthening-partnerships-in-ghana",
+        "categories": [
+          {
+            "name": "education",
+            "slug": "education"
+          },
+          {
+            "name": "health",
+            "slug": "health"
+          },
+          {
+            "name": "orphan Support",
+            "slug": "orphan-support"
+          },
+          {
+            "name": "sustainable-community",
+            "slug": "sustainable-community"
+          }
+        ],
+        "date": "August 23, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/strengthening-partnerships-in-ghana/20230821_140424-1024x461.webp",
+          "alt": "Vibrant Ghanaian marketplace bustling with activity, showcasing Africa relief efforts and development cooperation in Ghana"
+        }
+      },
+      {
+        "title": "Medical Equipment Delivery: Boosting Health Infrastructure",
+        "slug": "medical-equipment-delivery",
+      "categories": [
+        {
+          "name": "health",
+          "slug": "health"
+        }
+      ],
+        "date": "October 19, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/medical-equipment-delivery/DSC07827-1024x683.webp",
+          "alt": "Click here to donate for medical aid."
+        }
+      }
+    ]
+  },
+  "errors": null
+}

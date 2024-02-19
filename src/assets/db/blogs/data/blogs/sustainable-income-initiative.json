@@ -1,0 +1,68 @@
+{
+  "success": true,
+  "message": "blogs retrived successfully",
+  "data": {
+    "title": "Sustainable Income Initiative",
+    "slug": "sustainable-income-initiative",
+    "categories": [
+      {
+        "name": "Sustainable Community",
+        "slug": "sustainable-community"
+      }
+    ],
+    "date": "September 19, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/sustainable-income-initiative/sewing-2-1024x683.webp",
+      "alt": "showcasing economic empowerment through collaboration and entrepreneurship"
+    },
+    "gallery": [
+      {
+        "src": "assets/db/blogs/images/sustainable-income-initiative/sewing-1-scaled.webp",
+        "alt": "sewing 1"
+      },
+      {
+        "src": "assets/db/blogs/images/sustainable-income-initiative/sewing-3-scaled.webp",
+        "alt": "sewing 3"
+      },
+      {
+        "src": "assets/db/blogs/images/sustainable-income-initiative/sewing--scaled.webp",
+        "alt": "sewing"
+      }
+    ],
+    "location": "Tanzania",
+    "ImplementationDate": "May 2023",
+    "content": [
+      {
+        "heading": "Empower a family’s journey towards self-reliance. Every contribution stitches hope",
+        "description": "Economic empowerment is key to breaking the cycle of poverty. By distributing sewing machines, we’re equipping mothers, especially those of orphans and the impoverished, with a sustainable means to support their families. Each machine represents a chance at financial independence and a brighter future."
+      },
+      {
+        "heading": "Beneficiaries",
+        "description": "10 families, benefiting over 70 individuals."
+      }
+    ],
+    "nextBlog": {
+      "title": "Empowering Mobility and Livelihoods",
+      "slug": "empowering-mobility-and-livelihoods"
+    },
+    "previousBlog": {
+      "title": "Bait Al Maqdes Artesian Well",
+      "slug": "bait-al-maqdes-artesian-well"
+    },
+    "donationLevels": {
+      "200": null,
+      "400": null,
+      "600": null,
+      "800": null
+    },
+    "fullyFundLevel": null,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ]
+  },
+  "errors": null
+}

@@ -1,0 +1,108 @@
+{
+  "success": true,
+  "message": "projects retrived successfully",
+  "data": {
+    "title": "Ghana Floods",
+    "slug": "ghana-floods",
+    "category": {
+      "name": "crisis",
+      "slug": "crisis"
+    },
+    "summary": "Southeastern Ghana faces escalating displacements post Akosombo Dam water release on Oct 13. Your support matters.",
+    "featuredImage": {
+      "src": "assets/db/projects/images/ghana-floods.webp",
+      "alt": "Donate to ghana: Streets submerged in floodwaters, illustrating the extent of flooding in Ghana."
+    },
+    "content": [
+      {
+        "heading": "Ghana's Volta Region faces a dire aftermath post-flooding, displacing 26,000+. Join ARCD USA's efforts aiding recovery. Your support restores hope.",
+        "description": "As of October 18, over 26,000 individuals in the Volta Region have been displaced, particularly affecting the South, Central, and North Tongu Districts. Additionally, 7 people remain injured, and multiple communities are isolated due to flooded roads, disrupting essential services."
+      },
+      {
+        "heading": "How is ARCD's Relief responding?",
+        "description": "Africa Relief and Community Development (ARCD) is at the forefront, providing immediate relief and sustainable solutions to aid Ghana’s recovery. Our work, in collaboration with government efforts, addresses the multidimensional challenges brought by the flooding, prioritizing the safety and well-being of affected communities."
+      },
+      {
+        "heading": "Critical Aid Needed",
+        "description": "1- Clean Water: Essential to prevent waterborne diseases caused by contaminated floodwaters.\n2- Food Supplies: Including feeding projects and non-perishable food items.\n3- Clothing, Blankets, and Mattresses: Vital necessities for those who have lost everything in the floods.\n4- Mosquito Nets: Crucial for preventing vector-borne diseases amplified by stagnant water.\n5- Your support ensures these essentials reach those in need, safeguarding lives and fostering recovery in the aftermath of the disaster."
+      },
+      {
+        "heading": "Empower Survivors",
+        "description": "Join ARCD’s efforts to provide vital support to survivors. Your contribution makes a difference in restoring hope and rebuilding lives."
+      }
+    ],
+    "donationLevels": {
+      "50": null,
+      "100": null,
+      "250": null
+    },
+    "fullyFundLevel": null,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ],
+    "latestUpdates": [
+      {
+        "title": "Strategic Partnerships in Tanzania",
+        "slug": "strategic-partnerships-in-tanzania",
+        "categories": [
+          {
+            "name": "health",
+            "slug": "health"
+          },
+          {
+            "name": "orphan support",
+            "slug": "orphan-support"
+          }
+        ],
+        "date": "September 1, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/strategic-partnerships-in-tanzania/Tanzania2.webp",
+          "alt": "Impact non profit: Team analyzing data for community improvement projects"
+        }
+      },
+      {
+        "title": "Emergency Morocco Earthquake Response",
+        "slug": "emergency-morocco-earthquake-response",
+        "categories": [
+          {
+            "name": "food aid",
+            "slug": "food-aid"
+          },
+          {
+            "name": "health",
+            "slug": "health"
+          },
+          {
+            "name": "water",
+            "slug": "water"
+          }
+        ],
+        "date": "October 12, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/emergency-morocco-earthquake-response/Moroc2.webp",
+          "alt": "Ruins of buildings in Morocco following a devastating earthquake, with rescue workers in action."
+        }
+      },
+      {
+        "title": "Mariame Diawara and Fatoumata Tiemoko Well",
+        "slug": "mariame-diawara-and-fatoumata-tiemoko-well",
+        "categories": [
+          {
+            "name": "water",
+            "slug": "water"
+          }
+        ],
+        "date": "September 29, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/mariame-diawara-and-fatoumata-tiemoko-well/Mariame6-1024x802.webp",
+          "alt": "Mariame Diawara and Fatoumata Tiemoko on the well built by Africa Relief"
+        }
+      }
+    ]
+  },
+  "errors": null
+}

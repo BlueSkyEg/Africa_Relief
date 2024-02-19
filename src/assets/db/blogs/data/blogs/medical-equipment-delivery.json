@@ -1,0 +1,76 @@
+{
+  "success": true,
+  "message": "blogs retrived successfully",
+  "data": {
+    "title": "Medical Equipment Delivery: Boosting Health Infrastructure",
+    "slug": "medical-equipment-delivery",
+    "categories": [
+      {
+        "name": "health",
+        "slug": "health"
+      }
+    ],
+    "date": "October 19, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/medical-equipment-delivery/DSC07827-1024x683.webp",
+      "alt": "Click here to donate for medical aid."
+    },
+    "gallery": [
+      {
+        "src": "assets/db/blogs/images/medical-equipment-delivery/DSC07858-1-scaled.webp",
+        "alt": "Medical Equipment Delivery - A Key Africa Relief Projects"
+      },
+      {
+        "src": "assets/db/blogs/images/medical-equipment-delivery/DSC07859-1-scaled.webp",
+        "alt": "Boxes of essential medical equipment ready for distribution in an African village, sponsored by the Africa Relief Project"
+      },
+      {
+        "src": "assets/db/blogs/images/medical-equipment-delivery/DSC07862-1-scaled.webp",
+        "alt": "Healthcare workers in Africa receiving medical equipment from the Africa Relief Project delivery truck"
+      },
+      {
+        "src": "assets/db/blogs/images/medical-equipment-delivery/DSC07864-1-scaled.webp",
+        "alt": "Healthcare workers in Africa receiving medical equipment from the Africa Relief Project delivery truck"
+      },
+      {
+        "src": "assets/db/blogs/images/medical-equipment-delivery/DSC07865-1-scaled.webp",
+        "alt": "Medical supplies being distributed to a rural clinic as part of Africa Relief's healthcare initiative"
+      }
+    ],
+    "location": "Tanzania",
+    "ImplementationDate": "February 2023",
+    "content": [
+      {
+        "heading": "Mend bodies, uplift spirits. Partner with us in this healing journey.",
+        "description": "Quality healthcare often hinges on the availability of the right tools. By delivering essential medical equipment, we’re bolstering Tanzania’s health infrastructure, ensuring that more patients receive the care they deserve. This initiative, in partnership with other organizations, is a leap toward a healthier future for the community."
+      },
+      {
+        "heading": "Beneficiaries",
+        "description": "More than 1000 individuals."
+      }
+    ],
+    "nextBlog": {
+      "title": "Starting Small Businesses for Families",
+      "slug": "starting-small-businesses-for-families"
+    },
+    "previousBlog": {
+      "title": "Nurturing Families: Meat Distribution Initiative",
+      "slug": "nurturing-families-meat-distribution-initiative"
+    },
+    "donationLevels": {
+      "100": null,
+      "200": null,
+      "500": null,
+      "1000": null
+    },
+    "fullyFundLevel": null,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ]
+  },
+  "errors": null
+}

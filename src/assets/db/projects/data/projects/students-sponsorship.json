@@ -1,0 +1,105 @@
+{
+  "success": true,
+  "message": "projects retrived successfully",
+  "data": {
+    "title": "Students Sponsorship",
+    "slug": "students-sponsorship",
+    "category": {
+      "name": "education",
+      "slug": "education"
+    },
+    "summary": "In Africa, the journey to education is marred by staggering statistics. Over 20% of children aged 6 to 11 miss the chance to enter the classroom, a figure that balloons to one-third for youths aged 12 to 14. Shockingly, almost 60% of youths between 15 and 17 are deprived of the school experience.",
+    "featuredImage": {
+      "src": "assets/db/projects/images/students-sponsorship.webp",
+      "alt": "A sponsored child studying diligently, empowered by African education sponsorship."
+    },
+    "content": [
+      {
+        "heading": "Imagine your impact on a Student live",
+        "description": "Access to education is a fundamental right, yet for many in Africa, it remains a distant dream. ARCD’s Relief believes in transforming lives through education by offering student sponsorships. By supporting a student’s educational journey, you’re not just investing in their future; you’re paving the way for a more empowered generation, creating ripples of positive change across communities."
+      },
+      {
+        "heading": "How is ARCD's Relief responding?",
+        "description": "ARCD’s Relief sponsors students by providing financial aid, mentorship, and resources, ensuring that no promising mind is hindered by financial constraints. We believe in creating opportunities for students to thrive, fostering a brighter tomorrow."
+      },
+      {
+        "heading": "Education is not a privilege; it's a right.",
+        "description": "Your sponsorship extends beyond funding; it’s the key to unlocking potential, nurturing talents, and fostering a more educated and empowered society."
+      }
+    ],
+    "donationLevels": {
+      "100": null,
+      "200": null,
+      "500": null,
+      "1200": null
+    },
+    "fullyFundLevel": null,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ],
+    "latestUpdates": [
+      {
+        "title": "Salah Alzoobi Mosque",
+        "slug": "salah-alzoobi-mosquesalah-alzoobi-mosque",
+        "categories": [
+          {
+            "name": "education",
+            "slug": "education"
+          }
+        ],
+        "date": "September 8, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/salah-alzoobi-mosque/Szuabi3-1024x450.webp",
+          "alt": "A sustainable and eco-friendly mosque in Africa, blending modern design with environmental consciousness."
+        }
+      },
+      {
+        "title": "Strengthening Partnerships in Ghana",
+        "slug": "strengthening-partnerships-in-ghana",
+        "categories": [
+          {
+            "name": "education",
+            "slug": "education"
+          },
+          {
+            "name": "health",
+            "slug": "health"
+          },
+          {
+            "name": "orphan Support",
+            "slug": "orphan-support"
+          },
+          {
+            "name": "sustainable-community",
+            "slug": "sustainable-community"
+          }
+        ],
+        "date": "August 23, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/strengthening-partnerships-in-ghana/20230821_140424-1024x461.webp",
+          "alt": "Vibrant Ghanaian marketplace bustling with activity, showcasing Africa relief efforts and development cooperation in Ghana"
+        }
+      },
+      {
+        "title": "Bir Al-Walidayn School",
+        "slug": "bir-al-walidayn-school",
+        "categories": [
+          {
+            "name": "education",
+            "slug": "education"
+          }
+        ],
+        "date": "August 16, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/bir-al-walidayn-school/Bir-Al-Walidayn-School1-1024x450.webp",
+          "alt": "Completed school building in an African village, a result of Africa Relief's school-building initiative"
+        }
+      }
+    ]
+  },
+  "errors": null
+}

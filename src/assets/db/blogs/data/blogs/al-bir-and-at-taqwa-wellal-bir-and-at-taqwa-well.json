@@ -1,0 +1,80 @@
+{
+  "success": true,
+  "message": "blogs retrived successfully",
+  "data": {
+    "title": "Al-Bir and At-Taqwa Well",
+    "slug": "al-bir-and-at-taqwa-wellal-bir-and-at-taqwa-well",
+    "categories": [
+      {
+        "name": "water",
+        "slug": "water"
+      }
+    ],
+    "date": "June 17, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/al-bir-and-at-taqwa-well/Al-Bir-Well-4-1024x576.webp",
+      "alt": "Al-Bir and At-Taqwa Well - A serene desert landscape featuring the historic Al-Bir and At-Taqwa Well sites"
+    },
+    "gallery": [
+      {
+        "src": "assets/db/blogs/images/al-bir-and-at-taqwa-well/Al-Bir-Well-.webp",
+        "alt": "Al-Bir Well"
+      },
+      {
+        "src": "assets/db/blogs/images/al-bir-and-at-taqwa-well/Al-Bir-Well-2.webp",
+        "alt": "Al-Bir Well"
+      },
+      {
+        "src": "assets/db/blogs/images/al-bir-and-at-taqwa-well/Al-Bir-Well-3.webp",
+        "alt": "Al-Bir Well 3"
+      },
+      {
+        "src": "assets/db/blogs/images/al-bir-and-at-taqwa-well/Al-Bir-Well-5.webp",
+        "alt": "Al-Bir Well 5"
+      },
+      {
+        "src": "assets/db/blogs/images/al-bir-and-at-taqwa-well/Al-Bir-Well-6.webp",
+        "alt": "Al-Bir Well 6"
+      },
+      {
+        "src": "assets/db/blogs/images/al-bir-and-at-taqwa-well/Al-Bir-Well-7.webp",
+        "alt": "Al-Bir Well 7"
+      }
+    ],
+    "location": "Uganda",
+    "ImplementationDate": "June 2023",
+    "content": [
+      {
+        "heading": "Water is life. Let’s spread its blessings.",
+        "description": "Clean water is life’s most basic need, and our newly constructed surface water well is a testament to that. By quenching thirst, we’re revitalizing communities and offering them better health."
+      },
+      {
+        "heading": "Beneficiaries",
+        "description": "The project supports 200-400 individuals, gifting them with consistent clean water access."
+      }
+    ],
+    "nextBlog": {
+      "title": "Fā’il Khair Well",
+      "slug": "fail-khair-well"
+    },
+    "previousBlog": {
+      "title": "Hajja Muyassar Hassan Shuaib Mosque & Water Well",
+      "slug": "hajja-muyassar-hassan-shuaib-mosque-water-well"
+    },
+    "donationLevels": {
+      "100": null,
+      "300": null,
+      "500": null,
+      "2500": null
+    },
+    "fullyFundLevel": 2500,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ]
+  },
+  "errors": null
+}

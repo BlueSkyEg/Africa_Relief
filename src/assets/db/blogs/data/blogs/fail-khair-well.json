@@ -1,0 +1,72 @@
+{
+  "success": true,
+  "message": "blogs retrived successfully",
+  "data": {
+    "title": "Fā’il Khair Well",
+    "slug": "fail-khair-well",
+    "categories": [
+      {
+        "name": "water",
+        "slug": "water"
+      }
+    ],
+    "date": "June 21, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/fail-khair-well/f-khair2-1-1024x645.webp",
+      "alt": "Wells in Africa: Villagers gathering water from a new well in a rural village"
+    },
+    "gallery": [
+      {
+        "src": "assets/db/blogs/images/fail-khair-well/f-khair4-1-scaled.webp",
+        "alt": "Fail Khair Well signage, displaying the name and the date of establishment"
+      },
+      {
+        "src": "assets/db/blogs/images/fail-khair-well/f-khair-scaled.webp",
+        "alt": "Close-up of fresh water flowing from the Fail Khair Well, a vital resource for the community."
+      },
+      {
+        "src": "assets/db/blogs/images/fail-khair-well/f-khair5-scaled.webp",
+        "alt": "Children joyfully playing near the newly constructed Fail Khair Well"
+      },
+      {
+        "src": "assets/db/blogs/images/fail-khair-well/f-khair6-scaled.webp",
+        "alt": "Inauguration ceremony of the Fail Khair Well with local community leaders present."
+      }
+    ],
+    "location": "Uganda",
+    "ImplementationDate": "June 2023",
+    "content": [
+      {
+        "heading": "Water changes destinies. Let’s keep the flow going.",
+        "description": "Our dedication has birthed a new surface water well, a symbol of sustainability and health. Clean water projects like these are pivotal in combating waterborne diseases and ensuring a community thrives."
+      },
+      {
+        "heading": "Beneficiaries",
+        "description": "This resource now supports between 200-400 individuals, offering them not just water, but a chance at healthier lives."
+      }
+    ],
+    "nextBlog": {
+      "title": "Qur’an Circle in the Islamic Center of Passaic County Well",
+      "slug": "new-jersey-well"
+    },
+    "previousBlog": {
+      "title": "Al-Bir and At-Taqwa Well",
+      "slug": "al-bir-and-at-taqwa-well"
+    },
+    "donationLevels": {
+      "100": null,
+      "300": null,
+      "500": null,
+      "2500": null
+    },
+    "fullyFundLevel": 2500,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ]
+  },
+  "errors": null
+}

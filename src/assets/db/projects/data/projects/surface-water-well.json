@@ -1,0 +1,101 @@
+{
+  "success": true,
+  "message": "projects retrived successfully",
+  "data": {
+    "title": "Surface Water Well",
+    "slug": "surface-water-well",
+    "category": {
+      "name": "water",
+      "slug": "water"
+    },
+    "summary": "Provide easy access to clean water for the vilage, supports 200-400 individuals. These wells sustain livelihoods, ensuring a continuous flow of clean water for those in need.",
+    "featuredImage": {
+      "src": "assets/db/projects/images/surface-water-well.webp",
+      "alt": "Villagers celebrating the completion of the well, a life-changing moment for the community"
+    },
+    "content": [
+      {
+        "heading": "Each well stands as a paving the way for healthier, thriving livelihoods",
+        "description": "Sub-Saharan Africa grapples with a staggering 40% of its population—approximately 783 million people—deprived of clean drinking water. In this context, each surface well acts as a beacon of hope, serving not only as a source of life but also as a vital lifeline for those lacking access, offering a means to quench the thirst and preserve the lives of many."
+      },
+      {
+        "heading": "How is ARCD's Relief responding?",
+        "description": "ARCD’s Relief establishes surface water wells, utilizing natural resources to create accessible water sources for communities in need."
+      },
+      {
+        "heading": "A Surface water well can be the community's Lifeline",
+        "description": "A Surface water well can be the community’s Lifeline"
+      }
+    ],
+    "donationLevels": {
+      "100": null,
+      "300": null,
+      "500": null,
+      "2500": null
+    },
+    "fullyFundLevel": 2500,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ],
+    "latestUpdates": [
+      {
+        "title": "Emergency Morocco Earthquake Response",
+        "slug": "emergency-morocco-earthquake-response",
+        "categories": [
+          {
+            "name": "food aid",
+            "slug": "food-aid"
+          },
+          {
+            "name": "health",
+            "slug": "health"
+          },
+          {
+            "name": "water",
+            "slug": "water"
+          }
+        ],
+        "date": "October 12, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/emergency-morocco-earthquake-response/Moroc2.webp",
+          "alt": "Ruins of buildings in Morocco following a devastating earthquake, with rescue workers in action."
+        }
+      },
+      {
+        "title": "Mariame Diawara and Fatoumata Tiemoko Well",
+        "slug": "mariame-diawara-and-fatoumata-tiemoko-well",
+        "categories": [
+          {
+            "name": "water",
+            "slug": "water"
+          }
+        ],
+        "date": "September 29, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/mariame-diawara-and-fatoumata-tiemoko-well/Mariame6-1024x802.webp",
+          "alt": "Mariame Diawara and Fatoumata Tiemoko on the well built by Africa Relief"
+        }
+      },
+      {
+        "title": "Sadaqah Wells",
+        "slug": "sadaqah-wells",
+        "categories": [
+          {
+            "name": "water",
+            "slug": "water"
+          }
+        ],
+        "date": "September 29, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/sadaqah-wells/Sadaqah1-scaled.webp",
+          "alt": "Learn About our project Sadaqah Wells - Africa Relief"
+        }
+      }
+    ]
+  },
+  "errors": null
+}

@@ -1,0 +1,80 @@
+{
+  "success": true,
+  "message": "blogs retrived successfully",
+  "data": {
+    "title": "Emergency Morocco Earthquake Response",
+    "slug": "emergency-morocco-earthquake-response",
+    "categories": [
+      {
+        "name": "food aid",
+        "slug": "food-aid"
+      },
+      {
+        "name": "health",
+        "slug": "health"
+      },
+      {
+        "name": "water",
+        "slug": "water"
+      }
+    ],
+    "date": "October 12, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/emergency-morocco-earthquake-response/Moroc2.webp",
+      "alt": "Ruins of buildings in Morocco following a devastating earthquake, with rescue workers in action."
+    },
+    "gallery": [
+      {
+        "src": "assets/db/blogs/images/emergency-morocco-earthquake-response/Moroc1.webp",
+        "alt": "Emergency response team providing aid to earthquake-affected residents in Morocco"
+      },
+      {
+        "src": "assets/db/blogs/images/emergency-morocco-earthquake-response/Moroc3.webp",
+        "alt": "Local Moroccan community receiving medical assistance in a temporary relief camp post-earthquake."
+      },
+      {
+        "src": "assets/db/blogs/images/emergency-morocco-earthquake-response/Moroc4.webp",
+        "alt": "Local Moroccan community receiving medical assistance in a temporary relief camp post-earthquake."
+      },
+      {
+        "src": "assets/db/blogs/images/emergency-morocco-earthquake-response/Moroc5.webp",
+        "alt": "Ruins of buildings in Morocco following a devastating earthquake, with rescue workers in action"
+      }
+    ],
+    "location": "Morocco",
+    "ImplementationDate": "September 2023",
+    "content": [
+      {
+        "heading": "Amid the tragedy, hope and resilience shine through. Support us as we uplift communities, weaving threads of hope and rebuilding the fabric of affected areas.",
+        "description": "A devastating 6.8 magnitude earthquake struck Morocco, wreaking havoc across the High Atlas Mountains and the city of Marrakech. As communities grieved and grappled with shattered lives and homes turned to rubble, Africa Relief and Community Development (ARCD) swiftly intervened. Collaborating with the passionate volunteers of Idmaj Foundation for Development (IDMAJ), ARCD reached the most affected, often inaccessible areas. The team provided tents, food boxes, mattresses, pallets, and blankets to hundreds of affected families, focusing on areas often overlooked by other relief efforts."
+      },
+      {
+        "heading": "Beneficiaries",
+        "description": "634 families received emergency relief and sustainable support across the affected regions."
+      }
+    ],
+    "nextBlog": {
+      "title": "Nurturing Families: Meat Distribution Initiative",
+      "slug": "nurturing-families-meat-distribution-initiative"
+    },
+    "previousBlog": {
+      "title": "Mariame Diawara and Fatoumata Tiemoko Well",
+      "slug": "mariame-diawara-and-fatoumata-tiemoko-well"
+    },
+    "donationLevels": {
+      "100": null,
+      "300": null,
+      "500": null,
+      "5500": null
+    },
+    "fullyFundLevel": 5500,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ]
+  },
+  "errors": null
+}

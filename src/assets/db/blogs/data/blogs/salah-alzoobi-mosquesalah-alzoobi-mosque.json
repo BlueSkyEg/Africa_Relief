@@ -1,0 +1,76 @@
+{
+  "success": true,
+  "message": "blogs retrived successfully",
+  "data": {
+    "title": "Salah Alzoobi Mosque",
+    "slug": "salah-alzoobi-mosquesalah-alzoobi-mosque",
+    "categories": [
+      {
+        "name": "education",
+        "slug": "education"
+      }
+    ],
+    "date": "September 8, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/salah-alzoobi-mosque/Szuabi3-1024x450.webp",
+      "alt": "A sustainable and eco-friendly mosque in Africa, blending modern design with environmental consciousness."
+    },
+    "gallery": [
+      {
+        "src": "assets/db/blogs/images/salah-alzoobi-mosque/Szuabi.webp",
+        "alt": "Mosque construction in Africa using sustainable materials, contributing to eco-friendly initiatives."
+      },
+      {
+        "src": "assets/db/blogs/images/salah-alzoobi-mosque/Szuabi1.webp",
+        "alt": "Mosque construction in Africa using sustainable materials, contributing to eco-friendly initiatives."
+      },
+      {
+        "src": "assets/db/blogs/images/salah-alzoobi-mosque/Szuabi2-scaled.webp",
+        "alt": "A mosque garden featuring native plants, showcasing sustainable landscaping practices in African mosques"
+      },
+      {
+        "src": "assets/db/blogs/images/salah-alzoobi-mosque/Szuabi4-scaled.webp",
+        "alt": "A sustainable and eco-friendly mosque in Africa, blending modern design with environmental consciousness."
+      },
+      {
+        "src": "assets/db/blogs/images/salah-alzoobi-mosque/Szuabi5-scaled.webp",
+        "alt": "A sustainable and eco-friendly mosque in Africa, blending modern design with environmental consciousness"
+      }
+    ],
+    "location": "Gambia",
+    "ImplementationDate": "December 2022",
+    "content": [
+      {
+        "heading": "Empower a child’s future through education and health. Your support can light up their world.",
+        "description": "In regions where access to quality education is a challenge, the establishment of an 8-room school equipped with a water well becomes a beacon of hope. This project not only provides a comprehensive educational setting for the community but also ensures students have access to clean water, a basic necessity often taken for granted. During the opening, the joy was palpable as donors interacted with the eager children and gifted school bags."
+      },
+      {
+        "heading": "Beneficiaries",
+        "description": "Over 300 students."
+      }
+    ],
+    "nextBlog": {
+      "title": "Bait Al Maqdes Artesian Well",
+      "slug": "bait-al-maqdes-artesian-well"
+    },
+    "previousBlog": {
+      "title": "Strategic Partnerships in Tanzania",
+      "slug": "strategic-partnerships-in-tanzania"
+    },
+    "donationLevels": {
+      "690": null,
+      "920": null,
+      "1150": null,
+      "27600": null
+    },
+    "fullyFundLevel": 27600,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ]
+  },
+  "errors": null
+}

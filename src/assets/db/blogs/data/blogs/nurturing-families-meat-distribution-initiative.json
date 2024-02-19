@@ -1,0 +1,55 @@
+{
+  "success": true,
+  "message": "blogs retrived successfully",
+  "data": {
+    "title": "Nurturing Families: Meat Distribution Initiative",
+    "slug": "nurturing-families-meat-distribution-initiative",
+    "categories": [
+      {
+        "name": "food aid",
+        "slug": "food-aid"
+      }
+    ],
+    "date": "October 12, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/nurturing-families-meat-distribution-initiative/Zabiha-1024x768.webp",
+      "alt": "Nurturing Families - A Key Africa Relief Projects"
+    },
+    "gallery": [],
+    "location": "Tanzania",
+    "ImplementationDate": "May 2023",
+    "content": [
+      {
+        "heading": "Gift the joy of a hearty meal. Your generosity fills plates and hearts.",
+        "description": "Protein-rich diets can be hard to come by in certain Tanzanian regions. Our meat distribution initiative is more than just a meal—it’s nourishment, care, and a reminder to families that they aren’t alone. Especially in areas where meals are often limited and basic, such distributions make a world of difference."
+      },
+      {
+        "heading": "Beneficiaries",
+        "description": "15 families, with an average family size of 7."
+      }
+    ],
+    "nextBlog": {
+      "title": "Medical Equipment Delivery: Boosting Health Infrastructure",
+      "slug": "medical-equipment-delivery"
+    },
+    "previousBlog": {
+      "title": "Emergency Morocco Earthquake Response",
+      "slug": "emergency-morocco-earthquake-response"
+    },
+    "donationLevels": {
+      "75": null,
+      "150": null,
+      "300": null,
+      "500": null
+    },
+    "fullyFundLevel": null,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ]
+  },
+  "errors": null
+}

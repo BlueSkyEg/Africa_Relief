@@ -1,0 +1,109 @@
+{
+  "success": true,
+  "message": "projects retrived successfully",
+  "data": {
+    "title": "Orphans Sponsorship",
+    "slug": "orphans-sponsorship",
+    "category": {
+      "name": "Orphan Sponsorship",
+      "slug": "orphans-sponsorship"
+    },
+    "summary": "In the past, hearts were filled with care for orphans, embracing them with love. Today, their numbers have grown, and many who could have aided them are gone. Orphanhood, once uncommon, now prevails. The few remaining struggle to provide, unable to meet the rising tide of need.",
+    "featuredImage": {
+      "src": "assets/db/projects/images/orphans-sponsorship.webp",
+      "alt": "Learn about orphan sponsorship project at Africa Relief"
+    },
+    "content": [
+      {
+        "heading": "Your support changes lives, turning vulnerabilities into opportunities",
+        "description": "By sponsoring an orphan, you become their beacon of hope, offering stability, education, and a chance for a promising future. Empowering orphans is not just a duty; it’s a pathway to a brighter, hopeful tomorrow."
+      },
+      {
+        "heading": "How is ARCD's Relief responding?",
+        "description": "ARCD’s Relief is dedicated to securing a better future for orphans. Through our Sponsorship Program, we provide access to education, healthcare, and a nurturing environment for these deserving children."
+      },
+      {
+        "heading": "Your donation nurturing Futures",
+        "description": "Your donation directly impacts an orphan’s life, providing essentials like education, healthcare, and emotional support. Your generosity fosters resilience and empowers them to thrive despite challenges."
+      }
+    ],
+    "donationLevels": {
+      "50": null,
+      "150": null,
+      "300": null,
+      "600": null
+    },
+    "fullyFundLevel": 600,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ],
+    "latestUpdates": [
+      {
+        "title": "Strengthening Partnerships in Ghana",
+        "slug": "strengthening-partnerships-in-ghana",
+        "categories": [
+          {
+            "name": "education",
+            "slug": "education"
+          },
+          {
+            "name": "health",
+            "slug": "health"
+          },
+          {
+            "name": "orphan Support",
+            "slug": "orphan-support"
+          },
+          {
+            "name": "sustainable-community",
+            "slug": "sustainable-community"
+          }
+        ],
+        "date": "August 23, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/strengthening-partnerships-in-ghana/20230821_140424-1024x461.webp",
+          "alt": "Vibrant Ghanaian marketplace bustling with activity, showcasing Africa relief efforts and development cooperation in Ghana"
+        }
+      },
+      {
+        "title": "Strategic Partnerships in Tanzania",
+        "slug": "strategic-partnerships-in-tanzania",
+        "categories": [
+          {
+            "name": "health",
+            "slug": "health"
+          },
+          {
+            "name": "orphan support",
+            "slug": "orphan-support"
+          }
+        ],
+        "date": "September 1, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/strategic-partnerships-in-tanzania/Tanzania2.webp",
+          "alt": "Impact non profit: Team analyzing data for community improvement projects"
+        }
+      },
+      {
+        "title": "Salah Alzoobi Mosque",
+        "slug": "salah-alzoobi-mosquesalah-alzoobi-mosque",
+        "categories": [
+          {
+            "name": "education",
+            "slug": "education"
+          }
+        ],
+        "date": "September 8, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/salah-alzoobi-mosque/Szuabi3-1024x450.webp",
+          "alt": "A sustainable and eco-friendly mosque in Africa, blending modern design with environmental consciousness."
+        }
+      }
+    ]
+  },
+  "errors": null
+}

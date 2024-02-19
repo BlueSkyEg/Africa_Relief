@@ -1,0 +1,76 @@
+{
+  "success": true,
+  "message": "blogs retrived successfully",
+  "data": {
+    "title": "Sadaqah Wells",
+    "slug": "sadaqah-wells",
+    "categories": [
+      {
+        "name": "water",
+        "slug": "water"
+      }
+    ],
+    "date": "September 29, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/sadaqah-wells/Sadaqah1-scaled.webp",
+      "alt": "Learn About our project Sadaqah Wells - Africa Relief"
+    },
+    "gallery": [
+      {
+        "src": "assets/db/blogs/images/sadaqah-wells/Sadaqah0.webp",
+        "alt": "Learn About our project Sadaqah Wells - Africa Relief"
+      },
+      {
+        "src": "assets/db/blogs/images/sadaqah-wells/Sadaqah1-1024x768.webp",
+        "alt": "Learn About our project Sadaqah Wells - Africa Relief"
+      },
+      {
+        "src": "assets/db/blogs/images/sadaqah-wells/Sadaqah2-scaled.webp",
+        "alt": "Learn About our project Sadaqah Wells - Africa Relief"
+      },
+      {
+        "src": "assets/db/blogs/images/sadaqah-wells/Sadaqah3-scaled.webp",
+        "alt": "Learn About our project Sadaqah Wells - Africa Relief"
+      },
+      {
+        "src": "assets/db/blogs/images/sadaqah-wells/Sadaqah-scaled.webp",
+        "alt": "Learn About our project Sadaqah Wells - Africa Relief"
+      }
+    ],
+    "location": "Gambia",
+    "ImplementationDate": "August 2023",
+    "content": [
+      {
+        "heading": "Every drop counts. Contribute to life, health, and community vitality.",
+        "description": "Access to clean water is fundamental. By establishing a surface water well, we’re bringing life-sustaining hydration to communities, preventing waterborne diseases and promoting overall community health. Such initiatives are more than infrastructure—they’re a promise of better days to the community."
+      },
+      {
+        "heading": "Beneficiaries",
+        "description": "200-400 individuals."
+      }
+    ],
+    "nextBlog": {
+      "title": "Empowering Mobility and Livelihoods",
+      "slug": "empowering-mobility-and-livelihoods"
+    },
+    "previousBlog": {
+      "title": "Mariame Diawara and Fatoumata Tiemoko Well",
+      "slug": "mariame-diawara-and-fatoumata-tiemoko-well"
+    },
+    "donationLevels": {
+      "100": null,
+      "300": null,
+      "500": null,
+      "5500": null
+    },
+    "fullyFundLevel": 5500,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ]
+  },
+  "errors": null
+}

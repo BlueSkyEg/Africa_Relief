@@ -1,0 +1,88 @@
+{
+  "success": true,
+  "message": "blogs retrived successfully",
+  "data": {
+    "title": "Repentance Well",
+    "slug": "repentance-well",
+    "categories": [
+      {
+        "name": "water",
+        "slug": "water"
+      }
+    ],
+    "date": "August 31, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/repentance-well/tawba6-1024x768.webp",
+      "alt": "Visitors gathered around Al Tawbah Well"
+    },
+    "gallery": [
+      {
+        "src": "assets/db/blogs/images/repentance-well/tawba1.webp",
+        "alt": "Al Tawbah Well, a historic and revered well with deep cultural and religious significance. It serves as a vital water source and a symbol of tradition and heritage"
+      },
+      {
+        "src": "assets/db/blogs/images/repentance-well/tawba2.webp",
+        "alt": "Al Tawbah Well's distinctive architectural features, showcasing its historical significance"
+      },
+      {
+        "src": "assets/db/blogs/images/repentance-well/tawba3.webp",
+        "alt": "Al Tawbah Well's distinctive architectural features, showcasing its historical significance"
+      },
+      {
+        "src": "assets/db/blogs/images/repentance-well/tawba4.webp",
+        "alt": "Traditional rituals being performed at Al Tawbah Well, preserving its sacred traditions"
+      },
+      {
+        "src": "assets/db/blogs/images/repentance-well/tawba5.webp",
+        "alt": "Crystal-clear waters of Al Tawbah Well, a natural wonder and cultural treasure"
+      },
+      {
+        "src": "assets/db/blogs/images/repentance-well/tawba6.webp",
+        "alt": "Crystal-clear waters of Al Tawbah Well, a natural wonder and cultural treasure"
+      },
+      {
+        "src": "assets/db/blogs/images/repentance-well/tawba7.webp",
+        "alt": "Visitors gathered around Al Tawbah Well"
+      },
+      {
+        "src": "assets/db/blogs/images/repentance-well/tawba8.webp",
+        "alt": "Al Tawbah Well's distinctive architectural features, showcasing its historical significance"
+      }
+    ],
+    "location": "Ghana",
+    "ImplementationDate": "August 2023",
+    "content": [
+      {
+        "heading": "Every well is a step towards a brighter, healthier future",
+        "description": "Our semi-artesian well, aptly named the Repentance Well, is a blend of modern engineering and nature. Projects like these ensure communities don’t just survive, but thrive, with adequate water for both consumption and cultivation."
+      },
+      {
+        "heading": "Beneficiaries",
+        "description": "This well serves between 400-600 individuals, a testament to the impact of sustainable solutions."
+      }
+    ],
+    "nextBlog": {
+      "title": "Brushy Creek Islamic Center Food Project",
+      "slug": "brushy-creek-islamic-center-food-project"
+    },
+    "previousBlog": {
+      "title": "Water From Our Home Well",
+      "slug": "water-from-our-home-well"
+    },
+    "donationLevels": {
+      "100": null,
+      "300": null,
+      "500": null,
+      "4600": null
+    },
+    "fullyFundLevel": 4600,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ]
+  },
+  "errors": null
+}

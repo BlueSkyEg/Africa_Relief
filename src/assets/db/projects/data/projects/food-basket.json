@@ -1,0 +1,101 @@
+{
+  "success": true,
+  "message": "projects retrived successfully",
+  "data": {
+    "title": "Food Basket",
+    "slug": "food-basket",
+    "category": {
+      "name": "Food Aid",
+      "slug": "food-aid"
+    },
+    "summary": "Let’s Unite to Ensure No Neighbor Goes Hungry. In Africa, Two-Thirds Struggle with Food Insecurity. Your Donation Fights Hunger. Join Us to Create a Lasting Impact!",
+    "featuredImage": {
+      "src": "assets/db/projects/images/food-basket.webp",
+      "alt": "Individuals contributing to the initiative of providing food baskets to alleviate hunger in their community"
+    },
+    "content": [
+      {
+        "heading": "All faiths converge on a singular cause: alleviating hunger through compassionate contributions",
+        "description": "Africa faces a dire crisis, with two-thirds of its population battling food insecurity, making it a global epicenter of hunger. Millions suffer from malnutrition, highlighting the urgency for immediate action and escalated food aid. It’s crucial to protect numerous lives and pave the way for a nourished future in the region."
+      },
+      {
+        "heading": "How is ARCD's Relief responding?",
+        "description": "ARCD’s Relief acts swiftly, addressing hunger through our Food Basket Project, offering vital nourishment to those in need. Your donations fuel this initiative, transforming compassion into instant relief. Join hands with us to directly impact and contribute to our mission of eradicating hunger."
+      },
+      {
+        "heading": "Your Donation. Their Nourishment",
+        "description": "Your generosity powers ARCD’s Relief food aid Projects, where each donation transcends empathy to provide sustenance, erasing the shadows of hunger. Join us and witness the profound impact of your support—illuminating lives and forging a path toward a future free from hunger."
+      }
+    ],
+    "donationLevels": {
+      "75": null,
+      "150": null,
+      "300": null,
+      "500": null
+    },
+    "fullyFundLevel": null,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ],
+    "latestUpdates": [
+      {
+        "title": "Emergency Morocco Earthquake Response",
+        "slug": "emergency-morocco-earthquake-response",
+        "categories": [
+          {
+            "name": "food aid",
+            "slug": "food-aid"
+          },
+          {
+            "name": "health",
+            "slug": "health"
+          },
+          {
+            "name": "water",
+            "slug": "water"
+          }
+        ],
+        "date": "October 12, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/emergency-morocco-earthquake-response/Moroc2.webp",
+          "alt": "Ruins of buildings in Morocco following a devastating earthquake, with rescue workers in action."
+        }
+      },
+      {
+        "title": "Nurturing Families: Meat Distribution Initiative",
+        "slug": "nurturing-families-meat-distribution-initiative",
+        "categories": [
+          {
+            "name": "food aid",
+            "slug": "food-aid"
+          }
+        ],
+        "date": "October 12, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/nurturing-families-meat-distribution-initiative/Zabiha-1024x768.webp",
+          "alt": "Nurturing Families - A Key Africa Relief Projects"
+        }
+      },
+      {
+        "title": "Brushy Creek Islamic Center Food Project",
+        "slug": "brushy-creek-islamic-center-food-project",
+        "categories": [
+          {
+            "name": "food aid",
+            "slug": "food-aid"
+          }
+        ],
+        "date": "August 31, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/brushy-creek-islamic-center-food-project/brush2-1024x768.webp",
+          "alt": "Brushy Creek Islamic Center Food Project - Africa Relief"
+        }
+      }
+    ]
+  },
+  "errors": null
+}

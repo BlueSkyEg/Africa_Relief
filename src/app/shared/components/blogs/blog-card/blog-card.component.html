@@ -4,7 +4,7 @@
       <img class="h-72 object-cover object-center" [src]="blog.featuredImage.src" [alt]="blog.featuredImage.alt" loading="lazy">
       <div class="absolute bottom-0 end-0 bg-secondary py-1 px-3">
         @for (category of blog.categories; track category.slug; let idx = $index) {
-          <a [routerLink]="category.slug">{{ category.name }}</a>
+          <a [routerLink]="'/blogs/category/' + category.slug">{{ category.name }}</a>
           @if (blog.categories.length > idx + 1 ) {
             <span>, </span>
           }

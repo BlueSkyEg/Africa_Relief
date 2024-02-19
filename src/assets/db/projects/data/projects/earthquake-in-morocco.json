@@ -1,0 +1,109 @@
+{
+  "success": true,
+  "message": "projects retrived successfully",
+  "data": {
+    "title": "Emergency Earthquake Relief Needed",
+    "slug": "earthquake-in-morocco",
+    "category": {
+      "name": "crisis",
+      "slug": "crisis"
+    },
+    "summary": "The vulnerable communities in Morocco faced severe impacts from the 6.8-magnitude earthquake. Tragically, over 2,000 lives were lost, with thousands more injured. Many awaiting rescue.",
+    "featuredImage": {
+      "src": "assets/db/projects/images/earthquake-in-morocco.webp",
+      "alt": "Africa Relief: Morocco Earthquake Relief Fund Aid"
+    },
+    "content": [
+      {
+        "heading": "More than 300,000 people have been affected in Marrakech and surrounding areas. Join ARCD USA in rebuilding shattered lives and sparking new hope.",
+        "description": "Amidst the aftermath of a catastrophic earthquake, Morocco mourns over 2,800 lives lost and the deep impact on 100,000 children. Urgent needs include shelter, clean water, medical aid, and nourishment. Let’s unite and extend a lifeline, rebuilding shattered lives."
+      },
+      {
+        "heading": "How is ARCD's Relief responding?",
+        "description": "ARCD’s Relief team swiftly mobilized in response to the catastrophic earthquake in Morocco. As families grapple with the loss of over 2,800 lives, our focus was on urgent necessities: providing shelter, clean water, medical aid, and essential nourishment. Our unified efforts now aim to extend a lifeline, aiding in the reconstruction of shattered lives and offering hope amidst the devastation."
+      },
+      {
+        "heading": "Critical Aid Needed",
+        "description": "1- Clean Water: Essential to prevent waterborne diseases caused by contaminated floodwaters.\n2- Food Supplies: Including feeding projects and non-perishable food items.\n3- Clothing, Blankets, and Mattresses: Vital necessities for those who have lost everything in the floods.\n4- Shelters: Build safe havens to restore security amidst turmoil\n5- Your support ensures these essentials reach those in need, safeguarding lives and fostering recovery in the aftermath of the disaster."
+      },
+      {
+        "heading": "Empower Survivors",
+        "description": "United for igniting change. Your contribution powers our rapid response, reaching those affected by the crisis with the necessary aid"
+      }
+    ],
+    "donationLevels": {
+      "50": null,
+      "100": null,
+      "150": null,
+      "200": null
+    },
+    "fullyFundLevel": null,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ],
+    "latestUpdates": [
+      {
+        "title": "Strategic Partnerships in Tanzania",
+        "slug": "strategic-partnerships-in-tanzania",
+        "categories": [
+          {
+            "name": "health",
+            "slug": "health"
+          },
+          {
+            "name": "orphan support",
+            "slug": "orphan-support"
+          }
+        ],
+        "date": "September 1, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/strategic-partnerships-in-tanzania/Tanzania2.webp",
+          "alt": "Impact non profit: Team analyzing data for community improvement projects"
+        }
+      },
+      {
+        "title": "Emergency Morocco Earthquake Response",
+        "slug": "emergency-morocco-earthquake-response",
+        "categories": [
+          {
+            "name": "food aid",
+            "slug": "food-aid"
+          },
+          {
+            "name": "health",
+            "slug": "health"
+          },
+          {
+            "name": "water",
+            "slug": "water"
+          }
+        ],
+        "date": "October 12, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/emergency-morocco-earthquake-response/Moroc2.webp",
+          "alt": "Ruins of buildings in Morocco following a devastating earthquake, with rescue workers in action."
+        }
+      },
+      {
+        "title": "Mariame Diawara and Fatoumata Tiemoko Well",
+        "slug": "mariame-diawara-and-fatoumata-tiemoko-well",
+        "categories": [
+          {
+            "name": "water",
+            "slug": "water"
+          }
+        ],
+        "date": "September 29, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/mariame-diawara-and-fatoumata-tiemoko-well/Mariame6-1024x802.webp",
+          "alt": "Mariame Diawara and Fatoumata Tiemoko on the well built by Africa Relief"
+        }
+      }
+    ]
+  },
+  "errors": null
+}

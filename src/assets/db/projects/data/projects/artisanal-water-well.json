@@ -1,0 +1,101 @@
+{
+  "success": true,
+  "message": "projects retrived successfully",
+  "data": {
+    "title": "Artisanal Water Well",
+    "slug": "artisanal-water-well",
+    "category": {
+      "name": "water",
+      "slug": "water"
+    },
+    "summary": "Provide easy access to clean water for the vilage, supports 400-600 individuals. Crafting lifelines from the earth, artisanal wells bring sustenance to parched lands.",
+    "featuredImage": {
+      "src": "assets/db/projects/images/artisanal-water-well.webp",
+      "alt": "Wells in Africa: Villagers gathering water from a new well in a rural village"
+    },
+    "content": [
+      {
+        "heading": "Each well stands as a paving the way for healthier, thriving livelihoods.",
+        "description": "Artisanal Water Wells are more than sources; they’re symbols of community strength. Join us in providing vital access to clean water"
+      },
+      {
+        "heading": "How is ARCD's Relief responding?",
+        "description": "ARCD’s Relief constructs artisanal water wells, utilizing cost-effective methods to create sustainable water sources for communities lacking access."
+      },
+      {
+        "heading": "Building a well, Crafting Hope",
+        "description": "Your donation facilitates the construction of artisanal water wells, offering communities reliable access to clean water, fostering resilience, and nurturing sustainable livelihoods."
+      }
+    ],
+    "donationLevels": {
+      "100": null,
+      "300": null,
+      "500": null,
+      "4600": null
+    },
+    "fullyFundLevel": 4600,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ],
+    "latestUpdates": [
+      {
+        "title": "Emergency Morocco Earthquake Response",
+        "slug": "emergency-morocco-earthquake-response",
+        "categories": [
+          {
+            "name": "food aid",
+            "slug": "food-aid"
+          },
+          {
+            "name": "health",
+            "slug": "health"
+          },
+          {
+            "name": "water",
+            "slug": "water"
+          }
+        ],
+        "date": "October 12, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/emergency-morocco-earthquake-response/Moroc2.webp",
+          "alt": "Ruins of buildings in Morocco following a devastating earthquake, with rescue workers in action."
+        }
+      },
+      {
+        "title": "Mariame Diawara and Fatoumata Tiemoko Well",
+        "slug": "mariame-diawara-and-fatoumata-tiemoko-well",
+        "categories": [
+          {
+            "name": "water",
+            "slug": "water"
+          }
+        ],
+        "date": "September 29, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/mariame-diawara-and-fatoumata-tiemoko-well/Mariame6-1024x802.webp",
+          "alt": "Mariame Diawara and Fatoumata Tiemoko on the well built by Africa Relief"
+        }
+      },
+      {
+        "title": "Sadaqah Wells",
+        "slug": "sadaqah-wells",
+        "categories": [
+          {
+            "name": "water",
+            "slug": "water"
+          }
+        ],
+        "date": "September 29, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/sadaqah-wells/Sadaqah1-scaled.webp",
+          "alt": "Learn About our project Sadaqah Wells - Africa Relief"
+        }
+      }
+    ]
+  },
+  "errors": null
+}

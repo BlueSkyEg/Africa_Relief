@@ -1,6 +1,6 @@
 {
   "success": true,
-  "message": "projects retrived successfully",
+  "message": "blogs retrived successfully",
   "data": [
     {
       "name": "Water",

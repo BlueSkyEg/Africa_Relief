@@ -1,0 +1,67 @@
+{
+  "success": true,
+  "message": "blogs retrived successfully",
+  "data": {
+    "title": "Strengthening Partnerships in Ghana",
+    "slug": "strengthening-partnerships-in-ghana",
+    "categories": [
+      {
+        "name": "education",
+        "slug": "education"
+      },
+      {
+        "name": "health",
+        "slug": "health"
+      },
+      {
+        "name": "orphan Support",
+        "slug": "orphan-support"
+      },
+      {
+        "name": "sustainable-community",
+        "slug": "sustainable-community"
+      }
+    ],
+    "date": "August 23, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/strengthening-partnerships-in-ghana/20230821_140424-1024x461.webp",
+      "alt": "Vibrant Ghanaian marketplace bustling with activity, showcasing Africa relief efforts and development cooperation in Ghana"
+    },
+    "gallery": [],
+    "location": "Ghana",
+    "ImplementationDate": "August 2023",
+    "content": [
+      {
+        "heading": "This partnership reflects our commitment to driving impactful change. Your continued support ensures that such collaborations flourish, enabling us to reach more communities and touch more lives.",
+        "description": "Africa Relief had the honor of meeting with the Minister of Social Affairs and key officials at the ministry’s headquarters in Ghana. This vital meeting explored mutual areas of interest, from introducing our mission to discussing specific collaborative efforts aimed at bettering the lives of the under-resourced Ghanaian community."
+      },
+      {
+        "heading": "Beneficiaries",
+        "description": "Immediate beneficiaries encompass the institutions awaiting our containers, educational facilities, medical facilities, and notably, the 6,000 registered orphans in Ghana."
+      }
+    ],
+    "nextBlog": {
+      "title": "Water From Our Home Well",
+      "slug": "water-from-our-home-well"
+    },
+    "previousBlog": {
+      "title": "Bir Al-Walidayn School",
+      "slug": "bir-al-walidayn-school"
+    },
+    "donationLevels": {
+      "200": null,
+      "400": null,
+      "600": null,
+      "800": null
+    },
+    "fullyFundLevel": null,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ]
+  },
+  "errors": null
+}

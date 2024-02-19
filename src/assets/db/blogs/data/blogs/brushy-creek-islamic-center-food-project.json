@@ -1,0 +1,55 @@
+{
+  "success": true,
+  "message": "blogs retrived successfully",
+  "data": {
+    "title": "Brushy Creek Islamic Center Food Project",
+    "slug": "brushy-creek-islamic-center-food-project",
+    "categories": [
+      {
+        "name": "food aid",
+        "slug": "food-aid"
+      }
+    ],
+    "date": "August 31, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/brushy-creek-islamic-center-food-project/brush2-1024x768.webp",
+      "alt": "Brushy Creek Islamic Center Food Project - Africa Relief"
+    },
+    "gallery": [],
+    "location": "Tanzania",
+    "ImplementationDate": "July 2023",
+    "content": [
+      {
+        "heading": "Food is more than sustenance; it’s love, care, and community.",
+        "description": "Nutrition and community welfare go hand in hand. Our meat distribution project is ensuring that families have balanced diets, leading to better health, concentration, and overall well-being."
+      },
+      {
+        "heading": "Beneficiaries",
+        "description": "36 families, or around 252 individuals, are now better nourished and empowered."
+      }
+    ],
+    "nextBlog": {
+      "title": "Strategic Partnerships in Tanzania",
+      "slug": "strategic-partnerships-in-tanzania"
+    },
+    "previousBlog": {
+      "title": "Repentance Well",
+      "slug": "repentance-well"
+    },
+    "donationLevels": {
+      "75": null,
+      "150": null,
+      "300": null,
+      "500": null
+    },
+    "fullyFundLevel": null,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ]
+  },
+  "errors": null
+}

@@ -1,0 +1,97 @@
+{
+  "success": true,
+  "message": "projects retrived successfully",
+  "data": {
+    "title": "Zakat Al-Fitr",
+    "slug": "zakat-al-fitr",
+    "category": {
+      "name": "zakat",
+      "slug": "zakat"
+    },
+    "summary": "Zakat Al-Fitr, embodies the spirit of generosity and solidarity within Islam. It’s a mandatory charitable donation given at the conclusion of Ramadan, symbolizing purification and support for the less fortunate.",
+    "featuredImage": {
+      "src": "assets/db/projects/images/zakat-al-fitr.webp",
+      "alt": "Individuals contributing to charitable causes as an essential part of their Eid al-Fitr celebrations"
+    },
+    "content": [
+      {
+        "heading": "Zakat Al-Fitr exemplifies the essence of charity and unity",
+        "description": "Extend the blessings of Eid by sharing Zakat Al-Fitr, ensuring joy and fulfillment for the less fortunate. Your contribution creates a memorable and meaningful Eid for everyone."
+      },
+      {
+        "heading": "How is ARCD's Relief responding?",
+        "description": "ARCD’s Relief ensures the proper collection and distribution of Zakat Al-Fitr to those in need, ensuring everyone partakes in the joyous Eid festivities."
+      },
+      {
+        "heading": "Your Generosity. Their Celebration",
+        "description": "Your Zakat Al-Fitr donation directly supports disadvantaged families, providing them the means to celebrate Eid with joy and dignity."
+      }
+    ],
+    "donationLevels": {
+      "15": null,
+      "30": null,
+      "60": null,
+      "90": null
+    },
+    "fullyFundLevel": null,
+    "recurringPeriod": [
+      "year"
+    ],
+    "latestUpdates": [
+      {
+        "title": "Bir Al-Walidayn School",
+        "slug": "bir-al-walidayn-school",
+        "categories": [
+          {
+            "name": "education",
+            "slug": "education"
+          }
+        ],
+        "date": "August 16, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/bir-al-walidayn-school/Bir-Al-Walidayn-School1-1024x450.webp",
+          "alt": "Completed school building in an African village, a result of Africa Relief's school-building initiative"
+        }
+      },
+      {
+        "title": "Emergency Morocco Earthquake Response",
+        "slug": "emergency-morocco-earthquake-response",
+        "categories": [
+          {
+            "name": "food aid",
+            "slug": "food-aid"
+          },
+          {
+            "name": "health",
+            "slug": "health"
+          },
+          {
+            "name": "water",
+            "slug": "water"
+          }
+        ],
+        "date": "October 12, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/emergency-morocco-earthquake-response/Moroc2.webp",
+          "alt": "Ruins of buildings in Morocco following a devastating earthquake, with rescue workers in action."
+        }
+      },
+      {
+        "title": "Mariame Diawara and Fatoumata Tiemoko Well",
+        "slug": "mariame-diawara-and-fatoumata-tiemoko-well",
+        "categories": [
+          {
+            "name": "water",
+            "slug": "water"
+          }
+        ],
+        "date": "September 29, 2023",
+        "featuredImage": {
+          "src": "assets/db/blogs/images/mariame-diawara-and-fatoumata-tiemoko-well/Mariame6-1024x802.webp",
+          "alt": "Mariame Diawara and Fatoumata Tiemoko on the well built by Africa Relief"
+        }
+      }
+    ]
+  },
+  "errors": null
+}

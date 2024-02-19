@@ -1,0 +1,84 @@
+{
+  "success": true,
+  "message": "blogs retrived successfully",
+  "data": {
+    "title": "Water From Our Home Well",
+    "slug": "water-from-our-home-well",
+    "categories": [
+      {
+        "name": "water",
+        "slug": "water"
+      }
+    ],
+    "date": "August 24, 2023",
+    "featuredImage": {
+      "src": "assets/db/blogs/images/water-from-our-home-well/home5.webp",
+      "alt": "Aerial view of an artesian water well surrounded by lush green landscape"
+    },
+    "gallery": [
+      {
+        "src": "assets/db/blogs/images/water-from-our-home-well/home1.webp",
+        "alt": "Sunset view of an artesian well in a peaceful rural area, providing essential water to the community"
+      },
+      {
+        "src": "assets/db/blogs/images/water-from-our-home-well/home3-scaled.webp",
+        "alt": "Sunset view of an artesian well in a peaceful rural area, providing essential water to the community"
+      },
+      {
+        "src": "assets/db/blogs/images/water-from-our-home-well/home4.webp",
+        "alt": "Children gathered around an artesian water well"
+      },
+      {
+        "src": "assets/db/blogs/images/water-from-our-home-well/home6-scaled.webp",
+        "alt": "Close-up of water gushing from an artesian well"
+      },
+      {
+        "src": "assets/db/blogs/images/water-from-our-home-well/home7-scaled.webp",
+        "alt": "Community members participating in the construction of a new artesian water well"
+      },
+      {
+        "src": "assets/db/blogs/images/water-from-our-home-well/home8.webp",
+        "alt": "Close-up of water gushing from an artesian well, a natural source of pure water."
+      },
+      {
+        "src": "assets/db/blogs/images/water-from-our-home-well/home9.webp",
+        "alt": "Aerial view of an artesian water well surrounded by lush green landscape"
+      }
+    ],
+    "location": "Ghana",
+    "ImplementationDate": "June 2023",
+    "content": [
+      {
+        "heading": "Water is a gift. Let’s make it universal.",
+        "description": "The artesian water well we’ve constructed is more than a project; it’s a lifeline. By tapping into natural sources, we’re ensuring that villages get consistent and unpolluted water, crucial for health and agriculture."
+      },
+      {
+        "heading": "Beneficiaries",
+        "description": "This initiative quenches the thirst of 600-800 villagers, enriching their daily lives."
+      }
+    ],
+    "nextBlog": {
+      "title": "Repentance Well",
+      "slug": "repentance-well"
+    },
+    "previousBlog": {
+      "title": "Strengthening Partnerships in Ghana",
+      "slug": "strengthening-partnerships-in-ghana"
+    },
+    "donationLevels": {
+      "100": null,
+      "300": null,
+      "500": null,
+      "4600": null
+    },
+    "fullyFundLevel": 4600,
+    "recurringPeriod": [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ]
+  },
+  "errors": null
+}
