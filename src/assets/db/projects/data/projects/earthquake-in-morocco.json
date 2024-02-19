@@ -31,12 +31,24 @@
         "description": "United for igniting change. Your contribution powers our rapid response, reaching those affected by the crisis with the necessary aid"
       }
     ],
-    "donationLevels": {
-      "50": null,
-      "100": null,
-      "150": null,
-      "200": null
-    },
+    "donationLevels": [
+      {
+        "amount": 50,
+        "name": null
+      },
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 150,
+        "name": null
+      },
+      {
+        "amount": 200,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
     "recurringPeriod": [
       "day",

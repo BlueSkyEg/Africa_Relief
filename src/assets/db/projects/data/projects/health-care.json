@@ -31,12 +31,24 @@
         "description": "Your compassion acts as a bridge, closing the gap in access and delivering vital healthcare to those in need. Each donation safeguards a healthier future for all."
       }
     ],
-    "donationLevels": {
-      "100": null,
-      "200": null,
-      "500": null,
-      "1000": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 200,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      },
+      {
+        "amount": 1000,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
     "recurringPeriod": [
       "day",

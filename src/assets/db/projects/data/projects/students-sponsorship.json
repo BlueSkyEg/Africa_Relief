@@ -27,12 +27,24 @@
         "description": "Your sponsorship extends beyond funding; it’s the key to unlocking potential, nurturing talents, and fostering a more educated and empowered society."
       }
     ],
-    "donationLevels": {
-      "100": null,
-      "200": null,
-      "500": null,
-      "1200": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 200,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      },
+      {
+        "amount": 1200,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
     "recurringPeriod": [
       "day",

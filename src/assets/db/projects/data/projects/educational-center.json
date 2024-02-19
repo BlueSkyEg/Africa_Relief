@@ -27,12 +27,24 @@
         "description": "In the heart of every Educational Center lies the seed of change, nurturing minds and fostering brighter tomorrows.Your support propels , enabling education for all and fostering a more empowered, educated Africa."
       }
     ],
-    "donationLevels": {
-      "690": null,
-      "920": null,
-      "1150": null,
-      "27600": null
-    },
+    "donationLevels": [
+      {
+        "amount": 690,
+        "name": null
+      },
+      {
+        "amount": 920,
+        "name": null
+      },
+      {
+        "amount": 1150,
+        "name": null
+      },
+      {
+        "amount": 27600,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 27600,
     "recurringPeriod": [
       "day",

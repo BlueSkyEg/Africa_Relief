@@ -27,12 +27,24 @@
         "description": "Your donation directly supports families in need, ensuring they have access to wholesome meals during Ramadan. Your generosity fosters a sense of community and provides nourishment when it’s needed most."
       }
     ],
-    "donationLevels": {
-      "30": null,
-      "90": null,
-      "300": null,
-      "900": null
-    },
+    "donationLevels": [
+      {
+        "amount": 30,
+        "name": null
+      },
+      {
+        "amount": 90,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 900,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
     "recurringPeriod": [
       "day",

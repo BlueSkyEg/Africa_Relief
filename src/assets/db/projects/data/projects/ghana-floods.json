@@ -31,11 +31,20 @@
         "description": "Join ARCD’s efforts to provide vital support to survivors. Your contribution makes a difference in restoring hope and rebuilding lives."
       }
     ],
-    "donationLevels": {
-      "50": null,
-      "100": null,
-      "250": null
-    },
+    "donationLevels": [
+      {
+        "amount": 50,
+        "name": null
+      },
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 250,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
     "recurringPeriod": [
       "day",

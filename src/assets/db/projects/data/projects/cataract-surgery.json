@@ -27,9 +27,12 @@
         "description": "With each donation, you bring the world into sharper focus for those facing the challenges of vision loss. Together, we’re rewriting new stories for their lives, providing the invaluable gift of sight."
       }
     ],
-    "donationLevels": {
-      "100": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
     "recurringPeriod": [
       "day",

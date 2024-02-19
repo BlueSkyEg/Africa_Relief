@@ -27,11 +27,20 @@
         "description": "Your donation enables us to provide hearing aid devices, transforming the lives of those facing hearing loss, fostering confidence, and facilitating their active participation in society’s conversations and experiences."
       }
     ],
-    "donationLevels": {
-      "250": "$250 / 1 Device",
-      "500": "$500 / 2 Device",
-      "750": "$750 / 3 Device"
-    },
+    "donationLevels": [
+      {
+        "amount": 250,
+        "name": "$250 / 1 Device"
+      },
+      {
+        "amount": 500,
+        "name": "$500 / 2 Device"
+      },
+      {
+        "amount": 750,
+        "name": "$750 / 3 Device"
+      }
+    ],
     "fullyFundLevel": null,
     "recurringPeriod": [
       "day",

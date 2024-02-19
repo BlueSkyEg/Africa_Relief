@@ -27,12 +27,24 @@
         "description": "Your donation directly impacts an orphan’s life, providing essentials like education, healthcare, and emotional support. Your generosity fosters resilience and empowers them to thrive despite challenges."
       }
     ],
-    "donationLevels": {
-      "50": null,
-      "150": null,
-      "300": null,
-      "600": null
-    },
+    "donationLevels": [
+      {
+        "amount": 50,
+        "name": null
+      },
+      {
+        "amount": 150,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 600,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 600,
     "recurringPeriod": [
       "day",

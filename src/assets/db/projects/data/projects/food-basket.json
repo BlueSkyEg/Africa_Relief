@@ -27,12 +27,24 @@
         "description": "Your generosity powers ARCD’s Relief food aid Projects, where each donation transcends empathy to provide sustenance, erasing the shadows of hunger. Join us and witness the profound impact of your support—illuminating lives and forging a path toward a future free from hunger."
       }
     ],
-    "donationLevels": {
-      "75": null,
-      "150": null,
-      "300": null,
-      "500": null
-    },
+    "donationLevels": [
+      {
+        "amount": 75,
+        "name": null
+      },
+      {
+        "amount": 150,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
     "recurringPeriod": [
       "day",

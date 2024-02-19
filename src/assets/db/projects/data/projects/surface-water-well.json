@@ -27,12 +27,24 @@
         "description": "A Surface water well can be the community’s Lifeline"
       }
     ],
-    "donationLevels": {
-      "100": null,
-      "300": null,
-      "500": null,
-      "2500": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      },
+      {
+        "amount": 2500,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 2500,
     "recurringPeriod": [
       "day",

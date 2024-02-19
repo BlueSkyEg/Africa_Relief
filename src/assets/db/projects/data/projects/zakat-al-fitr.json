@@ -27,12 +27,24 @@
         "description": "Your Zakat Al-Fitr donation directly supports disadvantaged families, providing them the means to celebrate Eid with joy and dignity."
       }
     ],
-    "donationLevels": {
-      "15": null,
-      "30": null,
-      "60": null,
-      "90": null
-    },
+    "donationLevels": [
+      {
+        "amount": 15,
+        "name": null
+      },
+      {
+        "amount": 30,
+        "name": null
+      },
+      {
+        "amount": 60,
+        "name": null
+      },
+      {
+        "amount": 90,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
     "recurringPeriod": [
       "year"
