@@ -3,43 +3,36 @@
     <app-icon-donor-avatars/>
     <p>+1650 Others Donated</p>
   </div>
+  @if (fullyFundLevel) {
+    <div class="text-center p-2 border border-gray-medium">
+      <p class="text-body-3">Donate <span class="bg-secondary">${{fullyFundLevel}}</span> to fully fund</p>
+    </div>
+  }
   <div class="flex flex-col gap-2">
     <h3>Choose amount</h3>
-    <input class="py-3 px-6 text-center border border-gray-medium outline-none" type="text" [(ngModel)]="amount"
-           placeholder="$ Custom Amount"/>
+    <input class="py-3 px-6 text-center border border-gray-medium outline-none" type="text" [(ngModel)]="amount" placeholder="$ Custom Amount"/>
     <div class="flex flex-wrap gap-3">
-      <label class="flex flex-1">
-        <input class="peer appearance-none" type="radio" name="amount" [value]="100" [(ngModel)]="amount"/>
-        <div
-          class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-primary hover:border-primary hover:text-white peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white">
-          $100
-        </div>
-      </label>
-      <label class="flex flex-1">
-        <input class="peer appearance-none" type="radio" name="amount" [value]="200" [(ngModel)]="amount"/>
-        <div
-          class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-primary hover:border-primary hover:text-white peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white">
-          $200
-        </div>
-      </label>
-      <label class="flex flex-1">
-        <input class="peer appearance-none" type="radio" name="amount" [value]="300" [(ngModel)]="amount"/>
-        <div
-          class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-primary hover:border-primary hover:text-white peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white">
-          $300
-        </div>
-      </label>
+      @for (level of donationLevels; track level) {
+        <label class="flex flex-1">
+          <input class="peer appearance-none" type="radio" name="amount" [value]="level.amount" [(ngModel)]="amount"/>
+          <div class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-primary hover:border-primary hover:text-white peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white">
+            @if (!level.name) {
+              <span>{{'$' + level.amount}}</span>
+            } @else {
+              <span>{{level.name}}</span>
+            }
+          </div>
+        </label>
+      }
     </div>
   </div>
-  <div class="flex justify-between items-center gap-1 py-3 px-4 border border-gray-medium">
-    <mat-checkbox color="primary" [checked]="makeRecurringDonation">Make this donation every</mat-checkbox>
+  <div class="flex justify-between items-center gap-1 py-3 pe-4 ps-1 border border-gray-medium">
+    <mat-checkbox color="primary" [checked]="makeRecurringDonation" class="ms-0">Make this donation every</mat-checkbox>
     <div class="min-w-[90px] shrink-0">
       <mat-select [ngModel]="recurringPeriod">
-        <mat-option value="day">Day</mat-option>
-        <mat-option value="week">Week</mat-option>
-        <mat-option value="month">Month</mat-option>
-        <mat-option value="quarter">Quarter</mat-option>
-        <mat-option value="year">Year</mat-option>
+        @for (period of recurringPeriods; track period) {
+          <mat-option value="{{period}}">{{period | titlecase}}</mat-option>
+        }
       </mat-select>
     </div>
   </div>

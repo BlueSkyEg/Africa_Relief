@@ -1,0 +1,14 @@
+<div class="flex items-center gap-4">
+  <span class="text-body-2 text-gray-dark">Share:</span>
+  <div class="flex gap-2">
+    <a [href]="'https://www.linkedin.com/shareArticle?url=' + currentUrl" target="_blank" rel="noopener noreferrer" class="flex justify-center items-center w-8 h-8 bg-gray-dark">
+      <app-icon-linkedin color="white" class="scale-75"/>
+    </a>
+    <a [href]="'https://twitter.com/intent/tweet?url=' + currentUrl" target="_blank" rel="noopener noreferrer" class="flex justify-center items-center w-8 h-8 bg-gray-dark">
+      <app-icon-twitter/>
+    </a>
+    <a [href]="'https://www.facebook.com/sharer/sharer.php?u=' + currentUrl" target="_blank" rel="noopener noreferrer" class="flex justify-center items-center w-8 h-8 bg-gray-dark">
+      <app-icon-facebook color="white" class="scale-75"/>
+    </a>
+  </div>
+</div>

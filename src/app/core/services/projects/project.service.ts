@@ -5,6 +5,7 @@ import { environment } from '../../../../environments/environment';
 import { ICategory } from '../../../shared/interfaces/category-interface';
 import { IProjectCard } from '../../../shared/interfaces/project-card-interface';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
+import { IProject } from '../../../shared/interfaces/project-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +18,14 @@ export class ProjectService {
     return this.http.get<IApiResponse<ICategory[]>>(environment.apiUrl + '/projects/data/project-categories.json');
   }
 
-  getProjects(projectSlug: string|null): Observable<IApiResponse<IProjectCard[]>> {
-    if(!projectSlug) {
+  getProjects(categorySlug: string|null): Observable<IApiResponse<IProjectCard[]>> {
+    if(!categorySlug) {
       return this.http.get<IApiResponse<IProjectCard[]>>(environment.apiUrl + '/projects/data/projects-cards.json');
     }
-    return this.http.get<IApiResponse<IProjectCard[]>>(environment.apiUrl + '/projects/data/category-projects-cards/' + projectSlug + '.json');
+    return this.http.get<IApiResponse<IProjectCard[]>>(environment.apiUrl + '/projects/data/category-projects-cards/' + categorySlug + '.json');
+  }
+
+  getProject(projectSlug: string): Observable<IApiResponse<IProject>> {
+    return this.http.get<IApiResponse<IProject>>(environment.apiUrl + '/projects/data/projects/' + projectSlug + '.json');
   }
 }
