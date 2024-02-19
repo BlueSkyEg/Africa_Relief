@@ -59,14 +59,26 @@
       "title": "Mariame Diawara and Fatoumata Tiemoko Well",
       "slug": "mariame-diawara-and-fatoumata-tiemoko-well"
     },
-    "donationLevels": {
-      "100": null,
-      "300": null,
-      "500": null,
-      "5500": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      },
+      {
+        "amount": 5500,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 5500,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -130,14 +142,26 @@
       "title": "Sadaqah Wells",
       "slug": "sadaqah-wells"
     },
-    "donationLevels": {
-      "100": null,
-      "300": null,
-      "500": null,
-      "5500": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      },
+      {
+        "amount": 5500,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 5500,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -201,14 +225,26 @@
       "title": "Mariame Diawara and Fatoumata Tiemoko Well",
       "slug": "mariame-diawara-and-fatoumata-tiemoko-well"
     },
-    "donationLevels": {
-      "100": null,
-      "300": null,
-      "500": null,
-      "5500": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      },
+      {
+        "amount": 5500,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 5500,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -268,14 +304,26 @@
       "title": "Salah Alzoobi Mosque",
       "slug": "salah-alzoobi-mosque"
     },
-    "donationLevels": {
-      "100": null,
-      "300": null,
-      "500": null,
-      "4600": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      },
+      {
+        "amount": 4600,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 4600,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -351,14 +399,26 @@
       "title": "Water From Our Home Well",
       "slug": "water-from-our-home-well"
     },
-    "donationLevels": {
-      "100": null,
-      "300": null,
-      "500": null,
-      "4600": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      },
+      {
+        "amount": 4600,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 4600,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -430,14 +490,26 @@
       "title": "Strengthening Partnerships in Ghana",
       "slug": "strengthening-partnerships-in-ghana"
     },
-    "donationLevels": {
-      "100": null,
-      "300": null,
-      "500": null,
-      "4600": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      },
+      {
+        "amount": 4600,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 4600,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -497,14 +569,26 @@
       "title": "Fā’il Khair Well",
       "slug": "fail-khair-well"
     },
-    "donationLevels": {
-      "100": null,
-      "300": null,
-      "500": null,
-      "2500": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      },
+      {
+        "amount": 2500,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 2500,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -564,14 +648,26 @@
       "title": "Al-Bir and At-Taqwa Well",
       "slug": "al-bir-and-at-taqwa-well"
     },
-    "donationLevels": {
-      "100": null,
-      "300": null,
-      "500": null,
-      "2500": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      },
+      {
+        "amount": 2500,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 2500,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -639,14 +735,26 @@
       "title": "Hajja Muyassar Hassan Shuaib Mosque & Water Well",
       "slug": "hajja-muyassar-hassan-shuaib-mosque-water-well"
     },
-    "donationLevels": {
-      "100": null,
-      "300": null,
-      "500": null,
-      "2500": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      },
+      {
+        "amount": 2500,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 2500,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -702,14 +810,26 @@
       "title": "Ehsanollah School",
       "slug": "ehsanollah-school"
     },
-    "donationLevels": {
-      "690": null,
-      "920": null,
-      "1150": null,
-      "27600": null
-    },
+    "donationLevels": [
+      {
+        "amount": 690,
+        "name": null
+      },
+      {
+        "amount": 920,
+        "name": null
+      },
+      {
+        "amount": 1150,
+        "name": null
+      },
+      {
+        "amount": 27600,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 27600,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -773,14 +893,26 @@
       "title": "Strategic Partnerships in Tanzania",
       "slug": "strategic-partnerships-in-tanzania"
     },
-    "donationLevels": {
-      "690": null,
-      "920": null,
-      "1150": null,
-      "27600": null
-    },
+    "donationLevels": [
+      {
+        "amount": 690,
+        "name": null
+      },
+      {
+        "amount": 920,
+        "name": null
+      },
+      {
+        "amount": 1150,
+        "name": null
+      },
+      {
+        "amount": 27600,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 27600,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -835,14 +967,26 @@
       "title": "Bir Al-Walidayn School",
       "slug": "bir-al-walidayn-school"
     },
-    "donationLevels": {
-      "200": null,
-      "400": null,
-      "600": null,
-      "800": null
-    },
+    "donationLevels": [
+      {
+        "amount": 200,
+        "name": null
+      },
+      {
+        "amount": 400,
+        "name": null
+      },
+      {
+        "amount": 600,
+        "name": null
+      },
+      {
+        "amount": 800,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -910,14 +1054,26 @@
       "title": "Qur’an Circle in the Islamic Center of Passaic County Well",
       "slug": "new-jersey-well"
     },
-    "donationLevels": {
-      "690": null,
-      "920": null,
-      "1150": null,
-      "27600": null
-    },
+    "donationLevels": [
+      {
+        "amount": 690,
+        "name": null
+      },
+      {
+        "amount": 920,
+        "name": null
+      },
+      {
+        "amount": 1150,
+        "name": null
+      },
+      {
+        "amount": 27600,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 27600,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -981,14 +1137,26 @@
       "title": "Hajja Muyassar Hassan Shuaib Mosque & Water Well",
       "slug": "hajja-muyassar-hassan-shuaib-mosque-water-well"
     },
-    "donationLevels": {
-      "690": null,
-      "920": null,
-      "1150": null,
-      "27600": null
-    },
+    "donationLevels": [
+      {
+        "amount": 690,
+        "name": null
+      },
+      {
+        "amount": 920,
+        "name": null
+      },
+      {
+        "amount": 1150,
+        "name": null
+      },
+      {
+        "amount": 27600,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 27600,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -1031,14 +1199,26 @@
       "title": "Emergency Morocco Earthquake Response",
       "slug": "emergency-morocco-earthquake-response"
     },
-    "donationLevels": {
-      "75": null,
-      "150": null,
-      "300": null,
-      "500": null
-    },
+    "donationLevels": [
+      {
+        "amount": 75,
+        "name": null
+      },
+      {
+        "amount": 150,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -1081,14 +1261,26 @@
       "title": "Repentance Well",
       "slug": "repentance-well"
     },
-    "donationLevels": {
-      "75": null,
-      "150": null,
-      "300": null,
-      "500": null
-    },
+    "donationLevels": [
+      {
+        "amount": 75,
+        "name": null
+      },
+      {
+        "amount": 150,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -1152,14 +1344,26 @@
       "title": "Nurturing Families: Meat Distribution Initiative",
       "slug": "nurturing-families-meat-distribution-initiative"
     },
-    "donationLevels": {
-      "100": null,
-      "200": null,
-      "500": null,
-      "1000": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 200,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      },
+      {
+        "amount": 1000,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -1219,14 +1423,26 @@
       "title": "Brushy Creek Islamic Center Food Project",
       "slug": "brushy-creek-islamic-center-food-project"
     },
-    "donationLevels": {
-      "75": null,
-      "150": null,
-      "300": null,
-      "500": null
-    },
+    "donationLevels": [
+      {
+        "amount": 75,
+        "name": null
+      },
+      {
+        "amount": 150,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -1290,14 +1506,26 @@
       "title": "Medical Equipment Delivery: Boosting Health Infrastructure",
       "slug": "medical-equipment-delivery"
     },
-    "donationLevels": {
-      "200": null,
-      "400": null,
-      "600": null,
-      "800": null
-    },
+    "donationLevels": [
+      {
+        "amount": 200,
+        "name": null
+      },
+      {
+        "amount": 400,
+        "name": null
+      },
+      {
+        "amount": 600,
+        "name": null
+      },
+      {
+        "amount": 800,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -1353,14 +1581,26 @@
       "title": "Sustainable Income Initiative",
       "slug": "sustainable-income-initiative"
     },
-    "donationLevels": {
-      "200": null,
-      "400": null,
-      "600": null,
-      "800": null
-    },
+    "donationLevels": [
+      {
+        "amount": 200,
+        "name": null
+      },
+      {
+        "amount": 400,
+        "name": null
+      },
+      {
+        "amount": 600,
+        "name": null
+      },
+      {
+        "amount": 800,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -1416,14 +1656,26 @@
       "title": "Bait Al Maqdes Artesian Well",
       "slug": "bait-al-maqdes-artesian-well"
     },
-    "donationLevels": {
-      "200": null,
-      "400": null,
-      "600": null,
-      "800": null
-    },
+    "donationLevels": [
+      {
+        "amount": 200,
+        "name": null
+      },
+      {
+        "amount": 400,
+        "name": null
+      },
+      {
+        "amount": 600,
+        "name": null
+      },
+      {
+        "amount": 800,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",

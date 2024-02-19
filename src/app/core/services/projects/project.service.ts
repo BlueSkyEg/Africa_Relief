@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { ICategory } from '../../../shared/interfaces/category-interface';
-import { IProjectCard } from '../../../shared/interfaces/project-card-interface';
+import { IProjectCard } from '../../../shared/interfaces/project/project-card-interface';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
-import { IProject } from '../../../shared/interfaces/project-interface';
+import { IProject } from '../../../shared/interfaces/project/project-interface';
 
 @Injectable({
   providedIn: 'root'

@@ -20,7 +20,7 @@
       </div>
     </div>
   </div>
-  <app-donation-card class="flex-1 xl:max-w-[600px]">
+  <app-donation-card [donationLevels]="donationLevels" [recurringPeriods]="recurringPeriods" [fullyFundLevel]="fullyFundLevel" class="flex-1 xl:max-w-[600px]">
     <div class="flex justify-between items-center py-2 px-4">
       <div class="flex items-center gap-2">
         <app-icon-zelle class="scale-75"/>

@@ -53,14 +53,26 @@
       "title": "Salah Alzoobi Mosque",
       "slug": "salah-alzoobi-mosque"
     },
-    "donationLevels": {
-      "100": null,
-      "300": null,
-      "500": null,
-      "4600": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      },
+      {
+        "amount": 4600,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 4600,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",

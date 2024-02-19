@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ICategory } from '../../../shared/interfaces/category-interface';
 import { environment } from '../../../../environments/environment';
-import { IBlogCard } from '../../../shared/interfaces/blog-card-interface';
+import { IBlogCard } from '../../../shared/interfaces/blog/blog-card-interface';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
+import { IBlog } from '../../../shared/interfaces/blog/blog-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class BlogService {
       return this.http.get<IApiResponse<IBlogCard[]>>(environment.apiUrl + '/blogs/data/blogs-cards.json');
     }
     return this.http.get<IApiResponse<IBlogCard[]>>(environment.apiUrl + '/blogs/data/category-blogs-cards/' + categorySlug + '.json');
+  }
+
+  getBlog(blogSlug: string): Observable<IApiResponse<IBlog>> {
+    return this.http.get<IApiResponse<IBlog>>(environment.apiUrl + '/blogs/data/blogs/' + blogSlug + '.json');
   }
 
   getLatestBlogs(): Observable<IApiResponse<IBlogCard[]>> {

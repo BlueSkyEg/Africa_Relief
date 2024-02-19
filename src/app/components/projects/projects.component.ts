@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CategoriesFilterComponent } from "../../shared/components/categories-filter/categories-filter.component";
 import { ProjectService } from '../../core/services/projects/project.service';
 import { ICategory } from '../../shared/interfaces/category-interface';
-import { IProjectCard } from '../../shared/interfaces/project-card-interface';
+import { IProjectCard } from '../../shared/interfaces/project/project-card-interface';
 import { ProjectCardComponent } from "../../shared/components/projects/project-card/project-card.component";
 import { IApiResponse } from '../../shared/interfaces/api-response-interface';
 import { ActivatedRoute } from '@angular/router';

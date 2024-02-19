@@ -57,14 +57,26 @@
       "title": "Sadaqah Wells",
       "slug": "sadaqah-wells"
     },
-    "donationLevels": {
-      "100": null,
-      "300": null,
-      "500": null,
-      "5500": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      },
+      {
+        "amount": 5500,
+        "name": null
+      }
+    ],
     "fullyFundLevel": 5500,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",

@@ -36,14 +36,26 @@
       "title": "Repentance Well",
       "slug": "repentance-well"
     },
-    "donationLevels": {
-      "75": null,
-      "150": null,
-      "300": null,
-      "500": null
-    },
+    "donationLevels": [
+      {
+        "amount": 75,
+        "name": null
+      },
+      {
+        "amount": 150,
+        "name": null
+      },
+      {
+        "amount": 300,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",

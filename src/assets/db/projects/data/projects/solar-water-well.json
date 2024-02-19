@@ -46,7 +46,7 @@
       }
     ],
     "fullyFundLevel": 5500,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",

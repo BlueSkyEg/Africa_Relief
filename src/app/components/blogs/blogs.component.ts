@@ -3,7 +3,7 @@ import { CategoriesFilterComponent } from "../../shared/components/categories-fi
 import { BlogService } from '../../core/services/blogs/blog.service';
 import { ICategory } from '../../shared/interfaces/category-interface';
 import { BlogCardComponent } from "../../shared/components/blogs/blog-card/blog-card.component";
-import { IBlogCard } from '../../shared/interfaces/blog-card-interface';
+import {IBlogCard} from "../../shared/interfaces/blog/blog-card-interface";
 import { ActivatedRoute } from '@angular/router';
 import { IApiResponse } from '../../shared/interfaces/api-response-interface';
 

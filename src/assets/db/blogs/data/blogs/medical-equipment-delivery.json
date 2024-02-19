@@ -57,14 +57,26 @@
       "title": "Nurturing Families: Meat Distribution Initiative",
       "slug": "nurturing-families-meat-distribution-initiative"
     },
-    "donationLevels": {
-      "100": null,
-      "200": null,
-      "500": null,
-      "1000": null
-    },
+    "donationLevels": [
+      {
+        "amount": 100,
+        "name": null
+      },
+      {
+        "amount": 200,
+        "name": null
+      },
+      {
+        "amount": 500,
+        "name": null
+      },
+      {
+        "amount": 1000,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",

@@ -49,14 +49,26 @@
       "title": "Bait Al Maqdes Artesian Well",
       "slug": "bait-al-maqdes-artesian-well"
     },
-    "donationLevels": {
-      "200": null,
-      "400": null,
-      "600": null,
-      "800": null
-    },
+    "donationLevels": [
+      {
+        "amount": 200,
+        "name": null
+      },
+      {
+        "amount": 400,
+        "name": null
+      },
+      {
+        "amount": 600,
+        "name": null
+      },
+      {
+        "amount": 800,
+        "name": null
+      }
+    ],
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",

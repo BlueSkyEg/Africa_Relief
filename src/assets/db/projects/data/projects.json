@@ -32,7 +32,7 @@
       "2500": null
     },
     "fullyFundLevel": 2500,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -128,7 +128,7 @@
       "4600": null
     },
     "fullyFundLevel": 4600,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -224,7 +224,7 @@
       "5500": null
     },
     "fullyFundLevel": 5500,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -324,7 +324,7 @@
       "200": null
     },
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -428,7 +428,7 @@
       "200": null
     },
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -531,7 +531,7 @@
       "250": null
     },
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -631,7 +631,7 @@
       "27600": null
     },
     "fullyFundLevel": 27600,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -731,7 +731,7 @@
       "1200": null
     },
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -831,7 +831,7 @@
       "500": null
     },
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -926,7 +926,7 @@
       "750": "$750 / 3 Device"
     },
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -1038,7 +1038,7 @@
       "1000": null
     },
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -1143,7 +1143,7 @@
       "100": null
     },
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -1251,7 +1251,7 @@
       "600": null
     },
     "fullyFundLevel": 600,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -1355,7 +1355,7 @@
       "600": null
     },
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",
@@ -1451,7 +1451,7 @@
       "90": null
     },
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "year"
     ],
     "latestUpdates": [
@@ -1543,7 +1543,7 @@
       "900": null
     },
     "fullyFundLevel": null,
-    "recurringPeriod": [
+    "recurringPeriods": [
       "day",
       "week",
       "month",

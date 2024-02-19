@@ -1,5 +1,5 @@
-import {ICategory} from "./category-interface";
-import {IImage} from "./image-interface";
+import {ICategory} from "../category-interface";
+import {IImage} from "../image-interface";
 
 export interface IProjectCard {
   title: string

@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {RouterModule} from "@angular/router";
 import {IconArrowRightComponent} from "../../../icons/arrow-right/icon-arrow-right.component";
-import {IBlogCard} from "../../../../shared/interfaces/blog-card-interface";
+import {IBlogCard} from "../../../../shared/interfaces/blog/blog-card-interface";
 
 @Component({
   selector: 'app-blog-card',

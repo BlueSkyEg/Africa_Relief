@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { IProject } from '../../shared/interfaces/project-interface';
+import { IProject } from '../../shared/interfaces/project/project-interface';
 import { ProjectService } from '../../core/services/projects/project.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { IApiResponse } from '../../shared/interfaces/api-response-interface';
