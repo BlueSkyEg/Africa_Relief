@@ -12,14 +12,14 @@ export const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', title: 'Home', component: HomeComponent},
   {path: 'blogs', title: 'Blogs', component: BlogsComponent},
-  {path: 'blogs', children: [
+  {path: 'blogs', title: 'Blogs', children: [
     {path: 'category/:slug', component: BlogsComponent},
     {path: ':slug', component: SingleBlogComponent}
   ]},
   {path: 'projects', title: 'Project', component: ProjectsComponent},
   {path: 'projects', children: [
-    {path: 'category/:slug', title: 'Project', component: ProjectsComponent},
-    {path: ':slug', title: 'Project', component: SingleProjectComponent}
+    {path: 'category/:slug', component: ProjectsComponent},
+    {path: ':slug', component: SingleProjectComponent}
   ]},
   {path: 'get-involved', title: 'Get Involved', component: GetInvolvedComponent},
   {path: 'contact', title: 'Contact Us', component: ContactComponent},
