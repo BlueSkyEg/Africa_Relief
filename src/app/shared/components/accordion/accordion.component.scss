@@ -1,0 +1,15 @@
+.accordion {
+  transition: 0.3s ease-in-out;
+
+  .accordion-btn {
+    transition: 0.3s ease-in-out;
+  }
+
+  &.active {
+    max-height: 500px;
+
+    .accordion-btn {
+      transform: rotate(180deg);
+    }
+  }
+}
