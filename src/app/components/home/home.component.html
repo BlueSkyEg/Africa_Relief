@@ -1,8 +1,18 @@
 <main class="flex flex-col gap-10 lg:gap-20 mb-10 lg:mb-20">
   <app-main-slider/>
   <app-donation-card-section/>
-  <app-project-categories-slider/>
-  <app-partners-slider/>
+  <div class="container flex flex-col gap-8">
+    <!-- Section Header -->
+    <div class="flex justify-between gap-6 items-start lg:items-end flex-col lg:flex-row">
+      <div class="flex flex-col gap-2 max-w-[580px]">
+          <h2 class="text-body-1-inter text-primary">About Us</h2>
+          <h3 class="text-heading-2">We are In a Mission to Help the Helpless</h3>
+        </div>
+        <app-button-link path="/projects" label="Learn More" appearance="outlined-secondary" [icon]="true"/>
+      </div>
+    <app-project-categories-slider/>
+  </div>
+    <app-partners-slider/>
   <app-projects-slider-section/>
   <app-donate-by-zelle/>
   <app-safe-and-easy-donation/>

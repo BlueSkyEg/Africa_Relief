@@ -6,6 +6,7 @@ import { SingleProjectComponent } from './components/single-project/single-proje
 import { SingleBlogComponent } from './components/single-blog/single-blog.component';
 import { GetInvolvedComponent } from './components/get-involved/get-involved.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { AboutComponent } from './components/about/about.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -21,5 +22,6 @@ export const routes: Routes = [
     {path: ':slug', title: 'Project', component: SingleProjectComponent}
   ]},
   {path: 'get-involved', title: 'Get Involved', component: GetInvolvedComponent},
-  {path: 'contact', title: 'Contact Us', component: ContactComponent}
+  {path: 'contact', title: 'Contact Us', component: ContactComponent},
+  {path: 'about', title: 'About Us', component: AboutComponent}
 ];

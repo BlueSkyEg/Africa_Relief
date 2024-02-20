@@ -10,23 +10,25 @@ import {
 } from "../../shared/components/safe-and-easy-donation/safe-and-easy-donation.component";
 import {BecomeVolunteerSectionComponent} from "./become-volunteer-section/become-volunteer-section.component";
 import {LatestBlogsComponent} from "./latest-blogs/latest-blogs.component";
+import { ButtonLinkComponent } from "../../shared/components/button-link/button-link.component";
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    MainSliderComponent,
-    DonationCardSectionComponent,
-    ProjectCategoriesSliderComponent,
-    ProjectsSliderSectionComponent,
-    PartnersSliderComponent,
-    DonateByZelleComponent,
-    SafeAndEasyDonationComponent,
-    BecomeVolunteerSectionComponent,
-    LatestBlogsComponent
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+    selector: 'app-home',
+    standalone: true,
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss',
+    imports: [
+        MainSliderComponent,
+        DonationCardSectionComponent,
+        ProjectCategoriesSliderComponent,
+        ProjectsSliderSectionComponent,
+        PartnersSliderComponent,
+        DonateByZelleComponent,
+        SafeAndEasyDonationComponent,
+        BecomeVolunteerSectionComponent,
+        LatestBlogsComponent,
+        ButtonLinkComponent
+    ]
 })
 export class HomeComponent {
 
