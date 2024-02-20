@@ -1,12 +1,15 @@
 .accordion {
-  transition: 0.3s ease-in-out;
-
-  .accordion-btn {
+  .accordion-btn,
+  .description {
     transition: 0.3s ease-in-out;
   }
 
   &.active {
-    max-height: 500px;
+
+    .description {
+      max-height: 500px;
+      margin-top: 16px;
+    }
 
     .accordion-btn {
       transform: rotate(180deg);
