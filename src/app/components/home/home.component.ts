@@ -5,12 +5,10 @@ import {ProjectCategoriesSliderComponent} from "../../shared/components/projects
 import {ProjectsSliderSectionComponent} from "./projects-slider-section/projects-slider-section.component";
 import {PartnersSliderComponent} from "./partners-slider/partners-slider.component";
 import {DonateByZelleComponent} from "./donate-by-zelle/donate-by-zelle.component";
-import {
-  SafeAndEasyDonationComponent
-} from "../../shared/components/safe-and-easy-donation/safe-and-easy-donation.component";
-import {BecomeVolunteerSectionComponent} from "./become-volunteer-section/become-volunteer-section.component";
+import {SafeAndEasyDonationComponent} from "../../shared/components/safe-and-easy-donation/safe-and-easy-donation.component";
 import {LatestBlogsComponent} from "./latest-blogs/latest-blogs.component";
 import { ButtonLinkComponent } from "../../shared/components/button-link/button-link.component";
+import { BecomeVolunteerComponent } from "../../shared/components/become-volunteer/become-volunteer.component";
 
 @Component({
     selector: 'app-home',
@@ -25,9 +23,9 @@ import { ButtonLinkComponent } from "../../shared/components/button-link/button-
         PartnersSliderComponent,
         DonateByZelleComponent,
         SafeAndEasyDonationComponent,
-        BecomeVolunteerSectionComponent,
         LatestBlogsComponent,
-        ButtonLinkComponent
+        ButtonLinkComponent,
+        BecomeVolunteerComponent
     ]
 })
 export class HomeComponent {

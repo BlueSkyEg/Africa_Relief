@@ -1,8 +1,9 @@
-<div class="container flex flex-col gap-6 mt-4 mb-10 lg:mb-20">
+<div class="flex flex-col mt-4 mb-10 lg:mb-20">
   <!-- Breadcrumb -->
-  <app-breadcrumb currentName="About Us"/>
+  <app-breadcrumb class="container" currentName="About Us"/>
 
-  <div class="flex flex-col lg:flex-row gap-6">
+  <!-- Header Serction -->
+  <div class="container flex flex-col lg:flex-row gap-6 pt-6 pb-10 lg:pb-20">
     <div class="basis-2/3 flex flex-col justify-between gap-4">
       <h1 class="text-heading-1">We are In a Mission to Help the Helpless</h1>
       <img class="w-full h-[320px] object-cover object-center" src="assets/images/about/about-us-header.webp" alt="Africa support: Volunteers distributing meals" loading="lazy">
@@ -13,5 +14,121 @@
     </div>
   </div>
 
-  
+  <!-- Our Impact Section -->
+  <div class="container pb-10 lg:pb-20">
+    <div class="flex items-center gap-4 pb-12">
+      <h2 class="text-heading-2">Our Impact</h2>
+      <app-icon-arrow-down-right/>
+    </div>
+    <div class="flex flex-col gap-8 m-auto max-w-[1036px] text-center lg:text-start text-gray-dark">
+      <div class="flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-12 pb-8 border-b border-gray-medium">
+        <div class="min-w-[228px]">
+          <span class="block text-heading-3 text-primary">1,500+</span>
+          <h3 class="text-body-2-md">WATER WELLS</h3>
+        </div>
+        <p class="text-body-2">Africa Relief has dug 1,500+ water wells, providing clean water, preventing diseases, improving sanitation, and boosting agriculture.</p>
+      </div>
+      <div class="flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-12 pb-8 border-b border-gray-medium">
+        <div class="min-w-[228px]">
+          <span class="block text-heading-3 text-primary">150+</span>
+          <h3 class="text-body-2-md">EDUCATIONAL CENTER</h3>
+        </div>
+        <p class="text-body-2">Africa Relief has set up 150+ educational centers, empowering communities with quality education and creating opportunities for a brighter future.</p>
+      </div>
+      <div class="flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-12 pb-8 border-b border-gray-medium">
+        <div class="min-w-[228px]">
+          <span class="block text-heading-3 text-primary">3,000+</span>
+          <h3 class="text-body-2-md">ORPHANS SPONSORED</h3>
+        </div>
+        <p class="text-body-2">Africa Relief has sponsored 3,000+ orphans, providing education, healthcare, and a loving home, giving them an opportunity to thrive and break the cycle of poverty.</p>
+      </div>
+      <div class="flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-12">
+        <div class="min-w-[228px]">
+          <span class="block text-heading-3 text-primary">10M+</span>
+          <h3 class="text-body-2-md">IN-KIND DONATIONS</h3>
+        </div>
+        <p class="text-body-2">Africa Relief has received 10M+ in-kind donations, including food, medical supplies, clothing, and shelter. These donations have been crucial in responding to emergencies and providing essential resources to communities in crisis.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Categories Slider -->
+  <div class="container flex flex-col gap-8 pb-10 lg:pb-20">
+    <div class="flex flex-col gap-2 max-w-[580px]">
+      <h2 class="text-body-1-inter text-primary">Help Is Our Goal</h2>
+      <h3 class="text-heading-2">What We Do</h3>
+    </div>
+    <app-project-categories-slider/>
+  </div>
+
+  <!-- Safe & Easy Donation Section -->
+  <app-safe-and-easy-donation class="pb-10 lg:pb-20"/>
+
+  <!-- Our Journey -->
+  <app-journey-timeline-slider class="pb-10 lg:pb-20"/>
+
+  <!-- Chairman Message -->
+  <div class="container flex flex-col justify-center items-center gap-6 pb-10 lg:pb-20 max-w-[1088px] m-auto text-center">
+    <img src="assets/images/about/members/Dr-Mohamed-Moussa-circle-img.webp" alt="Dr. Mohamed Moussa" loading="lazy">
+    <h2 class="text-heading-2">“ Message from our Chairman ”</h2>
+    <p class="text-body-2 text-gray-dark max-w-[949px]">
+      Africa Relief has received 10M+ in-kind donations, including food, medical supplies, clothing, and shelter. These donations have been crucial in responding to emergencies and providing essential resources to communities in crisis.
+    </p>
+    <span class="text-end w-full text-body-2">Dr. Mohamed Moussa</span>
+  </div>
+
+  <!-- Board Members -->
+  <div class="container flex flex-col gap-8 pb-10 lg:pb-20">
+    <div class="flex flex-col gap-2 max-w-[580px]">
+      <h2 class="text-body-1-inter text-primary">Key Of Our Progress</h2>
+      <h3 class="text-heading-2">Board Members</h3>
+    </div>
+    <app-board-members-slider/>
+  </div>
+
+  <!-- Become Volunteer Section -->
+  <app-become-volunteer class="pb-10 lg:pb-20"/>
+
+  <!-- Financials Section -->
+  <div class="container flex flex-col gap-8 justify-center items-center">
+    <h2 class="text-heading-2">Financials</h2>
+    <div class="grid grid-col-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+      <a href="assets/financials-files/Africa-relief.pdf" class="col-span-2 flex justify-between items-center gap-6 p-3 bg-white border border-gray-light">
+        <div class="flex-1 flex items-center gap-2">
+          <app-icon-pdf/>
+          <span>IRS Form 990 - 2020</span>
+        </div>
+        <app-icon-download/>
+      </a>
+      <a href="assets/financials-files/Africa-Relief-and-Community-Development-Inc.-990-for-2021.pdf" class="col-span-2 flex justify-between items-center gap-6 p-3 bg-white border border-gray-light">
+        <div class="flex-1 flex items-center gap-2">
+          <app-icon-pdf/>
+          <span>IRS Form 990 - 2020</span>
+        </div>
+        <app-icon-download/>
+      </a>
+      <a href="assets/financials-files/Africa-Relief_Audited-Financial-Report-2022-Final.pdf" class="col-span-2 flex justify-between items-center gap-6 p-3 bg-white border border-gray-light">
+        <div class="flex-1 flex items-center gap-2">
+          <app-icon-pdf/>
+          <span>IRS Form 990 - 2020</span>
+        </div>
+        <app-icon-download/>
+      </a>
+      <a href="assets/financials-files/Consolidated-2021-Audit-Financial-Report-ARCD.pdf" class="lg:col-start-2 col-span-2 flex justify-between items-center gap-6 p-3 bg-white border border-gray-light">
+        <div class="flex-1 flex items-center gap-2">
+          <app-icon-pdf/>
+          <span>IRS Form 990 - 2020</span>
+        </div>
+        <app-icon-download/>
+      </a>
+      <a href="assets/financials-files/Africa-Relief_Audited-Financial-Report-2022-Final_2.pdf" class="col-span-2 flex justify-between items-center gap-6 p-3 bg-white border border-gray-light">
+        <div class="flex-1 flex items-center gap-2">
+          <app-icon-pdf/>
+          <span>IRS Form 990 - 2020</span>
+        </div>
+        <app-icon-download/>
+      </a>
+    </div>
+  </div>
+
 </div>
