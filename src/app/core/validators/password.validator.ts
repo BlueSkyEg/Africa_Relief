@@ -1,20 +1,12 @@
-import { AbstractControl } from "@angular/forms";
+import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
-export function PasswordValidator(control: AbstractControl) {
-  let password = control.get('password')!.value;
-  console.log(password);
+export const PasswordValidator = (control: AbstractControl): void => {
+  let password = control.get('password');
 
-  if (!password) {
-    control.get('password')!.setErrors({required: true})
-  }else if (!/[A-Z]+/.test(password)) {
-    control.get('password')!.setErrors({uppercase: true})
-  } else if (!/[a-z]+/.test(password)) {
-    control.get('password')!.setErrors({lowercase: true})
-  } else if (!/[0-9]+/.test(password)) {
-    control.get('password')!.setErrors({numeric: true})
-  } else if (!/[$@^!%*?&]+/.test(password)) {
-    control.get('password')!.setErrors({special: true})
-  } else if (password.length < 8) {
-    control.get('password')!.setErrors({minLength: true})
+  if(!password?.value) {
+    return password?.setErrors({ required: true })
+  }
+  else if (!/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|:"<>?]).{8,}$/.test(password?.value)) {
+    password?.setErrors({ regex: true })
   }
 }

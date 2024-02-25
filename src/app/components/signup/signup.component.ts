@@ -10,36 +10,41 @@ import { IconEyeComponent } from '../../shared/icons/eye/icon-eye.component';
 import { IconEyeOffComponent } from '../../shared/icons/eye-off/icon-eye-off.component';
 import { PasswordValidator } from '../../core/validators/password.validator';
 import { MatchPasswordValidator } from '../../core/validators/match-password.validator';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, FormElementDirective, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent, IconEyeComponent, IconEyeOffComponent],
+  imports: [ReactiveFormsModule, RouterModule, CommonModule, FormElementDirective, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent, IconEyeComponent, IconEyeOffComponent],
   templateUrl: './signup.component.html',
   styles: ``
 })
 export class SignupComponent {
   showPassword: boolean = false;
+  passwordStrenth: number = 0;
   fb: FormBuilder = inject(FormBuilder);
 
   signupForm = this.fb.group({
     name: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
-    passwords: this.fb.group({
-      password: [''],
-      confirmPassword: ['']
-    }, {validator: [PasswordValidator, MatchPasswordValidator]} as AbstractControlOptions)
-  });
-
-  get password() {
-    return this.signupForm.controls.passwords.get('password');
-  }
-
-  get confirmPassword() {
-    return this.signupForm.controls.passwords.get('confirmPassword');
-  }
+    password: [''],
+    confirmPassword: ['']
+  }, {validator: [PasswordValidator, MatchPasswordValidator]} as AbstractControlOptions)
 
   onSignup() {
-    console.log(this.signupForm.value);
+    console.log(this.signupForm.controls.password.errors);
+  }
+
+  // Password Strength Indicator
+  onTypePassword() {
+    let password = this.signupForm.controls.password.value;
+    let tempPasswordStrenth = 0;
+
+    if (/[A-Za-z]+/.test(password)) tempPasswordStrenth++
+    if (/[0-9]+/.test(password)) tempPasswordStrenth++
+    if (/[!@#$%^&*()_+{}|:"<>?]+/.test(password)) tempPasswordStrenth++
+    if (password.length > 8) tempPasswordStrenth++
+
+    this.passwordStrenth = tempPasswordStrenth;
   }
 }
