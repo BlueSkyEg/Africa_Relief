@@ -7,6 +7,8 @@ import { SingleBlogComponent } from './components/single-blog/single-blog.compon
 import { GetInvolvedComponent } from './components/get-involved/get-involved.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -23,5 +25,7 @@ export const routes: Routes = [
   ]},
   {path: 'get-involved', title: 'Get Involved', component: GetInvolvedComponent},
   {path: 'contact', title: 'Contact Us', component: ContactComponent},
-  {path: 'about', title: 'About Us', component: AboutComponent}
+  {path: 'about', title: 'About Us', component: AboutComponent},
+  {path: 'login', title: 'Login', component: LoginComponent},
+  {path: 'sign-up', title: 'Sign Up', component: SignupComponent}
 ];
