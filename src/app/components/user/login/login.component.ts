@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { FieldComponent } from "../../shared/components/form/field/field.component";
-import { LabelComponent } from "../../shared/components/form/label/label.component";
-import { FormElementDirective } from '../../shared/directives/form-element.directive';
+import { FieldComponent } from "../../../shared/components/form/field/field.component";
+import { LabelComponent } from "../../../shared/components/form/label/label.component";
+import { FormElementDirective } from '../../../shared/directives/form-element.directive';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ErrorComponent } from "../../shared/components/form/error/error.component";
-import { ButtonComponent } from "../../shared/components/form/button/button.component";
-import { IconEyeComponent } from "../../shared/icons/eye/icon-eye.component";
-import { IconEyeOffComponent } from "../../shared/icons/eye-off/icon-eye-off.component";
+import { ErrorComponent } from "../../../shared/components/form/error/error.component";
+import { ButtonComponent } from "../../../shared/components/form/button/button.component";
+import { IconEyeComponent } from "../../../shared/icons/eye/icon-eye.component";
+import { IconEyeOffComponent } from "../../../shared/icons/eye-off/icon-eye-off.component";
 import { RouterModule } from '@angular/router';
 
 @Component({
