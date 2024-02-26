@@ -11,6 +11,7 @@ import { LoginComponent } from './components/user/login/login.component';
 import { SignupComponent } from './components/user/signup/signup.component';
 import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -31,5 +32,6 @@ export const routes: Routes = [
   {path: 'login', title: 'Login', component: LoginComponent},
   {path: 'sign-up', title: 'Sign Up', component: SignupComponent},
   {path: 'forget-password', title: 'Forget Password', component: ForgetPasswordComponent},
-  {path: 'reset-password', title: 'ResetPassword', component: ResetPasswordComponent},
+  {path: 'reset-password', title: 'Reset Password', component: ResetPasswordComponent},
+  {path: 'gallery', title: 'Gallery', component: GalleryComponent}
 ];

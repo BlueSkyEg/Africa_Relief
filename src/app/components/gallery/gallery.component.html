@@ -1,0 +1,12 @@
+<div class="container flex flex-col gap-8 my-10 lg:mb-20">
+  <h1 class="text-heading-1 text-primary text-center">Gallery</h1>
+  <div class="columns-1 md:columns-2 lg:columns-3">
+    @for (item of gallery; track item.slug) {
+      <a [title]="item.title" [routerLink]="'/blogs/' + item.slug" class="relative overflow-hidden group block mb-4">
+        <img class="w-full" [src]="item.image.src" [alt]="item.image.alt" loading="lazy">
+        <div class="group-hover:opacity-100 opacity-0 transition-opacity ease-in-out absolute w-full h-40 bottom-0 start-0 bg-gradient-to-t from-black"></div>
+        <h2 class="group-hover:bottom-0 transition-all ease-in-out absolute w-full -bottom-10 start-0 p-4 text-body-2 font-semibold text-white truncate">{{item.title}}</h2>
+      </a>
+    }
+  </div>
+</div>

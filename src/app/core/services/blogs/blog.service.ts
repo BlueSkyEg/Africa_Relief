@@ -6,6 +6,7 @@ import { environment } from '../../../../environments/environment';
 import { IBlogCard } from '../../../shared/interfaces/blog/blog-card-interface';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { IBlog } from '../../../shared/interfaces/blog/blog-interface';
+import { IGalleryImage } from '../../../shared/interfaces/blog/gallery-image.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class BlogService {
 
   getLatestBlogs(): Observable<IApiResponse<IBlogCard[]>> {
     return this.http.get<IApiResponse<IBlogCard[]>>(environment.apiUrl + '/blogs/data/latest-blogs.json');
+  }
+
+  getGalleryImages(): Observable<IApiResponse<IGalleryImage[]>> {
+    return this.http.get<IApiResponse<IGalleryImage[]>>(environment.apiUrl + '/blogs/data/gallery.json');
   }
 }
