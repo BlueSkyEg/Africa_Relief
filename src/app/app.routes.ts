@@ -13,6 +13,7 @@ import { ForgetPasswordComponent } from './components/user/forget-password/forge
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { CareersComponent } from './components/careers-pages/careers/careers.component';
+import { SingleCareerComponent } from './components/careers-pages/single-career/single-career.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -35,5 +36,8 @@ export const routes: Routes = [
   {path: 'forget-password', title: 'Forget Password', component: ForgetPasswordComponent},
   {path: 'reset-password', title: 'Reset Password', component: ResetPasswordComponent},
   {path: 'gallery', title: 'Gallery', component: GalleryComponent},
-  {path: 'careers', title: 'Careers', component: CareersComponent}
+  {path: 'careers', title: 'Careers', component: CareersComponent},
+  {path: 'careers', children: [
+    {path: ':slug', component: SingleCareerComponent}
+  ]}
 ];

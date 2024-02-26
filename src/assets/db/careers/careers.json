@@ -5,8 +5,11 @@
     {
       "title" : "Donor Care Associate",
       "slug" : "donor-care-associate",
-      "summary": "The Donor Care Specialist is responsible for the recording and acknowledgement of Africa Relief & Community Development (ARCD) constituents’ data and donations, as well as scanning checks and creating deposit information which feeds into the general ledger. This position works closely with the ARCD Accounting teams, and ARCD Doner Care Team primarily, ensuring efficiency and timeliness in processing donor information and donations using best practice techniques to maintain optimal data integrity. This position plays a key role in maintaining database integrity and in maintaining donor communication and satisfaction through timely donor acknowledgement. This is an In-person position.",
       "content": [
+        {
+          "heading": "summary",
+          "description": "The Donor Care Specialist is responsible for the recording and acknowledgement of Africa Relief & Community Development (ARCD) constituents’ data and donations, as well as scanning checks and creating deposit information which feeds into the general ledger. This position works closely with the ARCD Accounting teams, and ARCD Doner Care Team primarily, ensuring efficiency and timeliness in processing donor information and donations using best practice techniques to maintain optimal data integrity. This position plays a key role in maintaining database integrity and in maintaining donor communication and satisfaction through timely donor acknowledgement. This is an In-person position."
+        },
         {
           "heading": "Essential Functions",
           "description": [

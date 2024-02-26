@@ -15,4 +15,8 @@ export class CareerService {
   getCareers(): Observable<IApiResponse<ICareer[]>> {
     return this.http.get<IApiResponse<ICareer[]>>(environment.apiUrl + '/careers/careers.json')
   }
+
+  getCareer(careerSlug: string): Observable<IApiResponse<ICareer>> {
+    return this.http.get<IApiResponse<ICareer>>(environment.apiUrl + `/careers/${careerSlug}.json`)
+  }
 }
