@@ -12,6 +12,7 @@ import { SignupComponent } from './components/user/signup/signup.component';
 import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { CareersComponent } from './components/careers-pages/careers/careers.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -33,5 +34,6 @@ export const routes: Routes = [
   {path: 'sign-up', title: 'Sign Up', component: SignupComponent},
   {path: 'forget-password', title: 'Forget Password', component: ForgetPasswordComponent},
   {path: 'reset-password', title: 'Reset Password', component: ResetPasswordComponent},
-  {path: 'gallery', title: 'Gallery', component: GalleryComponent}
+  {path: 'gallery', title: 'Gallery', component: GalleryComponent},
+  {path: 'careers', title: 'Careers', component: CareersComponent}
 ];

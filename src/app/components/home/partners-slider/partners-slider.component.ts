@@ -1,6 +1,6 @@
 import {Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, signal} from '@angular/core';
-import {IconArrowLeftComponent} from "../../../shared/icons/arrow-left/icon-arrow-left.component";
-import {IconArrowRightComponent} from "../../../shared/icons/arrow-right/icon-arrow-right.component";
+import {IconArrowLeftComponent} from "../../../shared/icons/arrows/arrow-left/icon-arrow-left.component";
+import {IconArrowRightComponent} from "../../../shared/icons/arrows/arrow-right/icon-arrow-right.component";
 import {SwiperContainer} from "swiper/swiper-element";
 import {SwiperOptions} from "swiper/types";
 

@@ -1,4 +1,4 @@
 export interface IContent {
   heading: string
-  description: string
+  description: string|string[]
 }

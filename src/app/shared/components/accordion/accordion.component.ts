@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, QueryList, ViewChildren } from '@angular/core';
-import { IconChevronDownComponent } from "../../icons/chevron-down/icon-chevron-down.component";
+import { IconChevronDownComponent } from "../../icons/arrows/chevron-down/icon-chevron-down.component";
 import { CommonModule } from '@angular/common';
 import { IContent } from '../../interfaces/content-interface';
 

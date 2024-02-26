@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {RouterModule} from "@angular/router";
-import {IconArrowRightComponent} from "../../../icons/arrow-right/icon-arrow-right.component";
+import {IconArrowRightComponent} from "../../../icons/arrows/arrow-right/icon-arrow-right.component";
 import {IBlogCard} from "../../../../shared/interfaces/blog/blog-card-interface";
 
 @Component({

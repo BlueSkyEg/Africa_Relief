@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IconDoubleArrowComponent } from "../../icons/double-arrow/icon-double-arrow.component";
+import { IconDoubleArrowComponent } from "../../icons/arrows/double-arrow/icon-double-arrow.component";
 import { RouterModule } from '@angular/router';
 
 @Component({

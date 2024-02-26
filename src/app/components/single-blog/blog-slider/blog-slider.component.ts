@@ -3,8 +3,8 @@ import {SwiperContainer} from "swiper/swiper-element";
 import {SwiperOptions} from "swiper/types";
 import { IImage } from '../../../shared/interfaces/image-interface';
 import { IconDirective } from '../../../shared/directives/icon.directive';
-import { IconArrowLeftComponent } from '../../../shared/icons/arrow-left/icon-arrow-left.component';
-import { IconArrowRightComponent } from '../../../shared/icons/arrow-right/icon-arrow-right.component';
+import { IconArrowLeftComponent } from '../../../shared/icons/arrows/arrow-left/icon-arrow-left.component';
+import { IconArrowRightComponent } from '../../../shared/icons/arrows/arrow-right/icon-arrow-right.component';
 
 @Component({
   selector: 'app-blog-slider',

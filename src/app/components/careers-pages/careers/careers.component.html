@@ -1,0 +1,23 @@
+<div class="container flex flex-col gap-8 my-10 lg:mb-20">
+  <div class="flex flex-col gap-6">
+    <app-breadcrumb currentName="Careers"/>
+    <div class="flex flex-col lg:flex-row gap-6">
+      <h1 class="text-heading-1 basis-3/5">Be Part of Our Mission</h1>
+      <p class="text-body-2 text-gray-dark basis-2/5">Join us in our mission! We value passion, clear communication, and ownership.</p>
+    </div>
+    <img class="min-h-[300px] object-cover object-center" src="/assets/images/careers/careers-header-bg.webp" alt="Be Part of Our Mission">
+  </div>
+  <div class="flex flex-col lg:flex-row lg:items-center gap-6">
+    <h2 class="text-heading-2 basis-3/5">Available Jobs</h2>
+    <p class="text-body-2 text-gray-dark basis-2/5">If you're passionate about making a positive impact and giving back to society, consider joining our team.</p>
+  </div>
+  <div class="flex flex-col gap-6">
+    @for (career of careers; track career.slug) {
+      <div class="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-12 p-6 lg:py-8 lg:px-12 bg-white border border-gray-light">
+        <h3 class="text-body-1-roboto grow shrink-0">{{ career.title | titlecase }}</h3>
+        <p class="text-gray-dark text-body-2 line-clamp-4 lg:line-clamp-2 shrink">{{ career.summary }}</p>
+        <app-button-link class="grow shrink-0" label="Apply Now" [path]="career.slug" appearance="filled-primary" [fullWidth]="true"/>
+      </div>
+    }
+  </div>
+</div>
