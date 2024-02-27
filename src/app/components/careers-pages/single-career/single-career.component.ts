@@ -11,13 +11,15 @@ import { ICareer } from '../../../shared/interfaces/career.interface';
 import { CareerService } from '../../../core/services/careers/career.service';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { CommonModule } from '@angular/common';
+import { FormElementDirective } from '../../../shared/directives/form-element.directive';
+import { IconPaperclipComponent } from "../../../shared/icons/paperclip/icon-paperclip.component";
 
 @Component({
     selector: 'app-single-career',
     standalone: true,
     templateUrl: './single-career.component.html',
     styles: ``,
-    imports: [ReactiveFormsModule, CommonModule, BreadcrumbComponent, AccordionComponent, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent]
+    imports: [ReactiveFormsModule, CommonModule, FormElementDirective, BreadcrumbComponent, AccordionComponent, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent, IconPaperclipComponent]
 })
 export class SingleCareerComponent {
   career: ICareer;
@@ -30,20 +32,25 @@ export class SingleCareerComponent {
     email: ['', [Validators.required, Validators.email]],
     phone: ['', [Validators.required]],
     address: ['', [Validators.required]],
-    message: ['', [Validators.required]]
+    resume: ['', []],
+    message: ['', [Validators.required]],
+    careerSlug: ['', [Validators.required]]
   });
 
   ngOnInit(): void {
     this.activeRoute.paramMap.subscribe({
       next: route => {
         this.careerService.getCareer(route.get('slug')).subscribe({
-          next: (res: IApiResponse<ICareer>) => this.career = res.data
+          next: (res: IApiResponse<ICareer>) => {
+            this.career = res.data
+            this.careerForm.controls.careerSlug.setValue(res.data.slug)
+          }
         });
       }
     });
   }
 
   onApplyJob() {
-    console.log(this.careerForm.value);
+    console.log(this.careerForm.controls.resume);
   }
 }
