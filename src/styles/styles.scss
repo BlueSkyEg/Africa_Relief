@@ -12,6 +12,60 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+  /* Body 1/Inter */
+  .text-body-1-inter {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  /* Body 1/Roboto */
+  .text-body-1-roboto {
+    font-family: "Roboto Serif", sans-serif;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  /* Body 2/Regular */
+  .text-body-2 {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32px;
+  }
+
+  /* Body 2/Medium */
+  .text-body-2-md {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 32px;
+  }
+
+  /* Body 3/Regular */
+  .text-body-3 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  /* H1/Medium */
+  .text-heading-1 {
+    font-family: "Roboto Serif", sans-serif;
+    font-size: 56px;
+    line-height: 64px;
+  }
+
+  /* H2/Medium */
+  .text-heading-2 {
+    font-family: "Roboto Serif", sans-serif;
+    font-size: 48px;
+    line-height: 56px;
+  }
+
+  /* H3/Medium */
+  .text-heading-3 {
+    font-family: "Roboto Serif", sans-serif;
+    font-size: 40px;
+    line-height: 48px;
+  }
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100;0,8..144,200;0,8..144,300;0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;0,8..144,800;0,8..144,900;1,8..144,100&display=swap');
@@ -36,59 +90,4 @@ body {
 
 textarea {
   resize: none;
-}
-
-/* Body 1/Inter */
-.text-body-1-inter {
-  font-size: 24px;
-  line-height: 32px;
-}
-
-/* Body 1/Roboto */
-.text-body-1-roboto {
-  font-family: "Roboto Serif", sans-serif;
-  font-size: 24px;
-  line-height: 32px;
-}
-
-/* Body 2/Regular */
-.text-body-2 {
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 32px;
-}
-
-/* Body 2/Medium */
-.text-body-2-md {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 32px;
-}
-
-/* Body 3/Regular */
-.text-body-3 {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-}
-
-/* H1/Medium */
-.text-heading-1 {
-  font-family: "Roboto Serif", sans-serif;
-  font-size: 56px;
-  line-height: 64px;
-}
-
-/* H2/Medium */
-.text-heading-2 {
-  font-family: "Roboto Serif", sans-serif;
-  font-size: 48px;
-  line-height: 56px;
-}
-
-/* H3/Medium */
-.text-heading-3 {
-  font-family: "Roboto Serif", sans-serif;
-  font-size: 40px;
-  line-height: 48px;
 }

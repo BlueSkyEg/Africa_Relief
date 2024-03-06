@@ -14,6 +14,7 @@ import { ResetPasswordComponent } from './components/user/reset-password/reset-p
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { CareersComponent } from './components/careers-pages/careers/careers.component';
 import { SingleCareerComponent } from './components/careers-pages/single-career/single-career.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -39,5 +40,8 @@ export const routes: Routes = [
   {path: 'careers', title: 'Careers', component: CareersComponent},
   {path: 'careers', children: [
     {path: ':slug', component: SingleCareerComponent}
+  ]},
+  {path: 'profile/donation-history', title: 'Profile', component: ProfileComponent, children: [
+    // {path: '', component: }
   ]}
 ];
