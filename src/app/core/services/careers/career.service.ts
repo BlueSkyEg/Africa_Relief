@@ -13,10 +13,10 @@ export class CareerService {
   constructor(private http: HttpClient) { }
 
   getCareers(): Observable<IApiResponse<ICareer[]>> {
-    return this.http.get<IApiResponse<ICareer[]>>(environment.apiUrl + '/careers/careers.json')
+    return this.http.get<IApiResponse<ICareer[]>>('/assets/db/careers/careers.json')
   }
 
   getCareer(careerSlug: string): Observable<IApiResponse<ICareer>> {
-    return this.http.get<IApiResponse<ICareer>>(environment.apiUrl + `/careers/${careerSlug}.json`)
+    return this.http.get<IApiResponse<ICareer>>(`/assets/db/careers/${careerSlug}.json`)
   }
 }

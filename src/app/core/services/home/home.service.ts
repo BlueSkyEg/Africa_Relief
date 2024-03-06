@@ -12,6 +12,6 @@ export class HomeService {
   constructor(private http: HttpClient) { }
 
   getMainSliderSlides(): Observable<IMainSliderSlide[]> {
-    return this.http.get<IMainSliderSlide[]>(environment.apiUrl + '/home-slider/home-slider.json');
+    return this.http.get<IMainSliderSlide[]>('/assets/db/home-slider/home-slider.json');
   }
 }

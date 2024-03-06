@@ -15,17 +15,17 @@ export class ProjectService {
   constructor(private http: HttpClient) { }
 
   getProjectCategories(): Observable<IApiResponse<ICategory[]>> {
-    return this.http.get<IApiResponse<ICategory[]>>(environment.apiUrl + '/projects/data/project-categories.json');
+    return this.http.get<IApiResponse<ICategory[]>>('/assets/db/projects/data/project-categories.json');
   }
 
   getProjects(categorySlug: string|null): Observable<IApiResponse<IProjectCard[]>> {
     if(!categorySlug) {
-      return this.http.get<IApiResponse<IProjectCard[]>>(environment.apiUrl + '/projects/data/projects-cards.json');
+      return this.http.get<IApiResponse<IProjectCard[]>>('/assets/db/projects/data/projects-cards.json');
     }
-    return this.http.get<IApiResponse<IProjectCard[]>>(environment.apiUrl + '/projects/data/category-projects-cards/' + categorySlug + '.json');
+    return this.http.get<IApiResponse<IProjectCard[]>>(`/assets/db/projects/data/category-projects-cards/${categorySlug}.json`);
   }
 
   getProject(projectSlug: string): Observable<IApiResponse<IProject>> {
-    return this.http.get<IApiResponse<IProject>>(environment.apiUrl + '/projects/data/projects/' + projectSlug + '.json');
+    return this.http.get<IApiResponse<IProject>>(`/assets/db/projects/data/projects/${projectSlug}.json`);
   }
 }

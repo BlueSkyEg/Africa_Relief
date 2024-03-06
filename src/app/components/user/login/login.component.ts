@@ -7,7 +7,8 @@ import { ErrorComponent } from "../../../shared/components/form/error/error.comp
 import { ButtonComponent } from "../../../shared/components/form/button/button.component";
 import { IconEyeComponent } from "../../../shared/icons/eye/icon-eye.component";
 import { IconEyeOffComponent } from "../../../shared/icons/eye-off/icon-eye-off.component";
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
     selector: 'app-login',
@@ -18,6 +19,9 @@ import { RouterModule } from '@angular/router';
 })
 export class LoginComponent {
   showPassword: boolean = false;
+  router: Router = inject(Router);
+  activeRoute: ActivatedRoute = inject(ActivatedRoute);
+  authService: AuthService = inject(AuthService);
   fb: FormBuilder = inject(FormBuilder);
 
   accessDonorDashboardForm = this.fb.group({
@@ -34,6 +38,25 @@ export class LoginComponent {
   }
 
   onLogin() {
-    console.log(this.loginForm.value)
+    this.authService.login(this.loginForm.value).subscribe({
+      next: (res) => {
+        if(res.success) {
+          this.authService.authedUserSubject.next(res.data);
+          this.redirectAfterLogin();
+        } else if(res.message == 'validation error') {
+          this.loginForm.controls.email.setErrors({serverError: true});
+        }
+      }
+    })
+  }
+
+  redirectAfterLogin() {
+    const url = this.activeRoute.snapshot.queryParams['redirectUrl'];
+    if (url) {
+      this.router.navigateByUrl(url)
+        .catch(() => this.router.navigateByUrl('/home'))
+    } else {
+      this.router.navigateByUrl('/home')
+    }
   }
 }

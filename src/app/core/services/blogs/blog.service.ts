@@ -16,25 +16,25 @@ export class BlogService {
   constructor(private http: HttpClient) { }
 
   getBlogCategories(): Observable<IApiResponse<ICategory[]>> {
-    return this.http.get<IApiResponse<ICategory[]>>(environment.apiUrl + '/blogs/data/blog-categories.json');
+    return this.http.get<IApiResponse<ICategory[]>>('/assets/db/blogs/data/blog-categories.json');
   }
 
   getBlogs(categorySlug: string|null): Observable<IApiResponse<IBlogCard[]>> {
     if(!categorySlug) {
-      return this.http.get<IApiResponse<IBlogCard[]>>(environment.apiUrl + '/blogs/data/blogs-cards.json');
+      return this.http.get<IApiResponse<IBlogCard[]>>('/assets/db/blogs/data/blogs-cards.json');
     }
-    return this.http.get<IApiResponse<IBlogCard[]>>(environment.apiUrl + '/blogs/data/category-blogs-cards/' + categorySlug + '.json');
+    return this.http.get<IApiResponse<IBlogCard[]>>('/assets/db/blogs/data/category-blogs-cards/' + categorySlug + '.json');
   }
 
   getBlog(blogSlug: string): Observable<IApiResponse<IBlog>> {
-    return this.http.get<IApiResponse<IBlog>>(environment.apiUrl + '/blogs/data/blogs/' + blogSlug + '.json');
+    return this.http.get<IApiResponse<IBlog>>('/assets/db/blogs/data/blogs/' + blogSlug + '.json');
   }
 
   getLatestBlogs(): Observable<IApiResponse<IBlogCard[]>> {
-    return this.http.get<IApiResponse<IBlogCard[]>>(environment.apiUrl + '/blogs/data/latest-blogs.json');
+    return this.http.get<IApiResponse<IBlogCard[]>>('/assets/db/blogs/data/latest-blogs.json');
   }
 
   getGalleryImages(): Observable<IApiResponse<IGalleryImage[]>> {
-    return this.http.get<IApiResponse<IGalleryImage[]>>(environment.apiUrl + '/blogs/data/gallery.json');
+    return this.http.get<IApiResponse<IGalleryImage[]>>('/assets/db/blogs/data/gallery.json');
   }
 }
