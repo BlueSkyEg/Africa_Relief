@@ -35,8 +35,8 @@
       </app-form-field>
       <app-form-field>
         <app-form-label>Confirm Password*</app-form-label>
-        <input appFormElement type="password" formControlName="confirmPassword" placeholder="Confirm Password">
-        <app-form-error [hasError]="signupForm.get('confirmPassword').hasError('mismatch') && signupForm.get('confirmPassword').touched">Password and Confirm Password must match.</app-form-error>
+        <input appFormElement type="password" formControlName="confirm_password" placeholder="Confirm Password">
+        <app-form-error [hasError]="signupForm.get('confirm_password').hasError('mismatch') && signupForm.get('confirm_password').touched">Password and Confirm Password must match.</app-form-error>
       </app-form-field>
       <app-form-button class="block mt-6" appearance="filled" [fullWidth]="true" [disabled]="signupForm.invalid">Sign Up</app-form-button>
     </form>

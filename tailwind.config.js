@@ -20,7 +20,9 @@ module.exports = {
       'desert': '#F7F6F5',
       'black': '#1F1F1F',
       'white': '#FFFFFF',
-      'danger': '#e74c3c',
+      'success': '#42A162',
+      'danger': '#BA4444',
+      'warning': '#C28930'
     },
     extend: {},
   },

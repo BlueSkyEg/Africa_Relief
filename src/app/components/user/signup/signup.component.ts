@@ -28,7 +28,7 @@ export class SignupComponent {
     name: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     password: [''],
-    confirmPassword: ['']
+    confirm_password: ['']
   }, {validator: [PasswordValidator, MatchPasswordValidator]} as AbstractControlOptions)
 
   onSignup() {

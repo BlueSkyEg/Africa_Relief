@@ -15,6 +15,9 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { CareersComponent } from './components/careers-pages/careers/careers.component';
 import { SingleCareerComponent } from './components/careers-pages/single-career/single-career.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileDonationsComponent } from './components/profile/profile-donations/profile-donations.component';
+import { ProfileSubscriptionsComponent } from './components/profile/profile-subscriptions/profile-subscriptions.component';
+import { ProfileSettingsComponent } from './components/profile/profile-settings/profile-settings.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -41,7 +44,9 @@ export const routes: Routes = [
   {path: 'careers', children: [
     {path: ':slug', component: SingleCareerComponent}
   ]},
-  {path: 'profile/donation-history', title: 'Profile', component: ProfileComponent, children: [
-    // {path: '', component: }
+  {path: 'profile', title: 'Profile', component: ProfileComponent, children: [
+    {path: '', title: 'Profile Donations', component: ProfileDonationsComponent},
+    {path: 'subscriptions', title: 'Profile Subscription', component: ProfileSubscriptionsComponent},
+    {path: 'settings', title: 'Account Settings', component: ProfileSettingsComponent},
   ]}
 ];

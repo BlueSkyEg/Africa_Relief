@@ -1,0 +1,34 @@
+@switch (type) {
+  @case ('success') {
+    <div class="flex justify-center items-center gap-1 py-1 px-2 w-fit rounded-lg bg-success bg-opacity-10">
+      <svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6" fill="none">
+        <circle cx="3.5" cy="3" r="3" class="fill-success"/>
+      </svg>
+      <span class="text-body-3 text-success">{{ label }}</span>
+    </div>
+  }
+  @case ('danger') {
+    <div class="flex justify-center items-center gap-1 py-1 px-2 w-fit rounded-lg bg-danger bg-opacity-10">
+      <svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6" fill="none">
+        <circle cx="3.5" cy="3" r="3" class="fill-danger"/>
+      </svg>
+      <span class="text-body-3 text-danger">{{ label }}</span>
+    </div>
+  }
+  @case ('warning') {
+    <div class="flex justify-center items-center gap-1 py-1 px-2 w-fit rounded-lg bg-warning bg-opacity-10">
+      <svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6" fill="none">
+        <circle cx="3.5" cy="3" r="3" class="fill-warning"/>
+      </svg>
+      <span class="text-body-3 text-warning">{{ label }}</span>
+    </div>
+  }
+  @case ('info') {
+    <div class="flex justify-center items-center gap-1 py-1 px-2 w-fit rounded-lg bg-gray-dark bg-opacity-10">
+      <svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6" fill="none">
+        <circle cx="3.5" cy="3" r="3" class="fill-gray-dark"/>
+      </svg>
+      <span class="text-body-3 text-gray-dark">{{ label }}</span>
+    </div>
+  }
+}
