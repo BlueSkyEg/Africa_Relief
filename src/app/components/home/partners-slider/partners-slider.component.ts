@@ -12,7 +12,7 @@ import {SwiperOptions} from "swiper/types";
     IconArrowRightComponent
   ],
   templateUrl: './partners-slider.component.html',
-  styleUrl: './partners-slider.component.scss',
+  styles: ``,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PartnersSliderComponent implements OnInit {
