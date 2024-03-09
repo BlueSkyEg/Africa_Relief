@@ -9,7 +9,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { SignupComponent } from './components/user/signup/signup.component';
-import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
+import { ForgotPasswordComponent } from './components/user/forget-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { CareersComponent } from './components/careers-pages/careers/careers.component';
@@ -18,6 +18,9 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileDonationsComponent } from './components/profile/profile-donations/profile-donations.component';
 import { ProfileSubscriptionsComponent } from './components/profile/profile-subscriptions/profile-subscriptions.component';
 import { ProfileSettingsComponent } from './components/profile/profile-settings/profile-settings.component';
+import { VerifyEmailComponent } from './components/user/verify-email/verify-email.component';
+import { AuthGuard } from './core/Guards/auth.guard';
+import { GuestGuard } from './core/Guards/guest.guard';
 
 export const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -35,16 +38,17 @@ export const routes: Routes = [
   {path: 'get-involved', title: 'Get Involved', component: GetInvolvedComponent},
   {path: 'contact', title: 'Contact Us', component: ContactComponent},
   {path: 'about', title: 'About Us', component: AboutComponent},
-  {path: 'login', title: 'Login', component: LoginComponent},
-  {path: 'sign-up', title: 'Sign Up', component: SignupComponent},
-  {path: 'forget-password', title: 'Forget Password', component: ForgetPasswordComponent},
-  {path: 'reset-password', title: 'Reset Password', component: ResetPasswordComponent},
+  {path: 'login', title: 'Login', canActivate: [GuestGuard], component: LoginComponent},
+  {path: 'sign-up', title: 'Sign Up', canActivate: [GuestGuard], component: SignupComponent},
+  {path: 'forgot-password', title: 'Forgot Password', canActivate: [GuestGuard], component: ForgotPasswordComponent},
+  {path: 'reset-password', title: 'Reset Password', canActivate: [GuestGuard], component: ResetPasswordComponent},
+  {path: 'verify-email', title: 'Verify Email', canActivate: [AuthGuard], component: VerifyEmailComponent},
   {path: 'gallery', title: 'Gallery', component: GalleryComponent},
   {path: 'careers', title: 'Careers', component: CareersComponent},
   {path: 'careers', children: [
     {path: ':slug', component: SingleCareerComponent}
   ]},
-  {path: 'profile', title: 'Profile', component: ProfileComponent, children: [
+  {path: 'profile', title: 'Profile', canActivate: [AuthGuard], component: ProfileComponent, children: [
     {path: '', title: 'Profile Donations', component: ProfileDonationsComponent},
     {path: 'subscriptions', title: 'Profile Subscription', component: ProfileSubscriptionsComponent},
     {path: 'settings', title: 'Account Settings', component: ProfileSettingsComponent},

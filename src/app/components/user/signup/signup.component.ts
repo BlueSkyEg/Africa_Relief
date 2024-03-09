@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FormElementDirective } from '../../../shared/directives/form-element.directive';
 import { FieldComponent } from '../../../shared/components/form/field/field.component';
 import { LabelComponent } from '../../../shared/components/form/label/label.component';
@@ -11,6 +11,7 @@ import { IconEyeOffComponent } from '../../../shared/icons/eye-off/icon-eye-off.
 import { PasswordValidator } from '../../../core/validators/password.validator';
 import { MatchPasswordValidator } from '../../../core/validators/match-password.validator';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -22,17 +23,30 @@ import { CommonModule } from '@angular/common';
 export class SignupComponent {
   showPassword: boolean = false;
   passwordStrenth: number = 0;
+  activeRoute: ActivatedRoute = inject(ActivatedRoute);
   fb: FormBuilder = inject(FormBuilder);
+  authService: AuthService = inject(AuthService);
 
   signupForm = this.fb.group({
     name: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     password: [''],
-    confirm_password: ['']
+    password_confirmation: ['']
   }, {validator: [PasswordValidator, MatchPasswordValidator]} as AbstractControlOptions)
 
   onSignup() {
-    console.log(this.signupForm.controls.password.errors);
+    this.authService.register(this.signupForm.value).subscribe({
+      next: res => {
+        if(res.success) {
+          this.authService.authedUserSubject.next(res.data);
+          localStorage.setItem('accessToken', JSON.stringify(res.data.accessToken));
+          localStorage.setItem('tokenExpiresAt', JSON.stringify(res.data.tokenExpiresAt));
+          this.authService.checkRedirectUrl(this.activeRoute);
+        } else if(res.message == 'validation error') {
+          this.signupForm.controls.email.setErrors({emailTaken: true});
+        }
+      }
+    })
   }
 
   // Password Strength Indicator
@@ -40,8 +54,8 @@ export class SignupComponent {
     let password = this.signupForm.controls.password.value;
     let tempPasswordStrenth = 0;
 
-    if (/[A-Za-z]+/.test(password)) tempPasswordStrenth++
-    if (/[0-9]+/.test(password)) tempPasswordStrenth++
+    if (/[a-z]+/.test(password)) tempPasswordStrenth++
+    if (/[0-9][A-Z]+/.test(password)) tempPasswordStrenth++
     if (/[!@#$%^&*()_+{}|:"<>?]+/.test(password)) tempPasswordStrenth++
     if (password.length > 8) tempPasswordStrenth++
 

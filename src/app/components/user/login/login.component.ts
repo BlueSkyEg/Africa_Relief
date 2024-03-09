@@ -19,7 +19,6 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 })
 export class LoginComponent {
   showPassword: boolean = false;
-  router: Router = inject(Router);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   authService: AuthService = inject(AuthService);
   fb: FormBuilder = inject(FormBuilder);
@@ -42,21 +41,13 @@ export class LoginComponent {
       next: (res) => {
         if(res.success) {
           this.authService.authedUserSubject.next(res.data);
-          this.redirectAfterLogin();
+          localStorage.setItem('accessToken', JSON.stringify(res.data.accessToken));
+          localStorage.setItem('tokenExpiresAt', JSON.stringify(res.data.tokenExpiresAt));
+          this.authService.checkRedirectUrl(this.activeRoute);
         } else if(res.message == 'validation error') {
           this.loginForm.controls.email.setErrors({serverError: true});
         }
       }
     })
-  }
-
-  redirectAfterLogin() {
-    const url = this.activeRoute.snapshot.queryParams['redirectUrl'];
-    if (url) {
-      this.router.navigateByUrl(url)
-        .catch(() => this.router.navigateByUrl('/home'))
-    } else {
-      this.router.navigateByUrl('/home')
-    }
   }
 }

@@ -1,6 +1,6 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
-export const requestOptionsInterceptor: HttpInterceptorFn = (req, next) => {
+export const RequestOptionsInterceptor: HttpInterceptorFn = (req, next) => {
   req.clone({
     setHeaders: {
       // "content-Type": "application/json",
