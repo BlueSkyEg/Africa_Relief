@@ -15,4 +15,12 @@
 
 </mat-drawer-container>
 
+<!-- Donation Modal -->
 <app-donation-modal/>
+
+<!-- Loader -->
+@if (displayLoader) {
+<div class="fixed top-0 start-0 w-full z-50">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+}

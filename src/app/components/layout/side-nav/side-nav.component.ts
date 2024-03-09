@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {RouterModule} from "@angular/router";
 import {CommonModule} from "@angular/common";
-import {SideNavService} from "../../../core/services/layout/side-nav.service";
+import {LayoutService} from "../../../core/services/layout/layout.service";
 
 @Component({
   selector: 'app-side-nav',
@@ -15,11 +15,9 @@ import {SideNavService} from "../../../core/services/layout/side-nav.service";
 })
 export class SideNavComponent {
   openChildMenu: Boolean = false;
-
-  constructor(private sideNavService: SideNavService) {
-  }
+  layoutService: LayoutService = inject(LayoutService);
 
   closeSideNav(): void {
-      this.sideNavService.sideNavOpened.next(false);
+      this.layoutService.sideNavSubject.next(false);
   }
 }

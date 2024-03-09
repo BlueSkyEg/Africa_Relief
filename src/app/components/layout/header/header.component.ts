@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {RouterModule} from "@angular/router";
-import {SideNavService} from "../../../core/services/layout/side-nav.service";
+import {LayoutService} from "../../../core/services/layout/layout.service";
 import {ButtonLinkComponent} from "../../../shared/components/button-link/button-link.component";
 
 @Component({
@@ -12,10 +12,9 @@ import {ButtonLinkComponent} from "../../../shared/components/button-link/button
 })
 export class HeaderComponent {
 
-  constructor(private sideNavService: SideNavService) {
-  }
+  layoutService: LayoutService = inject(LayoutService);
 
   openSideNav(): void {
-    this.sideNavService.sideNavOpened.next(true);
+    this.layoutService.sideNavSubject.next(true);
   }
 }

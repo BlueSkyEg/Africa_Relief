@@ -6,6 +6,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import {HttpClientModule, provideHttpClient, withInterceptors} from "@angular/common/http";
 import { CustomTitleService } from './core/services/layout/custom-title.service';
 import { RequestOptionsInterceptor } from './core/interceptors/request-options.interceptor';
+import { loaderInterceptor } from './core/interceptors/loader.interceptor';
 
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
@@ -20,7 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, inMemoryScrollingFeature),
     provideAnimationsAsync(),
     importProvidersFrom(HttpClientModule),
-    provideHttpClient(withInterceptors([RequestOptionsInterceptor])),
+    provideHttpClient(withInterceptors([loaderInterceptor, RequestOptionsInterceptor])),
     {provide: TitleStrategy, useClass: CustomTitleService}
   ]
 };
