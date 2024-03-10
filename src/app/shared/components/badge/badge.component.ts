@@ -9,6 +9,6 @@ import { Component, Input } from '@angular/core';
   styles: ``
 })
 export class BadgeComponent {
-  @Input() type: 'success'|'danger'|'warning'|'info';
+  @Input() type: 'success'|'danger'|'warning'|'safe'|'info';
   @Input() label: string;
 }

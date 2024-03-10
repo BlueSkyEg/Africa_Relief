@@ -12,15 +12,33 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="p-3 text-body-3 bg-white">
-          <td class="py-3 px-6 text-primary">$490</td>
-          <td class="py-3 px-6">Water Well</td>
-          <td class="py-3 px-6">Jan 28 2024 06:30pm</td>
-          <td class="py-3 px-6"><app-badge type="success" label="Succeeded"/></td>
-          <td class="py-3 px-6 sticky end-0 bg-white">
-            <button class="text-gray-dark border border-gray-light py-2 px-3">View Receipt</button>
-          </td>
-        </tr>
+        @for (donation of donations; track donation.id) {
+          <tr class="p-3 text-body-3 bg-white">
+            <td class="py-3 px-6 text-primary">{{donation.payment_amount | currency}}</td>
+            <td class="py-3 px-6">{{donation.donation_form.title | titlecase}}</td>
+            <td class="py-3 px-6">{{donation.completed_date | date: 'YYYY-MM-dd h:mm a'}}</td>
+            @switch (donation.status) {
+              @case ('succeeded') {
+                <td class="py-3 px-6"><app-badge type="success" label="Succeeded"/></td>
+              }
+              @case ('abandoned') {
+                <td class="py-3 px-6"><app-badge type="info" label="Abandoned"/></td>
+              }
+              @case ('failed') {
+                <td class="py-3 px-6"><app-badge type="danger" label="Failed"/></td>
+              }
+              @case ('refunded') {
+                <td class="py-3 px-6"><app-badge type="safe" label="Refunded"/></td>
+              }
+              @case ('pending') {
+                <td class="py-3 px-6"><app-badge type="warning" label="Pending"/></td>
+              }
+            }
+            <td class="py-3 px-6 sticky end-0 bg-white">
+              <button class="text-gray-dark border border-gray-light py-2 px-3">View Receipt</button>
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>

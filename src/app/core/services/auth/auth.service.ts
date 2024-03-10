@@ -46,6 +46,10 @@ export class AuthService {
     }
   }
 
+  getToken(): string|null {
+    return JSON.parse(localStorage.getItem('accessToken'));
+  }
+
   checkRedirectUrl(activeRoute: ActivatedRoute) {
     const url = activeRoute.snapshot.queryParams['redirectUrl'];
     if (url) {

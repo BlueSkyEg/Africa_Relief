@@ -48,9 +48,9 @@ export const routes: Routes = [
   {path: 'careers', children: [
     {path: ':slug', component: SingleCareerComponent}
   ]},
-  {path: 'profile', title: 'Profile', canActivate: [AuthGuard], component: ProfileComponent, children: [
-    {path: '', title: 'Profile Donations', component: ProfileDonationsComponent},
-    {path: 'subscriptions', title: 'Profile Subscription', component: ProfileSubscriptionsComponent},
-    {path: 'settings', title: 'Account Settings', component: ProfileSettingsComponent},
+  {path: 'profile', component: ProfileComponent, children: [
+    {path: '', title: 'Profile Donations', canActivate: [AuthGuard], component: ProfileDonationsComponent},
+    {path: 'subscriptions', title: 'Profile Subscription', canActivate: [AuthGuard], component: ProfileSubscriptionsComponent},
+    {path: 'settings', title: 'Account Settings', canActivate: [AuthGuard], component: ProfileSettingsComponent}
   ]}
 ];

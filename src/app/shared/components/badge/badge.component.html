@@ -31,4 +31,12 @@
       <span class="text-body-3 text-gray-dark">{{ label }}</span>
     </div>
   }
+  @case ('safe') {
+    <div class="flex justify-center items-center gap-1 py-1 px-2 w-fit rounded-lg bg-safe bg-opacity-10">
+      <svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6" fill="none">
+        <circle cx="3.5" cy="3" r="3" class="fill-safe"/>
+      </svg>
+      <span class="text-body-3 text-safe">{{ label }}</span>
+    </div>
+  }
 }

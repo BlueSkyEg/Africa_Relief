@@ -22,7 +22,8 @@ module.exports = {
       'white': '#FFFFFF',
       'success': '#42A162',
       'danger': '#BA4444',
-      'warning': '#C28930'
+      'warning': '#C28930',
+      'safe': '#307CC2'
     },
     extend: {},
   },

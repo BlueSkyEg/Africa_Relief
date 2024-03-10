@@ -1,11 +1,17 @@
 import { HttpInterceptorFn } from '@angular/common/http';
+import { AuthService } from '../services/auth/auth.service';
+import { inject } from '@angular/core';
 
 export const RequestOptionsInterceptor: HttpInterceptorFn = (req, next) => {
-  req.clone({
+  const authService: AuthService = inject(AuthService);
+  const accessToken = authService.getToken();
+  req = req.clone({
     setHeaders: {
-      // "content-Type": "application/json",
-      "accept": "application/json",
+      'Content-Type' : 'application/json; charset=utf-8',
+      'Accept': 'application/json',
+      'Authorization': accessToken ? `Bearer ${accessToken}` : null
     }
   })
+
   return next(req);
 };
