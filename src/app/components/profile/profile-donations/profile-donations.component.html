@@ -21,17 +21,14 @@
               @case ('succeeded') {
                 <td class="py-3 px-6"><app-badge type="success" label="Succeeded"/></td>
               }
-              @case ('abandoned') {
-                <td class="py-3 px-6"><app-badge type="info" label="Abandoned"/></td>
+              @case ('incomplete') {
+                <td class="py-3 px-6"><app-badge type="info" label="Incomplete"/></td>
               }
               @case ('failed') {
                 <td class="py-3 px-6"><app-badge type="danger" label="Failed"/></td>
               }
               @case ('refunded') {
                 <td class="py-3 px-6"><app-badge type="safe" label="Refunded"/></td>
-              }
-              @case ('pending') {
-                <td class="py-3 px-6"><app-badge type="warning" label="Pending"/></td>
               }
             }
             <td class="py-3 px-6 sticky end-0 bg-white">

@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { BadgeComponent } from "../../../shared/components/badge/badge.component";
 import { DonationService } from '../../../core/services/donation/donation.service';
-import { IDonation } from '../../../shared/interfaces/donation.interface';
+import { IDonation } from '../../../shared/interfaces/donation/donation.interface';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { CommonModule } from '@angular/common';
 

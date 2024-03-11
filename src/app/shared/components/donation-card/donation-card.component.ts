@@ -5,7 +5,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {FormsModule} from "@angular/forms";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {DonationModalService} from "../../../core/services/donation/donation-modal.service";
-import { IDonationLevel } from '../../interfaces/donation-level-inteface';
+import { IDonationLevel } from '../../interfaces/donation/donation-level-inteface';
 import { CommonModule } from '@angular/common';
 
 @Component({

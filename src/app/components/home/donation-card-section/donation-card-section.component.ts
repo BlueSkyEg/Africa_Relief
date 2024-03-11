@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {DonationCardComponent} from "../../../shared/components/donation-card/donation-card.component";
 import {IconZelleComponent} from "../../../shared/icons/zelle/icon-zelle.component";
-import { IDonationLevel } from '../../../shared/interfaces/donation-level-inteface';
+import { IDonationLevel } from '../../../shared/interfaces/donation/donation-level-inteface';
 
 @Component({
   selector: 'app-donation-card-section',

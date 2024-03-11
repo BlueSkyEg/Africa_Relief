@@ -1,7 +1,7 @@
 import { IBlogCard } from "../blog/blog-card-interface"
 import { ICategory } from "../category-interface"
 import { IContent } from "../content-interface"
-import { IDonationLevel } from "../donation-level-inteface"
+import { IDonationLevel } from "../donation/donation-level-inteface"
 import { IImage } from "../image-interface"
 
 export interface IProject {

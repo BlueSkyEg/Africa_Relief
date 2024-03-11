@@ -12,18 +12,34 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="p-3 text-body-3 bg-white">
-          <td class="py-3 px-6">
-            <span class="text-primary">$490</span>
-            <span class="text-gray-dark"> / Month</span>
-          </td>
-          <td class="py-3 px-6">Jan 28 2024 06:30pm</td>
-          <td class="py-3 px-6">Water Well</td>
-          <td class="py-3 px-6"><app-badge type="success" label="Active"/></td>
-          <td class="py-3 px-6 sticky end-0 bg-white">
-            <button class="text-gray-dark border border-gray-light py-2 px-3">Cancel</button>
-          </td>
-        </tr>
+        @for (subscription of subscriptions; track subscription.id) {
+          <tr class="p-3 text-body-3 bg-white">
+            <td class="py-3 px-6">
+              <span class="text-primary">{{subscription.recurring_amount | currency}}</span>
+              <span class="text-gray-dark"> / {{subscription.period | titlecase}}</span>
+            </td>
+            <td class="py-3 px-6">{{subscription.expiration_at | date: 'YYYY-MM-dd h:mm a'}}</td>
+            <td class="py-3 px-6">{{subscription.donation_form.title}}</td>
+            @switch (subscription.status) {
+              @case ('active') {
+                <td class="py-3 px-6"><app-badge type="success" label="Active"/></td>
+              }
+              @case ('cancelled') {
+                <td class="py-3 px-6"><app-badge type="danger" label="Cancelled"/></td>
+              }
+              @case ('incomplete') {
+                <td class="py-3 px-6"><app-badge type="info" label="Incomplete"/></td>
+              }
+            }
+            @if (subscription.status == 'active') {
+              <td class="py-3 px-6 sticky end-0 bg-white">
+                <button class="text-gray-dark border border-gray-light py-2 px-3">Cancel</button>
+              </td>
+            } @else {
+              <td></td>
+            }
+          </tr>
+        }
       </tbody>
     </table>
   </div>
