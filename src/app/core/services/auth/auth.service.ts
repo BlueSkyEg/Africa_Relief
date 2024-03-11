@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, Subject, of, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { IAuthedUser } from '../../../shared/interfaces/auth/authed-user.interface';
 import { environment } from '../../../../environments/environment';
 import { LoginCredentials } from '../../../shared/interfaces/auth/login-credentials.interface';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IUser } from '../../../shared/interfaces/auth/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,28 @@ export class AuthService {
   http: HttpClient = inject(HttpClient);
   router: Router = inject(Router);
 
-  authedUserSubject: Subject<IAuthedUser> = new Subject<IAuthedUser>();
+  authedUserSubject: BehaviorSubject<IUser> = new BehaviorSubject<IUser>(null);
+
+  getToken(): string|null {
+    return JSON.parse(localStorage.getItem('accessToken'));
+  }
+
+  isTokenExpired(): boolean {
+    const tokenExpiresAt = JSON.parse(localStorage.getItem('tokenExpiresAt'));
+    if((tokenExpiresAt - (new Date().getTime())) > 5000) {
+      return false
+    } else {
+      return true
+    }
+  }
+
+  isUserAuthed(): boolean {
+    return this.getToken() ? true : false
+  }
+
+  getAuthedUser(): Observable<IApiResponse<IUser>> {
+    return this.http.get<IApiResponse<IUser>>(environment.apiUrl + '/user');
+  }
 
   login(data): Observable<IApiResponse<IAuthedUser>> {
     return this.http.post<IApiResponse<IAuthedUser>>(environment.apiUrl + '/login', data);
@@ -35,19 +57,6 @@ export class AuthService {
 
   verifyEmail(url): Observable<IApiResponse<null>> {
     return this.http.get<IApiResponse<null>>(url);
-  }
-
-  isTokenExpired(): boolean {
-    const tokenExpiresAt = JSON.parse(localStorage.getItem('tokenExpiresAt'));
-    if((tokenExpiresAt - (new Date().getTime())) > 5000) {
-      return false
-    } else {
-      return true
-    }
-  }
-
-  getToken(): string|null {
-    return JSON.parse(localStorage.getItem('accessToken'));
   }
 
   checkRedirectUrl(activeRoute: ActivatedRoute) {

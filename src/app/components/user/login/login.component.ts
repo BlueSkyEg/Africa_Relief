@@ -40,7 +40,7 @@ export class LoginComponent {
     this.authService.login(this.loginForm.value).subscribe({
       next: (res) => {
         if(res.success) {
-          this.authService.authedUserSubject.next(res.data);
+          this.authService.authedUserSubject.next(res.data.user);
           localStorage.setItem('accessToken', JSON.stringify(res.data.accessToken));
           localStorage.setItem('tokenExpiresAt', JSON.stringify(res.data.tokenExpiresAt));
           this.authService.checkRedirectUrl(this.activeRoute);

@@ -8,6 +8,9 @@ import {SideNavComponent} from "./components/layout/side-nav/side-nav.component"
 import {LayoutService} from "./core/services/layout/layout.service";
 import {DonationModalComponent} from "./shared/components/donation-modal/donation-modal.component";
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { AuthService } from './core/services/auth/auth.service';
+import { IApiResponse } from './shared/interfaces/api-response-interface';
+import { IUser } from './shared/interfaces/auth/user.interface';
 
 @Component({
   selector: 'app-root',
@@ -20,18 +23,29 @@ export class AppComponent implements OnInit {
   opened: boolean = false;
   displayLoader: boolean = false;
   layoutService: LayoutService = inject(LayoutService);
+  authService: AuthService = inject(AuthService);
   cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
+    // Toggle Side Nav
     this.layoutService.sideNavSubject.asObservable().subscribe({
       next: value => this.opened = value
     });
 
+    // Display Loader
     this.layoutService.loaderSubject.asObservable().subscribe({
       next: value => {
         this.displayLoader = value
         this.cdr.detectChanges();
       }
     })
+
+    // Get Authed User
+    if(this.authService.isUserAuthed()) {
+      console.log('app component');
+      this.authService.getAuthedUser().subscribe({
+        next: (res: IApiResponse<IUser>) => this.authService.authedUserSubject.next(res.data)
+      })
+    }
   }
 }
