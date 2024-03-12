@@ -21,6 +21,7 @@ import { ProfileSettingsComponent } from './components/profile/profile-settings/
 import { VerifyEmailComponent } from './components/user/verify-email/verify-email.component';
 import { AuthGuard } from './core/Guards/auth.guard';
 import { GuestGuard } from './core/Guards/guest.guard';
+import { DonationComponent } from './components/donation/donation.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -52,5 +53,6 @@ export const routes: Routes = [
     {path: '', title: 'Profile Donations', canActivate: [AuthGuard], component: ProfileDonationsComponent},
     {path: 'subscriptions', title: 'Profile Subscription', canActivate: [AuthGuard], component: ProfileSubscriptionsComponent},
     {path: 'settings', title: 'Account Settings', canActivate: [AuthGuard], component: ProfileSettingsComponent}
-  ]}
+  ]},
+  {path: 'donation', title: 'Donation', component: DonationComponent}
 ];

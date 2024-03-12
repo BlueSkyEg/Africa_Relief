@@ -1,0 +1,99 @@
+<div class="container my-10 lg:mb-20">
+  <form [formGroup]="donationForm">
+    <mat-stepper formArrayName="formArray" linear>
+      <mat-step formGroupName="0" [stepControl]="personalDetails">
+        <ng-template matStepLabel>Personal Details</ng-template>
+        <app-form-field>
+          <app-form-label>Name*</app-form-label>
+          <input type="text" appFormElement formControlName="name" placeholder="Full Name">
+          <app-form-error [hasError]="personalDetails.get('name').hasError('required') && personalDetails.get('name').touched">Name is required.</app-form-error>
+        </app-form-field>
+        <app-form-field>
+          <app-form-label>Email*</app-form-label>
+          <input type="text" appFormElement formControlName="email" placeholder="example@example.com">
+          <app-form-error [hasError]="personalDetails.get('email').hasError('required') && personalDetails.get('email').touched">Email is required.</app-form-error>
+          <app-form-error [hasError]="personalDetails.get('email').hasError('email') && personalDetails.get('email').touched">Email is invalid.</app-form-error>
+        </app-form-field>
+        <app-form-field>
+          <app-form-label>Phone Number*</app-form-label>
+          <input type="text" appFormElement formControlName="phone" placeholder="Phone Number">
+          <app-form-error [hasError]="personalDetails.get('phone').hasError('required') && personalDetails.get('phone').touched">Phone is required.</app-form-error>
+          <app-form-error [hasError]="personalDetails.get('phone').hasError('pattern') && personalDetails.get('phone').touched">Phone is invalid.</app-form-error>
+        </app-form-field>
+        <div>
+          <button matStepperNext type="button">Next</button>
+        </div>
+      </mat-step>
+      <mat-step formGroupName="1" [stepControl]="billingDetails">
+        <ng-template matStepLabel>Billing Details</ng-template>
+        <app-form-field>
+          <app-form-label>Country*</app-form-label>
+          <input appFormElement type="text" placeholder="Select Country" formControlName="country" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            @for (country of filteredOptions | async; track country) {
+            <mat-option [value]="country.code">{{country.name}}</mat-option>
+            }
+          </mat-autocomplete>
+          <app-form-error [hasError]="billingDetails.get('country').hasError('required') && billingDetails.get('country').touched">Country is required</app-form-error>
+          <app-form-error [hasError]="billingDetails.get('country').hasError('pattern') && billingDetails.get('country').touched">Please select from the options</app-form-error>
+        </app-form-field>
+        <app-form-field>
+          <app-form-label>Address 1*</app-form-label>
+          <input appFormElement class="form-input" type="text" formControlName="addressLine1" placeholder="Address Line 1">
+          <app-form-error [hasError]="billingDetails.get('addressLine1').hasError('required') && billingDetails.get('addressLine1').touched"> Address 1 is required</app-form-error>
+        </app-form-field>
+        <app-form-field>
+          <app-form-label>Address 2</app-form-label>
+          <input appFormElement class="form-input" type="text" formControlName="addressLine2" placeholder="Address Line 2">
+        </app-form-field>
+        <app-form-field>
+          <app-form-label>City*</app-form-label>
+          <input appFormElement class="form-input" type="text" formControlName="city" placeholder="City">
+          <app-form-error [hasError]="billingDetails.get('city').hasError('required') && billingDetails.get('city').touched">City is required</app-form-error>
+        </app-form-field>
+        <div class="flex gap-[16px] self-stretch">
+          <app-form-field class="w-full">
+            <app-form-label>State*</app-form-label>
+            <input appFormElement class="form-input" type="text" formControlName="state" placeholder="State">
+            <app-form-error [hasError]="billingDetails.get('state').hasError('required') && billingDetails.get('state').touched">State is required</app-form-error>
+          </app-form-field>
+          <app-form-field class="w-full">
+            <app-form-label>Zip / Postal Code*</app-form-label>
+            <input appFormElement class="form-input" type="text" formControlName="postalCode" placeholder="Zip / Postal Code">
+            <app-form-error [hasError]="billingDetails.get('postalCode').hasError('required') && billingDetails.get('postalCode').touched">Postal Code is required</app-form-error>
+            <app-form-error [hasError]="billingDetails.get('postalCode').hasError('pattern') && billingDetails.get('postalCode').touched">Postal Code is invalid.</app-form-error>
+          </app-form-field>
+        </div>
+        <div>
+          <button matStepperPrevious type="button">Back</button>
+          <button matStepperNext type="button">Next</button>
+        </div>
+      </mat-step>
+      <mat-step formGroupName="2" [stepControl]="checkout">
+        <ng-template matStepLabel>Checkout</ng-template>
+        <!-- @if (elementsOptions.clientSecret) {
+          <ngx-stripe-card-group [elementsOptions]="elementsOptions">
+            <ngx-stripe-card-number [options]="cardOptions"></ngx-stripe-card-number>
+            <ngx-stripe-card-expiry [options]="cardOptions"></ngx-stripe-card-expiry>
+            <ngx-stripe-card-cvc [options]="cardOptions"></ngx-stripe-card-cvc>
+          </ngx-stripe-card-group>
+          <button (click)="card">pay</button>
+        } -->
+        <div>
+          <button matStepperPrevious type="button">Back</button>
+          <button matStepperNext type="button">Next</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </form>
+</div>
+@if (elementsOptions.clientSecret) {
+  <ngx-stripe-card-group [elementsOptions]="elementsOptions">
+    <div  class="border border-gray-light">
+    <ngx-stripe-card-number [options]="cardOptions"></ngx-stripe-card-number>
+  </div>
+    <ngx-stripe-card-expiry [options]="cardOptions"></ngx-stripe-card-expiry>
+    <ngx-stripe-card-cvc [options]="cardOptions"></ngx-stripe-card-cvc>
+  </ngx-stripe-card-group>
+  <button (click)="pay()">pay</button>
+}

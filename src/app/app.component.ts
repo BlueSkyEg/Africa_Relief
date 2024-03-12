@@ -42,7 +42,6 @@ export class AppComponent implements OnInit {
 
     // Get Authed User
     if(this.authService.isUserAuthed()) {
-      console.log('app component');
       this.authService.getAuthedUser().subscribe({
         next: (res: IApiResponse<IUser>) => this.authService.authedUserSubject.next(res.data)
       })

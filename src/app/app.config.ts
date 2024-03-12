@@ -7,6 +7,8 @@ import {HttpClientModule, provideHttpClient, withInterceptors} from "@angular/co
 import { CustomTitleService } from './core/services/layout/custom-title.service';
 import { RequestOptionsInterceptor } from './core/interceptors/request-options.interceptor';
 import { loaderInterceptor } from './core/interceptors/loader.interceptor';
+import { provideNgxStripe } from 'ngx-stripe';
+import { environment } from '../environments/environment';
 
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
@@ -22,6 +24,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     importProvidersFrom(HttpClientModule),
     provideHttpClient(withInterceptors([loaderInterceptor, RequestOptionsInterceptor])),
+    provideNgxStripe(environment.stripePublicKey),
     {provide: TitleStrategy, useClass: CustomTitleService}
   ]
 };
