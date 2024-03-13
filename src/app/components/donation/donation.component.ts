@@ -9,7 +9,7 @@ import { Observable, map, startWith } from 'rxjs';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CommonModule } from '@angular/common';
 import { PaymentService } from '../../core/services/payment/payment.service';
-import { PaymentIntent, StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-js';
+import { PaymentIntent, PaymentMethod, PaymentMethodResult, StripeCardCvcElementChangeEvent, StripeCardElementOptions, StripeCardExpiryElementChangeEvent, StripeCardNumberElementChangeEvent, StripeElementsOptions } from '@stripe/stripe-js';
 import { StripeCardCvcComponent, StripeCardExpiryComponent, StripeCardGroupDirective, StripeCardNumberComponent, StripeService } from 'ngx-stripe';
 import { IApiResponse } from '../../shared/interfaces/api-response-interface';
 
@@ -43,7 +43,7 @@ export class DonationComponent {
         anonymousDonation: ['']
       }),
       this.fb.group({
-        billingComment: ['']
+        billingComment: ['', [Validators.maxLength(500)]]
       })
     ]),
   })
@@ -96,25 +96,51 @@ export class DonationComponent {
     })
   }
 
-  pay(){
+  onMakeDonation(){
+    if(this.donationForm.invalid || !this.isCardNumberValid || !this.isCardCvvValid || !this.isCardExpiryValid) return;
+
+    // Add Payment Method
     this.stripeService.createPaymentMethod({
       type: "card",
       card: this.card.element,
       billing_details: {
-        name: 'Mohamed Elsayeh',
-        email: 'zinhom999999@gmail.com',
-        phone: '01010181734',
+        name: this.personalDetails.get('name').value,
+        email: this.personalDetails.get('email').value,
+        phone: this.personalDetails.get('phone').value,
         address: {
-          city: 'Alexandria',
-          country: 'EG',
-          line1: 'Abd allah ibn masoud st',
-          line2: null,
-          postal_code: '21539',
-          state: 'Alasfraaa'
+          city: this.billingDetails.get('city').value,
+          country: this.billingDetails.get('country').value,
+          line1: this.billingDetails.get('addressLine1').value,
+          line2: this.billingDetails.get('addressLine2').value,
+          postal_code: this.billingDetails.get('postalCode').value,
+          state: this.billingDetails.get('state').value,
         }
       }
     }).subscribe({
-      next: res => console.log(res)
+      next: (res: PaymentMethodResult) => console.log(res)
     })
+  }
+
+  // Handel Payment Card Errors
+  cardNumberError: string|null = null;
+  cardExpiryError: string|null = null;
+  cardCvvError: string|null = null;
+  isCardNumberValid: boolean = false;
+  isCardExpiryValid: boolean = false;
+  isCardCvvValid: boolean = false;
+
+  onCardNumberChange(e: StripeCardNumberElementChangeEvent) {
+    e.error ? this.cardNumberError = e.error.message : this.cardNumberError = null;
+    this.isCardNumberValid = e.complete;
+  }
+
+  onCardExpiryChange(e: StripeCardExpiryElementChangeEvent) {
+    e.error ? this.cardExpiryError = e.error.message : this.cardExpiryError = null;
+    this.isCardExpiryValid = e.complete;
+  }
+
+  onCardCvvChange(e: StripeCardCvcElementChangeEvent) {
+    e.error ? this.cardCvvError = e.error.message : this.cardCvvError = null;
+    this.isCardCvvValid = e.complete;
   }
 }

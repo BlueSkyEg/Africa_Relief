@@ -1,5 +1,5 @@
 <div class="container my-10 lg:mb-20">
-  <form [formGroup]="donationForm">
+  <form [formGroup]="donationForm" (submit)="onMakeDonation()">
     <mat-stepper formArrayName="formArray" linear>
       <mat-step formGroupName="0" [stepControl]="personalDetails">
         <ng-template matStepLabel>Personal Details</ng-template>
@@ -71,29 +71,43 @@
       </mat-step>
       <mat-step formGroupName="2" [stepControl]="checkout">
         <ng-template matStepLabel>Checkout</ng-template>
-        <!-- @if (elementsOptions.clientSecret) {
-          <ngx-stripe-card-group [elementsOptions]="elementsOptions">
-            <ngx-stripe-card-number [options]="cardOptions"></ngx-stripe-card-number>
-            <ngx-stripe-card-expiry [options]="cardOptions"></ngx-stripe-card-expiry>
-            <ngx-stripe-card-cvc [options]="cardOptions"></ngx-stripe-card-cvc>
+        @if (elementsOptions.clientSecret) {
+          <ngx-stripe-card-group [formGroup]="donationForm" [elementsOptions]="elementsOptions">
+            <app-form-field>
+              <app-form-label>Card Number*</app-form-label>
+              <div class="border border-gray-light py-3 px-4">
+                <ngx-stripe-card-number [options]="cardOptions" (change)="onCardNumberChange($event)"></ngx-stripe-card-number>
+              </div>
+              <app-form-error [hasError]="cardNumberError != null">{{cardNumberError}}</app-form-error>
+            </app-form-field>
+            <div class="flex gap-4">
+              <app-form-field class="flex-1">
+                <app-form-label>Expiration*</app-form-label>
+                <div class="border border-gray-light py-3 px-4">
+                  <ngx-stripe-card-expiry [options]="cardOptions" (change)="onCardExpiryChange($event)"></ngx-stripe-card-expiry>
+                </div>
+                <app-form-error [hasError]="cardExpiryError != null">{{cardExpiryError}}</app-form-error>
+              </app-form-field>
+              <app-form-field class="flex-1">
+                <app-form-label>CVC*</app-form-label>
+                <div class="border border-gray-light py-3 px-4">
+                  <ngx-stripe-card-cvc [options]="cardOptions" (change)="onCardCvvChange($event)"></ngx-stripe-card-cvc>
+                </div>
+                <app-form-error [hasError]="cardCvvError != null">{{cardCvvError}}</app-form-error>
+              </app-form-field>
+            </div>
           </ngx-stripe-card-group>
-          <button (click)="card">pay</button>
-        } -->
+          <app-form-field>
+            <app-form-label>Comment</app-form-label>
+            <textarea appFormElement rows="2" formControlName="billingComment" placeholder="Have you any comment? Feel free to tell us."></textarea>
+            <app-form-error [hasError]="checkout.get('billingComment').hasError('maxlength') && checkout.get('billingComment').touched">Comment must be less that 500 character</app-form-error>
+          </app-form-field>
+        }
         <div>
           <button matStepperPrevious type="button">Back</button>
-          <button matStepperNext type="button">Next</button>
+          <button type="submit">Pay</button>
         </div>
       </mat-step>
     </mat-stepper>
   </form>
 </div>
-@if (elementsOptions.clientSecret) {
-  <ngx-stripe-card-group [elementsOptions]="elementsOptions">
-    <div  class="border border-gray-light">
-    <ngx-stripe-card-number [options]="cardOptions"></ngx-stripe-card-number>
-  </div>
-    <ngx-stripe-card-expiry [options]="cardOptions"></ngx-stripe-card-expiry>
-    <ngx-stripe-card-cvc [options]="cardOptions"></ngx-stripe-card-cvc>
-  </ngx-stripe-card-group>
-  <button (click)="pay()">pay</button>
-}
