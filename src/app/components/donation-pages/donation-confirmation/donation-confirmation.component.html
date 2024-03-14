@@ -1,0 +1,18 @@
+<div class="container flex flex-col justify-center items-center my-10 lg:mb-20">
+  @if (isUserRedirectedDuringDonation) {
+    <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+      <path d="M67.5 46.25H10C7.95 46.25 6.25 44.55 6.25 42.5C6.25 40.45 7.95 38.75 10 38.75H67.5C69.55 38.75 71.25 40.45 71.25 42.5C71.25 44.55 69.55 46.25 67.5 46.25Z" fill="#205926"/>
+      <path d="M40 86.25H30C27.95 86.25 26.25 84.55 26.25 82.5C26.25 80.45 27.95 78.75 30 78.75H40C42.05 78.75 43.75 80.45 43.75 82.5C43.75 84.55 42.05 86.25 40 86.25Z" fill="#205926"/>
+      <path d="M72.5 86.25H52.5C50.45 86.25 48.75 84.55 48.75 82.5C48.75 80.45 50.45 78.75 52.5 78.75H72.5C74.55 78.75 76.25 80.45 76.25 82.5C76.25 84.55 74.55 86.25 72.5 86.25Z" fill="#205926"/>
+      <path d="M87.8 106.25H32.2C12.3 106.25 6.25 100.25 6.25 80.55V39.45C6.25 19.75 12.3 13.75 32.2 13.75H67.5C69.55 13.75 71.25 15.45 71.25 17.5C71.25 19.55 69.55 21.25 67.5 21.25H32.2C16.5 21.25 13.75 23.95 13.75 39.45V80.5C13.75 96 16.5 98.7 32.2 98.7H87.75C103.45 98.7 106.2 96 106.2 80.5V55.1C106.2 53.05 107.9 51.35 109.95 51.35C112 51.35 113.7 53.05 113.7 55.1V80.5C113.75 100.25 107.7 106.25 87.8 106.25Z" fill="#205926"/>
+      <path d="M89.9992 41.25C89.0492 41.25 88.0992 40.9 87.3492 40.15L79.8492 32.65C78.3992 31.2 78.3992 28.7999 79.8492 27.3499C81.2992 25.9 83.6992 25.9 85.1492 27.3499L89.9992 32.2L107.349 14.85C108.799 13.4 111.199 13.4 112.649 14.85C114.099 16.3 114.099 18.7 112.649 20.15L92.6492 40.15C91.8992 40.9 90.9492 41.25 89.9992 41.25Z" fill="#205926"/>
+    </svg>
+    <h1 class="text-heading-2 text-primary mb-6">Success!</h1>
+    <p class="text-body-1 text-gray-dark mb-14">Your donation has been completed successfully!</p>
+    <app-button-link path="/home" appearance="filled-primary" label="Go to Home"/>
+  } @else {
+    <h1 class="text-heading-2 mb-6">Need To Make Donation?</h1>
+    <p class="text-body-1 text-gray-dark mb-14">Every donation, no matter the size, helps make a difference.</p>
+    <app-button-link path="/projects" appearance="filled-primary" label="Check Projects"/>
+  }
+</div>

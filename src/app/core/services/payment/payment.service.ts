@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PaymentIntent } from '@stripe/stripe-js';
+import { SetupIntent } from '@stripe/stripe-js';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
+import { IPaymentRequiresAction } from '../../../shared/interfaces/payment-requires-action.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,15 @@ export class PaymentService {
 
   constructor(private http: HttpClient) { }
 
-  setupPaymentIntent(): Observable<IApiResponse<PaymentIntent>> {
-    return this.http.get<IApiResponse<PaymentIntent>>(environment.apiUrl + '/payment-method/setup-intent');
+  setupPaymentIntent(): Observable<IApiResponse<SetupIntent>> {
+    return this.http.get<IApiResponse<SetupIntent>>(environment.apiUrl + '/payment-method/setup-intent');
+  }
+
+  createSingleCharge(data): Observable<IApiResponse<IPaymentRequiresAction>> {
+    return this.http.post<IApiResponse<IPaymentRequiresAction>>(environment.apiUrl + '/create-single-charge', data);
+  }
+
+  createSubscription(data): Observable<IApiResponse<IPaymentRequiresAction>> {
+    return this.http.post<IApiResponse<IPaymentRequiresAction>>(environment.apiUrl + '/subscription/create', data);
   }
 }

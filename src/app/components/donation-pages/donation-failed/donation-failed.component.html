@@ -1,0 +1,19 @@
+<div class="container flex flex-col justify-center items-center my-10 lg:mb-20">
+  @if (isUserRedirectedDuringDonation) {
+    <svg xmlns="http://www.w3.org/2000/svg" width="121" height="120" viewBox="0 0 121 120" fill="none">
+      <path d="M68 46.25H10.5C8.45 46.25 6.75 44.55 6.75 42.5C6.75 40.45 8.45 38.75 10.5 38.75H68C70.05 38.75 71.75 40.45 71.75 42.5C71.75 44.55 70.05 46.25 68 46.25Z" fill="#BA4444"/>
+      <path d="M40.5 86.25H30.5C28.45 86.25 26.75 84.55 26.75 82.5C26.75 80.45 28.45 78.75 30.5 78.75H40.5C42.55 78.75 44.25 80.45 44.25 82.5C44.25 84.55 42.55 86.25 40.5 86.25Z" fill="#BA4444"/>
+      <path d="M73 86.25H53C50.95 86.25 49.25 84.55 49.25 82.5C49.25 80.45 50.95 78.75 53 78.75H73C75.05 78.75 76.75 80.45 76.75 82.5C76.75 84.55 75.05 86.25 73 86.25Z" fill="#BA4444"/>
+      <path d="M88.3 106.25H32.7C12.8 106.25 6.75 100.25 6.75 80.55V39.45C6.75 19.75 12.8 13.75 32.7 13.75H68C70.05 13.75 71.75 15.45 71.75 17.5C71.75 19.55 70.05 21.25 68 21.25H32.7C17 21.25 14.25 23.95 14.25 39.45V80.5C14.25 96 17 98.7 32.7 98.7H88.25C103.95 98.7 106.7 96 106.7 80.5V60.1C106.7 58.05 108.4 56.35 110.45 56.35C112.5 56.35 114.2 58.05 114.2 60.1V80.5C114.25 100.25 108.2 106.25 88.3 106.25Z" fill="#BA4444"/>
+      <path d="M87.05 44.7C86.1 44.7 85.15 44.35 84.4 43.6C82.95 42.15 82.95 39.75 84.4 38.3L103.85 18.85C105.3 17.4 107.7 17.4 109.15 18.85C110.6 20.3 110.6 22.7 109.15 24.15L89.7 43.6C88.95 44.35 88 44.7 87.05 44.7Z" fill="#BA4444"/>
+      <path d="M106.449 44.7C105.499 44.7 104.549 44.35 103.799 43.6L84.3492 24.15C82.8992 22.7 82.8992 20.3 84.3492 18.85C85.7992 17.4 88.1992 17.4 89.6492 18.85L109.099 38.3C110.549 39.75 110.549 42.15 109.099 43.6C108.399 44.35 107.449 44.7 106.449 44.7Z" fill="#BA4444"/>
+    </svg>
+    <h1 class="text-heading-2 text-danger mb-6">Payment Failed!</h1>
+    <p class="text-body-1 text-gray-dark mb-14">Sorry, your payment didn't go through. Please contact your provider.</p>
+    <app-button-link path="/home" appearance="filled-primary" label="Go to Home"/>
+  } @else {
+    <h1 class="text-heading-2 mb-6">Need To Make Donation?</h1>
+    <p class="text-body-1 text-gray-dark mb-14">Every donation, no matter the size, helps make a difference.</p>
+    <app-button-link path="/projects" appearance="filled-primary" label="Check Projects"/>
+  }
+</div>
