@@ -4,7 +4,6 @@ import {ButtonComponent} from "../form/button/button.component";
 import {MatSelectModule} from "@angular/material/select";
 import {FormsModule} from "@angular/forms";
 import {MatCheckbox} from "@angular/material/checkbox";
-import {DonationModalService} from "../../../core/services/donation/donation-modal.service";
 import { IDonationLevel } from '../../interfaces/donation/donation-level-inteface';
 import { CommonModule } from '@angular/common';
 
@@ -29,9 +28,4 @@ export class DonationCardComponent {
   amount: number;
   makeRecurringDonation: boolean = false;
   recurringPeriod: 'day'|'week'|'month'|'quarter'|'year' = 'month';
-  donationModalService: DonationModalService = inject(DonationModalService);
-
-  openModal() {
-    this.donationModalService.modalOpened.next(true);
-  }
 }

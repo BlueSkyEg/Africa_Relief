@@ -1,0 +1,21 @@
+@if (modalOpened) {
+  <div @overlayAnimation class="bg-black w-full h-full fixed top-0 start-0 opacity-75 z-[999]"></div>
+
+  <div @modalAnimation class="w-full h-full fixed top-0 left-0 z-[1000]">
+    <div class="absolute w-full top-0 left-0 p-2">
+      <div class="relative w-auto bg-white my-10 mx-auto z-[1000]" [ngClass]="'max-w-[' + maxWidth + ']'">
+        <!-- Modal Header -->
+        <div class="flex justify-between items-center gap-6 px-6 py-4">
+          @if (title) {
+            <h2 class="w-full">{{title}}</h2>
+          }
+          <app-icon-close class="flex justify-end flex-1 cursor-pointer" (click)="closeModal()"/>
+        </div>
+        <!-- Modal Content -->
+        <div class="p-6 border-y border-y-gray-light">
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </div>
+  </div>
+}

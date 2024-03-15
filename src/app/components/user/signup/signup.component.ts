@@ -55,7 +55,7 @@ export class SignupComponent {
     let tempPasswordStrenth = 0;
 
     if (/[a-z]+/.test(password)) tempPasswordStrenth++
-    if (/[0-9][A-Z]+/.test(password)) tempPasswordStrenth++
+    if (/^(?=.*[0-9])(?=.*[A-Z]).+$/.test(password)) tempPasswordStrenth++
     if (/[!@#$%^&*()_+{}|:"<>?]+/.test(password)) tempPasswordStrenth++
     if (password.length > 8) tempPasswordStrenth++
 

@@ -13,8 +13,8 @@ import { IUser } from '../../../shared/interfaces/auth/user.interface';
 })
 export class AuthService {
 
-  http: HttpClient = inject(HttpClient);
-  router: Router = inject(Router);
+  private readonly http: HttpClient = inject(HttpClient);
+  private readonly router: Router = inject(Router);
 
   authedUserSubject: BehaviorSubject<IUser> = new BehaviorSubject<IUser>(null);
 
@@ -37,6 +37,18 @@ export class AuthService {
 
   getAuthedUser(): Observable<IApiResponse<IUser>> {
     return this.http.get<IApiResponse<IUser>>(environment.apiUrl + '/user');
+  }
+
+  updateUserInfo(data): Observable<IApiResponse<IUser>> {
+    return this.http.put<IApiResponse<IUser>>(environment.apiUrl + '/user/info', data);
+  }
+
+  changeUserImage(data): Observable<IApiResponse<IUser>> {
+    return this.http.post<IApiResponse<IUser>>(environment.apiUrl + '/user/img', data);
+  }
+
+  changeUserPassword(data): Observable<IApiResponse<IUser>> {
+    return this.http.post<IApiResponse<IUser>>(environment.apiUrl + '/change-password', data);
   }
 
   login(data): Observable<IApiResponse<IAuthedUser>> {
