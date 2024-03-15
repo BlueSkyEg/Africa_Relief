@@ -1,10 +1,11 @@
 import { IDonationForm } from "./donation-form.interface"
+import { IDonor } from "./donor.interface"
 
 export interface IDonation {
   id: number
-  donor_id: number
   subscription_id: string|null
   donation_form: IDonationForm
+  donor: IDonor
   stripe_source_id: string
   stripe_transaction_id: string
   payment_amount: string

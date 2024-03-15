@@ -34,7 +34,7 @@ import {IconCloseComponent} from "../../icons/close/icon-close.component";
 })
 export class ModalComponent {
 
-  @Input() modalOpened: boolean = false;
+  modalOpened: boolean = false;
   @Input() title: string;
   @Input() maxWidth: string = '612px';
 

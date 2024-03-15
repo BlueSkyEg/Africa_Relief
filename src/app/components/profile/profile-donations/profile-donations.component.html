@@ -32,7 +32,7 @@
               }
             }
             <td class="py-3 px-6 sticky end-0 bg-white">
-              <button class="text-gray-dark border border-gray-light py-2 px-3">View Receipt</button>
+              <button class="text-gray-dark border border-gray-light py-2 px-3" (click)="onViewReceipt(donation)">View Receipt</button>
             </td>
           </tr>
         }
@@ -40,3 +40,34 @@
     </table>
   </div>
 </div>
+
+<!-- View Receipt Modal -->
+<app-modal title="Payment Receipt" maxWidth="500px" #receiptModal>
+  @if (receiptDonation) {
+    <div class="flex flex-col w-full gap-4">
+      <div class="flex flex-col items-center gap-2 border border-gray-light py-4 px-6">
+        <img class="w-20 h-20" src="assets/images/logo.webp" alt="Africa Relief Logo" loading="lazy">
+        <h2 class="text-body-2-md text-center">Africa Relief & Community Development</h2>
+      </div>
+      <div class="flex flex-col gap-3 border border-gray-light py-4 px-6">
+        <h3 class="text-body-3 !font-semibold">Donor Information</h3>
+        <hr class="text-gray-light">
+        <ul>
+          <li>Name: <span class="text-body-3">{{receiptDonation.donor_billing_name | titlecase}}</span></li>
+          <li>Email: <span class="text-body-3">{{receiptDonation.donor.email}}</span></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-3 border border-gray-light py-4 px-6">
+        <h3 class="text-body-3 !font-semibold">Payment Information</h3>
+        <hr class="text-gray-light">
+        <ul>
+          <li>Payment ID: <span class="text-body-3">{{receiptDonation.id}}</span></li>
+          <li>Amount: <span class="text-body-3">{{receiptDonation.payment_amount | currency}}</span></li>
+          <li>Date of Payment: <span class="text-body-3">{{receiptDonation.completed_date | date:'MMM d Y h:m a'}}</span></li>
+          <li>Project Name: <span class="text-body-3">{{receiptDonation.donation_form.title | titlecase}}</span></li>
+        </ul>
+      </div>
+      <!-- <app-form-button appearance="outlined" [fullWidth]="true">Print</app-form-button> -->
+    </div>
+  }
+</app-modal>
