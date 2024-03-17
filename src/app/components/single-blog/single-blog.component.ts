@@ -14,7 +14,7 @@ import { BlogSliderComponent } from "./blog-slider/blog-slider.component";
     selector: 'app-single-blog',
     standalone: true,
     templateUrl: './single-blog.component.html',
-    styleUrl: './single-blog.component.scss',
+    styles: ``,
     imports: [RouterModule, CommonModule, BreadcrumbComponent, DonationCardComponent, IconQuoteComponent, ShareButtonsComponent, BlogSliderComponent]
 })
 export class SingleBlogComponent {
