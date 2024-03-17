@@ -20,7 +20,7 @@ import { DonationCardComponent } from "../../shared/components/donation-card/don
     selector: 'app-single-project',
     standalone: true,
     templateUrl: './single-project.component.html',
-    styleUrl: './single-project.component.scss',
+    styles: ``,
     imports: [RouterModule, CommonModule, IconDirective, IconQuoteComponent, ButtonLinkComponent, BlogCardComponent, IconLinkedinComponent, IconYoutubeComponent, IconInstagramComponent, IconFacebookComponent, ShareButtonsComponent, BreadcrumbComponent, DonationCardComponent]
 })
 export class SingleProjectComponent implements OnInit {

@@ -3,9 +3,9 @@
   <app-breadcrumb basePath="/projects" baseName="Projects" [currentName]="project.title"/>
 
   <!-- Project Container -->
-  <div class="flex flex-col lg:flex-row gap-6 mt-6">
-    <!-- Project Details -->
-    <div class="flex flex-col gap-6 basis-2/3">
+  <div class="grid lg:grid-cols-3 gap-6 mt-6">
+    <!-- Project Summary -->
+    <div class="flex flex-col gap-6 lg:col-span-2">
       <div class="relative">
         <img class="w-full h-[480px] object-cover object-center" [src]="project.featuredImage.src" [alt]="project.featuredImage.alt" loading="lazy">
         <a class="absolute bottom-0 start-0 bg-secondary py-1 px-3" [routerLink]="'/projects/category/' + project.category.slug">{{ project.category.name }}</a>
@@ -14,11 +14,13 @@
       <h1 class="text-heading-1">{{project.title | titlecase}}</h1>
       <!-- project summary -->
       <p class="p-6 bg-white border border-gray-light">{{project.summary}}</p>
-      <!-- Donation Card for mobile -->
-      <div class="block lg:hidden">
-        <app-donation-card [donationLevels]="project.donationLevels" [recurringPeriods]="project.recurringPeriods" [fullyFundLevel]="project.fullyFundLevel"/>
-      </div>
-      <!-- project content -->
+    </div>
+
+    <!-- Donation Card -->
+    <app-donation-card [donationLevels]="project.donationLevels" [recurringPeriods]="project.recurringPeriods" [fullyFundLevel]="project.fullyFundLevel"/>
+
+    <!-- project content -->
+    <div class="flex flex-col gap-6 lg:col-span-2">
       <div class="flex flex-col gap-6">
         @for (paragraph of project.content; track paragraph; let idx = $index) {
         <div class="flex flex-col gap-3">
@@ -35,13 +37,7 @@
         }
       </div>
 
-      <!-- Share Buttons -->
       <app-share-buttons />
-    </div>
-
-    <!-- Donation Card -->
-    <div class="hidden lg:block basis-1/3">
-      <app-donation-card [donationLevels]="project.donationLevels" [recurringPeriods]="project.recurringPeriods" [fullyFundLevel]="project.fullyFundLevel"/>
     </div>
   </div>
 
