@@ -27,32 +27,36 @@
         "description": "Your donation directly impacts an orphan’s life, providing essentials like education, healthcare, and emotional support. Your generosity fosters resilience and empowers them to thrive despite challenges."
       }
     ],
-    "donationLevels": [
-      {
-        "amount": 50,
-        "name": null
-      },
-      {
-        "amount": 150,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 600,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 600,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
+    "donation_form": {
+      "id": 14699,
+      "title": "Orphan Sponsorship",
+      "levels": [
+        {
+          "amount": 50,
+          "name": null
+        },
+        {
+          "amount": 150,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    },
     "latestUpdates": [
       {
         "title": "Strengthening Partnerships in Ghana",

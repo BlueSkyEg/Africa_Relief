@@ -27,28 +27,32 @@
         "description": "Your Zakat Al-Fitr donation directly supports disadvantaged families, providing them the means to celebrate Eid with joy and dignity."
       }
     ],
-    "donationLevels": [
-      {
-        "amount": 15,
-        "name": null
-      },
-      {
-        "amount": 30,
-        "name": null
-      },
-      {
-        "amount": 60,
-        "name": null
-      },
-      {
-        "amount": 90,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "year"
-    ],
+    "donation_form": {
+      "id": 14759,
+      "title": "Zakat Al-Fitr",
+      "levels": [
+        {
+          "amount": 15,
+          "name": null
+        },
+        {
+          "amount": 30,
+          "name": null
+        },
+        {
+          "amount": 60,
+          "name": null
+        },
+        {
+          "amount": 90,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "year"
+      ]
+    },
     "latestUpdates": [
       {
         "title": "Bir Al-Walidayn School",

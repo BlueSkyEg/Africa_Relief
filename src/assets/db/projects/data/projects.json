@@ -25,20 +25,36 @@
         "description": "A Surface water well can be the community’s Lifeline"
       }
     ],
-    "donationLevels": {
-      "100": null,
-      "300": null,
-      "500": null,
-      "2500": null
+    "donation_form": {
+      "id": 14586,
+      "title": "Surface Water Well",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 2500,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 2500,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
     },
-    "fullyFundLevel": 2500,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
     "latestUpdates": [
       {
         "title": "Emergency Morocco Earthquake Response",
@@ -121,20 +137,36 @@
         "description": "Your donation facilitates the construction of artisanal water wells, offering communities reliable access to clean water, fostering resilience, and nurturing sustainable livelihoods."
       }
     ],
-    "donationLevels": {
-      "100": null,
-      "300": null,
-      "500": null,
-      "4600": null
+    "donation_form": {
+      "id": 14588,
+      "title": "Artisanal Water Well",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 4600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 4600,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
     },
-    "fullyFundLevel": 4600,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
     "latestUpdates": [
       {
         "title": "Emergency Morocco Earthquake Response",
@@ -217,20 +249,36 @@
         "description": "Your donation fuels the installation of solar water wells, enabling communities to thrive sustainably by providing access to clean, reliable water sources, transforming lives for generations."
       }
     ],
-    "donationLevels": {
-      "100": null,
-      "300": null,
-      "500": null,
-      "5500": null
+    "donation_form": {
+      "id": "17543",
+      "title": "Morocco Emergency Relief",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 5500,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 5500,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
     },
-    "fullyFundLevel": 5500,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
     "latestUpdates": [
       {
         "title": "Emergency Morocco Earthquake Response",
@@ -317,20 +365,36 @@
         "description": "United for igniting change. Your contribution powers our rapid response, reaching those affected by the crisis with the necessary aid"
       }
     ],
-    "donationLevels": {
-      "50": null,
-      "100": null,
-      "150": null,
-      "200": null
+    "donation_form": {
+      "id": "17543",
+      "title": "Morocco Emergency Relief",
+      "levels": [
+        {
+          "amount": 50,
+          "name": null
+        },
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 150,
+          "name": null
+        },
+        {
+          "amount": 200,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
     },
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
     "latestUpdates": [
       {
         "title": "Strategic Partnerships in Tanzania",
@@ -421,20 +485,36 @@
         "description": "We’re stronger together. Your donation fuels our swift crisis response, aiding us in reaching people impacted by the emergency."
       }
     ],
-    "donationLevels": {
-      "50": null,
-      "100": null,
-      "150": null,
-      "200": null
+    "donation_form": {
+      "id": "17603",
+      "title": "Libya Emergency Relief",
+      "levels": [
+        {
+          "amount": 50,
+          "name": null
+        },
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 150,
+          "name": null
+        },
+        {
+          "amount": 200,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
     },
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
     "latestUpdates": [
       {
         "title": "Strategic Partnerships in Tanzania",
@@ -525,19 +605,32 @@
         "description": "Join ARCD’s efforts to provide vital support to survivors. Your contribution makes a difference in restoring hope and rebuilding lives."
       }
     ],
-    "donationLevels": {
-      "50": null,
-      "100": null,
-      "250": null
+    "donation_form": {
+      "id": "18119",
+      "title": "Ghana Flooding October 2023",
+      "levels": [
+        {
+          "amount": 50,
+          "name": null
+        },
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 250,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
     },
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
     "latestUpdates": [
       {
         "title": "Strategic Partnerships in Tanzania",
@@ -624,20 +717,36 @@
         "description": "In the heart of every Educational Center lies the seed of change, nurturing minds and fostering brighter tomorrows.Your support propels , enabling education for all and fostering a more empowered, educated Africa."
       }
     ],
-    "donationLevels": {
-      "690": null,
-      "920": null,
-      "1150": null,
-      "27600": null
+    "donation_form": {
+      "id": 14679,
+      "title": "Educational Center",
+      "levels": [
+        {
+          "amount": 690,
+          "name": null
+        },
+        {
+          "amount": 920,
+          "name": null
+        },
+        {
+          "amount": 1150,
+          "name": null
+        },
+        {
+          "amount": 27600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 27600,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
     },
-    "fullyFundLevel": 27600,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
     "latestUpdates": [
       {
         "title": "Salah Alzoobi Mosque",
@@ -724,20 +833,36 @@
         "description": "Your sponsorship extends beyond funding; it’s the key to unlocking potential, nurturing talents, and fostering a more educated and empowered society."
       }
     ],
-    "donationLevels": {
-      "100": null,
-      "200": null,
-      "500": null,
-      "1200": null
+    "donation_form": {
+      "id": 14688,
+      "title": "Students Sponsorship​",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 200,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 1200,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 27600,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
     },
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
     "latestUpdates": [
       {
         "title": "Salah Alzoobi Mosque",
@@ -824,20 +949,36 @@
         "description": "Your generosity powers ARCD’s Relief food aid Projects, where each donation transcends empathy to provide sustenance, erasing the shadows of hunger. Join us and witness the profound impact of your support—illuminating lives and forging a path toward a future free from hunger."
       }
     ],
-    "donationLevels": {
-      "75": null,
-      "150": null,
-      "300": null,
-      "500": null
+    "donation_form": {
+      "id": 14666,
+      "title": "Food Basket",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 200,
+          "name": null
+        },
+        {
+          "amount": 400,
+          "name": null
+        },
+        {
+          "amount": 600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
     },
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
     "latestUpdates": [
       {
         "title": "Emergency Morocco Earthquake Response",
@@ -920,19 +1061,32 @@
         "description": "Your donation enables us to provide hearing aid devices, transforming the lives of those facing hearing loss, fostering confidence, and facilitating their active participation in society’s conversations and experiences."
       }
     ],
-    "donationLevels": {
-      "250": "$250 / 1 Device",
-      "500": "$500 / 2 Device",
-      "750": "$750 / 3 Device"
+    "donation_form": {
+      "id": 16262,
+      "title": "Hearing Aid Device",
+      "levels": [
+        {
+          "amount": 250,
+          "name": "$250 / 1 Device"
+        },
+        {
+          "amount": 500,
+          "name": "$500 / 2 Device"
+        },
+        {
+          "amount": 750,
+          "name": "$750 / 3 Device"
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
     },
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
     "latestUpdates": [
       {
         "title": "Emergency Morocco Earthquake Response",
@@ -1031,20 +1185,36 @@
         "description": "Your compassion acts as a bridge, closing the gap in access and delivering vital healthcare to those in need. Each donation safeguards a healthier future for all."
       }
     ],
-    "donationLevels": {
-      "100": null,
-      "200": null,
-      "500": null,
-      "1000": null
+    "donation_form": {
+      "id": 14728,
+      "title": "Health",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 200,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 1000,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
     },
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
     "latestUpdates": [
       {
         "title": "Emergency Morocco Earthquake Response",
@@ -1139,17 +1309,24 @@
         "description": "With each donation, you bring the world into sharper focus for those facing the challenges of vision loss. Together, we’re rewriting new stories for their lives, providing the invaluable gift of sight."
       }
     ],
-    "donationLevels": {
-      "100": null
+    "donation_form": {
+      "id": 14726,
+      "title": "Cataract Surgery",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
     },
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
     "latestUpdates": [
       {
         "title": "Emergency Morocco Earthquake Response",
@@ -1244,20 +1421,36 @@
         "description": "Your donation directly impacts an orphan’s life, providing essentials like education, healthcare, and emotional support. Your generosity fosters resilience and empowers them to thrive despite challenges."
       }
     ],
-    "donationLevels": {
-      "50": null,
-      "150": null,
-      "300": null,
-      "600": null
+    "donation_form": {
+      "id": 14699,
+      "title": "Orphan Sponsorship",
+      "levels": [
+        {
+          "amount": 50,
+          "name": null
+        },
+        {
+          "amount": 150,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
     },
-    "fullyFundLevel": 600,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
     "latestUpdates": [
       {
         "title": "Strengthening Partnerships in Ghana",
@@ -1348,20 +1541,36 @@
         "description": "Your Zakat Al-Mal donation aids in education, healthcare, and economic empowerment, fostering stability and growth for underprivileged communities."
       }
     ],
-    "donationLevels": {
-      "50": null,
-      "150": null,
-      "300": null,
-      "600": null
+    "donation_form": {
+      "id": 14707,
+      "title": "Zakat Al-Mal",
+      "levels": [
+        {
+          "amount": 50,
+          "name": null
+        },
+        {
+          "amount": 150,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
     },
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
     "latestUpdates": [
       {
         "title": "Bir Al-Walidayn School",
@@ -1444,16 +1653,32 @@
         "description": "Your Zakat Al-Fitr donation directly supports disadvantaged families, providing them the means to celebrate Eid with joy and dignity."
       }
     ],
-    "donationLevels": {
-      "15": null,
-      "30": null,
-      "60": null,
-      "90": null
+    "donation_form": {
+      "id": 14759,
+      "title": "Zakat Al-Fitr",
+      "levels": [
+        {
+          "amount": 15,
+          "name": null
+        },
+        {
+          "amount": 30,
+          "name": null
+        },
+        {
+          "amount": 60,
+          "name": null
+        },
+        {
+          "amount": 90,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "year"
+      ]
     },
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "year"
-    ],
     "latestUpdates": [
       {
         "title": "Bir Al-Walidayn School",
@@ -1536,20 +1761,36 @@
         "description": "Your donation directly supports families in need, ensuring they have access to wholesome meals during Ramadan. Your generosity fosters a sense of community and provides nourishment when it’s needed most."
       }
     ],
-    "donationLevels": {
-      "30": null,
-      "90": null,
-      "300": null,
-      "900": null
+    "donation_form": {
+      "id": 14764,
+      "title": "Iftar meal",
+      "levels": [
+        {
+          "amount": 30,
+          "name": null
+        },
+        {
+          "amount": 90,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 900,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
     },
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
     "latestUpdates": [
       {
         "title": "Bir Al-Walidayn School",

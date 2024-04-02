@@ -31,28 +31,32 @@
         "description": "Join ARCD’s efforts to provide vital support to survivors. Your contribution makes a difference in restoring hope and rebuilding lives."
       }
     ],
-    "donationLevels": [
-      {
-        "amount": 50,
-        "name": null
-      },
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 250,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
+    "donation_form": {
+      "id": "18119",
+      "title": "Ghana Flooding October 2023",
+      "levels": [
+        {
+          "amount": 50,
+          "name": null
+        },
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 250,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    },
     "latestUpdates": [
       {
         "title": "Strategic Partnerships in Tanzania",

@@ -27,28 +27,32 @@
         "description": "Your donation enables us to provide hearing aid devices, transforming the lives of those facing hearing loss, fostering confidence, and facilitating their active participation in society’s conversations and experiences."
       }
     ],
-    "donationLevels": [
-      {
-        "amount": 250,
-        "name": "$250 / 1 Device"
-      },
-      {
-        "amount": 500,
-        "name": "$500 / 2 Device"
-      },
-      {
-        "amount": 750,
-        "name": "$750 / 3 Device"
-      }
-    ],
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
+    "donation_form": {
+      "id": 16262,
+      "title": "Hearing Aid Device",
+      "levels": [
+        {
+          "amount": 250,
+          "name": "$250 / 1 Device"
+        },
+        {
+          "amount": 500,
+          "name": "$500 / 2 Device"
+        },
+        {
+          "amount": 750,
+          "name": "$750 / 3 Device"
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    },
     "latestUpdates": [
       {
         "title": "Emergency Morocco Earthquake Response",

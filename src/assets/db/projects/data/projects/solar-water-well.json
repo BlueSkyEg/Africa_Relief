@@ -27,32 +27,36 @@
         "description": "Your donation fuels the installation of solar water wells, enabling communities to thrive sustainably by providing access to clean, reliable water sources, transforming lives for generations."
       }
     ],
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 5500,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 5500,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
+    "donation_form": {
+      "id": "17543",
+      "title": "Morocco Emergency Relief",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 5500,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 5500,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    },
     "latestUpdates": [
       {
         "title": "Emergency Morocco Earthquake Response",

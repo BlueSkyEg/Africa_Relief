@@ -31,32 +31,36 @@
         "description": "United for igniting change. Your contribution powers our rapid response, reaching those affected by the crisis with the necessary aid"
       }
     ],
-    "donationLevels": [
-      {
-        "amount": 50,
-        "name": null
-      },
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 150,
-        "name": null
-      },
-      {
-        "amount": 200,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ],
+    "donation_form": {
+      "id": "17543",
+      "title": "Morocco Emergency Relief",
+      "levels": [
+        {
+          "amount": 50,
+          "name": null
+        },
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 150,
+          "name": null
+        },
+        {
+          "amount": 200,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    },
     "latestUpdates": [
       {
         "title": "Strategic Partnerships in Tanzania",
