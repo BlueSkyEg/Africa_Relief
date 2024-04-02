@@ -120,7 +120,7 @@ export class DonationComponent {
           this.createSubscription(res.paymentMethod.id).subscribe({
             next: (res: IApiResponse<IPaymentRequiresAction>) => {
               if(res.success) {
-                this.router.navigateByUrl('/donation-confirmation');
+                // this.router.navigateByUrl('/donation-confirmation');
               } else if(res.data.requiresAction) {
                 this.handleCardAction(res.data.clientSecret);
               }
@@ -130,7 +130,7 @@ export class DonationComponent {
           this.createSingleCharge(res.paymentMethod.id).subscribe({
             next: (res: IApiResponse<IPaymentRequiresAction>) => {
               if(res.success) {
-                this.router.navigateByUrl('/donation-confirmation');
+                // this.router.navigateByUrl('/donation-confirmation');
               } else if(res.data.requiresAction) {
                 this.handleCardAction(res.data.clientSecret);
               }
@@ -148,7 +148,7 @@ export class DonationComponent {
       billing_details: {
         name: this.personalDetailsForm.get('name').value,
         email: this.personalDetailsForm.get('email').value,
-        phone: this.personalDetailsForm.get('phone').value,
+        phone: this.personalDetailsForm.get('phone').value as string,
         address: {
           city: this.billingDetailsForm.get('city').value,
           country: this.billingDetailsForm.get('country').value,
@@ -166,7 +166,7 @@ export class DonationComponent {
       {
         paymentMethodId: paymentMethodId,
         amount: '455',
-        paymentDescription: 'Equal Opportunity For Children',
+        donationFormTitle: 'Equal Opportunity For Children',
         donationFormId: '14577',
         name: this.personalDetailsForm.get('name').value,
         email: this.personalDetailsForm.get('email').value,

@@ -14,7 +14,7 @@ import { BecomeVolunteerComponent } from "../../shared/components/become-volunte
     selector: 'app-home',
     standalone: true,
     templateUrl: './home.component.html',
-    styleUrl: './home.component.scss',
+    styles: ``,
     imports: [
         MainSliderComponent,
         DonationCardSectionComponent,

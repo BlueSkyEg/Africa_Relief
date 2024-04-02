@@ -25,12 +25,12 @@
 
       <div class="flex flex-col gap-2">
         <p class="text-body-2">Location: <span class="text-body-2-md">{{blog.location | titlecase}}</span></p>
-        <p class="text-body-2">Implementation Date: <span class="text-body-2-md">{{blog.ImplementationDate| titlecase}}</span></p>
+        <p class="text-body-2">Implementation Date: <span class="text-body-2-md">{{blog.implementationDate| titlecase}}</span></p>
       </div>
     </div>
 
     <!-- Donation Card -->
-    <app-donation-card [donationLevels]="blog.donationLevels" [recurringPeriods]="blog.recurringPeriods" [fullyFundLevel]="blog.fullyFundLevel"/>
+    <app-donation-card [donationForm]="blog.donationForm"/>
 
     <!-- blog content -->
     <div class="flex flex-col gap-6 lg:col-span-2">

@@ -10,7 +10,7 @@ import { IApiResponse } from '../../../shared/interfaces/api-response-interface'
   standalone: true,
   imports: [BlogCardComponent, ButtonLinkComponent],
   templateUrl: './latest-blogs.component.html',
-  styleUrl: './latest-blogs.component.scss'
+  styles: ``
 })
 export class LatestBlogsComponent implements OnInit {
   blogs: IBlogCard[];

@@ -1,5 +1,6 @@
 import { ICategory } from "../category-interface"
 import { IContent } from "../content-interface"
+import { IDonationForm } from "../donation/donation-form.interface"
 import { IDonationLevel } from "../donation/donation-level-inteface"
 import { IImage } from "../image-interface"
 import { IBlogNavigation } from "./blog-navigation"
@@ -12,11 +13,9 @@ export interface IBlog {
   featuredImage: IImage
   gallery: IImage[]
   location: string
-  ImplementationDate: string
+  implementationDate: string
   content: IContent[]
   nextBlog: IBlogNavigation
   previousBlog: IBlogNavigation
-  donationLevels: IDonationLevel[]
-  fullyFundLevel: number
-  recurringPeriods: string[]
+  donationForm: IDonationForm
 }

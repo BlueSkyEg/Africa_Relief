@@ -4,8 +4,9 @@ import {ButtonComponent} from "../form/button/button.component";
 import {MatSelectModule} from "@angular/material/select";
 import {FormsModule} from "@angular/forms";
 import {MatCheckbox} from "@angular/material/checkbox";
-import { IDonationLevel } from '../../interfaces/donation/donation-level-inteface';
 import { CommonModule } from '@angular/common';
+import { IDonationForm } from '../../interfaces/donation/donation-form.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-donation-card',
@@ -19,13 +20,25 @@ import { CommonModule } from '@angular/common';
     MatCheckbox
   ],
   templateUrl: './donation-card.component.html',
-  styleUrl: './donation-card.component.scss'
+  styles: ``
 })
 export class DonationCardComponent {
-  @Input() donationLevels: IDonationLevel[];
-  @Input() recurringPeriods: string[];
-  @Input() fullyFundLevel: number|null = null;
+  @Input() donationForm: IDonationForm;
   amount: number;
   makeRecurringDonation: boolean = false;
   recurringPeriod: 'day'|'week'|'month'|'quarter'|'year' = 'month';
+
+  router: Router = inject(Router);
+
+  onMakeDonation() {
+    this.router.navigate(['/donation'], {
+      queryParams: {
+        'form': this.donationForm.id,
+        'title': this.donationForm.title,
+        'amount': this.amount,
+        'recurringDonation': this.makeRecurringDonation,
+        'recurringPeriod': this.recurringPeriod
+      }
+    });
+  }
 }

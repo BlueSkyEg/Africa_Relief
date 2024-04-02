@@ -8,7 +8,7 @@ import {IBlogCard} from "../../../../shared/interfaces/blog/blog-card-interface"
   standalone: true,
   imports: [RouterModule, IconArrowRightComponent],
   templateUrl: './blog-card.component.html',
-  styleUrl: './blog-card.component.scss'
+  styles: ``
 })
 export class BlogCardComponent {
   @Input() blog: IBlogCard;
