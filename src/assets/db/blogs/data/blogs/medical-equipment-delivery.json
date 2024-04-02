@@ -38,7 +38,7 @@
       }
     ],
     "location": "Tanzania",
-    "ImplementationDate": "February 2023",
+    "implementationDate": "February 2023",
     "content": [
       {
         "heading": "Mend bodies, uplift spirits. Partner with us in this healing journey.",
@@ -57,32 +57,36 @@
       "title": "Nurturing Families: Meat Distribution Initiative",
       "slug": "nurturing-families-meat-distribution-initiative"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 200,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 1000,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14728,
+      "title": "Health",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 200,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 1000,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   "errors": null
 }

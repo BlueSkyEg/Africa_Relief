@@ -34,7 +34,7 @@
       }
     ],
     "location": "Tanzania",
-    "ImplementationDate": "August 2023",
+    "implementationDate": "August 2023",
     "content": [
       {
         "heading": "As we venture into these strategic partnerships, your unwavering support aids us in reaching broader horizons and ensuring better health and education for all.",
@@ -53,32 +53,36 @@
       "title": "Brushy Creek Islamic Center Food Project",
       "slug": "brushy-creek-islamic-center-food-project"
     },
-    "donationLevels": [
-      {
-        "amount": 75,
-        "name": null
-      },
-      {
-        "amount": 150,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14728,
+      "title": "Health",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 200,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 1000,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   "errors": null
 }

@@ -38,7 +38,7 @@
       }
     ],
     "location": "Tanzania",
-    "ImplementationDate": "May 2023",
+    "implementationDate": "May 2023",
     "content": [
       {
         "heading": "From cattle to capital. Invest in a family’s dream of self-sustainability",
@@ -57,32 +57,36 @@
       "title": "Medical Equipment Delivery: Boosting Health Infrastructure",
       "slug": "medical-equipment-delivery"
     },
-    "donationLevels": [
-      {
-        "amount": 200,
-        "name": null
-      },
-      {
-        "amount": 400,
-        "name": null
-      },
-      {
-        "amount": 600,
-        "name": null
-      },
-      {
-        "amount": 800,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 21193,
+      "title": "Sustainable Community",
+      "levels": [
+        {
+          "amount": 200,
+          "name": null
+        },
+        {
+          "amount": 400,
+          "name": null
+        },
+        {
+          "amount": 600,
+          "name": null
+        },
+        {
+          "amount": 800,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   "errors": null
 }

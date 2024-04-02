@@ -34,7 +34,7 @@
       }
     ],
     "location": "Niger",
-    "ImplementationDate": "August 2023",
+    "implementationDate": "August 2023",
     "content": [
       {
         "heading": "Water is life. With your support, we can quench the thirst of communities",
@@ -53,32 +53,36 @@
       "title": "Salah Alzoobi Mosque",
       "slug": "salah-alzoobi-mosque"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 4600,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 4600,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14588,
+      "title": "Artisanal Water Well",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 4600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 4600,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   "errors": null
 }

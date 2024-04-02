@@ -42,7 +42,7 @@
       }
     ],
     "location": "Uganda",
-    "ImplementationDate": "June 2023",
+    "implementationDate": "June 2023",
     "content": [
       {
         "heading": "Water is life. Let’s spread its blessings.",
@@ -61,32 +61,36 @@
       "title": "Hajja Muyassar Hassan Shuaib Mosque & Water Well",
       "slug": "hajja-muyassar-hassan-shuaib-mosque-water-well"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 2500,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 2500,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14586,
+      "title": "Surface Water Well",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 2500,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 2500,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   "errors": null
 }

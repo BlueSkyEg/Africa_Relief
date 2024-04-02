@@ -42,7 +42,7 @@
       }
     ],
     "location": "Morocco",
-    "ImplementationDate": "September 2023",
+    "implementationDate": "September 2023",
     "content": [
       {
         "heading": "Amid the tragedy, hope and resilience shine through. Support us as we uplift communities, weaving threads of hope and rebuilding the fabric of affected areas.",
@@ -61,32 +61,36 @@
       "title": "Mariame Diawara and Fatoumata Tiemoko Well",
       "slug": "mariame-diawara-and-fatoumata-tiemoko-well"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 5500,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 5500,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": "17543",
+      "title": "Morocco Emergency Relief",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 5500,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 5500,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   "errors": null
 }

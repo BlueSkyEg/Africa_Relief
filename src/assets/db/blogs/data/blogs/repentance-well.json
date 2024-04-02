@@ -50,7 +50,7 @@
       }
     ],
     "location": "Ghana",
-    "ImplementationDate": "August 2023",
+    "implementationDate": "August 2023",
     "content": [
       {
         "heading": "Every well is a step towards a brighter, healthier future",
@@ -69,32 +69,36 @@
       "title": "Water From Our Home Well",
       "slug": "water-from-our-home-well"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 4600,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 4600,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14588,
+      "title": "Artisanal Water Well",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 4600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 4600,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   "errors": null
 }

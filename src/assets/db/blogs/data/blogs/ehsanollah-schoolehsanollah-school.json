@@ -38,7 +38,7 @@
       }
     ],
     "location": "Gambia",
-    "ImplementationDate": "December 2022",
+    "implementationDate": "December 2022",
     "content": [
       {
         "heading": "Education transforms. Let’s keep the flame of knowledge burning in Gambia.",
@@ -57,32 +57,36 @@
       "title": "Hajja Muyassar Hassan Shuaib Mosque & Water Well",
       "slug": "hajja-muyassar-hassan-shuaib-mosque-water-well"
     },
-    "donationLevels": [
-      {
-        "amount": 690,
-        "name": null
-      },
-      {
-        "amount": 920,
-        "name": null
-      },
-      {
-        "amount": 1150,
-        "name": null
-      },
-      {
-        "amount": 27600,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 27600,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14679,
+      "title": "Educational Center",
+      "levels": [
+        {
+          "amount": 690,
+          "name": null
+        },
+        {
+          "amount": 920,
+          "name": null
+        },
+        {
+          "amount": 1150,
+          "name": null
+        },
+        {
+          "amount": 27600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 27600,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   "errors": null
 }

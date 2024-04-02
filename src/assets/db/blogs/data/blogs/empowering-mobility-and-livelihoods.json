@@ -30,7 +30,7 @@
       }
     ],
     "location": "Tanzania",
-    "ImplementationDate": "April 2023",
+    "implementationDate": "April 2023",
     "content": [
       {
         "heading": "Fuel dreams, one ride at a time. Your donation drives brighter futures",
@@ -49,32 +49,36 @@
       "title": "Sustainable Income Initiative",
       "slug": "sustainable-income-initiative"
     },
-    "donationLevels": [
-      {
-        "amount": 200,
-        "name": null
-      },
-      {
-        "amount": 400,
-        "name": null
-      },
-      {
-        "amount": 600,
-        "name": null
-      },
-      {
-        "amount": 800,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 21193,
+      "title": "Sustainable Community",
+      "levels": [
+        {
+          "amount": 200,
+          "name": null
+        },
+        {
+          "amount": 400,
+          "name": null
+        },
+        {
+          "amount": 600,
+          "name": null
+        },
+        {
+          "amount": 800,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   "errors": null
 }

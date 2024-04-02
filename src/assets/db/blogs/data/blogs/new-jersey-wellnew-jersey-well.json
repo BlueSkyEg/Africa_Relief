@@ -3,7 +3,7 @@
   "message": "blogs retrived successfully",
   "data": {
     "title": "Qur’an Circle in the Islamic Center of Passaic County Well",
-    "slug": "new-jersey-wellnew-jersey-well",
+    "slug": "new-jersey-well",
     "categories": [
       {
         "name": "water",
@@ -34,7 +34,7 @@
       }
     ],
     "location": "Ghana",
-    "ImplementationDate": "June 2023",
+    "implementationDate": "June 2023",
     "content": [
       {
         "heading": "Hydration and hope, hand in hand. Join us.",
@@ -53,32 +53,36 @@
       "title": "Fā’il Khair Well",
       "slug": "fail-khair-well"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 2500,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 2500,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14586,
+      "title": "Surface Water Well",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 2500,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 2500,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   "errors": null
 }

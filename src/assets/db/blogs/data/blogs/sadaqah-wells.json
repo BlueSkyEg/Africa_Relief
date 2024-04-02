@@ -38,7 +38,7 @@
       }
     ],
     "location": "Gambia",
-    "ImplementationDate": "August 2023",
+    "implementationDate": "August 2023",
     "content": [
       {
         "heading": "Every drop counts. Contribute to life, health, and community vitality.",
@@ -57,32 +57,36 @@
       "title": "Mariame Diawara and Fatoumata Tiemoko Well",
       "slug": "mariame-diawara-and-fatoumata-tiemoko-well"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 5500,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 5500,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14586,
+      "title": "Surface Water Well",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 2500,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 2500,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   "errors": null
 }

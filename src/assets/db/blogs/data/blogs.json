@@ -40,7 +40,7 @@
       }
     ],
     "location": "Morocco",
-    "ImplementationDate": "September 2023",
+    "implementationDate": "September 2023",
     "content": [
       {
         "heading": "Amid the tragedy, hope and resilience shine through. Support us as we uplift communities, weaving threads of hope and rebuilding the fabric of affected areas.",
@@ -59,32 +59,36 @@
       "title": "Mariame Diawara and Fatoumata Tiemoko Well",
       "slug": "mariame-diawara-and-fatoumata-tiemoko-well"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 5500,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 5500,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": "17543",
+      "title": "Morocco Emergency Relief",
+      "levels": [
+        {
+          "amount": 50,
+          "name": null
+        },
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 150,
+          "name": null
+        },
+        {
+          "amount": 200,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Mariame Diawara and Fatoumata Tiemoko Well",
@@ -123,7 +127,7 @@
       }
     ],
     "location": "Gambia",
-    "ImplementationDate": "August 2023",
+    "implementationDate": "August 2023",
     "content": [
       {
         "heading": "Sun and water are the essence of life. Illuminate lives with your support.",
@@ -142,32 +146,36 @@
       "title": "Sadaqah Wells",
       "slug": "sadaqah-wells"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 5500,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 5500,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14590,
+      "title": "Solar Water Well",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 5500,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 5500,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Sadaqah Wells",
@@ -206,7 +214,7 @@
       }
     ],
     "location": "Gambia",
-    "ImplementationDate": "August 2023",
+    "implementationDate": "August 2023",
     "content": [
       {
         "heading": "Every drop counts. Contribute to life, health, and community vitality.",
@@ -225,32 +233,36 @@
       "title": "Mariame Diawara and Fatoumata Tiemoko Well",
       "slug": "mariame-diawara-and-fatoumata-tiemoko-well"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 5500,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 5500,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14586,
+      "title": "Surface Water Well",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 2500,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 2500,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Bait Al Maqdes Artesian Well",
@@ -285,7 +297,7 @@
       }
     ],
     "location": "Niger",
-    "ImplementationDate": "August 2023",
+    "implementationDate": "August 2023",
     "content": [
       {
         "heading": "Water is life. With your support, we can quench the thirst of communities",
@@ -304,32 +316,36 @@
       "title": "Salah Alzoobi Mosque",
       "slug": "salah-alzoobi-mosque"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 4600,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 4600,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14588,
+      "title": "Artisanal Water Well",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 4600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 4600,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Repentance Well",
@@ -380,7 +396,7 @@
       }
     ],
     "location": "Ghana",
-    "ImplementationDate": "August 2023",
+    "implementationDate": "August 2023",
     "content": [
       {
         "heading": "Every well is a step towards a brighter, healthier future",
@@ -399,32 +415,36 @@
       "title": "Water From Our Home Well",
       "slug": "water-from-our-home-well"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 4600,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 4600,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14588,
+      "title": "Artisanal Water Well",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 4600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 4600,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Water From Our Home Well",
@@ -471,7 +491,7 @@
       }
     ],
     "location": "Ghana",
-    "ImplementationDate": "June 2023",
+    "implementationDate": "June 2023",
     "content": [
       {
         "heading": "Water is a gift. Let’s make it universal.",
@@ -490,36 +510,40 @@
       "title": "Strengthening Partnerships in Ghana",
       "slug": "strengthening-partnerships-in-ghana"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 4600,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 4600,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14588,
+      "title": "Artisanal Water Well",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 4600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 4600,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Qur’an Circle in the Islamic Center of Passaic County Well",
-    "slug": "new-jersey-wellnew-jersey-well",
+    "slug": "new-jersey-well",
     "categories": [
       {
         "name": "water",
@@ -550,7 +574,7 @@
       }
     ],
     "location": "Ghana",
-    "ImplementationDate": "June 2023",
+    "implementationDate": "June 2023",
     "content": [
       {
         "heading": "Hydration and hope, hand in hand. Join us.",
@@ -569,32 +593,36 @@
       "title": "Fā’il Khair Well",
       "slug": "fail-khair-well"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 2500,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 2500,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14586,
+      "title": "Surface Water Well",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 2500,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 2500,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Fā’il Khair Well",
@@ -629,7 +657,7 @@
       }
     ],
     "location": "Uganda",
-    "ImplementationDate": "June 2023",
+    "implementationDate": "June 2023",
     "content": [
       {
         "heading": "Water changes destinies. Let’s keep the flow going.",
@@ -648,32 +676,36 @@
       "title": "Al-Bir and At-Taqwa Well",
       "slug": "al-bir-and-at-taqwa-well"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 2500,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 2500,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14586,
+      "title": "Surface Water Well",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 2500,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 2500,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Al-Bir and At-Taqwa Well",
@@ -716,7 +748,7 @@
       }
     ],
     "location": "Uganda",
-    "ImplementationDate": "June 2023",
+    "implementationDate": "June 2023",
     "content": [
       {
         "heading": "Water is life. Let’s spread its blessings.",
@@ -735,32 +767,36 @@
       "title": "Hajja Muyassar Hassan Shuaib Mosque & Water Well",
       "slug": "hajja-muyassar-hassan-shuaib-mosque-water-well"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 2500,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 2500,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14586,
+      "title": "Surface Water Well",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 300,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 2500,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 2500,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Hajja Muyassar Hassan Shuaib Mosque & Water Well",
@@ -791,7 +827,7 @@
       }
     ],
     "location": "Tanzania",
-    "ImplementationDate": "March 2023",
+    "implementationDate": "March 2023",
     "content": [
       {
         "heading": "Building more than just structures; we’re building futures.",
@@ -810,32 +846,36 @@
       "title": "Ehsanollah School",
       "slug": "ehsanollah-school"
     },
-    "donationLevels": [
-      {
-        "amount": 690,
-        "name": null
-      },
-      {
-        "amount": 920,
-        "name": null
-      },
-      {
-        "amount": 1150,
-        "name": null
-      },
-      {
-        "amount": 27600,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 27600,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14679,
+      "title": "Educational Center",
+      "levels": [
+        {
+          "amount": 690,
+          "name": null
+        },
+        {
+          "amount": 920,
+          "name": null
+        },
+        {
+          "amount": 1150,
+          "name": null
+        },
+        {
+          "amount": 27600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 27600,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Salah Alzoobi Mosque",
@@ -874,7 +914,7 @@
       }
     ],
     "location": "Gambia",
-    "ImplementationDate": "December 2022",
+    "implementationDate": "December 2022",
     "content": [
       {
         "heading": "Empower a child’s future through education and health. Your support can light up their world.",
@@ -893,32 +933,36 @@
       "title": "Strategic Partnerships in Tanzania",
       "slug": "strategic-partnerships-in-tanzania"
     },
-    "donationLevels": [
-      {
-        "amount": 690,
-        "name": null
-      },
-      {
-        "amount": 920,
-        "name": null
-      },
-      {
-        "amount": 1150,
-        "name": null
-      },
-      {
-        "amount": 27600,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 27600,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14679,
+      "title": "Educational Center",
+      "levels": [
+        {
+          "amount": 690,
+          "name": null
+        },
+        {
+          "amount": 920,
+          "name": null
+        },
+        {
+          "amount": 1150,
+          "name": null
+        },
+        {
+          "amount": 27600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 27600,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Strengthening Partnerships in Ghana",
@@ -948,7 +992,7 @@
     },
     "gallery": [],
     "location": "Ghana",
-    "ImplementationDate": "August 2023",
+    "implementationDate": "August 2023",
     "content": [
       {
         "heading": "This partnership reflects our commitment to driving impactful change. Your continued support ensures that such collaborations flourish, enabling us to reach more communities and touch more lives.",
@@ -967,32 +1011,36 @@
       "title": "Bir Al-Walidayn School",
       "slug": "bir-al-walidayn-school"
     },
-    "donationLevels": [
-      {
-        "amount": 200,
-        "name": null
-      },
-      {
-        "amount": 400,
-        "name": null
-      },
-      {
-        "amount": 600,
-        "name": null
-      },
-      {
-        "amount": 800,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 21193,
+      "title": "Sustainable Community",
+      "levels": [
+        {
+          "amount": 200,
+          "name": null
+        },
+        {
+          "amount": 400,
+          "name": null
+        },
+        {
+          "amount": 600,
+          "name": null
+        },
+        {
+          "amount": 800,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Bir Al-Walidayn School",
@@ -1035,7 +1083,7 @@
       }
     ],
     "location": "Gambia",
-    "ImplementationDate": "June 2023",
+    "implementationDate": "June 2023",
     "content": [
       {
         "heading": "Together, let’s champion the cause of education and well-being",
@@ -1054,32 +1102,36 @@
       "title": "Qur’an Circle in the Islamic Center of Passaic County Well",
       "slug": "new-jersey-well"
     },
-    "donationLevels": [
-      {
-        "amount": 690,
-        "name": null
-      },
-      {
-        "amount": 920,
-        "name": null
-      },
-      {
-        "amount": 1150,
-        "name": null
-      },
-      {
-        "amount": 27600,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 27600,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14679,
+      "title": "Educational Center",
+      "levels": [
+        {
+          "amount": 690,
+          "name": null
+        },
+        {
+          "amount": 920,
+          "name": null
+        },
+        {
+          "amount": 1150,
+          "name": null
+        },
+        {
+          "amount": 27600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 27600,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Ehsanollah School",
@@ -1118,7 +1170,7 @@
       }
     ],
     "location": "Gambia",
-    "ImplementationDate": "December 2022",
+    "implementationDate": "December 2022",
     "content": [
       {
         "heading": "Education transforms. Let’s keep the flame of knowledge burning in Gambia.",
@@ -1137,32 +1189,36 @@
       "title": "Hajja Muyassar Hassan Shuaib Mosque & Water Well",
       "slug": "hajja-muyassar-hassan-shuaib-mosque-water-well"
     },
-    "donationLevels": [
-      {
-        "amount": 690,
-        "name": null
-      },
-      {
-        "amount": 920,
-        "name": null
-      },
-      {
-        "amount": 1150,
-        "name": null
-      },
-      {
-        "amount": 27600,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": 27600,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14679,
+      "title": "Educational Center",
+      "levels": [
+        {
+          "amount": 690,
+          "name": null
+        },
+        {
+          "amount": 920,
+          "name": null
+        },
+        {
+          "amount": 1150,
+          "name": null
+        },
+        {
+          "amount": 27600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": 27600,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Nurturing Families: Meat Distribution Initiative",
@@ -1180,7 +1236,7 @@
     },
     "gallery": [],
     "location": "Tanzania",
-    "ImplementationDate": "May 2023",
+    "implementationDate": "May 2023",
     "content": [
       {
         "heading": "Gift the joy of a hearty meal. Your generosity fills plates and hearts.",
@@ -1199,32 +1255,36 @@
       "title": "Emergency Morocco Earthquake Response",
       "slug": "emergency-morocco-earthquake-response"
     },
-    "donationLevels": [
-      {
-        "amount": 75,
-        "name": null
-      },
-      {
-        "amount": 150,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14666,
+      "title": "Food Basket",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 200,
+          "name": null
+        },
+        {
+          "amount": 400,
+          "name": null
+        },
+        {
+          "amount": 600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Brushy Creek Islamic Center Food Project",
@@ -1242,7 +1302,7 @@
     },
     "gallery": [],
     "location": "Tanzania",
-    "ImplementationDate": "July 2023",
+    "implementationDate": "July 2023",
     "content": [
       {
         "heading": "Food is more than sustenance; it’s love, care, and community.",
@@ -1261,32 +1321,36 @@
       "title": "Repentance Well",
       "slug": "repentance-well"
     },
-    "donationLevels": [
-      {
-        "amount": 75,
-        "name": null
-      },
-      {
-        "amount": 150,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14666,
+      "title": "Food Basket",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 200,
+          "name": null
+        },
+        {
+          "amount": 400,
+          "name": null
+        },
+        {
+          "amount": 600,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Medical Equipment Delivery: Boosting Health Infrastructure",
@@ -1325,7 +1389,7 @@
       }
     ],
     "location": "Tanzania",
-    "ImplementationDate": "February 2023",
+    "implementationDate": "February 2023",
     "content": [
       {
         "heading": "Mend bodies, uplift spirits. Partner with us in this healing journey.",
@@ -1344,32 +1408,36 @@
       "title": "Nurturing Families: Meat Distribution Initiative",
       "slug": "nurturing-families-meat-distribution-initiative"
     },
-    "donationLevels": [
-      {
-        "amount": 100,
-        "name": null
-      },
-      {
-        "amount": 200,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      },
-      {
-        "amount": 1000,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14728,
+      "title": "Health",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 200,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 1000,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Strategic Partnerships in Tanzania",
@@ -1404,7 +1472,7 @@
       }
     ],
     "location": "Tanzania",
-    "ImplementationDate": "August 2023",
+    "implementationDate": "August 2023",
     "content": [
       {
         "heading": "As we venture into these strategic partnerships, your unwavering support aids us in reaching broader horizons and ensuring better health and education for all.",
@@ -1423,32 +1491,36 @@
       "title": "Brushy Creek Islamic Center Food Project",
       "slug": "brushy-creek-islamic-center-food-project"
     },
-    "donationLevels": [
-      {
-        "amount": 75,
-        "name": null
-      },
-      {
-        "amount": 150,
-        "name": null
-      },
-      {
-        "amount": 300,
-        "name": null
-      },
-      {
-        "amount": 500,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 14728,
+      "title": "Health",
+      "levels": [
+        {
+          "amount": 100,
+          "name": null
+        },
+        {
+          "amount": 200,
+          "name": null
+        },
+        {
+          "amount": 500,
+          "name": null
+        },
+        {
+          "amount": 1000,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Starting Small Businesses for Families",
@@ -1487,7 +1559,7 @@
       }
     ],
     "location": "Tanzania",
-    "ImplementationDate": "May 2023",
+    "implementationDate": "May 2023",
     "content": [
       {
         "heading": "From cattle to capital. Invest in a family’s dream of self-sustainability",
@@ -1506,32 +1578,36 @@
       "title": "Medical Equipment Delivery: Boosting Health Infrastructure",
       "slug": "medical-equipment-delivery"
     },
-    "donationLevels": [
-      {
-        "amount": 200,
-        "name": null
-      },
-      {
-        "amount": 400,
-        "name": null
-      },
-      {
-        "amount": 600,
-        "name": null
-      },
-      {
-        "amount": 800,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 21193,
+      "title": "Sustainable Community",
+      "levels": [
+        {
+          "amount": 200,
+          "name": null
+        },
+        {
+          "amount": 400,
+          "name": null
+        },
+        {
+          "amount": 600,
+          "name": null
+        },
+        {
+          "amount": 800,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Empowering Mobility and Livelihoods",
@@ -1562,7 +1638,7 @@
       }
     ],
     "location": "Tanzania",
-    "ImplementationDate": "April 2023",
+    "implementationDate": "April 2023",
     "content": [
       {
         "heading": "Fuel dreams, one ride at a time. Your donation drives brighter futures",
@@ -1581,32 +1657,36 @@
       "title": "Sustainable Income Initiative",
       "slug": "sustainable-income-initiative"
     },
-    "donationLevels": [
-      {
-        "amount": 200,
-        "name": null
-      },
-      {
-        "amount": 400,
-        "name": null
-      },
-      {
-        "amount": 600,
-        "name": null
-      },
-      {
-        "amount": 800,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 21193,
+      "title": "Sustainable Community",
+      "levels": [
+        {
+          "amount": 200,
+          "name": null
+        },
+        {
+          "amount": 400,
+          "name": null
+        },
+        {
+          "amount": 600,
+          "name": null
+        },
+        {
+          "amount": 800,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   },
   {
     "title": "Sustainable Income Initiative",
@@ -1637,7 +1717,7 @@
       }
     ],
     "location": "Tanzania",
-    "ImplementationDate": "May 2023",
+    "implementationDate": "May 2023",
     "content": [
       {
         "heading": "Empower a family’s journey towards self-reliance. Every contribution stitches hope",
@@ -1656,31 +1736,35 @@
       "title": "Bait Al Maqdes Artesian Well",
       "slug": "bait-al-maqdes-artesian-well"
     },
-    "donationLevels": [
-      {
-        "amount": 200,
-        "name": null
-      },
-      {
-        "amount": 400,
-        "name": null
-      },
-      {
-        "amount": 600,
-        "name": null
-      },
-      {
-        "amount": 800,
-        "name": null
-      }
-    ],
-    "fullyFundLevel": null,
-    "recurringPeriods": [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+    "donation_form": {
+      "id": 21193,
+      "title": "Sustainable Community",
+      "levels": [
+        {
+          "amount": 200,
+          "name": null
+        },
+        {
+          "amount": 400,
+          "name": null
+        },
+        {
+          "amount": 600,
+          "name": null
+        },
+        {
+          "amount": 800,
+          "name": null
+        }
+      ],
+      "fullyFundLevel": null,
+      "recurringPeriods": [
+        "day",
+        "week",
+        "month",
+        "Quarter",
+        "year"
+      ]
+    }
   }
 ]
