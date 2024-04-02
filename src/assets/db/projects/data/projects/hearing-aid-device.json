@@ -27,7 +27,7 @@
         "description": "Your donation enables us to provide hearing aid devices, transforming the lives of those facing hearing loss, fostering confidence, and facilitating their active participation in society’s conversations and experiences."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": 16262,
       "title": "Hearing Aid Device",
       "levels": [

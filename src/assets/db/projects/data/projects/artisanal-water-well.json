@@ -27,7 +27,7 @@
         "description": "Your donation facilitates the construction of artisanal water wells, offering communities reliable access to clean water, fostering resilience, and nurturing sustainable livelihoods."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": 14588,
       "title": "Artisanal Water Well",
       "levels": [

@@ -27,7 +27,7 @@
         "description": "Your Zakat Al-Mal donation aids in education, healthcare, and economic empowerment, fostering stability and growth for underprivileged communities."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": 14707,
       "title": "Zakat Al-Mal",
       "levels": [

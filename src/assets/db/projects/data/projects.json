@@ -25,7 +25,7 @@
         "description": "A Surface water well can be the community’s Lifeline"
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": 14586,
       "title": "Surface Water Well",
       "levels": [
@@ -137,7 +137,7 @@
         "description": "Your donation facilitates the construction of artisanal water wells, offering communities reliable access to clean water, fostering resilience, and nurturing sustainable livelihoods."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": 14588,
       "title": "Artisanal Water Well",
       "levels": [
@@ -249,7 +249,7 @@
         "description": "Your donation fuels the installation of solar water wells, enabling communities to thrive sustainably by providing access to clean, reliable water sources, transforming lives for generations."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": "17543",
       "title": "Morocco Emergency Relief",
       "levels": [
@@ -365,7 +365,7 @@
         "description": "United for igniting change. Your contribution powers our rapid response, reaching those affected by the crisis with the necessary aid"
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": "17543",
       "title": "Morocco Emergency Relief",
       "levels": [
@@ -485,7 +485,7 @@
         "description": "We’re stronger together. Your donation fuels our swift crisis response, aiding us in reaching people impacted by the emergency."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": "17603",
       "title": "Libya Emergency Relief",
       "levels": [
@@ -605,7 +605,7 @@
         "description": "Join ARCD’s efforts to provide vital support to survivors. Your contribution makes a difference in restoring hope and rebuilding lives."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": "18119",
       "title": "Ghana Flooding October 2023",
       "levels": [
@@ -717,7 +717,7 @@
         "description": "In the heart of every Educational Center lies the seed of change, nurturing minds and fostering brighter tomorrows.Your support propels , enabling education for all and fostering a more empowered, educated Africa."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": 14679,
       "title": "Educational Center",
       "levels": [
@@ -833,7 +833,7 @@
         "description": "Your sponsorship extends beyond funding; it’s the key to unlocking potential, nurturing talents, and fostering a more educated and empowered society."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": 14688,
       "title": "Students Sponsorship​",
       "levels": [
@@ -949,7 +949,7 @@
         "description": "Your generosity powers ARCD’s Relief food aid Projects, where each donation transcends empathy to provide sustenance, erasing the shadows of hunger. Join us and witness the profound impact of your support—illuminating lives and forging a path toward a future free from hunger."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": 14666,
       "title": "Food Basket",
       "levels": [
@@ -1061,7 +1061,7 @@
         "description": "Your donation enables us to provide hearing aid devices, transforming the lives of those facing hearing loss, fostering confidence, and facilitating their active participation in society’s conversations and experiences."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": 16262,
       "title": "Hearing Aid Device",
       "levels": [
@@ -1185,7 +1185,7 @@
         "description": "Your compassion acts as a bridge, closing the gap in access and delivering vital healthcare to those in need. Each donation safeguards a healthier future for all."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": 14728,
       "title": "Health",
       "levels": [
@@ -1309,7 +1309,7 @@
         "description": "With each donation, you bring the world into sharper focus for those facing the challenges of vision loss. Together, we’re rewriting new stories for their lives, providing the invaluable gift of sight."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": 14726,
       "title": "Cataract Surgery",
       "levels": [
@@ -1421,7 +1421,7 @@
         "description": "Your donation directly impacts an orphan’s life, providing essentials like education, healthcare, and emotional support. Your generosity fosters resilience and empowers them to thrive despite challenges."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": 14699,
       "title": "Orphan Sponsorship",
       "levels": [
@@ -1541,7 +1541,7 @@
         "description": "Your Zakat Al-Mal donation aids in education, healthcare, and economic empowerment, fostering stability and growth for underprivileged communities."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": 14707,
       "title": "Zakat Al-Mal",
       "levels": [
@@ -1653,7 +1653,7 @@
         "description": "Your Zakat Al-Fitr donation directly supports disadvantaged families, providing them the means to celebrate Eid with joy and dignity."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": 14759,
       "title": "Zakat Al-Fitr",
       "levels": [
@@ -1761,7 +1761,7 @@
         "description": "Your donation directly supports families in need, ensuring they have access to wholesome meals during Ramadan. Your generosity fosters a sense of community and provides nourishment when it’s needed most."
       }
     ],
-    "donation_form": {
+    "donationForm": {
       "id": 14764,
       "title": "Iftar meal",
       "levels": [
