@@ -9,6 +9,11 @@ import {SafeAndEasyDonationComponent} from "../../shared/components/safe-and-eas
 import {LatestBlogsComponent} from "./latest-blogs/latest-blogs.component";
 import { ButtonLinkComponent } from "../../shared/components/button-link/button-link.component";
 import { BecomeVolunteerComponent } from "../../shared/components/become-volunteer/become-volunteer.component";
+import { DonationCardComponent } from "../../shared/components/donation-card/donation-card.component";
+import { IconZelleComponent } from "../../shared/icons/zelle/icon-zelle.component";
+import { IDonationForm } from '../../shared/interfaces/donation/donation-form.interface';
+import { IconEnvelopeComponent } from "../../shared/icons/envelope/icon-envelope.component";
+import { IconPinComponent } from "../../shared/icons/pin/icon-pin.component";
 
 @Component({
     selector: 'app-home',
@@ -25,9 +30,43 @@ import { BecomeVolunteerComponent } from "../../shared/components/become-volunte
         SafeAndEasyDonationComponent,
         LatestBlogsComponent,
         ButtonLinkComponent,
-        BecomeVolunteerComponent
+        BecomeVolunteerComponent,
+        DonationCardComponent,
+        IconZelleComponent,
+        IconEnvelopeComponent,
+        IconPinComponent
     ]
 })
 export class HomeComponent {
 
+  donationForm: IDonationForm = {
+    id: 14577,
+    title: "Equal Opportunity For Children",
+    levels: [
+      {
+        amount: 100,
+        name: null
+      },
+      {
+        amount: 250,
+        name: null
+      },
+      {
+        amount: 500,
+        name: null
+      }
+    ],
+    fullyFundLevel: null,
+    recurringPeriods: [
+      "day",
+      "week",
+      "month",
+      "Quarter",
+      "year"
+    ]
+  }
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({behavior: 'smooth'});
+}
 }

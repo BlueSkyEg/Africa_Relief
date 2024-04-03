@@ -1,6 +1,41 @@
 <main class="flex flex-col gap-10 lg:gap-20 mb-10 lg:mb-20">
+
   <app-main-slider/>
-  <app-donation-card-section/>
+
+  <!-- Donation Card Section -->
+  <div class="container flex flex-col xl:flex-row justify-between gap-6">
+    <div class="flex flex-col gap-6 xl:gap-8 xl:max-w-[718px]">
+      <h2 class="text-heading-2 xl:max-w-[652px]">ALL Children Deserve an Equal Opportunity to Succeed in Life</h2>
+      <div class="relative flex justify-center">
+        <img class="w-full" src="/assets/images/home/Equal-Opportunity-to-Children.webp" alt="ALL Children Deserve an Equal Opportunity to Succeed in Life.webp">
+        <div class="flex items-center absolute gap-1 top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 pe-4 bg-black text-white cursor-pointer">
+          <div class="play-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="57" height="56" viewBox="0 0 57 56" fill="none">
+              <mask id="mask0_814_3157" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="57"
+                    height="56">
+                <rect x="0.5" width="56" height="56" fill="#D9D9D9"/>
+              </mask>
+              <g mask="url(#mask0_814_3157)">
+                <path d="M22.6667 38.5L39 28L22.6667 17.5V38.5ZM7.5 49V7H49.5V49H7.5Z" fill="#FFD500"/>
+              </g>
+            </svg>
+          </div>
+          <span class="text-body-2">Watch Video</span>
+        </div>
+      </div>
+    </div>
+    <app-donation-card [donationForm]="donationForm" class="flex-1 xl:max-w-[600px]">
+      <div class="flex justify-between items-center py-2 px-4 cursor-pointer" (click)="scroll(donateThroughZelle)">
+        <div class="flex items-center gap-2">
+          <app-icon-zelle class="scale-75"/>
+          <span class="text-body-3">Donate through Zelle</span>
+        </div>
+        <span class="text-primary">Click here</span>
+      </div>
+    </app-donation-card>
+  </div>
+
+  <!-- Project Categories Silder -->
   <div class="container flex flex-col gap-8">
     <!-- Section Header -->
     <div class="flex justify-between gap-6 items-start lg:items-end flex-col lg:flex-row">
@@ -12,10 +47,38 @@
       </div>
     <app-project-categories-slider/>
   </div>
-    <app-partners-slider/>
+
+  <app-partners-slider/>
+
   <app-projects-slider-section/>
-  <app-donate-by-zelle/>
+
+  <!-- Donate Through Zelle -->
+  <div #donateThroughZelle class="py-12 text-white bg-primary bg-[url('/assets/images/shared/wave-bg.webp')] bg-cover bg-no-repeat">
+    <div class="container flex flex-col lg:flex-row justify-between lg:items-center gap-8">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center gap-[8px]">
+          <app-icon-zelle/>
+          <span class="text-body-2-md">Zelle</span>
+        </div>
+        <h2 class="text-heading-2">Donate Through Zelle</h2>
+        <div class="flex flex-col lg:flex-row gap-4">
+          <a class="flex items-center gap-2 p-3 border border-white w-fit" href="mailto:info@arcdus.org" target="_blank" rel="nofollow">
+            <app-icon-envelope/>
+            info&#64;arcdus.org
+          </a>
+          <a class="flex items-center gap-2 p-3 border border-white w-fit" href="https://map.google.com" target="_blank" rel="nofollow">
+            <app-icon-pin/>
+            65 Kingsland Ave, Suite#2, Clifton, NJ 07014
+          </a>
+        </div>
+      </div>
+      <img class="max-w-48 m-auto lg:m-0" src="/assets/images/home/zelle-qr.webp" alt="Zelle Qr Code">
+    </div>
+  </div>
+
   <app-safe-and-easy-donation/>
+
   <app-become-volunteer/>
+
   <app-latest-blogs/>
 </main>

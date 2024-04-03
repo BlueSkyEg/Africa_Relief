@@ -12,7 +12,7 @@ import { environment } from '../environments/environment';
 
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
-  anchorScrolling: 'enabled',
+  anchorScrolling: 'enabled'
 };
 
 const inMemoryScrollingFeature: InMemoryScrollingFeature =
