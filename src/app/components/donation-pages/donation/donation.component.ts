@@ -1,5 +1,5 @@
 import { Component, ViewChild, inject } from '@angular/core';
-import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {MatStepperModule, StepperOrientation} from '@angular/material/stepper';
 import { FieldComponent } from "../../../shared/components/form/field/field.component";
 import { LabelComponent } from "../../../shared/components/form/label/label.component";
@@ -12,7 +12,7 @@ import { PaymentService } from '../../../core/services/payment/payment.service';
 import { PaymentMethodResult, SetupIntent, StripeCardCvcElementChangeEvent, StripeCardElementOptions, StripeCardExpiryElementChangeEvent, StripeCardNumberElementChangeEvent, StripeElementsOptions } from '@stripe/stripe-js';
 import { StripeCardCvcComponent, StripeCardExpiryComponent, StripeCardGroupDirective, StripeCardNumberComponent, StripeService } from 'ngx-stripe';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IPaymentRequiresAction } from '../../../shared/interfaces/payment-requires-action.interface';
 import { ButtonComponent } from "../../../shared/components/form/button/button.component";
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -26,7 +26,14 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 })
 export class DonationComponent {
 
+  donationFormId: string;
+  donationFormTitle: string;
+  donationAmount: string;
+  isRecurringDonation: boolean;
+  recurringPeriod: string;
+
   router: Router = inject(Router);
+  activeRoute: ActivatedRoute = inject(ActivatedRoute);
   fb: FormBuilder = inject(FormBuilder);
   paymentService: PaymentService = inject(PaymentService);
   stripeService: StripeService = inject(StripeService);
@@ -36,6 +43,16 @@ export class DonationComponent {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
       .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
+
+    this.activeRoute.queryParamMap.subscribe({
+      next: p => {
+        this.donationFormId = p['params'].form;
+        this.donationFormTitle = p['params'].title;
+        this.donationAmount = p['params'].amount;
+        this.isRecurringDonation = p['params'].recurringDonation == 'true' ? true : false;
+        this.recurringPeriod = p['params'].recurringPeriod;
+      }
+    })
   }
 
   personalDetailsForm = this.fb.group({
@@ -59,6 +76,7 @@ export class DonationComponent {
   })
 
   options: {name: string, code: string}[] = [
+    {name: "United States", code: "US"},
     {name: "Denmark", code: "DK"},
     {name: "Djibouti", code: "DJ"},
     {name: "Dominica", code: "DM"},
@@ -102,8 +120,6 @@ export class DonationComponent {
     })
   }
 
-  isSubscription: boolean = true;
-
   onMakeDonation(){
     // exit if donation form or card are invalid
     if(this.checkoutForm.invalid || !this.isCardNumberValid || !this.isCardCvvValid || !this.isCardExpiryValid) return;
@@ -116,13 +132,15 @@ export class DonationComponent {
     // make donation proccess
     this.createPaymentMethod().subscribe({
       next: (res: PaymentMethodResult) => {
-        if(this.isSubscription) {
+        if(this.isRecurringDonation) {
           this.createSubscription(res.paymentMethod.id).subscribe({
             next: (res: IApiResponse<IPaymentRequiresAction>) => {
               if(res.success) {
-                // this.router.navigateByUrl('/donation-confirmation');
+                this.router.navigateByUrl('/donation-confirmation');
               } else if(res.data.requiresAction) {
                 this.handleCardAction(res.data.clientSecret);
+              } else {
+                this.router.navigateByUrl('/donation-failed');
               }
             }
           })
@@ -130,9 +148,11 @@ export class DonationComponent {
           this.createSingleCharge(res.paymentMethod.id).subscribe({
             next: (res: IApiResponse<IPaymentRequiresAction>) => {
               if(res.success) {
-                // this.router.navigateByUrl('/donation-confirmation');
+                this.router.navigateByUrl('/donation-confirmation');
               } else if(res.data.requiresAction) {
                 this.handleCardAction(res.data.clientSecret);
+              } else {
+                this.router.navigateByUrl('/donation-failed');
               }
             }
           })
@@ -165,14 +185,14 @@ export class DonationComponent {
     return this.paymentService.createSingleCharge(
       {
         paymentMethodId: paymentMethodId,
-        amount: '455',
-        donationFormTitle: 'Equal Opportunity For Children',
-        donationFormId: '14577',
+        amount: this.donationAmount,
+        donationFormId: this.donationFormId,
+        donationFormTitle: this.donationFormTitle,
         name: this.personalDetailsForm.get('name').value,
         email: this.personalDetailsForm.get('email').value,
         billingComment: this.checkoutForm.get('billingComment').value,
         anonymousDonation: false,
-        savePaymentMethod: false,
+        savePaymentMethod: false
       }
     )
   }
@@ -181,49 +201,29 @@ export class DonationComponent {
     return this.paymentService.createSubscription(
       {
         paymentMethodId: paymentMethodId,
-        amount: '455',
-        recurringPeriod: 'day',
-        subscriptionName: 'Equal Opportunity For Children',
-        donationFormId: '14577',
+        amount: this.donationAmount,
+        recurringPeriod: this.recurringPeriod,
+        donationFormId: this.donationFormId,
+        donationFormTitle: this.donationFormTitle,
         name: this.personalDetailsForm.get('name').value,
         email: this.personalDetailsForm.get('email').value,
         billingComment: this.checkoutForm.get('billingComment').value,
         anonymousDonation: false,
-        savePaymentMethod: true,
+        savePaymentMethod: true
       }
     )
   }
 
   handleCardAction(clientSecret: string): void {
-    if(this.isSubscription) {
-      this.stripeService.confirmCardPayment(clientSecret).subscribe({
-        next: res => {
-          if(res.error) {
-            this.router.navigateByUrl('/donation-failed')
-          } else {
-            this.router.navigateByUrl('/donation-confirmation')
-          }
+    this.stripeService.confirmCardPayment(clientSecret).subscribe({
+      next: res => {
+        if(res.error) {
+          this.router.navigateByUrl('/donation-failed')
+        } else {
+          this.router.navigateByUrl('/donation-confirmation')
         }
-      })
-    } else {
-      this.stripeService.handleCardAction(clientSecret).subscribe({
-        next: res => {
-          if(res.error) {
-            this.router.navigateByUrl('/donation-failed')
-          } else {
-            this.paymentService.createSingleCharge({paymentIntentId: res.paymentIntent.id}).subscribe({
-              next: res => {
-                if(res.success) {
-                  this.router.navigateByUrl('/donation-confirmation')
-                } else {
-                  this.router.navigateByUrl('/donation-failed')
-                }
-              }
-            })
-          }
-        }
-      })
-    }
+      }
+    })
   }
   // Handel Payment Card Errors
   cardNumberError: string|null = null;

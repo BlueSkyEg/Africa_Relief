@@ -1,4 +1,11 @@
-<div class="container my-10 lg:mb-20">
+<div class="container flex flex-col gap-6 max-w-[800px] my-10 lg:mb-20">
+  <h1 class="text-body-1-roboto">
+    {{donationFormTitle | titlecase}}:
+    {{donationAmount | currency}}
+    @if (isRecurringDonation) {
+    /{{recurringPeriod}}
+    }
+  </h1>
   <mat-stepper [orientation]="(stepperOrientation | async)!" linear>
     <mat-step [stepControl]="personalDetailsForm">
       <form class="mt-4" [formGroup]="personalDetailsForm">
@@ -76,7 +83,7 @@
     </mat-step>
     <mat-step [stepControl]="checkoutForm">
       <form class="mt-4" [formGroup]="checkoutForm">
-        <ng-template matStepLabel>checkoutForm</ng-template>
+        <ng-template matStepLabel>checkout</ng-template>
         @if (elementsOptions.clientSecret) {
           <ngx-stripe-card-group [formGroup]="checkoutForm" [elementsOptions]="elementsOptions">
             <app-form-field>
