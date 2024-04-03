@@ -36,8 +36,8 @@ export class DonationCardComponent {
         'form': this.donationForm.id,
         'title': this.donationForm.title,
         'amount': this.amount,
-        'recurringDonation': this.makeRecurringDonation,
-        'recurringPeriod': this.recurringPeriod
+        'recurringDonation': this.makeRecurringDonation ? this.makeRecurringDonation : null,
+        'recurringPeriod': this.makeRecurringDonation ? this.recurringPeriod : null
       }
     });
   }
