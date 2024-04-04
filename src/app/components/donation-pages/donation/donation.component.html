@@ -23,7 +23,7 @@
         </app-form-field>
         <app-form-field>
           <app-form-label>Phone Number*</app-form-label>
-          <input type="number" appFormElement formControlName="phone" placeholder="Phone Number">
+          <input type="tel" appFormElement formControlName="phone" placeholder="Phone Number">
           <app-form-error [hasError]="personalDetailsForm.get('phone').hasError('required') && personalDetailsForm.get('phone').touched">Phone is required.</app-form-error>
           <app-form-error [hasError]="personalDetailsForm.get('phone').hasError('pattern') && personalDetailsForm.get('phone').touched">Phone is invalid.</app-form-error>
         </app-form-field>

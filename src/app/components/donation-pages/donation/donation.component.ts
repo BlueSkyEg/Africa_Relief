@@ -16,6 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IPaymentRequiresAction } from '../../../shared/interfaces/payment-requires-action.interface';
 import { ButtonComponent } from "../../../shared/components/form/button/button.component";
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
     selector: 'app-donation',
@@ -37,6 +38,7 @@ export class DonationComponent {
   fb: FormBuilder = inject(FormBuilder);
   paymentService: PaymentService = inject(PaymentService);
   stripeService: StripeService = inject(StripeService);
+  authService: AuthService = inject(AuthService);
   stepperOrientation: Observable<StepperOrientation>;
 
   constructor(breakpointObserver: BreakpointObserver) {
@@ -49,16 +51,16 @@ export class DonationComponent {
         this.donationFormId = p['params'].form;
         this.donationFormTitle = p['params'].title;
         this.donationAmount = p['params'].amount;
-        this.isRecurringDonation = p['params'].recurringDonation == 'true' ? true : false;
         this.recurringPeriod = p['params'].recurringPeriod;
+        console.log(p['params']);
       }
     })
   }
 
   personalDetailsForm = this.fb.group({
-    name: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
-    phone: ['', [Validators.required, Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
+    name: [this.authService.authedUserSubject.value?.name, [Validators.required]],
+    email: [this.authService.authedUserSubject.value?.email, [Validators.required, Validators.email]],
+    phone: [this.authService.authedUserSubject.value?.phone, [Validators.required, Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
   });
 
   billingDetailsForm = this.fb.group({
@@ -132,82 +134,58 @@ export class DonationComponent {
     // make donation proccess
     this.createPaymentMethod().subscribe({
       next: (res: PaymentMethodResult) => {
-        if(this.isRecurringDonation) {
-          this.createSubscription(res.paymentMethod.id).subscribe({
-            next: (res: IApiResponse<IPaymentRequiresAction>) => {
-              if(res.success) {
-                this.router.navigateByUrl('/donation-confirmation');
-              } else if(res.data.requiresAction) {
-                this.handleCardAction(res.data.clientSecret);
-              } else {
-                this.router.navigateByUrl('/donation-failed');
-              }
+        this.createPayment(res.paymentMethod.id).subscribe({
+          next: (res: IApiResponse<IPaymentRequiresAction>) => {
+            if(res.success) {
+              this.router.navigateByUrl('/donation-confirmation');
+            } else if(res.data.requiresAction) {
+              this.handleCardAction(res.data.clientSecret);
+            } else {
+              this.router.navigateByUrl('/donation-failed');
             }
-          })
-        } else {
-          this.createSingleCharge(res.paymentMethod.id).subscribe({
-            next: (res: IApiResponse<IPaymentRequiresAction>) => {
-              if(res.success) {
-                this.router.navigateByUrl('/donation-confirmation');
-              } else if(res.data.requiresAction) {
-                this.handleCardAction(res.data.clientSecret);
-              } else {
-                this.router.navigateByUrl('/donation-failed');
-              }
-            }
-          })
-        }
+          }
+        })
       }
     })
   }
 
   createPaymentMethod(): Observable<PaymentMethodResult> {
+    const { name, email, phone } = this.personalDetailsForm.getRawValue();
+    const { city, country, addressLine1, addressLine2, zipCode, state } = this.billingDetailsForm.getRawValue();
+
     return this.stripeService.createPaymentMethod({
       type: "card",
       card: this.card.element,
       billing_details: {
-        name: this.personalDetailsForm.get('name').value,
-        email: this.personalDetailsForm.get('email').value,
-        phone: this.personalDetailsForm.get('phone').value as string,
+        name: name,
+        email: email,
+        phone: phone,
         address: {
-          city: this.billingDetailsForm.get('city').value,
-          country: this.billingDetailsForm.get('country').value,
-          line1: this.billingDetailsForm.get('addressLine1').value,
-          line2: this.billingDetailsForm.get('addressLine2').value,
-          postal_code: this.billingDetailsForm.get('zipCode').value,
-          state: this.billingDetailsForm.get('state').value,
+          city: city,
+          country: country,
+          line1: addressLine1,
+          line2: addressLine2,
+          postal_code: zipCode,
+          state: state,
         }
       }
     });
   }
 
-  createSingleCharge(paymentMethodId: string): Observable<IApiResponse<IPaymentRequiresAction>> {
-    return this.paymentService.createSingleCharge(
-      {
-        paymentMethodId: paymentMethodId,
-        amount: this.donationAmount,
-        donationFormId: this.donationFormId,
-        donationFormTitle: this.donationFormTitle,
-        name: this.personalDetailsForm.get('name').value,
-        email: this.personalDetailsForm.get('email').value,
-        billingComment: this.checkoutForm.get('billingComment').value,
-        anonymousDonation: false,
-        savePaymentMethod: false
-      }
-    )
-  }
+  createPayment(paymentMethodId: string): Observable<IApiResponse<IPaymentRequiresAction>> {
+    const { name, email } = this.personalDetailsForm.getRawValue();
+    const { billingComment } = this.checkoutForm.getRawValue();
 
-  createSubscription(paymentMethodId: string): Observable<IApiResponse<IPaymentRequiresAction>> {
-    return this.paymentService.createSubscription(
+    return this.paymentService.createPayment(
       {
         paymentMethodId: paymentMethodId,
         amount: this.donationAmount,
         recurringPeriod: this.recurringPeriod,
         donationFormId: this.donationFormId,
         donationFormTitle: this.donationFormTitle,
-        name: this.personalDetailsForm.get('name').value,
-        email: this.personalDetailsForm.get('email').value,
-        billingComment: this.checkoutForm.get('billingComment').value,
+        name: name,
+        email: email,
+        billingComment: billingComment,
         anonymousDonation: false,
         savePaymentMethod: true
       }
@@ -225,6 +203,7 @@ export class DonationComponent {
       }
     })
   }
+
   // Handel Payment Card Errors
   cardNumberError: string|null = null;
   cardExpiryError: string|null = null;

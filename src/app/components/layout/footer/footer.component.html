@@ -44,7 +44,7 @@
       <div class="basis-2/6">
         <h2 class="text-body-1-inter mb-[8px] w-2/3">Subscribe to Our Newsletter</h2>
         <div class="news-letter-form" [formGroup]="newsLetterForm">
-          <input formControlName="email" placeholder="Enter your email">
+          <input class="w-full" formControlName="email" placeholder="Enter your email">
           <app-button-link appearance="filled-secondary" label="Subscribe" (click)="onSubmit(newsLetterForm.value)"/>
         </div>
       </div>

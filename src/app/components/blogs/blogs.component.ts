@@ -6,13 +6,14 @@ import { BlogCardComponent } from "../../shared/components/blogs/blog-card/blog-
 import {IBlogCard} from "../../shared/interfaces/blog/blog-card-interface";
 import { ActivatedRoute } from '@angular/router';
 import { IApiResponse } from '../../shared/interfaces/api-response-interface';
+import { BreadcrumbComponent } from "../../shared/components/breadcrumb/breadcrumb.component";
 
 @Component({
     selector: 'app-blogs',
     standalone: true,
     templateUrl: './blogs.component.html',
     styleUrl: './blogs.component.scss',
-    imports: [CategoriesFilterComponent, BlogCardComponent]
+    imports: [CategoriesFilterComponent, BlogCardComponent, BreadcrumbComponent]
 })
 export class BlogsComponent implements OnInit {
   blogCategories: ICategory[];

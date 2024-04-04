@@ -14,14 +14,10 @@ export class PaymentService {
   constructor(private http: HttpClient) { }
 
   setupPaymentIntent(): Observable<IApiResponse<SetupIntent>> {
-    return this.http.get<IApiResponse<SetupIntent>>(environment.apiUrl + '/payment-method/setup-intent');
+    return this.http.get<IApiResponse<SetupIntent>>(environment.apiUrl + '/payment/setup-intent');
   }
 
-  createSingleCharge(data): Observable<IApiResponse<IPaymentRequiresAction>> {
-    return this.http.post<IApiResponse<IPaymentRequiresAction>>(environment.apiUrl + '/create-single-charge', data);
-  }
-
-  createSubscription(data): Observable<IApiResponse<IPaymentRequiresAction>> {
-    return this.http.post<IApiResponse<IPaymentRequiresAction>>(environment.apiUrl + '/subscription/create', data);
+  createPayment(data): Observable<IApiResponse<IPaymentRequiresAction>> {
+    return this.http.post<IApiResponse<IPaymentRequiresAction>>(environment.apiUrl + '/payment', data);
   }
 }

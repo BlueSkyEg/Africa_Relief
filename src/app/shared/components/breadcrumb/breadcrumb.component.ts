@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
     selector: 'app-breadcrumb',
     standalone: true,
     templateUrl: './breadcrumb.component.html',
-    styleUrl: './breadcrumb.component.scss',
+    styles: ``,
     imports: [RouterModule, IconDoubleArrowComponent]
 })
 export class BreadcrumbComponent {
