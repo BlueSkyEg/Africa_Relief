@@ -40,9 +40,11 @@ export class ModalComponent {
 
   openModal() {
     this.modalOpened = true;
+    document.body.style.overflow = 'hidden';
   }
 
   closeModal() {
     this.modalOpened = false;
+    document.body.style.overflow = 'auto';
   }
 }
