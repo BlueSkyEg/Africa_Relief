@@ -14,7 +14,7 @@ import { ButtonComponent } from '../../shared/components/form/button/button.comp
     selector: 'app-contact',
     standalone: true,
     templateUrl: './contact.component.html',
-    styleUrl: './contact.component.scss',
+    styles: ``,
     imports: [ReactiveFormsModule, FormElementDirective, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent, BreadcrumbComponent, IconPinComponent, IconEnvelopeComponent, IconPhoneComponent]
 })
 export class ContactComponent {
