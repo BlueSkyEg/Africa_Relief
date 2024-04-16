@@ -36,7 +36,7 @@
         <app-form-error [hasError]="loginForm.get('password').hasError('required') && loginForm.get('password').touched">Password is required.</app-form-error>
         <app-form-error [hasError]="loginForm.get('password').hasError('minlength') && loginForm.get('password').touched">Invalid credentials</app-form-error>
       </app-form-field>
-      <a class="flex justify-end text-primary" routerLink="/forget-password">Forget Password</a>
+      <a class="flex justify-end text-primary" routerLink="/forgot-password">Forget Password</a>
       <app-form-button class="block mt-6" appearance="filled" [fullWidth]="true" [disabled]="loginForm.invalid && !loginForm.get('email').hasError('serverError')">Login</app-form-button>
     </form>
     <p class="text-center">Don't have an account? <a class="text-primary" routerLink="/sign-up">Sign up</a></p>
