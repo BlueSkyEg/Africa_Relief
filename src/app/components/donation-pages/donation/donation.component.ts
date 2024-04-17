@@ -1,11 +1,11 @@
 import { Component, ViewChild, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import {MatStepperModule, StepperOrientation} from '@angular/material/stepper';
+import { MatStepperModule, StepperOrientation } from '@angular/material/stepper';
 import { FieldComponent } from "../../../shared/components/form/field/field.component";
 import { LabelComponent } from "../../../shared/components/form/label/label.component";
 import { FormElementDirective } from '../../../shared/directives/form-element.directive';
 import { ErrorComponent } from "../../../shared/components/form/error/error.component";
-import { Observable, map, startWith } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CommonModule } from '@angular/common';
 import { PaymentService } from '../../../core/services/payment/payment.service';
@@ -17,20 +17,20 @@ import { IPaymentRequiresAction } from '../../../shared/interfaces/payment-requi
 import { ButtonComponent } from "../../../shared/components/form/button/button.component";
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AuthService } from '../../../core/services/auth/auth.service';
+import { Country, State, City, ICity, IState, ICountry }  from 'country-state-city';
 
 @Component({
     selector: 'app-donation',
     standalone: true,
     templateUrl: './donation.component.html',
     styles: ``,
-    imports: [CommonModule, StripeCardNumberComponent, StripeCardCvcComponent, StripeCardExpiryComponent, StripeCardGroupDirective, FormElementDirective, ReactiveFormsModule, MatAutocompleteModule, CommonModule, MatStepperModule, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent]
+    imports: [CommonModule, StripeCardNumberComponent, StripeCardCvcComponent, StripeCardExpiryComponent, StripeCardGroupDirective, FormElementDirective, ReactiveFormsModule, MatAutocompleteModule, MatStepperModule, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent]
 })
 export class DonationComponent {
 
   donationFormId: string;
   donationFormTitle: string;
   donationAmount: string;
-  isRecurringDonation: boolean;
   recurringPeriod: string;
 
   router: Router = inject(Router);
@@ -52,7 +52,6 @@ export class DonationComponent {
         this.donationFormTitle = p['params'].title;
         this.donationAmount = p['params'].amount;
         this.recurringPeriod = p['params'].recurringPeriod;
-        console.log(p['params']);
       }
     })
   }
@@ -77,15 +76,42 @@ export class DonationComponent {
     billingComment: ['', [Validators.maxLength(500)]]
   })
 
-  options: {name: string, code: string}[] = [
-    {name: "United States", code: "US"},
-    {name: "Denmark", code: "DK"},
-    {name: "Djibouti", code: "DJ"},
-    {name: "Dominica", code: "DM"},
-    {name: "Ecuador", code: "EC"},
-    {name: "Egypt", code: "EG"}
-  ];
-  filteredOptions: Observable<{name: string, code: string}[]>;
+  countries: ICountry[] = Country.getAllCountries();
+  states: IState[] = [];
+  cities: ICity[] = [];
+  filteredCountries: ICountry[] = this.countries;
+  filteredStates: IState[];
+  filteredCities: ICity[];
+
+  filterCountries(country: string): void {
+    this.filteredCountries = this.countries.filter(c => c.name.toLowerCase().includes(country));
+  }
+
+  filterStates(state: string): void {
+    this.filteredStates = this.states.filter(s => s.name.toLowerCase().includes(state));
+  }
+
+  filterCities(city: string): void {
+    this.filteredCities = this.cities.filter(c => c.name.toLowerCase().includes(city));
+  }
+
+  getOptionText(option: ICountry|IState) {
+    return option ? option.name : null;
+  }
+
+  onChangeCountry(country: ICountry) {
+    this.billingDetailsForm.controls.country.setValue(country.isoCode);
+    this.cities = [];
+    this.billingDetailsForm.controls.state.reset();
+    this.billingDetailsForm.controls.city.reset();
+    this.states = State.getStatesOfCountry(country.isoCode);
+  }
+
+  onChangeState(state: IState) {
+    this.billingDetailsForm.controls.state.setValue(state.isoCode);
+    this.billingDetailsForm.controls.city.reset();
+    this.cities = City.getCitiesOfState(this.billingDetailsForm.controls.country.value, state.isoCode);
+  }
 
   // Handel Stripe Payment Card
   @ViewChild(StripeCardNumberComponent) card: StripeCardNumberComponent;
@@ -110,13 +136,6 @@ export class DonationComponent {
   };
 
   ngOnInit() {
-    this.filteredOptions = this.billingDetailsForm.get('country').valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        return this.options.filter(option => option.name.toLowerCase().includes(value.toLowerCase()))
-      }),
-    );
-
     this.paymentService.setupPaymentIntent().subscribe({
       next: (res: IApiResponse<SetupIntent>) => this.elementsOptions.clientSecret = res.data.client_secret
     })

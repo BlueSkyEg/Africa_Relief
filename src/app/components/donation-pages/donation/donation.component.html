@@ -2,8 +2,8 @@
   <h1 class="text-body-1-roboto">
     {{donationFormTitle | titlecase}}:
     {{donationAmount | currency}}
-    @if (isRecurringDonation) {
-    /{{recurringPeriod}}
+    @if (recurringPeriod) {
+    / {{recurringPeriod}}
     }
   </h1>
   <mat-stepper [orientation]="(stepperOrientation | async)!" linear>
@@ -37,10 +37,10 @@
         <ng-template matStepLabel>Billing Details</ng-template>
         <app-form-field>
           <app-form-label>Country*</app-form-label>
-          <input appFormElement type="text" placeholder="Select Country" formControlName="country" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete">
-            @for (country of filteredOptions | async; track country) {
-            <mat-option [value]="country.code">{{country.name}}</mat-option>
+          <input appFormElement type="text" placeholder="Select Country" [matAutocomplete]="countryAutocomplete" (input)="filterCountries(countryInput.value)" (focus)="filterCountries(countryInput.value)" #countryInput>
+          <mat-autocomplete requireSelection #countryAutocomplete="matAutocomplete" [displayWith]="getOptionText" (optionSelected)="onChangeCountry($event.option.value)">
+            @for (country of filteredCountries; track country) {
+            <mat-option [value]="country">{{country.name}}</mat-option>
             }
           </mat-autocomplete>
           <app-form-error [hasError]="billingDetailsForm.get('country').hasError('required') && billingDetailsForm.get('country').touched">Country is required</app-form-error>
@@ -55,15 +55,19 @@
           <app-form-label>Address 2</app-form-label>
           <input appFormElement class="form-input" type="text" formControlName="addressLine2" placeholder="Address Line 2">
         </app-form-field>
-        <app-form-field>
-          <app-form-label>City*</app-form-label>
-          <input appFormElement class="form-input" type="text" formControlName="city" placeholder="City">
-          <app-form-error [hasError]="billingDetailsForm.get('city').hasError('required') && billingDetailsForm.get('city').touched">City is required</app-form-error>
-        </app-form-field>
         <div class="flex gap-[16px] self-stretch">
           <app-form-field class="w-full">
             <app-form-label>State*</app-form-label>
-            <input appFormElement class="form-input" type="text" formControlName="state" placeholder="State">
+            @if (states.length) {
+              <input appFormElement type="text" placeholder="Select State" [matAutocomplete]="stateAutocomplete" (input)="filterStates(stateInput.value)" (focus)="filterStates(stateInput.value)" #stateInput>
+              <mat-autocomplete requireSelection #stateAutocomplete="matAutocomplete" [displayWith]="getOptionText" (optionSelected)="onChangeState($event.option.value)">
+                @for (state of states; track state.isoCode) {
+                  <mat-option [value]="state">{{state.name}}</mat-option>
+                }
+              </mat-autocomplete>
+            } @else {
+              <input appFormElement type="text" formControlName="state" placeholder="State">
+            }
             <app-form-error [hasError]="billingDetailsForm.get('state').hasError('required') && billingDetailsForm.get('state').touched">State is required</app-form-error>
           </app-form-field>
           <app-form-field class="w-full">
@@ -73,6 +77,20 @@
             <app-form-error [hasError]="billingDetailsForm.get('zipCode').hasError('pattern') && billingDetailsForm.get('zipCode').touched">Zip Code is invalid.</app-form-error>
           </app-form-field>
         </div>
+        <app-form-field>
+          <app-form-label>City*</app-form-label>
+          @if (cities.length) {
+            <input appFormElement type="text" formControlName="city" placeholder="Select City" [matAutocomplete]="cityAutocomplete" (input)="filterCities(cityInput.value)" (focus)="filterCities(cityInput.value)" #cityInput>
+              <mat-autocomplete requireSelection #cityAutocomplete="matAutocomplete">
+                @for (city of cities; track city) {
+                  <mat-option [value]="city.name">{{city.name}}</mat-option>
+                }
+              </mat-autocomplete>
+          } @else {
+            <input appFormElement type="text" formControlName="city" placeholder="City">
+          }
+          <app-form-error [hasError]="billingDetailsForm.get('city').hasError('required') && billingDetailsForm.get('city').touched">City is required</app-form-error>
+        </app-form-field>
         <div>
           <div class="w-full flex justify-between">
             <button class="text-body-3 text-primary bg-white border border-primary py-3 px-6" matStepperPrevious>Back</button>
