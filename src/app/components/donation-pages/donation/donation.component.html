@@ -61,7 +61,7 @@
             @if (states.length) {
               <input appFormElement type="text" placeholder="Select State" [matAutocomplete]="stateAutocomplete" (input)="filterStates(stateInput.value)" (focus)="filterStates(stateInput.value)" #stateInput>
               <mat-autocomplete requireSelection #stateAutocomplete="matAutocomplete" [displayWith]="getOptionText" (optionSelected)="onChangeState($event.option.value)">
-                @for (state of states; track state.isoCode) {
+                @for (state of filteredStates; track state.isoCode) {
                   <mat-option [value]="state">{{state.name}}</mat-option>
                 }
               </mat-autocomplete>
@@ -82,7 +82,7 @@
           @if (cities.length) {
             <input appFormElement type="text" formControlName="city" placeholder="Select City" [matAutocomplete]="cityAutocomplete" (input)="filterCities(cityInput.value)" (focus)="filterCities(cityInput.value)" #cityInput>
               <mat-autocomplete requireSelection #cityAutocomplete="matAutocomplete">
-                @for (city of cities; track city) {
+                @for (city of filteredCities; track city) {
                   <mat-option [value]="city.name">{{city.name}}</mat-option>
                 }
               </mat-autocomplete>

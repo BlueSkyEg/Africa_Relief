@@ -18,7 +18,7 @@ import {SwiperOptions} from "swiper/types";
     IconDirective
   ],
   templateUrl: './main-slider.component.html',
-  styleUrl: './main-slider.component.scss',
+  styles: ``,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class MainSliderComponent implements OnInit {
