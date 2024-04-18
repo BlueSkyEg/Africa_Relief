@@ -1,62 +1,62 @@
-<div class="projects-slider-section container">
+<div class="container flex flex-col gap-8">
     <!-- Section Header -->
-    <div class="section-header items-start lg:items-end flex-col lg:flex-row">
-      <div class="details">
-        <h2 class="text-body-1-inter">We Love To Help People</h2>
+    <div class="flex justify-between gap-6 items-start lg:items-end flex-col lg:flex-row">
+      <div class="flex justify-between gap-2 max-w-[580px]">
+        <h2 class="text-body-1-inter text-primary">We Love To Help People</h2>
         <h3 class="text-heading-2">Help & Donate Us Now</h3>
       </div>
       <app-button-link path="/projects" label="Learn More" appearance="outlined-secondary" [icon]="true"/>
     </div>
     <!-- Slider -->
     <swiper-container class="projects-slider" init="false">
-      <swiper-slide class="slide-item">
-        <div class="project-card-header">
-          <img src="/assets/images/home/projects/surface-water-well.webp" alt="surface-water-well" loading="lazy">
-          <a class="category-tag" routerLink="/projects/water">Water</a>
+      <swiper-slide class="flex flex-col gap-4 w-[400px] p-4 border border-gray-light bg-white">
+        <div class="relative w-full">
+          <img class="w-full h-[288px] object-cover object-center" src="/assets/images/home/projects/surface-water-well.webp" alt="surface-water-well" loading="lazy">
+          <a class="absolute bottom-0 right-0 flex justify-center items-center h-8 px-3 py-1 bg-secondary" routerLink="/projects/water">Water</a>
         </div>
         <h4 class="text-body-1-inter">Surface Water Well</h4>
-        <p class="project-description text-body-3">Millions in Africa lack clean water, facing daily challenges. Your donation builds wells, serving hundreds for years, transforming lives</p>
+        <p class="text-body-3 line-clamp-3">Millions in Africa lack clean water, facing daily challenges. Your donation builds wells, serving hundreds for years, transforming lives</p>
         <app-button-link label="Donate Now" path="/projects/surface-water-well" appearance="outlined-primary" [fullWidth]="true"/>
       </swiper-slide>
-      <swiper-slide class="slide-item">
-        <div class="project-card-header">
-          <img src="/assets/images/home/projects/food-basket.webp" alt="food-basket" loading="lazy">
-          <a class="category-tag" routerLink="/projects/food-aid">Food Aid</a>
+      <swiper-slide class="flex flex-col gap-4 w-[400px] p-4 border border-gray-light bg-white">
+        <div class="relative w-full">
+          <img class="w-full h-[288px] object-cover object-center" src="/assets/images/home/projects/food-basket.webp" alt="food-basket" loading="lazy">
+          <a class="absolute bottom-0 right-0 flex justify-center items-center h-8 px-3 py-1 bg-secondary" routerLink="/projects/food-aid">Food Aid</a>
         </div>
         <h4 class="text-body-1-inter">Food Basket</h4>
-        <p class="project-description text-body-3">Africa is one of the world’s hunger hotspots, where two out of three people affected by food insecurity globally reside. Your Donation: Ending Hunger, Changing Lives.</p>
+        <p class="text-body-3 line-clamp-3">Africa is one of the world’s hunger hotspots, where two out of three people affected by food insecurity globally reside. Your Donation: Ending Hunger, Changing Lives.</p>
         <app-button-link label="Donate Now" path="/projects/food-basket" appearance="outlined-primary" [fullWidth]="true"/>
       </swiper-slide>
-      <swiper-slide class="slide-item">
-        <div class="project-card-header">
-          <img src="/assets/images/home/projects/students-sponsorship.webp" alt="students-sponsorship" loading="lazy">
-          <a class="category-tag" routerLink="/projects/education">Education</a>
+      <swiper-slide class="flex flex-col gap-4 w-[400px] p-4 border border-gray-light bg-white">
+        <div class="relative w-full">
+          <img class="w-full h-[288px] object-cover object-center" src="/assets/images/home/projects/students-sponsorship.webp" alt="students-sponsorship" loading="lazy">
+          <a class="absolute bottom-0 right-0 flex justify-center items-center h-8 px-3 py-1 bg-secondary" routerLink="/projects/education">Education</a>
         </div>
         <h4 class="text-body-1-inter">Students Sponsorship</h4>
-        <p class="project-description text-body-3">We sponsor students without access to basic school supplies, empowering them to shape brighter futures for themselves and their communities. Donate today to support this mission!</p>
+        <p class="text-body-3 line-clamp-3">We sponsor students without access to basic school supplies, empowering them to shape brighter futures for themselves and their communities. Donate today to support this mission!</p>
         <app-button-link label="Donate Now" path="/projects/students-sponsorship" appearance="outlined-primary" [fullWidth]="true"/>
       </swiper-slide>
-      <swiper-slide class="slide-item">
-        <div class="project-card-header">
-          <img src="/assets/images/home/projects/educational-center.webp" alt="educational-center" loading="lazy">
-          <a class="category-tag" routerLink="/projects/education">Education</a>
+      <swiper-slide class="flex flex-col gap-4 w-[400px] p-4 border border-gray-light bg-white">
+        <div class="relative w-full">
+          <img class="w-full h-[288px] object-cover object-center" src="/assets/images/home/projects/educational-center.webp" alt="educational-center" loading="lazy">
+          <a class="absolute bottom-0 right-0 flex justify-center items-center h-8 px-3 py-1 bg-secondary" routerLink="/projects/education">Education</a>
         </div>
         <h4 class="text-body-1-inter">Educational Center</h4>
-        <p class="project-description text-body-3">Building Bridges to Knowledge: Transforming Communities through New Educational Centers. Join Us in Crafting a Future of Learning and Growth.</p>
+        <p class="text-body-3 line-clamp-3">Building Bridges to Knowledge: Transforming Communities through New Educational Centers. Join Us in Crafting a Future of Learning and Growth.</p>
         <app-button-link label="Donate Now" path="/projects/educational-center" appearance="outlined-primary" [fullWidth]="true"/>
       </swiper-slide>
-      <swiper-slide class="slide-item">
-        <div class="project-card-header">
-          <img src="/assets/images/home/projects/zakat-al-fitr.webp" alt="zakat-al-fitr" loading="lazy">
-          <a class="category-tag" routerLink="/projects/zakat">Zakat</a>
+      <swiper-slide class="flex flex-col gap-4 w-[400px] p-4 border border-gray-light bg-white">
+        <div class="relative w-full">
+          <img class="w-full h-[288px] object-cover object-center" src="/assets/images/home/projects/zakat-al-fitr.webp" alt="zakat-al-fitr" loading="lazy">
+          <a class="absolute bottom-0 right-0 flex justify-center items-center h-8 px-3 py-1 bg-secondary" routerLink="/projects/zakat">Zakat</a>
         </div>
         <h4 class="text-body-1-inter">Zakat Al-Fitr</h4>
-        <p class="project-description text-body-3">Your contribution to Zakat Al-Fitr brings sustenance and happiness to those in need, fostering a community of compassion and solidarity.</p>
+        <p class="text-body-3 line-clamp-3">Your contribution to Zakat Al-Fitr brings sustenance and happiness to those in need, fostering a community of compassion and solidarity.</p>
         <app-button-link label="Donate Now" path="/projects/zakat-al-fitr" appearance="outlined-primary" [fullWidth]="true"/>
       </swiper-slide>
     </swiper-container>
     <!-- Slider Navigation -->
-    <div class="slider-navigation">
+    <div class="flex justify-end items-center gap-4">
       <app-icon-arrow-left appIcon appearance="outlined" class="project-slide-prev cursor-pointer"/>
       <app-icon-arrow-right appIcon appearance="outlined" class="project-slide-next cursor-pointer"/>
     </div>
