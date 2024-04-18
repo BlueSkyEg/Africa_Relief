@@ -30,7 +30,7 @@ import {SwiperOptions} from "swiper/types";
     IconDirective
   ],
   templateUrl: './project-categories-slider.component.html',
-  styleUrl: './project-categories-slider.component.scss',
+  styles: ``,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ProjectCategoriesSliderComponent implements OnInit {
@@ -39,12 +39,20 @@ export class ProjectCategoriesSliderComponent implements OnInit {
     const swiperElementConstructor: SwiperContainer = document.querySelector('.project-categories-slider');
     const  swiperOptions: SwiperOptions = {
       loop: true,
-      slidesPerView: "auto",
+      slidesPerView: 1,
       spaceBetween: 24,
       navigation: {
         enabled: true,
         nextEl: '.category-slide-next',
         prevEl: '.category-slide-prev',
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2
+        },
+        1024: {
+          slidesPerView: 3
+        }
       }
     };
     Object.assign(swiperElementConstructor!, swiperOptions);
