@@ -18,6 +18,7 @@ import { ButtonComponent } from "../../../shared/components/form/button/button.c
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { Country, State, City, ICity, IState, ICountry }  from 'country-state-city';
+import { IUser } from '../../../shared/interfaces/auth/user.interface';
 
 @Component({
     selector: 'app-donation',
@@ -57,9 +58,9 @@ export class DonationComponent {
   }
 
   personalDetailsForm = this.fb.group({
-    name: [this.authService.authedUserSubject.value?.name, [Validators.required]],
-    email: [this.authService.authedUserSubject.value?.email, [Validators.required, Validators.email]],
-    phone: [this.authService.authedUserSubject.value?.phone, [Validators.required, Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
+    name: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    phone: ['', [Validators.required, Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
   });
 
   billingDetailsForm = this.fb.group({
@@ -136,9 +137,19 @@ export class DonationComponent {
   };
 
   ngOnInit() {
+    this.authService.authedUserSubject.asObservable().subscribe({
+      next: (user: IUser) => {
+        this.personalDetailsForm.setValue({
+          name: user.name,
+          email: user.email,
+          phone: user.phone
+        })
+      }
+    });
+
     this.paymentService.setupPaymentIntent().subscribe({
       next: (res: IApiResponse<SetupIntent>) => this.elementsOptions.clientSecret = res.data.client_secret
-    })
+    });
   }
 
   onMakeDonation(){
