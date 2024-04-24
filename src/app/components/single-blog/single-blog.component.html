@@ -1,4 +1,5 @@
 <div class="container mt-4 mb-10 lg:mb-20">
+  @defer () {
   <!-- Breadcrumb -->
   <app-breadcrumb basePath="/blogs" baseName="Blogs" [currentName]="blog.title"/>
 
@@ -58,4 +59,45 @@
       <app-share-buttons />
     </div>
   </div>
+  }
+  @placeholder (minimum 0.5s) {
+    <div class="animate-pulse bg-gray-light h-4 w-7/12"></div>
+    <div class="animate-pulse grid lg:grid-cols-3 gap-10 mt-6">
+      <div class="flex flex-col gap-6 lg:col-span-2">
+        <div class="bg-gray-light h-4 w-4/6"></div>
+        <div class="bg-gray-light h-4 w-3/6"></div>
+        <div class="bg-gray-light h-4 w-2/6"></div>
+        <div class="bg-gray-light h-[480px]"></div>
+        <div class="bg-gray-light h-4 w-2/6"></div>
+        <div class="bg-gray-light h-4 w-3/6"></div>
+      </div>
+
+      <div class="flex flex-col gap-6 p-4 h-fit bg-white">
+        <div class="bg-gray-light h-16"></div>
+        <div class="bg-gray-light h-12"></div>
+        <div class="flex flex-col gap-4">
+          <div class="bg-gray-light h-3 w-2/6"></div>
+          <div class="bg-gray-light h-10"></div>
+          <div class="flex gap-4">
+            <div class="bg-gray-light h-10 w-2/6"></div>
+            <div class="bg-gray-light h-10 w-2/6"></div>
+            <div class="bg-gray-light h-10 w-2/6"></div>
+          </div>
+        </div>
+        <div class="bg-gray-light h-10"></div>
+        <div class="bg-gray-light h-10"></div>
+      </div>
+
+      <div class="flex flex-col gap-10 lg:col-span-2">
+        <div class="flex flex-col gap-6">
+          <div class="bg-gray-light h-4 w-4/6"></div>
+          <div class="bg-gray-light h-40"></div>
+        </div>
+        <div class="flex flex-col gap-6">
+          <div class="bg-gray-light h-4 w-4/6"></div>
+          <div class="bg-gray-light h-40"></div>
+        </div>
+      </div>
+    </div>
+  }
 </div>
