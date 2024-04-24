@@ -18,7 +18,7 @@ export class ProjectService {
     return this.http.get<IApiResponse<ICategory[]>>('/assets/db/projects/data/project-categories.json');
   }
 
-  getProjects(categorySlug: string|null): Observable<IApiResponse<IProjectCard[]>> {
+  getProjects(categorySlug: string|null, paginationPageNum: number): Observable<IApiResponse<IProjectCard[]>> {
     if(!categorySlug) {
       return this.http.get<IApiResponse<IProjectCard[]>>('/assets/db/projects/data/projects-cards.json');
     }

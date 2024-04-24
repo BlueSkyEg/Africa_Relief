@@ -6,17 +6,21 @@ import { IProjectCard } from '../../shared/interfaces/project/project-card-inter
 import { ProjectCardComponent } from "../../shared/components/projects/project-card/project-card.component";
 import { IApiResponse } from '../../shared/interfaces/api-response-interface';
 import { ActivatedRoute } from '@angular/router';
+import { BreadcrumbComponent } from "../../shared/components/breadcrumb/breadcrumb.component";
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @Component({
     selector: 'app-projects',
     standalone: true,
     templateUrl: './projects.component.html',
-    styleUrl: './projects.component.scss',
-    imports: [CategoriesFilterComponent, ProjectCardComponent]
+    styles: ``,
+    imports: [InfiniteScrollModule, CategoriesFilterComponent, ProjectCardComponent, BreadcrumbComponent]
 })
 export class ProjectsComponent implements OnInit {
   projectCategories: ICategory[];
-  projects: IProjectCard[];
+  projects: IProjectCard[] = [];
+  paginationPageNum: number = 1;
+
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   projectService: ProjectService = inject(ProjectService);
 
@@ -28,10 +32,21 @@ export class ProjectsComponent implements OnInit {
 
     // Get projects
     this.activeRoute.paramMap.subscribe({
-      next: route => {
-        this.projectService.getProjects(route.get('slug')).subscribe({
-          next: (res: IApiResponse<IProjectCard[]>) => this.projects = res.data
-        });
+      next: () => {
+        this.paginationPageNum = 1;
+        this.projects = [];
+        this.onGetProjects();
+      }
+    });
+  }
+
+
+  onGetProjects() {
+    const categorySlug = this.activeRoute.snapshot.paramMap.get('slug');
+    this.projectService.getProjects(categorySlug, this.paginationPageNum).subscribe({
+      next: (res: IApiResponse<IProjectCard[]>) => {
+        this.projects.push(...res.data);
+        this.paginationPageNum++;
       }
     });
   }
