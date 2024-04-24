@@ -1,57 +1,57 @@
-<footer>
-  <div class="container flex flex-col gap-[48px]">
-    <div class="flex flex-col lg:flex-row gap-[24px] lg:gap-[88px]">
-      <div class="basis-2/6 flex flex-col gap-[16px]">
-        <div class="w-[112px] h-[112px]">
-          <img class="w-full" src="assets/images/logo.webp" alt="Africa Relief Logo">
+<footer class="text-white bg-black pt-16 pb-8">
+  <div class="container flex flex-col gap-12">
+    <div class="flex flex-col lg:flex-row gap-6 lg:gap-20">
+      <div class="basis-2/6 flex flex-col gap-4">
+        <div class="w-32 h-32">
+          <img class="w-28 aspect-square" src="assets/images/logo.webp" alt="Africa Relief Logo">
         </div>
         <p class="font-roboto">Help Africa Relief fight poverty and inequality, and respond to pressing
           emergencies by making a donation today.</p>
         <app-button-link appearance="filled-secondary" label="Donate Now" path="/projects"/>
       </div>
       <div class="basis-1/6">
-        <div class="footer-section-header" (click)="openExploreAccordion = !openExploreAccordion">
-          <h2 class="text-body-2 mb-[8px]">Explore</h2>
-          <div class="toggle-accordion lg:hidden" [ngClass]="{'active': openExploreAccordion}"></div>
+        <div class="flex justify-between items-center cursor-pointer md:cursor-default" (click)="openExploreAccordion = !openExploreAccordion">
+          <h2 class="text-body-2 mb-2">Explore</h2>
+          <div [ngClass]="{'after:rotate-0': openExploreAccordion}" class="relative lg:hidden after:absolute after:content-[''] after:end-0 after:w-5 after:h-0.5 after:transition-transform after:bg-white after:rotate-90 before:absolute before:content-[''] before:end-0 before:w-5 before:h-0.5 before:transition-transform before:bg-white"></div>
         </div>
-        <ul class="footer-links" [ngClass]="{'active': openExploreAccordion}">
-          <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
-          <li><a routerLink="/projects" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Our Projects</a></li>
-          <li><a routerLink="/get-involved" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Get Involved</a></li>
-          <li><a routerLink="/blogs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Blog</a></li>
-          <li><a routerLink="/gallery" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Gallery</a></li>
-          <li><a routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">About Us</a></li>
-          <li><a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Contact Us</a></li>
-          <li><a routerLink="/careers" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Careers</a></li>
+        <ul class="flex flex-col gap-2 h-auto max-h-0 md:max-h-screen overflow-hidden transition-all" [ngClass]="{'max-h-[440px]': openExploreAccordion}">
+          <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+          <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/projects" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Our Projects</a></li>
+          <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/get-involved" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Get Involved</a></li>
+          <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/blogs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Blog</a></li>
+          <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/gallery" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Gallery</a></li>
+          <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">About Us</a></li>
+          <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Contact Us</a></li>
+          <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/careers" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Careers</a></li>
         </ul>
       </div>
       <div class="basis-1/6">
-        <div class="footer-section-header" (click)="openProjectsAccordion = !openProjectsAccordion">
-          <h2 class="text-body-2 mb-[8px]">Our Projects</h2>
-          <div class="toggle-accordion lg:hidden" [ngClass]="{'active': openProjectsAccordion}"></div>
+        <div class="flex justify-between items-center cursor-pointer md:cursor-default" (click)="openProjectsAccordion = !openProjectsAccordion">
+          <h2 class="text-body-2 mb-2">Our Projects</h2>
+          <div [ngClass]="{'after:rotate-0': openProjectsAccordion}" class="relative lg:hidden after:absolute after:content-[''] after:end-0 after:w-5 after:h-0.5 after:transition-transform after:bg-white after:rotate-90 before:absolute before:content-[''] before:end-0 before:w-5 before:h-0.5 before:transition-transform before:bg-white"></div>
         </div>
-        <ul class="footer-links" [ngClass]="{'active': openProjectsAccordion}">
-          <li><a routerLink="/crisis" routerLinkActive="active">Crisis</a></li>
-          <li><a routerLink="/water" routerLinkActive="active">Water</a></li>
-          <li><a routerLink="/education" routerLinkActive="active">Education</a></li>
-          <li><a routerLink="/food-aid" routerLinkActive="active">Food Aid</a></li>
-          <li><a routerLink="/medical-help" routerLinkActive="active">Medical help</a></li>
-          <li><a routerLink="/orphan-sponsorship" routerLinkActive="active">Orphan Sponsorship</a></li>
-          <li><a routerLink="/zakat" routerLinkActive="active">Zakat</a></li>
-          <li><a routerLink="/ramadan" routerLinkActive="active">Ramadan</a></li>
+        <ul class="flex flex-col gap-2 h-auto max-h-0 md:max-h-screen overflow-hidden transition-all" [ngClass]="{'max-h-[440px]': openProjectsAccordion}">
+          <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/crisis" routerLinkActive="active">Crisis</a></li>
+          <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/water" routerLinkActive="active">Water</a></li>
+          <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/education" routerLinkActive="active">Education</a></li>
+          <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/food-aid" routerLinkActive="active">Food Aid</a></li>
+          <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/medical-help" routerLinkActive="active">Medical help</a></li>
+          <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/orphan-sponsorship" routerLinkActive="active">Orphan Sponsorship</a></li>
+          <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/zakat" routerLinkActive="active">Zakat</a></li>
+          <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/ramadan" routerLinkActive="active">Ramadan</a></li>
         </ul>
       </div>
       <div class="basis-2/6">
-        <h2 class="text-body-1-inter mb-[8px] w-2/3">Subscribe to Our Newsletter</h2>
-        <div class="news-letter-form" [formGroup]="newsLetterForm">
-          <input class="w-full" formControlName="email" placeholder="Enter your email">
+        <h2 class="text-body-1-inter mb-2 w-2/3">Subscribe to Our Newsletter</h2>
+        <div class="flex items-center gap-2 w-full h-14 bg-white py-1 pr-1 pl-4" [formGroup]="newsLetterForm">
+          <input class="w-full outline-none text-black bg-white" formControlName="email" placeholder="Enter your email">
           <app-button-link appearance="filled-secondary" label="Subscribe" (click)="onSubmit(newsLetterForm.value)"/>
         </div>
       </div>
     </div>
     <div class="flex flex-col lg:flex-row justify-between items-center gap-[24px]">
       <p>&copy; <a routerLink="/">Africa Relief.</a> All rights reserved. Powered by <a href="https://bluskyint.com">BlueSky</a></p>
-      <div class="flex gap-[8px]">
+      <div class="flex gap-2">
         <a href="https://www.linkedin.com" target="_blank" rel="nofollow">
           <app-icon-linkedin appIcon/>
         </a>

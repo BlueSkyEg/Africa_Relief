@@ -24,7 +24,7 @@ import {IconDirective} from "../../../shared/directives/icon.directive";
     IconDirective
   ],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+  styles: ``
 })
 export class FooterComponent {
   constructor(private fb: FormBuilder) {
