@@ -9,6 +9,7 @@ import { RequestOptionsInterceptor } from './core/interceptors/request-options.i
 import { loaderInterceptor } from './core/interceptors/loader.interceptor';
 import { provideNgxStripe } from 'ngx-stripe';
 import { environment } from '../environments/environment';
+import { AuthorizeInterceptor } from './core/interceptors/authorize.interceptor';
 
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
@@ -23,7 +24,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, inMemoryScrollingFeature),
     provideAnimationsAsync(),
     importProvidersFrom(HttpClientModule),
-    provideHttpClient(withInterceptors([loaderInterceptor, RequestOptionsInterceptor])),
+    provideHttpClient(withInterceptors([loaderInterceptor, RequestOptionsInterceptor, AuthorizeInterceptor])),
     provideNgxStripe(environment.stripePublicKey),
     {provide: TitleStrategy, useClass: CustomTitleService}
   ]

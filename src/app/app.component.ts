@@ -16,7 +16,7 @@ import { IUser } from './shared/interfaces/auth/user.interface';
   standalone: true,
   imports: [RouterModule, MatSidenavModule, CommonModule, HeaderComponent, FooterComponent, SideNavComponent, MatProgressBarModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styles: ``
 })
 export class AppComponent implements OnInit {
   opened: boolean = false;

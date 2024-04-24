@@ -15,7 +15,7 @@ export const RequestOptionsInterceptor: HttpInterceptorFn = (req, next) => {
   if(accessToken) {
     req = req.clone({
       setHeaders: {
-        'Authorization': accessToken ? `Bearer ${accessToken}` : null
+        'Authorization': `Bearer ${accessToken}`
       }
     });
   }

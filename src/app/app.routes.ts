@@ -19,8 +19,8 @@ import { ProfileDonationsComponent } from './components/profile/profile-donation
 import { ProfileSubscriptionsComponent } from './components/profile/profile-subscriptions/profile-subscriptions.component';
 import { ProfileSettingsComponent } from './components/profile/profile-settings/profile-settings.component';
 import { VerifyEmailComponent } from './components/user/verify-email/verify-email.component';
-import { AuthGuard } from './core/Guards/auth.guard';
-import { GuestGuard } from './core/Guards/guest.guard';
+import { AuthGuard } from './core/guards/auth.guard';
+import { GuestGuard } from './core/guards/guest.guard';
 import { DonationComponent } from './components/donation-pages/donation/donation.component';
 import { DonationConfirmationComponent } from './components/donation-pages/donation-confirmation/donation-confirmation.component';
 import { DonationFailedComponent } from './components/donation-pages/donation-failed/donation-failed.component';
@@ -52,9 +52,9 @@ export const routes: Routes = [
     {path: ':slug', component: SingleCareerComponent}
   ]},
   {path: 'profile', component: ProfileComponent, children: [
-    {path: '', title: 'Profile Donations', canActivate: [AuthGuard], component: ProfileDonationsComponent},
-    {path: 'subscriptions', title: 'Profile Subscription', canActivate: [AuthGuard], component: ProfileSubscriptionsComponent},
-    {path: 'settings', title: 'Account Settings', canActivate: [AuthGuard], component: ProfileSettingsComponent}
+    {path: '', title: 'Account', canActivate: [AuthGuard], component: ProfileSettingsComponent},
+    {path: 'donations', title: 'Donations', canActivate: [AuthGuard], component: ProfileDonationsComponent},
+    {path: 'subscriptions', title: 'Subscriptions', canActivate: [AuthGuard], component: ProfileSubscriptionsComponent}
   ]},
   {path: 'donation', title: 'Donation', component: DonationComponent},
   {path: 'donation-confirmation', title: 'Donation Confirmation', component: DonationConfirmationComponent},

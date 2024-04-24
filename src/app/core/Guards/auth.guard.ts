@@ -8,7 +8,7 @@ export const AuthGuard: CanActivateFn = (route, state) => {
 
   if(authService.isTokenExpired()) {
     localStorage.clear();
-    router.navigate(['/login'], {queryParams: {'redirectUrl': state.url}});
+    router.navigate(['/login'], {queryParams: {'redirect': state.url}});
     return false;
   }
 
