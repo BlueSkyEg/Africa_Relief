@@ -1,9 +1,9 @@
 <div class="flex flex-wrap items-center gap-2 text-body-3">
   <a routerLink="/home">Home</a>
-  <app-icon-double-arrow/>
+  <app-icon-double-arrow [color]="appreance == 'primary' ? 'gray' : 'white'"/>
   @if (basePath) {
     <a [routerLink]="basePath">{{baseName}}</a>
-    <app-icon-double-arrow/>
+    <app-icon-double-arrow [color]="appreance == 'primary' ? 'gray' : 'white'"/>
   }
-  <span class="text-primary">{{currentName}}</span>
+  <span [ngClass]="appreance == 'primary' ? 'text-primary' : 'text-white'">{{currentName}}</span>
 </div>

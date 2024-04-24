@@ -19,7 +19,7 @@ export class BlogService {
     return this.http.get<IApiResponse<ICategory[]>>('/assets/db/blogs/data/blog-categories.json');
   }
 
-  getBlogs(categorySlug: string|null): Observable<IApiResponse<IBlogCard[]>> {
+  getBlogs(categorySlug: string|null, paginationPageNum: number): Observable<IApiResponse<IBlogCard[]>> {
     if(!categorySlug) {
       return this.http.get<IApiResponse<IBlogCard[]>>('/assets/db/blogs/data/blogs-cards.json');
     }
@@ -34,7 +34,7 @@ export class BlogService {
     return this.http.get<IApiResponse<IBlogCard[]>>('/assets/db/blogs/data/latest-blogs.json');
   }
 
-  getGalleryImages(): Observable<IApiResponse<IGalleryImage[]>> {
+  getGalleryImages(paginationPageNum: number): Observable<IApiResponse<IGalleryImage[]>> {
     return this.http.get<IApiResponse<IGalleryImage[]>>('/assets/db/blogs/data/gallery.json');
   }
 }

@@ -1,23 +1,50 @@
 <main class="flex flex-col gap-6 mb-10 lg:mb-20">
   <!-- Blogs Header -->
-  <div class="blogs-header">
-    <div class="container flex flex-col lg:flex-row gap-4 text-white">
-        <div class="basis-1/2 flex flex-col gap-2">
-          <app-breadcrumb currentName="Blogs"/>
-          <h1 class="text-heading-1">Blogs</h1>
-        </div>
-        <p class="basis-1/2 text-body-2">THANKS TO THE GENEROSITY OF OUR DONORS
-        <br>and the hard work of our expanding team, we have made a serious positive impact in more than 15 countries.</p>
+  <div class="relative w-full h-auto py-12 bg-[url('/assets/images/archive-header-bg.webp')] bg-cover bg-no-repeat bg-[center_top] md:bg-[center_-100px] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black after:bg-opacity-60 after:block">
+    <div class="container flex flex-col lg:flex-row gap-4 text-white relative z-10">
+      <div class="basis-1/2 flex flex-col gap-2">
+        <app-breadcrumb currentName="Blogs" appreance="white"/>
+        <h1 class="text-heading-1">Blogs</h1>
+      </div>
+      <p class="basis-1/2 text-body-2">THANKS TO THE GENEROSITY OF OUR DONORS
+      <br>and the hard work of our expanding team, we have made a serious positive impact in more than 15 countries.</p>
     </div>
   </div>
 
-  <!-- Blogs Filter -->
-  <app-categories-filter [categories]="blogCategories" basePath="/blogs" baseTitle="All Blogs"/>
+  @defer () {
+    <!-- Blogs Filter -->
+    <app-categories-filter [categories]="blogCategories" basePath="/blogs" baseTitle="All Blogs"/>
 
-  <!-- Blogs Cards -->
-  <div class="container grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-    @for (blog of blogs; track blog.slug) {
-    <app-blog-card class="flex justify-center" [blog]="blog"/>
-    }
-  </div>
+    <!--
+      To enable InfinitScroll for blogs add this
+      event to <div> element of blogs cards
+      (scrolled)="onGetBlogs()"
+    -->
+    <!-- Blogs Cards -->
+    <div class="container grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50">
+      @for (blog of blogs; track blog.slug) {
+      <app-blog-card class="flex justify-center" [blog]="blog"/>
+      }
+    </div>
+  }
+  @placeholder (minimum 0.5s) {
+    <div class="animate-pulse container flex gap-3 overflow-x-scroll no-scrollbar">
+      <div class="bg-gray-light h-12 w-32"></div>
+      <div class="bg-gray-light h-12 w-32"></div>
+      <div class="bg-gray-light h-12 w-32"></div>
+      <div class="bg-gray-light h-12 w-32"></div>
+      <div class="bg-gray-light h-12 w-32"></div>
+    </div>
+    <div class="container grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      @for (item of [0,1,2,3,4,5]; track $index) {
+        <div class="animate-pulse flex flex-col gap-6 bg-white border border-gray-light max-w-[400px] p-4">
+          <div class="bg-gray-light h-72"></div>
+          <div class="bg-gray-light h-3 w-2/6"></div>
+          <div class="bg-gray-light h-4 w-5/6"></div>
+          <div class="bg-gray-light h-4 w-4/6"></div>
+          <div class="bg-gray-light h-8"></div>
+        </div>
+      }
+    </div>
+  }
 </main>

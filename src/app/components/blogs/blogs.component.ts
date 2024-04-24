@@ -7,17 +7,20 @@ import {IBlogCard} from "../../shared/interfaces/blog/blog-card-interface";
 import { ActivatedRoute } from '@angular/router';
 import { IApiResponse } from '../../shared/interfaces/api-response-interface';
 import { BreadcrumbComponent } from "../../shared/components/breadcrumb/breadcrumb.component";
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @Component({
     selector: 'app-blogs',
     standalone: true,
     templateUrl: './blogs.component.html',
-    styleUrl: './blogs.component.scss',
-    imports: [CategoriesFilterComponent, BlogCardComponent, BreadcrumbComponent]
+    styles:``,
+    imports: [InfiniteScrollModule, CategoriesFilterComponent, BlogCardComponent, BreadcrumbComponent]
 })
 export class BlogsComponent implements OnInit {
   blogCategories: ICategory[];
-  blogs: IBlogCard[];
+  blogs: IBlogCard[] = [];
+  paginationPageNum: number = 1;
+
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   blogService: BlogService = inject(BlogService);
 
@@ -29,11 +32,21 @@ export class BlogsComponent implements OnInit {
 
     // Get Blogs
     this.activeRoute.paramMap.subscribe({
-      next: (route) => {
-        this.blogService.getBlogs(route.get('slug')).subscribe({
-          next: (res: IApiResponse<IBlogCard[]>) => this.blogs = res.data
-        });
+      next: () => {
+        this.paginationPageNum = 1;
+        this.blogs = [];
+        this.onGetBlogs();
       }
     })
+  }
+
+  onGetBlogs() {
+    const categorySlug = this.activeRoute.snapshot.paramMap.get('slug');
+    this.blogService.getBlogs(categorySlug, this.paginationPageNum).subscribe({
+      next: (res: IApiResponse<IBlogCard[]>) => {
+        this.blogs.push(...res.data);
+        this.paginationPageNum++;
+      }
+    });
   }
 }
