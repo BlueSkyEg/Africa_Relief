@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { IAuthedUser } from '../../../shared/interfaces/auth/authed-user.interface';
 import { environment } from '../../../../environments/environment';
-import { LoginCredentials } from '../../../shared/interfaces/auth/login-credentials.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IUser } from '../../../shared/interfaces/auth/user.interface';
 
@@ -59,6 +58,10 @@ export class AuthService {
     return this.http.post<IApiResponse<IAuthedUser>>(environment.apiUrl + '/register', data);
   }
 
+  logout(): Observable<IApiResponse<null>> {
+    return this.http.post<IApiResponse<null>>(environment.apiUrl + '/logout', null);
+  }
+
   forgotPassword(data): Observable<IApiResponse<null>> {
     return this.http.post<IApiResponse<null>>(environment.apiUrl + '/forgot-password', data);
   }
@@ -72,7 +75,7 @@ export class AuthService {
   }
 
   checkRedirectUrl(activeRoute: ActivatedRoute) {
-    const url = activeRoute.snapshot.queryParams['redirectUrl'];
+    const url = activeRoute.snapshot.queryParams['redirect'];
     if (url) {
       this.router.navigateByUrl(url)
         .catch(() => this.router.navigateByUrl('/home'))
