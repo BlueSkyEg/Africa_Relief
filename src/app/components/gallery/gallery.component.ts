@@ -3,22 +3,32 @@ import { BlogService } from '../../core/services/blogs/blog.service';
 import { IApiResponse } from '../../shared/interfaces/api-response-interface';
 import { IGalleryImage } from '../../shared/interfaces/blog/gallery-image.interface';
 import { RouterModule } from '@angular/router';
+import { BreadcrumbComponent } from "../../shared/components/breadcrumb/breadcrumb.component";
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @Component({
-  selector: 'app-gallery',
-  standalone: true,
-  imports: [RouterModule],
-  templateUrl: './gallery.component.html',
-  styles: ``
+    selector: 'app-gallery',
+    standalone: true,
+    templateUrl: './gallery.component.html',
+    styles: ``,
+    imports: [InfiniteScrollModule, RouterModule, BreadcrumbComponent]
 })
 export class GalleryComponent implements OnInit {
-  gallery: IGalleryImage[];
+  gallery: IGalleryImage[] = [];
+  paginationPageNum: number = 1;
+
   blogService: BlogService = inject(BlogService);
 
   ngOnInit(): void {
-    this.blogService.getGalleryImages().subscribe({
-      next: (res: IApiResponse<IGalleryImage[]>) => this.gallery = res.data
-    })
+    this.onGetGallery();
   }
 
+  onGetGallery() {
+    this.blogService.getGalleryImages(this.paginationPageNum).subscribe({
+      next: (res: IApiResponse<IGalleryImage[]>) => {
+        this.gallery.push(...res.data);
+        this.paginationPageNum++;
+      }
+    });
+  }
 }
