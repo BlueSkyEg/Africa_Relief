@@ -1,8 +1,8 @@
 <div class="container flex flex-col my-10 lg:mb-20">
   <div class="flex gap-4 whitespace-nowrap overflow-x-auto no-scrollbar">
-    <a class="bg-white py-2 px-6 text-body-3 text-primary rounded-t" routerLink="/profile" routerLinkActive="!font-semibold border-t-2" [routerLinkActiveOptions]="{exact: true}">Donation History</a>
+    <a class="bg-white py-2 px-6 text-body-3 text-primary rounded-t" routerLink="/profile" routerLinkActive="!font-semibold border-t-2" [routerLinkActiveOptions]="{exact: true}">Account</a>
+    <a class="bg-white py-2 px-6 text-body-3 text-primary rounded-t" routerLink="/profile/donations" routerLinkActive="!font-semibold border-t-2" [routerLinkActiveOptions]="{exact: true}">Donation History</a>
     <a class="bg-white py-2 px-6 text-body-3 text-primary rounded-t" routerLink="/profile/subscriptions" routerLinkActive="!font-semibold border-t-2" [routerLinkActiveOptions]="{exact: true}">Subscriptions</a>
-    <a class="bg-white py-2 px-6 text-body-3 text-primary rounded-t" routerLink="/profile/settings" routerLinkActive="!font-semibold border-t-2" [routerLinkActiveOptions]="{exact: true}">Account Settings</a>
   </div>
   <div class="bg-white rounded-b-[16px]">
     <router-outlet></router-outlet>

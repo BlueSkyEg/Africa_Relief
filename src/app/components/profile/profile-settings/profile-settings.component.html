@@ -32,23 +32,25 @@
         </app-form-field>
         <app-form-button class="flex justify-end" appearance="filled" [disabled]="editProfileForm.invalid || !editProfileForm.dirty">Save</app-form-button>
       </form>
-      <form (submit)="OnChangeProfilePasswored()" [formGroup]="changeProfilePassworedForm">
+      <form (submit)="onChangeProfilePasswored()" [formGroup]="changeProfilePassworedForm">
         <app-form-field>
           <app-form-label>Current Password*</app-form-label>
           <div class="flex gap-2 border border-gray-light py-3 px-4">
-            <input class="flex-1 outline-none" [type]="showPassword ? 'text' : 'password'" formControlName="currentPassword" placeholder="Current Password">
+            <input class="flex-1 outline-none" type="password" formControlName="currentPassword" placeholder="Current Password">
+          </div>
+          <app-form-error [hasError]="changeProfilePassworedForm.get('currentPassword').hasError('required') && changeProfilePassworedForm.get('currentPassword').touched">Current Password is required.</app-form-error>
+          <app-form-error [hasError]="changeProfilePassworedForm.get('currentPassword').hasError('inccorect')">Current Password is inccorect.</app-form-error>
+        </app-form-field>
+        <app-form-field>
+          <app-form-label>New Password*</app-form-label>
+          <div class="flex gap-2 border border-gray-light py-3 px-4">
+            <input class="flex-1 outline-none" (input)="onTypePassword()" [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password">
             @if (showPassword) {
               <app-icon-eye class="cursor-pointer" (click)="showPassword = false"/>
             } @else {
               <app-icon-eye-off class="cursor-pointer" (click)="showPassword = true"/>
             }
           </div>
-          <app-form-error [hasError]="changeProfilePassworedForm.get('currentPassword').hasError('required') && changeProfilePassworedForm.get('password').touched">Current Password is required.</app-form-error>
-          <app-form-error [hasError]="changeProfilePassworedForm.get('currentPassword').hasError('inccorect')">Current Password is inccorect.</app-form-error>
-        </app-form-field>
-        <app-form-field>
-          <app-form-label>Password*</app-form-label>
-          <input appFormElement type="password" formControlName="password" placeholder="Password">
           <app-form-error [hasError]="changeProfilePassworedForm.get('password').hasError('required') && changeProfilePassworedForm.get('password').touched">Password is required.</app-form-error>
           <app-form-error [hasError]="changeProfilePassworedForm.get('password').hasError('regex') && changeProfilePassworedForm.get('password').touched">Invalid password, Please follow the hint.</app-form-error>
           <div class="flex gap-2 pt-4">
@@ -60,7 +62,7 @@
           <p class="text-gray-dark text-xs pt-4">hint: Use 8 or more characters with at least one lowercase, uppercase, number and symbol.</p>
         </app-form-field>
         <app-form-field>
-          <app-form-label>Confirm Password*</app-form-label>
+          <app-form-label>Confirm New Password*</app-form-label>
           <input appFormElement type="password" formControlName="password_confirmation" placeholder="Confirm Password">
           <app-form-error [hasError]="changeProfilePassworedForm.get('password_confirmation').hasError('mismatch') && changeProfilePassworedForm.get('password_confirmation').touched">Password and Confirm Password must match.</app-form-error>
         </app-form-field>

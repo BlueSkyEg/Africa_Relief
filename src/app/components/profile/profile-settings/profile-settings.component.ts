@@ -109,7 +109,7 @@ export class ProfileSettingsComponent implements OnInit {
     password_confirmation: ['']
   }, {validator: [PasswordValidator, MatchPasswordValidator]} as AbstractControlOptions)
 
-  OnChangeProfilePasswored() {
+  onChangeProfilePasswored() {
     this.changeProfilePassworedForm.controls.currentPassword.setErrors({disabled: true});
     this.authService.changeUserPassword(this.changeProfilePassworedForm.value).subscribe({
       next: (res: IApiResponse<IUser>) => {
