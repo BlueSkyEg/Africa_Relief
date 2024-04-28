@@ -15,19 +15,19 @@ import {IconCloseComponent} from "../../icons/close/icon-close.component";
     trigger('overlayAnimation', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate('100ms', style({ opacity: 0.75 })),
+        animate('200ms ease-in', style({ opacity: 0.75 }))
       ]),
       transition(':leave', [
-        animate('100ms', style({ opacity: 0 }))
+        animate('300ms ease-out', style({ opacity: 0 }))
       ])
     ]),
     trigger('modalAnimation', [
       transition(':enter', [
-        style({ top: '400px' }),
-        animate('200ms', style({ top: '120px'}))
+        style({ top: '400px', opacity: 0 }),
+        animate('200ms ease-in', style({ top: '120px', opacity: 1}))
       ]),
       transition(':leave', [
-        animate('200ms', style({ top: '400px' }))
+        animate('300ms ease-out', style({ top: '400px', opacity: 0 }))
       ])
     ])
   ]
