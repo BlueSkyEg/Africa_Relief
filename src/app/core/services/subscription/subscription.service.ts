@@ -17,4 +17,8 @@ export class SubscriptionService {
   getUserSubscriptions(): Observable<IApiResponse<ISubscription[]>> {
     return this.http.get<IApiResponse<ISubscription[]>>(environment.apiUrl + '/user/subscriptions')
   }
+
+  cancelSubscription(SubscriptionId: string): Observable<IApiResponse<null>> {
+    return this.http.delete<IApiResponse<null>>(environment.apiUrl + `/user/subscriptions/${SubscriptionId}`)
+  }
 }
