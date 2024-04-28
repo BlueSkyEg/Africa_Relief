@@ -31,7 +31,6 @@ export class ProfileDonationsComponent implements OnInit {
   @ViewChild('receiptModal') receiptModal: ModalComponent;
 
   onViewReceipt(donation: IDonation) {
-    console.log(donation);
     this.receiptDonation = donation;
     this.receiptModal.openModal();
   }

@@ -12,35 +12,63 @@
         </tr>
       </thead>
       <tbody>
-        @for (subscription of subscriptions; track subscription.id) {
-          <tr class="p-3 text-body-3 bg-white">
-            <td class="py-3 px-6">
-              <span class="text-primary">{{subscription.recurring_amount | currency}}</span>
-              <span class="text-gray-dark"> / {{subscription.period | titlecase}}</span>
-            </td>
-            <td class="py-3 px-6">{{subscription.expiration_at | date: 'YYYY-MM-dd h:mm a'}}</td>
-            <td class="py-3 px-6">{{subscription.donation_form.title}}</td>
-            @switch (subscription.status) {
-              @case ('active') {
-                <td class="py-3 px-6"><app-badge type="success" label="Active"/></td>
-              }
-              @case ('cancelled') {
-                <td class="py-3 px-6"><app-badge type="danger" label="Cancelled"/></td>
-              }
-              @case ('incomplete') {
-                <td class="py-3 px-6"><app-badge type="info" label="Incomplete"/></td>
-              }
-            }
-            @if (subscription.status == 'active') {
-              <td class="py-3 px-6 sticky end-0 bg-white">
-                <button class="text-gray-dark border border-gray-light py-2 px-3">Cancel</button>
+        @defer () {
+          @for (subscription of subscriptions; track subscription.id) {
+            <tr class="p-3 text-body-3 bg-white">
+              <td class="py-3 px-6">
+                <span class="text-primary">{{subscription.recurring_amount | currency}}</span>
+                <span class="text-gray-dark"> / {{subscription.period | titlecase}}</span>
               </td>
-            } @else {
-              <td></td>
-            }
-          </tr>
+              <td class="py-3 px-6">{{subscription.expiration_at | date: 'YYYY-MM-dd h:mm a'}}</td>
+              <td class="py-3 px-6">{{subscription.donation_form.title}}</td>
+              @switch (subscription.status) {
+                @case ('active') {
+                  <td class="py-3 px-6"><app-badge type="success" label="Active"/></td>
+                }
+                @case ('canceled') {
+                  <td class="py-3 px-6"><app-badge type="danger" label="Canceled"/></td>
+                }
+                @case ('incomplete') {
+                  <td class="py-3 px-6"><app-badge type="info" label="Incomplete"/></td>
+                }
+              }
+              @if (subscription.status == 'active') {
+                <td class="py-3 px-6 sticky end-0 bg-white">
+                  <button class="text-gray-dark border border-gray-light py-2 px-3" (click)="onOpenCancelSubscriptionModal(subscription)">Cancel</button>
+                </td>
+              } @else {
+                <td></td>
+              }
+            </tr>
+          }
+          @empty {
+            <tr>
+              <td class="p-8 text-center" colspan="5">No subscriptions founded...</td>
+            </tr>
+          }
+        }
+        @placeholder (minimum 1s) {
+          @for (item of [0,1,2,3]; track $index) {
+            <tr class="animate-pulse p-3 text-body-3">
+              <td><div class="bg-gray-light h-10 my-4"></div></td>
+              <td><div class="bg-gray-light h-10 ml-4 my-4"></div></td>
+              <td><div class="bg-gray-light h-10 ml-4 my-4"></div></td>
+              <td><div class="bg-gray-light h-10 ml-4 my-4"></div></td>
+              <td><div class="bg-gray-light h-10 ml-4 my-4"></div></td>
+            </tr>
+          }
         }
       </tbody>
     </table>
   </div>
 </div>
+
+<app-modal title="Cancel Subscription" #cancelSubscriptionModal>
+  <div class="flex flex-col gap-6">
+    <p class="text-body-2-md">Are you sure you want to cancel this subscription?<br>This action cannot be undone.</p>
+    <div class="flex justify-end gap-4">
+      <button type="button" title="Close" class="bg-white border border-gray-light py-2 px-4 outline-none" (click)="cancelSubscriptionModal.closeModal()">Close</button>
+      <button type="button" title="Cancel Subscription" class="text-white bg-danger py-2 px-4 outline-none" (click)="onCancelSubcription()">Cancel</button>
+    </div>
+  </div>
+</app-modal>
