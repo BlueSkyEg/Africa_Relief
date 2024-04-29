@@ -37,7 +37,7 @@
         <ng-template matStepLabel>Billing Details</ng-template>
         <app-form-field>
           <app-form-label>Country*</app-form-label>
-          <input appFormElement type="text" placeholder="Select Country" [matAutocomplete]="countryAutocomplete" (input)="filterCountries(countryInput.value)" (focus)="filterCountries(countryInput.value)" #countryInput>
+          <input appFormElement type="text" placeholder="Select Country" [matAutocomplete]="countryAutocomplete" (input)="filterCountries(countryInput.value)" (focus)="filterCountries(countryInput.value)" #countryInput autocomplete="off">
           <mat-autocomplete requireSelection #countryAutocomplete="matAutocomplete" [displayWith]="getOptionText" (optionSelected)="onChangeCountry($event.option.value)">
             @for (country of filteredCountries; track country) {
             <mat-option [value]="country">{{country.name}}</mat-option>
@@ -59,7 +59,7 @@
           <app-form-field class="w-full">
             <app-form-label>State*</app-form-label>
             @if (states.length) {
-              <input appFormElement type="text" placeholder="Select State" [matAutocomplete]="stateAutocomplete" (input)="filterStates(stateInput.value)" (focus)="filterStates(stateInput.value)" #stateInput>
+              <input appFormElement type="text" placeholder="Select State" [matAutocomplete]="stateAutocomplete" (input)="filterStates(stateInput.value)" (focus)="filterStates(stateInput.value)" #stateInput autocomplete="off">
               <mat-autocomplete requireSelection #stateAutocomplete="matAutocomplete" [displayWith]="getOptionText" (optionSelected)="onChangeState($event.option.value)">
                 @for (state of filteredStates; track state.isoCode) {
                   <mat-option [value]="state">{{state.name}}</mat-option>
@@ -80,7 +80,7 @@
         <app-form-field>
           <app-form-label>City*</app-form-label>
           @if (cities.length) {
-            <input appFormElement type="text" formControlName="city" placeholder="Select City" [matAutocomplete]="cityAutocomplete" (input)="filterCities(cityInput.value)" (focus)="filterCities(cityInput.value)" #cityInput>
+            <input appFormElement type="text" formControlName="city" placeholder="Select City" [matAutocomplete]="cityAutocomplete" (input)="filterCities(cityInput.value)" (focus)="filterCities(cityInput.value)" #cityInput autocomplete="off">
               <mat-autocomplete requireSelection #cityAutocomplete="matAutocomplete">
                 @for (city of filteredCities; track city) {
                   <mat-option [value]="city.name">{{city.name}}</mat-option>
