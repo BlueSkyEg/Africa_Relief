@@ -10,6 +10,7 @@ import { loaderInterceptor } from './core/interceptors/loader.interceptor';
 import { provideNgxStripe } from 'ngx-stripe';
 import { environment } from '../environments/environment';
 import { AuthorizeInterceptor } from './core/interceptors/authorize.interceptor';
+import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
 
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
@@ -26,6 +27,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(HttpClientModule),
     provideHttpClient(withInterceptors([loaderInterceptor, RequestOptionsInterceptor, AuthorizeInterceptor])),
     provideNgxStripe(environment.stripePublicKey),
-    {provide: TitleStrategy, useClass: CustomTitleService}
+    {provide: TitleStrategy, useClass: CustomTitleService},
+    {provide: DATE_PIPE_DEFAULT_OPTIONS, useValue: {dateFormat: 'MMM d, y, h:mm a', timezone: Intl.DateTimeFormat().resolvedOptions().timeZone}}
   ]
 };

@@ -17,7 +17,7 @@
             <tr class="p-3 text-body-3 bg-white">
               <td class="py-3 px-6 text-primary">{{donation.payment_amount | currency}}</td>
               <td class="py-3 px-6">{{donation.donation_form.title | titlecase}}</td>
-              <td class="py-3 px-6">{{donation.completed_date | date: 'YYYY-MM-dd h:mm a'}}</td>
+              <td class="py-3 px-6">{{donation.completed_date | date}}</td>
               @switch (donation.status) {
                 @case ('succeeded') {
                   <td class="py-3 px-6"><app-badge type="success" label="Succeeded"/></td>
@@ -81,7 +81,7 @@
         <ul>
           <li>Payment ID: <span class="text-body-3">{{receiptDonation.id}}</span></li>
           <li>Amount: <span class="text-body-3">{{receiptDonation.payment_amount | currency}}</span></li>
-          <li>Date of Payment: <span class="text-body-3">{{receiptDonation.completed_date | date:'MMM d Y h:m a'}}</span></li>
+          <li>Date of Payment: <span class="text-body-3">{{receiptDonation.completed_date | date}}</span></li>
           <li>Project Name: <span class="text-body-3">{{receiptDonation.donation_form.title | titlecase}}</span></li>
         </ul>
       </div>
