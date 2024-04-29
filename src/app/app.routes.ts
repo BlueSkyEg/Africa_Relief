@@ -24,6 +24,7 @@ import { GuestGuard } from './core/guards/guest.guard';
 import { DonationComponent } from './components/donation-pages/donation/donation.component';
 import { DonationConfirmationComponent } from './components/donation-pages/donation-confirmation/donation-confirmation.component';
 import { DonationFailedComponent } from './components/donation-pages/donation-failed/donation-failed.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -58,5 +59,6 @@ export const routes: Routes = [
   ]},
   {path: 'donation', title: 'Donation', component: DonationComponent},
   {path: 'donation-confirmation', title: 'Donation Confirmation', component: DonationConfirmationComponent},
-  {path: 'donation-failed', title: 'Donation Failed', component: DonationFailedComponent}
+  {path: 'donation-failed', title: 'Donation Failed', component: DonationFailedComponent},
+  {path: '**', title: 'Page Not Found', pathMatch: 'full', component: PageNotFoundComponent},
 ];
