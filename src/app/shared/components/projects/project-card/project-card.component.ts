@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
     selector: 'app-project-card',
     standalone: true,
     templateUrl: './project-card.component.html',
-    styleUrl: './project-card.component.scss',
+    styles: ``,
     imports: [RouterModule, ButtonLinkComponent]
 })
 export class ProjectCardComponent {
