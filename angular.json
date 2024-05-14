@@ -56,7 +56,9 @@
               "src/styles/_angular-material.scss",
               "src/styles/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/pusher.min.js"
+            ]
           },
           "configurations": {
             "production": {
