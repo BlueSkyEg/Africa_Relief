@@ -10,8 +10,6 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { AuthService } from './core/services/auth/auth.service';
 import { IApiResponse } from './shared/interfaces/api-response-interface';
 import { IUser } from './shared/interfaces/auth/user.interface';
-import { NotificationService } from './core/services/layout/notification.service';
-
 
 @Component({
   selector: 'app-root',
@@ -25,7 +23,6 @@ export class AppComponent implements OnInit {
   displayLoader: boolean = false;
   layoutService: LayoutService = inject(LayoutService);
   authService: AuthService = inject(AuthService);
-  notificationService: NotificationService = inject(NotificationService);
   cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
