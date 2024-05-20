@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {MainSliderComponent} from "./main-slider/main-slider.component";
 import {ProjectCategoriesSliderComponent} from "../../shared/components/projects/project-categories-slider/project-categories-slider.component";
 import {ProjectsSliderSectionComponent} from "./projects-slider-section/projects-slider-section.component";
@@ -14,6 +14,8 @@ import { IconEnvelopeComponent } from "../../shared/icons/envelope/icon-envelope
 import { IconPinComponent } from "../../shared/icons/pin/icon-pin.component";
 import { animate, style, transition, trigger } from '@angular/animations';
 import { IconCloseComponent } from "../../shared/icons/close/icon-close.component";
+import { DonationFormService } from '../../core/services/donation/donation-form.service';
+import { IApiResponse } from '../../shared/interfaces/api-response-interface';
 
 @Component({
     selector: 'app-home',
@@ -50,32 +52,18 @@ import { IconCloseComponent } from "../../shared/icons/close/icon-close.componen
 export class HomeComponent {
 
   videoModalOpened: Boolean = false;
+  donationForm: IDonationForm;
 
-  donationForm: IDonationForm = {
-    id: 14577,
-    title: "Equal Opportunity For Children",
-    levels: [
-      {
-        amount: 100,
-        name: null
-      },
-      {
-        amount: 250,
-        name: null
-      },
-      {
-        amount: 500,
-        name: null
-      }
-    ],
-    fullyFundLevel: null,
-    recurringPeriods: [
-      "day",
-      "week",
-      "month",
-      "Quarter",
-      "year"
-    ]
+  donationFormService: DonationFormService = inject(DonationFormService);
+
+  ngOnInit(): void {
+    this.onGetHomeDonationForm();
+  }
+
+  onGetHomeDonationForm(): void {
+    this.donationFormService.getHomeDonationForm().subscribe({
+      next: (res: IApiResponse<IDonationForm>) => this.donationForm = res.data
+    })
   }
 
   scroll(el: HTMLElement) {

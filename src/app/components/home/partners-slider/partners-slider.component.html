@@ -2,66 +2,11 @@
   <div class="container flex justify-between items-center">
     <app-icon-arrow-left class="partner-slide-prev cursor-pointer w-10"/>
     <swiper-container class="partners-slider block w-[85%]" init="false">
+      @for (slide of slides; track slide) {
       <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/AAFD.webp" alt="AAFD" loading="lazy">
+        <img class="w-24 h-24" [src]="slide.image.src" [alt]="slide.image.alt_text" loading="lazy">
       </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/COV.webp" alt="COV" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/HS.webp" alt="HS" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/IMA.webp" alt="IMA" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/IRN.webp" alt="IRN" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/ISDF2-1.webp" alt="ISDF" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/LBE.webp" alt="LBE" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/MHG.webp" alt="MHG" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/MHGG.webp" alt="MHGG" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/MHZ.webp" alt="MHZ" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/NCC.webp" alt="NCC" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/RCD.webp" alt="RCD" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/ROKMH.webp" alt="ROKMH" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/ROM.webp" alt="ROM" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/SSC.webp" alt="SSC" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/UOSSM.webp" alt="UOSSM" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/WMR.webp" alt="WMR" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/IsDB2.webp" alt="IsDB" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/BADEA-1.webp" alt="BADEA" loading="lazy">
-      </swiper-slide>
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" src="/assets/images/home/partners-logos/IRUSA.webp" alt="IRUSA" loading="lazy">
-      </swiper-slide>
+      }
     </swiper-container>
     <app-icon-arrow-right class="partner-slide-next cursor-pointer w-10"/>
   </div>

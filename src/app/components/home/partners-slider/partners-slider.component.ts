@@ -1,8 +1,11 @@
-import {Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, signal} from '@angular/core';
+import {Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal} from '@angular/core';
 import {IconArrowLeftComponent} from "../../../shared/icons/arrows/arrow-left/icon-arrow-left.component";
 import {IconArrowRightComponent} from "../../../shared/icons/arrows/arrow-right/icon-arrow-right.component";
 import {SwiperContainer} from "swiper/swiper-element";
 import {SwiperOptions} from "swiper/types";
+import { CarouselService } from '../../../core/services/layout/carousel.service';
+import { ICarouselSlide } from '../../../shared/interfaces/carousel-slide.interface';
+import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 
 @Component({
   selector: 'app-partners-slider',
@@ -16,9 +19,25 @@ import {SwiperOptions} from "swiper/types";
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PartnersSliderComponent implements OnInit {
+  slides: ICarouselSlide[];
   swiperElement = signal<SwiperContainer | null>(null);
 
+  carsoulService: CarouselService = inject(CarouselService);
+
   ngOnInit(): void {
+    this.onGetPartnersSlider();
+  }
+
+  onGetPartnersSlider(): void {
+    this.carsoulService.getPartnersSlider().subscribe({
+      next: (res: IApiResponse<ICarouselSlide[]>) => {
+        this.slides = res.data;
+        this.onLoadSwiperSlider();
+      }
+    })
+  }
+
+  onLoadSwiperSlider(): void {
     const swiperElementConstructor: SwiperContainer = document.querySelector('.partners-slider');
     const swiperOptions: SwiperOptions = {
       loop: true,

@@ -22,15 +22,34 @@
         </div>
       </div>
     </div>
-    <app-donation-card [donationForm]="donationForm" class="flex-1 xl:max-w-[600px]">
-      <div class="flex justify-between items-center py-2 px-4 cursor-pointer" (click)="scroll(donateThroughZelle)">
-        <div class="flex items-center gap-2">
-          <app-icon-zelle class="scale-75"/>
-          <span class="text-body-3">Donate through Zelle</span>
+    @if (donationForm) {
+      <app-donation-card [donationForm]="donationForm" class="flex-1 xl:max-w-[600px]">
+        <div class="flex justify-between items-center py-2 px-4 cursor-pointer" (click)="scroll(donateThroughZelle)">
+          <div class="flex items-center gap-2">
+            <app-icon-zelle class="scale-75"/>
+            <span class="text-body-3">Donate through Zelle</span>
+          </div>
+          <span class="text-primary">Click here</span>
         </div>
-        <span class="text-primary">Click here</span>
+      </app-donation-card>
+    }
+    @else {
+      <div class="animate-pulse flex flex-col gap-6 p-4 h-fit bg-white flex-1 xl:max-w-[600px]">
+        <div class="bg-gray-light h-16"></div>
+        <div class="bg-gray-light h-12"></div>
+        <div class="flex flex-col gap-4">
+          <div class="bg-gray-light h-3 w-2/6"></div>
+          <div class="bg-gray-light h-10"></div>
+          <div class="flex gap-4">
+            <div class="bg-gray-light h-10 w-2/6"></div>
+            <div class="bg-gray-light h-10 w-2/6"></div>
+            <div class="bg-gray-light h-10 w-2/6"></div>
+          </div>
+        </div>
+        <div class="bg-gray-light h-10"></div>
+        <div class="bg-gray-light h-10"></div>
       </div>
-    </app-donation-card>
+    }
   </div>
 
   <!-- Video Modal -->
@@ -43,7 +62,7 @@
   }
 
   <!-- Project Categories Silder -->
-  <div class="container flex flex-col gap-8">
+  <div #projectCategoriesSlider class="container flex flex-col gap-8">
     <!-- Section Header -->
     <div class="flex justify-between gap-6 items-start lg:items-end flex-col lg:flex-row">
       <div class="flex flex-col gap-2 max-w-[580px]">
@@ -55,9 +74,27 @@
     <app-project-categories-slider/>
   </div>
 
-  <app-partners-slider/>
+  @defer (on viewport(projectCategoriesSlider)) {
+    <app-partners-slider #partnersSlider/>
+  }
+  @placeholder {
+    <div class="animate-pulse h-24 border-y border-gray-light bg-white"></div>
+  }
 
-  <app-projects-slider-section/>
+  @defer (on viewport(projectCategoriesSlider)) {
+    <app-projects-slider-section/>
+  }
+  @placeholder {
+    @for (item of [0,1,2]; track $index) {
+      <div class="animate-pulse flex flex-col gap-6 bg-white border border-gray-light max-w-[400px] p-4">
+        <div class="bg-gray-light h-72"></div>
+        <div class="bg-gray-light h-3 w-2/6"></div>
+        <div class="bg-gray-light h-4 w-5/6"></div>
+        <div class="bg-gray-light h-4 w-4/6"></div>
+        <div class="bg-gray-light h-8"></div>
+      </div>
+    }
+  }
 
   <!-- Donate Through Zelle -->
   <div #donateThroughZelle class="py-12 text-white bg-primary bg-[url('/assets/images/shared/wave-bg.webp')] bg-cover bg-no-repeat">
@@ -85,7 +122,21 @@
 
   <app-safe-and-easy-donation/>
 
-  <app-become-volunteer/>
+  <app-become-volunteer #becomeVolunteer/>
 
-  <app-latest-blogs/>
+  <!-- Latest Blogs -->
+  @defer (on viewport(becomeVolunteer)) {
+    <app-latest-blogs/>
+  }
+  @placeholder {
+    @for (item of [0,1,2]; track $index) {
+      <div class="animate-pulse flex flex-col gap-6 bg-white border border-gray-light max-w-[400px] p-4">
+        <div class="bg-gray-light h-72"></div>
+        <div class="bg-gray-light h-3 w-2/6"></div>
+        <div class="bg-gray-light h-4 w-5/6"></div>
+        <div class="bg-gray-light h-4 w-4/6"></div>
+        <div class="bg-gray-light h-8"></div>
+      </div>
+    }
+  }
 </main>

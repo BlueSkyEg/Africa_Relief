@@ -4,6 +4,7 @@ import {ButtonLinkComponent} from "../../../shared/components/button-link/button
 import {IBlogCard} from "../../../shared/interfaces/blog/blog-card-interface";
 import { BlogService } from '../../../core/services/blogs/blog.service';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
+import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 
 @Component({
   selector: 'app-latest-blogs',
@@ -17,8 +18,8 @@ export class LatestBlogsComponent implements OnInit {
   blogService: BlogService = inject(BlogService);
 
   ngOnInit(): void {
-    this.blogService.getLatestBlogs().subscribe({
-      next: (res: IApiResponse<IBlogCard[]>) => this.blogs = res.data
+    this.blogService.getBlogs(1, 3).subscribe({
+      next: (res: IApiResponse<IPaginatedData<IBlogCard[]>>) => this.blogs = res.data.data
     })
   }
 }
