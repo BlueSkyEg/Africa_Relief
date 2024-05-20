@@ -7,7 +7,7 @@ import { LabelComponent } from "../../../shared/components/form/label/label.comp
 import { ErrorComponent } from "../../../shared/components/form/error/error.component";
 import { ButtonComponent } from "../../../shared/components/form/button/button.component";
 import { ActivatedRoute } from '@angular/router';
-import { ICareer } from '../../../shared/interfaces/career.interface';
+import { ICareer } from '../../../shared/interfaces/career/career.interface';
 import { CareerService } from '../../../core/services/careers/career.service';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { CommonModule } from '@angular/common';

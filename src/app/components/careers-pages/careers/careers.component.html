@@ -11,13 +11,21 @@
     <h2 class="text-heading-2 basis-3/5">Available Jobs</h2>
     <p class="text-body-2 text-gray-dark basis-2/5">If you're passionate about making a positive impact and giving back to society, consider joining our team.</p>
   </div>
-  <div class="flex flex-col gap-6">
+  <div class="flex flex-col gap-6" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onGetCareers()">
     @for (career of careers; track career.slug) {
       <div class="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-12 p-6 lg:py-8 lg:px-12 bg-white border border-gray-light">
         <h3 class="text-body-1-roboto grow shrink-0">{{ career.title | titlecase }}</h3>
-        <p class="text-gray-dark text-body-2 line-clamp-4 lg:line-clamp-2 shrink">{{ career.content[0].description }}</p>
+        <p class="text-gray-dark text-body-2 line-clamp-4 lg:line-clamp-2 shrink">{{ career.excerpt }}</p>
         <app-button-link class="grow shrink-0" label="Apply Now" [path]="career.slug" appearance="filled-primary" [fullWidth]="true"/>
       </div>
+    } @empty {
+      @for (item of [0,1,2,3,4]; track $index) {
+        <div class="animate-pulse flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-12 p-6 lg:py-8 lg:px-12 bg-white border border-gray-light">
+          <div class="bg-gray-light h-16 w-1/5"></div>
+          <div class="bg-gray-light h-16 w-3/5"></div>
+          <div class="bg-gray-light h-16 w-1/5"></div>
+        </div>
+      }
     }
   </div>
 </div>

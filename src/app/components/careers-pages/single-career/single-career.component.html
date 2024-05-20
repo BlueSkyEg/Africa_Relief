@@ -1,53 +1,91 @@
 <div class="container flex flex-col gap-8 my-10 lg:mb-20">
-  <app-breadcrumb baseName="Careers" basePath="/careers" [currentName]="career.title"/>
-  <h1 class="text-heading-1">{{ career.title | titlecase }}</h1>
-  <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
-    <div class="basis-1/2">
-      <app-accordion [contentList]="career.content"/>
+  @if (career) {
+    <app-breadcrumb baseName="Careers" basePath="/careers" [currentName]="career.title"/>
+    <h1 class="text-heading-1">{{ career.title | titlecase }}</h1>
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+      <div class="basis-1/2">
+        <app-accordion [contentList]="career.contents" [summary]="career.excerpt"/>
+      </div>
+      <!-- Apply Job Form -->
+      <div class="flex flex-1 p-6 bg-white basis-1/2">
+        <form class="w-full" (submit)="onApplyJob()" [formGroup]="careerForm" enctype="multipart/form-data">
+          <app-form-field>
+            <app-form-label>Name*</app-form-label>
+            <input appFormElement type="text" formControlName="name" placeholder="Full Name">
+            <app-form-error [hasError]="careerForm.get('name').hasError('required') && careerForm.get('name').touched">Name is required</app-form-error>
+          </app-form-field>
+          <app-form-field>
+            <app-form-label>Email*</app-form-label>
+            <input appFormElement type="email" formControlName="email" placeholder="example@gmail.com">
+            <app-form-error [hasError]="careerForm.get('email').hasError('required') && careerForm.get('email').touched">Email is required</app-form-error>
+            <app-form-error [hasError]="careerForm.get('email').hasError('email') && careerForm.get('email').touched">Please enter valid email</app-form-error>
+          </app-form-field>
+          <app-form-field>
+            <app-form-label>Phone Number*</app-form-label>
+            <input appFormElement type="text" formControlName="phone" placeholder="Phone Number">
+            <app-form-error [hasError]="careerForm.get('phone').hasError('required') && careerForm.get('phone').touched">Phone Number is required</app-form-error>
+          </app-form-field>
+          <app-form-field>
+            <app-form-label>Address*</app-form-label>
+            <input appFormElement type="text" formControlName="address" placeholder="Address">
+            <app-form-error [hasError]="careerForm.get('address').hasError('required') && careerForm.get('address').touched">Address is required</app-form-error>
+          </app-form-field>
+          <app-form-field>
+            <app-form-label>Resume (PDF)*</app-form-label>
+            <p class="text-body-3 text-gray-dark pb-2">Please Upload Your CV & Make Sure Your Full Name In The CV is Similar to The Name on The PDF File.</p>
+            <input id="upload-resume" type="file" formControlName="resume" hidden>
+            <label for="upload-resume" class="flex justify-center items-center gap-1 border border-gray-light p-3 cursor-pointer">
+              <app-icon-paperclip/>
+              <span class="text-body-3 text-gray-dark">Attach File</span>
+            </label>
+            <app-form-error [hasError]="careerForm.get('resume').hasError('required') && careerForm.get('resume').touched">Resume is required</app-form-error>
+          </app-form-field>
+          <app-form-field>
+            <app-form-label>Message*</app-form-label>
+            <textarea appFormElement formControlName="message" placeholder="Write your message" rows="3"></textarea>
+            <app-form-error [hasError]="careerForm.get('message').hasError('required') && careerForm.get('message').touched">Message is required</app-form-error>
+          </app-form-field>
+          <div class="pt-2">
+            <app-form-button appearance="outlined" [disabled]="careerForm.invalid">Apply</app-form-button>
+          </div>
+        </form>
+      </div>
     </div>
-    <!-- Apply Job Form -->
-    <div class="flex flex-1 p-6 bg-white basis-1/2">
-      <form class="w-full" (submit)="onApplyJob()" [formGroup]="careerForm" enctype="multipart/form-data">
-        <app-form-field>
-          <app-form-label>Name*</app-form-label>
-          <input appFormElement type="text" formControlName="name" placeholder="Full Name">
-          <app-form-error [hasError]="careerForm.get('name').hasError('required') && careerForm.get('name').touched">Name is required</app-form-error>
-        </app-form-field>
-        <app-form-field>
-          <app-form-label>Email*</app-form-label>
-          <input appFormElement type="email" formControlName="email" placeholder="example@gmail.com">
-          <app-form-error [hasError]="careerForm.get('email').hasError('required') && careerForm.get('email').touched">Email is required</app-form-error>
-          <app-form-error [hasError]="careerForm.get('email').hasError('email') && careerForm.get('email').touched">Please enter valid email</app-form-error>
-        </app-form-field>
-        <app-form-field>
-          <app-form-label>Phone Number*</app-form-label>
-          <input appFormElement type="text" formControlName="phone" placeholder="Phone Number">
-          <app-form-error [hasError]="careerForm.get('phone').hasError('required') && careerForm.get('phone').touched">Phone Number is required</app-form-error>
-        </app-form-field>
-        <app-form-field>
-          <app-form-label>Address*</app-form-label>
-          <input appFormElement type="text" formControlName="address" placeholder="Address">
-          <app-form-error [hasError]="careerForm.get('address').hasError('required') && careerForm.get('address').touched">Address is required</app-form-error>
-        </app-form-field>
-        <app-form-field>
-          <app-form-label>Resume (PDF)*</app-form-label>
-          <p class="text-body-3 text-gray-dark pb-2">Please Upload Your CV & Make Sure Your Full Name In The CV is Similar to The Name on The PDF File.</p>
-          <input id="upload-resume" type="file" formControlName="resume" hidden>
-          <label for="upload-resume" class="flex justify-center items-center gap-1 border border-gray-light p-3 cursor-pointer">
-            <app-icon-paperclip/>
-            <span class="text-body-3 text-gray-dark">Attach File</span>
-          </label>
-          <app-form-error [hasError]="careerForm.get('resume').hasError('required') && careerForm.get('resume').touched">Resume is required</app-form-error>
-        </app-form-field>
-        <app-form-field>
-          <app-form-label>Message*</app-form-label>
-          <textarea appFormElement formControlName="message" placeholder="Write your message" rows="3"></textarea>
-          <app-form-error [hasError]="careerForm.get('message').hasError('required') && careerForm.get('message').touched">Message is required</app-form-error>
-        </app-form-field>
-        <div class="pt-2">
-          <app-form-button appearance="outlined" [disabled]="careerForm.invalid">Apply</app-form-button>
+  }
+  @else () {
+    <div class="animate-pulse bg-gray-light h-4 w-full md:w-1/2"></div>
+    <div class="animate-pulse bg-gray-light h-12 w-full md:w-1/2"></div>
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+      <div class="flex flex-col gap-6 basis-1/2">
+        <div class="bg-gray-light h-24 w-full"></div>
+        <div class="bg-gray-light h-24 w-full"></div>
+        <div class="bg-gray-light h-24 w-full"></div>
+        <div class="bg-gray-light h-24 w-full"></div>
+        <div class="bg-gray-light h-24 w-full"></div>
+      </div>
+      <div class="flex flex-col gap-6 flex-1 p-6 bg-white basis-1/2">
+        <div class="flex flex-col gap-4">
+          <div class="bg-gray-light h-4 w-2/6"></div>
+          <div class="bg-gray-light h-14 w-full"></div>
         </div>
-      </form>
+        <div class="flex flex-col gap-4">
+          <div class="bg-gray-light h-4 w-2/6"></div>
+          <div class="bg-gray-light h-14 w-full"></div>
+        </div>
+        <div class="flex flex-col gap-4">
+          <div class="bg-gray-light h-4 w-2/6"></div>
+          <div class="bg-gray-light h-14 w-full"></div>
+        </div>
+        <div class="flex flex-col gap-4">
+          <div class="bg-gray-light h-4 w-2/6"></div>
+          <div class="bg-gray-light h-14 w-full"></div>
+        </div>
+        <div class="flex flex-col gap-4">
+          <div class="bg-gray-light h-4 w-2/6"></div>
+          <div class="bg-gray-light h-14 w-full"></div>
+        </div>
+        <div class="bg-gray-light h-16 w-1/5"></div>
+      </div>
     </div>
-  </div>
+  }
 </div>
