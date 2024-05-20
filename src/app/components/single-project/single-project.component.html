@@ -1,91 +1,100 @@
 <div class="container mt-4 mb-10 lg:mb-20">
-  @defer () {
-  <!-- Breadcrumb -->
-  <app-breadcrumb basePath="/projects" baseName="Projects" [currentName]="project.title"/>
+  @if (project) {
+    <!-- Breadcrumb -->
+    <app-breadcrumb basePath="/projects" baseName="Projects" [currentName]="project.title"/>
 
-  <!-- Project Container -->
-  <div class="grid lg:grid-cols-3 gap-6 mt-6">
-    <!-- Project Summary -->
-    <div class="flex flex-col gap-6 lg:col-span-2">
-      <div class="relative">
-        <img class="w-full h-[480px] object-cover object-center" [src]="project.featuredImage.src" [alt]="project.featuredImage.alt" loading="lazy">
-        <a class="absolute bottom-0 start-0 bg-secondary py-1 px-3" [routerLink]="'/projects/category/' + project.category.slug">{{ project.category.name }}</a>
+    <!-- Project Container -->
+    <div class="grid lg:grid-cols-3 gap-6 mt-6">
+      <!-- Project Summary -->
+      <div class="flex flex-col gap-6 lg:col-span-2">
+        <div class="relative">
+          <img class="w-full h-[480px] object-cover object-center" [src]="project.featured_image.src" [alt]="project.featured_image.alt_text" loading="lazy">
+          <div class="absolute bottom-0 start-0 bg-secondary py-1 px-3">
+            @for (category of project.categories; track category; let idx = $index) {
+              <a [routerLink]="'/projects/category/' + category.slug">{{ category.name }}</a>
+              @if (project.categories.length > idx + 1 ) {
+                <span>, </span>
+              }
+            }
+          </div>      </div>
+        <!-- project title -->
+        <h1 class="text-heading-1">{{project.title | titlecase}}</h1>
+        <!-- project summary -->
+        <p class="p-6 bg-white border border-gray-light">{{project.excerpt}}</p>
       </div>
-      <!-- project title -->
-      <h1 class="text-heading-1">{{project.title | titlecase}}</h1>
-      <!-- project summary -->
-      <p class="p-6 bg-white border border-gray-light">{{project.summary}}</p>
-    </div>
 
-    <!-- Donation Card -->
-    <app-donation-card [donationForm]="project.donationForm"/>
+      <!-- Donation Card -->
+      <app-donation-card [donationForm]="project.donation_form"/>
 
-    <!-- project content -->
-    <div class="flex flex-col gap-6 lg:col-span-2">
-      <div class="flex flex-col gap-6">
-        @for (paragraph of project.content; track paragraph; let idx = $index) {
-        <div class="flex flex-col gap-3">
-          @if (!idx) {
-          <div class="flex items-start gap-2">
-            <app-icon-quote class="mt-2"/>
-            <h2 class="text-body-1-inter">{{paragraph.heading}}</h2>
+      <!-- project content -->
+      <div class="flex flex-col gap-6 lg:col-span-2">
+        <div class="flex flex-col gap-6">
+          @for (content of project.contents; track content; let idx = $index) {
+          <div class="flex flex-col gap-3">
+            @if (!idx) {
+            <div class="flex items-start gap-2">
+              <app-icon-quote class="mt-2"/>
+              <h2 class="text-body-1-inter">{{content.heading}}</h2>
+            </div>
+            } @else {
+              <h2 class="text-body-1-inter">{{content.heading}}</h2>
+            }
+            <p class="text-body-2">{{content.description}}</p>
           </div>
-          } @else {
-            <h2 class="text-body-1-inter">{{paragraph.heading}}</h2>
           }
-          <p class="text-body-2">{{paragraph.description}}</p>
         </div>
-        }
-      </div>
 
-      <app-share-buttons />
+        <app-share-buttons #shareButtons/>
+      </div>
     </div>
-  </div>
 
-  <!-- Latest Updates -->
-  <div class="flex flex-col gap-8 mt-10 lg:mt-20">
-      <div class="flex flex-col lg:flex-row gap-6 justify-between lg:items-end">
-        <h2 class="text-heading-2">Latest Updates</h2>
-        <app-button-link label="See All Blogs" path="/blogs" [icon]="true" appearance="outlined-secondary"/>
-      </div>
-      <div class="flex justify-center flex-wrap lg:flex-nowrap gap-6">
-        @for (blog of project.latestUpdates; track blog) {
-        <app-blog-card [blog]="blog"/>
-        }
-      </div>
-  </div>
-}
-@placeholder (minimum 0.5s) {
-  <div class="animate-pulse bg-gray-light h-4 w-7/12"></div>
-  <div class="animate-pulse grid lg:grid-cols-3 gap-10 mt-6">
-    <div class="animate-pulse bg-gray-light h-[480px] lg:col-span-2"></div>
+    <!-- Related Projects -->
+    @defer (on viewport(shareButtons)) {
+      <app-related-projects [currentProjectSlug]="project.slug"/>
+    }
+    @placeholder {
+      @for (item of [0,1,2]; track $index) {
+        <div class="animate-pulse flex flex-col gap-6 bg-white border border-gray-light max-w-[400px] p-4">
+          <div class="bg-gray-light h-72"></div>
+          <div class="bg-gray-light h-3 w-2/6"></div>
+          <div class="bg-gray-light h-4 w-5/6"></div>
+          <div class="bg-gray-light h-4 w-4/6"></div>
+          <div class="bg-gray-light h-8"></div>
+        </div>
+      }
+    }
+  }
+  @else () {
+    <div class="animate-pulse bg-gray-light h-4 w-7/12"></div>
+    <div class="animate-pulse grid lg:grid-cols-3 gap-10 mt-6">
+      <div class="animate-pulse bg-gray-light h-[480px] lg:col-span-2"></div>
 
-    <div class="flex flex-col gap-6 p-4 h-fit bg-white">
-      <div class="bg-gray-light h-16"></div>
-      <div class="bg-gray-light h-12"></div>
-      <div class="flex flex-col gap-4">
-        <div class="bg-gray-light h-3 w-2/6"></div>
+      <div class="flex flex-col gap-6 p-4 h-fit bg-white">
+        <div class="bg-gray-light h-16"></div>
+        <div class="bg-gray-light h-12"></div>
+        <div class="flex flex-col gap-4">
+          <div class="bg-gray-light h-3 w-2/6"></div>
+          <div class="bg-gray-light h-10"></div>
+          <div class="flex gap-4">
+            <div class="bg-gray-light h-10 w-2/6"></div>
+            <div class="bg-gray-light h-10 w-2/6"></div>
+            <div class="bg-gray-light h-10 w-2/6"></div>
+          </div>
+        </div>
         <div class="bg-gray-light h-10"></div>
-        <div class="flex gap-4">
-          <div class="bg-gray-light h-10 w-2/6"></div>
-          <div class="bg-gray-light h-10 w-2/6"></div>
-          <div class="bg-gray-light h-10 w-2/6"></div>
+        <div class="bg-gray-light h-10"></div>
+      </div>
+
+      <div class="flex flex-col gap-10 lg:col-span-2">
+        <div class="flex flex-col gap-6">
+          <div class="bg-gray-light h-4 w-4/6"></div>
+          <div class="bg-gray-light h-40"></div>
+        </div>
+        <div class="flex flex-col gap-6">
+          <div class="bg-gray-light h-4 w-4/6"></div>
+          <div class="bg-gray-light h-40"></div>
         </div>
       </div>
-      <div class="bg-gray-light h-10"></div>
-      <div class="bg-gray-light h-10"></div>
     </div>
-
-    <div class="flex flex-col gap-10 lg:col-span-2">
-      <div class="flex flex-col gap-6">
-        <div class="bg-gray-light h-4 w-4/6"></div>
-        <div class="bg-gray-light h-40"></div>
-      </div>
-      <div class="flex flex-col gap-6">
-        <div class="bg-gray-light h-4 w-4/6"></div>
-        <div class="bg-gray-light h-40"></div>
-      </div>
-    </div>
-  </div>
-}
+  }
 </div>

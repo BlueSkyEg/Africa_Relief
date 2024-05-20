@@ -1,0 +1,11 @@
+<div class="flex flex-col gap-8 mt-10 lg:mt-20">
+  <div class="flex flex-col lg:flex-row gap-6 justify-between lg:items-end">
+    <h2 class="text-heading-2">Related Projects</h2>
+    <app-button-link label="See All Projects" path="/projects" [icon]="true" appearance="outlined-secondary"/>
+  </div>
+  <div class="flex justify-center flex-wrap lg:flex-nowrap gap-6">
+    @for (project of projects; track project) {
+    <app-project-card [project]="project"/>
+    }
+  </div>
+</div>

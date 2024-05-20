@@ -15,13 +15,14 @@ import { IconDirective } from '../../shared/directives/icon.directive';
 import { ShareButtonsComponent } from "../../shared/components/share-buttons/share-buttons.component";
 import { BreadcrumbComponent } from "../../shared/components/breadcrumb/breadcrumb.component";
 import { DonationCardComponent } from "../../shared/components/donation-card/donation-card.component";
+import { RelatedProjectsComponent } from "./related-projects/related-projects.component";
 
 @Component({
     selector: 'app-single-project',
     standalone: true,
     templateUrl: './single-project.component.html',
     styles: ``,
-    imports: [RouterModule, CommonModule, IconDirective, IconQuoteComponent, ButtonLinkComponent, BlogCardComponent, IconLinkedinComponent, IconYoutubeComponent, IconInstagramComponent, IconFacebookComponent, ShareButtonsComponent, BreadcrumbComponent, DonationCardComponent]
+    imports: [RouterModule, CommonModule, IconDirective, IconQuoteComponent, ButtonLinkComponent, BlogCardComponent, IconLinkedinComponent, IconYoutubeComponent, IconInstagramComponent, IconFacebookComponent, ShareButtonsComponent, BreadcrumbComponent, DonationCardComponent, RelatedProjectsComponent]
 })
 export class SingleProjectComponent implements OnInit {
   project: IProject;

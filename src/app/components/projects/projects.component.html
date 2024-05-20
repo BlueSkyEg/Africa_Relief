@@ -11,38 +11,21 @@
     </div>
   </div>
 
-  @defer () {
   <app-categories-filter [categories]="projectCategories" basePath="/projects" baseTitle="All Projects"/>
 
-  <!--
-    To enable InfinitScroll for projects add this
-    event to <div> element of projects cards
-    (scrolled)="onGetProjects()"
-  -->
-  <div class="container grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50">
+  <div class="container grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onGetProjects()">
     @for (project of projects; track project.slug) {
-      <app-project-card [project]="project"/>
+      <app-project-card [project]="project" />
+    } @empty {
+      @for (item of [0,1,2,3,4,5]; track $index) {
+        <div class="animate-pulse flex flex-col gap-6 bg-white border border-gray-light max-w-[400px] p-4">
+          <div class="bg-gray-light h-72"></div>
+          <div class="bg-gray-light h-3 w-2/6"></div>
+          <div class="bg-gray-light h-4 w-5/6"></div>
+          <div class="bg-gray-light h-16"></div>
+          <div class="bg-gray-light h-8"></div>
+        </div>
+      }
     }
   </div>
-}
-@placeholder (minimum 0.5s) {
-  <div class="animate-pulse container flex gap-3 overflow-x-scroll no-scrollbar">
-    <div class="bg-gray-light h-12 w-32"></div>
-    <div class="bg-gray-light h-12 w-32"></div>
-    <div class="bg-gray-light h-12 w-32"></div>
-    <div class="bg-gray-light h-12 w-32"></div>
-    <div class="bg-gray-light h-12 w-32"></div>
-  </div>
-  <div class="container grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-    @for (item of [0,1,2,3,4,5]; track $index) {
-      <div class="animate-pulse flex flex-col gap-6 bg-white border border-gray-light max-w-[400px] p-4">
-        <div class="bg-gray-light h-72"></div>
-        <div class="bg-gray-light h-3 w-2/6"></div>
-        <div class="bg-gray-light h-4 w-5/6"></div>
-        <div class="bg-gray-light h-16"></div>
-        <div class="bg-gray-light h-8"></div>
-      </div>
-    }
-  </div>
-}
 </main>
