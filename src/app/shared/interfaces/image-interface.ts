@@ -1,4 +1,4 @@
 export interface IImage {
   src: string
-  alt: string
+  alt_text: string
 }

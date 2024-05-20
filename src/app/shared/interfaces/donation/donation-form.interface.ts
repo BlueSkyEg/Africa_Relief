@@ -5,5 +5,5 @@ export interface IDonationForm {
   title: string,
   fullyFundLevel: number,
   levels: IDonationLevel[],
-  recurringPeriods: string[]
+  recurring_periods: string[]
 }

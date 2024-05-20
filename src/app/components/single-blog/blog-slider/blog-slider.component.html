@@ -2,7 +2,7 @@
   <swiper-container init="false" class="blog-slider h-full">
     @for (slide of slides; track slide) {
       <swiper-slide>
-        <img class="w-full h-[332px] lg:h-[480px] object-cover object-center" [src]="slide.src" [alt]="slide.alt" loading="lazy">
+        <img class="w-full h-[332px] lg:h-[480px] object-cover object-center" [src]="slide.src" [alt]="slide.alt_text" loading="lazy">
       </swiper-slide>
     }
   </swiper-container>

@@ -4,7 +4,7 @@ import {IImage} from "../image-interface";
 export interface IProjectCard {
   title: string
   slug: string
-  category: ICategory
-  summary: string
-  featuredImage: IImage
+  categories: ICategory[]
+  excerpt: string
+  featured_image: IImage
 }

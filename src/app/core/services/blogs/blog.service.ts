@@ -7,6 +7,7 @@ import { IBlogCard } from '../../../shared/interfaces/blog/blog-card-interface';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { IBlog } from '../../../shared/interfaces/blog/blog-interface';
 import { IGalleryImage } from '../../../shared/interfaces/blog/gallery-image.interface';
+import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,25 +17,25 @@ export class BlogService {
   constructor(private http: HttpClient) { }
 
   getBlogCategories(): Observable<IApiResponse<ICategory[]>> {
-    return this.http.get<IApiResponse<ICategory[]>>('/assets/db/blogs/data/blog-categories.json');
+    return this.http.get<IApiResponse<ICategory[]>>(environment.apiUrl + '/blogs/categories');
   }
 
-  getBlogs(categorySlug: string|null, paginationPageNum: number): Observable<IApiResponse<IBlogCard[]>> {
-    if(!categorySlug) {
-      return this.http.get<IApiResponse<IBlogCard[]>>('/assets/db/blogs/data/blogs-cards.json');
-    }
-    return this.http.get<IApiResponse<IBlogCard[]>>('/assets/db/blogs/data/category-blogs-cards/' + categorySlug + '.json');
+  getBlogs(page: number = 1, perPage: number = 9, categorySlug: string = null): Observable<IApiResponse<IPaginatedData<IBlogCard[]>>> {
+    const queryParams = categorySlug
+    ? {page: page, categorySlug: categorySlug, perPage: perPage}
+    : {page: page, perPage: perPage};
+    return this.http.get<IApiResponse<IPaginatedData<IBlogCard[]>>>(environment.apiUrl + '/blogs', {params: queryParams});
   }
 
   getBlog(blogSlug: string): Observable<IApiResponse<IBlog>> {
-    return this.http.get<IApiResponse<IBlog>>('/assets/db/blogs/data/blogs/' + blogSlug + '.json');
+    return this.http.get<IApiResponse<IBlog>>(environment.apiUrl + '/blogs/' + blogSlug);
   }
 
-  getLatestBlogs(): Observable<IApiResponse<IBlogCard[]>> {
-    return this.http.get<IApiResponse<IBlogCard[]>>('/assets/db/blogs/data/latest-blogs.json');
+  getRelatedBlogs(blogSlug: string): Observable<IApiResponse<IBlogCard[]>> {
+    return this.http.get<IApiResponse<IBlogCard[]>>(environment.apiUrl + '/blogs/related/' + blogSlug);
   }
 
-  getGalleryImages(paginationPageNum: number): Observable<IApiResponse<IGalleryImage[]>> {
-    return this.http.get<IApiResponse<IGalleryImage[]>>('/assets/db/blogs/data/gallery.json');
+  getBlogsGallery(page: number, perPage: number = 9): Observable<IApiResponse<IPaginatedData<IGalleryImage[]>>> {
+    return this.http.get<IApiResponse<IPaginatedData<IGalleryImage[]>>>(environment.apiUrl + '/blogs/gallery', {params: {page: page, perPage: perPage}});
   }
 }

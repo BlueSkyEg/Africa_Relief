@@ -8,10 +8,17 @@ import { IImage } from "../image-interface"
 export interface IProject {
   title: string
   slug: string
-  category: ICategory
-  summary: string
-  featuredImage: IImage
-  content: IContent[]
-  donationForm: IDonationForm
-  latestUpdates: IBlogCard[]
+  categories: ICategory[]
+  excerpt: string
+  featured_image: IImage
+  contents: IContent[]
+  donation_form: IDonationForm
+  meta_title: string
+  meta_keywords: string
+  meta_description: string
+  meta_robots: string
+  meta_og_title: string
+  meta_og_type: string
+  created_at: string
+  updated_at: string
 }

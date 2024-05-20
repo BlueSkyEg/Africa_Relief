@@ -8,6 +8,8 @@ import { ActivatedRoute } from '@angular/router';
 import { IApiResponse } from '../../shared/interfaces/api-response-interface';
 import { BreadcrumbComponent } from "../../shared/components/breadcrumb/breadcrumb.component";
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { IPaginatedData } from '../../shared/interfaces/paginated-data.interface';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
     selector: 'app-blogs',
@@ -20,9 +22,21 @@ export class BlogsComponent implements OnInit {
   blogCategories: ICategory[];
   blogs: IBlogCard[] = [];
   paginationPageNum: number = 1;
+  paginationPerPage: number;
+  isPaginationLastPage: boolean = false;
 
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   blogService: BlogService = inject(BlogService);
+  breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
+
+  constructor() {
+    // Determine pagination perPage number based on screen size
+    this.breakpointObserver
+      .observe('(min-width: 800px)')
+      .subscribe({
+        next: (value) => this.paginationPerPage = value.matches ? 9 : 5
+      })
+  }
 
   ngOnInit(): void {
     // Get blog categories
@@ -33,6 +47,7 @@ export class BlogsComponent implements OnInit {
     // Get Blogs
     this.activeRoute.paramMap.subscribe({
       next: () => {
+        this.isPaginationLastPage = false;
         this.paginationPageNum = 1;
         this.blogs = [];
         this.onGetBlogs();
@@ -41,12 +56,17 @@ export class BlogsComponent implements OnInit {
   }
 
   onGetBlogs() {
-    const categorySlug = this.activeRoute.snapshot.paramMap.get('slug');
-    this.blogService.getBlogs(categorySlug, this.paginationPageNum).subscribe({
-      next: (res: IApiResponse<IBlogCard[]>) => {
-        this.blogs.push(...res.data);
-        this.paginationPageNum++;
-      }
-    });
+    if(!this.isPaginationLastPage) {
+      const categorySlug = this.activeRoute.snapshot.paramMap.get('slug');
+      this.blogService.getBlogs(this.paginationPageNum, this.paginationPerPage, categorySlug).subscribe({
+        next: (res: IApiResponse<IPaginatedData<IBlogCard[]>>) => {
+          this.blogs.push(...res.data.data);
+          if(res.data.pagination.current_page === res.data.pagination.last_page) {
+            this.isPaginationLastPage = true;
+          }
+          this.paginationPageNum++;
+        }
+      });
+    }
   }
 }

@@ -1,5 +1,5 @@
 <div class="container mt-4 mb-10 lg:mb-20">
-  @defer () {
+  @if (blog) {
   <!-- Breadcrumb -->
   <app-breadcrumb basePath="/blogs" baseName="Blogs" [currentName]="blog.title"/>
 
@@ -9,11 +9,11 @@
     <div class="flex flex-col gap-6 lg:col-span-2">
       <!-- blog title -->
       <h1 class="text-heading-1">{{blog.title | titlecase}}</h1>
-      <p class="text-body-2-md">{{blog.date}}</p>
+      <p class="text-body-2-md">{{blog.created_at | date:'MMMM, Y'}}</p>
 
       <!-- blog image -->
       <div class="relative">
-        <img class="w-full lg:h-[480px] object-cover object-center" [src]="blog.featuredImage.src" [alt]="blog.featuredImage.alt" loading="lazy">
+        <img class="w-full lg:h-[480px] object-cover object-center" [src]="blog.featured_image.src" [alt]="blog.featured_image.alt_text" loading="lazy">
         <div class="absolute bottom-0 start-0 bg-secondary py-1 px-3">
           @for (category of blog.categories; track category; let idx = $index) {
             <a [routerLink]="'/blogs/category/' + category.slug">{{ category.name }}</a>
@@ -26,27 +26,27 @@
 
       <div class="flex flex-col gap-2">
         <p class="text-body-2">Location: <span class="text-body-2-md">{{blog.location | titlecase}}</span></p>
-        <p class="text-body-2">Implementation Date: <span class="text-body-2-md">{{blog.implementationDate| titlecase}}</span></p>
+        <p class="text-body-2">Implementation Date: <span class="text-body-2-md">{{blog.implementation_date | date:'MMMM, Y'}}</span></p>
       </div>
     </div>
 
     <!-- Donation Card -->
-    <app-donation-card [donationForm]="blog.donationForm"/>
+    <app-donation-card [donationForm]="blog.donation_form"/>
 
     <!-- blog content -->
     <div class="flex flex-col gap-6 lg:col-span-2">
       <div class="flex flex-col gap-6">
-        @for (paragraph of blog.content; track paragraph; let idx = $index) {
+        @for (content of blog.contents; track content; let idx = $index) {
         <div class="flex flex-col gap-3">
           @if (!idx) {
           <div class="flex items-start gap-2">
             <app-icon-quote class="mt-2"/>
-            <h2 class="text-body-1-inter">{{paragraph.heading}}</h2>
+            <h2 class="text-body-1-inter">{{content.heading}}</h2>
           </div>
           } @else {
-            <h2 class="text-body-1-inter">{{paragraph.heading}}</h2>
+            <h2 class="text-body-1-inter">{{content.heading}}</h2>
           }
-          <p class="text-body-2">{{paragraph.description}}</p>
+          <p class="text-body-2">{{content.description}}</p>
         </div>
         }
       </div>
@@ -56,11 +56,17 @@
         <app-blog-slider [slides]="blog.gallery"/>
       }
 
-      <app-share-buttons />
+      <app-share-buttons #shareButtons/>
     </div>
   </div>
+
+
+    <!-- Related Blogs -->
+    @defer (on viewport(shareButtons)) {
+      <app-related-blogs [currentBlogSlug]="blog.slug"/>
+    }
   }
-  @placeholder (minimum 0.5s) {
+  @else () {
     <div class="animate-pulse bg-gray-light h-4 w-7/12"></div>
     <div class="animate-pulse grid lg:grid-cols-3 gap-10 mt-6">
       <div class="flex flex-col gap-6 lg:col-span-2">

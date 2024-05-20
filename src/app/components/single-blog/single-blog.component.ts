@@ -9,13 +9,14 @@ import { IBlog } from '../../shared/interfaces/blog/blog-interface';
 import { BlogService } from '../../core/services/blogs/blog.service';
 import { IApiResponse } from '../../shared/interfaces/api-response-interface';
 import { BlogSliderComponent } from "./blog-slider/blog-slider.component";
+import { RelatedBlogsComponent } from "./related-blogs/related-blogs.component";
 
 @Component({
     selector: 'app-single-blog',
     standalone: true,
     templateUrl: './single-blog.component.html',
     styles: ``,
-    imports: [RouterModule, CommonModule, BreadcrumbComponent, DonationCardComponent, IconQuoteComponent, ShareButtonsComponent, BlogSliderComponent]
+    imports: [RouterModule, CommonModule, BreadcrumbComponent, DonationCardComponent, IconQuoteComponent, ShareButtonsComponent, BlogSliderComponent, RelatedBlogsComponent]
 })
 export class SingleBlogComponent {
   blog: IBlog;

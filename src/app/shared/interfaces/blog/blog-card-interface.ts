@@ -4,7 +4,8 @@ import {IImage} from "../image-interface";
 export interface IBlogCard {
   title: string
   slug: string
+  excerpt: string
   categories: ICategory[]
-  date: string
-  featuredImage: IImage
+  created_at: string
+  featured_image: IImage
 }

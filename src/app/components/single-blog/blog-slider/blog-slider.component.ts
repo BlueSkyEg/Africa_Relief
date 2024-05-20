@@ -11,7 +11,7 @@ import { IconArrowRightComponent } from '../../../shared/icons/arrows/arrow-righ
   standalone: true,
   imports: [IconDirective, IconArrowLeftComponent, IconArrowRightComponent],
   templateUrl: './blog-slider.component.html',
-  styleUrl: './blog-slider.component.scss',
+  styles: ``,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BlogSliderComponent implements OnInit {

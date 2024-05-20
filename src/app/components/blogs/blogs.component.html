@@ -11,31 +11,14 @@
     </div>
   </div>
 
-  @defer () {
-    <!-- Blogs Filter -->
-    <app-categories-filter [categories]="blogCategories" basePath="/blogs" baseTitle="All Blogs"/>
+  <!-- Blogs Filter -->
+  <app-categories-filter [categories]="blogCategories" basePath="/blogs" baseTitle="All Blogs"/>
 
-    <!--
-      To enable InfinitScroll for blogs add this
-      event to <div> element of blogs cards
-      (scrolled)="onGetBlogs()"
-    -->
-    <!-- Blogs Cards -->
-    <div class="container grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50">
-      @for (blog of blogs; track blog.slug) {
-      <app-blog-card class="flex justify-center" [blog]="blog"/>
-      }
-    </div>
-  }
-  @placeholder (minimum 0.5s) {
-    <div class="animate-pulse container flex gap-3 overflow-x-scroll no-scrollbar">
-      <div class="bg-gray-light h-12 w-32"></div>
-      <div class="bg-gray-light h-12 w-32"></div>
-      <div class="bg-gray-light h-12 w-32"></div>
-      <div class="bg-gray-light h-12 w-32"></div>
-      <div class="bg-gray-light h-12 w-32"></div>
-    </div>
-    <div class="container grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+  <!-- Blogs Cards -->
+  <div class="container grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onGetBlogs()">
+    @for (blog of blogs; track blog.slug) {
+    <app-blog-card class="flex justify-center" [blog]="blog"/>
+    } @empty {
       @for (item of [0,1,2,3,4,5]; track $index) {
         <div class="animate-pulse flex flex-col gap-6 bg-white border border-gray-light max-w-[400px] p-4">
           <div class="bg-gray-light h-72"></div>
@@ -45,6 +28,6 @@
           <div class="bg-gray-light h-8"></div>
         </div>
       }
-    </div>
-  }
+    }
+  </div>
 </main>
