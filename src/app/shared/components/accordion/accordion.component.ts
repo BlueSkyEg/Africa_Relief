@@ -12,6 +12,7 @@ import { IContent } from '../../interfaces/content-interface';
 })
 export class AccordionComponent {
   @ViewChildren('accordion') accordionList: QueryList<ElementRef>;
+  @Input() summary: string;
   @Input() contentList: IContent[];
 
   toggolAccordion(e: HTMLElement): void {

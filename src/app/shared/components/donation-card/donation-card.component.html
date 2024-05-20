@@ -30,7 +30,7 @@
     <mat-checkbox color="primary" [(ngModel)]="makeRecurringDonation" class="ms-0">Make this donation every</mat-checkbox>
     <div class="min-w-[90px] shrink-0">
       <mat-select [(value)]="recurringPeriod">
-        @for (period of donationForm.recurringPeriods; track period) {
+        @for (period of donationForm.recurring_periods; track period) {
           <mat-option value="{{period}}">{{period | titlecase}}</mat-option>
         }
       </mat-select>

@@ -1,6 +1,16 @@
 <div class="flex flex-col gap-6">
+  @if (summary) {
+    <div #accordion class="accordion active flex flex-col p-6 bg-white border border-gray-light">
+      <div (click)="toggolAccordion(accordion)" class="flex justify-between items-center gap-4 cursor-pointer">
+        <h3 class="text-body-2-md">Summary</h3>
+        <app-icon-chevron-down class="accordion-btn"/>
+      </div>
+      <p class="description text-body-2 text-gray-dark max-h-0 overflow-hidden">{{summary}}</p>
+    </div>
+  }
+
   @for (content of contentList; track content; let idx = $index;) {
-    <div #accordion [ngClass]="{'active': idx == 0}" class="accordion flex flex-col p-6 bg-white border border-gray-light">
+    <div #accordion [ngClass]="{'active': idx == 0 && !summary}" class="accordion flex flex-col p-6 bg-white border border-gray-light">
       <div (click)="toggolAccordion(accordion)" class="flex justify-between items-center gap-4 cursor-pointer">
         <h3 class="text-body-2-md">{{content.heading}}</h3>
         <app-icon-chevron-down class="accordion-btn"/>

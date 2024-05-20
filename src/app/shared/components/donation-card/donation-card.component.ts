@@ -26,7 +26,7 @@ export class DonationCardComponent {
   @Input() donationForm: IDonationForm;
   amount: number;
   makeRecurringDonation: boolean = false;
-  recurringPeriod: 'day'|'week'|'month'|'quarter'|'year' = 'month';
+  recurringPeriod: 'day'|'week'|'month'|'year' = 'month';
 
   router: Router = inject(Router);
 
