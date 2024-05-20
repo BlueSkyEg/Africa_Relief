@@ -11,24 +11,15 @@
     </div>
   </div>
 
-  @defer () {
-    <!--
-      To enable InfinitScroll for gallery add this
-      event to <div> element of gallery cards
-      (scrolled)="onGetGallery()"
-    -->
-    <div class="container columns-1 md:columns-2 lg:columns-3" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50">
-      @for (item of gallery; track item.slug) {
-        <a [title]="item.title" [routerLink]="'/blogs/' + item.slug" class="relative overflow-hidden group block mb-4">
-          <img class="w-full" [src]="item.image.src" [alt]="item.image.alt" loading="lazy">
-          <div class="group-hover:opacity-100 opacity-0 transition-opacity ease-in-out absolute w-full h-40 bottom-0 start-0 bg-gradient-to-t from-black"></div>
-          <h2 class="group-hover:bottom-0 transition-all ease-in-out absolute w-full -bottom-10 start-0 p-4 text-body-2 font-semibold text-white truncate">{{item.title}}</h2>
-        </a>
-      }
-    </div>
-  }
-  @placeholder (minimum 0.5s) {
-    <div class="container columns-1 md:columns-2 lg:columns-3">
+  <div class="container columns-1 md:columns-2 lg:columns-3" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onGetGallery()">
+    @for (item of gallery; track item.slug) {
+      <a [title]="item.title" [routerLink]="'/blogs/' + item.slug" class="relative overflow-hidden group block mb-4">
+        <img class="w-full" [src]="item.featured_image.src" [alt]="item.featured_image.alt_text" loading="lazy">
+        <div class="group-hover:opacity-100 opacity-0 transition-opacity ease-in-out absolute w-full h-40 bottom-0 start-0 bg-gradient-to-t from-black"></div>
+        <h2 class="group-hover:bottom-0 transition-all ease-in-out absolute w-full -bottom-10 start-0 p-4 text-body-2 font-semibold text-white truncate">{{item.title}}</h2>
+      </a>
+    }
+    @empty {
       <div class="animate-pulse bg-gray-light h-56 mb-4"></div>
       <div class="animate-pulse bg-gray-light h-48 mb-4"></div>
       <div class="animate-pulse bg-gray-light h-40 mb-4"></div>
@@ -38,6 +29,6 @@
       <div class="animate-pulse bg-gray-light h-36 mb-4"></div>
       <div class="animate-pulse bg-gray-light h-48 mb-4"></div>
       <div class="animate-pulse bg-gray-light h-96 mb-4"></div>
-    </div>
-  }
+    }
+  </div>
 </div>
