@@ -10,6 +10,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { AuthService } from './core/services/auth/auth.service';
 import { IApiResponse } from './shared/interfaces/api-response-interface';
 import { IUser } from './shared/interfaces/auth/user.interface';
+import { FirebaseService } from './core/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,9 @@ export class AppComponent implements OnInit {
   layoutService: LayoutService = inject(LayoutService);
   authService: AuthService = inject(AuthService);
   cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+
+  // Initialize Firebase Notification
+  firebaseService: FirebaseService = inject(FirebaseService);
 
   ngOnInit(): void {
     // Toggle Side Nav

@@ -1,6 +1,5 @@
 import {ApplicationConfig, importProvidersFrom} from '@angular/core';
 import { InMemoryScrollingFeature, InMemoryScrollingOptions, TitleStrategy, provideRouter, withInMemoryScrolling } from '@angular/router';
-
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {HttpClientModule, provideHttpClient, withInterceptors} from "@angular/common/http";
@@ -26,8 +25,14 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     importProvidersFrom(HttpClientModule),
     provideHttpClient(withInterceptors([loaderInterceptor, RequestOptionsInterceptor, AuthorizeInterceptor])),
+
+    // Provide Stripe
     provideNgxStripe(environment.stripePublicKey),
+
+    // Provide Custom Title Tag for pages
     {provide: TitleStrategy, useClass: CustomTitleService},
+
+    // Configure Default Date Format to display date time depends on user time zone
     {provide: DATE_PIPE_DEFAULT_OPTIONS, useValue: {dateFormat: 'MMM d, y, h:mm a', timezone: Intl.DateTimeFormat().resolvedOptions().timeZone}}
   ]
 };
