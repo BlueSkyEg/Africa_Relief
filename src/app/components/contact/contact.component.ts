@@ -9,26 +9,43 @@ import { FieldComponent } from '../../shared/components/form/field/field.compone
 import { LabelComponent } from '../../shared/components/form/label/label.component';
 import { ErrorComponent } from '../../shared/components/form/error/error.component';
 import { ButtonComponent } from '../../shared/components/form/button/button.component';
+import { ContactService } from '../../core/services/contact/contact.service';
+import { IApiResponse } from '../../shared/interfaces/api-response-interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-    selector: 'app-contact',
-    standalone: true,
-    templateUrl: './contact.component.html',
-    styles: ``,
-    imports: [ReactiveFormsModule, FormElementDirective, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent, BreadcrumbComponent, IconPinComponent, IconEnvelopeComponent, IconPhoneComponent]
+  selector: 'app-contact',
+  standalone: true,
+  templateUrl: './contact.component.html',
+  styles: ``,
+  imports: [ReactiveFormsModule, FormElementDirective, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent, BreadcrumbComponent, IconPinComponent, IconEnvelopeComponent, IconPhoneComponent]
 })
 export class ContactComponent {
+  contactFormDisabled: boolean = false;
   fb: FormBuilder = inject(FormBuilder);
+  contactService: ContactService = inject(ContactService);
+  _snackBar: MatSnackBar = inject(MatSnackBar);
 
   contactForm = this.fb.group({
     name: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
-    phone: ['', [Validators.required]],
+    phone: ['', [Validators.required, Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
     address: ['', [Validators.required]],
     message: ['', [Validators.required]]
   });
 
-  onSubmit(): void {
-    console.log(this.contactForm.value);
+  onSubmitContactForm(): void {
+    this.contactFormDisabled = true;
+    this.contactService.submitContactForm(this.contactForm.getRawValue()).subscribe({
+      next: (res: IApiResponse) => {
+        if(res.success) {
+          this.contactForm.reset();
+          this._snackBar.open('Your message has been sent successfully.', '✖', {panelClass: 'success-snackbar'});
+        } else {
+          this._snackBar.open('An error occurred while sending a message.', '✖', {panelClass: 'failure-snackbar'});
+        }
+        this.contactFormDisabled = false;
+      }
+    })
   }
 }
