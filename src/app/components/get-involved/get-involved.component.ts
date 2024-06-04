@@ -10,7 +10,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     selector: 'app-get-involved',
     standalone: true,
     templateUrl: './get-involved.component.html',
-    styleUrl: './get-involved.component.scss',
+    styles: ``,
     imports: [MatExpansionModule, BreadcrumbComponent, BecomeVolunteerFormSectionComponent, ButtonLinkComponent, AccordionComponent]
 })
 export class GetInvolvedComponent {
