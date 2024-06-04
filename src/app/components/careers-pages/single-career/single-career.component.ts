@@ -13,7 +13,6 @@ import { IApiResponse } from '../../../shared/interfaces/api-response-interface'
 import { CommonModule } from '@angular/common';
 import { FormElementDirective } from '../../../shared/directives/form-element.directive';
 import { IconPaperclipComponent } from "../../../shared/icons/paperclip/icon-paperclip.component";
-import { IconCheckMarkComponent } from "../../../shared/icons/check-mark/icon-check-mark.component";
 import { JobApplicationService } from '../../../core/services/jobApplication/job-application.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -22,7 +21,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     standalone: true,
     templateUrl: './single-career.component.html',
     styles: ``,
-    imports: [ReactiveFormsModule, CommonModule, FormElementDirective, BreadcrumbComponent, AccordionComponent, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent, IconPaperclipComponent, IconCheckMarkComponent]
+    imports: [ReactiveFormsModule, CommonModule, FormElementDirective, BreadcrumbComponent, AccordionComponent, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent, IconPaperclipComponent]
 })
 export class SingleCareerComponent {
   career: ICareer;
