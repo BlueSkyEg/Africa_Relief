@@ -25,6 +25,10 @@ module.exports = {
       'warning': '#C28930',
       'safe': '#307CC2'
     },
+    fontFamily: {
+      'inter': ['Inter', 'sans-serif'],
+      'roboto': ['Roboto Serif', 'sans-serif'],
+    },
     extend: {},
   },
   plugins: [],
