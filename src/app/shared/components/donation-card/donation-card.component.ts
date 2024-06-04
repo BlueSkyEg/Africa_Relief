@@ -31,6 +31,9 @@ export class DonationCardComponent {
   router: Router = inject(Router);
 
   onMakeDonation() {
+    // check if donation amount is a positive value and greater than 1$
+    if(isNaN(this.amount) || this.amount < 1) return;
+
     this.router.navigate(['/donation'], {
       queryParams: {
         'form': this.donationForm.id,

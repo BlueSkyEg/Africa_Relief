@@ -1,7 +1,7 @@
 <div class="flex flex-col gap-6 p-4 bg-white border border-gray-light">
   <div class="flex justify-center items-center gap-2 p-4 border border-gray-medium">
     <app-icon-donor-avatars/>
-    <p>+1650 Others Donated</p>
+    <p>+1650 Donors</p>
   </div>
   @if (donationForm.fullyFundLevel) {
     <div class="text-center p-2 border border-gray-medium">
@@ -28,7 +28,7 @@
   </div>
   <div class="flex justify-between items-center gap-1 py-3 pe-4 ps-1 border border-gray-medium">
     <mat-checkbox color="primary" [(ngModel)]="makeRecurringDonation" class="ms-0">Make this donation every</mat-checkbox>
-    <div class="min-w-[90px] shrink-0">
+    <div class="min-w-[80px] shrink-0">
       <mat-select [(value)]="recurringPeriod">
         @for (period of donationForm.recurring_periods; track period) {
           <mat-option value="{{period}}">{{period | titlecase}}</mat-option>
