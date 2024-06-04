@@ -1,9 +1,9 @@
 import { Component, Input, inject } from '@angular/core';
-import { ButtonLinkComponent } from "../../../shared/components/button-link/button-link.component";
-import { BlogCardComponent } from "../../../shared/components/blogs/blog-card/blog-card.component";
-import { IBlogCard } from '../../../shared/interfaces/blog/blog-card-interface';
-import { BlogService } from '../../../core/services/blogs/blog.service';
-import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
+import { ButtonLinkComponent } from "../../../../shared/components/button-link/button-link.component";
+import { BlogCardComponent } from "../../../../shared/components/blogs/blog-card/blog-card.component";
+import { IBlogCard } from '../../../../shared/interfaces/blog/blog-card-interface';
+import { BlogService } from '../../../../core/services/blogs/blog.service';
+import { IApiResponse } from '../../../../shared/interfaces/api-response-interface';
 
 @Component({
     selector: 'app-related-blogs',

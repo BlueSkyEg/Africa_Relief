@@ -1,10 +1,10 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit, signal } from '@angular/core';
 import {SwiperContainer} from "swiper/swiper-element";
 import {SwiperOptions} from "swiper/types";
-import { IImage } from '../../../shared/interfaces/image-interface';
-import { IconDirective } from '../../../shared/directives/icon.directive';
-import { IconArrowLeftComponent } from '../../../shared/icons/arrows/arrow-left/icon-arrow-left.component';
-import { IconArrowRightComponent } from '../../../shared/icons/arrows/arrow-right/icon-arrow-right.component';
+import { IImage } from '../../../../shared/interfaces/image-interface';
+import { IconDirective } from '../../../../shared/directives/icon.directive';
+import { IconArrowLeftComponent } from '../../../../shared/icons/arrows/arrow-left/icon-arrow-left.component';
+import { IconArrowRightComponent } from '../../../../shared/icons/arrows/arrow-right/icon-arrow-right.component';
 
 @Component({
   selector: 'app-blog-slider',

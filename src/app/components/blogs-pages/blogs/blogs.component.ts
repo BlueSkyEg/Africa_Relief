@@ -1,14 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CategoriesFilterComponent } from "../../shared/components/categories-filter/categories-filter.component";
-import { BlogService } from '../../core/services/blogs/blog.service';
-import { ICategory } from '../../shared/interfaces/category-interface';
-import { BlogCardComponent } from "../../shared/components/blogs/blog-card/blog-card.component";
-import {IBlogCard} from "../../shared/interfaces/blog/blog-card-interface";
+import { CategoriesFilterComponent } from "../../../shared/components/categories-filter/categories-filter.component";
+import { BlogService } from '../../../core/services/blogs/blog.service';
+import { ICategory } from '../../../shared/interfaces/category-interface';
+import { BlogCardComponent } from "../../../shared/components/blogs/blog-card/blog-card.component";
+import {IBlogCard} from "../../../shared/interfaces/blog/blog-card-interface";
 import { ActivatedRoute } from '@angular/router';
-import { IApiResponse } from '../../shared/interfaces/api-response-interface';
-import { BreadcrumbComponent } from "../../shared/components/breadcrumb/breadcrumb.component";
+import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
+import { BreadcrumbComponent } from "../../../shared/components/breadcrumb/breadcrumb.component";
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { IPaginatedData } from '../../shared/interfaces/paginated-data.interface';
+import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({

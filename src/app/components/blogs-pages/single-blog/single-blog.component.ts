@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { BreadcrumbComponent } from "../../shared/components/breadcrumb/breadcrumb.component";
+import { BreadcrumbComponent } from "../../../shared/components/breadcrumb/breadcrumb.component";
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { DonationCardComponent } from "../../shared/components/donation-card/donation-card.component";
-import { IconQuoteComponent } from "../../shared/icons/quote/icon-quote.component";
-import { ShareButtonsComponent } from "../../shared/components/share-buttons/share-buttons.component";
-import { IBlog } from '../../shared/interfaces/blog/blog-interface';
-import { BlogService } from '../../core/services/blogs/blog.service';
-import { IApiResponse } from '../../shared/interfaces/api-response-interface';
+import { DonationCardComponent } from "../../../shared/components/donation-card/donation-card.component";
+import { IconQuoteComponent } from "../../../shared/icons/quote/icon-quote.component";
+import { ShareButtonsComponent } from "../../../shared/components/share-buttons/share-buttons.component";
+import { IBlog } from '../../../shared/interfaces/blog/blog-interface';
+import { BlogService } from '../../../core/services/blogs/blog.service';
+import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { BlogSliderComponent } from "./blog-slider/blog-slider.component";
 import { RelatedBlogsComponent } from "./related-blogs/related-blogs.component";
 
