@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 import {HomeComponent} from "./components/home/home.component";
-import { BlogsComponent } from './components/blogs/blogs.component';
-import { ProjectsComponent } from './components/projects/projects.component';
-import { SingleProjectComponent } from './components/single-project/single-project.component';
-import { SingleBlogComponent } from './components/single-blog/single-blog.component';
+import { BlogsComponent } from './components/blogs-pages/blogs/blogs.component';
+import { ProjectsComponent } from './components/projects-pages/projects/projects.component';
+import { SingleProjectComponent } from './components/projects-pages/single-project/single-project.component';
+import { SingleBlogComponent } from './components/blogs-pages/single-blog/single-blog.component';
 import { GetInvolvedComponent } from './components/get-involved/get-involved.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
