@@ -102,5 +102,26 @@ $AfricaReliefWebsite-theme: mat.define-light-theme((
 
 
 
-// Custom styles for angular material components
+/*
+  -- Custom styles for angular material components
+*/
 
+
+// Snackbar Component
+.success-snackbar {
+  --mdc-snackbar-container-color: white;
+  --mat-snack-bar-button-color: #205926;
+  --mdc-snackbar-supporting-text-color: #205926;
+}
+
+.failure-snackbar {
+  --mdc-snackbar-container-color: white;
+  --mat-snack-bar-button-color: #BA4444;
+  --mdc-snackbar-supporting-text-color: #BA4444;
+}
+
+
+// Select Component </mat-select>
+.mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-checked::after {
+  display: none;
+}
