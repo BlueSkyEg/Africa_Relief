@@ -28,7 +28,7 @@
           <app-form-error [hasError]="personalDetailsForm.get('phone').hasError('pattern') && personalDetailsForm.get('phone').touched">Phone is invalid.</app-form-error>
         </app-form-field>
         <div class="w-full flex justify-end">
-          <button class="text-body-3 text-white bg-primary py-3 px-6" matStepperNext (click)="personalDetailsForm.markAllAsTouched()">Next</button>
+          <button class="text-body-3 text-white bg-primary py-3 px-6 disabled:text-white disabled:bg-gray-medium" [disabled]="personalDetailsForm.invalid" matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -94,7 +94,7 @@
         <div>
           <div class="w-full flex justify-between">
             <button class="text-body-3 text-primary bg-white border border-primary py-3 px-6" matStepperPrevious>Back</button>
-            <button class="text-body-3 text-white bg-primary py-3 px-6" matStepperNext (click)="billingDetailsForm.markAllAsTouched()">Next</button>
+            <button class="text-body-3 text-white bg-primary py-3 px-6 disabled:text-white disabled:bg-gray-medium" [disabled]="billingDetailsForm.invalid" matStepperNext>Next</button>
           </div>
         </div>
       </form>
@@ -109,7 +109,7 @@
               <div class="border border-gray-light py-3 px-4">
                 <ngx-stripe-card-number [options]="cardOptions" (change)="onCardNumberChange($event)"></ngx-stripe-card-number>
               </div>
-              <app-form-error [hasError]="cardNumberError != null">{{cardNumberError}}</app-form-error>
+              <app-form-error [hasError]="cardNumberError() != null">{{cardNumberError()}}</app-form-error>
             </app-form-field>
             <div class="flex gap-4">
               <app-form-field class="flex-1">
@@ -117,14 +117,14 @@
                 <div class="border border-gray-light py-3 px-4">
                   <ngx-stripe-card-expiry [options]="cardOptions" (change)="onCardExpiryChange($event)"></ngx-stripe-card-expiry>
                 </div>
-                <app-form-error [hasError]="cardExpiryError != null">{{cardExpiryError}}</app-form-error>
+                <app-form-error [hasError]="cardExpiryError() != null">{{cardExpiryError()}}</app-form-error>
               </app-form-field>
               <app-form-field class="flex-1">
                 <app-form-label>CVC*</app-form-label>
                 <div class="border border-gray-light py-3 px-4">
                   <ngx-stripe-card-cvc [options]="cardOptions" (change)="onCardCvvChange($event)"></ngx-stripe-card-cvc>
                 </div>
-                <app-form-error [hasError]="cardCvvError != null">{{cardCvvError}}</app-form-error>
+                <app-form-error [hasError]="cardCvvError() != null">{{cardCvvError()}}</app-form-error>
               </app-form-field>
             </div>
           </ngx-stripe-card-group>
@@ -136,7 +136,7 @@
         }
         <div class="w-full flex justify-between">
           <button class="text-body-3 text-primary bg-white border border-primary py-3 px-6" matStepperPrevious>Back</button>
-          <button class="text-body-3 text-white bg-primary py-3 px-6" matStepperNext (click)="onMakeDonation()">Pay</button>
+          <button class="text-body-3 text-white bg-primary py-3 px-6 disabled:text-white disabled:bg-gray-medium" [disabled]="!isCardValid() || checkoutFormDisabled" matStepperNext (click)="onMakeDonation()">Pay</button>
         </div>
       </form>
     </mat-step>

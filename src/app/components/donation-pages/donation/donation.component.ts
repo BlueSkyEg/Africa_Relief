@@ -1,4 +1,4 @@
-import { Component, ViewChild, inject } from '@angular/core';
+import { Component, ViewChild, computed, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatStepperModule, StepperOrientation } from '@angular/material/stepper';
 import { FieldComponent } from "../../../shared/components/form/field/field.component";
@@ -19,13 +19,15 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { Country, State, City, ICity, IState, ICountry }  from 'country-state-city';
 import { IUser } from '../../../shared/interfaces/auth/user.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 @Component({
-    selector: 'app-donation',
-    standalone: true,
-    templateUrl: './donation.component.html',
-    styles: ``,
-    imports: [CommonModule, StripeCardNumberComponent, StripeCardCvcComponent, StripeCardExpiryComponent, StripeCardGroupDirective, FormElementDirective, ReactiveFormsModule, MatAutocompleteModule, MatStepperModule, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent]
+  selector: 'app-donation',
+  standalone: true,
+  templateUrl: './donation.component.html',
+  styles: ``,
+  imports: [CommonModule, StripeCardNumberComponent, StripeCardCvcComponent, StripeCardExpiryComponent, StripeCardGroupDirective, FormElementDirective, ReactiveFormsModule, MatAutocompleteModule, MatStepperModule, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent]
 })
 export class DonationComponent {
 
@@ -33,17 +35,20 @@ export class DonationComponent {
   donationFormTitle: string;
   donationAmount: string;
   recurringPeriod: string;
+  stepperOrientation: Observable<StepperOrientation>;
 
   router: Router = inject(Router);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   fb: FormBuilder = inject(FormBuilder);
   paymentService: PaymentService = inject(PaymentService);
-  stripeService: StripeService = inject(StripeService);
+  _stripeService: StripeService = inject(StripeService);
   authService: AuthService = inject(AuthService);
-  stepperOrientation: Observable<StepperOrientation>;
+  breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
+  _snackBar: MatSnackBar = inject(MatSnackBar);
+  gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
 
-  constructor(breakpointObserver: BreakpointObserver) {
-    this.stepperOrientation = breakpointObserver
+  constructor() {
+    this.stepperOrientation = this.breakpointObserver
       .observe('(min-width: 800px)')
       .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
 
@@ -85,15 +90,15 @@ export class DonationComponent {
   filteredCities: ICity[];
 
   filterCountries(country: string): void {
-    this.filteredCountries = this.countries.filter(c => c.name.toLowerCase().includes(country));
+    this.filteredCountries = this.countries.filter(c => c.name.toLowerCase().includes(country.toLowerCase()));
   }
 
   filterStates(state: string): void {
-    this.filteredStates = this.states.filter(s => s.name.toLowerCase().includes(state));
+    this.filteredStates = this.states.filter(s => s.name.toLowerCase().includes(state.toLowerCase()));
   }
 
   filterCities(city: string): void {
-    this.filteredCities = this.cities.filter(c => c.name.toLowerCase().includes(city));
+    this.filteredCities = this.cities.filter(c => c.name.toLowerCase().includes(city.toLowerCase()));
   }
 
   getOptionText(option: ICountry|IState) {
@@ -139,10 +144,10 @@ export class DonationComponent {
   ngOnInit() {
     this.authService.authedUserSubject.asObservable().subscribe({
       next: (user: IUser) => {
-        this.personalDetailsForm.setValue({
-          name: user.name,
-          email: user.email,
-          phone: user.phone
+        this.personalDetailsForm.patchValue({
+          name: user?.name,
+          email: user?.email,
+          phone: user?.phone
         })
       }
     });
@@ -152,9 +157,13 @@ export class DonationComponent {
     });
   }
 
+  checkoutFormDisabled: boolean = false;
+
   onMakeDonation(){
+    this.checkoutFormDisabled = true;
+
     // exit if donation form or card are invalid
-    if(this.checkoutForm.invalid || !this.isCardNumberValid || !this.isCardCvvValid || !this.isCardExpiryValid) return;
+    if(this.checkoutForm.invalid || !this.isCardValid()) return;
 
     // Set donationStarted key in session storage
     // to be indicator for donation confirmation and failed pages
@@ -164,14 +173,23 @@ export class DonationComponent {
     // make donation proccess
     this.createPaymentMethod().subscribe({
       next: (res: PaymentMethodResult) => {
+        if(res.error) {
+          this._snackBar.open(res.error.message, '✖', {panelClass: 'failure-snackbar'});
+          this.checkoutFormDisabled = false;
+          this.pushTagFailedDonationEvent(res.error.message);
+          return;
+        }
         this.createPayment(res.paymentMethod.id).subscribe({
           next: (res: IApiResponse<IPaymentRequiresAction>) => {
             if(res.success) {
+              this.pushTagConfirmDonationEvent();
               this.router.navigateByUrl('/donation-confirmation');
-            } else if(res.data.requiresAction) {
+            } else if(res.data?.requiresAction) {
               this.handleCardAction(res.data.clientSecret);
             } else {
-              this.router.navigateByUrl('/donation-failed');
+              this._snackBar.open(res.message, '✖', {panelClass: 'failure-snackbar'});
+              this.checkoutFormDisabled = false;
+              this.pushTagFailedDonationEvent(res.message);
             }
           }
         })
@@ -179,11 +197,12 @@ export class DonationComponent {
     })
   }
 
+  // Create Payment Method on Stripe
   createPaymentMethod(): Observable<PaymentMethodResult> {
     const { name, email, phone } = this.personalDetailsForm.getRawValue();
     const { city, country, addressLine1, addressLine2, zipCode, state } = this.billingDetailsForm.getRawValue();
 
-    return this.stripeService.createPaymentMethod({
+    return this._stripeService.createPaymentMethod({
       type: "card",
       card: this.card.element,
       billing_details: {
@@ -202,6 +221,7 @@ export class DonationComponent {
     });
   }
 
+  // Handle Payment
   createPayment(paymentMethodId: string): Observable<IApiResponse<IPaymentRequiresAction>> {
     const { name, email } = this.personalDetailsForm.getRawValue();
     const { billingComment } = this.checkoutForm.getRawValue();
@@ -222,38 +242,56 @@ export class DonationComponent {
     )
   }
 
+  // Handle 3D Secure Authentication (Two Factor Authentication)
   handleCardAction(clientSecret: string): void {
-    this.stripeService.confirmCardPayment(clientSecret).subscribe({
+    this._stripeService.confirmCardPayment(clientSecret).subscribe({
       next: res => {
         if(res.error) {
-          this.router.navigateByUrl('/donation-failed')
+          this._snackBar.open(res.error.message, '✖', {panelClass: 'failure-snackbar'});
+          this.pushTagFailedDonationEvent(res.error.message);
         } else {
-          this.router.navigateByUrl('/donation-confirmation')
+          this.pushTagConfirmDonationEvent();
+          this.router.navigateByUrl('/donation-confirmation');
         }
       }
     })
   }
 
+  // Push Google Tag Manager Donation Confirmation Event
+  pushTagConfirmDonationEvent(): void {
+    const gtmTag = {
+      event: 'donationConfirmation',
+      donationAmount: this.donationAmount,
+      donationFormTitle: this.donationFormTitle,
+      recurringPeriod: this.recurringPeriod
+    };
+    this.gtmService.pushTag(gtmTag);
+  }
+
+  // Push Google Tag Manager Donation Failed Event
+  pushTagFailedDonationEvent(donationFaildReason: string): void {
+    const gtmTag = {
+      event: 'donationFaild',
+      faildReason: donationFaildReason
+    };
+    this.gtmService.pushTag(gtmTag);
+  }
+
   // Handel Payment Card Errors
-  cardNumberError: string|null = null;
-  cardExpiryError: string|null = null;
-  cardCvvError: string|null = null;
-  isCardNumberValid: boolean = false;
-  isCardExpiryValid: boolean = false;
-  isCardCvvValid: boolean = false;
+  cardNumberError = signal<string>(' ');
+  cardExpiryError = signal<string>(' ');
+  cardCvvError = signal<string>(' ');
+  isCardValid = computed(() => !this.cardNumberError() && !this.cardExpiryError() && !this.cardCvvError());
 
   onCardNumberChange(e: StripeCardNumberElementChangeEvent) {
-    e.error ? this.cardNumberError = e.error.message : this.cardNumberError = null;
-    this.isCardNumberValid = e.complete;
+    this.cardNumberError.set(e.error ? e.error.message : null);
   }
 
   onCardExpiryChange(e: StripeCardExpiryElementChangeEvent) {
-    e.error ? this.cardExpiryError = e.error.message : this.cardExpiryError = null;
-    this.isCardExpiryValid = e.complete;
+    this.cardExpiryError.set(e.error ? e.error.message : null);
   }
 
   onCardCvvChange(e: StripeCardCvcElementChangeEvent) {
-    e.error ? this.cardCvvError = e.error.message : this.cardCvvError = null;
-    this.isCardCvvValid = e.complete;
+    this.cardCvvError.set(e.error ? e.error.message : null);
   }
 }
