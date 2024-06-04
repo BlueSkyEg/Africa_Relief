@@ -1,9 +1,9 @@
 import { Component, Input, inject } from '@angular/core';
-import { IProjectCard } from '../../../shared/interfaces/project/project-card-interface';
-import { ProjectService } from '../../../core/services/projects/project.service';
-import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
-import { ButtonLinkComponent } from "../../../shared/components/button-link/button-link.component";
-import { ProjectCardComponent } from "../../../shared/components/projects/project-card/project-card.component";
+import { IProjectCard } from '../../../../shared/interfaces/project/project-card-interface';
+import { ProjectService } from '../../../../core/services/projects/project.service';
+import { IApiResponse } from '../../../../shared/interfaces/api-response-interface';
+import { ButtonLinkComponent } from "../../../../shared/components/button-link/button-link.component";
+import { ProjectCardComponent } from "../../../../shared/components/projects/project-card/project-card.component";
 
 @Component({
     selector: 'app-related-projects',

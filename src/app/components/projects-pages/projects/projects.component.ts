@@ -1,15 +1,15 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CategoriesFilterComponent } from "../../shared/components/categories-filter/categories-filter.component";
-import { ProjectService } from '../../core/services/projects/project.service';
-import { ICategory } from '../../shared/interfaces/category-interface';
-import { IProjectCard } from '../../shared/interfaces/project/project-card-interface';
-import { ProjectCardComponent } from "../../shared/components/projects/project-card/project-card.component";
-import { IApiResponse } from '../../shared/interfaces/api-response-interface';
+import { CategoriesFilterComponent } from "../../../shared/components/categories-filter/categories-filter.component";
+import { ProjectService } from '../../../core/services/projects/project.service';
+import { ICategory } from '../../../shared/interfaces/category-interface';
+import { IProjectCard } from '../../../shared/interfaces/project/project-card-interface';
+import { ProjectCardComponent } from "../../../shared/components/projects/project-card/project-card.component";
+import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { ActivatedRoute } from '@angular/router';
-import { BreadcrumbComponent } from "../../shared/components/breadcrumb/breadcrumb.component";
+import { BreadcrumbComponent } from "../../../shared/components/breadcrumb/breadcrumb.component";
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { IPaginatedData } from '../../shared/interfaces/paginated-data.interface';
+import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 
 @Component({
     selector: 'app-projects',
