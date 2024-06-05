@@ -12,7 +12,7 @@
       <div class="basis-1/6">
         <div class="flex justify-between items-center cursor-pointer md:cursor-default" (click)="openExploreAccordion = !openExploreAccordion">
           <h2 class="text-body-2 mb-2">Explore</h2>
-          <div [ngClass]="{'after:rotate-0': openExploreAccordion}" class="relative lg:hidden after:absolute after:content-[''] after:end-0 after:w-5 after:h-0.5 after:transition-transform after:bg-white after:rotate-90 before:absolute before:content-[''] before:end-0 before:w-5 before:h-0.5 before:transition-transform before:bg-white"></div>
+          <div [ngClass]="openExploreAccordion ? 'after:rotate-0' : 'after:rotate-90'" class="relative lg:hidden after:absolute after:content-[''] after:end-0 after:w-5 after:h-0.5 after:transition-transform after:bg-white before:absolute before:content-[''] before:end-0 before:w-5 before:h-0.5 before:transition-transform before:bg-white"></div>
         </div>
         <ul class="flex flex-col gap-2 h-auto max-h-0 md:max-h-screen overflow-hidden transition-all" [ngClass]="{'max-h-[440px]': openExploreAccordion}">
           <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
@@ -28,7 +28,7 @@
       <div class="basis-1/6">
         <div class="flex justify-between items-center cursor-pointer md:cursor-default" (click)="openProjectsAccordion = !openProjectsAccordion">
           <h2 class="text-body-2 mb-2">Our Projects</h2>
-          <div [ngClass]="{'after:rotate-0': openProjectsAccordion}" class="relative lg:hidden after:absolute after:content-[''] after:end-0 after:w-5 after:h-0.5 after:transition-transform after:bg-white after:rotate-90 before:absolute before:content-[''] before:end-0 before:w-5 before:h-0.5 before:transition-transform before:bg-white"></div>
+          <div [ngClass]="openProjectsAccordion ? 'after:rotate-0' : 'after:rotate-90'" class="relative lg:hidden after:absolute after:content-[''] after:end-0 after:w-5 after:h-0.5 after:transition-transform after:bg-white before:absolute before:content-[''] before:end-0 before:w-5 before:h-0.5 before:transition-transform before:bg-white"></div>
         </div>
         <ul class="flex flex-col gap-2 h-auto max-h-0 md:max-h-screen overflow-hidden transition-all" [ngClass]="{'max-h-[440px]': openProjectsAccordion}">
           <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/crisis" routerLinkActive="active">Crisis</a></li>
@@ -41,12 +41,12 @@
           <li><a class="text-white opacity-50 hover:opacity-100" routerLink="/ramadan" routerLinkActive="active">Ramadan</a></li>
         </ul>
       </div>
-      <div class="basis-2/6">
-        <h2 class="text-body-1-inter mb-2 w-2/3">Subscribe to Our Newsletter</h2>
-        <div class="flex items-center gap-2 w-full h-14 bg-white py-1 pr-1 pl-4" [formGroup]="newsLetterForm">
+      <div class="basis-2/6 flex flex-col gap-2">
+        <h2 class="text-body-2 w-2/3">Get Latest Updates</h2>
+        <form class="flex items-center gap-2 w-full h-14 bg-white py-1 pr-1 pl-4" (submit)="onSubmitNewsLetterForm()" [formGroup]="newsletterForm">
           <input class="w-full outline-none text-black bg-white" formControlName="email" placeholder="Enter your email">
-          <app-button-link appearance="filled-secondary" label="Subscribe" (click)="onSubmit(newsLetterForm.value)"/>
-        </div>
+          <app-form-button appearance="filled" [disabled]="newsletterForm.invalid || newsletterFormDisabled">Subscribe</app-form-button>
+        </form>
       </div>
     </div>
     <div class="flex flex-col lg:flex-row justify-between items-center gap-[24px]">
