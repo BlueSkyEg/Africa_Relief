@@ -12,8 +12,8 @@ import { ButtonLinkComponent } from "../../../shared/components/button-link/butt
 })
 export class VerifyEmailComponent implements OnInit
 {
-  emailVerified: boolean|null = null;
-  verifyEmailUrl: string|null = null;
+  emailVerified: boolean = null;
+  verifyEmailUrl: string = null;
   authService: AuthService = inject(AuthService);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
 

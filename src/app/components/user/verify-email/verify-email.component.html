@@ -1,14 +1,14 @@
-<div class="container">
-  <div class="w-full max-w-96 m-auto flex flex-col gap-8 p-6 my-10 lg:mb-20">
+<div class="container h-full flex justify-center items-center">
+  <div class="w-full max-w-96 flex flex-col gap-6 my-20 p-6 bg-white border border-gray-light">
     @switch (emailVerified) {
       @case(null) {
-        <span class="text-body-2 text-center text-danger">Invalid User</span>
+        <span class="h-10 bg-gray-light animate-pulse"></span>
       }
       @case (false) {
-        <span class="text-body-2 text-center text-primary">Email already verified</span>
+        <span class="h-10 text-body-2 text-center text-primary">Your email is already verified.</span>
       }
       @case (true) {
-        <span class="text-body-2 text-center text-primary">Email verified successfully</span>
+        <span class="h-10 text-body-2 text-center text-primary">Email verified successfully.</span>
       }
     }
     <app-button-link path="/home" appearance="outlined-primary" label="Go Home" [fullWidth]="true"/>
