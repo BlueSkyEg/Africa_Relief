@@ -9,6 +9,7 @@ import { IconEyeComponent } from "../../../shared/icons/eye/icon-eye.component";
 import { IconEyeOffComponent } from "../../../shared/icons/eye-off/icon-eye-off.component";
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-login',
@@ -18,25 +19,36 @@ import { AuthService } from '../../../core/services/auth/auth.service';
     imports: [ReactiveFormsModule, RouterModule, FormElementDirective, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent, IconEyeComponent, IconEyeOffComponent]
 })
 export class LoginComponent {
+  loginFormDisabled: boolean = false;
   showPassword: boolean = false;
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   authService: AuthService = inject(AuthService);
   fb: FormBuilder = inject(FormBuilder);
+  _snackBar: MatSnackBar = inject(MatSnackBar);
 
-  accessDonorDashboardForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]]
-  });
+
+  // accessDonorDashboardForm = this.fb.group({
+  //   email: ['', [Validators.required, Validators.email]]
+  // });
 
   loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)]],
     password: ['', [Validators.required, Validators.minLength]]
   });
 
-  onAccessDonorDashboard() {
-    console.log(this.accessDonorDashboardForm.value);
+  // onAccessDonorDashboard() {
+  //   console.log(this.accessDonorDashboardForm.value);
+  // }
+
+  // reset email errors when change form fields
+  resetErrorsAndEnableForm(): void {
+    this.loginForm.valueChanges.subscribe(() => {
+      this.loginForm.controls.email.setErrors(null);
+    });
   }
 
   onLogin() {
+    this.loginFormDisabled = true;
     this.authService.login(this.loginForm.value).subscribe({
       next: (res) => {
         if(res.success) {
@@ -45,8 +57,12 @@ export class LoginComponent {
           localStorage.setItem('tokenExpiresAt', JSON.stringify(res.data.tokenExpiresAt));
           this.authService.checkRedirectUrl(this.activeRoute);
         } else if(res.message == 'validation error') {
-          this.loginForm.controls.email.setErrors({serverError: true});
+          this.loginForm.controls.email.setErrors({serverError: res.errors['email'][0]});
+          this.resetErrorsAndEnableForm();
+        } else {
+          this._snackBar.open(res.message, '✖', {panelClass: 'failure-snackbar'});
         }
+        this.loginFormDisabled = false;
       }
     })
   }
