@@ -22,8 +22,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styles: ``
 })
 export class ResetPasswordComponent implements OnInit {
+  resetPasswordFormDisabled: boolean = false;
   showPassword: boolean = false;
-  passwordStrenth: number = 0;
   authService: AuthService = inject(AuthService);
   fb: FormBuilder = inject(FormBuilder);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
@@ -44,19 +44,25 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onResetPassword() {
+    this.resetPasswordFormDisabled = true;
     this.authService.resetPassword(this.resetPasswordForm.value).subscribe({
       next: res => {
         if(res.success) {
           this._snackBar.open('Password reseted successfully', 'close');
           this.router.navigateByUrl('/login');
         } else if (res.message == 'validation error') {
-          this.resetPasswordForm.controls.password.setErrors({invalidToken: true});
+          this.resetPasswordForm.controls.password.setErrors({serverError: res.errors[0][0]});
+        } else {
+          this._snackBar.open(res.message, '✖', {panelClass: 'failure-snackbar'});
         }
+        this.resetPasswordFormDisabled = false;
       }
     })
   }
 
   // Password Strength Indicator
+  passwordStrenth: number = 0;
+
   onTypePassword() {
     let password = this.resetPasswordForm.controls.password.value;
     let tempPasswordStrenth = 0;
