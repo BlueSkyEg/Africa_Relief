@@ -17,23 +17,28 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styles: ``
 })
 export class ForgotPasswordComponent {
+  forgetPasswordFormDisabled: boolean = false;
   authService: AuthService = inject(AuthService);
   fb: FormBuilder = inject(FormBuilder);
   _snackBar: MatSnackBar = inject(MatSnackBar);
 
   forgetPasswordForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]]
+    email: ['', [Validators.required, Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)]]
   });
 
   onForgetPassword() {
+    this.forgetPasswordFormDisabled = true;
     this.authService.forgotPassword(this.forgetPasswordForm.value).subscribe({
       next: res => {
         if(res.success) {
-          this._snackBar.open('Email sent! Check your inbox.', 'close');
+          this._snackBar.open('Email sent! Check your inbox.', '✖', {panelClass: 'success-snackbar'});
           this.forgetPasswordForm.reset();
         } else if(res.message == 'validation error') {
-          this.forgetPasswordForm.controls.email.setErrors({notRegistered: true});
+          this.forgetPasswordForm.controls.email.setErrors({serverError: res.errors['email'][0]});
+        } else {
+          this._snackBar.open(res.message, '✖', {panelClass: 'failure-snackbar'});
         }
+        this.forgetPasswordFormDisabled = false;
       }
     })
   }
