@@ -6,13 +6,14 @@
         <app-form-label>Name*</app-form-label>
         <input appFormElement type="text" formControlName="name" placeholder="Full Name">
         <app-form-error [hasError]="signupForm.get('name').hasError('required') && signupForm.get('name').touched">Name is required.</app-form-error>
+        <app-form-error [hasError]="signupForm.get('name').hasError('serverError')">{{ signupForm.get('name').errors?.['serverError'] }}</app-form-error>
       </app-form-field>
       <app-form-field>
         <app-form-label>Email Address*</app-form-label>
         <input appFormElement type="email" formControlName="email" placeholder="example@example.com">
         <app-form-error [hasError]="signupForm.get('email').hasError('required') && signupForm.get('email').touched">Email is required.</app-form-error>
-        <app-form-error [hasError]="signupForm.get('email').hasError('email') && signupForm.get('email').touched">Please enter valid email.</app-form-error>
-        <app-form-error [hasError]="signupForm.get('email').hasError('emailTaken')">The email has already been taken.</app-form-error>
+        <app-form-error [hasError]="signupForm.get('email').hasError('pattern') && signupForm.get('email').touched">Please enter valid email.</app-form-error>
+        <app-form-error [hasError]="signupForm.get('email').hasError('serverError')">{{ signupForm.get('email').errors?.['serverError'] }}</app-form-error>
       </app-form-field>
       <app-form-field>
         <app-form-label>Password*</app-form-label>
@@ -26,6 +27,7 @@
         </div>
         <app-form-error [hasError]="signupForm.get('password').hasError('required') && signupForm.get('password').touched">Password is required.</app-form-error>
         <app-form-error [hasError]="signupForm.get('password').hasError('regex') && signupForm.get('password').touched">Invalid password, Please follow the hint.</app-form-error>
+        <app-form-error [hasError]="signupForm.get('password').hasError('serverError')">{{ signupForm.get('password').errors?.['serverError'] }}</app-form-error>
         <div class="flex gap-2 pt-4">
           <div class="relative h-1 w-full bg-gray-medium rounded-l before:absolute before:h-full before:bg-[#dc2626]" [ngClass]="{'before:w-full': passwordStrenth >= 1}"></div>
           <div class="relative h-1 w-full bg-gray-medium before:absolute before:h-full before:bg-[#ff9a33]" [ngClass]="{'before:w-full': passwordStrenth >= 2}"></div>
@@ -38,8 +40,9 @@
         <app-form-label>Confirm Password*</app-form-label>
         <input appFormElement type="password" formControlName="password_confirmation" placeholder="Confirm Password">
         <app-form-error [hasError]="signupForm.get('password_confirmation').hasError('mismatch') && signupForm.get('password_confirmation').touched">Password and Confirm Password must match.</app-form-error>
+        <app-form-error [hasError]="signupForm.get('password_confirmation').hasError('serverError')">{{ signupForm.get('password_confirmation').errors?.['serverError'] }}</app-form-error>
       </app-form-field>
-      <app-form-button class="block mt-6" appearance="filled" [fullWidth]="true" [disabled]="signupForm.invalid">Sign Up</app-form-button>
+      <app-form-button class="block mt-6" appearance="filled" [fullWidth]="true" [disabled]="signupForm.invalid || signupFormDisabled">Sign Up</app-form-button>
     </form>
     <p class="text-center">Already have an account? <a class="text-primary" routerLink="/login">Login</a></p>
   </div>

@@ -12,6 +12,7 @@ import { PasswordValidator } from '../../../core/validators/password.validator';
 import { MatchPasswordValidator } from '../../../core/validators/match-password.validator';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signup',
@@ -22,19 +23,22 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 })
 export class SignupComponent {
   showPassword: boolean = false;
+  signupFormDisabled: boolean = false;
   passwordStrenth: number = 0;
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   fb: FormBuilder = inject(FormBuilder);
   authService: AuthService = inject(AuthService);
+  _snackBar: MatSnackBar = inject(MatSnackBar);
 
   signupForm = this.fb.group({
     name: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)]],
     password: [''],
     password_confirmation: ['']
   }, {validator: [PasswordValidator, MatchPasswordValidator]} as AbstractControlOptions)
 
   onSignup() {
+    this.signupFormDisabled = true;
     this.authService.register(this.signupForm.value).subscribe({
       next: res => {
         if(res.success) {
@@ -43,8 +47,13 @@ export class SignupComponent {
           localStorage.setItem('tokenExpiresAt', JSON.stringify(res.data.tokenExpiresAt));
           this.authService.checkRedirectUrl(this.activeRoute);
         } else if(res.message == 'validation error') {
-          this.signupForm.controls.email.setErrors({emailTaken: true});
+          for (const control in res.errors) {
+            this.signupForm.get(control).setErrors({ serverError: res.errors[control][0] });
+          }
+        } else {
+          this._snackBar.open(res.message, '✖', {panelClass: 'failure-snackbar'});
         }
+        this.signupFormDisabled = false;
       }
     })
   }
