@@ -6,13 +6,15 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 import { IUser } from '../../../shared/interfaces/auth/user.interface';
 import {MatMenuModule} from '@angular/material/menu';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
+import { IconHamburgerComponent } from "../../../shared/icons/hamburger/icon-hamburger.component";
+import { IconProfileComponent } from "../../../shared/icons/profile/icon-profile.component";
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [RouterModule, ButtonLinkComponent, MatMenuModule],
-  templateUrl: './header.component.html',
-  styles: ``
+    selector: 'app-header',
+    standalone: true,
+    templateUrl: './header.component.html',
+    styles: ``,
+    imports: [RouterModule, ButtonLinkComponent, MatMenuModule, IconHamburgerComponent, IconProfileComponent]
 })
 export class HeaderComponent {
 
