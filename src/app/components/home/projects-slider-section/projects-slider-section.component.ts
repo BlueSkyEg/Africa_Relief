@@ -11,18 +11,13 @@ import { IApiResponse } from '../../../shared/interfaces/api-response-interface'
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 import { IProjectCard } from '../../../shared/interfaces/project/project-card-interface';
 import { ProjectCardComponent } from '../../../shared/components/projects/project-card/project-card.component';
+import { CommonModule } from '@angular/common';
+import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
 
 @Component({
   selector: 'app-projects-slider-section',
   standalone: true,
-  imports: [
-    RouterModule,
-    ProjectCardComponent,
-    IconArrowLeftComponent,
-    IconArrowRightComponent,
-    ButtonLinkComponent,
-    IconDirective
-  ],
+  imports: [CommonModule, RouterModule, ProjectCardComponent, IconArrowLeftComponent, IconArrowRightComponent, ButtonLinkComponent, IconDirective, ImgPlaceholderDirective],
   templateUrl: './projects-slider-section.component.html',
   styles: ``,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

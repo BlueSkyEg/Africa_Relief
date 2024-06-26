@@ -3,9 +3,11 @@
     <app-icon-arrow-left class="partner-slide-next cursor-pointer w-10"/>
     <swiper-container class="partners-slider block w-[85%]" init="false">
       @for (slide of slides; track slide) {
-      <swiper-slide class="flex justify-center items-center">
-        <img class="w-24 h-24" [src]="slide.image.src" [alt]="slide.image.alt_text" loading="lazy">
-      </swiper-slide>
+        <swiper-slide>
+          <div class="w-24 h-24 m-auto">
+            <img class="w-full h-full" appImgPlaceholder [src]="slide.image.src" [alt]="slide.image.alt_text" loading="lazy">
+          </div>
+        </swiper-slide>
       }
     </swiper-container>
     <app-icon-arrow-right class="partner-slide-prev cursor-pointer w-10"/>

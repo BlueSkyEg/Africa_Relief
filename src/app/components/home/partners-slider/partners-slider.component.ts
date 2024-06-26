@@ -6,14 +6,12 @@ import {SwiperOptions} from "swiper/types";
 import { CarouselService } from '../../../core/services/layout/carousel.service';
 import { ICarouselSlide } from '../../../shared/interfaces/carousel-slide.interface';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
+import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
 
 @Component({
   selector: 'app-partners-slider',
   standalone: true,
-  imports: [
-    IconArrowLeftComponent,
-    IconArrowRightComponent
-  ],
+  imports: [IconArrowLeftComponent, IconArrowRightComponent, ImgPlaceholderDirective],
   templateUrl: './partners-slider.component.html',
   styles: ``,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
