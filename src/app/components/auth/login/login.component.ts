@@ -10,6 +10,7 @@ import { IconEyeOffComponent } from "../../../shared/icons/eye-off/icon-eye-off.
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EmailValidator } from '../../../core/validators/email.validator';
 
 @Component({
     selector: 'app-login',
@@ -32,7 +33,7 @@ export class LoginComponent {
   // });
 
   loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)]],
+    email: ['', [Validators.required, EmailValidator()]],
     password: ['', [Validators.required, Validators.minLength]]
   });
 

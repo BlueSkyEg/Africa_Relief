@@ -8,6 +8,7 @@ import { ErrorComponent } from '../../../shared/components/form/error/error.comp
 import { ButtonComponent } from '../../../shared/components/form/button/button.component';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { EmailValidator } from '../../../core/validators/email.validator';
 
 @Component({
   selector: 'app-forget-password',
@@ -23,7 +24,7 @@ export class ForgotPasswordComponent {
   _snackBar: MatSnackBar = inject(MatSnackBar);
 
   forgetPasswordForm = this.fb.group({
-    email: ['', [Validators.required, Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)]]
+    email: ['', [Validators.required, EmailValidator()]]
   });
 
   onForgetPassword() {

@@ -13,6 +13,8 @@ import { MatchPasswordValidator } from '../../../core/validators/match-password.
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EmailValidator } from '../../../core/validators/email.validator';
+import { StringValidator } from '../../../core/validators/string.validator';
 
 @Component({
   selector: 'app-signup',
@@ -31,11 +33,11 @@ export class SignupComponent {
   _snackBar: MatSnackBar = inject(MatSnackBar);
 
   signupForm = this.fb.group({
-    name: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)]],
-    password: [''],
-    password_confirmation: ['']
-  }, {validator: [PasswordValidator, MatchPasswordValidator]} as AbstractControlOptions)
+    name: ['', [Validators.required, StringValidator()]],
+    email: ['', [Validators.required, EmailValidator()]],
+    password: ['', [Validators.required, PasswordValidator()]],
+    password_confirmation: ['', [Validators.required]]
+  }, {validator: [MatchPasswordValidator()]} as AbstractControlOptions)
 
   onSignup() {
     this.signupFormDisabled = true;

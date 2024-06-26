@@ -33,9 +33,9 @@ export class ResetPasswordComponent implements OnInit {
   resetPasswordForm = this.fb.group({
     token: [null],
     email: [null],
-    password: [''],
-    password_confirmation: ['']
-  }, {validator: [PasswordValidator, MatchPasswordValidator]} as AbstractControlOptions)
+    password: ['', [Validators.required, PasswordValidator()]],
+    password_confirmation: ['', [Validators.required]]
+  }, {validator: [MatchPasswordValidator()]} as AbstractControlOptions)
 
   ngOnInit(): void {
     const queryParams = this.activeRoute.snapshot.queryParamMap;
@@ -48,7 +48,7 @@ export class ResetPasswordComponent implements OnInit {
     this.authService.resetPassword(this.resetPasswordForm.value).subscribe({
       next: res => {
         if(res.success) {
-          this._snackBar.open('Password reseted successfully', 'close');
+          this._snackBar.open('Password reseted successfully', '✖', {panelClass: 'success-snackbar'});
           this.router.navigateByUrl('/login');
         } else if (res.message == 'validation error') {
           this.resetPasswordForm.controls.password.setErrors({serverError: res.errors[0][0]});
