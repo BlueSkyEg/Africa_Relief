@@ -15,6 +15,9 @@ import { FormElementDirective } from '../../../shared/directives/form-element.di
 import { IconPaperclipComponent } from "../../../shared/icons/paperclip/icon-paperclip.component";
 import { JobApplicationService } from '../../../core/services/jobApplication/job-application.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { StringValidator } from '../../../core/validators/string.validator';
+import { EmailValidator } from '../../../core/validators/email.validator';
+import { FileValidator } from '../../../core/validators/file.validator';
 
 @Component({
     selector: 'app-single-career',
@@ -34,12 +37,12 @@ export class SingleCareerComponent {
   _snackBar: MatSnackBar = inject(MatSnackBar);
 
   careerForm = this.fb.group({
-    name: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
+    name: ['', [Validators.required, StringValidator()]],
+    email: ['', [Validators.required, EmailValidator()]],
     phone: ['', [Validators.required, Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
-    address: ['', [Validators.required]],
-    resume: ['', [Validators.required]],
-    coverLetter: ['', [Validators.required]],
+    address: ['', [Validators.required, StringValidator(2, 100, true)]],
+    resume: ['', [Validators.required, FileValidator(['application/pdf'])]],
+    coverLetter: ['', [Validators.required, StringValidator(10, 500, true)]],
     careerSlug: ['', [Validators.required]]
   });
 
@@ -58,11 +61,13 @@ export class SingleCareerComponent {
 
   onSubmitJobApplicationForm(): void {
     this.jobApplicationFormDisabled = true;
+
     const formData = new FormData();
     formData.append('resume', this.careerForm.controls.resume.value);
     Object.keys(this.careerForm.controls).forEach(key => {
       formData.append(key, this.careerForm.get(key)?.value);
     });
+
     this.jobApplicationService.submitVolunteerForm(formData).subscribe({
       next: (res: IApiResponse) => {
         if(res.success) {
@@ -81,7 +86,9 @@ export class SingleCareerComponent {
     const file = event.target.files[0];
     if (file) {
       this.careerForm.patchValue({resume: file});
-      this.resumeName = file.name;
+      if(!this.careerForm.controls.resume.hasError('file')) {
+        this.resumeName = file.name;
+      }
     }
   }
 }
