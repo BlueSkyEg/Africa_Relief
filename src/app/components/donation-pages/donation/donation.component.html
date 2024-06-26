@@ -14,18 +14,19 @@
           <app-form-label>Name*</app-form-label>
           <input type="text" appFormElement formControlName="name" placeholder="Full Name">
           <app-form-error [hasError]="personalDetailsForm.get('name').hasError('required') && personalDetailsForm.get('name').touched">Name is required.</app-form-error>
+          <app-form-error [hasError]="personalDetailsForm.get('name').hasError('string') && personalDetailsForm.get('name').touched">{{ personalDetailsForm.get('name').errors?.['string'] }}</app-form-error>
         </app-form-field>
         <app-form-field>
           <app-form-label>Email*</app-form-label>
           <input type="text" appFormElement formControlName="email" placeholder="example@example.com">
           <app-form-error [hasError]="personalDetailsForm.get('email').hasError('required') && personalDetailsForm.get('email').touched">Email is required.</app-form-error>
-          <app-form-error [hasError]="personalDetailsForm.get('email').hasError('email') && personalDetailsForm.get('email').touched">Email is invalid.</app-form-error>
+          <app-form-error [hasError]="personalDetailsForm.get('email').hasError('pattern') && personalDetailsForm.get('email').touched">{{ personalDetailsForm.get('email').errors?.['pattern'] }}</app-form-error>
         </app-form-field>
         <app-form-field>
           <app-form-label>Phone Number*</app-form-label>
           <input type="tel" appFormElement formControlName="phone" placeholder="Phone Number">
           <app-form-error [hasError]="personalDetailsForm.get('phone').hasError('required') && personalDetailsForm.get('phone').touched">Phone is required.</app-form-error>
-          <app-form-error [hasError]="personalDetailsForm.get('phone').hasError('pattern') && personalDetailsForm.get('phone').touched">Phone is invalid.</app-form-error>
+          <app-form-error [hasError]="personalDetailsForm.get('phone').hasError('pattern') && personalDetailsForm.get('phone').touched">{{ personalDetailsForm.get('phone').errors?.['pattern'] }}</app-form-error>
         </app-form-field>
         <div class="w-full flex justify-end">
           <button class="text-body-3 text-white bg-primary py-3 px-6 disabled:text-white disabled:bg-gray-medium" [disabled]="personalDetailsForm.invalid" matStepperNext>Next</button>
@@ -43,17 +44,19 @@
             <mat-option [value]="country">{{country.name}}</mat-option>
             }
           </mat-autocomplete>
-          <app-form-error [hasError]="billingDetailsForm.get('country').hasError('required') && billingDetailsForm.get('country').touched">Country is required</app-form-error>
-          <app-form-error [hasError]="billingDetailsForm.get('country').hasError('pattern') && billingDetailsForm.get('country').touched">Please select from the options</app-form-error>
+          <app-form-error [hasError]="billingDetailsForm.get('country').hasError('required') && billingDetailsForm.get('country').touched">Country is required.</app-form-error>
+          <app-form-error [hasError]="billingDetailsForm.get('country').hasError('pattern') && billingDetailsForm.get('country').touched">Please select from the options.</app-form-error>
         </app-form-field>
         <app-form-field>
           <app-form-label>Address 1*</app-form-label>
           <input appFormElement class="form-input" type="text" formControlName="addressLine1" placeholder="Address Line 1">
-          <app-form-error [hasError]="billingDetailsForm.get('addressLine1').hasError('required') && billingDetailsForm.get('addressLine1').touched"> Address 1 is required</app-form-error>
+          <app-form-error [hasError]="billingDetailsForm.get('addressLine1').hasError('required') && billingDetailsForm.get('addressLine1').touched">Address 1 is required.</app-form-error>
+          <app-form-error [hasError]="billingDetailsForm.get('addressLine1').hasError('string') && billingDetailsForm.get('addressLine1').touched">{{ billingDetailsForm.get('addressLine1').errors?.['string'] }}</app-form-error>
         </app-form-field>
         <app-form-field>
           <app-form-label>Address 2</app-form-label>
           <input appFormElement class="form-input" type="text" formControlName="addressLine2" placeholder="Address Line 2">
+          <app-form-error [hasError]="billingDetailsForm.get('addressLine2').hasError('string') && billingDetailsForm.get('addressLine2').touched">{{ billingDetailsForm.get('addressLine1').errors?.['string'] }}</app-form-error>
         </app-form-field>
         <div class="flex gap-[16px] self-stretch">
           <app-form-field class="w-full">
@@ -69,6 +72,7 @@
               <input appFormElement type="text" formControlName="state" placeholder="State">
             }
             <app-form-error [hasError]="billingDetailsForm.get('state').hasError('required') && billingDetailsForm.get('state').touched">State is required</app-form-error>
+            <app-form-error [hasError]="billingDetailsForm.get('state').hasError('string') && billingDetailsForm.get('state').touched">{{ billingDetailsForm.get('state').errors?.['string'] }}</app-form-error>
           </app-form-field>
           <app-form-field class="w-full">
             <app-form-label>Zip Code*</app-form-label>
@@ -90,6 +94,7 @@
             <input appFormElement type="text" formControlName="city" placeholder="City">
           }
           <app-form-error [hasError]="billingDetailsForm.get('city').hasError('required') && billingDetailsForm.get('city').touched">City is required</app-form-error>
+          <app-form-error [hasError]="billingDetailsForm.get('city').hasError('string') && billingDetailsForm.get('city').touched">{{ billingDetailsForm.get('city').errors?.['string'] }}</app-form-error>
         </app-form-field>
         <div>
           <div class="w-full flex justify-between">

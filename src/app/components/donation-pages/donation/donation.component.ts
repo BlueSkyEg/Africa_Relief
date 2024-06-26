@@ -21,6 +21,10 @@ import { Country, State, City, ICity, IState, ICountry }  from 'country-state-ci
 import { IUser } from '../../../shared/interfaces/auth/user.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
+import { IIntentClientSecret } from '../../../shared/interfaces/payment/intent-client-secret.interface';
+import { StringValidator } from '../../../core/validators/string.validator';
+import { EmailValidator } from '../../../core/validators/email.validator';
+import { PhoneValidator } from '../../../core/validators/phone.validator';
 
 @Component({
   selector: 'app-donation',
@@ -41,14 +45,14 @@ export class DonationComponent {
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   fb: FormBuilder = inject(FormBuilder);
   paymentService: PaymentService = inject(PaymentService);
-  _stripeService: StripeService = inject(StripeService);
   authService: AuthService = inject(AuthService);
-  breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
+  _breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
+  _stripeService: StripeService = inject(StripeService);
   _snackBar: MatSnackBar = inject(MatSnackBar);
-  gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
+  _gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
 
   constructor() {
-    this.stepperOrientation = this.breakpointObserver
+    this.stepperOrientation = this._breakpointObserver
       .observe('(min-width: 800px)')
       .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
 
@@ -63,23 +67,23 @@ export class DonationComponent {
   }
 
   personalDetailsForm = this.fb.group({
-    name: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
-    phone: ['', [Validators.required, Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
+    name: ['', [Validators.required, StringValidator()]],
+    email: ['', [Validators.required, EmailValidator()]],
+    phone: ['', [Validators.required, PhoneValidator()]],
   });
 
   billingDetailsForm = this.fb.group({
     country: ['', [Validators.required, Validators.pattern(/^[A-Z]{2}$/)]],
-    addressLine1: ['', [Validators.required]],
-    addressLine2: ['', []],
-    city: ['', [Validators.required]],
-    state: ['', [Validators.required]],
+    addressLine1: ['', [Validators.required, StringValidator(2, 100, true)]],
+    addressLine2: ['', [StringValidator(0, 100, true)]],
+    city: ['', [Validators.required, StringValidator(2, 20, true)]],
+    state: ['', [Validators.required, StringValidator(2, 20, true)]],
     zipCode: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
     anonymousDonation: ['']
   });
 
   checkoutForm = this.fb.group({
-    billingComment: ['', [Validators.maxLength(500)]]
+    billingComment: ['', [StringValidator(0, 500, true)]]
   })
 
   countries: ICountry[] = Country.getAllCountries();
@@ -153,7 +157,7 @@ export class DonationComponent {
     });
 
     this.paymentService.setupPaymentIntent().subscribe({
-      next: (res: IApiResponse<SetupIntent>) => this.elementsOptions.clientSecret = res.data.client_secret
+      next: (res: IApiResponse<IIntentClientSecret>) => this.elementsOptions.clientSecret = res.data.client_secret
     });
   }
 
@@ -187,9 +191,9 @@ export class DonationComponent {
             } else if(res.data?.requiresAction) {
               this.handleCardAction(res.data.clientSecret);
             } else {
-              this._snackBar.open(res.message, '✖', {panelClass: 'failure-snackbar'});
+              this._snackBar.open('Your card was declined.', '✖', {panelClass: 'failure-snackbar'});
+              this.pushTagFailedDonationEvent('Your card was declined.');
               this.checkoutFormDisabled = false;
-              this.pushTagFailedDonationEvent(res.message);
             }
           }
         })
@@ -248,6 +252,7 @@ export class DonationComponent {
       next: res => {
         if(res.error) {
           this._snackBar.open(res.error.message, '✖', {panelClass: 'failure-snackbar'});
+          this.checkoutFormDisabled = false;
           this.pushTagFailedDonationEvent(res.error.message);
         } else {
           this.pushTagConfirmDonationEvent();
@@ -265,7 +270,7 @@ export class DonationComponent {
       donationFormTitle: this.donationFormTitle,
       recurringPeriod: this.recurringPeriod
     };
-    this.gtmService.pushTag(gtmTag);
+    this._gtmService.pushTag(gtmTag);
   }
 
   // Push Google Tag Manager Donation Failed Event
@@ -274,7 +279,7 @@ export class DonationComponent {
       event: 'donationFaild',
       faildReason: donationFaildReason
     };
-    this.gtmService.pushTag(gtmTag);
+    this._gtmService.pushTag(gtmTag);
   }
 
   // Handel Payment Card Errors
