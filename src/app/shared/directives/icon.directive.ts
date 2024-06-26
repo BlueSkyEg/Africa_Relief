@@ -9,19 +9,19 @@ export class IconDirective implements OnInit {
   constructor(private element: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit(): void {
-    this.renderer.setStyle(this.element.nativeElement, 'width', '48px');
-    this.renderer.setStyle(this.element.nativeElement, 'height', '48px');
-    this.renderer.setStyle(this.element.nativeElement, 'display', 'flex');
-    this.renderer.setStyle(this.element.nativeElement, 'padding', '3px');
-    this.renderer.setStyle(this.element.nativeElement, 'justify-content', 'center');
-    this.renderer.setStyle(this.element.nativeElement, 'align-items', 'center');
+    this.renderer.addClass(this.element.nativeElement, 'w-12');
+    this.renderer.addClass(this.element.nativeElement, 'h-12');
+    this.renderer.addClass(this.element.nativeElement, 'flex');
+    this.renderer.addClass(this.element.nativeElement, 'p-1');
+    this.renderer.addClass(this.element.nativeElement, 'justify-center');
+    this.renderer.addClass(this.element.nativeElement, 'items-center');
 
     if (this.appearance === 'outlined') {
-      this.renderer.setStyle(this.element.nativeElement, 'background-color', 'var(--white-color)');
-      this.renderer.setStyle(this.element.nativeElement, 'border', '1px solid var(--light-gray-color)');
+      this.renderer.addClass(this.element.nativeElement, 'bg-white');
+      this.renderer.addClass(this.element.nativeElement, 'border');
+      this.renderer.addClass(this.element.nativeElement, 'border-gray-light');
     } else {
-      this.renderer.setStyle(this.element.nativeElement, 'background-color', 'var(--secondary-color)');
+      this.renderer.addClass(this.element.nativeElement, 'bg-secondary');
     }
   }
-
 }
