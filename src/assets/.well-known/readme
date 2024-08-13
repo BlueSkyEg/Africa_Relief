@@ -1,0 +1,16 @@
+Register domains for payment methods
+
+Register and verify domains to use payment methods (including Link, Apple Pay, and Google Pay) in Elements or Checkout's embeddable payment form.
+
+To use certain payment methods with Elements or Checkout’s embeddable payment form, you must register every web domain that will show the payment method. This includes registering top-level domains and subdomains. For example, if you have the domain yourdomain.com and subdomains like shop.yourdomain.com and www.yourdomain.com, this guide explains how to register them.
+
+After you register a domain, that domain is ready for use with other payment methods that you might enable in the future.
+
+The following payment methods require registration:
+
+Google Pay
+Link
+PayPal
+Apple Pay (additional verification step required)
+
+for more information visit: https://docs.stripe.com/payments/payment-methods/pmd-registration

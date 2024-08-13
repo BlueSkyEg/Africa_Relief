@@ -50,7 +50,12 @@
             "assets": [
               "src/favicon.ico",
               "src/.htaccess",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "src/assets/.well-known",
+                "output": "/.well-known/"
+              }
             ],
             "styles": [
               "src/styles/_angular-material.scss",
