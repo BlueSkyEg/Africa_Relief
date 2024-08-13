@@ -11,7 +11,7 @@ export class JobApplicationService {
 
   http: HttpClient = inject(HttpClient);
 
-  submitVolunteerForm(application: FormData): Observable<IApiResponse> {
-    return this.http.post<IApiResponse>(environment.apiUrl + '/job-applications/store', application);
+  submitVolunteerForm(application: FormData): Observable<IApiResponse<null>> {
+    return this.http.post<IApiResponse<null>>(environment.apiUrl + '/job-applications/store', application);
   }
 }

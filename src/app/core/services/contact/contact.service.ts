@@ -11,7 +11,7 @@ export class ContactService {
 
   http: HttpClient = inject(HttpClient);
 
-  submitContactForm(body): Observable<IApiResponse> {
-    return this.http.post<IApiResponse>(environment.apiUrl + '/contacts/store', body);
+  submitContactForm(body): Observable<IApiResponse<null>> {
+    return this.http.post<IApiResponse<null>>(environment.apiUrl + '/contacts/store', body);
   }
 }

@@ -11,7 +11,7 @@ export class VolunteerService {
 
   http: HttpClient = inject(HttpClient);
 
-  submitVolunteerForm(application): Observable<IApiResponse> {
-    return this.http.post<IApiResponse>(environment.apiUrl + '/volunteers/store', application);
+  submitVolunteerForm(application): Observable<IApiResponse<null>> {
+    return this.http.post<IApiResponse<null>>(environment.apiUrl + '/volunteers/store', application);
   }
 }

@@ -11,11 +11,11 @@ export class NewsletterService {
 
   http: HttpClient = inject(HttpClient);
 
-  subscribeToNewsletter(email): Observable<IApiResponse> {
-    return this.http.post<IApiResponse>(environment.apiUrl + '/newsletter/subscribe', email)
+  subscribeToNewsletter(email): Observable<IApiResponse<null>> {
+    return this.http.post<IApiResponse<null>>(environment.apiUrl + '/newsletter/subscribe', email)
   }
 
-  unsubscribeFromNewsletter(email): Observable<IApiResponse> {
-    return this.http.post<IApiResponse>(environment.apiUrl + '/newsletter/unsubscribe', email)
+  unsubscribeFromNewsletter(email): Observable<IApiResponse<null>> {
+    return this.http.post<IApiResponse<null>>(environment.apiUrl + '/newsletter/unsubscribe', email)
   }
 }
