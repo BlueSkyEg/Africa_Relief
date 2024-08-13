@@ -4,13 +4,14 @@ import { SwiperOptions } from 'swiper/types';
 import { IconArrowLeftComponent } from "../../../shared/icons/arrows/arrow-left/icon-arrow-left.component";
 import { IconArrowRightComponent } from "../../../shared/icons/arrows/arrow-right/icon-arrow-right.component";
 import { IconDirective } from '../../../shared/directives/icon.directive';
+import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
 
 @Component({
     selector: 'app-board-members-slider',
     standalone: true,
     templateUrl: './board-members-slider.component.html',
     styles: ``,
-    imports: [IconDirective, IconArrowLeftComponent, IconArrowRightComponent],
+    imports: [IconDirective, IconArrowLeftComponent, IconArrowRightComponent, ImgPlaceholderDirective],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BoardMembersSliderComponent implements OnInit {

@@ -2,7 +2,9 @@
   <swiper-container class="board-members-slider" init="false">
     @for (member of members; track member) {
       <swiper-slide class="max-w-[294px]">
-        <img class="w-full h-[320px] object-cover object-center" [src]="member.image.src" [alt]="member.image.alt" loading="lazy">
+        <div class="w-full h-[320px] bg-gray-light">
+          <img class="h-full object-cover object-center" appImgPlaceholder [src]="member.image.src" [alt]="member.image.alt" loading="lazy">
+        </div>
         <h4 class="text-body-1-inter pt-4 pb-1">{{member.name}}</h4>
         <p class="text-body-2 text-gray-dark">{{member.position}}</p>
       </swiper-slide>

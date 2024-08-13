@@ -2,7 +2,9 @@
   <swiper-container class="journey-timeline-slider" init="false">
     @for (slide of slides; track slide) {
       <swiper-slide class="flex flex-col gap-6 max-w-[424px]">
-        <img class="pe-6 h-[288px] object-cover object-center" [src]="slide.image.src" [alt]="slide.image.alt" loading="lazy">
+        <div class="w-full h-[288px] pe-6">
+          <img class="h-full object-cover object-center" appImgPlaceholder [src]="slide.image.src" [alt]="slide.image.alt" loading="lazy">
+        </div>
         <div class="relative before:absolute before:h-[1px] before:w-full before:top-1/2 before:start-0 before:-translate-y-1/2 before:-z-10 before:bg-gray-light">
           <span class="block w-fit text-body-1-inter text-primary bg-white py-2 px-3 border border-gray-light">{{slide.year}}</span>
         </div>

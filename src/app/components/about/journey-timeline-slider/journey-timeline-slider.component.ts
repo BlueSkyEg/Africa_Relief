@@ -4,13 +4,14 @@ import { IconArrowRightComponent } from '../../../shared/icons/arrows/arrow-righ
 import { SwiperContainer } from 'swiper/element';
 import { SwiperOptions } from 'swiper/types';
 import { IconDirective } from '../../../shared/directives/icon.directive';
+import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
 
 @Component({
   selector: 'app-journey-timeline-slider',
   standalone: true,
   templateUrl: './journey-timeline-slider.component.html',
-  styleUrl: './journey-timeline-slider.component.scss',
-  imports: [IconDirective, IconArrowLeftComponent, IconArrowRightComponent],
+  styles: ``,
+  imports: [IconDirective, IconArrowLeftComponent, IconArrowRightComponent, ImgPlaceholderDirective],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class JourneyTimeLineSliderComponent implements OnInit {
