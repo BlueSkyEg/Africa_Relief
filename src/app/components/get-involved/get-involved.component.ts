@@ -5,13 +5,14 @@ import { ButtonLinkComponent } from "../../shared/components/button-link/button-
 import { AccordionComponent } from "../../shared/components/accordion/accordion.component";
 import { IContent } from '../../shared/interfaces/content-interface';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { ImgPlaceholderDirective } from '../../shared/directives/img-placeholder.directive';
 
 @Component({
     selector: 'app-get-involved',
     standalone: true,
     templateUrl: './get-involved.component.html',
     styles: ``,
-    imports: [MatExpansionModule, BreadcrumbComponent, BecomeVolunteerFormSectionComponent, ButtonLinkComponent, AccordionComponent]
+    imports: [MatExpansionModule, BreadcrumbComponent, BecomeVolunteerFormSectionComponent, ButtonLinkComponent, AccordionComponent, ImgPlaceholderDirective]
 })
 export class GetInvolvedComponent {
   accordionsContent: IContent[] = [

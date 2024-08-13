@@ -5,11 +5,14 @@
   <!-- 1st Section -->
   <div class="flex flex-col lg:flex-row justify-between gap-6 pt-6 pb-10 border-b border-gray-medium">
     <div class="flex flex-col gap-6 basis-1/2">
-      <h1 class="text-heading-1">Lend a Hand and Change a Life.</h1>
-      <p class="text-body-2 text-gray-dark lg:max-w-[506px]">The reason is simple– nothing matches the satisfaction and fulfillment that comes from alleviating the suffering of others. Their smiles of gratitude are worth the world, and the feeling of seeing the fruits of your labor of love is unmatched. You’ll want to see those smiles again and again. The reward that someone feels when he/she decides to help someone who is going through a tough time is fulfilling beyond belief. It is almost like you feel you need to keep on helping, because you need to keep your heart satisfied and healthy.</p>
+      <h1 class="text-heading-1">Lend a Hand and Change a Life through Charity Involvement.</h1>
+      <div class="flex flex-col gap-6 lg:gap-10 lg:max-w-[506px] text-body-2 text-gray-dark">
+        <p>The reason is simple – nothing matches the satisfaction and fulfillment that comes from alleviating the suffering of others, a core tenet of charity involvement. Their smiles of gratitude are worth the world, and the feeling of seeing the fruits of your labor of love is unmatched.</p>
+        <p>You’ll want to see those smiles again and again. The reward that someone feels when he/she decides to help someone who is going through a tough time is fulfilling beyond belief. It is almost like you feel you need to keep on helping, because you need to keep your heart satisfied and healthy.</p>
+      </div>
     </div>
-    <div>
-      <img class="w-full" src="assets/images/get-involved/lend-a-hand-and-change-a-life.webp" alt="Lend a Hand and Change a Life" loading="lazy">
+    <div class="w-full lg:w-[612px] h-[328px] lg:h-[632px] bg-gray-light">
+      <img class="h-full object-cover object-right" appImgPlaceholder src="assets/images/get-involved/lend-a-hand-and-change-a-life.webp" alt="Lend a Hand and Change a Life" loading="lazy">
     </div>
   </div>
 
@@ -18,8 +21,8 @@
 
   <!-- Partnership Grant Section -->
   <div class="flex flex-col gap-6 py-10 border-b border-gray-medium">
-    <div>
-      <img class="w-full" src="assets/images/get-involved/partnership-grant.webp" alt="Partnership Grant" loading="lazy">
+    <div class="w-full h-[296px] bg-gray-light">
+      <img class="h-full object-cover object-center" appImgPlaceholder src="assets/images/get-involved/partnership-grant.webp" alt="Partnership Grant" loading="lazy">
     </div>
     <div class="flex flex-col lg:flex-row justify-between gap-6">
       <div class="basis-1/2">
@@ -48,15 +51,5 @@
       <app-button-link label="Contact Us" path="/contact" [icon]="true" appearance="outlined-secondary"/>
     </div>
     <app-accordion [contentList]="accordionsContent" class="basis-1/2"/>
-    <!-- <mat-accordion>
-      @for (content of accordionsContent; track content) {
-        <mat-expansion-panel class="rounded-none">
-          <mat-expansion-panel-header>
-            <mat-panel-title>{{content.heading}}</mat-panel-title>
-          </mat-expansion-panel-header>
-          <p>{{content.description}}</p>
-        </mat-expansion-panel>
-      }
-    </mat-accordion> -->
   </div>
 </div>

@@ -11,24 +11,28 @@
     </div>
   </div>
 
-  <div class="container columns-1 md:columns-2 lg:columns-3" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onGetGallery()">
-    @for (item of gallery; track item.slug) {
-      <a [title]="item.title" [routerLink]="'/blogs/' + item.slug" class="relative overflow-hidden group block mb-4">
-        <img class="w-full" [src]="item.featured_image.src" [alt]="item.featured_image.alt_text" loading="lazy">
-        <div class="group-hover:opacity-100 opacity-0 transition-opacity ease-in-out absolute w-full h-40 bottom-0 start-0 bg-gradient-to-t from-black"></div>
-        <h2 class="group-hover:bottom-0 transition-all ease-in-out absolute w-full -bottom-10 start-0 p-4 text-body-2 font-semibold text-white truncate">{{item.title}}</h2>
-      </a>
-    }
-    @empty {
-      <div class="animate-pulse bg-gray-light h-56 mb-4"></div>
-      <div class="animate-pulse bg-gray-light h-48 mb-4"></div>
-      <div class="animate-pulse bg-gray-light h-40 mb-4"></div>
-      <div class="animate-pulse bg-gray-light h-36 mb-4"></div>
-      <div class="animate-pulse bg-gray-light h-48 mb-4"></div>
-      <div class="animate-pulse bg-gray-light h-64 mb-4"></div>
-      <div class="animate-pulse bg-gray-light h-36 mb-4"></div>
-      <div class="animate-pulse bg-gray-light h-48 mb-4"></div>
-      <div class="animate-pulse bg-gray-light h-96 mb-4"></div>
-    }
+  <div class="container grid grid-cols-2 gap-4 md:grid-cols-4" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onGetGallery()">
+    <ng-container *ngTemplateOutlet="imageTemplate; context: { gallery: gallery1, indexs: [60, 56, 52, 80] }"></ng-container>
+    <ng-container *ngTemplateOutlet="imageTemplate; context: { gallery: gallery2, indexs: [80, 60, 56, 48] }"></ng-container>
+    <ng-container *ngTemplateOutlet="imageTemplate; context: { gallery: gallery3, indexs: [48, 56, 80, 60] }"></ng-container>
+    <ng-container *ngTemplateOutlet="imageTemplate; context: { gallery: gallery4, indexs: [80, 60, 40, 56] }"></ng-container>
   </div>
 </div>
+
+<ng-template #imageTemplate let-gallery="gallery" let-indexs="indexs">
+  <div class="grid gap-4">
+    @for (item of gallery; track item.slug) {
+    <a class="relative overflow-hidden group block bg-gray-light min-h-40" [title]="item.title" [routerLink]="'/blogs/' + item.slug">
+      <img class="h-full max-w-full object-cover object-center" appImgPlaceholder [src]="item.featured_image.src" [alt]="item.featured_image.alt_text" loading="lazy">
+      <div class="group-hover:opacity-100 opacity-0 transition-opacity ease-in-out absolute w-full h-40 bottom-0 start-0 bg-gradient-to-t from-black"></div>
+      <h2 class="group-hover:bottom-0 transition-all ease-in-out absolute w-full -bottom-10 start-0 p-4 text-body-2 font-semibold text-white truncate">{{item.title}}</h2>
+    </a>
+    }
+    @empty {
+      <div class="animate-pulse bg-gray-light h-{{ indexs[0] }}"></div>
+      <div class="animate-pulse bg-gray-light h-{{ indexs[1] }}"></div>
+      <div class="animate-pulse bg-gray-light h-{{ indexs[2] }}"></div>
+      <div class="animate-pulse bg-gray-light h-{{ indexs[3] }}"></div>
+    }
+  </div>
+</ng-template>

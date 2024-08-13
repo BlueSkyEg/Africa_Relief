@@ -8,13 +8,14 @@ import { ButtonLinkComponent } from "../../../shared/components/button-link/butt
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
 
 @Component({
     selector: 'app-careers',
     standalone: true,
     templateUrl: './careers.component.html',
     styles: ``,
-    imports: [InfiniteScrollModule, CommonModule, BreadcrumbComponent, ButtonLinkComponent]
+    imports: [InfiniteScrollModule, CommonModule, BreadcrumbComponent, ButtonLinkComponent, ImgPlaceholderDirective]
 })
 export class CareersComponent implements OnInit {
   careers: ICareer[] = [];

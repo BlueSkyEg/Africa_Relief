@@ -6,7 +6,7 @@ import { FieldComponent } from "../../../shared/components/form/field/field.comp
 import { LabelComponent } from "../../../shared/components/form/label/label.component";
 import { ErrorComponent } from "../../../shared/components/form/error/error.component";
 import { ButtonComponent } from "../../../shared/components/form/button/button.component";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ICareer } from '../../../shared/interfaces/career/career.interface';
 import { CareerService } from '../../../core/services/careers/career.service';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
@@ -30,8 +30,9 @@ export class SingleCareerComponent {
   career: ICareer;
   jobApplicationFormDisabled: boolean = false;
   resumeName: string;
-  careerService: CareerService = inject(CareerService);
+  router: Router = inject(Router);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
+  careerService: CareerService = inject(CareerService);
   fb: FormBuilder = inject(FormBuilder);
   jobApplicationService: JobApplicationService = inject(JobApplicationService);
   _snackBar: MatSnackBar = inject(MatSnackBar);
@@ -51,8 +52,12 @@ export class SingleCareerComponent {
       next: route => {
         this.careerService.getCareer(route.get('slug')).subscribe({
           next: (res: IApiResponse<ICareer>) => {
-            this.career = res.data
-            this.careerForm.controls.careerSlug.setValue(res.data.slug)
+            if(res.success) {
+              this.career = res.data;
+              this.careerForm.controls.careerSlug.setValue(res.data.slug);
+            } else {
+              this.router.navigate(['/404']);
+            }
           }
         });
       }
@@ -69,7 +74,7 @@ export class SingleCareerComponent {
     });
 
     this.jobApplicationService.submitVolunteerForm(formData).subscribe({
-      next: (res: IApiResponse) => {
+      next: (res: IApiResponse<null>) => {
         if(res.success) {
           this.careerForm.reset();
           this.resumeName = null;

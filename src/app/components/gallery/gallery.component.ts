@@ -7,16 +7,21 @@ import { BreadcrumbComponent } from "../../shared/components/breadcrumb/breadcru
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { IPaginatedData } from '../../shared/interfaces/paginated-data.interface';
+import { ImgPlaceholderDirective } from '../../shared/directives/img-placeholder.directive';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-gallery',
     standalone: true,
     templateUrl: './gallery.component.html',
     styles: ``,
-    imports: [InfiniteScrollModule, RouterModule, BreadcrumbComponent]
+    imports: [CommonModule, InfiniteScrollModule, RouterModule, BreadcrumbComponent, ImgPlaceholderDirective]
 })
 export class GalleryComponent implements OnInit {
-  gallery: IGalleryImage[] = [];
+  gallery1: IGalleryImage[] = [];
+  gallery2: IGalleryImage[] = [];
+  gallery3: IGalleryImage[] = [];
+  gallery4: IGalleryImage[] = [];
   paginationPageNum: number = 1;
   paginationPerPage: number;
   isPaginationLastPage: boolean = false;
@@ -29,7 +34,7 @@ export class GalleryComponent implements OnInit {
     this.breakpointObserver
       .observe('(min-width: 800px)')
       .subscribe({
-        next: (value) => this.paginationPerPage = value.matches ? 9 : 5
+        next: (value) => this.paginationPerPage = value.matches ? 16 : 8
       })
   }
 
@@ -41,7 +46,22 @@ export class GalleryComponent implements OnInit {
     if(!this.isPaginationLastPage) {
       this.blogService.getBlogsGallery(this.paginationPageNum, this.paginationPerPage).subscribe({
         next: (res: IApiResponse<IPaginatedData<IGalleryImage[]>>) => {
-          this.gallery.push(...res.data.data);
+          res.data.data.filter((e, i) => {
+            switch(i % 4) {
+              case 0:
+                this.gallery1.push(e);
+                break;
+              case 1:
+                this.gallery2.push(e);
+                break;
+              case 2:
+                this.gallery3.push(e);
+                break;
+              case 3:
+                this.gallery4.push(e);
+                break;
+            }
+          });
           if(res.data.pagination.current_page === res.data.pagination.last_page) {
             this.isPaginationLastPage = true;
           }

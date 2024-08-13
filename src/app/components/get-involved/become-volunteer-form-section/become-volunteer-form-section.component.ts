@@ -33,7 +33,7 @@ export class BecomeVolunteerFormSectionComponent {
   onSubmitVolunteerForm(): void {
     this.volunteerFormDisabled = true;
     this.volunteerService.submitVolunteerForm(this.becomeVolunteerForm.getRawValue()).subscribe({
-      next: (res: IApiResponse) => {
+      next: (res: IApiResponse<null>) => {
         if(res.success) {
           this.becomeVolunteerForm.reset();
           this._snackBar.open('Your message has been sent successfully.', '✖', {panelClass: 'success-snackbar'});
