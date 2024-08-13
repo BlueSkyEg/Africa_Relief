@@ -18,6 +18,10 @@ import { IApiResponse } from '../../../shared/interfaces/api-response-interface'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ModalComponent } from "../../../shared/components/modal/modal.component";
+import { FileValidator } from '../../../core/validators/file.validator';
+import { EmailValidator } from '../../../core/validators/email.validator';
+import { StringValidator } from '../../../core/validators/string.validator';
+import { PhoneValidator } from '../../../core/validators/phone.validator';
 
 @Component({
     selector: 'app-profile-settings',
@@ -28,7 +32,6 @@ import { ModalComponent } from "../../../shared/components/modal/modal.component
 })
 export class ProfileSettingsComponent implements OnInit {
 
-  showPassword: boolean = false;
   user: IUser;
   router: Router = inject(Router);
   fb: FormBuilder = inject(FormBuilder);
@@ -36,26 +39,23 @@ export class ProfileSettingsComponent implements OnInit {
   _snackBar: MatSnackBar = inject(MatSnackBar);
 
   ngOnInit(): void {
-    this.authService.authedUserSubject.asObservable().subscribe({
-      next: (value: IUser) => {
-        if(value) {
-          this.editProfileForm.patchValue({name: value.name, email: value.email});
-          this.user = value;
-        }
-      }
-    })
+    this.setAuthUserInfoToEditProfileForm();
   }
 
 
-  // Change User Profile Image
+  /*
+    -----------------------------
+    -- Change User Profile Image
+    -----------------------------
+  */
   imagePreview: string;
   @ViewChild('imagePreviewModal') imagePreviewModal: ModalComponent;
 
   changeProfileImgForm = this.fb.group({
-    profileImg: ['', [Validators.required]]
+    profileImg: ['', [Validators.required, FileValidator(['image/png', 'image/jpeg', 'image/webp'])]]
   })
 
-  onChangeProfileImg() {
+  onChangeProfileImg(): void {
     this.imagePreviewModal.closeModal();
     const formData = new FormData();
     formData.append('img', this.changeProfileImgForm.controls.profileImg.value);
@@ -68,64 +68,136 @@ export class ProfileSettingsComponent implements OnInit {
     })
   }
 
-  onSelectProfileImg(event) {
+  onSelectProfileImg(event): void {
     const file = event.target.files[0];
     if (file) {
+      this.displayProfileImgErrors();
+
       this.changeProfileImgForm.patchValue({profileImg: file});
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.imagePreview = reader.result as string;
-        this.imagePreviewModal.openModal();
-      };
+
+      if(this.changeProfileImgForm.valid) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          this.imagePreview = reader.result as string;
+          this.imagePreviewModal.openModal();
+        };
+      }
     }
   }
 
-
-  // Edit User info
-  editProfileForm = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(3)]],
-    email: ['', [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]]
-  });
-
-  onEditProfile() {
-    this.editProfileForm.controls.email.setErrors({disabled: true});
-    this.authService.updateUserInfo(this.editProfileForm.value).subscribe({
-      next: (res: IApiResponse<IUser>) => {
-        if(res.success) {
-          this._snackBar.open('Profile updated successfully', 'close', {duration: 3000});
-        } else if(res.message == 'validation error') {
-          this.editProfileForm.controls.email.setErrors({emailTaken: true});
+  displayProfileImgErrors(): void {
+    this.changeProfileImgForm.controls.profileImg.valueChanges.subscribe({
+      next: () => {
+        const errors = this.changeProfileImgForm.controls.profileImg.errors;
+        if(errors) {
+          this._snackBar.open(Object.values(errors)[0], '✖', {panelClass: 'failure-snackbar'});
         }
       }
     })
   }
 
 
-  // Change User Password
+  /*
+    -------------------
+    -- Edit User info
+    -------------------
+  */
+  editProfileFormDisabled: boolean = true;
+
+  editProfileForm = this.fb.group({
+    name: ['', [Validators.required, StringValidator()]],
+    email: ['', [Validators.required, EmailValidator()]],
+    username: ['', [StringValidator(3, 50, true)]],
+    phone: ['', [PhoneValidator()]]
+  });
+
+  onEditProfile() {
+    this.editProfileFormDisabled = true;
+    this.authService.updateUserInfo(this.editProfileForm.value).subscribe({
+      next: (res: IApiResponse<IUser>) => {
+        if(res.success) {
+          this._snackBar.open('Profile updated Successfully.', '✖', {panelClass: 'success-snackbar'});
+        } else if(res.message == 'validation error') {
+          for (const control in res.errors) {
+            this.editProfileForm.get(control).setErrors({ serverError: res.errors[control][0] });
+          }
+        } else {
+          this._snackBar.open(res.message, '✖', {panelClass: 'failure-snackbar'});
+        }
+      }
+    })
+  }
+
+  setAuthUserInfoToEditProfileForm(): void {
+    this.authService.authedUserSubject.asObservable().subscribe({
+      next: (value: IUser) => {
+        if(value) {
+          this.editProfileForm.patchValue({name: value.name, email: value.email, username: value.username, phone: value.phone});
+          this.user = value;
+          this.trackChnagesToEditProfileForm(value);
+        }
+      }
+    });
+  }
+
+  /*
+    - Track changes to the edit profile page controls.
+    - If the email or name is defferent from the current values the form will be enabled.
+  */
+  trackChnagesToEditProfileForm(user: IUser): void {
+    this.editProfileForm.valueChanges.subscribe({
+      next: (newValue) => {
+        if(newValue.email != user.email || newValue.name.trim() != user.name || newValue.username != user.username || newValue.phone != user.phone) {
+          this.editProfileFormDisabled = false;
+        } else {
+          this.editProfileFormDisabled = true;
+        }
+      }
+    })
+  }
+
+
+  /*
+    -------------------------
+    -- Change User Password
+    -------------------------
+  */
+  changeProfilePassworedFormDisabled: boolean = false;
+  showPassword: boolean = false;
+
   changeProfilePassworedForm = this.fb.group({
     currentPassword: ['', [Validators.required]],
-    password: [''],
-    password_confirmation: ['']
-  }, {validator: [PasswordValidator, MatchPasswordValidator]} as AbstractControlOptions)
+    password: ['', [Validators.required, PasswordValidator()]],
+    password_confirmation: ['', [Validators.required]]
+  }, {validator: [MatchPasswordValidator()]} as AbstractControlOptions)
 
   onChangeProfilePasswored() {
-    this.changeProfilePassworedForm.controls.currentPassword.setErrors({disabled: true});
+    this.changeProfilePassworedFormDisabled = true;
     this.authService.changeUserPassword(this.changeProfilePassworedForm.value).subscribe({
       next: (res: IApiResponse<IUser>) => {
         if(res.success) {
           localStorage.clear();
           this.router.navigateByUrl('/login');
-          this._snackBar.open('Password changed successfully', 'close');
+          this._snackBar.open('Password changed successfully.', '✖', {panelClass: 'success-snackbar'});
         } else if(res.message == 'validation error') {
-          this.changeProfilePassworedForm.controls.currentPassword.setErrors({inccorect: true});
+          for (const control in res.errors) {
+            this.changeProfilePassworedForm.get(control).setErrors({ serverError: res.errors[control][0] });
+          }
+        } else {
+          this._snackBar.open(res.message, '✖', {panelClass: 'failure-snackbar'});
         }
+        this.changeProfilePassworedFormDisabled = false;
       }
     })
   }
 
 
-  // Password Strength Indicator
+  /*
+    -------------------------------
+    -- Password Strength Indicator
+    -------------------------------
+  */
   passwordStrenth: number = 0;
 
   onTypePassword() {
