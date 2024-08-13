@@ -6,7 +6,7 @@ import {animate, style, transition, trigger} from "@angular/animations";
   standalone: true,
   imports: [],
   templateUrl: './error.component.html',
-  styleUrl: './error.component.scss',
+  styles: ``,
   animations: [
     trigger('errorAnimation', [
       transition(':enter', [

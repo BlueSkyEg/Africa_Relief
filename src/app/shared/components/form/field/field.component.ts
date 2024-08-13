@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './field.component.html',
-  styleUrl: './field.component.scss'
+  styles: ``
 })
 export class FieldComponent {
 

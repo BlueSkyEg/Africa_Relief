@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './label.component.html',
-  styleUrl: './label.component.scss'
+  styles: ``
 })
 export class LabelComponent {
 
