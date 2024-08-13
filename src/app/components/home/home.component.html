@@ -1,35 +1,38 @@
-<main class="flex flex-col gap-10 lg:gap-20 mb-10 lg:mb-20">
+<div class="flex flex-col gap-10 lg:gap-20 mb-10 lg:mb-20">
 
   <app-main-slider/>
 
+
   <!-- Donation Card Section -->
   <div class="container flex flex-col xl:flex-row justify-between gap-6">
-    <div class="flex flex-col gap-6 xl:gap-8 xl:max-w-[718px]">
-      <h2 class="text-heading-2 xl:max-w-[652px]">ALL Children Deserve an Equal Opportunity to Succeed in Life</h2>
-      <div class="relative flex justify-center">
-        <img class="w-full" src="/assets/images/home/Equal-Opportunity-to-Children.webp" alt="ALL Children Deserve an Equal Opportunity to Succeed in Life.webp">
+    <div class="flex flex-col gap-6 xl:w-[718px]">
+      <h2 class="text-heading-2 xl:w-[652px]">ALL Children Deserve an Equal Opportunity to Succeed in Life</h2>
+      <div class="relative h-full bg-gray-light">
+        <img class="h-full object-cover object-center" src="/assets/images/home/Equal-Opportunity-to-Children.webp" alt="ALL Children Deserve an Equal Opportunity to Succeed in Life.webp">
         <div class="flex items-center absolute gap-1 top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 pe-4 bg-black text-white cursor-pointer" (click)="toggleVideoModal()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="57" height="56" viewBox="0 0 57 56" fill="none">
-            <mask id="mask0_814_3157" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="57"
-                  height="56">
-              <rect x="0.5" width="56" height="56" fill="#D9D9D9"/>
-            </mask>
-            <g mask="url(#mask0_814_3157)">
-              <path d="M22.6667 38.5L39 28L22.6667 17.5V38.5ZM7.5 49V7H49.5V49H7.5Z" fill="#FFD500"/>
-            </g>
-          </svg>
-          <span class="text-body-2">Watch Video</span>
+          <app-icon-video-play/>
+          <span class="text-body-3">Watch Video</span>
         </div>
       </div>
     </div>
     @if (donationForm) {
       <app-donation-card [donationForm]="donationForm" class="flex-1 xl:max-w-[600px]">
-        <div class="flex justify-between items-center py-2 px-4 cursor-pointer" (click)="scroll(donateThroughZelle)">
-          <div class="flex items-center gap-2">
-            <app-icon-zelle class="scale-75"/>
-            <span class="text-body-3">Donate through Zelle</span>
+        <div class="flex justify-center relative before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2 before:w-full before:h-[1px] before:bg-gray-light">
+          <span class="text-body-3 bg-white px-3 z-10">Or</span>
+        </div>
+        <div class="flex justify-center items-center gap-8">
+          <div class="flex flex-col justify-center items-center gap-2 w-20 cursor-pointer" title="Donate Through Zelle" (click)="scrollToSection(donateThroughZelle)">
+            <app-icon-zelle/>
+            <span class="text-body-3">Zelle</span>
           </div>
-          <span class="text-primary">Click here</span>
+          <div class="flex flex-col justify-center items-center gap-2 w-20 cursor-pointer" title="Donate Through Venmo" (click)="scrollToSection(donateThroughVenmo)">
+            <app-icon-venmo/>
+            <span class="text-body-3">Venmo</span>
+          </div>
+          <div class="flex flex-col justify-center items-center gap-2 w-20 cursor-pointer" title="Donate Through Cash app" (click)="scrollToSection(donateThroughCashApp)">
+            <app-icon-cash-app/>
+            <span class="text-body-3">Cash app</span>
+          </div>
         </div>
       </app-donation-card>
     }
@@ -52,6 +55,7 @@
     }
   </div>
 
+
   <!-- Video Modal -->
   @if (videoModalOpened) {
   <div @overlayAnimation class="bg-black w-full h-full fixed top-0 start-0 opacity-75 z-[999]"></div>
@@ -60,6 +64,7 @@
     <iframe class="w-[80%] md:w-[70%] aspect-video" src="https://www.youtube.com/embed/D-g7BIDOvH8?si=dAMwMhceqI2VVHEp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div>
   }
+
 
   <!-- Project Categories Silder -->
   <div #projectCategoriesSlider class="container flex flex-col gap-8">
@@ -74,35 +79,14 @@
     <app-project-categories-slider/>
   </div>
 
-  @defer (on viewport(projectCategoriesSlider)) {
-    <app-partners-slider #partnersSlider/>
-  }
-  @placeholder {
-    <div class="animate-pulse h-24 border-y border-gray-light bg-white"></div>
-  }
-
-  @defer (on viewport(projectCategoriesSlider)) {
-    <app-projects-slider-section/>
-  }
-  @placeholder {
-    @for (item of [0,1,2]; track $index) {
-      <div class="animate-pulse flex flex-col gap-6 bg-white border border-gray-light max-w-[400px] p-4">
-        <div class="bg-gray-light h-72"></div>
-        <div class="bg-gray-light h-3 w-2/6"></div>
-        <div class="bg-gray-light h-4 w-5/6"></div>
-        <div class="bg-gray-light h-4 w-4/6"></div>
-        <div class="bg-gray-light h-8"></div>
-      </div>
-    }
-  }
 
   <!-- Donate Through Zelle -->
   <div #donateThroughZelle class="py-12 text-white bg-primary bg-[url('/assets/images/shared/wave-bg.webp')] bg-cover bg-no-repeat">
-    <div class="container flex flex-col lg:flex-row justify-between lg:items-center gap-8">
+    <div class="container">
       <div class="flex flex-col gap-4">
-        <div class="flex items-center gap-[8px]">
-          <app-icon-zelle/>
-          <span class="text-body-2-md">Zelle</span>
+        <div class="flex items-center gap-2">
+          <app-icon-zelle class="scale-75"/>
+          <span class="text-body-2-md text-white">Zelle</span>
         </div>
         <h2 class="text-heading-2">Donate Through Zelle</h2>
         <div class="flex flex-col lg:flex-row gap-4">
@@ -116,27 +100,70 @@
           </a>
         </div>
       </div>
-      <img class="max-w-48 m-auto lg:m-0" src="/assets/images/home/zelle-qr.webp" alt="Zelle Qr Code">
     </div>
   </div>
 
+  @defer (on viewport(projectCategoriesSlider)) {
+  <!-- Partners Slider -->
+  <app-partners-slider/>
+
+
+  <!-- Projects Slider -->
+  <app-projects-slider-section/>
+  }
+
+
+  <!-- Donate Through Venmo -->
+  <div #donateThroughVenmo class="py-12 text-white bg-primary bg-[url('/assets/images/shared/wave-bg.webp')] bg-cover bg-no-repeat">
+    <div class="container">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center gap-2">
+          <app-icon-venmo class="scale-75"/>
+          <span class="text-body-2-md">Venmo</span>
+        </div>
+        <h2 class="text-heading-2">Donate Through Venmo</h2>
+        <div class="flex flex-col lg:flex-row gap-4">
+          <div class="flex items-center gap-2 p-3 border border-white w-fit">
+            <app-icon-user/>
+            &#64;Africa-Relief
+          </div>
+          <a class="flex items-center gap-2 p-3 border border-white w-fit" href="tel:+12012821385" target="_blank" rel="nofollow">
+            <app-icon-phone/>
+            201-282-1385
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <app-safe-and-easy-donation/>
 
-  <app-become-volunteer #becomeVolunteer/>
+
+  <app-become-volunteer/>
+
 
   <!-- Latest Blogs -->
-  @defer (on viewport(becomeVolunteer)) {
-    <app-latest-blogs/>
+  @defer (on viewport(donateThroughVenmo)) {
+  <app-latest-blogs/>
   }
-  @placeholder {
-    @for (item of [0,1,2]; track $index) {
-      <div class="animate-pulse flex flex-col gap-6 bg-white border border-gray-light max-w-[400px] p-4">
-        <div class="bg-gray-light h-72"></div>
-        <div class="bg-gray-light h-3 w-2/6"></div>
-        <div class="bg-gray-light h-4 w-5/6"></div>
-        <div class="bg-gray-light h-4 w-4/6"></div>
-        <div class="bg-gray-light h-8"></div>
+
+
+  <!-- Donate Through Cash App -->
+  <div #donateThroughCashApp class="py-12 text-white bg-primary bg-[url('/assets/images/shared/wave-bg.webp')] bg-cover bg-no-repeat">
+    <div class="container">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center gap-2">
+          <app-icon-cash-app class="scale-75"/>
+          <span class="text-body-2-md">Cash app</span>
+        </div>
+        <h2 class="text-heading-2">Donate Through Cash app</h2>
+        <div class="flex items-center gap-2 p-3 border border-white w-fit">
+          <app-icon-user/>
+          $AfricaRelief
+        </div>
       </div>
-    }
-  }
-</main>
+    </div>
+  </div>
+
+</div>

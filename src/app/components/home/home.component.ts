@@ -8,7 +8,7 @@ import {LatestBlogsComponent} from "./latest-blogs/latest-blogs.component";
 import { ButtonLinkComponent } from "../../shared/components/button-link/button-link.component";
 import { BecomeVolunteerComponent } from "../../shared/components/become-volunteer/become-volunteer.component";
 import { DonationCardComponent } from "../../shared/components/donation-card/donation-card.component";
-import { IconZelleComponent } from "../../shared/icons/zelle/icon-zelle.component";
+import { IconZelleComponent } from "../../shared/icons/payment-gateways/zelle/icon-zelle.component";
 import { IDonationForm } from '../../shared/interfaces/donation/donation-form.interface';
 import { IconEnvelopeComponent } from "../../shared/icons/envelope/icon-envelope.component";
 import { IconPinComponent } from "../../shared/icons/pin/icon-pin.component";
@@ -16,6 +16,11 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { IconCloseComponent } from "../../shared/icons/close/icon-close.component";
 import { DonationFormService } from '../../core/services/donation/donation-form.service';
 import { IApiResponse } from '../../shared/interfaces/api-response-interface';
+import { IconVenmoComponent } from "../../shared/icons/payment-gateways/venmo/icon-venmo.component";
+import { IconCashAppComponent } from "../../shared/icons/payment-gateways/cash-app/icon-cash-app.component";
+import { IconPhoneComponent } from "../../shared/icons/phone/icon-phone.component";
+import { IconUserComponent } from "../../shared/icons/user/icon-user.component";
+import { IconVideoPlayComponent } from '../../shared/icons/video-play/icon-video-play.component';
 
 @Component({
     selector: 'app-home',
@@ -33,21 +38,7 @@ import { IApiResponse } from '../../shared/interfaces/api-response-interface';
             ])
         ])
     ],
-    imports: [
-        MainSliderComponent,
-        ProjectCategoriesSliderComponent,
-        ProjectsSliderSectionComponent,
-        PartnersSliderComponent,
-        SafeAndEasyDonationComponent,
-        LatestBlogsComponent,
-        ButtonLinkComponent,
-        BecomeVolunteerComponent,
-        DonationCardComponent,
-        IconZelleComponent,
-        IconEnvelopeComponent,
-        IconPinComponent,
-        IconCloseComponent
-    ]
+    imports: [MainSliderComponent, ProjectCategoriesSliderComponent, ProjectsSliderSectionComponent, PartnersSliderComponent, SafeAndEasyDonationComponent, LatestBlogsComponent, ButtonLinkComponent, BecomeVolunteerComponent, DonationCardComponent, IconZelleComponent, IconEnvelopeComponent, IconPinComponent, IconCloseComponent, IconVenmoComponent, IconCashAppComponent, IconPhoneComponent, IconUserComponent, IconVideoPlayComponent]
 })
 export class HomeComponent {
 
@@ -66,7 +57,7 @@ export class HomeComponent {
     })
   }
 
-  scroll(el: HTMLElement) {
+  scrollToSection(el: HTMLElement) {
     el.scrollIntoView({behavior: 'smooth'});
   }
 
