@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { IProject } from '../../../shared/interfaces/project/project-interface';
 import { ProjectService } from '../../../core/services/projects/project.service';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { CommonModule } from '@angular/common';
 import { IconQuoteComponent } from "../../../shared/icons/quote/icon-quote.component";
@@ -16,16 +16,18 @@ import { ShareButtonsComponent } from "../../../shared/components/share-buttons/
 import { BreadcrumbComponent } from "../../../shared/components/breadcrumb/breadcrumb.component";
 import { DonationCardComponent } from "../../../shared/components/donation-card/donation-card.component";
 import { RelatedProjectsComponent } from "./related-projects/related-projects.component";
+import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
 
 @Component({
     selector: 'app-single-project',
     standalone: true,
     templateUrl: './single-project.component.html',
     styles: ``,
-    imports: [RouterModule, CommonModule, IconDirective, IconQuoteComponent, ButtonLinkComponent, BlogCardComponent, IconLinkedinComponent, IconYoutubeComponent, IconInstagramComponent, IconFacebookComponent, ShareButtonsComponent, BreadcrumbComponent, DonationCardComponent, RelatedProjectsComponent]
+    imports: [RouterModule, CommonModule, IconDirective, IconQuoteComponent, ButtonLinkComponent, BlogCardComponent, IconLinkedinComponent, IconYoutubeComponent, IconInstagramComponent, IconFacebookComponent, ShareButtonsComponent, BreadcrumbComponent, DonationCardComponent, RelatedProjectsComponent, ImgPlaceholderDirective]
 })
 export class SingleProjectComponent implements OnInit {
   project: IProject;
+  router: Router = inject(Router);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   projectService: ProjectService = inject(ProjectService);
 
@@ -33,7 +35,13 @@ export class SingleProjectComponent implements OnInit {
     this.activeRoute.paramMap.subscribe({
       next: route => {
         this.projectService.getProject(route.get('slug')).subscribe({
-          next: (res: IApiResponse<IProject>) => this.project = res.data
+          next: (res: IApiResponse<IProject|null>) => {
+            if(res.success) {
+              this.project = res.data
+            } else {
+              this.router.navigate(['/404']);
+            }
+          }
         });
       }
     });

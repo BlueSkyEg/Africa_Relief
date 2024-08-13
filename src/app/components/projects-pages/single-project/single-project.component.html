@@ -8,10 +8,12 @@
       <!-- Project Summary -->
       <div class="flex flex-col gap-6 lg:col-span-2">
         <div class="relative">
-          <img class="w-full h-[480px] object-cover object-center" [src]="project.featured_image.src" [alt]="project.featured_image.alt_text" loading="lazy">
+          <div class="w-full h-[480px] bg-gray-light">
+            <img class="h-full object-cover object-center" appImgPlaceholder [src]="project.featured_image.src" [alt]="project.featured_image.alt_text" loading="lazy">
+          </div>
           <div class="absolute bottom-0 start-0 bg-secondary py-1 px-3">
             @for (category of project.categories; track category; let idx = $index) {
-              <a [routerLink]="'/projects/category/' + category.slug">{{ category.name }}</a>
+              <a [routerLink]="'/projects/category/' + category.slug">{{ category.name | titlecase }}</a>
               @if (project.categories.length > idx + 1 ) {
                 <span>, </span>
               }
@@ -44,25 +46,12 @@
           }
         </div>
 
-        <app-share-buttons #shareButtons/>
+        <app-share-buttons/>
       </div>
     </div>
 
     <!-- Related Projects -->
-    @defer (on viewport(shareButtons)) {
-      <app-related-projects [currentProjectSlug]="project.slug"/>
-    }
-    @placeholder {
-      @for (item of [0,1,2]; track $index) {
-        <div class="animate-pulse flex flex-col gap-6 bg-white border border-gray-light max-w-[400px] p-4">
-          <div class="bg-gray-light h-72"></div>
-          <div class="bg-gray-light h-3 w-2/6"></div>
-          <div class="bg-gray-light h-4 w-5/6"></div>
-          <div class="bg-gray-light h-4 w-4/6"></div>
-          <div class="bg-gray-light h-8"></div>
-        </div>
-      }
-    }
+    <app-related-projects [currentProjectSlug]="project.slug"/>
   }
   @else () {
     <div class="animate-pulse bg-gray-light h-4 w-7/12"></div>
