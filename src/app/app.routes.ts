@@ -7,10 +7,10 @@ import { SingleBlogComponent } from './components/blogs-pages/single-blog/single
 import { GetInvolvedComponent } from './components/get-involved/get-involved.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
-import { LoginComponent } from './components/user/login/login.component';
-import { SignupComponent } from './components/user/signup/signup.component';
-import { ForgotPasswordComponent } from './components/user/forget-password/forgot-password.component';
-import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
+import { ForgotPasswordComponent } from './components/auth/forget-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { CareersComponent } from './components/careers-pages/careers/careers.component';
 import { SingleCareerComponent } from './components/careers-pages/single-career/single-career.component';
@@ -18,7 +18,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileDonationsComponent } from './components/profile/profile-donations/profile-donations.component';
 import { ProfileSubscriptionsComponent } from './components/profile/profile-subscriptions/profile-subscriptions.component';
 import { ProfileSettingsComponent } from './components/profile/profile-settings/profile-settings.component';
-import { VerifyEmailComponent } from './components/user/verify-email/verify-email.component';
+import { VerifyEmailComponent } from './components/auth/verify-email/verify-email.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { GuestGuard } from './core/guards/guest.guard';
 import { DonationComponent } from './components/donation-pages/donation/donation.component';
@@ -60,5 +60,6 @@ export const routes: Routes = [
   {path: 'donation', title: 'Donation', component: DonationComponent},
   {path: 'donation-confirmation', title: 'Donation Confirmation', component: DonationConfirmationComponent},
   {path: 'donation-failed', title: 'Donation Failed', component: DonationFailedComponent},
-  {path: '**', title: 'Page Not Found', pathMatch: 'full', component: PageNotFoundComponent},
+  {path: '404', title: 'Page Not Found', component: PageNotFoundComponent},
+  {path: '**', redirectTo: '404'}
 ];

@@ -1,12 +1,12 @@
-<mat-drawer-container class="h-full">
+<mat-drawer-container>
   <mat-drawer class="w-3/4" #drawer mode="over" [(opened)]="opened">
     <app-side-nav/>
   </mat-drawer>
 
-  <mat-drawer-content class="!flex flex-col">
+  <mat-drawer-content>
     <app-header/>
 
-    <main class="flex-1">
+    <main>
       <router-outlet/>
     </main>
 
