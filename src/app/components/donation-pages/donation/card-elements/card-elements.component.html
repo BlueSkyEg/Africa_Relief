@@ -1,0 +1,27 @@
+@if (elementsOptions.clientSecret) {
+  <ngx-stripe-card-group [elementsOptions]="elementsOptions">
+    <app-form-field>
+      <app-form-label>Card Number*</app-form-label>
+      <div class="border border-gray-light py-3 px-4">
+        <ngx-stripe-card-number [options]="cardOptions" (change)="onCardNumberChange($event)"></ngx-stripe-card-number>
+      </div>
+      <app-form-error [hasError]="cardNumberError() != null">{{cardNumberError()}}</app-form-error>
+    </app-form-field>
+    <div class="flex gap-4">
+      <app-form-field class="flex-1">
+        <app-form-label>Expiration*</app-form-label>
+        <div class="border border-gray-light py-3 px-4">
+          <ngx-stripe-card-expiry [options]="cardOptions" (change)="onCardExpiryChange($event)"></ngx-stripe-card-expiry>
+        </div>
+        <app-form-error [hasError]="cardExpiryError() != null">{{cardExpiryError()}}</app-form-error>
+      </app-form-field>
+      <app-form-field class="flex-1">
+        <app-form-label>CVC*</app-form-label>
+        <div class="border border-gray-light py-3 px-4">
+          <ngx-stripe-card-cvc [options]="cardOptions" (change)="onCardCvvChange($event)"></ngx-stripe-card-cvc>
+        </div>
+        <app-form-error [hasError]="cardCvvError() != null">{{cardCvvError()}}</app-form-error>
+      </app-form-field>
+    </div>
+  </ngx-stripe-card-group>
+}

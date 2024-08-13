@@ -1,4 +1,161 @@
-<div class="container flex flex-col gap-6 max-w-[800px] my-10 lg:mb-20">
+<div class="container flex flex-col max-w-[800px] my-10 lg:mb-20">
+  <h1 class="text-body-1-roboto mb-6">
+    {{donationFormTitle | titlecase}}:
+    {{donationAmount | currency}}
+    @if (recurringPeriod) {
+    / {{recurringPeriod}}
+    }
+  </h1>
+  <div class="bg-white pt-6 px-6">
+    <app-express-checkout-element [amount]="donationAmount" [donationFormId]="donationFormId" [recurringPeriod]="recurringPeriod"/>
+  </div>
+  <mat-stepper [orientation]="(stepperOrientation | async)!" linear>
+    <mat-step [stepControl]="personalDetailsForm">
+      <ng-template matStepLabel>Personal Details</ng-template>
+      <ng-template matStepContent>
+        <form class="mt-4" [formGroup]="personalDetailsForm">
+          <app-form-field>
+            <app-form-label>Name*</app-form-label>
+            <input type="text" appFormElement formControlName="name" placeholder="Full Name">
+            <app-form-error [hasError]="personalDetailsForm.get('name').hasError('required') && personalDetailsForm.get('name').touched">Name is required.</app-form-error>
+            <app-form-error [hasError]="personalDetailsForm.get('name').hasError('string') && personalDetailsForm.get('name').touched">{{ personalDetailsForm.get('name').errors?.['string'] }}</app-form-error>
+          </app-form-field>
+          <app-form-field>
+            <app-form-label>Email*</app-form-label>
+            <input type="text" appFormElement formControlName="email" placeholder="example@example.com">
+            <app-form-error [hasError]="personalDetailsForm.get('email').hasError('required') && personalDetailsForm.get('email').touched">Email is required.</app-form-error>
+            <app-form-error [hasError]="personalDetailsForm.get('email').hasError('pattern') && personalDetailsForm.get('email').touched">{{ personalDetailsForm.get('email').errors?.['pattern'] }}</app-form-error>
+          </app-form-field>
+          <app-form-field>
+            <app-form-label>Phone Number*</app-form-label>
+            <input type="tel" appFormElement formControlName="phone" placeholder="Phone Number">
+            <app-form-error [hasError]="personalDetailsForm.get('phone').hasError('required') && personalDetailsForm.get('phone').touched">Phone is required.</app-form-error>
+            <app-form-error [hasError]="personalDetailsForm.get('phone').hasError('pattern') && personalDetailsForm.get('phone').touched">{{ personalDetailsForm.get('phone').errors?.['pattern'] }}</app-form-error>
+          </app-form-field>
+          <div class="w-full flex justify-end">
+            <button class="text-body-3 text-white bg-primary py-3 px-6 disabled:text-white disabled:bg-gray-medium" [disabled]="personalDetailsForm.invalid" matStepperNext>Next</button>
+          </div>
+        </form>
+      </ng-template>
+    </mat-step>
+    <mat-step [stepControl]="billingDetailsForm">
+      <ng-template matStepLabel>Billing Details</ng-template>
+      <ng-template matStepContent>
+        <form class="mt-4" [formGroup]="billingDetailsForm">
+          <app-form-field>
+            <app-form-label>Country*</app-form-label>
+            <input appFormElement type="text" placeholder="Select Country" [matAutocomplete]="countryAutocomplete" (input)="filterCountries(countryInput.value)" (focus)="filterCountries(countryInput.value)" #countryInput autocomplete="off">
+            <mat-autocomplete requireSelection #countryAutocomplete="matAutocomplete" [displayWith]="getOptionText" (optionSelected)="onChangeCountry($event.option.value)">
+              @for (country of filteredCountries; track country) {
+              <mat-option [value]="country">{{country.name}}</mat-option>
+              }
+            </mat-autocomplete>
+            <app-form-error [hasError]="billingDetailsForm.get('country').hasError('required') && billingDetailsForm.get('country').touched">Country is required.</app-form-error>
+            <app-form-error [hasError]="billingDetailsForm.get('country').hasError('pattern') && billingDetailsForm.get('country').touched">Please select from the options.</app-form-error>
+          </app-form-field>
+          <app-form-field>
+            <app-form-label>Address 1*</app-form-label>
+            <input appFormElement class="form-input" type="text" formControlName="addressLine1" placeholder="Address Line 1">
+            <app-form-error [hasError]="billingDetailsForm.get('addressLine1').hasError('required') && billingDetailsForm.get('addressLine1').touched">Address 1 is required.</app-form-error>
+            <app-form-error [hasError]="billingDetailsForm.get('addressLine1').hasError('string') && billingDetailsForm.get('addressLine1').touched">{{ billingDetailsForm.get('addressLine1').errors?.['string'] }}</app-form-error>
+          </app-form-field>
+          <app-form-field>
+            <app-form-label>Address 2</app-form-label>
+            <input appFormElement class="form-input" type="text" formControlName="addressLine2" placeholder="Address Line 2">
+            <app-form-error [hasError]="billingDetailsForm.get('addressLine2').hasError('string') && billingDetailsForm.get('addressLine2').touched">{{ billingDetailsForm.get('addressLine1').errors?.['string'] }}</app-form-error>
+          </app-form-field>
+          <div class="flex gap-[16px] self-stretch">
+            <app-form-field class="w-full">
+              <app-form-label>State*</app-form-label>
+              @if (states.length) {
+                <input appFormElement type="text" placeholder="Select State" [matAutocomplete]="stateAutocomplete" (input)="filterStates(stateInput.value)" (focus)="filterStates(stateInput.value)" #stateInput autocomplete="off">
+                <mat-autocomplete requireSelection #stateAutocomplete="matAutocomplete" [displayWith]="getOptionText" (optionSelected)="onChangeState($event.option.value)">
+                  @for (state of filteredStates; track state.isoCode) {
+                    <mat-option [value]="state">{{state.name}}</mat-option>
+                  }
+                </mat-autocomplete>
+              } @else {
+                <input appFormElement type="text" formControlName="state" placeholder="State">
+              }
+              <app-form-error [hasError]="billingDetailsForm.get('state').hasError('required') && billingDetailsForm.get('state').touched">State is required</app-form-error>
+              <app-form-error [hasError]="billingDetailsForm.get('state').hasError('string') && billingDetailsForm.get('state').touched">{{ billingDetailsForm.get('state').errors?.['string'] }}</app-form-error>
+            </app-form-field>
+            <app-form-field class="w-full">
+              <app-form-label>Zip Code*</app-form-label>
+              <input appFormElement type="number" formControlName="postalCode" placeholder="Zip Code">
+              <app-form-error [hasError]="billingDetailsForm.get('postalCode').hasError('required') && billingDetailsForm.get('postalCode').touched">Zip Code is required</app-form-error>
+              <app-form-error [hasError]="billingDetailsForm.get('postalCode').hasError('pattern') && billingDetailsForm.get('postalCode').touched">Zip Code is invalid.</app-form-error>
+            </app-form-field>
+          </div>
+          <app-form-field>
+            <app-form-label>City*</app-form-label>
+            @if (cities.length) {
+              <input appFormElement type="text" formControlName="city" placeholder="Select City" [matAutocomplete]="cityAutocomplete" (input)="filterCities(cityInput.value)" (focus)="filterCities(cityInput.value)" #cityInput autocomplete="off">
+                <mat-autocomplete requireSelection #cityAutocomplete="matAutocomplete">
+                  @for (city of filteredCities; track city) {
+                    <mat-option [value]="city.name">{{city.name}}</mat-option>
+                  }
+                </mat-autocomplete>
+            } @else {
+              <input appFormElement type="text" formControlName="city" placeholder="City">
+            }
+            <app-form-error [hasError]="billingDetailsForm.get('city').hasError('required') && billingDetailsForm.get('city').touched">City is required</app-form-error>
+            <app-form-error [hasError]="billingDetailsForm.get('city').hasError('string') && billingDetailsForm.get('city').touched">{{ billingDetailsForm.get('city').errors?.['string'] }}</app-form-error>
+          </app-form-field>
+          <div>
+            <div class="w-full flex justify-between">
+              <button class="text-body-3 text-primary bg-white border border-primary py-3 px-6" matStepperPrevious>Back</button>
+              <button class="text-body-3 text-white bg-primary py-3 px-6 disabled:text-white disabled:bg-gray-medium" [disabled]="billingDetailsForm.invalid" matStepperNext>Next</button>
+            </div>
+          </div>
+        </form>
+      </ng-template>
+    </mat-step>
+    <mat-step [stepControl]="checkoutForm">
+      <ng-template matStepLabel>checkout</ng-template>
+      <ng-template matStepContent>
+        <form class="mt-4" [formGroup]="checkoutForm">
+          <app-card-elements #stripeCardElements/>
+          <app-form-field>
+            <app-form-label>Comment</app-form-label>
+            <textarea appFormElement rows="2" formControlName="billingComment" placeholder="Have you any comment? Feel free to tell us."></textarea>
+            <app-form-error [hasError]="checkoutForm.get('billingComment').hasError('maxlength') && checkoutForm.get('billingComment').touched">Comment must be less that 500 character</app-form-error>
+          </app-form-field>
+          <div class="w-full flex justify-between">
+            <button class="text-body-3 text-primary bg-white border border-primary py-3 px-6" matStepperPrevious>Back</button>
+            <button class="text-body-3 text-white bg-primary py-3 px-6 disabled:text-white disabled:bg-gray-medium" [disabled]="!stripeCardElements.isCardValid() || checkoutFormDisabled" matStepperNext (click)="onMakeDonation()">Pay</button>
+          </div>
+        </form>
+      </ng-template>
+    </mat-step>
+  </mat-stepper>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container flex flex-col gap-6 max-w-[800px] my-10 lg:mb-20">
   <h1 class="text-body-1-roboto">
     {{donationFormTitle | titlecase}}:
     {{donationAmount | currency}}
@@ -76,9 +233,9 @@
           </app-form-field>
           <app-form-field class="w-full">
             <app-form-label>Zip Code*</app-form-label>
-            <input appFormElement type="number" formControlName="zipCode" placeholder="Zip Code">
-            <app-form-error [hasError]="billingDetailsForm.get('zipCode').hasError('required') && billingDetailsForm.get('zipCode').touched">Zip Code is required</app-form-error>
-            <app-form-error [hasError]="billingDetailsForm.get('zipCode').hasError('pattern') && billingDetailsForm.get('zipCode').touched">Zip Code is invalid.</app-form-error>
+            <input appFormElement type="number" formControlName="postalCode" placeholder="Zip Code">
+            <app-form-error [hasError]="billingDetailsForm.get('postalCode').hasError('required') && billingDetailsForm.get('postalCode').touched">Zip Code is required</app-form-error>
+            <app-form-error [hasError]="billingDetailsForm.get('postalCode').hasError('pattern') && billingDetailsForm.get('postalCode').touched">Zip Code is invalid.</app-form-error>
           </app-form-field>
         </div>
         <app-form-field>
@@ -107,6 +264,10 @@
     <mat-step [stepControl]="checkoutForm">
       <form class="mt-4" [formGroup]="checkoutForm">
         <ng-template matStepLabel>checkout</ng-template>
+        <app-express-checkout-element />
+        <div class="relative m-6 text-center before:absolute before:bg-gray-light before:h-1 before:left-0 before:top-1/2 before:w-full">
+          <span class="relative text-body-3 text-gray-dark bg-white z-10 px-3">OR</span>
+        </div>
         @if (elementsOptions.clientSecret) {
           <ngx-stripe-card-group [formGroup]="checkoutForm" [elementsOptions]="elementsOptions">
             <app-form-field>
@@ -146,4 +307,160 @@
       </form>
     </mat-step>
   </mat-stepper>
-</div>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container flex flex-col gap-6 max-w-[800px] my-10 lg:mb-20">
+  <h1 class="text-body-1-roboto">
+    {{donationFormTitle | titlecase}}:
+    {{donationAmount | currency}}
+    @if (recurringPeriod) {
+    / {{recurringPeriod}}
+    }
+  </h1>
+  <mat-stepper [orientation]="(stepperOrientation | async)!" linear>
+    <mat-step [stepControl]="personalDetailsForm">
+      <form class="mt-4" [formGroup]="personalDetailsForm">
+        <ng-template matStepLabel>Personal Details</ng-template>
+        <app-form-field>
+          <app-form-label>Name*</app-form-label>
+          <input type="text" appFormElement formControlName="name" placeholder="Full Name">
+          <app-form-error [hasError]="personalDetailsForm.get('name').hasError('required') && personalDetailsForm.get('name').touched">Name is required.</app-form-error>
+          <app-form-error [hasError]="personalDetailsForm.get('name').hasError('string') && personalDetailsForm.get('name').touched">{{ personalDetailsForm.get('name').errors?.['string'] }}</app-form-error>
+        </app-form-field>
+        <app-form-field>
+          <app-form-label>Email*</app-form-label>
+          <input type="text" appFormElement formControlName="email" placeholder="example@example.com">
+          <app-form-error [hasError]="personalDetailsForm.get('email').hasError('required') && personalDetailsForm.get('email').touched">Email is required.</app-form-error>
+          <app-form-error [hasError]="personalDetailsForm.get('email').hasError('pattern') && personalDetailsForm.get('email').touched">{{ personalDetailsForm.get('email').errors?.['pattern'] }}</app-form-error>
+        </app-form-field>
+        <app-form-field>
+          <app-form-label>Phone Number*</app-form-label>
+          <input type="tel" appFormElement formControlName="phone" placeholder="Phone Number">
+          <app-form-error [hasError]="personalDetailsForm.get('phone').hasError('required') && personalDetailsForm.get('phone').touched">Phone is required.</app-form-error>
+          <app-form-error [hasError]="personalDetailsForm.get('phone').hasError('pattern') && personalDetailsForm.get('phone').touched">{{ personalDetailsForm.get('phone').errors?.['pattern'] }}</app-form-error>
+        </app-form-field>
+        <div class="w-full flex justify-end">
+          <button class="text-body-3 text-white bg-primary py-3 px-6 disabled:text-white disabled:bg-gray-medium" [disabled]="personalDetailsForm.invalid" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="billingDetailsForm">
+      <form class="mt-4" [formGroup]="billingDetailsForm">
+        <ng-template matStepLabel>Billing Details</ng-template>
+        <app-form-field>
+          <app-form-label>Country*</app-form-label>
+          <input appFormElement type="text" placeholder="Select Country" [matAutocomplete]="countryAutocomplete" (input)="filterCountries(countryInput.value)" (focus)="filterCountries(countryInput.value)" #countryInput autocomplete="off">
+          <mat-autocomplete requireSelection #countryAutocomplete="matAutocomplete" [displayWith]="getOptionText" (optionSelected)="onChangeCountry($event.option.value)">
+            @for (country of filteredCountries; track country) {
+            <mat-option [value]="country">{{country.name}}</mat-option>
+            }
+          </mat-autocomplete>
+          <app-form-error [hasError]="billingDetailsForm.get('country').hasError('required') && billingDetailsForm.get('country').touched">Country is required.</app-form-error>
+          <app-form-error [hasError]="billingDetailsForm.get('country').hasError('pattern') && billingDetailsForm.get('country').touched">Please select from the options.</app-form-error>
+        </app-form-field>
+        <app-form-field>
+          <app-form-label>Address 1*</app-form-label>
+          <input appFormElement class="form-input" type="text" formControlName="addressLine1" placeholder="Address Line 1">
+          <app-form-error [hasError]="billingDetailsForm.get('addressLine1').hasError('required') && billingDetailsForm.get('addressLine1').touched">Address 1 is required.</app-form-error>
+          <app-form-error [hasError]="billingDetailsForm.get('addressLine1').hasError('string') && billingDetailsForm.get('addressLine1').touched">{{ billingDetailsForm.get('addressLine1').errors?.['string'] }}</app-form-error>
+        </app-form-field>
+        <app-form-field>
+          <app-form-label>Address 2</app-form-label>
+          <input appFormElement class="form-input" type="text" formControlName="addressLine2" placeholder="Address Line 2">
+          <app-form-error [hasError]="billingDetailsForm.get('addressLine2').hasError('string') && billingDetailsForm.get('addressLine2').touched">{{ billingDetailsForm.get('addressLine1').errors?.['string'] }}</app-form-error>
+        </app-form-field>
+        <div class="flex gap-[16px] self-stretch">
+          <app-form-field class="w-full">
+            <app-form-label>State*</app-form-label>
+            @if (states.length) {
+              <input appFormElement type="text" placeholder="Select State" [matAutocomplete]="stateAutocomplete" (input)="filterStates(stateInput.value)" (focus)="filterStates(stateInput.value)" #stateInput autocomplete="off">
+              <mat-autocomplete requireSelection #stateAutocomplete="matAutocomplete" [displayWith]="getOptionText" (optionSelected)="onChangeState($event.option.value)">
+                @for (state of filteredStates; track state.isoCode) {
+                  <mat-option [value]="state">{{state.name}}</mat-option>
+                }
+              </mat-autocomplete>
+            } @else {
+              <input appFormElement type="text" formControlName="state" placeholder="State">
+            }
+            <app-form-error [hasError]="billingDetailsForm.get('state').hasError('required') && billingDetailsForm.get('state').touched">State is required</app-form-error>
+            <app-form-error [hasError]="billingDetailsForm.get('state').hasError('string') && billingDetailsForm.get('state').touched">{{ billingDetailsForm.get('state').errors?.['string'] }}</app-form-error>
+          </app-form-field>
+          <app-form-field class="w-full">
+            <app-form-label>Zip Code*</app-form-label>
+            <input appFormElement type="number" formControlName="postalCode" placeholder="Zip Code">
+            <app-form-error [hasError]="billingDetailsForm.get('postalCode').hasError('required') && billingDetailsForm.get('postalCode').touched">Zip Code is required</app-form-error>
+            <app-form-error [hasError]="billingDetailsForm.get('postalCode').hasError('pattern') && billingDetailsForm.get('postalCode').touched">Zip Code is invalid.</app-form-error>
+          </app-form-field>
+        </div>
+        <app-form-field>
+          <app-form-label>City*</app-form-label>
+          @if (cities.length) {
+            <input appFormElement type="text" formControlName="city" placeholder="Select City" [matAutocomplete]="cityAutocomplete" (input)="filterCities(cityInput.value)" (focus)="filterCities(cityInput.value)" #cityInput autocomplete="off">
+              <mat-autocomplete requireSelection #cityAutocomplete="matAutocomplete">
+                @for (city of filteredCities; track city) {
+                  <mat-option [value]="city.name">{{city.name}}</mat-option>
+                }
+              </mat-autocomplete>
+          } @else {
+            <input appFormElement type="text" formControlName="city" placeholder="City">
+          }
+          <app-form-error [hasError]="billingDetailsForm.get('city').hasError('required') && billingDetailsForm.get('city').touched">City is required</app-form-error>
+          <app-form-error [hasError]="billingDetailsForm.get('city').hasError('string') && billingDetailsForm.get('city').touched">{{ billingDetailsForm.get('city').errors?.['string'] }}</app-form-error>
+        </app-form-field>
+        <div>
+          <div class="w-full flex justify-between">
+            <button class="text-body-3 text-primary bg-white border border-primary py-3 px-6" matStepperPrevious>Back</button>
+            <button class="text-body-3 text-white bg-primary py-3 px-6 disabled:text-white disabled:bg-gray-medium" [disabled]="billingDetailsForm.invalid" matStepperNext>Next</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="checkoutForm">
+      <form class="mt-4" [formGroup]="checkoutForm">
+        <ng-template matStepLabel>checkout</ng-template>
+        @if (elementsOptions.clientSecret) {
+          <ngx-stripe-elements
+            [stripe]="stripe"
+            [elementsOptions]="elementsOptions"
+          >
+            <ngx-stripe-payment />
+          </ngx-stripe-elements>
+          }
+          <ngx-stripe-elements [stripe]="stripe" [elementsOptions]="expressElementsOptions">
+            <ngx-stripe-express-checkout [options]="options" (clicked)="onClicked($event)"/>
+          </ngx-stripe-elements>
+        <div class="w-full flex justify-between">
+          <button class="text-body-3 text-primary bg-white border border-primary py-3 px-6" matStepperPrevious>Back</button>
+          <button class="text-body-3 text-white bg-primary py-3 px-6 disabled:text-white disabled:bg-gray-medium" matStepperNext (click)="onMakeDonation()">Pay</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</div> -->
