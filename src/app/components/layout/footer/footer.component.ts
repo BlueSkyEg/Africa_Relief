@@ -36,7 +36,7 @@ export class FooterComponent {
   onSubmitNewsLetterForm() {
     this.newsletterFormDisabled = true;
     this.newsletterService.subscribeToNewsletter(this.newsletterForm.getRawValue()).subscribe({
-      next: (res: IApiResponse) => {
+      next: (res: IApiResponse<null>) => {
         if(res.success) {
           this.newsletterForm.reset();
           this._snackBar.open('Thank you for joining our family. Stay tuned for the latest updates!', '✖', {panelClass: 'success-snackbar'});
