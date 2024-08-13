@@ -5,11 +5,12 @@ import { IImage } from '../../../../shared/interfaces/image-interface';
 import { IconDirective } from '../../../../shared/directives/icon.directive';
 import { IconArrowLeftComponent } from '../../../../shared/icons/arrows/arrow-left/icon-arrow-left.component';
 import { IconArrowRightComponent } from '../../../../shared/icons/arrows/arrow-right/icon-arrow-right.component';
+import { ImgPlaceholderDirective } from '../../../../shared/directives/img-placeholder.directive';
 
 @Component({
   selector: 'app-blog-slider',
   standalone: true,
-  imports: [IconDirective, IconArrowLeftComponent, IconArrowRightComponent],
+  imports: [IconDirective, IconArrowLeftComponent, IconArrowRightComponent, ImgPlaceholderDirective],
   templateUrl: './blog-slider.component.html',
   styles: ``,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -13,10 +13,12 @@
 
       <!-- blog image -->
       <div class="relative">
-        <img class="w-full lg:h-[480px] object-cover object-center" [src]="blog.featured_image.src" [alt]="blog.featured_image.alt_text" loading="lazy">
+        <div class="w-full h-[480px] bg-gray-light">
+          <img class="h-full object-cover object-center" appImgPlaceholder [src]="blog.featured_image.src" [alt]="blog.featured_image.alt_text" loading="lazy">
+        </div>
         <div class="absolute bottom-0 start-0 bg-secondary py-1 px-3">
           @for (category of blog.categories; track category; let idx = $index) {
-            <a [routerLink]="'/blogs/category/' + category.slug">{{ category.name }}</a>
+            <a [routerLink]="'/blogs/category/' + category.slug">{{ category.name | titlecase }}</a>
             @if (blog.categories.length > idx + 1 ) {
               <span>, </span>
             }
@@ -56,15 +58,13 @@
         <app-blog-slider [slides]="blog.gallery"/>
       }
 
-      <app-share-buttons #shareButtons/>
+      <app-share-buttons/>
     </div>
   </div>
 
 
     <!-- Related Blogs -->
-    @defer (on viewport(shareButtons)) {
-      <app-related-blogs [currentBlogSlug]="blog.slug"/>
-    }
+    <app-related-blogs [currentBlogSlug]="blog.slug"/>
   }
   @else () {
     <div class="animate-pulse bg-gray-light h-4 w-7/12"></div>
