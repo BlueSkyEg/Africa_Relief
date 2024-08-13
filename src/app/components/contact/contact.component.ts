@@ -37,7 +37,7 @@ export class ContactComponent {
   onSubmitContactForm(): void {
     this.contactFormDisabled = true;
     this.contactService.submitContactForm(this.contactForm.getRawValue()).subscribe({
-      next: (res: IApiResponse) => {
+      next: (res: IApiResponse<null>) => {
         if(res.success) {
           this.contactForm.reset();
           this._snackBar.open('Your message has been sent successfully.', '✖', {panelClass: 'success-snackbar'});
