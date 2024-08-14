@@ -19,17 +19,20 @@ import { ProfileDonationsComponent } from './components/profile/profile-donation
 import { ProfileSubscriptionsComponent } from './components/profile/profile-subscriptions/profile-subscriptions.component';
 import { ProfileSettingsComponent } from './components/profile/profile-settings/profile-settings.component';
 import { VerifyEmailComponent } from './components/auth/verify-email/verify-email.component';
-import { AuthGuard } from './core/guards/auth.guard';
-import { GuestGuard } from './core/guards/guest.guard';
+
 import { DonationComponent } from './components/donation-pages/donation/donation.component';
 import { DonationConfirmationComponent } from './components/donation-pages/donation-confirmation/donation-confirmation.component';
 import { DonationFailedComponent } from './components/donation-pages/donation-failed/donation-failed.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { GuestGuard } from './core/Guards/guest.guard';
+import { AuthGuard } from './core/Guards/auth.guard';
 
 export const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', title: 'Home', component: HomeComponent},
   {path: 'blogs', title: 'Blogs', component: BlogsComponent},
+  { path: 'search/:term',title: 'Result Search Page', component: SearchResultsComponent },
   {path: 'blogs', title: 'Blogs', children: [
     {path: 'category/:slug', component: BlogsComponent},
     {path: ':slug', component: SingleBlogComponent}

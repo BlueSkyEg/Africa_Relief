@@ -8,17 +8,21 @@ import {MatMenuModule} from '@angular/material/menu';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { IconHamburgerComponent } from "../../../shared/icons/hamburger/icon-hamburger.component";
 import { IconProfileComponent } from "../../../shared/icons/profile/icon-profile.component";
+import { IconSearchComponent } from '../../../shared/icons/search/icon-search.component';
+import { SearchBarComponent } from '../../../shared/components/search-bar/search-bar.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-header',
     standalone: true,
     templateUrl: './header.component.html',
     styles: ``,
-    imports: [RouterModule, ButtonLinkComponent, MatMenuModule, IconHamburgerComponent, IconProfileComponent]
+    imports: [CommonModule, RouterModule, ButtonLinkComponent, MatMenuModule, IconHamburgerComponent, IconProfileComponent,IconSearchComponent , SearchBarComponent]
 })
 export class HeaderComponent {
 
   isUserAuthed: boolean = false;
+  isSearchBarVisible = false;
 
   router: Router = inject(Router);
   layoutService: LayoutService = inject(LayoutService);
@@ -29,7 +33,9 @@ export class HeaderComponent {
       next: (user: IUser) => user ? this.isUserAuthed = true : this.isUserAuthed = false
     })
   }
-
+  toggleSearchBar() {
+    this.isSearchBarVisible = !this.isSearchBarVisible;
+  }
   openSideNav(): void {
     this.layoutService.sideNavSubject.next(true);
   }

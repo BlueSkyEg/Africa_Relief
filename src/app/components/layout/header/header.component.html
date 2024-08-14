@@ -12,7 +12,9 @@
         <li><a class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary" routerLink="/gallery" routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{exact: true}">Gallery</a></li>
         <li><a class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary" routerLink="/careers" routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{exact: true}">Careers</a></li>
       </ul>
-      <div class="flex gap-2">
+      <div class="flex gap-4 justify-center items-center relative">
+        <app-icon-search (click)="toggleSearchBar()"/>
+        <app-search-bar *ngIf="isSearchBarVisible" class="absolute -bottom-28 z-30 -start-10 "/>
         <a class="hidden lg:block text-white bg-primary py-2 px-3" routerLink="/projects">Donate Now</a>
         @if (!isUserAuthed) {
           <a class="flex items-center" routerLink="/login">

@@ -1,0 +1,8 @@
+<div class="bg-white px-5 py-3 w-full">
+    <div class="relative">
+        <input type="text" placeholder="Search..." class="w-full py-2 px-2  border border-gray-light rounded-full text-base outline-none"      
+         [(ngModel)]="searchTerm"
+        (keydown)="onSearch($event)"/>
+        <app-icon-search color="black" class="absolute right-3 top-2 pointer-events-none"></app-icon-search>
+      </div>
+</div>

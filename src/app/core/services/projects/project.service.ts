@@ -33,4 +33,8 @@ export class ProjectService {
   getRelatedProjects(projectSlug: string): Observable<IApiResponse<IProjectCard[]>> {
     return this.http.get<IApiResponse<IProjectCard[]>>(environment.apiUrl + '/projects/related/' + projectSlug);
   }
+
+  // searchProjects(term: string): Observable<IProjectCard[]> {
+  //   return this.http.get<IProjectCard[]>(`${environment.apiUrl}/projects/search`, { params: { term } });
+  // }
 }
