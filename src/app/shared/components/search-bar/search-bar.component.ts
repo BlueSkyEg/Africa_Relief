@@ -7,18 +7,21 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [CommonModule, IconSearchComponent ,FormsModule],
+  imports: [CommonModule, IconSearchComponent, FormsModule],
   templateUrl: './search-bar.component.html',
-  styles: []
+  styles: [],
 })
 export class SearchBarComponent {
-    searchTerm: string = '';
-
-    constructor(private _Router: Router) {}
-  
-    onSearch(event: KeyboardEvent) {
-      if (event.key === 'Enter' && this.searchTerm.trim()) {
+  searchTerm: string = '';
+  isNavigated: boolean = true;
+  constructor(private _Router: Router) {}
+  //if the user click enter on keyboard or search icon will navigate the searchComponent
+  onSearch(event?: KeyboardEvent) {
+    if (event?.key === 'Enter' || !event) {
+      if (this.searchTerm.trim()) {
         this._Router.navigate(['/search', this.searchTerm]);
+        this.isNavigated = false;
       }
     }
+  }
 }

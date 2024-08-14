@@ -22,6 +22,7 @@ import { CommonModule } from '@angular/common';
 export class HeaderComponent {
 
   isUserAuthed: boolean = false;
+  // Boolean flag to control the visibility of the search bar
   isSearchBarVisible = false;
 
   router: Router = inject(Router);
@@ -33,8 +34,13 @@ export class HeaderComponent {
       next: (user: IUser) => user ? this.isUserAuthed = true : this.isUserAuthed = false
     })
   }
+  // Toggles the visibility of the search bar
   toggleSearchBar() {
     this.isSearchBarVisible = !this.isSearchBarVisible;
+  }
+  // Close search bar when i go to new path
+  closeSearchBar() {
+    this.isSearchBarVisible = false;
   }
   openSideNav(): void {
     this.layoutService.sideNavSubject.next(true);
