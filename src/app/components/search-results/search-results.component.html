@@ -23,7 +23,7 @@
   <!-- Pagination Controls -->
   <div class="mt-4 flex justify-center" *ngIf="blogs?.length > 0">
     <ng-container
-      *ngFor="let page of [].constructor(totalPages); let i = index"
+      *ngFor="let page of [].constructor(totalPages) ; let i = index"
     >
       <button
         class="px-4 py-2 mx-1 border border-gray-light"

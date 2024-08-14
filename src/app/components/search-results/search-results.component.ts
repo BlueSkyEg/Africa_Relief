@@ -9,7 +9,7 @@ import { BlogCardComponent } from '../../shared/components/blogs/blog-card/blog-
 @Component({
   selector: 'app-search-results',
   standalone: true,
-  imports: [BlogCardComponent, CommonModule ,BreadcrumbComponent],
+  imports: [BlogCardComponent, CommonModule, BreadcrumbComponent],
   templateUrl: './search-results.component.html',
 })
 export class SearchResultsComponent implements OnInit {
@@ -47,6 +47,7 @@ export class SearchResultsComponent implements OnInit {
 
   onPageChange(page: number) {
     if (page >= 1 && page <= this.totalPages) {
+      console.log(this.totalPages)
       this.currentPage = page;
       this.getBlogs(this.currentPage);
     }
