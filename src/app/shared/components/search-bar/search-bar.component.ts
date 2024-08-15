@@ -14,12 +14,16 @@ import { FormsModule } from '@angular/forms';
 export class SearchBarComponent {
   searchTerm: string = '';
   isNavigated: boolean = true;
+
   constructor(private _Router: Router) {}
+
   //if the user click enter on keyboard or search icon will navigate the searchComponent
   onSearch(event?: KeyboardEvent) {
     if (event?.key === 'Enter' || !event) {
       if (this.searchTerm.trim()) {
-        this._Router.navigate(['/search', this.searchTerm]);
+        this._Router.navigate(['/search', this.searchTerm], {
+          queryParams: { type: 'blogs'},
+        });
         this.isNavigated = false;
       }
     }

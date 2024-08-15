@@ -12,18 +12,72 @@
   </div>
 </div>
 <div class="container mx-auto p-4">
-  <!--Blog Card Display-->
-  <div *ngIf="blogs?.length > 0; else noResults">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <ng-container *ngFor="let blog of blogs">
-        <app-blog-card [blog]="blog"></app-blog-card>
-      </ng-container>
-    </div>
+  <!-- Search Filter -->
+  <div class="container flex gap-3 overflow-x-scroll no-scrollbar my-4">
+    <a
+      [routerLink]="['/search', searchTerm]"
+      [queryParams]="{ type: 'projects' }"
+      routerLinkActive="bg-primary text-white hover:text-white"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="flex cursor-pointer whitespace-nowrap justify-center items-center py-3 px-4 border border-gray-light hover:border-primary hover:text-primary transition-colors ease-in-out"
+    >
+      Projects
+    </a>
+    <a
+      [routerLink]="['/search', searchTerm]"
+      [queryParams]="{ type: 'blogs' }"
+      routerLinkActive="bg-primary text-white hover:text-white"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="flex cursor-pointer whitespace-nowrap justify-center items-center py-3 px-4 border border-gray-light hover:border-primary hover:text-primary transition-colors ease-in-out"
+    >
+      Blogs
+    </a>
   </div>
+
+  <ng-container *ngIf="isLoading; else content">
+    <!-- Loading Skeleton -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div
+        *ngFor="let item of [0, 1, 2, 3, 4, 5]"
+        class="animate-pulse flex flex-col gap-6 bg-white border border-gray-light max-w-[400px] p-4"
+      >
+        <div class="bg-gray-light h-72"></div>
+        <div class="bg-gray-light h-3 w-2/6"></div>
+        <div class="bg-gray-light h-4 w-5/6"></div>
+        <div class="bg-gray-light h-4 w-4/6"></div>
+        <div class="bg-gray-light h-8"></div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #content>
+    <ng-container *ngIf="type === 'blogs'; else projectContent">
+      <div *ngIf="blogs?.length > 0; else noResults">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <ng-container *ngFor="let blog of blogs">
+            <app-blog-card [blog]="blog"></app-blog-card>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #projectContent>
+      <div *ngIf="projects?.length > 0; else noResults">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <ng-container *ngFor="let project of projects">
+            <app-project-card [project]="project"></app-project-card>
+          </ng-container>
+        </div>
+      </div>
+    </ng-template>
+  </ng-template>
+
   <!-- Pagination Controls -->
-  <div class="mt-4 flex justify-center" *ngIf="blogs?.length > 0">
+  <div
+    class="mt-4 flex justify-center"
+  *ngIf="(type === 'blogs' && blogs?.length > 0) || (type === 'projects' && projects?.length > 0)"  >
     <ng-container
-      *ngFor="let page of [].constructor(totalPages) ; let i = index"
+      *ngFor="let page of [].constructor(totalPages); let i = index"
     >
       <button
         class="px-4 py-2 mx-1 border border-gray-light"
@@ -34,8 +88,9 @@
       </button>
     </ng-container>
   </div>
+
   <!-- No Results Found -->
   <ng-template #noResults>
-    <p class="text-gray-600">No Blogs found for your search.</p>
+    <app-not-found-search-result />
   </ng-template>
 </div>
