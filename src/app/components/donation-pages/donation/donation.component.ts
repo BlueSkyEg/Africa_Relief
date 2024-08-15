@@ -16,7 +16,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonComponent } from "../../../shared/components/form/button/button.component";
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AuthService } from '../../../core/services/auth/auth.service';
-import { Country, State, City, ICity, IState, ICountry }  from 'country-state-city';
 import { IUser } from '../../../shared/interfaces/auth/user.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
@@ -27,6 +26,7 @@ import { ExpressCheckoutElementComponent } from "./express-checkout-element/expr
 import { CardElementsComponent } from './card-elements/card-elements.component';
 import { IBillingDetails } from '../../../shared/interfaces/payment/billing-details.interface';
 import { IStripeIntent } from '../../../shared/interfaces/payment/stripe-intent.interface';
+import * as countryCodes from 'country-codes-list';
 
 @Component({
   selector: 'app-donation',
@@ -202,41 +202,21 @@ export class DonationComponent {
     this._gtmService.pushTag(gtmTag);
   }
 
-  // Filter Countries & States & Cities based on user selection
-  countries: ICountry[] = Country.getAllCountries();
-  states: IState[] = [];
-  cities: ICity[] = [];
-  filteredCountries: ICountry[] = this.countries;
-  filteredStates: IState[];
-  filteredCities: ICity[];
+  // Filter Countries by Name
+  countries: countryCodes.CountryData[] = countryCodes.all();
+  filteredCountries: countryCodes.CountryData[] = this.countries;
 
-  filterCountries(country: string): void {
-    this.filteredCountries = this.countries.filter(c => c.name.toLowerCase().includes(country.toLowerCase()));
+  filterCountries(searchTerm: string): void {
+    this.filteredCountries = Object.entries(this.countries)
+    .map(e => e[1])
+    .filter(el => el.countryNameEn.toLowerCase().includes(searchTerm.toLowerCase()));
   }
 
-  filterStates(state: string): void {
-    this.filteredStates = this.states.filter(s => s.name.toLowerCase().includes(state.toLowerCase()));
+  onChangeCountry(country: countryCodes.CountryData) {
+    this.billingDetailsForm.controls.country.setValue(country.countryCode);
   }
 
-  filterCities(city: string): void {
-    this.filteredCities = this.cities.filter(c => c.name.toLowerCase().includes(city.toLowerCase()));
-  }
-
-  getOptionText(option: ICountry|IState) {
-    return option ? option.name : null;
-  }
-
-  onChangeCountry(country: ICountry) {
-    this.billingDetailsForm.controls.country.setValue(country.isoCode);
-    this.cities = [];
-    this.billingDetailsForm.controls.state.reset();
-    this.billingDetailsForm.controls.city.reset();
-    this.states = State.getStatesOfCountry(country.isoCode);
-  }
-
-  onChangeState(state: IState) {
-    this.billingDetailsForm.controls.state.setValue(state.isoCode);
-    this.billingDetailsForm.controls.city.reset();
-    this.cities = City.getCitiesOfState(this.billingDetailsForm.controls.country.value, state.isoCode);
+  getOptionText(option: countryCodes.CountryData) {
+    return option ? option.countryNameEn : null;
   }
 }

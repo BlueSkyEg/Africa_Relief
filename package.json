@@ -22,7 +22,7 @@
     "@angular/router": "^17.1.0",
     "@stripe/stripe-js": "^3.0.8",
     "angular-google-tag-manager": "^1.9.0",
-    "country-state-city": "^3.2.1",
+    "country-codes-list": "^1.6.11",
     "firebase": "^10.12.1",
     "ngx-infinite-scroll": "^17.0.0",
     "ngx-stripe": "^17.1.1",
