@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BlogService } from '../../core/services/blogs/blog.service';
@@ -49,10 +49,11 @@ export class SearchResultsComponent implements OnInit {
     });
     this.activatedRoute.queryParams.subscribe((params) => {
       this.type = params['type'];
+      this.currentPage = 1; 
       this.getResults(this.currentPage);
     });
-    
   }
+
   getResults(page: number) {
     this.isLoading = true;
     if (this.type === 'blogs') {
