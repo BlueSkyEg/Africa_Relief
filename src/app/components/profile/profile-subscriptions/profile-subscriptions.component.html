@@ -19,7 +19,7 @@
                 <span class="text-primary">{{subscription.recurring_amount | currency}}</span>
                 <span class="text-gray-dark"> / {{subscription.period | titlecase}}</span>
               </td>
-              <td class="py-3 px-6">{{subscription.expiration_at | date}}</td>
+              <td class="py-3 px-6">{{subscription.expiration_date | date}}</td>
               <td class="py-3 px-6">{{subscription.donation_form.title}}</td>
               @switch (subscription.status) {
                 @case ('active') {
