@@ -10,7 +10,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { AuthService } from './core/services/auth/auth.service';
 import { IApiResponse } from './shared/interfaces/api-response-interface';
 import { IUser } from './shared/interfaces/auth/user.interface';
-import { FirebaseService } from './core/services/firebase/firebase.service';
+// import { FirebaseService } from './core/services/firebase/firebase.service';
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 @Component({
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
   gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
 
   // Initialize Firebase Notification
-  firebaseService: FirebaseService = inject(FirebaseService);
+  // firebaseService: FirebaseService = inject(FirebaseService);
 
   constructor() {
     // Add Google Tag Manager Scripts to Dom
