@@ -1,4 +1,6 @@
+import { IImage } from "./image-interface";
 export interface IContent {
-  heading: string
-  description: string|string[]
+  heading: string,
+  body: string|string[]|IImage;
+  order?:number;
 }
