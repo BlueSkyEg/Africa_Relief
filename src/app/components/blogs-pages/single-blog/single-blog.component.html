@@ -38,7 +38,7 @@
     <!-- blog content -->
     <div class="flex flex-col gap-6 lg:col-span-2">
       <div class="flex flex-col gap-6">
-        @for (content of blog.contents; track content; let idx = $index) {
+        @for (content of blog.contents; track content.order; let idx = $index) {
         <div class="flex flex-col gap-3">
           @if (!idx) {
           <div class="flex items-start gap-2">
@@ -48,7 +48,7 @@
           } @else {
             <h2 class="text-body-1-inter">{{content.heading}}</h2>
           }
-          <p class="text-body-2">{{content.description}}</p>
+          <p class="text-body-2">{{content.body}}</p>
         </div>
         }
       </div>

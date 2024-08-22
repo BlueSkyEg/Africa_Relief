@@ -1,35 +1,101 @@
 <header>
   <nav class="bg-white">
-    <div class="container flex justify-between lg:justify-normal items-center gap-8 py-4">
+    <div
+      class="container flex justify-between lg:justify-normal items-center gap-8 py-4"
+    >
       <a routerLink="/home">
-        <img class="w-14 aspect-square" src="assets/images/logo.webp" alt="Africa Relief Logo">
+        <img
+          class="w-14 aspect-square"
+          src="assets/images/logo.webp"
+          alt="Africa Relief Logo"
+        />
       </a>
       <ul class="flex-1 hidden lg:flex gap-3">
-        <li><a class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary" routerLink="/home" routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
-        <li><a class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary" routerLink="/projects" routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{exact: true}">Our Projects</a></li>
-        <li><a class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary" routerLink="/get-involved" routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{exact: true}">Get Involved</a></li>
-        <li><a class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary" routerLink="/blogs" routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{exact: true}">Blog</a></li>
-        <li><a class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary" routerLink="/gallery" routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{exact: true}">Gallery</a></li>
-        <li><a class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary" routerLink="/careers" routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{exact: true}">Careers</a></li>
+        <li (click)="closeSearchBar()">
+          <a
+            class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
+            routerLink="/home"
+            routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
+        </li>
+        <li (click)="closeSearchBar()">
+          <a
+            class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
+            routerLink="/projects"
+            routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Our Projects</a
+          >
+        </li>
+        <li (click)="closeSearchBar()">
+          <a
+            class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
+            routerLink="/get-involved"
+            routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Get Involved</a
+          >
+        </li>
+        <li (click)="closeSearchBar()">
+          <a
+            class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
+            routerLink="/blogs"
+            routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Blog</a
+          >
+        </li>
+        <li (click)="closeSearchBar()">
+          <a
+            class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
+            routerLink="/gallery"
+            routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Gallery</a
+          >
+        </li>
+        <li (click)="closeSearchBar()">
+          <a
+            class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
+            routerLink="/careers"
+            routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Careers</a
+          >
+        </li>
       </ul>
-      <div class="flex gap-2">
-        <a class="hidden lg:block text-white bg-primary py-2 px-3" routerLink="/projects">Donate Now</a>
+      <div class="flex gap-4 justify-center items-center relative">
+        <app-icon-search (click)="toggleSearchBar()" />
+        <app-search-bar
+          *ngIf="isSearchBarVisible"
+          class="absolute top-[4.5rem] z-30 -start-56"
+        />
+        <a
+          class="hidden lg:block text-white bg-primary py-2 px-3"
+          routerLink="/projects"
+          >Donate Now</a
+        >
         @if (!isUserAuthed) {
-          <a class="flex items-center" routerLink="/login">
-            <app-icon-profile/>
-          </a>
+        <a class="flex items-center" routerLink="/login">
+          <app-icon-profile />
+        </a>
         } @else {
-          <button class="flex items-center" [matMenuTriggerFor]="menu">
-            <app-icon-profile/>
-          </button>
-          <mat-menu #menu="matMenu">
-            <a routerLink="/profile" mat-menu-item>Account</a>
-            <a routerLink="/profile/donations" mat-menu-item>Donations</a>
-            <button mat-menu-item (click)="onLogout()">Logout</button>
-          </mat-menu>
+        <button class="flex items-center" [matMenuTriggerFor]="menu">
+          <app-icon-profile />
+        </button>
+        <mat-menu #menu="matMenu">
+          <a routerLink="/profile" mat-menu-item>Account</a>
+          <a routerLink="/profile/donations" mat-menu-item>Donations</a>
+          <button mat-menu-item (click)="onLogout()">Logout</button>
+        </mat-menu>
         }
-        <button class="flex lg:hidden justify-center items-center w-12 rounded-full bg-white" (click)="openSideNav()">
-          <app-icon-hamburger/>
+        <button
+          class="flex lg:hidden justify-center items-center w-12 rounded-full bg-white"
+          (click)="openSideNav()"
+        >
+          <app-icon-hamburger />
         </button>
       </div>
     </div>

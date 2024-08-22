@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-
 @Component({
   selector: 'app-icon-close',
   standalone: true,
@@ -13,8 +12,7 @@ import { Component, Input } from '@angular/core';
       <g mask="url(#mask0_1061_3221)">
         <path [ngClass]="color == 'white' ? 'fill-white' : 'fill-gray-dark'" d="M11.1997 22.6665L9.33301 20.7998L14.133 15.9998L9.33301 11.2331L11.1997 9.36646L15.9997 14.1665L20.7663 9.36646L22.633 11.2331L17.833 15.9998L22.633 20.7998L20.7663 22.6665L15.9997 17.8665L11.1997 22.6665Z"/>
       </g>
-    </svg>
-  `,
+    </svg> `,
   styles: ``
 })
 export class IconCloseComponent {

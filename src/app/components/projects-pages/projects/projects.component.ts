@@ -1,22 +1,28 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CategoriesFilterComponent } from "../../../shared/components/categories-filter/categories-filter.component";
+import { CategoriesFilterComponent } from '../../../shared/components/categories-filter/categories-filter.component';
 import { ProjectService } from '../../../core/services/projects/project.service';
 import { ICategory } from '../../../shared/interfaces/category-interface';
 import { IProjectCard } from '../../../shared/interfaces/project/project-card-interface';
-import { ProjectCardComponent } from "../../../shared/components/projects/project-card/project-card.component";
+import { ProjectCardComponent } from '../../../shared/components/projects/project-card/project-card.component';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { ActivatedRoute } from '@angular/router';
-import { BreadcrumbComponent } from "../../../shared/components/breadcrumb/breadcrumb.component";
+import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
+import { MetaService } from '../../../core/services/meta-data/meta.service';
 
 @Component({
-    selector: 'app-projects',
-    standalone: true,
-    templateUrl: './projects.component.html',
-    styles: ``,
-    imports: [InfiniteScrollModule, CategoriesFilterComponent, ProjectCardComponent, BreadcrumbComponent]
+  selector: 'app-projects',
+  standalone: true,
+  templateUrl: './projects.component.html',
+  styles: ``,
+  imports: [
+    InfiniteScrollModule,
+    CategoriesFilterComponent,
+    ProjectCardComponent,
+    BreadcrumbComponent,
+  ],
 })
 export class ProjectsComponent implements OnInit {
   projectCategories: ICategory[];
@@ -28,20 +34,19 @@ export class ProjectsComponent implements OnInit {
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   projectService: ProjectService = inject(ProjectService);
   breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
+  metaService: MetaService = inject(MetaService);
 
   constructor() {
     // Determine pagination perPage number based on screen size
-    this.breakpointObserver
-      .observe('(min-width: 800px)')
-      .subscribe({
-        next: (value) => this.paginationPerPage = value.matches ? 9 : 5
-      })
+    this.breakpointObserver.observe('(min-width: 800px)').subscribe({
+      next: (value) => (this.paginationPerPage = value.matches ? 9 : 5),
+    });
   }
-
   ngOnInit(): void {
-    // Get project categories
     this.projectService.getProjectCategories().subscribe({
-      next: (res: IApiResponse<ICategory[]>) => this.projectCategories = res.data
+      next: (res: IApiResponse<ICategory[]>) => {
+        this.projectCategories = res.data;
+      },
     });
 
     // Get projects
@@ -51,23 +56,41 @@ export class ProjectsComponent implements OnInit {
         this.paginationPageNum = 1;
         this.projects = [];
         this.onGetProjects();
-      }
+      },
     });
   }
-
-
+  //get the param from the link and then check if it exists find that single category and if it exists set its metadata
+  onGetProject(currentSlug: string) {
+    if (currentSlug) {
+      const matchingCategory = this.projectCategories?.find(
+        (category) => category.slug === currentSlug
+      );
+      if (matchingCategory) {
+        this.metaService.setMetaData(matchingCategory.meta_data);
+      }
+    }
+  }
   onGetProjects() {
-    if(!this.isPaginationLastPage) {
+    if (!this.isPaginationLastPage) {
       const categorySlug = this.activeRoute.snapshot.paramMap.get('slug');
-      this.projectService.getProjects(this.paginationPageNum, this.paginationPerPage, categorySlug).subscribe({
-        next: (res: IApiResponse<IPaginatedData<IProjectCard[]>>) => {
-          this.projects.push(...res.data.data);
-          if(res.data.pagination.current_page === res.data.pagination.last_page) {
-            this.isPaginationLastPage = true;
-          }
-          this.paginationPageNum++;
-        }
-      });
+      this.projectService
+        .getProjects(
+          this.paginationPageNum,
+          this.paginationPerPage,
+          categorySlug
+        )
+        .subscribe({
+          next: (res: IApiResponse<IPaginatedData<IProjectCard[]>>) => {
+            this.projects.push(...res.data.data);
+            this.onGetProject(categorySlug);
+            if (
+              res.data.pagination.current_page === res.data.pagination.last_page
+            ) {
+              this.isPaginationLastPage = true;
+            }
+            this.paginationPageNum++;
+          },
+        });
     }
   }
 }

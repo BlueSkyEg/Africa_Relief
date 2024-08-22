@@ -18,13 +18,25 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { StringValidator } from '../../../core/validators/string.validator';
 import { EmailValidator } from '../../../core/validators/email.validator';
 import { FileValidator } from '../../../core/validators/file.validator';
+import { MetaService } from '../../../core/services/meta-data/meta.service';
 
 @Component({
-    selector: 'app-single-career',
-    standalone: true,
-    templateUrl: './single-career.component.html',
-    styles: ``,
-    imports: [ReactiveFormsModule, CommonModule, FormElementDirective, BreadcrumbComponent, AccordionComponent, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent, IconPaperclipComponent]
+  selector: 'app-single-career',
+  standalone: true,
+  templateUrl: './single-career.component.html',
+  styles: ``,
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    FormElementDirective,
+    BreadcrumbComponent,
+    AccordionComponent,
+    FieldComponent,
+    LabelComponent,
+    ErrorComponent,
+    ButtonComponent,
+    IconPaperclipComponent,
+  ],
 })
 export class SingleCareerComponent {
   career: ICareer;
@@ -36,31 +48,41 @@ export class SingleCareerComponent {
   fb: FormBuilder = inject(FormBuilder);
   jobApplicationService: JobApplicationService = inject(JobApplicationService);
   _snackBar: MatSnackBar = inject(MatSnackBar);
+  metaService: MetaService = inject(MetaService);
 
   careerForm = this.fb.group({
     name: ['', [Validators.required, StringValidator()]],
     email: ['', [Validators.required, EmailValidator()]],
-    phone: ['', [Validators.required, Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
+    phone: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(
+          /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
+        ),
+      ],
+    ],
     address: ['', [Validators.required, StringValidator(2, 100, true)]],
     resume: ['', [Validators.required, FileValidator(['application/pdf'])]],
     coverLetter: ['', [Validators.required, StringValidator(10, 500, true)]],
-    careerSlug: ['', [Validators.required]]
+    careerSlug: ['', [Validators.required]],
   });
 
   ngOnInit(): void {
     this.activeRoute.paramMap.subscribe({
-      next: route => {
+      next: (route) => {
         this.careerService.getCareer(route.get('slug')).subscribe({
           next: (res: IApiResponse<ICareer>) => {
-            if(res.success) {
+            if (res.success) {
               this.career = res.data;
               this.careerForm.controls.careerSlug.setValue(res.data.slug);
+              this.metaService.setMetaData(this.career.meta_data,this.career.created_at);
             } else {
               this.router.navigate(['/404']);
             }
-          }
+          },
         });
-      }
+      },
     });
   }
 
@@ -69,29 +91,37 @@ export class SingleCareerComponent {
 
     const formData = new FormData();
     formData.append('resume', this.careerForm.controls.resume.value);
-    Object.keys(this.careerForm.controls).forEach(key => {
+    Object.keys(this.careerForm.controls).forEach((key) => {
       formData.append(key, this.careerForm.get(key)?.value);
     });
 
     this.jobApplicationService.submitVolunteerForm(formData).subscribe({
       next: (res: IApiResponse<null>) => {
-        if(res.success) {
+        if (res.success) {
           this.careerForm.reset();
           this.resumeName = null;
-          this._snackBar.open('Your application has been sent successfully.', '✖', {panelClass: 'success-snackbar'});
+          this._snackBar.open(
+            'Your application has been sent successfully.',
+            '✖',
+            { panelClass: 'success-snackbar' }
+          );
         } else {
-          this._snackBar.open('An error occurred while sending an application.', '✖', {panelClass: 'failure-snackbar'});
+          this._snackBar.open(
+            'An error occurred while sending an application.',
+            '✖',
+            { panelClass: 'failure-snackbar' }
+          );
         }
         this.jobApplicationFormDisabled = false;
-      }
-    })
+      },
+    });
   }
 
   onSelectResume(event) {
     const file = event.target.files[0];
     if (file) {
-      this.careerForm.patchValue({resume: file});
-      if(!this.careerForm.controls.resume.hasError('file')) {
+      this.careerForm.patchValue({ resume: file });
+      if (!this.careerForm.controls.resume.hasError('file')) {
         this.resumeName = file.name;
       }
     }
