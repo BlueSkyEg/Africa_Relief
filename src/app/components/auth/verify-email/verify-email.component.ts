@@ -13,14 +13,14 @@ import { ButtonLinkComponent } from "../../../shared/components/button-link/butt
 export class VerifyEmailComponent implements OnInit
 {
   emailVerified: boolean = null;
-  verifyEmailUrl: string = null;
+  verifyParamsUri: string = null;
   authService: AuthService = inject(AuthService);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
 
   ngOnInit(): void {
-    this.verifyEmailUrl = this.activeRoute.snapshot.queryParamMap.get('verifyEmailUrl');
-    if(this.verifyEmailUrl) {
-      this.authService.verifyEmail(this.verifyEmailUrl).subscribe({
+    this.verifyParamsUri = this.activeRoute.snapshot.queryParamMap.get('verifyParamsUri');
+    if(this.verifyParamsUri) {
+      this.authService.verifyEmail(this.verifyParamsUri).subscribe({
         next: res => {
           if(res.success) {
             this.emailVerified = true;

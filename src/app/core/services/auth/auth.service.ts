@@ -70,8 +70,8 @@ export class AuthService {
     return this.http.post<IApiResponse<null>>(environment.apiUrl + '/reset-password', data);
   }
 
-  verifyEmail(url): Observable<IApiResponse<null>> {
-    return this.http.get<IApiResponse<null>>(url);
+  verifyEmail(verifyParamsUri: string): Observable<IApiResponse<null>> {
+    return this.http.get<IApiResponse<null>>(environment.apiUrl + verifyParamsUri);
   }
 
   checkRedirectUrl(activeRoute: ActivatedRoute) {
