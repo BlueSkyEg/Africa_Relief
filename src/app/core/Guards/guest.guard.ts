@@ -6,7 +6,7 @@ export const GuestGuard: CanActivateFn = (route, state) => {
   const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
 
-  if(authService.isTokenExpired()) {
+  if (authService.isTokenExpired()) {
     return true;
   }
   router.navigateByUrl('/home');
