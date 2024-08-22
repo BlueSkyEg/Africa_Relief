@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from "./components/home/home.component";
+import { HomeComponent } from './components/home/home.component';
 import { BlogsComponent } from './components/blogs-pages/blogs/blogs.component';
 import { ProjectsComponent } from './components/projects-pages/projects/projects.component';
 import { SingleProjectComponent } from './components/projects-pages/single-project/single-project.component';
@@ -32,45 +32,105 @@ export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', title: 'Home', component: HomeComponent },
   { path: 'blogs', title: 'Blogs', component: BlogsComponent },
-  { path: 'search/:term', title: 'Result Search Page', component: SearchResultsComponent },
   {
-    path: 'blogs', title: 'Blogs', children: [
+    path: 'search/:term',
+    title: 'Result Search Page',
+    component: SearchResultsComponent,
+  },
+  {
+    path: 'blogs',
+    title: 'Blogs',
+    children: [
       { path: 'category/:slug', component: BlogsComponent },
-      { path: ':slug', component: SingleBlogComponent }
-    ]
+      { path: ':slug', component: SingleBlogComponent },
+    ],
   },
   { path: 'projects', title: 'Project', component: ProjectsComponent },
   {
-    path: 'projects', children: [
+    path: 'projects',
+    children: [
       { path: 'category/:slug', component: ProjectsComponent },
-      { path: ':slug', component: SingleProjectComponent }
-    ]
+      { path: ':slug', component: SingleProjectComponent },
+    ],
   },
-  { path: 'get-involved', title: 'Get Involved', component: GetInvolvedComponent },
+  {
+    path: 'get-involved',
+    title: 'Get Involved',
+    component: GetInvolvedComponent,
+  },
   { path: 'contact', title: 'Contact Us', component: ContactComponent },
   { path: 'about', title: 'About Us', component: AboutComponent },
-  { path: 'login', title: 'Login', canActivate: [GuestGuard], component: LoginComponent },
-  { path: 'sign-up', title: 'Sign Up', canActivate: [GuestGuard], component: SignupComponent },
-  { path: 'forgot-password', title: 'Forgot Password', canActivate: [GuestGuard], component: ForgotPasswordComponent },
-  { path: 'reset-password', title: 'Reset Password', canActivate: [GuestGuard], component: ResetPasswordComponent },
-  { path: 'verify-email', title: 'Verify Email', canActivate: [AuthGuard], component: VerifyEmailComponent },
+  {
+    path: 'login',
+    title: 'Login',
+    canActivate: [GuestGuard],
+    component: LoginComponent,
+  },
+  {
+    path: 'sign-up',
+    title: 'Sign Up',
+    canActivate: [GuestGuard],
+    component: SignupComponent,
+  },
+  {
+    path: 'forgot-password',
+    title: 'Forgot Password',
+    canActivate: [GuestGuard],
+    component: ForgotPasswordComponent,
+  },
+  {
+    path: 'reset-password',
+    title: 'Reset Password',
+    canActivate: [GuestGuard],
+    component: ResetPasswordComponent,
+  },
+  {
+    path: 'verify-email',
+    title: 'Verify Email',
+    canActivate: [AuthGuard],
+    component: VerifyEmailComponent,
+  },
   { path: 'gallery', title: 'Gallery', component: GalleryComponent },
   { path: 'careers', title: 'Careers', component: CareersComponent },
   {
-    path: 'careers', children: [
-      { path: ':slug', component: SingleCareerComponent }
-    ]
+    path: 'careers',
+    children: [{ path: ':slug', component: SingleCareerComponent }],
   },
   {
-    path: 'profile', component: ProfileComponent, children: [
-      { path: '', title: 'Account', canActivate: [AuthGuard], component: ProfileSettingsComponent },
-      { path: 'donations', title: 'Donations', canActivate: [AuthGuard], component: ProfileDonationsComponent },
-      { path: 'subscriptions', title: 'Subscriptions', canActivate: [AuthGuard], component: ProfileSubscriptionsComponent }
-    ]
+    path: 'profile',
+    component: ProfileComponent,
+    children: [
+      {
+        path: '',
+        title: 'Account',
+        canActivate: [AuthGuard],
+        component: ProfileSettingsComponent,
+      },
+      {
+        path: 'donations',
+        title: 'Donations',
+        canActivate: [AuthGuard],
+        component: ProfileDonationsComponent,
+      },
+      {
+        path: 'subscriptions',
+        title: 'Subscriptions',
+        canActivate: [AuthGuard],
+        component: ProfileSubscriptionsComponent,
+      },
+    ],
   },
   { path: 'donation', title: 'Donation', component: DonationComponent },
-  { path: 'donation-confirmation', title: 'Donation Confirmation', component: DonationConfirmationComponent },
-  { path: 'donation-failed', title: 'Donation Failed', component: DonationFailedComponent },
+  {
+    path: 'donation-confirmation',
+    title: 'Donation Confirmation',
+    component: DonationConfirmationComponent,
+  },
+  {
+    path: 'donation-failed',
+    title: 'Donation Failed',
+    component: DonationFailedComponent,
+  },
   { path: '404', title: 'Page Not Found', component: PageNotFoundComponent },
-  { path: '**', redirectTo: '404' }
+  { path: '**', redirectTo: '404' },
 ];
