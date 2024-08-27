@@ -1,0 +1,78 @@
+<main class="flex flex-col gap-6 mb-10 lg:mb-20">
+  <!-- Emergency Header -->
+  <div
+    class="relative w-full h-auto py-12 bg-[url('/assets/images/shared/archive-header-bg.webp')] bg-cover bg-no-repeat bg-[center_top] md:bg-[center_-100px] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black after:bg-opacity-60 after:block"
+  >
+    <div
+      class="container flex flex-col lg:flex-row gap-4 text-white relative z-10"
+    >
+      <div class="basis-1/2 flex flex-col gap-2">
+        <app-breadcrumb currentName="Emergency" appreance="white" />
+        <h1 class="text-heading-1">Emergency</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <!-- Tabs for Navigation -->
+    <div class="flex gap-3 overflow-x-scroll no-scrollbar my-4">
+      <a
+        [routerLink]="['/emergency/projects']"
+        routerLinkActive="bg-primary text-white hover:text-white"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="flex cursor-pointer whitespace-nowrap justify-center items-center py-3 px-4 border border-gray-light hover:border-primary hover:text-primary transition-colors ease-in-out"
+      >
+        Projects
+      </a>
+      <a
+        [routerLink]="['/emergency/blogs']"
+        routerLinkActive="bg-primary text-white hover:text-white"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="flex cursor-pointer whitespace-nowrap justify-center items-center py-3 px-4 border border-gray-light hover:border-primary hover:text-primary transition-colors ease-in-out"
+      >
+        Blogs
+      </a>
+    </div>
+    <p class="capitalize my-4">
+      Thanks To The Generosity Of Our Donors and the hard work of our expanding
+      team, we have made a serious positive impact in more than 15 countries.
+    </p>
+    <router-outlet></router-outlet>
+
+    <!-- cards -->
+    <div class="bg-white p-6 my-8">
+      <div class="card mb-14">
+        <h3 class="font-medium text-4xl text-[#1F1F1F] mb-7">
+          Best African Charities to Donate to
+        </h3>
+        <p class="text-xl text-[#403F3E] leading-8 mb-7">
+          If you're looking for the best African charities to donate to, you've
+          come to the right place. At Africa Relief, we are committed to
+          supporting initiatives that make a real difference in the lives of
+          people across the African continent.
+        </p>
+        <app-button-link
+          label="See Our Impact"
+          appearance="filled-primary"
+          path="/blogs"
+        />
+      </div>
+      <div class="card">
+        <h3 class="font-medium text-4xl text-[#1F1F1F] mb-7">
+          Supporting Africa Through Donations
+        </h3>
+        <p class="text-xl text-[#403F3E] leading-8 mb-7">
+          Supporting Africa through donations is a powerful way to make a
+          positive impact on the continent and contribute to its development. At
+          Africa Relief, we believe in the transformative power of charitable
+          giving, and we are dedicated to connecting donors with meaningful
+          projects and initiatives throughout Africa.
+        </p>
+        <app-button-link
+          label="Support Our Mission"
+          appearance="filled-primary"
+          path="/projects"
+        />
+      </div>
+    </div>
+  </div>
+</main>
