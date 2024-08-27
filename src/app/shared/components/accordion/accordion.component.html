@@ -1,21 +1,54 @@
 <div class="flex flex-col gap-6">
   @if (summary) {
-    <div #accordion class="accordion active flex flex-col p-6 bg-white border border-gray-light">
-      <div (click)="toggolAccordion(accordion)" class="flex justify-between items-center gap-4 cursor-pointer">
-        <h3 class="text-body-2-md">Summary</h3>
-        <app-icon-chevron-down class="accordion-btn"/>
-      </div>
-      <p class="description text-body-2 text-gray-dark max-h-0 overflow-hidden">{{summary}}</p>
+  <div
+    #accordion
+    class="accordion active flex flex-col p-6 bg-white border border-gray-light"
+  >
+    <div
+      (click)="toggolAccordion(accordion)"
+      class="flex justify-between items-center gap-4 cursor-pointer"
+    >
+      <h3 class="text-body-2-md">Summary</h3>
+      <app-icon-chevron-down class="accordion-btn" />
     </div>
-  }
+    <p class="description text-body-2 text-gray-dark max-h-0 overflow-hidden">
+      {{ summary }}
+    </p>
+  </div>
+  } @for (content of contentList; track content.order; let idx = $index;) {
 
-  @for (content of contentList; track content.order; let idx = $index;) {
-    <div #accordion [ngClass]="{'active': idx == 0 && !summary}" class="accordion flex flex-col p-6 bg-white border border-gray-light">
-      <div (click)="toggolAccordion(accordion)" class="flex justify-between items-center gap-4 cursor-pointer">
-        <h3 class="text-body-2-md">{{content.heading}}</h3>
-        <app-icon-chevron-down class="accordion-btn"/>
-      </div>
-      <p class="description text-body-2 text-gray-dark max-h-0 overflow-hidden">{{content.body}}</p>
+  <div
+    *ngIf="content.type === 'heading'"
+    #accordion
+    [ngClass]="{ active: idx == 0 && !summary }"
+    class="accordion flex flex-col p-6 bg-white border border-gray-light"
+  >
+    <div
+      (click)="toggolAccordion(accordion)"
+      class="flex justify-between items-center gap-4 cursor-pointer"
+    >
+      <h3 class="text-body-2-md">{{ content.body }}</h3>
+      <app-icon-chevron-down class="accordion-btn" />
     </div>
+    <ng-container
+      *ngIf="contentList[idx + 1] && contentList[idx + 1].type === 'paragraph'"
+    >
+      <p class="description text-body-2 text-gray-dark max-h-0 overflow-hidden">
+        {{ contentList[idx + 1].body }}
+      </p>
+    </ng-container>
+    <ng-container
+      *ngIf="contentList[idx + 1] && contentList[idx + 1].type === 'list'"
+    >
+      <ul class="list-inside">
+        <li
+          class="description text-body-2 text-gray-dark max-h-0 overflow-hidden list-decimal "
+          *ngFor="let item of contentList[idx + 1].body"
+        >
+          {{ item }}
+        </li>
+      </ul>
+    </ng-container>
+  </div>
   }
 </div>

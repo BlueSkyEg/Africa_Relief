@@ -6,14 +6,16 @@
         <app-breadcrumb currentName="Blogs" appreance="white"/>
         <h1 class="text-heading-1">Blogs</h1>
       </div>
-      <p class="basis-1/2 text-body-2">THANKS TO THE GENEROSITY OF OUR DONORS
-      <br>and the hard work of our expanding team, we have made a serious positive impact in more than 15 countries.</p>
     </div>
   </div>
 
   <!-- Blogs Filter -->
   <app-categories-filter [categories]="blogCategories" basePath="/blogs" baseTitle="All Blogs"/>
-
+  <div class="container">
+    <p class="capitalize my-4">
+      Thanks To The Generosity Of Our Donors and the hard work of our expanding
+      team, we have made a serious positive impact in more than 15 countries.
+    </p>
   <!-- Blogs Cards -->
   <div class="container grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onGetBlogs()">
     @for (blog of blogs; track blog.slug) {
@@ -30,4 +32,5 @@
       }
     }
   </div>
+</div>
 </main>

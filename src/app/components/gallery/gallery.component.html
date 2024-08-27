@@ -1,38 +1,85 @@
 <div class="flex flex-col gap-8 mb-10 lg:mb-20">
   <!-- Gallery Header -->
-  <div class="relative w-full h-auto py-12 bg-[url('/assets/images/shared/archive-header-bg.webp')] bg-cover bg-no-repeat bg-[center_top] md:bg-[center_-100px] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black after:bg-opacity-60 after:block">
-    <div class="container flex flex-col lg:flex-row gap-4 text-white relative z-10">
-        <div class="basis-1/2 flex flex-col gap-2">
-          <app-breadcrumb currentName="Gallery" appreance="white"/>
-          <h1 class="text-heading-1">Gallery</h1>
-        </div>
-        <p class="basis-1/2 text-body-2">THANKS TO THE GENEROSITY OF OUR DONORS
-        <br>and the hard work of our expanding team, we have made a serious positive impact in more than 15 countries.</p>
+  <div
+    class="relative w-full h-auto py-12 bg-[url('/assets/images/shared/archive-header-bg.webp')] bg-cover bg-no-repeat bg-[center_top] md:bg-[center_-100px] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black after:bg-opacity-60 after:block"
+  >
+    <div
+      class="container flex flex-col lg:flex-row gap-4 text-white relative z-10"
+    >
+      <div class="basis-1/2 flex flex-col gap-2">
+        <app-breadcrumb currentName="Gallery" appreance="white" />
+        <h1 class="text-heading-1">Gallery</h1>
+      </div>
     </div>
   </div>
-
-  <div class="container grid grid-cols-2 gap-4 md:grid-cols-4" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onGetGallery()">
-    <ng-container *ngTemplateOutlet="imageTemplate; context: { gallery: gallery1, indexs: [60, 56, 52, 80] }"></ng-container>
-    <ng-container *ngTemplateOutlet="imageTemplate; context: { gallery: gallery2, indexs: [80, 60, 56, 48] }"></ng-container>
-    <ng-container *ngTemplateOutlet="imageTemplate; context: { gallery: gallery3, indexs: [48, 56, 80, 60] }"></ng-container>
-    <ng-container *ngTemplateOutlet="imageTemplate; context: { gallery: gallery4, indexs: [80, 60, 40, 56] }"></ng-container>
+  <div class="container">
+    <p class="capitalize my-4">
+      Thanks To The Generosity Of Our Donors and the hard work of our expanding
+      team, we have made a serious positive impact in more than 15 countries.
+    </p>
+    <div
+      class="grid grid-cols-2 gap-4 md:grid-cols-4"
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onGetGallery()"
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          imageTemplate;
+          context: { gallery: gallery1, indexs: [60, 56, 52, 80] }
+        "
+      ></ng-container>
+      <ng-container
+        *ngTemplateOutlet="
+          imageTemplate;
+          context: { gallery: gallery2, indexs: [80, 60, 56, 48] }
+        "
+      ></ng-container>
+      <ng-container
+        *ngTemplateOutlet="
+          imageTemplate;
+          context: { gallery: gallery3, indexs: [48, 56, 80, 60] }
+        "
+      ></ng-container>
+      <ng-container
+        *ngTemplateOutlet="
+          imageTemplate;
+          context: { gallery: gallery4, indexs: [80, 60, 40, 56] }
+        "
+      ></ng-container>
+    </div>
   </div>
-</div>
-
-<ng-template #imageTemplate let-gallery="gallery" let-indexs="indexs">
-  <div class="grid gap-4">
-    @for (item of gallery; track item.slug) {
-    <a class="relative overflow-hidden group block bg-gray-light min-h-40" [title]="item.title" [routerLink]="'/blogs/' + item.slug">
-      <img class="h-full max-w-full object-cover object-center" appImgPlaceholder [src]="item.featured_image.src" [alt]="item.featured_image.alt_text" loading="lazy">
-      <div class="group-hover:opacity-100 opacity-0 transition-opacity ease-in-out absolute w-full h-40 bottom-0 start-0 bg-gradient-to-t from-black"></div>
-      <h2 class="group-hover:bottom-0 transition-all ease-in-out absolute w-full -bottom-10 start-0 p-4 text-body-2 font-semibold text-white truncate">{{item.title}}</h2>
-    </a>
-    }
-    @empty {
+  <ng-template #imageTemplate let-gallery="gallery" let-indexs="indexs">
+    <div class="grid gap-4">
+      @for (item of gallery; track item.slug) {
+      <a
+        class="relative overflow-hidden group block bg-gray-light min-h-40"
+        [title]="item.title"
+        [routerLink]="'/blogs/' + item.slug"
+      >
+        <img
+          class="h-full max-w-full object-cover object-center"
+          appImgPlaceholder
+          [src]="item.featured_image.src"
+          [alt]="item.featured_image.alt_text"
+          loading="lazy"
+        />
+        <div
+          class="group-hover:opacity-100 opacity-0 transition-opacity ease-in-out absolute w-full h-40 bottom-0 start-0 bg-gradient-to-t from-black"
+        ></div>
+        <h2
+          class="group-hover:bottom-0 transition-all ease-in-out absolute w-full -bottom-10 start-0 p-4 text-body-2 font-semibold text-white truncate"
+        >
+          {{ item.title }}
+        </h2>
+      </a>
+      } @empty {
       <div class="animate-pulse bg-gray-light h-{{ indexs[0] }}"></div>
       <div class="animate-pulse bg-gray-light h-{{ indexs[1] }}"></div>
       <div class="animate-pulse bg-gray-light h-{{ indexs[2] }}"></div>
       <div class="animate-pulse bg-gray-light h-{{ indexs[3] }}"></div>
-    }
-  </div>
-</ng-template>
+      }
+    </div>
+  </ng-template>
+</div>

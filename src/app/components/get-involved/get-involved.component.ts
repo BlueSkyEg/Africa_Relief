@@ -3,9 +3,9 @@ import { BreadcrumbComponent } from "../../shared/components/breadcrumb/breadcru
 import { BecomeVolunteerFormSectionComponent } from "./become-volunteer-form-section/become-volunteer-form-section.component";
 import { ButtonLinkComponent } from "../../shared/components/button-link/button-link.component";
 import { AccordionComponent } from "../../shared/components/accordion/accordion.component";
-import { IContent } from '../../shared/interfaces/content-interface';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { ImgPlaceholderDirective } from '../../shared/directives/img-placeholder.directive';
+import { IContent } from '../../shared/interfaces/content-interface';
 
 @Component({
   selector: 'app-get-involved',
@@ -22,26 +22,56 @@ import { ImgPlaceholderDirective } from '../../shared/directives/img-placeholder
   ],
 })
 export class GetInvolvedComponent {
-  accordionsContent = [
+  accordionsContent :IContent[]= [
     {
-      heading: 'What are employee matching gift programs?',
+      type: 'heading',
+      body: 'What are employee matching gift programs?',
+      order: 0,
+    },
+    {
+      type: 'paragraph',
       body: 'Employee matching gift programs are corporate giving programs in which the company matches donations made by employees to eligible nonprofit organizations. It’s an easy way to double your contribution to us!',
+      order: 1,
     },
     {
-      heading: 'How do I request a matching gift or volunteer grant?',
+      type: 'heading',
+      body: 'How do I request a matching gift or volunteer grant?',
+      order: 2,
+    },
+    {
+      type: 'paragraph',
       body: 'Requesting a matching gift or volunteer grant is normally a five-minute process which must be initiated by the donor/volunteer. You can do this by filling out and submitting a form provided by your employer or through an electronic submission process.',
+      order: 3,
     },
     {
-      heading: 'What if I still have questions?',
+      type: 'heading',
+      body: 'What if I still have questions?',
+      order: 4,
+    },
+    {
+      type: 'paragraph',
       body: 'For questions regarding your company’s programs, please contact your employer’s HR or community-giving department. Much of the necessary information is also available on your companies website.',
+      order: 5,
     },
     {
-      heading: 'What are volunteer grant programs?',
+      type: 'heading',
+      body: 'What are volunteer grant programs?',
+      order: 6,
+    },
+    {
+      type: 'paragraph',
       body: 'Volunteer grant programs are corporate giving programs in which companies provide monetary donations to organizations where employees volunteer regularly. If you volunteer with us, it’s an easy way to provide us with additional financial support!',
+      order: 7,
     },
     {
-      heading: 'How is this information obtained?',
-      body: 'We partner with a company called Double the Donation. If you see anything that should be changed, please email Double the Donation’s team at data@doublethedonation.com',
+      type: 'heading',
+      body: 'How is this information obtained?',
+      order: 8,
     },
+    {
+      type: 'paragraph',
+      body: 'We partner with a company called Double the Donation. If you see anything that should be changed, please email Double the Donation’s team at data@doublethedonation.com',
+      order: 9,
+    }
   ];
 }
