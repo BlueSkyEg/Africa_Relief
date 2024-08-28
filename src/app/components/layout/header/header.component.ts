@@ -13,14 +13,22 @@ import { SearchBarComponent } from '../../../shared/components/search-bar/search
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-header',
-    standalone: true,
-    templateUrl: './header.component.html',
-    styles: ``,
-    imports: [CommonModule, RouterModule, ButtonLinkComponent, MatMenuModule, IconHamburgerComponent, IconProfileComponent,IconSearchComponent , SearchBarComponent]
+  selector: 'app-header',
+  standalone: true,
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss',
+  imports: [
+    CommonModule,
+    RouterModule,
+    ButtonLinkComponent,
+    MatMenuModule,
+    IconHamburgerComponent,
+    IconProfileComponent,
+    IconSearchComponent,
+    SearchBarComponent,
+  ],
 })
 export class HeaderComponent {
-
   isUserAuthed: boolean = false;
   // Boolean flag to control the visibility of the search bar
   isSearchBarVisible = false;
@@ -31,8 +39,9 @@ export class HeaderComponent {
 
   constructor() {
     this.authService.authedUserSubject.asObservable().subscribe({
-      next: (user: IUser) => user ? this.isUserAuthed = true : this.isUserAuthed = false
-    })
+      next: (user: IUser) =>
+        user ? (this.isUserAuthed = true) : (this.isUserAuthed = false),
+    });
   }
   // Toggles the visibility of the search bar
   toggleSearchBar() {
@@ -49,12 +58,12 @@ export class HeaderComponent {
   onLogout() {
     this.authService.logout().subscribe({
       next: (res: IApiResponse<null>) => {
-        if(res.success) {
+        if (res.success) {
           localStorage.clear();
           this.authService.authedUserSubject.next(null);
           this.router.navigateByUrl('/login');
         }
-      }
-    })
+      },
+    });
   }
 }

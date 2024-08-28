@@ -1,15 +1,15 @@
 .filled-primary {
-  @apply text-white bg-primary hover:text-black hover:bg-secondary;
+  @apply text-white bg-primary hover:text-black hover:bg-secondary hover:cursor-pointer;
 }
 
 .filled-secondary {
-  @apply text-black bg-secondary hover:text-white hover:bg-primary;
+  @apply text-black bg-secondary hover:text-white hover:bg-primary hover:cursor-pointer;
 }
 
 .outlined-primary {
-  @apply text-primary bg-white border border-primary hover:text-white hover:bg-primary;
+  @apply text-primary bg-white border border-primary hover:text-white hover:bg-primary hover:cursor-pointer;
 }
 
 .outlined-secondary {
-  @apply text-primary bg-white border border-gray-medium hover:border-primary;
+  @apply text-primary bg-white border border-gray-medium hover:border-primary hover:cursor-pointer;
 }

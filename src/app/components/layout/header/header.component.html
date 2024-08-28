@@ -1,7 +1,7 @@
 <header>
   <nav class="bg-white">
     <div
-      class="container flex justify-between lg:justify-normal items-center gap-8 py-4"
+      class="container flex justify-between xl:justify-normal items-center gap-8 py-4"
     >
       <a routerLink="/home">
         <img
@@ -10,7 +10,7 @@
           alt="Africa Relief Logo"
         />
       </a>
-      <ul class="flex-1 hidden lg:flex gap-3">
+      <ul class="flex-1 hidden xl:flex gap-3">
         <li (click)="closeSearchBar()">
           <a
             class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
@@ -31,6 +31,15 @@
         </li>
         <li (click)="closeSearchBar()">
           <a
+            class="flex justify-center text-danger items-center py-2 px-3 transition-colors hover:text-white hover:bg-danger"
+            routerLink="/emergency"
+            routerLinkActive="text-white bg-danger"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Emergency</a
+          >
+        </li>
+        <li (click)="closeSearchBar()">
+          <a
             class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
             routerLink="/get-involved"
             routerLinkActive="text-white bg-primary"
@@ -47,15 +56,17 @@
             >Blog</a
           >
         </li>
+
         <li (click)="closeSearchBar()">
           <a
             class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
-            routerLink="/gallery"
+            routerLink="/about"
             routerLinkActive="text-white bg-primary"
             [routerLinkActiveOptions]="{ exact: true }"
-            >Gallery</a
+            >About Us</a
           >
         </li>
+
         <li (click)="closeSearchBar()">
           <a
             class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
@@ -73,7 +84,7 @@
           class="absolute top-[4.5rem] z-30 -start-56"
         />
         <a
-          class="hidden lg:block text-white bg-primary py-2 px-3"
+          class="hidden xl:block text-white bg-primary py-2 px-3"
           routerLink="/projects"
           >Donate Now</a
         >
@@ -92,7 +103,7 @@
         </mat-menu>
         }
         <button
-          class="flex lg:hidden justify-center items-center w-12 rounded-full bg-white"
+          class="flex xl:hidden justify-center items-center w-12 rounded-full bg-white"
           (click)="openSideNav()"
         >
           <app-icon-hamburger />

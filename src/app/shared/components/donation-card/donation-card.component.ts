@@ -17,30 +17,40 @@ import { Router } from '@angular/router';
     ButtonComponent,
     MatSelectModule,
     FormsModule,
-    MatCheckbox
+    MatCheckbox,
   ],
   templateUrl: './donation-card.component.html',
-  styles: ``
+  styles: ``,
 })
 export class DonationCardComponent {
   @Input() donationForm: IDonationForm;
   amount: number;
   makeRecurringDonation: boolean = false;
-  recurringPeriod: 'day'|'week'|'month'|'year' = 'month';
+  recurringPeriod: 'day' | 'week' | 'month' | 'year' = 'month';
 
   router: Router = inject(Router);
 
   onMakeDonation() {
     // check if donation amount is a positive value and greater than 1$
-    if(isNaN(this.amount) || this.amount < 1) return;
-
+    if (isNaN(this.amount) || this.amount < 1) return;
+    //data layer
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({
+      event: 'donationEventBeforeTheUserFillTheForm',
+      donationAmount: this.amount,
+      donationFormId: this.donationForm.id,
+      donationFormTitle: this.donationForm.title,
+    });
     this.router.navigate(['/donation'], {
       queryParams: {
-        'form': this.donationForm.id,
-        'title': this.donationForm.title,
-        'amount': this.amount,
-        'recurringPeriod': this.makeRecurringDonation ? this.recurringPeriod : null
-      }
+        form: this.donationForm.id,
+        title: this.donationForm.title,
+        amount: this.amount,
+        recurringPeriod: this.makeRecurringDonation
+          ? this.recurringPeriod
+          : null,
+      },
     });
   }
+
 }

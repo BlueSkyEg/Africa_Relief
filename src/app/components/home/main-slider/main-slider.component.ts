@@ -1,10 +1,16 @@
-import {Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, signal, inject} from '@angular/core';
-import {ButtonLinkComponent} from "../../../shared/components/button-link/button-link.component";
-import {IconArrowLeftComponent} from "../../../shared/icons/arrows/arrow-left/icon-arrow-left.component";
-import {IconArrowRightComponent} from "../../../shared/icons/arrows/arrow-right/icon-arrow-right.component";
-import {IconDirective} from "../../../shared/directives/icon.directive";
-import {SwiperContainer} from "swiper/swiper-element";
-import {SwiperOptions} from "swiper/types";
+import {
+  Component,
+  OnInit,
+  CUSTOM_ELEMENTS_SCHEMA,
+  signal,
+  inject,
+} from '@angular/core';
+import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
+import { IconArrowLeftComponent } from '../../../shared/icons/arrows/arrow-left/icon-arrow-left.component';
+import { IconArrowRightComponent } from '../../../shared/icons/arrows/arrow-right/icon-arrow-right.component';
+import { IconDirective } from '../../../shared/directives/icon.directive';
+import { SwiperContainer } from 'swiper/swiper-element';
+import { SwiperOptions } from 'swiper/types';
 import { ICarouselSlide } from '../../../shared/interfaces/carousel-slide.interface';
 import { CarouselService } from '../../../core/services/layout/carousel.service';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
@@ -18,11 +24,11 @@ import { CommonModule } from '@angular/common';
     ButtonLinkComponent,
     IconArrowLeftComponent,
     IconArrowRightComponent,
-    IconDirective
+    IconDirective,
   ],
   templateUrl: './main-slider.component.html',
   styles: ``,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MainSliderComponent implements OnInit {
   slides: ICarouselSlide[];
@@ -35,22 +41,22 @@ export class MainSliderComponent implements OnInit {
   }
 
   onGetHomeCarousel(): void {
-    this.carouselService.getHomeCarousel()
-      .subscribe({
-        next: (res: IApiResponse<ICarouselSlide[]>) => {
-          this.slides = res.data;
-          this.onLoadSwiperSlider();
-        }
-      });
+    this.carouselService.getHomeCarousel().subscribe({
+      next: (res: IApiResponse<ICarouselSlide[]>) => {
+        this.slides = res.data;
+        this.onLoadSwiperSlider();
+      },
+    });
   }
 
   onLoadSwiperSlider(): void {
-    const swiperElementConstructor: SwiperContainer = document.querySelector('.main-slider');
-    const  swiperOptions: SwiperOptions = {
+    const swiperElementConstructor: SwiperContainer =
+      document.querySelector('.main-slider');
+    const swiperOptions: SwiperOptions = {
       loop: true,
       autoplay: {
         delay: 3500,
-        disableOnInteraction: true
+        disableOnInteraction: true,
       },
       slidesPerView: 1,
       navigation: {
@@ -63,5 +69,8 @@ export class MainSliderComponent implements OnInit {
     Object.assign(swiperElementConstructor!, swiperOptions);
     this.swiperElement.set(swiperElementConstructor as SwiperContainer);
     this.swiperElement()?.initialize();
+  }
+  ngOnDestroy(): void {
+    this.swiperElement().remove();
   }
 }

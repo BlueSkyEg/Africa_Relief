@@ -17,10 +17,19 @@ import { ImgPlaceholderDirective } from '../../../shared/directives/img-placehol
 @Component({
   selector: 'app-projects-slider-section',
   standalone: true,
-  imports: [CommonModule, RouterModule, ProjectCardComponent, IconArrowLeftComponent, IconArrowRightComponent, ButtonLinkComponent, IconDirective, ImgPlaceholderDirective],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ProjectCardComponent,
+    IconArrowLeftComponent,
+    IconArrowRightComponent,
+    ButtonLinkComponent,
+    IconDirective,
+    ImgPlaceholderDirective,
+  ],
   templateUrl: './projects-slider-section.component.html',
   styles: ``,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ProjectsSliderSectionComponent implements OnInit {
   projects: IProjectCard[];
@@ -37,13 +46,14 @@ export class ProjectsSliderSectionComponent implements OnInit {
       next: (res: IApiResponse<IPaginatedData<IProjectCard[]>>) => {
         this.projects = res.data.data;
         this.onLoadSwiperSlider();
-      }
-    })
+      },
+    });
   }
 
   onLoadSwiperSlider(): void {
-    const swiperElementConstructor: SwiperContainer = document.querySelector('.projects-slider');
-    const  swiperOptions: SwiperOptions = {
+    const swiperElementConstructor: SwiperContainer =
+      document.querySelector('.projects-slider');
+    const swiperOptions: SwiperOptions = {
       loop: true,
       slidesPerView: 1,
       spaceBetween: 16,
@@ -54,15 +64,25 @@ export class ProjectsSliderSectionComponent implements OnInit {
       },
       breakpoints: {
         640: {
-          slidesPerView: 2
+          slidesPerView: 2,
         },
         1024: {
-          slidesPerView: 3
-        }
-      }
+          slidesPerView: 3,
+        },
+      },
     };
     Object.assign(swiperElementConstructor!, swiperOptions);
     this.swiperElement.set(swiperElementConstructor as SwiperContainer);
     this.swiperElement()?.initialize();
   }
+  check() {
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({
+      event: 'Button Donate Clicked',
+    });
+  }
+  ngOnDestroy(): void {
+    this.swiperElement().remove();
+  }
 }
+

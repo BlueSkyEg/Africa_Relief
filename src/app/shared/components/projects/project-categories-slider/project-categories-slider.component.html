@@ -1,4 +1,4 @@
-<swiper-container class="project-categories-slider" init="false">
+<swiper-container class="project-categories-slider" init="false" [init]="false">
   <swiper-slide class="flex flex-col gap-4 border border-gray-light bg-white w-[400px] p-4 ">
     <app-icon-food appIcon/>
     <h4 class="text-body-1-inter">Food Aid</h4>
@@ -32,7 +32,7 @@
     <h4 class="text-body-1-inter">Orphans Sponsorship</h4>
     <p class="text-body-2  line-clamp-4 lg:line-clamp-5">Help orphan children. we provide basic needs for orphan children such as food, water,
       clothing, education, and health care. Your contribution can make a difference. </p>
-    <app-button-link label="Browse Projects" path="/projects/category/orphans-sponsorship" appearance="outlined-primary" [fullWidth]="true"/>
+    <app-button-link label="Browse Projects" path="/projects/category/orphan-sponsorship" appearance="outlined-primary" [fullWidth]="true"/>
   </swiper-slide>
   <swiper-slide class="flex flex-col gap-4 border border-gray-light bg-white w-[400px] p-4 ">
     <app-icon-zakat appIcon/>
@@ -50,8 +50,9 @@
   </swiper-slide>
 </swiper-container>
 
+
 <!-- Slider Navigation -->
 <div class="flex justify-end items-center gap-4 mt-6">
-  <app-icon-arrow-left appIcon appearance="outlined" class="category-slide-next cursor-pointer"/>
-  <app-icon-arrow-right appIcon appearance="outlined" class="category-slide-prev cursor-pointer"/>
+  <app-icon-arrow-left appIcon appearance="outlined" class="category-slide-prev cursor-pointer"/>
+  <app-icon-arrow-right appIcon appearance="outlined" class="category-slide-next cursor-pointer"/>
 </div>
