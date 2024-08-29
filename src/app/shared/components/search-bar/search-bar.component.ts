@@ -22,7 +22,7 @@ export class SearchBarComponent {
     if (event?.key === 'Enter' || !event) {
       if (this.searchTerm.trim()) {
         this._Router.navigate(['/search', this.searchTerm], {
-          queryParams: { type: 'blogs'},
+          queryParams: { type: 'projects'},
         });
         this.isNavigated = false;
       }

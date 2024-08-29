@@ -75,6 +75,7 @@ export class SingleCareerComponent {
           next: (res: IApiResponse<ICareer>) => {
             if (res.success) {
               this.career = res.data;
+              console.log(this.career)
               this.careerForm.controls.careerSlug.setValue(res.data.slug);
               this.metaService.setMetaData(this.career.meta_data,this.career.created_at);
             } else {

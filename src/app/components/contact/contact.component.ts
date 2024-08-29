@@ -12,6 +12,7 @@ import { ButtonComponent } from '../../shared/components/form/button/button.comp
 import { ContactService } from '../../core/services/contact/contact.service';
 import { IApiResponse } from '../../shared/interfaces/api-response-interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { StringValidator } from '../../core/validators/string.validator';
 
 @Component({
   selector: 'app-contact',
@@ -27,7 +28,7 @@ export class ContactComponent {
   _snackBar: MatSnackBar = inject(MatSnackBar);
 
   contactForm = this.fb.group({
-    name: ['', [Validators.required]],
+    name: ['', [Validators.required ,StringValidator()]],
     email: ['', [Validators.required, Validators.email]],
     phone: ['', [Validators.required, Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
     address: ['', [Validators.required]],

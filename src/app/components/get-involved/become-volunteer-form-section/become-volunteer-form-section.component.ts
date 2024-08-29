@@ -8,6 +8,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { VolunteerService } from '../../../core/services/volunteer/volunteer.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
+import { StringValidator } from '../../../core/validators/string.validator';
 
 @Component({
     selector: 'app-become-volunteer-form-section',
@@ -23,7 +24,7 @@ export class BecomeVolunteerFormSectionComponent {
   _snackBar: MatSnackBar = inject(MatSnackBar);
 
   becomeVolunteerForm = this.fb.group({
-    name: ['', [Validators.required]],
+    name: ['', [Validators.required, StringValidator()]],
     email: ['', [Validators.required, Validators.email]],
     phone: ['', [Validators.required, Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
     address: ['', [Validators.required]],

@@ -28,7 +28,6 @@
       infiniteScroll
       [infiniteScrollDistance]="2"
       [infiniteScrollThrottle]="50"
-      (scrolled)="onGetProjects()"
     >
       @for (project of projects; track project.slug) {
       <app-project-card [project]="project" />
@@ -44,5 +43,22 @@
       </div>
       } }
     </div>
+          <!-- cards -->
+          <div class="bg-white p-6 my-8">
+            <div class="card mb-14">
+              <h3 class="font-medium text-4xl text-[#1F1F1F] mb-7">
+                Best African Charities to Donate to
+              </h3>
+              <p class="text-xl text-[#403F3E] leading-8 mb-7">
+                If you're looking for the best African charities to donate to, you've
+                come to the right place. At Africa Relief, we are committed to
+                supporting initiatives that make a real difference in the lives of
+                people across the African continent.
+              </p>
+              <app-button-link label="See Our Impact" appearance="filled-primary" path="/blogs" />
+            </div>
+
+          </div>
   </div>
+
 </main>

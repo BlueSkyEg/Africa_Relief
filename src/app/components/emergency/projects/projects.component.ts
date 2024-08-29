@@ -5,12 +5,13 @@ import { IApiResponse } from '../../../shared/interfaces/api-response-interface'
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ProjectCardComponent } from '../../../shared/components/projects/project-card/project-card.component';
+import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
   templateUrl: './projects.component.html',
-  imports: [InfiniteScrollModule ,ProjectCardComponent],
+  imports: [InfiniteScrollModule ,ProjectCardComponent ,ButtonLinkComponent],
 })
 export class ProjectsComponent {
   projects: IProjectCard[] = [];

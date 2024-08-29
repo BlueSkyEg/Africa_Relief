@@ -6,7 +6,7 @@
       <div class="basis-1/2">
         <app-accordion [contentList]="career.contents" [summary]="career.excerpt"/>
       </div>
-      <!-- Apply Job Form -->
+      <!-- Applydiv Job Form -->
       <div class="flex flex-col gap-6 flex-1 p-6 bg-white basis-1/2">
         <form class="w-full" (submit)="onSubmitJobApplicationForm()" [formGroup]="careerForm" enctype="multipart/form-data">
           <app-form-field>
