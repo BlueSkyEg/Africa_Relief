@@ -10,34 +10,43 @@ import { ImgPlaceholderDirective } from '../../../../shared/directives/img-place
 @Component({
   selector: 'app-blog-slider',
   standalone: true,
-  imports: [IconDirective, IconArrowLeftComponent, IconArrowRightComponent, ImgPlaceholderDirective],
+  imports: [
+    IconDirective,
+    IconArrowLeftComponent,
+    IconArrowRightComponent,
+    ImgPlaceholderDirective,
+  ],
   templateUrl: './blog-slider.component.html',
   styles: ``,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class BlogSliderComponent implements OnInit {
   @Input() slides: IImage[];
   swiperElement = signal<SwiperContainer | null>(null);
 
   ngOnInit(): void {
-          // Handel Slider Options
-          const swiperElementConstructor: SwiperContainer = document.querySelector('.blog-slider');
-          const  swiperOptions: SwiperOptions = {
-            loop: true,
-            autoplay: {
-              delay: 3500,
-              disableOnInteraction: true
-            },
-            slidesPerView: 1,
-            navigation: {
-              enabled: true,
-              nextEl: '.blog-slider-next',
-              prevEl: '.blog-slider-prev',
-            },
-          };
+    // Handel Slider Options
+    const swiperElementConstructor: SwiperContainer =
+      document.querySelector('.blog-slider');
+    const swiperOptions: SwiperOptions = {
+      loop: true,
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: true,
+      },
+      slidesPerView: 1,
+      navigation: {
+        enabled: true,
+        nextEl: '.blog-slider-next',
+        prevEl: '.blog-slider-prev',
+      },
+    };
 
-          Object.assign(swiperElementConstructor!, swiperOptions);
-          this.swiperElement.set(swiperElementConstructor as SwiperContainer);
-          this.swiperElement()?.initialize();
+    Object.assign(swiperElementConstructor!, swiperOptions);
+    this.swiperElement.set(swiperElementConstructor as SwiperContainer);
+    this.swiperElement()?.initialize();
+  }
+  ngOnDestroy(): void {
+    this.swiperElement().remove();
   }
 }

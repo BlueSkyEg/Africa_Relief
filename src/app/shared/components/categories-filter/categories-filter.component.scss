@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* Prevent vertical scroll */
+  white-space: nowrap;
+  cursor: grab;
+  /* Indicate that dragging is possible */
+}
+
+.container.dragging {
+  cursor: grabbing;
+  /* Indicate that dragging is active */
+}
+
+.container a {
+  display: inline-block;
+}

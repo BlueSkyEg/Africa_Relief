@@ -1,5 +1,5 @@
 <div class="relative w-[calc(100vw-52px)] lg:w-full">
-  <swiper-container init="false" class="blog-slider h-full">
+  <swiper-container init="false" class="blog-slider h-full" [init]="false">
     @for (slide of slides; track slide) {
       @defer () {
         <swiper-slide class="w-full h-[332px] lg:h-[480px] bg-gray-light">
@@ -13,7 +13,7 @@
   </swiper-container>
 
   <div class="flex justify-between w-full absolute top-1/2 -translate-y-1/2 z-10">
-    <app-icon-arrow-left appIcon color="black" class="blog-slider-next cursor-pointer"/>
-    <app-icon-arrow-right appIcon color="black" class="blog-slider-prev cursor-pointer"/>
+    <app-icon-arrow-left appIcon color="black" class="blog-slider-prev cursor-pointer"/>
+    <app-icon-arrow-right appIcon color="black" class="blog-slider-next cursor-pointer"/>
   </div>
 </div>

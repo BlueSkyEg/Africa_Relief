@@ -33,7 +33,7 @@ export class SearchResultsComponent implements OnInit {
   currentPage: number = 1;
   totalPages: number = 1;
   isLoading: boolean = true;
-  type: string = 'blogs';
+  type: string = 'projects';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -49,7 +49,7 @@ export class SearchResultsComponent implements OnInit {
     });
     this.activatedRoute.queryParams.subscribe((params) => {
       this.type = params['type'];
-      this.currentPage = 1; 
+      this.currentPage = 1;
       this.getResults(this.currentPage);
     });
   }

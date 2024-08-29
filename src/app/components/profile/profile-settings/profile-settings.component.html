@@ -1,101 +1,289 @@
 <div class="flex flex-col gap-8">
   <h1 class="text-body-1-roboto text-primary pt-8 ps-8">Account Settings</h1>
   @if (user) {
-    <div class="flex flex-col gap-6 max-w-[500px] m-auto">
-      <form (submit)="onChangeProfileImg()" [formGroup]="changeProfileImgForm" enctype="multipart/form-data">
-        <div class="w-32 h-32 m-auto relative">
-          <img class="w-full aspect-square border rounded-full border-gray-light" [src]="user?.img ?? 'assets/images/shared/user-avatar.webp'" alt="User Image">
-          <input id="profile-img" type="file" accept="image/png, image/jpeg, image/webp" (change)="onSelectProfileImg($event)" hidden>
-          <label for="profile-img" class="absolute bottom-6 -end-3 bg-gray-light p-2 rounded-full cursor-pointer">
-            <app-icon-edit/>
-          </label>
+  <div class="flex flex-col gap-6 max-w-[500px] m-auto">
+    <form
+      (submit)="onChangeProfileImg()"
+      [formGroup]="changeProfileImgForm"
+      enctype="multipart/form-data"
+    >
+      <div class="w-32 h-32 m-auto relative">
+        <img
+          class="w-full aspect-square border rounded-full border-gray-light"
+          [src]="user?.img ?? 'assets/images/shared/user-avatar.webp'"
+          alt="User Image"
+        />
+        <input
+          id="profile-img"
+          type="file"
+          accept="image/png, image/jpeg, image/webp"
+          (change)="onSelectProfileImg($event)"
+          hidden
+        />
+        <label
+          for="profile-img"
+          class="absolute bottom-6 -end-3 bg-gray-light p-2 rounded-full cursor-pointer"
+        >
+          <app-icon-edit />
+        </label>
+      </div>
+      <app-modal
+        title="Update Profile Image"
+        maxWidth="400px"
+        #imagePreviewModal
+      >
+        <div class="flex flex-col gap-6 w-full">
+          <img
+            [src]="imagePreview"
+            class="w-full aspect-square m-auto rounded-full border border-gray-light"
+          />
+          <app-form-button
+            appearance="filled"
+            [fullWidth]="true"
+            [disabled]="changeProfileImgForm.invalid"
+            >Save</app-form-button
+          >
         </div>
-        <app-modal title="Update Profile Image" maxWidth="400px" #imagePreviewModal>
-          <div class="flex flex-col gap-6 w-full">
-            <img [src]="imagePreview" class="w-full aspect-square m-auto rounded-full border border-gray-light">
-            <app-form-button appearance="filled" [fullWidth]="true" [disabled]="changeProfileImgForm.invalid">Save</app-form-button>
-          </div>
-        </app-modal>
-      </form>
-      <form (submit)="onEditProfile()" [formGroup]="editProfileForm">
-        <app-form-field>
-          <app-form-label>Name</app-form-label>
-          <input appFormElement type="text" formControlName="name" placeholder="Full Name">
-          <app-form-error [hasError]="editProfileForm.get('name').hasError('required') && editProfileForm.get('name').touched">Name is required.</app-form-error>
-          <app-form-error [hasError]="editProfileForm.get('name').hasError('string') && editProfileForm.get('name').touched">{{ editProfileForm.get('name').errors?.['string'] }}</app-form-error>
-          <app-form-error [hasError]="editProfileForm.get('name').hasError('serverError')">{{ editProfileForm.get('name').errors?.['serverError'] }}</app-form-error>
-        </app-form-field>
-        <app-form-field>
-          <app-form-label>Email</app-form-label>
-          <input appFormElement type="email" formControlName="email" placeholder="example@example.com">
-          <app-form-error [hasError]="editProfileForm.get('email').hasError('required') && editProfileForm.get('email').touched">Email is required.</app-form-error>
-          <app-form-error [hasError]="editProfileForm.get('email').hasError('pattern') && editProfileForm.get('email').touched">{{ editProfileForm.get('email').errors?.['pattern'] }}</app-form-error>
-          <app-form-error [hasError]="editProfileForm.get('email').hasError('serverError')">{{ editProfileForm.get('email').errors?.['serverError'] }}</app-form-error>
-        </app-form-field>
-        <app-form-field>
-          <app-form-label>Username</app-form-label>
-          <input appFormElement type="text" formControlName="username" placeholder="Username">
-          <app-form-error [hasError]="editProfileForm.get('username').hasError('required') && editProfileForm.get('username').touched">Username is required.</app-form-error>
-          <app-form-error [hasError]="editProfileForm.get('username').hasError('string') && editProfileForm.get('username').touched">{{ editProfileForm.get('username').errors?.['string'] }}</app-form-error>
-          <app-form-error [hasError]="editProfileForm.get('username').hasError('serverError')">{{ editProfileForm.get('username').errors?.['serverError'] }}</app-form-error>
-        </app-form-field>
-        <app-form-field>
-          <app-form-label>Phone Number</app-form-label>
-          <input appFormElement type="text" formControlName="phone" placeholder="Phone Number">
-          <app-form-error [hasError]="editProfileForm.get('phone').hasError('required') && editProfileForm.get('phone').touched">Phone Number is required.</app-form-error>
-          <app-form-error [hasError]="editProfileForm.get('phone').hasError('pattern') && editProfileForm.get('phone').touched">{{ editProfileForm.get('phone').errors?.['pattern'] }}</app-form-error>
-          <app-form-error [hasError]="editProfileForm.get('phone').hasError('serverError')">{{ editProfileForm.get('phone').errors?.['serverError'] }}</app-form-error>
-        </app-form-field>
-        <app-form-button class="flex justify-end" appearance="filled" [disabled]="editProfileForm.invalid || editProfileFormDisabled">Save</app-form-button>
-      </form>
-      <form (submit)="onChangeProfilePasswored()" [formGroup]="changeProfilePassworedForm">
-        <app-form-field>
-          <app-form-label>Current Password*</app-form-label>
-          <div class="flex gap-2 border border-gray-light py-3 px-4">
-            <input class="flex-1 outline-none" type="password" formControlName="currentPassword" placeholder="Current Password">
-          </div>
-          <app-form-error [hasError]="changeProfilePassworedForm.get('currentPassword').hasError('required') && changeProfilePassworedForm.get('currentPassword').touched">Current Password is required.</app-form-error>
-          <app-form-error [hasError]="changeProfilePassworedForm.get('currentPassword').hasError('serverError')">{{ changeProfilePassworedForm.get('currentPassword').errors?.['serverError'] }}</app-form-error>
-        </app-form-field>
-        <app-form-field>
-          <app-form-label>New Password*</app-form-label>
-          <div class="flex gap-2 border border-gray-light py-3 px-4">
-            <input class="flex-1 outline-none" (input)="onTypePassword()" [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password">
-            @if (showPassword) {
-              <app-icon-eye class="cursor-pointer" (click)="showPassword = false"/>
-            } @else {
-              <app-icon-eye-off class="cursor-pointer" (click)="showPassword = true"/>
-            }
-          </div>
-          <app-form-error [hasError]="changeProfilePassworedForm.get('password').hasError('required') && changeProfilePassworedForm.get('password').touched">Password is required.</app-form-error>
-          <app-form-error [hasError]="changeProfilePassworedForm.get('password').hasError('pattern') && changeProfilePassworedForm.get('password').touched">{{ changeProfilePassworedForm.get('password').errors?.['pattern'] }}</app-form-error>
-          <app-form-error [hasError]="changeProfilePassworedForm.get('password').hasError('serverError')">{{ changeProfilePassworedForm.get('password').errors?.['serverError'] }}</app-form-error>
-          <div class="flex gap-2 pt-4">
-            <div class="relative h-1 w-full bg-gray-medium rounded-l before:absolute before:h-full before:bg-[#dc2626]" [ngClass]="{'before:w-full': passwordStrenth >= 1}"></div>
-            <div class="relative h-1 w-full bg-gray-medium before:absolute before:h-full before:bg-[#ff9a33]" [ngClass]="{'before:w-full': passwordStrenth >= 2}"></div>
-            <div class="relative h-1 w-full bg-gray-medium before:absolute before:h-full before:bg-[#ffcc00]" [ngClass]="{'before:w-full': passwordStrenth >= 3}"></div>
-            <div class="relative h-1 w-full bg-gray-medium rounded-r before:absolute before:h-full before:bg-[#1a9104]" [ngClass]="{'before:w-full': passwordStrenth == 4}"></div>
-          </div>
-          <p class="text-gray-dark text-xs pt-4">hint: Use 8 or more characters with at least one lowercase, uppercase, number and symbol.</p>
-        </app-form-field>
-        <app-form-field>
-          <app-form-label>Confirm New Password*</app-form-label>
-          <input appFormElement type="password" formControlName="password_confirmation" placeholder="Confirm Password">
-          <app-form-error [hasError]="changeProfilePassworedForm.hasError('mismatch') && changeProfilePassworedForm.get('password_confirmation').touched">{{ changeProfilePassworedForm.errors?.['mismatch'] }}</app-form-error>
-        </app-form-field>
-        <app-form-button class="flex justify-end" appearance="filled" [disabled]="changeProfilePassworedForm.invalid || changeProfilePassworedFormDisabled">Update Password</app-form-button>
-      </form>
-    </div>
+      </app-modal>
+    </form>
+    <form (submit)="onEditProfile()" [formGroup]="editProfileForm">
+      <app-form-field>
+        <app-form-label>Name</app-form-label>
+        <input
+          appFormElement
+          type="text"
+          formControlName="name"
+          placeholder="Full Name"
+        />
+        <app-form-error
+          [hasError]="
+            editProfileForm.get('name').hasError('required') &&
+            editProfileForm.get('name').touched
+          "
+          >Name is required.</app-form-error
+        >
+        <app-form-error
+          [hasError]="
+            editProfileForm.get('name').hasError('string') &&
+            editProfileForm.get('name').touched
+          "
+          >{{ editProfileForm.get('name').errors?.['string'] }}</app-form-error
+        >
+        <app-form-error
+          [hasError]="editProfileForm.get('name').hasError('serverError')"
+          >{{ editProfileForm.get('name').errors?.['serverError'] }}</app-form-error
+        >
+      </app-form-field>
+      <app-form-field>
+        <app-form-label>Email</app-form-label>
+        <input
+          appFormElement
+          type="email"
+          formControlName="email"
+          placeholder="example@example.com"
+        />
+        <app-form-error
+          [hasError]="
+            editProfileForm.get('email').hasError('required') &&
+            editProfileForm.get('email').touched
+          "
+          >Email is required.</app-form-error
+        >
+        <app-form-error
+          [hasError]="
+            editProfileForm.get('email').hasError('pattern') &&
+            editProfileForm.get('email').touched
+          "
+          >{{ editProfileForm.get('email').errors?.['pattern'] }}</app-form-error
+        >
+        <app-form-error
+          [hasError]="editProfileForm.get('email').hasError('serverError')"
+          >{{ editProfileForm.get('email').errors?.['serverError'] }}</app-form-error
+        >
+      </app-form-field>
+      <app-form-field>
+        <app-form-label>Username</app-form-label>
+        <input
+          appFormElement
+          type="text"
+          formControlName="username"
+          placeholder="Username"
+        />
+        <app-form-error
+          [hasError]="
+            editProfileForm.get('username').hasError('string') &&
+            editProfileForm.get('username').touched
+          "
+        >
+          {{ editProfileForm.get('username').errors?.['string'] }}
+        </app-form-error>
+        <app-form-error
+          [hasError]="editProfileForm.get('username').hasError('serverError')"
+        >
+          {{ editProfileForm.get('username').errors?.['serverError'] }}
+        </app-form-error>
+      </app-form-field>
+
+      <app-form-field>
+        <app-form-label>Phone Number</app-form-label>
+        <input
+          appFormElement
+          type="text"
+          formControlName="phone"
+          placeholder="Phone Number"
+        />
+        <app-form-error
+          [hasError]="
+            editProfileForm.get('phone').hasError('pattern') &&
+            editProfileForm.get('phone').touched
+          "
+        >
+          {{ editProfileForm.get('phone').errors?.['pattern'] }}
+        </app-form-error>
+        <app-form-error
+          [hasError]="editProfileForm.get('phone').hasError('serverError')"
+        >
+          {{ editProfileForm.get('phone').errors?.['serverError'] }}
+        </app-form-error>
+      </app-form-field>
+      <app-form-button
+        class="flex justify-end"
+        appearance="filled"
+        [disabled]="editProfileForm.invalid || editProfileFormDisabled"
+        >Save</app-form-button
+      >
+    </form>
+    <form
+      (submit)="onChangeProfilePasswored()"
+      [formGroup]="changeProfilePassworedForm"
+    >
+      <app-form-field>
+        <app-form-label>Current Password*</app-form-label>
+        <div class="flex gap-2 border border-gray-light py-3 px-4">
+          <input
+            class="flex-1 outline-none"
+            type="password"
+            formControlName="currentPassword"
+            placeholder="Current Password"
+          />
+        </div>
+        <app-form-error
+          [hasError]="
+            changeProfilePassworedForm
+              .get('currentPassword')
+              .hasError('required') &&
+            changeProfilePassworedForm.get('currentPassword').touched
+          "
+          >Current Password is required.</app-form-error
+        >
+        <app-form-error
+          [hasError]="
+            changeProfilePassworedForm
+              .get('currentPassword')
+              .hasError('serverError')
+          "
+          >{{ changeProfilePassworedForm.get('currentPassword').errors?.['serverError'] }}</app-form-error
+        >
+      </app-form-field>
+      <app-form-field>
+        <app-form-label>New Password*</app-form-label>
+        <div class="flex gap-2 border border-gray-light py-3 px-4">
+          <input
+            class="flex-1 outline-none"
+            (input)="onTypePassword()"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Password"
+          />
+          @if (showPassword) {
+          <app-icon-eye class="cursor-pointer" (click)="showPassword = false" />
+          } @else {
+          <app-icon-eye-off
+            class="cursor-pointer"
+            (click)="showPassword = true"
+          />
+          }
+        </div>
+        <app-form-error
+          [hasError]="
+            changeProfilePassworedForm.get('password').hasError('required') &&
+            changeProfilePassworedForm.get('password').touched
+          "
+          >Password is required.</app-form-error
+        >
+        <app-form-error
+          [hasError]="
+            changeProfilePassworedForm.get('password').hasError('pattern') &&
+            changeProfilePassworedForm.get('password').touched
+          "
+          >{{ changeProfilePassworedForm.get('password').errors?.['pattern'] }}</app-form-error
+        >
+        <app-form-error
+          [hasError]="
+            changeProfilePassworedForm.get('password').hasError('serverError')
+          "
+          >{{ changeProfilePassworedForm.get('password').errors?.['serverError'] }}</app-form-error
+        >
+        <div class="flex gap-2 pt-4">
+          <div
+            class="relative h-1 w-full bg-gray-medium rounded-l before:absolute before:h-full before:bg-[#dc2626]"
+            [ngClass]="{ 'before:w-full': passwordStrenth >= 1 }"
+          ></div>
+          <div
+            class="relative h-1 w-full bg-gray-medium before:absolute before:h-full before:bg-[#ff9a33]"
+            [ngClass]="{ 'before:w-full': passwordStrenth >= 2 }"
+          ></div>
+          <div
+            class="relative h-1 w-full bg-gray-medium before:absolute before:h-full before:bg-[#ffcc00]"
+            [ngClass]="{ 'before:w-full': passwordStrenth >= 3 }"
+          ></div>
+          <div
+            class="relative h-1 w-full bg-gray-medium rounded-r before:absolute before:h-full before:bg-[#1a9104]"
+            [ngClass]="{ 'before:w-full': passwordStrenth == 4 }"
+          ></div>
+        </div>
+        <p class="text-gray-dark text-xs pt-4">
+          hint: Use 8 or more characters with at least one lowercase, uppercase,
+          number and symbol.
+        </p>
+      </app-form-field>
+      <app-form-field>
+        <app-form-label>Confirm New Password*</app-form-label>
+        <input
+          appFormElement
+          type="password"
+          formControlName="password_confirmation"
+          placeholder="Confirm Password"
+        />
+        <app-form-error
+          [hasError]="
+            changeProfilePassworedForm.hasError('mismatch') &&
+            changeProfilePassworedForm.get('password_confirmation').touched
+          "
+          >{{ changeProfilePassworedForm.errors?.['mismatch'] }}</app-form-error
+        >
+      </app-form-field>
+      <app-form-button
+        class="flex justify-end"
+        appearance="filled"
+        [disabled]="
+          changeProfilePassworedForm.invalid ||
+          changeProfilePassworedFormDisabled
+        "
+        >Update Password</app-form-button
+      >
+    </form>
+  </div>
   } @else {
-    <div class="animate-pulse flex flex-col gap-6 w-full max-w-[500px] m-auto">
-      <div class="bg-gray-light w-32 m-auto aspect-square rounded-full"></div>
-      <div class="bg-gray-light h-12 w-full"></div>
-      <div class="bg-gray-light h-12 w-full"></div>
-      <div class="bg-gray-light h-12 w-1/4 self-end"></div>
-      <div class="bg-gray-light h-12 w-full"></div>
-      <div class="bg-gray-light h-12 w-full"></div>
-      <div class="bg-gray-light h-12 w-full"></div>
-      <div class="bg-gray-light h-12 w-1/4 self-end"></div>
-    </div>
+  <div class="animate-pulse flex flex-col gap-6 w-full max-w-[500px] m-auto">
+    <div class="bg-gray-light w-32 m-auto aspect-square rounded-full"></div>
+    <div class="bg-gray-light h-12 w-full"></div>
+    <div class="bg-gray-light h-12 w-full"></div>
+    <div class="bg-gray-light h-12 w-1/4 self-end"></div>
+    <div class="bg-gray-light h-12 w-full"></div>
+    <div class="bg-gray-light h-12 w-full"></div>
+    <div class="bg-gray-light h-12 w-full"></div>
+    <div class="bg-gray-light h-12 w-1/4 self-end"></div>
+  </div>
   }
 </div>

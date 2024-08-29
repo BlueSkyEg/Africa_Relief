@@ -33,7 +33,7 @@
             <app-form-error [hasError]="personalDetailsForm.get('phone').hasError('pattern') && personalDetailsForm.get('phone').touched">{{ personalDetailsForm.get('phone').errors?.['pattern'] }}</app-form-error>
           </app-form-field>
           <div class="w-full flex justify-end">
-            <button class="text-body-3 text-white bg-primary py-3 px-6 disabled:text-white disabled:bg-gray-medium" [disabled]="personalDetailsForm.invalid" matStepperNext>Next</button>
+            <button class="text-body-3 text-white bg-primary py-3 px-6 disabled:text-white disabled:bg-gray-medium" [disabled]="personalDetailsForm.invalid" (click)="onFillPersonalDetails()" matStepperNext>Next</button>
           </div>
         </form>
       </ng-template>
@@ -87,7 +87,7 @@
           <div>
             <div class="w-full flex justify-between">
               <button class="text-body-3 text-primary bg-white border border-primary py-3 px-6" matStepperPrevious>Back</button>
-              <button class="text-body-3 text-white bg-primary py-3 px-6 disabled:text-white disabled:bg-gray-medium" [disabled]="billingDetailsForm.invalid" matStepperNext>Next</button>
+              <button class="text-body-3 text-white bg-primary py-3 px-6 disabled:text-white disabled:bg-gray-medium" [disabled]="billingDetailsForm.invalid"(click)="onFillBillingAddress()"  matStepperNext>Next</button>
             </div>
           </div>
         </form>

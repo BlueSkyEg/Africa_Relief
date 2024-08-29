@@ -11,6 +11,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 import { MetaService } from '../../../core/services/meta-data/meta.service';
+import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
 
 @Component({
   selector: 'app-projects',
@@ -22,6 +23,7 @@ import { MetaService } from '../../../core/services/meta-data/meta.service';
     CategoriesFilterComponent,
     ProjectCardComponent,
     BreadcrumbComponent,
+    ButtonLinkComponent
   ],
 })
 export class ProjectsComponent implements OnInit {
@@ -71,12 +73,13 @@ export class ProjectsComponent implements OnInit {
     }
   }
   onGetProjects() {
+    // alert("Projects works")
     if (!this.isPaginationLastPage) {
       const categorySlug = this.activeRoute.snapshot.paramMap.get('slug');
       this.projectService
         .getProjects(
           this.paginationPageNum,
-          this.paginationPerPage,
+          99999,
           categorySlug
         )
         .subscribe({

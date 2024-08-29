@@ -23,7 +23,7 @@ export class ProjectService {
   getProjects(
     page: number = 1,
     perPage: number = 9,
-    categorySlug: string = null
+    categorySlug: string = null,
   ): Observable<IApiResponse<IPaginatedData<IProjectCard[]>>> {
     const queryParams = categorySlug
       ? { page: page, categorySlug: categorySlug, perPage: perPage }

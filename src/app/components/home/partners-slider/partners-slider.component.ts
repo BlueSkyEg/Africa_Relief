@@ -11,10 +11,14 @@ import { ImgPlaceholderDirective } from '../../../shared/directives/img-placehol
 @Component({
   selector: 'app-partners-slider',
   standalone: true,
-  imports: [IconArrowLeftComponent, IconArrowRightComponent, ImgPlaceholderDirective],
+  imports: [
+    IconArrowLeftComponent,
+    IconArrowRightComponent,
+    ImgPlaceholderDirective,
+  ],
   templateUrl: './partners-slider.component.html',
   styles: ``,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PartnersSliderComponent implements OnInit {
   slides: ICarouselSlide[];
@@ -31,17 +35,18 @@ export class PartnersSliderComponent implements OnInit {
       next: (res: IApiResponse<ICarouselSlide[]>) => {
         this.slides = res.data;
         this.onLoadSwiperSlider();
-      }
-    })
+      },
+    });
   }
 
   onLoadSwiperSlider(): void {
-    const swiperElementConstructor: SwiperContainer = document.querySelector('.partners-slider');
+    const swiperElementConstructor: SwiperContainer =
+      document.querySelector('.partners-slider');
     const swiperOptions: SwiperOptions = {
       loop: true,
       autoplay: {
         delay: 3000,
-        disableOnInteraction: true
+        disableOnInteraction: true,
       },
       slidesPerView: 1,
       spaceBetween: 24,
@@ -52,18 +57,21 @@ export class PartnersSliderComponent implements OnInit {
       },
       breakpoints: {
         640: {
-          slidesPerView: 2
+          slidesPerView: 2,
         },
         1024: {
-          slidesPerView: 4
+          slidesPerView: 4,
         },
         1300: {
-          slidesPerView: 6
-        }
-      }
+          slidesPerView: 6,
+        },
+      },
     };
     Object.assign(swiperElementConstructor!, swiperOptions);
     this.swiperElement.set(swiperElementConstructor as SwiperContainer);
     this.swiperElement()?.initialize();
+  }
+  ngOnDestroy(): void {
+    this.swiperElement().remove();
   }
 }

@@ -27,17 +27,19 @@ import {SwiperOptions} from "swiper/types";
     ButtonLinkComponent,
     IconArrowLeftComponent,
     IconArrowRightComponent,
-    IconDirective
+    IconDirective,
   ],
   templateUrl: './project-categories-slider.component.html',
   styles: ``,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ProjectCategoriesSliderComponent implements OnInit {
   swiperElement = signal<SwiperContainer | null>(null);
   ngOnInit(): void {
-    const swiperElementConstructor: SwiperContainer = document.querySelector('.project-categories-slider');
-    const  swiperOptions: SwiperOptions = {
+    const swiperElementConstructor: SwiperContainer = document.querySelector(
+      '.project-categories-slider'
+    );
+    const swiperOptions: SwiperOptions = {
       loop: true,
       slidesPerView: 1,
       spaceBetween: 24,
@@ -48,12 +50,12 @@ export class ProjectCategoriesSliderComponent implements OnInit {
       },
       breakpoints: {
         640: {
-          slidesPerView: 2
+          slidesPerView: 2,
         },
         1024: {
-          slidesPerView: 3
-        }
-      }
+          slidesPerView: 3,
+        },
+      },
     };
     Object.assign(swiperElementConstructor!, swiperOptions);
     this.swiperElement.set(swiperElementConstructor as SwiperContainer);

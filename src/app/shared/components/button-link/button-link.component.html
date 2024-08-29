@@ -1,7 +1,9 @@
-<a class="flex justify-center items-center gap-2 py-3 px-6 transition-colors" [ngClass]="appearance" [ngStyle]="{'width': fullWidth ? '100%' : 'fit-content'}" routerLink="{{ path }}">
+<!-- button-link.component.html -->
+<a class="flex justify-center items-center gap-2 py-3 px-6 transition-colors" [ngClass]="appearance"
+  [ngStyle]="{'width': fullWidth ? '100%' : 'fit-content'}" [routerLink]="path" (click)="handleClick($event)">
   {{ label }}
 
-  @if (icon) {
-    <app-icon-arrow-right />
-  }
+  <ng-container *ngIf="icon">
+    <app-icon-arrow-right></app-icon-arrow-right>
+  </ng-container>
 </a>

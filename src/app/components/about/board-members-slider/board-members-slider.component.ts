@@ -116,4 +116,7 @@ export class BoardMembersSliderComponent implements OnInit {
     this.swiperElement.set(swiperElementConstructor as SwiperContainer);
     this.swiperElement()?.initialize();
   }
+  ngOnDestroy(): void {
+    this.swiperElement().remove();
+  }
 }

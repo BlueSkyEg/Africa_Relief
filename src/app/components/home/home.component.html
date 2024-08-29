@@ -1,101 +1,191 @@
 <div class="flex flex-col gap-10 lg:gap-20 mb-10 lg:mb-20">
-
-  <app-main-slider/>
-
+  <app-main-slider />
 
   <!-- Donation Card Section -->
   <div class="container flex flex-col xl:flex-row justify-between gap-6">
     <div class="flex flex-col gap-6 xl:w-[718px]">
-      <h2 class="text-heading-2 xl:w-[652px]">ALL Children Deserve an Equal Opportunity to Succeed in Life</h2>
+      <h2 class="text-heading-2 xl:w-[652px]">
+        ALL Children Deserve an Equal Opportunity to Succeed in Life
+      </h2>
       <div class="relative h-full bg-gray-light">
-        <img class="h-full object-cover object-center" src="/assets/images/home/Equal-Opportunity-to-Children.webp" alt="ALL Children Deserve an Equal Opportunity to Succeed in Life.webp">
-        <div class="flex items-center absolute gap-1 top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 pe-4 bg-black text-white cursor-pointer" (click)="toggleVideoModal()">
-          <app-icon-video-play/>
+        <img
+          class="h-full object-cover object-center"
+          src="/assets/images/home/Equal-Opportunity-to-Children.webp"
+          alt="ALL Children Deserve an Equal Opportunity to Succeed in Life.webp"
+        />
+        <div
+          class="flex items-center absolute gap-1 top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 pe-4 bg-black text-white cursor-pointer"
+          (click)="toggleVideoModal()"
+        >
+          <app-icon-video-play />
           <span class="text-body-3">Watch Video</span>
         </div>
       </div>
     </div>
     @if (donationForm) {
-      <app-donation-card [donationForm]="donationForm" class="flex-1 xl:max-w-[600px]">
-        <div class="flex justify-center relative before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2 before:w-full before:h-[1px] before:bg-gray-light">
-          <span class="text-body-3 bg-white px-3 z-10">Or</span>
-        </div>
-        <div class="flex justify-center items-center gap-8">
-          <div class="flex flex-col justify-center items-center gap-2 w-20 cursor-pointer" title="Donate Through Zelle" (click)="scrollToSection(donateThroughZelle)">
-            <app-icon-zelle/>
-            <span class="text-body-3">Zelle</span>
-          </div>
-          <div class="flex flex-col justify-center items-center gap-2 w-20 cursor-pointer" title="Donate Through Venmo" (click)="scrollToSection(donateThroughVenmo)">
-            <app-icon-venmo/>
-            <span class="text-body-3">Venmo</span>
-          </div>
-          <div class="flex flex-col justify-center items-center gap-2 w-20 cursor-pointer" title="Donate Through Cash app" (click)="scrollToSection(donateThroughCashApp)">
-            <app-icon-cash-app/>
-            <span class="text-body-3">Cash app</span>
-          </div>
-        </div>
-      </app-donation-card>
-    }
-    @else {
-      <div class="animate-pulse flex flex-col gap-6 p-4 h-fit bg-white flex-1 xl:max-w-[600px]">
-        <div class="bg-gray-light h-16"></div>
-        <div class="bg-gray-light h-12"></div>
-        <div class="flex flex-col gap-4">
-          <div class="bg-gray-light h-3 w-2/6"></div>
-          <div class="bg-gray-light h-10"></div>
-          <div class="flex gap-4">
-            <div class="bg-gray-light h-10 w-2/6"></div>
-            <div class="bg-gray-light h-10 w-2/6"></div>
-            <div class="bg-gray-light h-10 w-2/6"></div>
-          </div>
-        </div>
-        <div class="bg-gray-light h-10"></div>
-        <div class="bg-gray-light h-10"></div>
+    <app-donation-card
+      [donationForm]="donationForm"
+      class="flex-1 xl:max-w-[600px]"
+    >
+      <div
+        class="flex justify-center relative before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2 before:w-full before:h-[1px] before:bg-gray-light"
+      >
+        <span class="text-body-3 bg-white px-3 z-10">Or</span>
       </div>
+      <div class="flex justify-center items-center gap-8">
+        <div
+          class="flex flex-col justify-center items-center gap-2 w-20 cursor-pointer"
+          title="Donate Through Zelle"
+          (click)="scrollToSection(donateThroughZelle)"
+        >
+          <app-icon-zelle />
+          <span class="text-body-3">Zelle</span>
+        </div>
+        <div
+          class="flex flex-col justify-center items-center gap-2 w-20 cursor-pointer"
+          title="Donate Through Venmo"
+          (click)="scrollToSection(donateThroughVenmo)"
+        >
+          <app-icon-venmo />
+          <span class="text-body-3">Venmo</span>
+        </div>
+        <div
+          class="flex flex-col justify-center items-center gap-2 w-20 cursor-pointer"
+          title="Donate Through Cash app"
+          (click)="scrollToSection(donateThroughCashApp)"
+        >
+          <app-icon-cash-app />
+          <span class="text-body-3">Cash app</span>
+        </div>
+      </div>
+    </app-donation-card>
+    } @else {
+    <div
+      class="animate-pulse flex flex-col gap-6 p-4 h-fit bg-white flex-1 xl:max-w-[600px]"
+    >
+      <div class="bg-gray-light h-16"></div>
+      <div class="bg-gray-light h-12"></div>
+      <div class="flex flex-col gap-4">
+        <div class="bg-gray-light h-3 w-2/6"></div>
+        <div class="bg-gray-light h-10"></div>
+        <div class="flex gap-4">
+          <div class="bg-gray-light h-10 w-2/6"></div>
+          <div class="bg-gray-light h-10 w-2/6"></div>
+          <div class="bg-gray-light h-10 w-2/6"></div>
+        </div>
+      </div>
+      <div class="bg-gray-light h-10"></div>
+      <div class="bg-gray-light h-10"></div>
+    </div>
     }
   </div>
-
 
   <!-- Video Modal -->
   @if (videoModalOpened) {
-  <div @overlayAnimation class="bg-black w-full h-full fixed top-0 start-0 opacity-75 z-[999]"></div>
-  <div @overlayAnimation class="flex justify-center items-center w-full h-full fixed top-0 left-0 z-[1000] overflow-y-auto overflow-x-hidden">
-    <app-icon-close color="white" class="absolute top-8 right-8" (click)="toggleVideoModal()"/>
-    <iframe class="w-[80%] md:w-[70%] aspect-video" src="https://www.youtube.com/embed/D-g7BIDOvH8?si=dAMwMhceqI2VVHEp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <div
+    @overlayAnimation
+    class="bg-black w-full h-full fixed top-0 start-0 opacity-75 z-[999]"
+  ></div>
+  <div
+    @overlayAnimation
+    class="flex justify-center items-center w-full h-full fixed top-0 left-0 z-[1000] overflow-y-auto overflow-x-hidden"
+  >
+    <app-icon-close
+      color="white"
+      class="absolute top-8 right-8"
+      (click)="toggleVideoModal()"
+    />
+    <iframe
+      class="w-[80%] md:w-[70%] aspect-video"
+      src="https://www.youtube.com/embed/D-g7BIDOvH8?si=dAMwMhceqI2VVHEp"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
   </div>
   }
 
+  <!--slug for africa relief-->
+  <div
+    class="relative w-full h-auto py-28 bg-[url('/assets/images/shared/african.jpg')] bg-cover bg-no-repeat bg-[center_center] md:bg-[center_center] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black after:bg-opacity-60 after:block"
+  >
+    <div
+      class="container flex flex-col lg:flex-row gap-4 text-white relative z-10"
+    >
+      <div class="text-center">
+        <h1 class="text-heading-3 md:text-heading-1 mb-5">
+          Africa Relief: A Leading Non-Profit Organization in NJ
+        </h1>
+        <p class="text-xl  hidden md:block">
+          As a premier non-profit organization based in New Jersey, we are
+          deeply<br />
+          committed to enriching lives across Africa through a spectrum of<br />
+          humanitarian projects.
+        </p>
+        <p class="text-sm md:hidden">
+          As a premier non-profit organization based in New Jersey, we are
+          deeply
+          committed to enriching lives across Africa through a spectrum of
+          humanitarian projects.
+        </p>
+
+      </div>
+    </div>
+  </div>
 
   <!-- Project Categories Silder -->
   <div #projectCategoriesSlider class="container flex flex-col gap-8">
     <!-- Section Header -->
-    <div class="flex justify-between gap-6 items-start lg:items-end flex-col lg:flex-row">
+    <div
+      class="flex justify-between gap-6 items-start lg:items-end flex-col lg:flex-row"
+    >
       <div class="flex flex-col gap-2 max-w-[580px]">
-          <h2 class="text-body-1-inter text-primary">About Us</h2>
-          <h3 class="text-heading-2">We are In a Mission to Help the Helpless</h3>
-        </div>
-        <app-button-link path="/projects" label="Learn More" appearance="outlined-secondary" [icon]="true"/>
+        <h2 class="text-body-1-inter text-primary">About Us</h2>
+        <h3 class="text-heading-2">
+          Discover Our Heartfelt Charity Programs for Africa Support
+        </h3>
       </div>
-    <app-project-categories-slider/>
+      <app-button-link
+        path="/about"
+        label="Learn More"
+        appearance="outlined-secondary"
+        [icon]="true"
+      />
+    </div>
+  <app-project-categories-slider/>
   </div>
 
-
   <!-- Donate Through Zelle -->
-  <div #donateThroughZelle class="py-12 text-white bg-primary bg-[url('/assets/images/shared/wave-bg.webp')] bg-cover bg-no-repeat">
+  <div
+    #donateThroughZelle
+    class="py-12 text-white bg-primary bg-[url('/assets/images/shared/wave-bg.webp')] bg-cover bg-no-repeat"
+  >
     <div class="container">
       <div class="flex flex-col gap-4">
         <div class="flex items-center gap-2">
-          <app-icon-zelle class="scale-75"/>
+          <app-icon-zelle class="scale-75" />
           <span class="text-body-2-md text-white">Zelle</span>
         </div>
         <h2 class="text-heading-2">Donate Through Zelle</h2>
         <div class="flex flex-col lg:flex-row gap-4">
-          <a class="flex items-center gap-2 p-3 border border-white w-fit" href="mailto:info@arcdus.org" target="_blank" rel="nofollow">
-            <app-icon-envelope/>
+          <a
+            class="flex items-center gap-2 p-3 border border-white w-fit"
+            href="mailto:info@arcdus.org"
+            target="_blank"
+            rel="nofollow"
+          >
+            <app-icon-envelope />
             info&#64;arcdus.org
           </a>
-          <a class="flex items-center gap-2 p-3 border border-white w-fit" href="https://www.google.com/maps/place/65+Kingsland+Ave+%232,+Clifton,+NJ+07014,+USA/@40.8220369,-74.1305663,17z/data=!3m1!4b1!4m5!3m4!1s0x89c2ff53b0d250eb:0x85d6d40ce61b0d3d!8m2!3d40.8220329!4d-74.1279914?entry=ttu" target="_blank" rel="nofollow">
-            <app-icon-pin/>
+          <a
+            class="flex items-center gap-2 p-3 border border-white w-fit"
+            href="https://www.google.com/maps/place/65+Kingsland+Ave+%232,+Clifton,+NJ+07014,+USA/@40.8220369,-74.1305663,17z/data=!3m1!4b1!4m5!3m4!1s0x89c2ff53b0d250eb:0x85d6d40ce61b0d3d!8m2!3d40.8220329!4d-74.1279914?entry=ttu"
+            target="_blank"
+            rel="nofollow"
+          >
+            <app-icon-pin />
             65 Kingsland Ave, Suite#2, Clifton, NJ 07014
           </a>
         </div>
@@ -105,13 +195,11 @@
 
   @defer (on viewport(projectCategoriesSlider)) {
   <!-- Partners Slider -->
-  <app-partners-slider/>
-
+  <app-partners-slider />
 
   <!-- Projects Slider -->
-  <app-projects-slider-section/>
+  <app-projects-slider-section />
   }
-
 
   <!-- Donate Through Venmo -->
   <div #donateThroughVenmo class="py-12 text-white bg-primary bg-[url('/assets/images/shared/wave-bg.webp')] bg-cover bg-no-repeat">
@@ -137,33 +225,32 @@
   </div>
 
 
-  <app-safe-and-easy-donation/>
+  <app-safe-and-easy-donation />
 
-
-  <app-become-volunteer/>
-
+  <app-become-volunteer />
 
   <!-- Latest Blogs -->
   @defer (on viewport(donateThroughVenmo)) {
-  <app-latest-blogs/>
+  <app-latest-blogs />
   }
 
-
   <!-- Donate Through Cash App -->
-  <div #donateThroughCashApp class="py-12 text-white bg-primary bg-[url('/assets/images/shared/wave-bg.webp')] bg-cover bg-no-repeat">
+  <div
+    #donateThroughCashApp
+    class="py-12 text-white bg-primary bg-[url('/assets/images/shared/wave-bg.webp')] bg-cover bg-no-repeat"
+  >
     <div class="container">
       <div class="flex flex-col gap-4">
         <div class="flex items-center gap-2">
-          <app-icon-cash-app class="scale-75"/>
+          <app-icon-cash-app class="scale-75" />
           <span class="text-body-2-md">Cash app</span>
         </div>
         <h2 class="text-heading-2">Donate Through Cash app</h2>
         <div class="flex items-center gap-2 p-3 border border-white w-fit">
-          <app-icon-user/>
+          <app-icon-user />
           $AfricaRelief
         </div>
       </div>
     </div>
   </div>
-
 </div>

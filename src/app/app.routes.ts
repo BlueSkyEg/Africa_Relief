@@ -27,6 +27,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { GuestGuard } from './core/Guards/guest.guard';
 import { AuthGuard } from './core/Guards/auth.guard';
+import { EmergencyComponent } from './components/emergency/emergency.component';
+import { ProjectsComponent as ProjectsEmergenyComponent } from './components/emergency/projects/projects.component';
+import { BlogsComponent as BlogsEmergenyComponent } from './components/emergency/blogs/blogs.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -59,6 +62,25 @@ export const routes: Routes = [
     component: GetInvolvedComponent,
   },
   { path: 'contact', title: 'Contact Us', component: ContactComponent },
+
+  {
+    path: 'emergency',
+    component: EmergencyComponent,
+    title: 'Emergency Response',
+    children: [
+      { path: '', redirectTo: 'projects', pathMatch: 'full' },
+      {
+        path: 'projects',
+        component: ProjectsEmergenyComponent,
+        title: 'Crisis Projects',
+      },
+      {
+        path: 'blogs',
+        component: BlogsEmergenyComponent,
+        title: 'Crisis Blogs',
+      },
+    ],
+  },
   { path: 'about', title: 'About Us', component: AboutComponent },
   {
     path: 'login',
