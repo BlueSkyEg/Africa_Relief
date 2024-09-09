@@ -23,7 +23,7 @@ import { ButtonLinkComponent } from '../../../shared/components/button-link/butt
     CategoriesFilterComponent,
     ProjectCardComponent,
     BreadcrumbComponent,
-    ButtonLinkComponent
+    ButtonLinkComponent,
   ],
 })
 export class ProjectsComponent implements OnInit {
@@ -32,6 +32,7 @@ export class ProjectsComponent implements OnInit {
   paginationPageNum: number = 1;
   paginationPerPage: number;
   isPaginationLastPage: boolean = false;
+  loading: boolean = false;
 
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   projectService: ProjectService = inject(ProjectService);
@@ -44,6 +45,7 @@ export class ProjectsComponent implements OnInit {
       next: (value) => (this.paginationPerPage = value.matches ? 9 : 5),
     });
   }
+
   ngOnInit(): void {
     this.projectService.getProjectCategories().subscribe({
       next: (res: IApiResponse<ICategory[]>) => {
@@ -51,17 +53,19 @@ export class ProjectsComponent implements OnInit {
       },
     });
 
-    // Get projects
+    // Subscribe to route param changes to reload projects
     this.activeRoute.paramMap.subscribe({
-      next: () => {
+      next: (params) => {
+        const currentSlug = params.get('slug');
         this.isPaginationLastPage = false;
         this.paginationPageNum = 1;
         this.projects = [];
-        this.onGetProjects();
+        this.onGetProject(currentSlug); // Get metadata for current category
+        this.onGetProjects(); // Fetch projects for the current category
       },
     });
   }
-  //get the param from the link and then check if it exists find that single category and if it exists set its metadata
+
   onGetProject(currentSlug: string) {
     if (currentSlug) {
       const matchingCategory = this.projectCategories?.find(
@@ -72,26 +76,37 @@ export class ProjectsComponent implements OnInit {
       }
     }
   }
+
   onGetProjects() {
-    // alert("Projects works")
-    if (!this.isPaginationLastPage) {
+    if (!this.isPaginationLastPage && !this.loading) {
+      this.loading = true;
       const categorySlug = this.activeRoute.snapshot.paramMap.get('slug');
       this.projectService
         .getProjects(
           this.paginationPageNum,
-          99999,
+          this.paginationPerPage,
           categorySlug
         )
         .subscribe({
           next: (res: IApiResponse<IPaginatedData<IProjectCard[]>>) => {
-            this.projects.push(...res.data.data);
-            this.onGetProject(categorySlug);
-            if (
-              res.data.pagination.current_page === res.data.pagination.last_page
-            ) {
-              this.isPaginationLastPage = true;
+            if (res.data && res.data.data) {
+              this.projects.push(...res.data.data);
+              this.onGetProject(categorySlug);
+
+              if (
+                res.data.pagination.current_page < res.data.pagination.last_page
+              ) {
+                this.paginationPageNum++;
+              } else {
+                this.isPaginationLastPage = true;
+              }
             }
-            this.paginationPageNum++;
+          },
+          error: (err) => {
+            console.error('Error loading projects:', err);
+          },
+          complete: () => {
+            this.loading = false;
           },
         });
     }

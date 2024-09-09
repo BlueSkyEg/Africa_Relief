@@ -82,12 +82,20 @@ export class BlogsComponent implements OnInit {
           next: (res: IApiResponse<IPaginatedData<IBlogCard[]>>) => {
             this.blogs.push(...res.data.data);
             this.onGetBlog(categorySlug);
+
             if (
-              res.data.pagination.current_page === res.data.pagination.last_page
+              res.data.pagination.current_page < res.data.pagination.last_page
             ) {
+              this.paginationPageNum++;
+            } else {
               this.isPaginationLastPage = true;
             }
-            this.paginationPageNum++;
+          },
+          error: (err) => {
+            console.error('Error fetching blogs', err);
+          },
+          complete: () => {
+            this.loading = false;
           },
         });
     }

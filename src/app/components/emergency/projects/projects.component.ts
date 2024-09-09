@@ -23,38 +23,6 @@ export class ProjectsComponent {
   ngOnInit() {
     this.onGetProjects();
   }
-
-  onGetProjectsd() {
-    if (this.isPaginationLastPage) {
-      return;
-    }
-
-    this.projectService
-      .getProjects(this.paginationPageNum, this.paginationPerPage, 'crisis')
-      .subscribe({
-        next: (res: IApiResponse<IPaginatedData<IProjectCard[]>>) => {
-          if (res.data && res.data.data) {
-            this.projects.push(...res.data.data);
-
-            if (
-              res.data.pagination.current_page === res.data.pagination.last_page
-            ) {
-              this.isPaginationLastPage = true;
-            }
-
-            this.paginationPageNum++;
-          } else {
-            console.error('Unexpected response format', res);
-          }
-        },
-        error: (err) => {
-          console.error('Error fetching projects', err);
-        },
-        complete: () => {
-          console.log('Projects fetching completed');
-        },
-      });
-  }
   onGetProjects() {
     if (!this.isPaginationLastPage && !this.loading) {
       this.loading = true;
@@ -65,24 +33,20 @@ export class ProjectsComponent {
             if (res.data && res.data.data) {
               this.projects.push(...res.data.data);
 
-              if (
-                res.data.pagination.current_page ===
-                res.data.pagination.last_page
-              ) {
-                this.isPaginationLastPage = true;
-              }
-
+            if (
+              res.data.pagination.current_page < res.data.pagination.last_page
+            ) {
               this.paginationPageNum++;
             } else {
-              console.error('Unexpected response format', res);
+              this.isPaginationLastPage = true;
             }
-          },
+          }},
           error: (err) => {
-            console.error('Error fetching projects', err);
+            console.error('Error fetching blogs', err);
           },
           complete: () => {
-            console.log('Projects fetching completed');
-          },
+            this.loading = false;
+          }
         });
     }
   }

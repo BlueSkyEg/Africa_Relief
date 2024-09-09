@@ -1,10 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { BreadcrumbComponent } from "../../../shared/components/breadcrumb/breadcrumb.component";
+import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
 import { ICareer } from '../../../shared/interfaces/career/career.interface';
 import { CareerService } from '../../../core/services/careers/career.service';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { CommonModule } from '@angular/common';
-import { ButtonLinkComponent } from "../../../shared/components/button-link/button-link.component";
+import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -58,14 +58,17 @@ export class CareersComponent implements OnInit {
             this.careers = Array.from(careersSet);
 
             if (
-              res.data.pagination.current_page === res.data.pagination.last_page
+              res.data.pagination.current_page < res.data.pagination.last_page
             ) {
+              this.paginationPageNum++;
+            } else {
               this.isPaginationLastPage = true;
             }
-            this.paginationPageNum++;
-            this.loading = false;
           },
-          error: () => {
+          error: (err) => {
+            console.error('Error fetching blogs', err);
+          },
+          complete: () => {
             this.loading = false;
           },
         });
