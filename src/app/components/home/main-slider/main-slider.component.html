@@ -4,14 +4,17 @@
     @for (slide of slides; track slide) {
     <swiper-slide class="flex items-end text-white min-w-full h-[776px] max-h-screen py-24 bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black after:bg-opacity-60 after:block" [style.background-image]="'url(' + slide.image.src + ')'">
       <div class="container z-10">
-        <div>
-          <h2 class="text-body-1-inter">{{ slide.title }}</h2>
-          <h3 class="text-heading-1 mb-6 mt-2">{{ slide.description }}</h3>
+        <div >
+          <h2 class="text-body-2-md">{{ slide.title }}</h2>
+          <h3 class="text-heading-2 mb-6 mt-2">{{ slide.description }}</h3>
           @switch (slide.destination.type) {
             @case('project_category') {
               <app-button-link appearance="filled-secondary" [label]="slide.destination.label | titlecase" [path]="'/projects/category/' + slide.destination.slug" />
             }
             @case ('project') {
+              <app-button-link appearance="filled-secondary" [label]="slide.destination.label | titlecase" [path]="'/projects/' + slide.destination.slug" />
+            }
+            @case ("project_carousel") {
               <app-button-link appearance="filled-secondary" [label]="slide.destination.label | titlecase" [path]="'/projects/' + slide.destination.slug" />
             }
             @case ('blog') {

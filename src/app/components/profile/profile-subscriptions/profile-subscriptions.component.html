@@ -25,14 +25,20 @@
                 @case ('active') {
                   <td class="py-3 px-6"><app-badge type="success" label="Active"/></td>
                 }
+               @case ('succeeded') {
+               <td class="py-3 px-6"><app-badge type="success" label="Active" /></td>
+                }
                 @case ('canceled') {
                   <td class="py-3 px-6"><app-badge type="danger" label="Canceled"/></td>
+                }
+                @case ('cancelled') {
+                <td class="py-3 px-6"><app-badge type="danger" label="Canceled" /></td>
                 }
                 @case ('incomplete') {
                   <td class="py-3 px-6"><app-badge type="info" label="Incomplete"/></td>
                 }
               }
-              @if (subscription.status == 'active') {
+              @if (subscription.status == 'active'||subscription.status == 'succeeded') {
                 <td class="py-3 px-6 sticky end-0 bg-white">
                   <button class="text-gray-dark border border-gray-light py-2 px-3" (click)="onOpenCancelSubscriptionModal(subscription)">Cancel</button>
                 </td>

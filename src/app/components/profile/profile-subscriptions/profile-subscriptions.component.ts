@@ -21,7 +21,9 @@ export class ProfileSubscriptionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscriptionService.getUserSubscriptions().subscribe({
-      next: (res: IApiResponse<ISubscription[]>) => this.subscriptions = res.data
+      next: (res: IApiResponse<ISubscription[]>) => {this.subscriptions = res.data
+        console.log(res.data)
+      }
     })
   }
 
@@ -30,6 +32,7 @@ export class ProfileSubscriptionsComponent implements OnInit {
   onOpenCancelSubscriptionModal(subscription: ISubscription) {
     this.subscriptionNeedToCanceled = subscription;
     this.cancelSubscriptionModal.openModal();
+
   }
 
   onCancelSubcription() {
@@ -39,6 +42,7 @@ export class ProfileSubscriptionsComponent implements OnInit {
         if(res.success) {
           const canceledSubscriptionIndex = this.subscriptions.findIndex(subscription => subscription == this.subscriptionNeedToCanceled);
           this.subscriptions[canceledSubscriptionIndex].status = 'canceled';
+
         }
       }
     })

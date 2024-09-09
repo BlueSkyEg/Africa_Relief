@@ -11,19 +11,20 @@ import { ButtonLinkComponent } from '../../../shared/components/button-link/butt
   selector: 'app-projects',
   standalone: true,
   templateUrl: './projects.component.html',
-  imports: [InfiniteScrollModule ,ProjectCardComponent ,ButtonLinkComponent],
+  imports: [InfiniteScrollModule, ProjectCardComponent, ButtonLinkComponent],
 })
 export class ProjectsComponent {
   projects: IProjectCard[] = [];
   paginationPageNum: number = 1;
   paginationPerPage: number;
   isPaginationLastPage: boolean = false;
+  loading: boolean = false;
   projectService: ProjectService = inject(ProjectService);
   ngOnInit() {
     this.onGetProjects();
   }
 
-  onGetProjects() {
+  onGetProjectsd() {
     if (this.isPaginationLastPage) {
       return;
     }
@@ -53,5 +54,36 @@ export class ProjectsComponent {
           console.log('Projects fetching completed');
         },
       });
+  }
+  onGetProjects() {
+    if (!this.isPaginationLastPage && !this.loading) {
+      this.loading = true;
+      this.projectService
+        .getProjects(this.paginationPageNum, this.paginationPerPage, 'crisis')
+        .subscribe({
+          next: (res: IApiResponse<IPaginatedData<IProjectCard[]>>) => {
+            if (res.data && res.data.data) {
+              this.projects.push(...res.data.data);
+
+              if (
+                res.data.pagination.current_page ===
+                res.data.pagination.last_page
+              ) {
+                this.isPaginationLastPage = true;
+              }
+
+              this.paginationPageNum++;
+            } else {
+              console.error('Unexpected response format', res);
+            }
+          },
+          error: (err) => {
+            console.error('Error fetching projects', err);
+          },
+          complete: () => {
+            console.log('Projects fetching completed');
+          },
+        });
+    }
   }
 }

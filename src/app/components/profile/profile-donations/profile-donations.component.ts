@@ -23,7 +23,10 @@ export class ProfileDonationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.donationService.getUserDonations().subscribe({
-      next: (res: IApiResponse<IDonation[]>) => this.donations = res.data
+      next: (res: IApiResponse<IDonation[]>) => {this.donations = res.data
+              console.log(res.data);
+
+      }
     })
   }
 

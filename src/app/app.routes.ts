@@ -74,11 +74,11 @@ export const routes: Routes = [
         component: ProjectsEmergenyComponent,
         title: 'Crisis Projects',
       },
-      {
-        path: 'blogs',
-        component: BlogsEmergenyComponent,
-        title: 'Crisis Blogs',
-      },
+      // {
+      //   path: 'blogs',
+      //   component: BlogsEmergenyComponent,
+      //   title: 'Crisis Blogs',
+      // },
     ],
   },
   { path: 'about', title: 'About Us', component: AboutComponent },

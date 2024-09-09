@@ -14,7 +14,7 @@ import { SwiperOptions } from 'swiper/types';
 import { ICarouselSlide } from '../../../shared/interfaces/carousel-slide.interface';
 import { CarouselService } from '../../../core/services/layout/carousel.service';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-main-slider',
@@ -25,6 +25,7 @@ import { CommonModule } from '@angular/common';
     IconArrowLeftComponent,
     IconArrowRightComponent,
     IconDirective,
+
   ],
   templateUrl: './main-slider.component.html',
   styles: ``,
