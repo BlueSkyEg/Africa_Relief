@@ -53,15 +53,14 @@ export class ProjectsComponent implements OnInit {
       },
     });
 
-    // Subscribe to route param changes to reload projects
     this.activeRoute.paramMap.subscribe({
       next: (params) => {
         const currentSlug = params.get('slug');
         this.isPaginationLastPage = false;
         this.paginationPageNum = 1;
         this.projects = [];
-        this.onGetProject(currentSlug); // Get metadata for current category
-        this.onGetProjects(); // Fetch projects for the current category
+        this.onGetProject(currentSlug);
+        this.onGetProjects();
       },
     });
   }
