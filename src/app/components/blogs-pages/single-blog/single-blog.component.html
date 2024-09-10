@@ -54,37 +54,48 @@
     <!-- Donation Card -->
     <app-donation-card [donationForm]="blog.donation_form" />
 
-<!-- blog content -->
-<div class="flex flex-col gap-6 lg:col-span-2">
-  <div class="flex flex-col gap-6">
-    @for (content of blog.contents; track content.order; let idx = $index) {
-    <div class="flex flex-col gap-3">
-      @if(content.type == "heading") {
-      @if (!idx) {
-      <div class="flex items-start gap-2">
-        <app-icon-quote class="mt-2" />
-        <h2 class="text-body-1-inter">{{ content.body }}</h2>
+    <!-- blog content -->
+    <div class="flex flex-col gap-6 lg:col-span-2">
+      <div class="flex flex-col gap-6">
+        @for (content of blog.contents; track content.order; let idx = $index) {
+        <div class="flex flex-col gap-3">
+          @if(content.type=="heading") { @if (!idx) {
+          <div class="flex items-start gap-2">
+            <app-icon-quote class="mt-2" />
+
+            <h2 class="text-body-1-inter">{{ content.body }}</h2>
+          </div>
+          } @else {
+          <h2 class="text-body-1-inter">{{ content.body }}</h2>
+          }} @if(content.type=='paragraph'){
+            @if(content.quotedText){
+          <p class="text-body-2">
+            <ng-container *ngIf="content.beforeQuote">
+              {{ content.beforeQuote }}
+            </ng-container>
+            <ng-container *ngIf="content.quotedText">
+              <div class=" text-l my-4 border-l-2 border-gray-medium ps-2 ms-3 font-semibold">“{{ content.quotedText }}”</div>
+            </ng-container>
+            <ng-container *ngIf="content.afterQuote"
+              >{{ content.afterQuote }}
+            </ng-container>
+          </p>
+          }
+          @else {
+            <p class="text-body-2">{{ content.body }}</p>
+          }
+          }
+        </div>
+        }
       </div>
-      } @else {
-      <h2 class="text-body-1-inter">{{ content.body }}</h2>
-      }
+
+      <!-- gallery -->
+      @if (blog.gallery.length) {
+      <app-blog-slider [slides]="blog.gallery" />
       }
 
-      @if(content.type == "paragraph") {
-      <p class="text-body-2">{{ content.body }}</p>
-      }
-
-      @if(content.type == "image") {
-      <div class="relative">
-        <img class="h-full object-cover object-center" [src]="content.body.src" [alt]="content.body.alt_text"
-          loading="lazy" />
-      </div>
-      }
+      <app-share-buttons />
     </div>
-    }
-  </div>
-</div>
-
   </div>
 
   <!-- Related Blogs -->
