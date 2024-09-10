@@ -46,6 +46,7 @@ export class SingleBlogComponent {
             if (res.success) {
               this.blog = res.data;
               this.metaService.setMetaData(this.blog.meta_data ,this.blog.created_at);
+              console.log(res.data);
             } else {
               this.router.navigate(['/404']);
             }
