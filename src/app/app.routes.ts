@@ -1,158 +1,271 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { BlogsComponent } from './components/blogs-pages/blogs/blogs.component';
-import { ProjectsComponent } from './components/projects-pages/projects/projects.component';
-import { SingleProjectComponent } from './components/projects-pages/single-project/single-project.component';
-import { SingleBlogComponent } from './components/blogs-pages/single-blog/single-blog.component';
-import { GetInvolvedComponent } from './components/get-involved/get-involved.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { AboutComponent } from './components/about/about.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { SignupComponent } from './components/auth/signup/signup.component';
-import { ForgotPasswordComponent } from './components/auth/forget-password/forgot-password.component';
-import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
-import { GalleryComponent } from './components/gallery/gallery.component';
-import { CareersComponent } from './components/careers-pages/careers/careers.component';
-import { SingleCareerComponent } from './components/careers-pages/single-career/single-career.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { ProfileDonationsComponent } from './components/profile/profile-donations/profile-donations.component';
-import { ProfileSubscriptionsComponent } from './components/profile/profile-subscriptions/profile-subscriptions.component';
-import { ProfileSettingsComponent } from './components/profile/profile-settings/profile-settings.component';
-import { VerifyEmailComponent } from './components/auth/verify-email/verify-email.component';
-
-import { DonationComponent } from './components/donation-pages/donation/donation.component';
-import { DonationConfirmationComponent } from './components/donation-pages/donation-confirmation/donation-confirmation.component';
-import { DonationFailedComponent } from './components/donation-pages/donation-failed/donation-failed.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { GuestGuard } from './core/Guards/guest.guard';
 import { AuthGuard } from './core/Guards/auth.guard';
-import { EmergencyComponent } from './components/emergency/emergency.component';
-import { ProjectsComponent as ProjectsEmergenyComponent } from './components/emergency/projects/projects.component';
-import { BlogsComponent as BlogsEmergenyComponent } from './components/emergency/blogs/blogs.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', title: 'Home', component: HomeComponent },
-  { path: 'blogs', title: 'Blogs', component: BlogsComponent },
+  {
+    path: 'home',
+    title: 'Home',
+    loadComponent: () =>
+      import('./components/home/home.component').then((m) => m.HomeComponent),
+  },
+  {
+    path: 'blogs',
+    title: 'Blogs',
+    loadComponent: () =>
+      import('./components/blogs-pages/blogs/blogs.component').then(
+        (m) => m.BlogsComponent
+      ),
+  },
   {
     path: 'search/:term',
     title: 'Result Search Page',
-    component: SearchResultsComponent,
+    loadComponent: () =>
+      import('./components/search-results/search-results.component').then(
+        (m) => m.SearchResultsComponent
+      ),
   },
   {
     path: 'blogs',
     title: 'Blogs',
     children: [
-      { path: 'category/:slug', component: BlogsComponent },
-      { path: ':slug', component: SingleBlogComponent },
+      {
+        path: 'category/:slug',
+        loadComponent: () =>
+          import('./components/blogs-pages/blogs/blogs.component').then(
+            (m) => m.BlogsComponent
+          ),
+      },
+      {
+        path: ':slug',
+        loadComponent: () =>
+          import(
+            './components/blogs-pages/single-blog/single-blog.component'
+          ).then((m) => m.SingleBlogComponent),
+      },
     ],
   },
-  { path: 'projects', title: 'Project', component: ProjectsComponent },
   {
     path: 'projects',
+    title: 'Projects',
+    loadComponent: () =>
+      import('./components/projects-pages/projects/projects.component').then(
+        (m) => m.ProjectsComponent
+      ),
+  },
+  {
+    path: 'projects',
+    title: 'projects',
     children: [
-      { path: 'category/:slug', component: ProjectsComponent },
-      { path: ':slug', component: SingleProjectComponent },
+      {
+        path: 'category/:slug',
+        loadComponent: () =>
+          import(
+            './components/projects-pages/projects/projects.component'
+          ).then((m) => m.ProjectsComponent),
+      },
+      {
+        path: ':slug',
+        loadComponent: () =>
+          import(
+            './components/projects-pages/single-project/single-project.component'
+          ).then((m) => m.SingleProjectComponent),
+      },
     ],
   },
   {
     path: 'get-involved',
     title: 'Get Involved',
-    component: GetInvolvedComponent,
+    loadComponent: () =>
+      import('./components/get-involved/get-involved.component').then(
+        (m) => m.GetInvolvedComponent
+      ),
   },
-  { path: 'contact', title: 'Contact Us', component: ContactComponent },
-
+  {
+    path: 'contact',
+    title: 'Contact Us',
+    loadComponent: () =>
+      import('./components/contact/contact.component').then(
+        (m) => m.ContactComponent
+      ),
+  },
   {
     path: 'emergency',
-    component: EmergencyComponent,
     title: 'Emergency Response',
+    loadComponent: () =>
+      import('./components/emergency/emergency.component').then(
+        (m) => m.EmergencyComponent
+      ),
     children: [
       { path: '', redirectTo: 'projects', pathMatch: 'full' },
       {
         path: 'projects',
-        component: ProjectsEmergenyComponent,
         title: 'Crisis Projects',
+        loadComponent: () =>
+          import('./components/emergency/projects/projects.component').then(
+            (m) => m.ProjectsComponent
+          ),
       },
+      // Uncomment when needed
       // {
       //   path: 'blogs',
-      //   component: BlogsEmergenyComponent,
       //   title: 'Crisis Blogs',
+      //   loadComponent: () =>
+      //     import('./components/emergency/blogs/blogs.component').then(
+      //       (m) => m.BlogsEmergeny
+      //     ),
       // },
     ],
   },
-  { path: 'about', title: 'About Us', component: AboutComponent },
+  {
+    path: 'about',
+    title: 'About Us',
+    loadComponent: () =>
+      import('./components/about/about.component').then(
+        (m) => m.AboutComponent
+      ),
+  },
   {
     path: 'login',
     title: 'Login',
     canActivate: [GuestGuard],
-    component: LoginComponent,
+    loadComponent: () =>
+      import('./components/auth/login/login.component').then(
+        (m) => m.LoginComponent
+      ),
   },
   {
     path: 'sign-up',
     title: 'Sign Up',
     canActivate: [GuestGuard],
-    component: SignupComponent,
+    loadComponent: () =>
+      import('./components/auth/signup/signup.component').then(
+        (m) => m.SignupComponent
+      ),
   },
   {
     path: 'forgot-password',
     title: 'Forgot Password',
     canActivate: [GuestGuard],
-    component: ForgotPasswordComponent,
+    loadComponent: () =>
+      import(
+        './components/auth/forget-password/forgot-password.component'
+      ).then((m) => m.ForgotPasswordComponent),
   },
   {
     path: 'reset-password',
     title: 'Reset Password',
     canActivate: [GuestGuard],
-    component: ResetPasswordComponent,
+    loadComponent: () =>
+      import('./components/auth/reset-password/reset-password.component').then(
+        (m) => m.ResetPasswordComponent
+      ),
   },
   {
     path: 'verify-email',
     title: 'Verify Email',
     canActivate: [AuthGuard],
-    component: VerifyEmailComponent,
+    loadComponent: () =>
+      import('./components/auth/verify-email/verify-email.component').then(
+        (m) => m.VerifyEmailComponent
+      ),
   },
-  { path: 'gallery', title: 'Gallery', component: GalleryComponent },
-  { path: 'careers', title: 'Careers', component: CareersComponent },
+  {
+    path: 'gallery',
+    title: 'Gallery',
+    loadComponent: () =>
+      import('./components/gallery/gallery.component').then(
+        (m) => m.GalleryComponent
+      ),
+  },
   {
     path: 'careers',
-    children: [{ path: ':slug', component: SingleCareerComponent }],
+    title: 'Careers',
+    loadComponent: () =>
+      import('./components/careers-pages/careers/careers.component').then(
+        (m) => m.CareersComponent
+      ),
+  },
+  {
+    path: 'careers',
+    children: [
+      {
+        path: ':slug',
+        loadComponent: () =>
+          import(
+            './components/careers-pages/single-career/single-career.component'
+          ).then((m) => m.SingleCareerComponent),
+      },
+    ],
   },
   {
     path: 'profile',
-    component: ProfileComponent,
+    loadComponent: () =>
+      import('./components/profile/profile.component').then(
+        (m) => m.ProfileComponent
+      ),
     children: [
       {
         path: '',
         title: 'Account',
         canActivate: [AuthGuard],
-        component: ProfileSettingsComponent,
+        loadComponent: () =>
+          import(
+            './components/profile/profile-settings/profile-settings.component'
+          ).then((m) => m.ProfileSettingsComponent),
       },
       {
         path: 'donations',
         title: 'Donations',
         canActivate: [AuthGuard],
-        component: ProfileDonationsComponent,
+        loadComponent: () =>
+          import(
+            './components/profile/profile-donations/profile-donations.component'
+          ).then((m) => m.ProfileDonationsComponent),
       },
       {
         path: 'subscriptions',
         title: 'Subscriptions',
         canActivate: [AuthGuard],
-        component: ProfileSubscriptionsComponent,
+        loadComponent: () =>
+          import(
+            './components/profile/profile-subscriptions/profile-subscriptions.component'
+          ).then((m) => m.ProfileSubscriptionsComponent),
       },
     ],
   },
-  { path: 'donation', title: 'Donation', component: DonationComponent },
+  {
+    path: 'donation',
+    title: 'Donation',
+    loadComponent: () =>
+      import('./components/donation-pages/donation/donation.component').then(
+        (m) => m.DonationComponent
+      ),
+  },
   {
     path: 'donation-confirmation',
     title: 'Donation Confirmation',
-    component: DonationConfirmationComponent,
+    loadComponent: () =>
+      import(
+        './components/donation-pages/donation-confirmation/donation-confirmation.component'
+      ).then((m) => m.DonationConfirmationComponent),
   },
   {
     path: 'donation-failed',
     title: 'Donation Failed',
-    component: DonationFailedComponent,
+    loadComponent: () =>
+      import(
+        './components/donation-pages/donation-failed/donation-failed.component'
+      ).then((m) => m.DonationFailedComponent),
   },
-  { path: '404', title: 'Page Not Found', component: PageNotFoundComponent },
+  {
+    path: '404',
+    title: 'Page Not Found',
+    loadComponent: () =>
+      import('./components/page-not-found/page-not-found.component').then(
+        (m) => m.PageNotFoundComponent
+      ),
+  },
   { path: '**', redirectTo: '404' },
 ];

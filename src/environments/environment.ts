@@ -1,6 +1,6 @@
 export const environment = {
   appUrl: 'https://africareliefa1.sg-host.com',
-  apiUrl: 'https://staging2.africareliefa1.sg-host.com/api',
+  apiUrl: 'https://staging3.africareliefa1.sg-host.com/api',
   stripePublicKey:
     'pk_live_51KhKggKvfkJQMMfW0hSPRSpZs2iBzNcZnVViGzdDLSuIERWTihXBi50dYKHuRed6B2SL9vkNKZWmzVgaL83u4SN500zIYT2UJB',
   firebaseConfig: {
