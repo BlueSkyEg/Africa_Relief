@@ -10,6 +10,7 @@ import { provideNgxStripe } from 'ngx-stripe';
 import { environment } from '../environments/environment';
 import { AuthorizeInterceptor } from './core/interceptors/authorize.interceptor';
 import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
+import { provideClientHydration } from '@angular/platform-browser';
 
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
@@ -32,6 +33,6 @@ export const appConfig: ApplicationConfig = {
     // Configure Default Date Format to display date time depends on user time zone
     { provide: DATE_PIPE_DEFAULT_OPTIONS, useValue: { dateFormat: 'MMM d, y, h:mm a', timezone: Intl.DateTimeFormat().resolvedOptions().timeZone } },
     // Configure Google Tag Manager
-    { provide: 'googleTagManagerId', useValue: 'GTM-5RKGQ3HS' },
+    { provide: 'googleTagManagerId', useValue: 'GTM-5RKGQ3HS' }, provideClientHydration(), provideClientHydration(),
 ]
 };

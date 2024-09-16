@@ -58,10 +58,15 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              "src/styles/_angular-material.scss",
-              "src/styles/styles.scss"
+              "src/styles/styles.scss",
+              "src/styles/_angular-material.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "prerender": true,
+            "server": "src/main.server.ts",
+            "ssr": {
+              "entry": "server.ts"
+            }
           },
           "configurations": {
             "production": {
