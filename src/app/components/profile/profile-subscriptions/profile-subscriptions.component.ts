@@ -22,7 +22,6 @@ export class ProfileSubscriptionsComponent implements OnInit {
   ngOnInit(): void {
     this.subscriptionService.getUserSubscriptions().subscribe({
       next: (res: IApiResponse<ISubscription[]>) => {this.subscriptions = res.data
-        console.log(res.data)
       }
     })
   }

@@ -63,7 +63,6 @@ export class ProfileSettingsComponent implements OnInit {
       next: (res: IApiResponse<IUser>) => {
         if(res.success) {
           this.authService.authedUserSubject.next(res.data);
-          console.log(res.data);
         }
       },
     })

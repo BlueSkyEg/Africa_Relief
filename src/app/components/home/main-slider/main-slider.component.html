@@ -2,7 +2,7 @@
   <!-- Slider -->
   <swiper-container class="main-slider" init="false" [init]="false">
     @for (slide of slides; track slide) {
-    <swiper-slide class="flex items-end text-white min-w-full h-[776px] max-h-screen py-24 bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black after:bg-opacity-60 after:block" [style.background-image]="'url(' + slide.image.src + ')'">
+    <swiper-slide class="flex items-end text-white min-w-full h-[776px] max-h-screen py-24 bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black after:bg-opacity-60 after:block" [style.background-image]="'url(' + slide.image.src + ')'" [style.background-color]="'#ccc'">
       <div class="container z-10">
         <div >
           <h2 class="text-body-2-md">{{ slide.title }}</h2>

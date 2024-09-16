@@ -214,11 +214,9 @@ export class DonationComponent {
           this._snackBar.open(res.error.message, '✖', {
             panelClass: 'failure-snackbar',
           });
-          console.log(res.error);
 
           this.checkoutFormDisabled = false;
           this.pushTagFailedDonationEvent(res.error.message);
-          console.log(res.error.message);
         } else {
           this.pushTagConfirmDonationEvent();
           this.router.navigateByUrl('/donation-confirmation');
@@ -275,7 +273,6 @@ export class DonationComponent {
   }
   //DataLayer
   onFillPersonalDetails() {
-    console.log(this.name);
     (window as any).dataLayer = (window as any).dataLayer || [];
     (window as any).dataLayer.push({
       event: 'UserFilledPersonalDetailsForm(firstStage)',

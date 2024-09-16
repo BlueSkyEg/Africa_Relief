@@ -14,7 +14,7 @@ import { SwiperOptions } from 'swiper/types';
 import { ICarouselSlide } from '../../../shared/interfaces/carousel-slide.interface';
 import { CarouselService } from '../../../core/services/layout/carousel.service';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-main-slider',
@@ -25,7 +25,6 @@ import { CommonModule, NgIf } from '@angular/common';
     IconArrowLeftComponent,
     IconArrowRightComponent,
     IconDirective,
-
   ],
   templateUrl: './main-slider.component.html',
   styles: ``,
@@ -51,26 +50,29 @@ export class MainSliderComponent implements OnInit {
   }
 
   onLoadSwiperSlider(): void {
-    const swiperElementConstructor: SwiperContainer =
-      document.querySelector('.main-slider');
-    const swiperOptions: SwiperOptions = {
-      loop: true,
-      autoplay: {
-        delay: 3500,
-        disableOnInteraction: true,
-      },
-      slidesPerView: 1,
-      navigation: {
-        enabled: true,
-        nextEl: '.main-slider-next',
-        prevEl: '.main-slider-prev',
-      },
-    };
+    setTimeout(() => {
+      const swiperElementConstructor: SwiperContainer =
+        document.querySelector('.main-slider');
+      const swiperOptions: SwiperOptions = {
+        loop: true,
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: true,
+        },
+        slidesPerView: 1,
+        navigation: {
+          enabled: true,
+          nextEl: '.main-slider-next',
+          prevEl: '.main-slider-prev',
+        },
+      };
 
-    Object.assign(swiperElementConstructor!, swiperOptions);
-    this.swiperElement.set(swiperElementConstructor as SwiperContainer);
-    this.swiperElement()?.initialize();
+      Object.assign(swiperElementConstructor!, swiperOptions);
+      this.swiperElement.set(swiperElementConstructor as SwiperContainer);
+      this.swiperElement()?.initialize();
+    }, 100);
   }
+
   ngOnDestroy(): void {
     this.swiperElement().remove();
   }

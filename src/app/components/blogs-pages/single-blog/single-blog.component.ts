@@ -45,7 +45,6 @@ export class SingleBlogComponent {
           next: (res: IApiResponse<IBlog | null>) => {
             if (res.success) {
               this.blog = res.data;
-              console.log(this.blog.contents)
               this.metaService.setMetaData(
                 this.blog.meta_data,
                 this.blog.created_at
