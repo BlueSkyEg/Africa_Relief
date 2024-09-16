@@ -4,9 +4,9 @@
     <swiper-container class="partners-slider block w-[85%]" init="false" [init]="false">
       @for (slide of slides; track slide) {
         <swiper-slide>
-          <div class="w-24 h-24 m-auto">
-            <img class="w-full h-full" appImgPlaceholder [src]="slide.image.src" [alt]="slide.image.alt_text" loading="lazy">
-          </div>
+          <figure class="w-24 h-24 m-auto">
+            <img  width="full" height="full" class="w-full h-full" appImgPlaceholder [src]="slide.image.src" [alt]="slide.image.alt_text" loading="lazy">
+          </figure>
         </swiper-slide>
       }
     </swiper-container>

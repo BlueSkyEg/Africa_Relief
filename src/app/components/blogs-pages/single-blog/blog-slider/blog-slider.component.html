@@ -1,19 +1,43 @@
 <div class="relative w-[calc(100vw-52px)] lg:w-full">
   <swiper-container init="false" class="blog-slider h-full" [init]="false">
-    @for (slide of slides; track slide) {
-      @defer () {
-        <swiper-slide class="w-full h-[332px] lg:h-[480px] bg-gray-light">
-          <img class="h-full object-cover object-center" appImgPlaceholder [src]="slide.src" [alt]="slide.alt_text" loading="lazy">
-        </swiper-slide>
-      }
-      @placeholder {
-        <swiper-slide class="w-full h-[332px] lg:h-[480px] bg-gray-light"></swiper-slide>
-      }
-    }
+    @for (slide of slides; track slide) { @defer () {
+    <swiper-slide class="w-full h-[332px] lg:h-[480px] bg-gray-light">
+      <img
+        width="full"
+        height="full"
+        class="h-full object-cover object-center"
+        appImgPlaceholder
+        [src]="slide.src"
+        [alt]="slide.alt_text"
+        loading="lazy"
+      />
+    </swiper-slide>
+    } @placeholder {
+    <swiper-slide
+      class="w-full h-[332px] lg:h-[480px] bg-gray-light"
+    ></swiper-slide>
+    } }
   </swiper-container>
 
-  <div class="flex justify-between w-full absolute top-1/2 -translate-y-1/2 z-10">
-    <app-icon-arrow-left appIcon color="black" class="blog-slider-prev cursor-pointer"/>
-    <app-icon-arrow-right appIcon color="black" class="blog-slider-next cursor-pointer"/>
+  <div
+    class="flex justify-between w-full absolute top-1/2 -translate-y-1/2 z-10"
+  >
+    <app-icon-arrow-left
+      appIcon
+      appearance="outlined"
+      class="member-slide-prev cursor-pointer"
+      role="button"
+      aria-label="Previous slide"
+      tabindex="0"
+    />
+
+    <app-icon-arrow-right
+      appIcon
+      appearance="outlined"
+      class="member-slide-next cursor-pointer"
+      role="button"
+      aria-label="Next slide"
+      tabindex="0"
+    />
   </div>
 </div>

@@ -71,8 +71,8 @@
         <h3 class="text-body-3 !font-semibold">Donor Information</h3>
         <hr class="text-gray-light">
         <ul>
-          <li>Name: <span class="text-body-3">{{receiptDonation.payment_method.name | titlecase}}</span></li>
-          <li>Email: <span class="text-body-3">{{receiptDonation.payment_method.email}}</span></li>
+          <li>Name: <span class="text-body-3">{{receiptDonation.payment_method?.name | titlecase}}</span></li>
+          <li>Email: <span class="text-body-3">{{receiptDonation.payment_method?.email}}</span></li>
         </ul>
       </div>
       <div class="flex flex-col gap-3 border border-gray-light py-4 px-6">

@@ -28,6 +28,7 @@
       infiniteScroll
       [infiniteScrollDistance]="2"
       [infiniteScrollThrottle]="50"
+      (scrolled)="onGetProjects()"
     >
       @for (project of projects; track project.slug) {
       <app-project-card [project]="project" />

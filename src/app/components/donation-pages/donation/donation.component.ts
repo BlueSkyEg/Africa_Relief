@@ -99,7 +99,7 @@ export class DonationComponent {
     country: ['', [Validators.required, Validators.pattern(/^[A-Z]{2}$/)]],
     addressLine1: ['', [Validators.required, StringValidator(2, 100, true)]],
     addressLine2: ['', [StringValidator(0, 100, true)]],
-    city: ['', [Validators.required, StringValidator(2, 20, true)]],
+    city: ['', [Validators.required, StringValidator(2, 20, false)]],
     state: ['', [Validators.required, StringValidator(2, 20, true)]],
     postalCode: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
     anonymousDonation: [''],
@@ -214,11 +214,9 @@ export class DonationComponent {
           this._snackBar.open(res.error.message, '✖', {
             panelClass: 'failure-snackbar',
           });
-          console.log(res.error);
 
           this.checkoutFormDisabled = false;
           this.pushTagFailedDonationEvent(res.error.message);
-          console.log(res.error.message);
         } else {
           this.pushTagConfirmDonationEvent();
           this.router.navigateByUrl('/donation-confirmation');
@@ -275,14 +273,12 @@ export class DonationComponent {
   }
   //DataLayer
   onFillPersonalDetails() {
-    console.log(this.name);
     (window as any).dataLayer = (window as any).dataLayer || [];
     (window as any).dataLayer.push({
       event: 'UserFilledPersonalDetailsForm(firstStage)',
     });
   }
   onFillBillingAddress() {
-    console.log(this.name);
     (window as any).dataLayer = (window as any).dataLayer || [];
     (window as any).dataLayer.push({
       event: 'UserFilledBillingAddressForm(SecondStage)',

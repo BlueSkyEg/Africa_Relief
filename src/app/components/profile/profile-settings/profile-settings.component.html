@@ -12,6 +12,7 @@
           class="w-full aspect-square border rounded-full border-gray-light"
           [src]="user?.img ?? 'assets/images/shared/user-avatar.webp'"
           alt="User Image"
+          loading="lazy"
         />
         <input
           id="profile-img"
@@ -36,6 +37,7 @@
           <img
             [src]="imagePreview"
             class="w-full aspect-square m-auto rounded-full border border-gray-light"
+            loading="lazy"
           />
           <app-form-button
             appearance="filled"

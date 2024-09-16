@@ -45,13 +45,44 @@ export class SingleBlogComponent {
           next: (res: IApiResponse<IBlog | null>) => {
             if (res.success) {
               this.blog = res.data;
-              this.metaService.setMetaData(this.blog.meta_data ,this.blog.created_at);
+              this.metaService.setMetaData(
+                this.blog.meta_data,
+                this.blog.created_at
+              );
+              this.processBlogContents();
             } else {
               this.router.navigate(['/404']);
             }
           },
         });
       },
+    });
+  }
+
+  processBlogContents(): void {
+    this.blog.contents.forEach((content) => {
+      if (
+        content.type === 'paragraph' &&
+        content.body.includes('\n“') &&
+        content.body.includes('”')
+      ) {
+        const startChar = '\n“';
+        const endChar = '”';
+
+        const startIndex = content.body.indexOf(startChar);
+        const endIndex = content.body.indexOf(endChar);
+
+        if (startIndex !== -1 && endIndex !== -1 && endIndex > startIndex) {
+          content.beforeQuote = content.body.substring(0, startIndex);
+          content.quotedText = content.body.substring(
+            startIndex + startChar.length,
+            endIndex
+          );
+          content.afterQuote = content.body.substring(
+            endIndex + endChar.length
+          );
+        }
+      }
     });
   }
 }

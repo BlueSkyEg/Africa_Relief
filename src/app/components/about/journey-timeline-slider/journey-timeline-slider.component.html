@@ -3,7 +3,7 @@
     @for (slide of slides; track slide) {
       <swiper-slide class="flex flex-col gap-6 max-w-[424px]">
         <div class="w-full h-[288px] pe-6">
-          <img class="h-full object-cover object-center" appImgPlaceholder [src]="slide.image.src" [alt]="slide.image.alt" loading="lazy">
+          <img width="full" height="full" class="h-full object-cover object-center" appImgPlaceholder [src]="slide.image.src" [alt]="slide.image.alt" loading="lazy">
         </div>
         <div class="relative before:absolute before:h-[1px] before:w-full before:top-1/2 before:start-0 before:-translate-y-1/2 before:-z-10 before:bg-gray-light">
           <span class="block w-fit text-body-1-inter text-primary bg-white py-2 px-3 border border-gray-light">{{slide.year}}</span>
@@ -15,7 +15,22 @@
 
   <!-- Slider Navigation -->
   <div class="flex justify-end items-center gap-4 mt-6">
-    <app-icon-arrow-left appIcon appearance="outlined" class="timeline-slide-prev cursor-pointer"/>
-    <app-icon-arrow-right appIcon appearance="outlined" class="timeline-slide-next cursor-pointer"/>
+<app-icon-arrow-left
+  appIcon
+  appearance="outlined"
+  class="member-slide-prev cursor-pointer"
+  role="button"
+  aria-label="Previous slide"
+  tabindex="0"
+/>
+
+<app-icon-arrow-right
+  appIcon
+  appearance="outlined"
+  class="member-slide-next cursor-pointer"
+  role="button"
+  aria-label="Next slide"
+  tabindex="0"
+/>
   </div>
 </div>

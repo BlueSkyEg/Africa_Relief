@@ -30,7 +30,7 @@ export class BlogsComponent implements OnInit {
   paginationPageNum: number = 1;
   paginationPerPage: number;
   isPaginationLastPage: boolean = false;
-
+  loading: boolean = false;
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   blogService: BlogService = inject(BlogService);
   breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
@@ -73,7 +73,8 @@ export class BlogsComponent implements OnInit {
     }
   }
   onGetBlogs() {
-    if (!this.isPaginationLastPage) {
+    if (!this.isPaginationLastPage && !this.loading) {
+      this.loading = true;
       const categorySlug = this.activeRoute.snapshot.paramMap.get('slug');
       this.blogService
         .getBlogs(this.paginationPageNum, this.paginationPerPage, categorySlug)
@@ -81,12 +82,20 @@ export class BlogsComponent implements OnInit {
           next: (res: IApiResponse<IPaginatedData<IBlogCard[]>>) => {
             this.blogs.push(...res.data.data);
             this.onGetBlog(categorySlug);
+
             if (
-              res.data.pagination.current_page === res.data.pagination.last_page
+              res.data.pagination.current_page < res.data.pagination.last_page
             ) {
+              this.paginationPageNum++;
+            } else {
               this.isPaginationLastPage = true;
             }
-            this.paginationPageNum++;
+          },
+          error: (err) => {
+            console.error('Error fetching blogs', err);
+          },
+          complete: () => {
+            this.loading = false;
           },
         });
     }

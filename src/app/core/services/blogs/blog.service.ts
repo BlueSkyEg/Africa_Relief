@@ -43,7 +43,7 @@ export class BlogService {
 
   getRelatedBlogs(blogSlug: string): Observable<IApiResponse<IBlogCard[]>> {
     return this.http.get<IApiResponse<IBlogCard[]>>(
-      environment.apiUrl + '/blogs/related/' + blogSlug
+      environment.apiUrl + '/blogs/related/'+blogSlug
     );
   }
 

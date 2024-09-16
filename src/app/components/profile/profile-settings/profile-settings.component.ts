@@ -64,7 +64,7 @@ export class ProfileSettingsComponent implements OnInit {
         if(res.success) {
           this.authService.authedUserSubject.next(res.data);
         }
-      }
+      },
     })
   }
 

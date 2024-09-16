@@ -73,7 +73,6 @@ export class SearchResultsComponent implements OnInit {
     } else if (this.type === 'projects') {
       this.projectService.searchProjects(this.searchTerm, page).subscribe(
         (response) => {
-          console.log(response);
 
           this.projects = response.data.data;
           this.currentPage = response.data.pagination.current_page;
