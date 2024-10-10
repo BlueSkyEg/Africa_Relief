@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DonationCardComponent } from '../../../shared/components/donation-card/donation-card.component';
 import { IconQuoteComponent } from '../../../shared/icons/quote/icon-quote.component';
@@ -13,6 +13,7 @@ import { RelatedBlogsComponent } from './related-blogs/related-blogs.component';
 import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
 import { Meta, Title } from '@angular/platform-browser';
 import { MetaService } from '../../../core/services/meta-data/meta.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-single-blog',
@@ -37,8 +38,18 @@ export class SingleBlogComponent {
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   blogService: BlogService = inject(BlogService);
   metaService: MetaService = inject(MetaService);
+  _metaService: Meta = inject(Meta);
 
   ngOnInit(): void {
+    this.setCanonicalURL(window.location.href);
+
+    // Update the canonical URL on route changes
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.setCanonicalURL(window.location.href);
+      });
+
     this.activeRoute.paramMap.subscribe({
       next: (route) => {
         this.blogService.getBlog(route.get('slug')).subscribe({
@@ -59,6 +70,24 @@ export class SingleBlogComponent {
     });
   }
 
+  setCanonicalURL(url: string) {
+    let link: HTMLLinkElement =
+      document.querySelector("link[rel='canonical']") || null;
+
+    if (link) {
+      link.setAttribute('href', url);
+    } else {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      link.setAttribute('href', url);
+      document.head.appendChild(link);
+    }
+    // Set og:url
+    this._metaService.updateTag({
+      property: 'og:url',
+      content: url,
+    });
+  }
   processBlogContents(): void {
     this.blog.contents.forEach((content) => {
       if (

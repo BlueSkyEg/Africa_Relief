@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit, signal } from '@angular/core';
 import {SwiperContainer} from "swiper/swiper-element";
 import {SwiperOptions} from "swiper/types";
 import { IImage } from '../../../../shared/interfaces/image-interface';
@@ -19,6 +19,7 @@ import { ImgPlaceholderDirective } from '../../../../shared/directives/img-place
   templateUrl: './blog-slider.component.html',
   styles: ``,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogSliderComponent implements OnInit {
   @Input() slides: IImage[];

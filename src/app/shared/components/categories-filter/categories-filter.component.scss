@@ -1,14 +1,25 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
   /* Prevent vertical scroll */
   white-space: nowrap;
+  cursor: -webkit-grab;
   cursor: grab;
   /* Indicate that dragging is possible */
 }
 
 .container.dragging {
+  cursor: -webkit-grabbing;
   cursor: grabbing;
   /* Indicate that dragging is active */
 }

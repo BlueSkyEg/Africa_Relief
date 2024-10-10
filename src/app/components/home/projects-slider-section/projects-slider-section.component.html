@@ -16,10 +16,17 @@
   </div>
 
   <!-- Slider -->
-  <swiper-container class="projects-slider" init="false" [init]="false">
+  <swiper-container
+    class="projects-slider"
+    init="false"
+    [init]="false"
+    [lazy]="true"
+    id="projects-slider-id"
+  >
     @for (project of projects; track project.slug) { @defer () {
     <swiper-slide
       class="flex flex-col gap-4 h-full justify-between bg-white border border-gray-light w-[400px] max-w-[400px] m-auto p-4"
+      loading="lazy"
     >
       <div class="relative">
         <figure class="w-full h-[288px] bg-gray-light">
@@ -79,6 +86,7 @@
       role="button"
       aria-label="Previous slide"
       tabindex="0"
+      aria-controls="projects-slider-id"
     />
 
     <app-icon-arrow-right
@@ -88,6 +96,7 @@
       role="button"
       aria-label="Next slide"
       tabindex="0"
+      aria-controls="projects-slider-id"
     />
   </div>
 </div>

@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { GuestGuard } from './core/Guards/guest.guard';
 import { AuthGuard } from './core/Guards/auth.guard';
+import { YoussefAbdallahComponent } from './components/about/youssef-abdallah/youssef-abdallah.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -126,6 +127,8 @@ export const routes: Routes = [
         (m) => m.AboutComponent
       ),
   },
+  { path: 'about/executive-director', component: YoussefAbdallahComponent },
+
   {
     path: 'login',
     title: 'Login',

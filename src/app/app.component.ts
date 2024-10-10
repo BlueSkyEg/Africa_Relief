@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit, inject} from '@angular/core';
+import {ChangeDetectorRef, Component,ChangeDetectionStrategy, OnInit, inject} from '@angular/core';
 import {NavigationEnd, Router, RouterModule} from '@angular/router';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {CommonModule} from "@angular/common";
@@ -16,9 +16,18 @@ import { GoogleTagManagerService } from 'angular-google-tag-manager';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, MatSidenavModule, CommonModule, HeaderComponent, FooterComponent, SideNavComponent, MatProgressBarModule],
+  imports: [
+    RouterModule,
+    MatSidenavModule,
+    CommonModule,
+    HeaderComponent,
+    FooterComponent,
+    SideNavComponent,
+    MatProgressBarModule,
+  ],
   templateUrl: './app.component.html',
-  styles: ``
+  styles: ``,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   opened: boolean = false;
@@ -41,34 +50,35 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // Push Google Tag Manager Page View Event
-    this.router.events.forEach(item => {
+    this.router.events.forEach((item) => {
       if (item instanceof NavigationEnd) {
-          const gtmTag = {
-              event: 'page',
-              pageName: item.url
-          };
-          this.gtmService.pushTag(gtmTag);
+        const gtmTag = {
+          event: 'page',
+          pageName: item.url,
+        };
+        this.gtmService.pushTag(gtmTag);
       }
     });
 
     // Toggle Side Nav
     this.layoutService.sideNavSubject.asObservable().subscribe({
-      next: value => this.opened = value
+      next: (value) => (this.opened = value),
     });
 
     // Display Loader
     this.layoutService.loaderSubject.asObservable().subscribe({
-      next: value => {
-        this.displayLoader = value
+      next: (value) => {
+        this.displayLoader = value;
         this.cdr.detectChanges();
-      }
-    })
+      },
+    });
 
     // Get Authed User
-    if(this.authService.isUserAuthed()) {
+    if (this.authService.isUserAuthed()) {
       this.authService.getAuthedUser().subscribe({
-        next: (res: IApiResponse<IUser>) => this.authService.authedUserSubject.next(res.data)
-      })
+        next: (res: IApiResponse<IUser>) =>
+          this.authService.authedUserSubject.next(res.data),
+      });
     }
   }
 }

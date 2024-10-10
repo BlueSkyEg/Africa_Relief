@@ -1,5 +1,5 @@
 export interface IContent {
-  type: 'heading' | 'paragraph' | 'list' | 'image';
+  type: 'heading' | 'paragraph' | 'list' | 'image'|'sub-heading'|'sub-list';
   body: string | string[] | any;
   order?: number;
   beforeQuote?: any;

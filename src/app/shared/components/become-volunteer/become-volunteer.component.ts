@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -6,8 +6,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './become-volunteer.component.html',
-  styles: ''
+  styles: '',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BecomeVolunteerComponent {
-
-}
+export class BecomeVolunteerComponent {}

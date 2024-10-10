@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild, inject } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatchPasswordValidator } from '../../../core/validators/match-password.validator';
 import { PasswordValidator } from '../../../core/validators/password.validator';
@@ -16,33 +16,73 @@ import { IconEditComponent } from "../../../shared/icons/edit/icon-edit.componen
 import { IconSpinnerComponent } from "../../../shared/icons/spinner/icon-spinner.component";
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { ModalComponent } from "../../../shared/components/modal/modal.component";
 import { FileValidator } from '../../../core/validators/file.validator';
 import { EmailValidator } from '../../../core/validators/email.validator';
 import { StringValidator } from '../../../core/validators/string.validator';
 import { PhoneValidator } from '../../../core/validators/phone.validator';
-
+import { Meta } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 @Component({
-    selector: 'app-profile-settings',
-    standalone: true,
-    templateUrl: './profile-settings.component.html',
-    styles: ``,
-    imports: [ReactiveFormsModule, CommonModule, FormElementDirective, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent, IconEyeComponent, IconEyeOffComponent, IconEditComponent, IconSpinnerComponent, ModalComponent]
+  selector: 'app-profile-settings',
+  standalone: true,
+  templateUrl: './profile-settings.component.html',
+  styles: ``,
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    FormElementDirective,
+    FieldComponent,
+    LabelComponent,
+    ErrorComponent,
+    ButtonComponent,
+    IconEyeComponent,
+    IconEyeOffComponent,
+    IconEditComponent,
+    IconSpinnerComponent,
+    ModalComponent,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileSettingsComponent implements OnInit {
-
   user: IUser;
   router: Router = inject(Router);
   fb: FormBuilder = inject(FormBuilder);
   authService: AuthService = inject(AuthService);
   _snackBar: MatSnackBar = inject(MatSnackBar);
-
+  metaService: Meta = inject(Meta);
   ngOnInit(): void {
+    this.setCanonicalURL(window.location.href);
+
+    // Update the canonical URL on route changes
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.setCanonicalURL(window.location.href);
+      });
+
     this.setAuthUserInfoToEditProfileForm();
   }
 
+  setCanonicalURL(url: string) {
+    let link: HTMLLinkElement =
+      document.querySelector("link[rel='canonical']") || null;
 
+    if (link) {
+      link.setAttribute('href', url);
+    } else {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      link.setAttribute('href', url);
+      document.head.appendChild(link);
+    }
+    // Set og:url
+    this.metaService.updateTag({
+      property: 'og:url',
+      content: url,
+    });
+  }
   /*
     -----------------------------
     -- Change User Profile Image
@@ -52,8 +92,14 @@ export class ProfileSettingsComponent implements OnInit {
   @ViewChild('imagePreviewModal') imagePreviewModal: ModalComponent;
 
   changeProfileImgForm = this.fb.group({
-    profileImg: ['', [Validators.required, FileValidator(['image/png', 'image/jpeg', 'image/webp'])]]
-  })
+    profileImg: [
+      '',
+      [
+        Validators.required,
+        FileValidator(['image/png', 'image/jpeg', 'image/webp']),
+      ],
+    ],
+  });
 
   onChangeProfileImg(): void {
     this.imagePreviewModal.closeModal();
@@ -61,11 +107,11 @@ export class ProfileSettingsComponent implements OnInit {
     formData.append('img', this.changeProfileImgForm.controls.profileImg.value);
     this.authService.changeUserImage(formData).subscribe({
       next: (res: IApiResponse<IUser>) => {
-        if(res.success) {
+        if (res.success) {
           this.authService.authedUserSubject.next(res.data);
         }
       },
-    })
+    });
   }
 
   onSelectProfileImg(event): void {
@@ -73,9 +119,9 @@ export class ProfileSettingsComponent implements OnInit {
     if (file) {
       this.displayProfileImgErrors();
 
-      this.changeProfileImgForm.patchValue({profileImg: file});
+      this.changeProfileImgForm.patchValue({ profileImg: file });
 
-      if(this.changeProfileImgForm.valid) {
+      if (this.changeProfileImgForm.valid) {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
@@ -90,13 +136,14 @@ export class ProfileSettingsComponent implements OnInit {
     this.changeProfileImgForm.controls.profileImg.valueChanges.subscribe({
       next: () => {
         const errors = this.changeProfileImgForm.controls.profileImg.errors;
-        if(errors) {
-          this._snackBar.open(Object.values(errors)[0], '✖', {panelClass: 'failure-snackbar'});
+        if (errors) {
+          this._snackBar.open(Object.values(errors)[0], '✖', {
+            panelClass: 'failure-snackbar',
+          });
         }
-      }
-    })
+      },
+    });
   }
-
 
   /*
     -------------------
@@ -109,35 +156,46 @@ export class ProfileSettingsComponent implements OnInit {
     name: ['', [Validators.required, StringValidator()]],
     email: ['', [Validators.required, EmailValidator()]],
     username: ['', [StringValidator(3, 50, true)]],
-    phone: ['', [PhoneValidator()]]
+    phone: ['', [PhoneValidator()]],
   });
 
   onEditProfile() {
     this.editProfileFormDisabled = true;
     this.authService.updateUserInfo(this.editProfileForm.value).subscribe({
       next: (res: IApiResponse<IUser>) => {
-        if(res.success) {
-          this._snackBar.open('Profile updated Successfully.', '✖', {panelClass: 'success-snackbar'});
-        } else if(res.message == 'validation error') {
+        if (res.success) {
+          this._snackBar.open('Profile updated Successfully.', '✖', {
+            panelClass: 'success-snackbar',
+          });
+        } else if (res.message == 'validation error') {
           for (const control in res.errors) {
-            this.editProfileForm.get(control).setErrors({ serverError: res.errors[control][0] });
+            this.editProfileForm
+              .get(control)
+              .setErrors({ serverError: res.errors[control][0] });
           }
         } else {
-          this._snackBar.open(res.message, '✖', {panelClass: 'failure-snackbar'});
+          this._snackBar.open(res.message, '✖', {
+            panelClass: 'failure-snackbar',
+          });
         }
-      }
-    })
+      },
+    });
   }
 
   setAuthUserInfoToEditProfileForm(): void {
     this.authService.authedUserSubject.asObservable().subscribe({
       next: (value: IUser) => {
-        if(value) {
-          this.editProfileForm.patchValue({name: value.name, email: value.email, username: value.username, phone: value.phone});
+        if (value) {
+          this.editProfileForm.patchValue({
+            name: value.name,
+            email: value.email,
+            username: value.username,
+            phone: value.phone,
+          });
           this.user = value;
           this.trackChnagesToEditProfileForm(value);
         }
-      }
+      },
     });
   }
 
@@ -148,15 +206,19 @@ export class ProfileSettingsComponent implements OnInit {
   trackChnagesToEditProfileForm(user: IUser): void {
     this.editProfileForm.valueChanges.subscribe({
       next: (newValue) => {
-        if(newValue.email != user.email || newValue.name.trim() != user.name || newValue.username != user.username || newValue.phone != user.phone) {
+        if (
+          newValue.email != user.email ||
+          newValue.name.trim() != user.name ||
+          newValue.username != user.username ||
+          newValue.phone != user.phone
+        ) {
           this.editProfileFormDisabled = false;
         } else {
           this.editProfileFormDisabled = true;
         }
-      }
-    })
+      },
+    });
   }
-
 
   /*
     -------------------------
@@ -166,32 +228,42 @@ export class ProfileSettingsComponent implements OnInit {
   changeProfilePassworedFormDisabled: boolean = false;
   showPassword: boolean = false;
 
-  changeProfilePassworedForm = this.fb.group({
-    currentPassword: ['', [Validators.required]],
-    password: ['', [Validators.required, PasswordValidator()]],
-    password_confirmation: ['', [Validators.required]]
-  }, {validator: [MatchPasswordValidator()]} as AbstractControlOptions)
+  changeProfilePassworedForm = this.fb.group(
+    {
+      currentPassword: ['', [Validators.required]],
+      password: ['', [Validators.required, PasswordValidator()]],
+      password_confirmation: ['', [Validators.required]],
+    },
+    { validator: [MatchPasswordValidator()] } as AbstractControlOptions
+  );
 
   onChangeProfilePasswored() {
     this.changeProfilePassworedFormDisabled = true;
-    this.authService.changeUserPassword(this.changeProfilePassworedForm.value).subscribe({
-      next: (res: IApiResponse<IUser>) => {
-        if(res.success) {
-          localStorage.clear();
-          this.router.navigateByUrl('/login');
-          this._snackBar.open('Password changed successfully.', '✖', {panelClass: 'success-snackbar'});
-        } else if(res.message == 'validation error') {
-          for (const control in res.errors) {
-            this.changeProfilePassworedForm.get(control).setErrors({ serverError: res.errors[control][0] });
+    this.authService
+      .changeUserPassword(this.changeProfilePassworedForm.value)
+      .subscribe({
+        next: (res: IApiResponse<IUser>) => {
+          if (res.success) {
+            localStorage.clear();
+            this.router.navigateByUrl('/login');
+            this._snackBar.open('Password changed successfully.', '✖', {
+              panelClass: 'success-snackbar',
+            });
+          } else if (res.message == 'validation error') {
+            for (const control in res.errors) {
+              this.changeProfilePassworedForm
+                .get(control)
+                .setErrors({ serverError: res.errors[control][0] });
+            }
+          } else {
+            this._snackBar.open(res.message, '✖', {
+              panelClass: 'failure-snackbar',
+            });
           }
-        } else {
-          this._snackBar.open(res.message, '✖', {panelClass: 'failure-snackbar'});
-        }
-        this.changeProfilePassworedFormDisabled = false;
-      }
-    })
+          this.changeProfilePassworedFormDisabled = false;
+        },
+      });
   }
-
 
   /*
     -------------------------------
@@ -204,10 +276,10 @@ export class ProfileSettingsComponent implements OnInit {
     let password = this.changeProfilePassworedForm.controls.password.value;
     let tempPasswordStrenth = 0;
 
-    if (/[a-z]+/.test(password)) tempPasswordStrenth++
-    if (/^(?=.*[0-9])(?=.*[A-Z]).+$/.test(password)) tempPasswordStrenth++
-    if (/[!@#$%^&*()_+{}|:"<>?]+/.test(password)) tempPasswordStrenth++
-    if (password.length > 8) tempPasswordStrenth++
+    if (/[a-z]+/.test(password)) tempPasswordStrenth++;
+    if (/^(?=.*[0-9])(?=.*[A-Z]).+$/.test(password)) tempPasswordStrenth++;
+    if (/[!@#$%^&*()_+{}|:"<>?]+/.test(password)) tempPasswordStrenth++;
+    if (password.length > 8) tempPasswordStrenth++;
 
     this.passwordStrenth = tempPasswordStrenth;
   }

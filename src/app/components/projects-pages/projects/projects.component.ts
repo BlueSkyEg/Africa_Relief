@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { CategoriesFilterComponent } from '../../../shared/components/categories-filter/categories-filter.component';
 import { ProjectService } from '../../../core/services/projects/project.service';
 import { ICategory } from '../../../shared/interfaces/category-interface';
@@ -12,7 +12,9 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 import { MetaService } from '../../../core/services/meta-data/meta.service';
 import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
-
+import { Meta } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 @Component({
   selector: 'app-projects',
   standalone: true,
@@ -25,6 +27,7 @@ import { ButtonLinkComponent } from '../../../shared/components/button-link/butt
     BreadcrumbComponent,
     ButtonLinkComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsComponent implements OnInit {
   projectCategories: ICategory[];
@@ -38,7 +41,8 @@ export class ProjectsComponent implements OnInit {
   projectService: ProjectService = inject(ProjectService);
   breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
   metaService: MetaService = inject(MetaService);
-
+  _metaService: Meta = inject(Meta);
+  router: Router = inject(Router);
   constructor() {
     // Determine pagination perPage number based on screen size
     this.breakpointObserver.observe('(min-width: 800px)').subscribe({
@@ -47,6 +51,15 @@ export class ProjectsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setCanonicalURL(window.location.href);
+
+    // Update the canonical URL on route changes
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.setCanonicalURL(window.location.href);
+      });
+
     this.projectService.getProjectCategories().subscribe({
       next: (res: IApiResponse<ICategory[]>) => {
         this.projectCategories = res.data;
@@ -65,6 +78,24 @@ export class ProjectsComponent implements OnInit {
     });
   }
 
+  setCanonicalURL(url: string) {
+    let link: HTMLLinkElement =
+      document.querySelector("link[rel='canonical']") || null;
+
+    if (link) {
+      link.setAttribute('href', url);
+    } else {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      link.setAttribute('href', url);
+      document.head.appendChild(link);
+    }
+    // Set og:url
+    this._metaService.updateTag({
+      property: 'og:url',
+      content: url,
+    });
+  }
   onGetProject(currentSlug: string) {
     if (currentSlug) {
       const matchingCategory = this.projectCategories?.find(

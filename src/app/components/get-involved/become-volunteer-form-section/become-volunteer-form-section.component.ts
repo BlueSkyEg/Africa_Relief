@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormElementDirective } from '../../../shared/directives/form-element.directive';
 import { FieldComponent } from '../../../shared/components/form/field/field.component';
 import { LabelComponent } from '../../../shared/components/form/label/label.component';
@@ -9,40 +9,98 @@ import { VolunteerService } from '../../../core/services/volunteer/volunteer.ser
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { StringValidator } from '../../../core/validators/string.validator';
-
+import { Meta } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 @Component({
-    selector: 'app-become-volunteer-form-section',
-    standalone: true,
-    templateUrl: './become-volunteer-form-section.component.html',
-    styles: ``,
-    imports: [ReactiveFormsModule, FormElementDirective, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent]
+  selector: 'app-become-volunteer-form-section',
+  standalone: true,
+  templateUrl: './become-volunteer-form-section.component.html',
+  styles: ``,
+  imports: [
+    ReactiveFormsModule,
+    FormElementDirective,
+    FieldComponent,
+    LabelComponent,
+    ErrorComponent,
+    ButtonComponent,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BecomeVolunteerFormSectionComponent {
   volunteerFormDisabled: boolean = false;
   fb: FormBuilder = inject(FormBuilder);
   volunteerService: VolunteerService = inject(VolunteerService);
   _snackBar: MatSnackBar = inject(MatSnackBar);
+  metaService: Meta = inject(Meta);
+  router: Router = inject(Router);
 
+  ngOnInit(): void {
+    this.setCanonicalURL(window.location.href);
+
+    // Update the canonical URL on route changes
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.setCanonicalURL(window.location.href);
+      });
+  }
+  setCanonicalURL(url: string) {
+    let link: HTMLLinkElement =
+      document.querySelector("link[rel='canonical']") || null;
+
+    if (link) {
+      link.setAttribute('href', url);
+    } else {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      link.setAttribute('href', url);
+      document.head.appendChild(link);
+    }
+    // Set og:url
+    this.metaService.updateTag({
+      property: 'og:url',
+      content: url,
+    });
+  }
   becomeVolunteerForm = this.fb.group({
     name: ['', [Validators.required, StringValidator()]],
     email: ['', [Validators.required, Validators.email]],
-    phone: ['', [Validators.required, Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
+    phone: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(
+          /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
+        ),
+      ],
+    ],
     address: ['', [Validators.required]],
-    message: ['', [Validators.required]]
+    message: ['', [Validators.required]],
   });
 
   onSubmitVolunteerForm(): void {
     this.volunteerFormDisabled = true;
-    this.volunteerService.submitVolunteerForm(this.becomeVolunteerForm.getRawValue()).subscribe({
-      next: (res: IApiResponse<null>) => {
-        if(res.success) {
-          this.becomeVolunteerForm.reset();
-          this._snackBar.open('Your message has been sent successfully.', '✖', {panelClass: 'success-snackbar'});
-        } else {
-          this._snackBar.open('An error occurred while sending a message.', '✖', {panelClass: 'failure-snackbar'});
-        }
-        this.volunteerFormDisabled = false;
-      }
-    })
+    this.volunteerService
+      .submitVolunteerForm(this.becomeVolunteerForm.getRawValue())
+      .subscribe({
+        next: (res: IApiResponse<null>) => {
+          if (res.success) {
+            this.becomeVolunteerForm.reset();
+            this._snackBar.open(
+              'Your message has been sent successfully.',
+              '✖',
+              { panelClass: 'success-snackbar' }
+            );
+          } else {
+            this._snackBar.open(
+              'An error occurred while sending a message.',
+              '✖',
+              { panelClass: 'failure-snackbar' }
+            );
+          }
+          this.volunteerFormDisabled = false;
+        },
+      });
   }
 }

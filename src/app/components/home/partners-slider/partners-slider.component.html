@@ -1,7 +1,7 @@
 <div class="py-10 border-y border-gray-light bg-white">
   <div class="container flex justify-between items-center">
-    <app-icon-arrow-left class="partner-slide-prev cursor-pointer w-10"/>
-    <swiper-container class="partners-slider block w-[85%]" init="false" [init]="false">
+    <app-icon-arrow-left class="partner-slide-prev cursor-pointer w-10" role="button"/>
+    <swiper-container class="partners-slider block w-[85%]" init="false" [init]="false" loading="lazy">
       @for (slide of slides; track slide) {
         <swiper-slide>
           <figure class="w-24 h-24 m-auto">

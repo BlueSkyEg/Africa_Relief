@@ -1,4 +1,4 @@
-import {Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, signal} from "@angular/core"
+import {ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, signal} from "@angular/core"
 import {IconFoodComponent} from "../../../icons/projects/food/icon-food.component";
 import {IconEducationComponent} from "../../../icons/projects/education/icon-education.component";
 import {IconMedicalComponent} from "../../../icons/projects/medical/icon-medical.component";
@@ -32,6 +32,7 @@ import {SwiperOptions} from "swiper/types";
   templateUrl: './project-categories-slider.component.html',
   styles: ``,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectCategoriesSliderComponent implements OnInit {
   swiperElement = signal<SwiperContainer | null>(null);

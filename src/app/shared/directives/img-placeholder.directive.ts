@@ -3,7 +3,8 @@ import { Directive, ElementRef, Input, PLATFORM_ID, Renderer2, inject } from '@a
 
 @Directive({
   selector: '[appImgPlaceholder]',
-  standalone: true
+  standalone: true,
+  
 })
 
 export class ImgPlaceholderDirective {

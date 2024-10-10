@@ -1,38 +1,47 @@
-<div class="flex flex-col gap-6">
- @for (content of contentList; track content.order; let idx = $index;) {
+<div class="flex flex-col ">
+  @for (content of contentList; track content.order; let idx = $index;) {
+    @if (content.type === 'heading') {
+      <div class="accordion flex flex-col pt-7 pb-2">
+        <div class="flex justify-between items-center border-b border-b-gray-light pb-3 mb-3">
+          <h3 class="text-body-2-md">{{ content.body }}</h3>
+        </div>
 
-  <div
-    *ngIf="content.type === 'heading'"
-    #accordion
-    [ngClass]="{ active: idx == 0 && !summary }"
-    class="accordion flex flex-col p-6 bg-white border border-gray-light"
-  >
-    <div
-      (click)="toggolAccordion(accordion)"
-      class="flex justify-between items-center gap-4 cursor-pointer"
-    >
-      <h3 class="text-body-2-md">{{ content.body }}</h3>
-      <app-icon-chevron-down class="accordion-btn" />
-    </div>
-    <ng-container
-      *ngIf="contentList[idx + 1] && contentList[idx + 1].type === 'paragraph'"
-    >
-      <p class="description text-body-2 text-gray-dark max-h-0 overflow-hidden">
-        {{ contentList[idx + 1].body }}
-      </p>
-    </ng-container>
-    <ng-container
-      *ngIf="contentList[idx + 1] && contentList[idx + 1].type === 'list'"
-    >
-      <ul class="list-inside">
-        <li
-          class="description text-body-2 text-gray-dark max-h-0 overflow-hidden list-decimal "
-          *ngFor="let item of contentList[idx + 1].body"
-        >
-          {{ item }}
-        </li>
+        @if (contentList[idx + 1] && contentList[idx + 1].type === 'paragraph') {
+          <p class="description text-body-2 ps-1 text-gray-dark" [innerHTML]="formatParagraph(contentList[idx + 1].body)"></p>
+        }
+      </div>
+    }
+
+    @if (contentList[idx + 1] && contentList[idx + 1].type === 'list') {
+      <ul class="list-disc ps-6 mt-2 ">
+        @for (item of contentList[idx + 1].body; track item) {
+          <li class="description text-body-2 text-gray-dark ">{{ item }}</li>
+        }
       </ul>
-    </ng-container>
-  </div>
+    }
+
+    @if (contentList[idx + 1] && contentList[idx + 1].type === 'sub-heading') {
+      <h4 class="text-body-2-md ps-1">{{ contentList[idx + 1].body }}</h4>
+
+      @if (contentList[idx + 2] && contentList[idx + 2].type === 'sub-list') {
+        <ul class="list-disc ps-10 pb-7">
+          @for (item of contentList[idx + 2].body; track item) {
+            <li class="description text-body-2 text-gray-dark ">{{ item }}</li>
+          }
+        </ul>
+      }
+    }
   }
+
+  <div class="bg-white text-xl leading-8 font-normal p-6 mt-16">
+    Applicants should email their cover letter and resume to
+    <a class="text-primary font-medium text-2xl" href="mailto:jobs@africa-relief.org">jobs&#64;africa-relief.org</a>
+    and place “{{ title }}” in the subject.
+  </div>
+
+  <p class="my-5">
+    ARCD is committed to providing equal employment opportunities for all
+    applicants and employees, regardless of race, religion, gender, national
+    origin, age, disability, marital status, or veteran status. <br />
+  </p>
 </div>

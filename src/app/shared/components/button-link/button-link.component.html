@@ -1,9 +1,31 @@
 <!-- button-link.component.html -->
-<a class="flex justify-center items-center gap-2 py-3 px-6 transition-colors" [ngClass]="appearance"
-  [ngStyle]="{'width': fullWidth ? '100%' : 'fit-content'}" [routerLink]="path" (click)="handleClick($event)">
-  {{ label }}
+<!-- Render as an internal link if it is an internal path -->
+@if (isInternalLink) {
+  <a
+    class="flex justify-center items-center gap-2 py-3 px-6 transition-colors"
+    [ngClass]="appearance"
+    [ngStyle]="{'width': fullWidth ? '100%' : 'fit-content'}"
+    [routerLink]="path"
+    (click)="handleClick($event)">
+    {{ label }}
+    @if (icon) {
+      <app-icon-arrow-right></app-icon-arrow-right>
+    }
+  </a>
+}
 
-  <ng-container *ngIf="icon">
-    <app-icon-arrow-right></app-icon-arrow-right>
-  </ng-container>
-</a>
+<!-- Render as an external link if it is an external path -->
+@if (!isInternalLink) {
+  <a
+    class="flex justify-center items-center gap-2 py-3 px-6 transition-colors"
+    [ngClass]="appearance"
+    [ngStyle]="{'width': fullWidth ? '100%' : 'fit-content'}"
+    [href]="path"
+    target="_blank"
+    rel="noopener noreferrer">
+    {{ label }}
+    @if (icon) {
+      <app-icon-arrow-right></app-icon-arrow-right>
+    }
+  </a>
+}

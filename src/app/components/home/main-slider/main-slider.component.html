@@ -1,29 +1,63 @@
 <div class="relative h-[776px] bg-gray-light">
   <!-- Slider -->
-  <swiper-container class="main-slider" init="false" [init]="false">
+  <swiper-container
+    class="main-slider"
+    init="false"
+    [init]="false"
+    [lazy]="true"
+    id="main-slider-id"
+  >
     @for (slide of slides; track slide) {
-    <swiper-slide class="flex items-end text-white min-w-full h-[776px] max-h-screen py-24 bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black after:bg-opacity-60 after:block" [style.background-image]="'url(' + slide.image.src + ')'" [style.background-color]="'#ccc'">
+    <swiper-slide
+      class="flex items-end text-white min-w-full h-[776px] max-h-screen py-24 bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black after:bg-opacity-60 after:block"
+      [style.background-image]="'url(' + slide.image.src + ')'"
+      [style.background-color]="'#ccc'"
+      loading="lazy"
+    >
       <div class="container z-10">
-        <div >
+        <div>
           <h2 class="text-body-2-md">{{ slide.title }}</h2>
           <h3 class="text-heading-2 mb-6 mt-2">{{ slide.description }}</h3>
-          @switch (slide.destination.type) {
-            @case('project_category') {
-              <app-button-link appearance="filled-secondary" [label]="slide.destination.label | titlecase" [path]="'/projects/category/' + slide.destination.slug" />
-            }
-            @case ('project') {
-              <app-button-link appearance="filled-secondary" [label]="slide.destination.label | titlecase" [path]="'/projects/' + slide.destination.slug" />
-            }
-            @case ("project_carousel") {
-              <app-button-link appearance="filled-secondary" [label]="slide.destination.label | titlecase" [path]="'/projects/' + slide.destination.slug" />
-            }
-            @case ('blog') {
-              <app-button-link appearance="filled-secondary" [label]="slide.destination.label | titlecase" [path]="'/blogs/' + slide.destination.slug" />
-            }
-            @case ('blog_category') {
-              <app-button-link appearance="filled-secondary" [label]="slide.destination.label | titlecase" [path]="'/blogs/category/' + slide.destination.slug" />
-            }
-          }
+          @switch (slide.destination.type) { @case('project_category') {
+          <app-button-link
+            appearance="filled-secondary"
+            [label]="slide.destination.label | titlecase"
+            [path]="'/projects/category/' + slide.destination.slug"
+          />
+          } @case('event_carousel'){
+          <app-button-link
+            appearance="filled-secondary"
+            [label]="slide.destination.label | titlecase"
+            [path]="
+              'https://www.eventbrite.com/e/3rd-annual-fundraising-dinner-all-eyes-on-gaza-tickets-1031130698677?aff=oddtdtcreator'
+            "
+          ></app-button-link>
+
+          } @case ('project') {
+          <app-button-link
+            appearance="filled-secondary"
+            [label]="slide.destination.label | titlecase"
+            [path]="'/projects/' + slide.destination.slug"
+          />
+          } @case ("project_carousel") {
+          <app-button-link
+            appearance="filled-secondary"
+            [label]="slide.destination.label | titlecase"
+            [path]="'/projects/' + slide.destination.slug"
+          />
+          } @case ('blog') {
+          <app-button-link
+            appearance="filled-secondary"
+            [label]="slide.destination.label | titlecase"
+            [path]="'/blogs/' + slide.destination.slug"
+          />
+          } @case ('blog_category') {
+          <app-button-link
+            appearance="filled-secondary"
+            [label]="slide.destination.label | titlecase"
+            [path]="'/blogs/category/' + slide.destination.slug"
+          />
+          } }
         </div>
       </div>
     </swiper-slide>
@@ -33,10 +67,30 @@
   </swiper-container>
 
   <!-- Slider Navigation -->
-  <div class="absolute w-full top-0 pt-24 translate-y-0 md:pt-0 md:top-[45%] md:-translate-y-[45%] z-10 ">
-    <div class="container flex justify-normal lg:justify-between items-center gap-6">
-      <app-icon-arrow-left appIcon color="black" class="main-slider-prev cursor-pointer"/>
-      <app-icon-arrow-right appIcon color="black" class="main-slider-next cursor-pointer"/>
+  <div
+    class="absolute w-full top-0 pt-24 translate-y-0 md:pt-0 md:top-[45%] md:-translate-y-[45%] z-10"
+  >
+    <div
+      class="container flex justify-normal lg:justify-between items-center gap-6"
+    >
+      <app-icon-arrow-left
+        appIcon
+        color="black"
+        class="main-slider-prev cursor-pointer"
+        aria-label="Previous slide"
+        tabindex="0"
+        aria-controls="main-slider-id"
+        role="button"
+      />
+      <app-icon-arrow-right
+        appIcon
+        color="black"
+        class="main-slider-next cursor-pointer"
+        aria-label="Next slide"
+        tabindex="0"
+                aria-controls="main-slider-id"
+role="button"
+      />
     </div>
   </div>
 </div>

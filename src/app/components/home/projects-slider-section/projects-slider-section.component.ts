@@ -1,4 +1,4 @@
-import {Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal} from '@angular/core';
 import {IconArrowLeftComponent} from "../../../shared/icons/arrows/arrow-left/icon-arrow-left.component";
 import {IconArrowRightComponent} from "../../../shared/icons/arrows/arrow-right/icon-arrow-right.component";
 import {ButtonLinkComponent} from "../../../shared/components/button-link/button-link.component";
@@ -13,7 +13,9 @@ import { IProjectCard } from '../../../shared/interfaces/project/project-card-in
 import { ProjectCardComponent } from '../../../shared/components/projects/project-card/project-card.component';
 import { CommonModule } from '@angular/common';
 import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
-
+import { Meta } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 @Component({
   selector: 'app-projects-slider-section',
   standalone: true,
@@ -36,9 +38,37 @@ export class ProjectsSliderSectionComponent implements OnInit {
   swiperElement = signal<SwiperContainer | null>(null);
 
   projectService: ProjectService = inject(ProjectService);
+  metaService: Meta = inject(Meta);
+  router: Router = inject(Router);
 
   ngOnInit(): void {
+    this.setCanonicalURL(window.location.href);
+
+    // Update the canonical URL on route changes
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.setCanonicalURL(window.location.href);
+      });
     this.onGetProjects();
+  }
+  setCanonicalURL(url: string) {
+    let link: HTMLLinkElement =
+      document.querySelector("link[rel='canonical']") || null;
+
+    if (link) {
+      link.setAttribute('href', url);
+    } else {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      link.setAttribute('href', url);
+      document.head.appendChild(link);
+    }
+    // Set og:url
+    this.metaService.updateTag({
+      property: 'og:url',
+      content: url,
+    });
   }
 
   onGetProjects(): void {

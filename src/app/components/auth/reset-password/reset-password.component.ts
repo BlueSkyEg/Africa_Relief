@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormElementDirective } from '../../../shared/directives/form-element.directive';
 import { FieldComponent } from '../../../shared/components/form/field/field.component';
@@ -17,9 +17,20 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, FormElementDirective, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent, IconEyeComponent, IconEyeOffComponent],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    FormElementDirective,
+    FieldComponent,
+    LabelComponent,
+    ErrorComponent,
+    ButtonComponent,
+    IconEyeComponent,
+    IconEyeOffComponent,
+  ],
   templateUrl: './reset-password.component.html',
-  styles: ``
+  styles: ``,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResetPasswordComponent implements OnInit {
   resetPasswordFormDisabled: boolean = false;
@@ -30,12 +41,15 @@ export class ResetPasswordComponent implements OnInit {
   router: Router = inject(Router);
   _snackBar: MatSnackBar = inject(MatSnackBar);
 
-  resetPasswordForm = this.fb.group({
-    token: [null],
-    email: [null],
-    password: ['', [Validators.required, PasswordValidator()]],
-    password_confirmation: ['', [Validators.required]]
-  }, {validator: [MatchPasswordValidator()]} as AbstractControlOptions)
+  resetPasswordForm = this.fb.group(
+    {
+      token: [null],
+      email: [null],
+      password: ['', [Validators.required, PasswordValidator()]],
+      password_confirmation: ['', [Validators.required]],
+    },
+    { validator: [MatchPasswordValidator()] } as AbstractControlOptions
+  );
 
   ngOnInit(): void {
     const queryParams = this.activeRoute.snapshot.queryParamMap;
@@ -46,18 +60,24 @@ export class ResetPasswordComponent implements OnInit {
   onResetPassword() {
     this.resetPasswordFormDisabled = true;
     this.authService.resetPassword(this.resetPasswordForm.value).subscribe({
-      next: res => {
-        if(res.success) {
-          this._snackBar.open('Password reseted successfully', '✖', {panelClass: 'success-snackbar'});
+      next: (res) => {
+        if (res.success) {
+          this._snackBar.open('Password reseted successfully', '✖', {
+            panelClass: 'success-snackbar',
+          });
           this.router.navigateByUrl('/login');
         } else if (res.message == 'validation error') {
-          this.resetPasswordForm.controls.password.setErrors({serverError: res.errors[0][0]});
+          this.resetPasswordForm.controls.password.setErrors({
+            serverError: res.errors[0][0],
+          });
         } else {
-          this._snackBar.open(res.message, '✖', {panelClass: 'failure-snackbar'});
+          this._snackBar.open(res.message, '✖', {
+            panelClass: 'failure-snackbar',
+          });
         }
         this.resetPasswordFormDisabled = false;
-      }
-    })
+      },
+    });
   }
 
   // Password Strength Indicator
@@ -67,10 +87,10 @@ export class ResetPasswordComponent implements OnInit {
     let password = this.resetPasswordForm.controls.password.value;
     let tempPasswordStrenth = 0;
 
-    if (/[a-z]+/.test(password)) tempPasswordStrenth++
-    if (/^(?=.*[0-9])(?=.*[A-Z]).+$/.test(password)) tempPasswordStrenth++
-    if (/[!@#$%^&*()_+{}|:"<>?]+/.test(password)) tempPasswordStrenth++
-    if (password.length > 8) tempPasswordStrenth++
+    if (/[a-z]+/.test(password)) tempPasswordStrenth++;
+    if (/^(?=.*[0-9])(?=.*[A-Z]).+$/.test(password)) tempPasswordStrenth++;
+    if (/[!@#$%^&*()_+{}|:"<>?]+/.test(password)) tempPasswordStrenth++;
+    if (password.length > 8) tempPasswordStrenth++;
 
     this.passwordStrenth = tempPasswordStrenth;
   }

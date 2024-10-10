@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { FormElementDirective } from '../../../shared/directives/form-element.directive';
 import { FieldComponent } from '../../../shared/components/form/field/field.component';
 import { LabelComponent } from '../../../shared/components/form/label/label.component';
@@ -15,13 +15,27 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmailValidator } from '../../../core/validators/email.validator';
 import { StringValidator } from '../../../core/validators/string.validator';
+import { Meta } from '@angular/platform-browser';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
   templateUrl: './signup.component.html',
   styles: ``,
-  imports: [ReactiveFormsModule, RouterModule, CommonModule, FormElementDirective, FieldComponent, LabelComponent, ErrorComponent, ButtonComponent, IconEyeComponent, IconEyeOffComponent]
+  imports: [
+    ReactiveFormsModule,
+    RouterModule,
+    CommonModule,
+    FormElementDirective,
+    FieldComponent,
+    LabelComponent,
+    ErrorComponent,
+    ButtonComponent,
+    IconEyeComponent,
+    IconEyeOffComponent,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignupComponent {
   showPassword: boolean = false;
@@ -31,33 +45,74 @@ export class SignupComponent {
   fb: FormBuilder = inject(FormBuilder);
   authService: AuthService = inject(AuthService);
   _snackBar: MatSnackBar = inject(MatSnackBar);
+  metaService: Meta = inject(Meta);
+  router: Router = inject(Router);
+  ngOnInit(): void {
+    this.setCanonicalURL(window.location.href);
 
-  signupForm = this.fb.group({
-    name: ['', [Validators.required, StringValidator()]],
-    email: ['', [Validators.required, EmailValidator()]],
-    password: ['', [Validators.required, PasswordValidator()]],
-    password_confirmation: ['', [Validators.required]]
-  }, {validator: [MatchPasswordValidator()]} as AbstractControlOptions)
+    // Update the canonical URL on route changes
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.setCanonicalURL(window.location.href);
+      });
+  }
+  signupForm = this.fb.group(
+    {
+      name: ['', [Validators.required, StringValidator()]],
+      email: ['', [Validators.required, EmailValidator()]],
+      password: ['', [Validators.required, PasswordValidator()]],
+      password_confirmation: ['', [Validators.required]],
+    },
+    { validator: [MatchPasswordValidator()] } as AbstractControlOptions
+  );
+  setCanonicalURL(url: string) {
+    let link: HTMLLinkElement =
+      document.querySelector("link[rel='canonical']") || null;
 
+    if (link) {
+      link.setAttribute('href', url);
+    } else {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      link.setAttribute('href', url);
+      document.head.appendChild(link);
+    }
+    // Set og:url
+    this.metaService.updateTag({
+      property: 'og:url',
+      content: url,
+    });
+  }
   onSignup() {
     this.signupFormDisabled = true;
     this.authService.register(this.signupForm.value).subscribe({
-      next: res => {
-        if(res.success) {
+      next: (res) => {
+        if (res.success) {
           this.authService.authedUserSubject.next(res.data.user);
-          localStorage.setItem('accessToken', JSON.stringify(res.data.accessToken));
-          localStorage.setItem('tokenExpiresAt', JSON.stringify(res.data.tokenExpiresAt));
+          localStorage.setItem(
+            'accessToken',
+            JSON.stringify(res.data.accessToken)
+          );
+          localStorage.setItem(
+            'tokenExpiresAt',
+            JSON.stringify(res.data.tokenExpiresAt)
+          );
           this.authService.checkRedirectUrl(this.activeRoute);
-        } else if(res.message == 'validation error') {
+        } else if (res.message == 'validation error') {
           for (const control in res.errors) {
-            this.signupForm.get(control).setErrors({ serverError: res.errors[control][0] });
+            this.signupForm
+              .get(control)
+              .setErrors({ serverError: res.errors[control][0] });
           }
         } else {
-          this._snackBar.open(res.message, '✖', {panelClass: 'failure-snackbar'});
+          this._snackBar.open(res.message, '✖', {
+            panelClass: 'failure-snackbar',
+          });
         }
         this.signupFormDisabled = false;
-      }
-    })
+      },
+    });
   }
 
   // Password Strength Indicator
@@ -65,10 +120,10 @@ export class SignupComponent {
     let password = this.signupForm.controls.password.value;
     let tempPasswordStrenth = 0;
 
-    if (/[a-z]+/.test(password)) tempPasswordStrenth++
-    if (/^(?=.*[0-9])(?=.*[A-Z]).+$/.test(password)) tempPasswordStrenth++
-    if (/[!@#$%^&*()_+{}|:"<>?]+/.test(password)) tempPasswordStrenth++
-    if (password.length > 8) tempPasswordStrenth++
+    if (/[a-z]+/.test(password)) tempPasswordStrenth++;
+    if (/^(?=.*[0-9])(?=.*[A-Z]).+$/.test(password)) tempPasswordStrenth++;
+    if (/[!@#$%^&*()_+{}|:"<>?]+/.test(password)) tempPasswordStrenth++;
+    if (password.length > 8) tempPasswordStrenth++;
 
     this.passwordStrenth = tempPasswordStrenth;
   }
