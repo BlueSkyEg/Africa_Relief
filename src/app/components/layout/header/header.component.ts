@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router, RouterModule} from "@angular/router";
 import {LayoutService} from "../../../core/services/layout/layout.service";
 import {ButtonLinkComponent} from "../../../shared/components/button-link/button-link.component";
@@ -10,15 +10,13 @@ import { IconHamburgerComponent } from "../../../shared/icons/hamburger/icon-ham
 import { IconProfileComponent } from "../../../shared/icons/profile/icon-profile.component";
 import { IconSearchComponent } from '../../../shared/icons/search/icon-search.component';
 import { SearchBarComponent } from '../../../shared/components/search-bar/search-bar.component';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-header',
   standalone: true,
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
   imports: [
-    CommonModule,
     RouterModule,
     ButtonLinkComponent,
     MatMenuModule,
@@ -27,6 +25,7 @@ import { CommonModule } from '@angular/common';
     IconSearchComponent,
     SearchBarComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   isUserAuthed: boolean = false;

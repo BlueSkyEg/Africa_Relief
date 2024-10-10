@@ -3,10 +3,10 @@
     <app-breadcrumb baseName="Careers" basePath="/careers" [currentName]="career.title"/>
     <h1 class="text-heading-1">{{ career.title | titlecase }}</h1>
     <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
-      <div class="basis-1/2">
-        <app-accordion [contentList]="career.contents" [summary]="career.excerpt"/>
+      <div>
+        <app-accordion [title]="career.title" [contentList]="career.contents" [summary]="career.excerpt"/>
       </div>
-      <!-- Applydiv Job Form -->
+      <!-- Applydiv Job Form
       <div class="flex flex-col gap-6 flex-1 p-6 bg-white basis-1/2">
         <form class="w-full" (submit)="onSubmitJobApplicationForm()" [formGroup]="careerForm" enctype="multipart/form-data">
           <app-form-field>
@@ -53,7 +53,7 @@
             <app-form-button appearance="outlined" [disabled]="careerForm.invalid || jobApplicationFormDisabled">Apply</app-form-button>
           </div>
         </form>
-      </div>
+      </div> -->
     </div>
   }
   @else () {
@@ -67,7 +67,7 @@
         <div class="bg-gray-light h-24 w-full"></div>
         <div class="bg-gray-light h-24 w-full"></div>
       </div>
-      <div class="flex flex-col gap-6 flex-1 p-6 bg-white basis-1/2">
+      <!-- <div class="flex flex-col gap-6 flex-1 p-6 bg-white basis-1/2">
         <div class="flex flex-col gap-4">
           <div class="bg-gray-light h-4 w-2/6"></div>
           <div class="bg-gray-light h-14 w-full"></div>
@@ -89,7 +89,7 @@
           <div class="bg-gray-light h-14 w-full"></div>
         </div>
         <div class="bg-gray-light h-16 w-1/5"></div>
-      </div>
+      </div> -->
     </div>
   }
 </div>

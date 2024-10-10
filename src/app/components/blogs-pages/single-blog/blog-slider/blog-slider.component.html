@@ -1,7 +1,16 @@
 <div class="relative w-[calc(100vw-52px)] lg:w-full">
-  <swiper-container init="false" class="blog-slider h-full" [init]="false">
+  <swiper-container
+    init="false"
+    class="blog-slider h-full"
+    [init]="false"
+    [lazy]="true"
+    id="blog-slider-id"
+  >
     @for (slide of slides; track slide) { @defer () {
-    <swiper-slide class="w-full h-[332px] lg:h-[480px] bg-gray-light">
+    <swiper-slide
+      class="w-full h-[332px] lg:h-[480px] bg-gray-light"
+      loading="lazy"
+    >
       <img
         width="full"
         height="full"
@@ -29,6 +38,7 @@
       role="button"
       aria-label="Previous slide"
       tabindex="0"
+      aria-controls="blog-slider-id"
     />
 
     <app-icon-arrow-right
@@ -38,6 +48,7 @@
       role="button"
       aria-label="Next slide"
       tabindex="0"
+      aria-controls="blog-slider-id"
     />
   </div>
 </div>

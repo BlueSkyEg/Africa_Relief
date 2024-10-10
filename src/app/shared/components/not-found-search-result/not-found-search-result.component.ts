@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NotFoundIconComponent } from '../../icons/search/not-found-icon-search.component';
 
 @Component({
@@ -6,7 +6,6 @@ import { NotFoundIconComponent } from '../../icons/search/not-found-icon-search.
   standalone: true,
   imports: [NotFoundIconComponent],
   templateUrl: './not-found-search-result.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NotFoundSearchResultComponent {
-
-}
+export class NotFoundSearchResultComponent {}

@@ -4,6 +4,7 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   signal,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
 import { IconArrowLeftComponent } from '../../../shared/icons/arrows/arrow-left/icon-arrow-left.component';
@@ -53,8 +54,10 @@ export class MainSliderComponent implements OnInit {
     setTimeout(() => {
       const swiperElementConstructor: SwiperContainer =
         document.querySelector('.main-slider');
-      const swiperOptions: SwiperOptions = {
+      const swiperOptions: any = {
         loop: true,
+        lazy: true,
+        preloadImages: false,
         autoplay: {
           delay: 3500,
           disableOnInteraction: true,

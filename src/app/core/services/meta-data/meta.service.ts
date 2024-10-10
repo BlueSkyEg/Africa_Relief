@@ -20,7 +20,7 @@ export class MetaService {
         content: metaData.meta_title,
       });
       this._metaService.updateTag({
-        property: 'twitter:title',
+        name: 'twitter:title',
         content: metaData.meta_title,
       });
     }
@@ -30,9 +30,8 @@ export class MetaService {
         name: 'description',
         content: metaData.meta_description,
       });
-      // <meta property="og:description" content="meta_description" />
       this._metaService.updateTag({
-        name: 'og:description',
+        property: 'og:description',
         content: metaData.meta_description,
       });
       this._metaService.updateTag({
@@ -71,12 +70,11 @@ export class MetaService {
       content: `${environment.appUrl}${currentUrl}`,
     });
     //<meta property="og:updated_time" content="updated_at" />
-    if (createdAt) {
-      const updatedTime = new Date(createdAt).toISOString();
+      const updatedTime = new Date(createdAt).toString();
+      this._metaService.removeTag("property='og:updated_time'");
       this._metaService.updateTag({
         property: 'og:updated_time',
         content: updatedTime,
       });
-    }
   }
 }

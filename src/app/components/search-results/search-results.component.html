@@ -1,10 +1,10 @@
 <!-- Blogs Header -->
 <div
   class="relative w-full h-auto py-12 bg-[url('/assets/images/shared/archive-header-bg.webp')] bg-cover bg-no-repeat bg-[center_top] md:bg-[center_-100px] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black after:bg-opacity-60 after:block"
->
+  >
   <div
     class="container flex flex-col lg:flex-row gap-4 text-white relative z-10"
-  >
+    >
     <div class="basis-1/2 flex flex-col gap-2">
       <app-breadcrumb currentName="Search Results" appreance="white" />
       <h1 class="text-heading-1">Search Results</h1>
@@ -20,7 +20,7 @@
       routerLinkActive="bg-primary text-white hover:text-white"
       [routerLinkActiveOptions]="{ exact: true }"
       class="flex cursor-pointer whitespace-nowrap justify-center items-center py-3 px-4 border border-gray-light hover:border-primary hover:text-primary transition-colors ease-in-out"
-    >
+      >
       Projects
     </a>
     <a
@@ -29,67 +29,71 @@
       routerLinkActive="bg-primary text-white hover:text-white"
       [routerLinkActiveOptions]="{ exact: true }"
       class="flex cursor-pointer whitespace-nowrap justify-center items-center py-3 px-4 border border-gray-light hover:border-primary hover:text-primary transition-colors ease-in-out"
-    >
+      >
       Blogs
     </a>
   </div>
 
-  <ng-container *ngIf="isLoading; else content">
+  @if (isLoading) {
     <!-- Loading Skeleton -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div
-        *ngFor="let item of [0, 1, 2, 3, 4, 5]"
-        class="animate-pulse flex flex-col gap-6 bg-white border border-gray-light max-w-[400px] p-4"
-      >
-        <div class="bg-gray-light h-72"></div>
-        <div class="bg-gray-light h-3 w-2/6"></div>
-        <div class="bg-gray-light h-4 w-5/6"></div>
-        <div class="bg-gray-light h-4 w-4/6"></div>
-        <div class="bg-gray-light h-8"></div>
-      </div>
+      @for (item of [0, 1, 2, 3, 4, 5]; track item) {
+        <div
+          class="animate-pulse flex flex-col gap-6 bg-white border border-gray-light max-w-[400px] p-4"
+          >
+          <div class="bg-gray-light h-72"></div>
+          <div class="bg-gray-light h-3 w-2/6"></div>
+          <div class="bg-gray-light h-4 w-5/6"></div>
+          <div class="bg-gray-light h-4 w-4/6"></div>
+          <div class="bg-gray-light h-8"></div>
+        </div>
+      }
     </div>
-  </ng-container>
-
-  <ng-template #content>
-    <ng-container *ngIf="type === 'blogs'; else projectContent">
-      <div *ngIf="blogs?.length > 0; else noResults">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <ng-container *ngFor="let blog of blogs">
-            <app-blog-card [blog]="blog"></app-blog-card>
-          </ng-container>
+  } @else {
+    @if (type === 'blogs') {
+      @if (blogs?.length > 0) {
+        <div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            @for (blog of blogs; track blog) {
+              <app-blog-card [blog]="blog"></app-blog-card>
+            }
+          </div>
         </div>
-      </div>
-    </ng-container>
-
-    <ng-template #projectContent>
-      <div *ngIf="projects?.length > 0; else noResults">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <ng-container *ngFor="let project of projects">
-            <app-project-card [project]="project"></app-project-card>
-          </ng-container>
+      } @else {
+        <app-not-found-search-result />
+      }
+    } @else {
+      @if (projects?.length > 0) {
+        <div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            @for (project of projects; track project) {
+              <app-project-card [project]="project"></app-project-card>
+            }
+          </div>
         </div>
-      </div>
-    </ng-template>
-  </ng-template>
+      } @else {
+        <app-not-found-search-result />
+      }
+    }
+  }
+
 
   <!-- Pagination Controls -->
-  <div
-    class="mt-4 flex justify-center"
-  *ngIf="(type === 'blogs' && blogs?.length > 0) || (type === 'projects' && projects?.length > 0)"  >
-    <ng-container
-      *ngFor="let page of [].constructor(totalPages); let i = index">
-      <button
-        class="px-4 py-2 mx-1 border border-gray-light"
-        (click)="onPageChange(i + 1)"
-        [ngClass]="{ 'bg-primary text-white': currentPage === i + 1 }"
+  @if ((type === 'blogs' && blogs?.length > 0) || (type === 'projects' && projects?.length > 0)) {
+    <div
+      class="mt-4 flex justify-center"
       >
-        {{ i + 1 }}
-      </button>
-    </ng-container>
-  </div>
+      @for (page of [].constructor(totalPages); track page; let i = $index) {
+        <button
+          class="px-4 py-2 mx-1 border border-gray-light"
+          (click)="onPageChange(i + 1)"
+          [ngClass]="{ 'bg-primary text-white': currentPage === i + 1 }"
+          >
+          {{ i + 1 }}
+        </button>
+      }
+    </div>
+  }
 
   <!-- No Results Found -->
-  <ng-template #noResults>
-    <app-not-found-search-result />
-  </ng-template>
 </div>

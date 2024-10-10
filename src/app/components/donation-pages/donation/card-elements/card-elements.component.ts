@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal, ViewChild } from '@angular/core';
 import { LabelComponent } from "../../../../shared/components/form/label/label.component";
 import { FieldComponent } from "../../../../shared/components/form/field/field.component";
 import { IApiResponse } from '../../../../shared/interfaces/api-response-interface';
@@ -14,9 +14,19 @@ import { IBillingDetails } from '../../../../shared/interfaces/payment/billing-d
 @Component({
   selector: 'app-card-elements',
   standalone: true,
-  imports: [LabelComponent, FieldComponent, FormElementDirective, StripeCardNumberComponent, StripeCardCvcComponent, StripeCardExpiryComponent, StripeCardGroupDirective, ErrorComponent],
+  imports: [
+    LabelComponent,
+    FieldComponent,
+    FormElementDirective,
+    StripeCardNumberComponent,
+    StripeCardCvcComponent,
+    StripeCardExpiryComponent,
+    StripeCardGroupDirective,
+    ErrorComponent,
+  ],
   templateUrl: './card-elements.component.html',
-  styles: ``
+  styles: ``,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardElementsComponent {
   @ViewChild(StripeCardNumberComponent) card: StripeCardNumberComponent;
@@ -33,26 +43,29 @@ export class CardElementsComponent {
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSize: '18px',
         '::placeholder': {
-          color: '#CFD7E0'
-        }
-      }
-    }
+          color: '#CFD7E0',
+        },
+      },
+    },
   };
 
   elementsOptions: StripeElementsOptions = {
-    locale: 'en'
+    locale: 'en',
   };
 
   ngOnInit(): void {
     this.paymentService.setupPaymentIntent().subscribe({
-      next: (res: IApiResponse<IStripeIntent>) => this.elementsOptions.clientSecret = res.data.client_secret
+      next: (res: IApiResponse<IStripeIntent>) =>
+        (this.elementsOptions.clientSecret = res.data.client_secret),
     });
   }
 
   // Create Payment Method on Stripe
-  createPaymentMethod(billingDetails: IBillingDetails): Observable<PaymentMethodResult> {
+  createPaymentMethod(
+    billingDetails: IBillingDetails
+  ): Observable<PaymentMethodResult> {
     return this._stripeService.createPaymentMethod({
-      type: "card",
+      type: 'card',
       card: this.card.element,
       billing_details: {
         name: billingDetails.name,
@@ -65,8 +78,8 @@ export class CardElementsComponent {
           line2: billingDetails.addressLine2,
           postal_code: billingDetails.postalCode,
           state: billingDetails.state,
-        }
-      }
+        },
+      },
     });
   }
 
@@ -74,7 +87,10 @@ export class CardElementsComponent {
   cardNumberError = signal<string>(' ');
   cardExpiryError = signal<string>(' ');
   cardCvvError = signal<string>(' ');
-  isCardValid = computed(() => !this.cardNumberError() && !this.cardExpiryError() && !this.cardCvvError());
+  isCardValid = computed(
+    () =>
+      !this.cardNumberError() && !this.cardExpiryError() && !this.cardCvvError()
+  );
 
   onCardNumberChange(e: StripeCardNumberElementChangeEvent) {
     this.cardNumberError.set(e.error ? e.error.message : null);

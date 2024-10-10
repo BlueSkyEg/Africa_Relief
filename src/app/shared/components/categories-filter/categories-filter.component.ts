@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ICategory } from '../../interfaces/category-interface';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -10,6 +10,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
   templateUrl: './categories-filter.component.html',
   styleUrl: './categories-filter.component.scss',
   imports: [RouterModule, CommonModule, NgScrollbarModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoriesFilterComponent {
   @Input() categories: ICategory[];

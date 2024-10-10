@@ -1,4 +1,4 @@
-import {Component, OnInit, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, inject} from '@angular/core';
 import {BlogCardComponent} from "../../../shared/components/blogs/blog-card/blog-card.component";
 import {ButtonLinkComponent} from "../../../shared/components/button-link/button-link.component";
 import {IBlogCard} from "../../../shared/interfaces/blog/blog-card-interface";
@@ -11,7 +11,7 @@ import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interf
   standalone: true,
   imports: [BlogCardComponent, ButtonLinkComponent],
   templateUrl: './latest-blogs.component.html',
-  styles: ``
+  styles: ``,
 })
 export class LatestBlogsComponent implements OnInit {
   blogs: IBlogCard[];
@@ -19,7 +19,8 @@ export class LatestBlogsComponent implements OnInit {
 
   ngOnInit(): void {
     this.blogService.getBlogs(1, 3).subscribe({
-      next: (res: IApiResponse<IPaginatedData<IBlogCard[]>>) => this.blogs = res.data.data
-    })
+      next: (res: IApiResponse<IPaginatedData<IBlogCard[]>>) =>
+        (this.blogs = res.data.data),
+    });
   }
 }

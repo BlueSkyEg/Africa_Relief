@@ -1,16 +1,18 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { CategoriesFilterComponent } from '../../../shared/components/categories-filter/categories-filter.component';
 import { BlogService } from '../../../core/services/blogs/blog.service';
 import { ICategory } from '../../../shared/interfaces/category-interface';
 import { BlogCardComponent } from '../../../shared/components/blogs/blog-card/blog-card.component';
 import { IBlogCard } from '../../../shared/interfaces/blog/blog-card-interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MetaService } from '../../../core/services/meta-data/meta.service';
+import { filter } from 'rxjs';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blogs',
@@ -35,7 +37,8 @@ export class BlogsComponent implements OnInit {
   blogService: BlogService = inject(BlogService);
   breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
   metaService: MetaService = inject(MetaService);
-
+  _metaService: Meta = inject(Meta);
+  router: Router = inject(Router);
   constructor() {
     // Determine pagination perPage number based on screen size
     this.breakpointObserver.observe('(min-width: 800px)').subscribe({
@@ -44,6 +47,15 @@ export class BlogsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setCanonicalURL(window.location.href);
+
+    // Update the canonical URL on route changes
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.setCanonicalURL(window.location.href);
+      });
+
     // Get blog categories
     this.blogService.getBlogCategories().subscribe({
       next: (res: IApiResponse<ICategory[]>) =>
@@ -60,7 +72,23 @@ export class BlogsComponent implements OnInit {
       },
     });
   }
-
+  setCanonicalURL(url: string) {
+    let link: HTMLLinkElement =
+      document.querySelector("link[rel='canonical']") || null;
+    if (link) {
+      link.setAttribute('href', url);
+    } else {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      link.setAttribute('href', url);
+      document.head.appendChild(link);
+    }
+    // Set og:url
+    this._metaService.updateTag({
+      property: 'og:url',
+      content: url,
+    });
+  }
   //get the param from the link and then check if it exists find that single project and if it exists set its metadata
   onGetBlog(currentSlug: string) {
     if (currentSlug) {

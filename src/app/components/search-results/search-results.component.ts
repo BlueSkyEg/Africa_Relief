@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BlogService } from '../../core/services/blogs/blog.service';
@@ -10,7 +10,9 @@ import { NotFoundSearchResultComponent } from '../../shared/components/not-found
 import { ProjectService } from '../../core/services/projects/project.service';
 import { IProjectCard } from '../../shared/interfaces/project/project-card-interface';
 import { ProjectCardComponent } from '../../shared/components/projects/project-card/project-card.component';
-
+import { Meta } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 @Component({
   selector: 'app-search-results',
   standalone: true,
@@ -25,6 +27,7 @@ import { ProjectCardComponent } from '../../shared/components/projects/project-c
     ProjectCardComponent,
   ],
   templateUrl: './search-results.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchResultsComponent implements OnInit {
   blogs: IBlogCard[] = [];
@@ -40,8 +43,18 @@ export class SearchResultsComponent implements OnInit {
     private blogService: BlogService,
     private projectService: ProjectService
   ) {}
-
+  metaService: Meta = inject(Meta);
+  router: Router = inject(Router);
   ngOnInit() {
+    this.setCanonicalURL(window.location.href);
+
+    // Update the canonical URL on route changes
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.setCanonicalURL(window.location.href);
+      });
+
     this.activatedRoute.params.subscribe((params) => {
       this.searchTerm = params['term'] || '';
       this.currentPage = 1;
@@ -54,6 +67,24 @@ export class SearchResultsComponent implements OnInit {
     });
   }
 
+  setCanonicalURL(url: string) {
+    let link: HTMLLinkElement =
+      document.querySelector("link[rel='canonical']") || null;
+
+    if (link) {
+      link.setAttribute('href', url);
+    } else {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      link.setAttribute('href', url);
+      document.head.appendChild(link);
+    }
+    // Set og:url
+    this.metaService.updateTag({
+      property: 'og:url',
+      content: url,
+    });
+  }
   getResults(page: number) {
     this.isLoading = true;
     if (this.type === 'blogs') {
@@ -73,7 +104,6 @@ export class SearchResultsComponent implements OnInit {
     } else if (this.type === 'projects') {
       this.projectService.searchProjects(this.searchTerm, page).subscribe(
         (response) => {
-
           this.projects = response.data.data;
           this.currentPage = response.data.pagination.current_page;
           this.totalPages = response.data.pagination.last_page;

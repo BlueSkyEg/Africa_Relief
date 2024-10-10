@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {Router, RouterModule} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {LayoutService} from "../../../core/services/layout/layout.service";
@@ -8,7 +8,8 @@ import {LayoutService} from "../../../core/services/layout/layout.service";
   standalone: true,
   imports: [RouterModule, CommonModule],
   templateUrl: './side-nav.component.html',
-  styles: ``
+  styles: ``,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideNavComponent {
   openChildMenu: Boolean = false;

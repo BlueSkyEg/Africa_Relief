@@ -1,7 +1,13 @@
 <div class="container">
-  <swiper-container class="board-members-slider" init="false" [init]="false">
+  <swiper-container
+    class="board-members-slider"
+    init="false"
+    [init]="false"
+    [lazy]="true"
+      id="slider-wrapper-id"
+  >
     @for (member of members; track member) {
-    <swiper-slide class="max-w-[294px]">
+    <swiper-slide class="max-w-[294px]" loading="lazy">
       <div class="w-full h-[320px] bg-gray-light">
         <img
           height="full"
@@ -13,8 +19,17 @@
           loading="lazy"
         />
       </div>
+            <div class="flex justify-between items-center align-middle">
+
       <h4 class="text-body-1-inter pt-4 pb-1">{{ member.name }}</h4>
-      <p class="text-body-2 text-gray-dark">{{ member.position }}</p>
+        @if(member.name=='Yousef Abdallah'){<img
+          src="../../../../assets/icons/icon- button.svg"
+          (click)="redirectToTarget()"
+          class="w-10 h-10 cursor-pointer block mt-5"
+        />}
+      </div>
+              <p class="text-body-2 text-gray-dark">{{ member.position }}</p>
+
     </swiper-slide>
     }
   </swiper-container>
@@ -24,19 +39,21 @@
     <app-icon-arrow-left
       appIcon
       appearance="outlined"
-      class="member-slide-prev cursor-pointer"
+      class="board-member-slide-prev cursor-pointer"
       role="button"
       aria-label="Previous slide"
+       aria-controls="slider-wrapper-id"
       tabindex="0"
     />
 
     <app-icon-arrow-right
       appIcon
       appearance="outlined"
-      class="member-slide-next cursor-pointer"
+      class="board-member-slide-next cursor-pointer"
       role="button"
       aria-label="Next slide"
       tabindex="0"
+       aria-controls="slider-wrapper-id"
     />
   </div>
 </div>

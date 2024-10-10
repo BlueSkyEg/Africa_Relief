@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { IconSearchComponent } from '../../icons/search/icon-search.component';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -7,9 +7,10 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [CommonModule, IconSearchComponent, FormsModule],
+  imports: [IconSearchComponent, FormsModule],
   templateUrl: './search-bar.component.html',
   styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchBarComponent {
   searchTerm: string = '';
@@ -22,7 +23,7 @@ export class SearchBarComponent {
     if (event?.key === 'Enter' || !event) {
       if (this.searchTerm.trim()) {
         this._Router.navigate(['/search', this.searchTerm], {
-          queryParams: { type: 'projects'},
+          queryParams: { type: 'projects' },
         });
         this.isNavigated = false;
       }

@@ -1,11 +1,13 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { IconArrowLeftComponent } from '../../../shared/icons/arrows/arrow-left/icon-arrow-left.component';
 import { IconArrowRightComponent } from '../../../shared/icons/arrows/arrow-right/icon-arrow-right.component';
 import { SwiperContainer } from 'swiper/element';
 import { SwiperOptions } from 'swiper/types';
 import { IconDirective } from '../../../shared/directives/icon.directive';
 import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
-
+import { Meta } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 @Component({
   selector: 'app-journey-timeline-slider',
   standalone: true,
@@ -18,8 +20,12 @@ import { ImgPlaceholderDirective } from '../../../shared/directives/img-placehol
     ImgPlaceholderDirective,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JourneyTimeLineSliderComponent implements OnInit {
+  metaService: Meta = inject(Meta);
+  router: Router = inject(Router);
+
   slides = [
     {
       image: {
@@ -70,6 +76,15 @@ export class JourneyTimeLineSliderComponent implements OnInit {
 
   swiperElement = signal<SwiperContainer | null>(null);
   ngOnInit(): void {
+    this.setCanonicalURL(window.location.href);
+
+    // Update the canonical URL on route changes
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.setCanonicalURL(window.location.href);
+      });
+
     const swiperElementConstructor: SwiperContainer = document.querySelector(
       '.journey-timeline-slider'
     );
@@ -84,6 +99,25 @@ export class JourneyTimeLineSliderComponent implements OnInit {
     Object.assign(swiperElementConstructor!, swiperOptions);
     this.swiperElement.set(swiperElementConstructor as SwiperContainer);
     this.swiperElement()?.initialize();
+  }
+
+  setCanonicalURL(url: string) {
+    let link: HTMLLinkElement =
+      document.querySelector("link[rel='canonical']") || null;
+
+    if (link) {
+      link.setAttribute('href', url);
+    } else {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      link.setAttribute('href', url);
+      document.head.appendChild(link);
+    }
+    // Set og:url
+    this.metaService.updateTag({
+      property: 'og:url',
+      content: url,
+    });
   }
   ngOnDestroy(): void {
     this.swiperElement().remove();

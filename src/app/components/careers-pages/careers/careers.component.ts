@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
 import { ICareer } from '../../../shared/interfaces/career/career.interface';
 import { CareerService } from '../../../core/services/careers/career.service';
@@ -9,6 +9,9 @@ import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interf
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
+import { Meta } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-careers',
@@ -22,6 +25,7 @@ import { ImgPlaceholderDirective } from '../../../shared/directives/img-placehol
     ButtonLinkComponent,
     ImgPlaceholderDirective,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CareersComponent implements OnInit {
   careers: ICareer[] = [];
@@ -31,7 +35,8 @@ export class CareersComponent implements OnInit {
   loading: boolean = false;
   careerService: CareerService = inject(CareerService);
   breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
-
+  metaService: Meta = inject(Meta);
+  router: Router = inject(Router);
   constructor() {
     // Determine pagination perPage number based on screen size
     this.breakpointObserver.observe('(min-width: 800px)').subscribe({
@@ -40,9 +45,34 @@ export class CareersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setCanonicalURL(window.location.href);
+
+    // Update the canonical URL on route changes
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.setCanonicalURL(window.location.href);
+      });
     this.onGetCareers();
   }
+  setCanonicalURL(url: string) {
+    let link: HTMLLinkElement =
+      document.querySelector("link[rel='canonical']") || null;
 
+    if (link) {
+      link.setAttribute('href', url);
+    } else {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      link.setAttribute('href', url);
+      document.head.appendChild(link);
+    }
+    // Set og:url
+    this.metaService.updateTag({
+      property: 'og:url',
+      content: url,
+    });
+  }
   onGetCareers() {
     if (!this.isPaginationLastPage && !this.loading) {
       this.loading = true;

@@ -56,7 +56,14 @@
           <h2 class="text-body-1-inter">{{ content.body }}</h2>
           } } @if(content.type=="paragraph"){
           <p class="text-body-2">{{ content.body }}</p>
-
+          } @if (content.type == "list") {
+          <ul class="list-disc pl-5 leading-relaxed">
+            @for (item of content.body; track item) {
+            <li class="text-body-2 text-gray-dark pb-2">
+              <span [innerHTML]="formatItem(item)"></span>
+            </li>
+            }
+          </ul>
           }
         </div>
         }

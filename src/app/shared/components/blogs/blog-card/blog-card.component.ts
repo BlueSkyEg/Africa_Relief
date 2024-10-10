@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {RouterModule} from "@angular/router";
 import {IconArrowRightComponent} from "../../../icons/arrows/arrow-right/icon-arrow-right.component";
 import {IBlogCard} from "../../../../shared/interfaces/blog/blog-card-interface";
@@ -8,9 +8,15 @@ import { ImgPlaceholderDirective } from '../../../directives/img-placeholder.dir
 @Component({
   selector: 'app-blog-card',
   standalone: true,
-  imports: [RouterModule, CommonModule, IconArrowRightComponent, ImgPlaceholderDirective],
+  imports: [
+    RouterModule,
+    CommonModule,
+    IconArrowRightComponent,
+    ImgPlaceholderDirective,
+  ],
   templateUrl: './blog-card.component.html',
-  styles: ``
+  styles: ``,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogCardComponent {
   @Input() blog: IBlogCard;

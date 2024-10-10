@@ -1,4 +1,4 @@
-import { Component, ViewChild, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   MatStepperModule,
@@ -49,6 +49,7 @@ import * as countryCodes from 'country-codes-list';
     ExpressCheckoutElementComponent,
     CardElementsComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DonationComponent {
   @ViewChild(CardElementsComponent) stripeCardElements: CardElementsComponent;
@@ -63,6 +64,8 @@ export class DonationComponent {
   donationAmount: number;
   recurringPeriod: string;
   stepperOrientation: Observable<StepperOrientation>;
+  coverFees: boolean = false;
+  feePercentage: number = 2.9;
 
   router: Router = inject(Router);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
@@ -107,6 +110,7 @@ export class DonationComponent {
 
   checkoutForm = this.fb.group({
     billingComment: ['', [StringValidator(0, 500, true)]],
+    coverFees: [false], // Added control for covering fees
   });
 
   ngOnInit() {
@@ -130,12 +134,17 @@ export class DonationComponent {
     if (this.checkoutForm.invalid || !this.stripeCardElements.isCardValid())
       return;
 
+    // Calculate donation amount, including fees if applicable
+    this.coverFees = this.checkoutForm.get('coverFees')?.value || false;
+    let finalAmount = this.donationAmount;
+
+    if (this.coverFees) {
+      finalAmount = finalAmount * (1 + this.feePercentage / 100);
+    }
     // Set donationStarted key in session storage
-    // to be indicator for donation confirmation and failed pages
-    // if the user visit them directely or redirected during the donation
     sessionStorage.setItem('donationStarted', JSON.stringify(true));
 
-    // make donation proccess
+    // make donation process
     const { name, email, phone } = this.personalDetailsForm.getRawValue();
     const { city, country, addressLine1, addressLine2, postalCode, state } =
       this.billingDetailsForm.getRawValue();
@@ -166,7 +175,10 @@ export class DonationComponent {
           this.pushTagFailedDonationEvent(res.error.message);
           return;
         }
-        this.createPayment(res.paymentMethod.id).subscribe({
+        this.createPayment(
+          res.paymentMethod.id,
+          finalAmount.toString()
+        ).subscribe({
           next: (res: IApiResponse<IStripeIntent>) => {
             if (res?.data?.status === 'succeeded') {
               this.pushTagConfirmDonationEvent();
@@ -188,7 +200,8 @@ export class DonationComponent {
 
   // Handle Payment
   createPayment(
-    stripePaymentMethodId: string
+    stripePaymentMethodId: string,
+    finalAmount: any
   ): Observable<IApiResponse<IStripeIntent>> {
     const { name, email } = this.personalDetailsForm.getRawValue();
     const { billingComment } = this.checkoutForm.getRawValue();
@@ -196,7 +209,7 @@ export class DonationComponent {
     return this.paymentService.createPayment({
       name: name,
       email: email,
-      amount: this.donationAmount,
+      amount: finalAmount, // Send the final amount including fees if applicable
       donationFormId: this.donationFormId,
       stripePaymentMethodId: stripePaymentMethodId,
       recurringPeriod: this.recurringPeriod,
@@ -205,7 +218,6 @@ export class DonationComponent {
       billingComment: billingComment,
     });
   }
-
   // Handle 3D Secure Authentication (OTP)
   handleCardAction(clientSecret: string): void {
     this._stripeService.confirmCardPayment(clientSecret).subscribe({

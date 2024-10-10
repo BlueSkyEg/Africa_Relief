@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
 import {IconDonorAvatarsComponent} from "../../icons/donor-avatars/icon-donor-avatars.component";
 import {ButtonComponent} from "../form/button/button.component";
 import {MatSelectModule} from "@angular/material/select";
@@ -21,6 +21,7 @@ import { Router } from '@angular/router';
   ],
   templateUrl: './donation-card.component.html',
   styles: ``,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DonationCardComponent {
   @Input() donationForm: IDonationForm;
@@ -29,7 +30,6 @@ export class DonationCardComponent {
   recurringPeriod: 'day' | 'week' | 'month' | 'year' = 'month';
 
   router: Router = inject(Router);
-
   onMakeDonation() {
     // check if donation amount is a positive value and greater than 1$
     if (isNaN(this.amount) || this.amount < 1) return;
@@ -52,5 +52,4 @@ export class DonationCardComponent {
       },
     });
   }
-
 }
