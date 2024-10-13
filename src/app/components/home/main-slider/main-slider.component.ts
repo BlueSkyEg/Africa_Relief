@@ -4,18 +4,18 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   signal,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
 import { IconArrowLeftComponent } from '../../../shared/icons/arrows/arrow-left/icon-arrow-left.component';
 import { IconArrowRightComponent } from '../../../shared/icons/arrows/arrow-right/icon-arrow-right.component';
 import { IconDirective } from '../../../shared/directives/icon.directive';
 import { SwiperContainer } from 'swiper/swiper-element';
-import { SwiperOptions } from 'swiper/types';
 import { ICarouselSlide } from '../../../shared/interfaces/carousel-slide.interface';
 import { CarouselService } from '../../../core/services/layout/carousel.service';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { CommonModule } from '@angular/common';
+import {  Autoplay, Navigation } from 'swiper/modules';
+import Swiper from 'swiper';
 
 @Component({
   selector: 'app-main-slider',
@@ -32,12 +32,13 @@ import { CommonModule } from '@angular/common';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MainSliderComponent implements OnInit {
-  slides: ICarouselSlide[];
+  slides: ICarouselSlide[] = [];
   swiperElement = signal<SwiperContainer | null>(null);
 
-  carouselService: CarouselService = inject(CarouselService);
+  private carouselService: CarouselService = inject(CarouselService);
 
   ngOnInit(): void {
+     Swiper.use([Autoplay, Navigation]);
     this.onGetHomeCarousel();
   }
 
@@ -51,10 +52,11 @@ export class MainSliderComponent implements OnInit {
   }
 
   onLoadSwiperSlider(): void {
-    setTimeout(() => {
-      const swiperElementConstructor: SwiperContainer =
-        document.querySelector('.main-slider');
-      const swiperOptions: any = {
+    const swiperElementConstructor: SwiperContainer =
+      document.querySelector('.main-slider');
+
+    if (swiperElementConstructor) {
+      Object.assign(swiperElementConstructor, {
         loop: true,
         lazy: true,
         preloadImages: false,
@@ -64,16 +66,14 @@ export class MainSliderComponent implements OnInit {
         },
         slidesPerView: 1,
         navigation: {
-          enabled: true,
           nextEl: '.main-slider-next',
           prevEl: '.main-slider-prev',
         },
-      };
+      });
 
-      Object.assign(swiperElementConstructor!, swiperOptions);
-      this.swiperElement.set(swiperElementConstructor as SwiperContainer);
-      this.swiperElement()?.initialize();
-    }, 100);
+      this.swiperElement.set(swiperElementConstructor);
+      this.swiperElement().initialize();
+    }
   }
 
   ngOnDestroy(): void {

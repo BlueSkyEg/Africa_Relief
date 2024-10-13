@@ -20,7 +20,9 @@ import {
 } from '@angular/router';
 import { filter } from 'rxjs';
 import { SwiperContainer } from 'swiper/element';
-import { SwiperOptions } from 'swiper/types';
+import { SwiperOptions} from 'swiper/types';
+import { Autoplay, Navigation } from 'swiper/modules';
+import Swiper from 'swiper';
 @Component({
   selector: 'app-board-members-slider',
   standalone: true,
@@ -145,7 +147,7 @@ export class BoardMembersSliderComponent implements OnInit {
       .subscribe(() => {
         this.setCanonicalURL(window.location.href);
       });
-
+     Swiper.use([Autoplay, Navigation]);
     const swiperElementConstructor: SwiperContainer = document.querySelector(
       '.board-members-slider'
     );

@@ -1,13 +1,14 @@
-import {ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal} from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal} from '@angular/core';
 import {IconArrowLeftComponent} from "../../../shared/icons/arrows/arrow-left/icon-arrow-left.component";
 import {IconArrowRightComponent} from "../../../shared/icons/arrows/arrow-right/icon-arrow-right.component";
 import {SwiperContainer} from "swiper/swiper-element";
-import {SwiperOptions} from "swiper/types";
+import { SwiperOptions } from 'swiper/types';
 import { CarouselService } from '../../../core/services/layout/carousel.service';
 import { ICarouselSlide } from '../../../shared/interfaces/carousel-slide.interface';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
-
+import { Autoplay, Navigation } from 'swiper/modules';
+import Swiper from 'swiper';
 @Component({
   selector: 'app-partners-slider',
   standalone: true,
@@ -27,6 +28,7 @@ export class PartnersSliderComponent implements OnInit {
   carsoulService: CarouselService = inject(CarouselService);
 
   ngOnInit(): void {
+     Swiper.use([Autoplay, Navigation]);
     this.onGetPartnersSlider();
   }
 

@@ -2,12 +2,14 @@ import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, Component, OnInit, inj
 import { IconArrowLeftComponent } from '../../../shared/icons/arrows/arrow-left/icon-arrow-left.component';
 import { IconArrowRightComponent } from '../../../shared/icons/arrows/arrow-right/icon-arrow-right.component';
 import { SwiperContainer } from 'swiper/element';
-import { SwiperOptions } from 'swiper/types';
+import {  SwiperOptions } from 'swiper/types';
 import { IconDirective } from '../../../shared/directives/icon.directive';
 import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
 import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { Autoplay, Navigation } from 'swiper/modules';
+import Swiper from 'swiper';
 @Component({
   selector: 'app-journey-timeline-slider',
   standalone: true,
@@ -84,7 +86,7 @@ export class JourneyTimeLineSliderComponent implements OnInit {
       .subscribe(() => {
         this.setCanonicalURL(window.location.href);
       });
-
+     Swiper.use([Autoplay, Navigation]);
     const swiperElementConstructor: SwiperContainer = document.querySelector(
       '.journey-timeline-slider'
     );
