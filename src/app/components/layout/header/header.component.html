@@ -2,115 +2,114 @@
   <nav class="bg-white">
     <div
       class="container flex justify-between xl:justify-normal items-center gap-8 py-4"
-      >
+    >
       <a routerLink="/home">
         <img
           class="w-14 aspect-square"
           src="assets/images/logo.webp"
           alt="Africa Relief Logo"
           loading="lazy"
-          />
+        />
+      </a>
+      <ul class="flex-1 hidden xl:flex gap-3">
+        <li (click)="closeSearchBar()">
+          <a
+            class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
+            routerLink="/home"
+            routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
+        </li>
+        <li (click)="closeSearchBar()">
+          <a
+            class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
+            routerLink="/projects"
+            routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Our Projects</a
+          >
+        </li>
+        <li (click)="closeSearchBar()">
+          <a
+            class="flex justify-center text-danger items-center py-2 px-3 transition-colors hover:text-white hover:bg-danger"
+            routerLink="/emergency"
+            routerLinkActive="text-white bg-danger"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Emergency Campaigns</a
+          >
+        </li>
+        <li (click)="closeSearchBar()">
+          <a
+            class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
+            routerLink="/get-involved"
+            routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Get Involved</a
+          >
+        </li>
+        <li (click)="closeSearchBar()">
+          <a
+            class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
+            routerLink="/blogs"
+            routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Blog</a
+          >
+        </li>
+
+        <li (click)="closeSearchBar()">
+          <a
+            class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
+            routerLink="/about"
+            routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >About Us</a
+          >
+        </li>
+
+        <li (click)="closeSearchBar()">
+          <a
+            class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
+            routerLink="/careers"
+            routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Careers</a
+          >
+        </li>
+      </ul>
+      <div class="flex gap-4 justify-center items-center relative">
+        <app-icon-search (click)="toggleSearchBar()" />
+        @if (isSearchBarVisible) {
+        <app-search-bar class="absolute top-[4.5rem] z-30 -start-56" />
+        }
+        <a
+          class="hidden xl:block text-white bg-primary py-2 px-3"
+          routerLink="/projects"
+          >Donate Now</a
+        >
+        @if (!isUserAuthed) {
+        <a class="flex items-center" routerLink="/login" aria-label="profile">
+          <app-icon-profile />
         </a>
-        <ul class="flex-1 hidden xl:flex gap-3">
-          <li (click)="closeSearchBar()">
-            <a
-              class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
-              routerLink="/home"
-              routerLinkActive="text-white bg-primary"
-              [routerLinkActiveOptions]="{ exact: true }"
-              >Home</a
-              >
-            </li>
-            <li (click)="closeSearchBar()">
-              <a
-                class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
-                routerLink="/projects"
-                routerLinkActive="text-white bg-primary"
-                [routerLinkActiveOptions]="{ exact: true }"
-                >Our Projects</a
-                >
-              </li>
-              <li (click)="closeSearchBar()">
-                <a
-                  class="flex justify-center text-danger items-center py-2 px-3 transition-colors hover:text-white hover:bg-danger"
-                  routerLink="/emergency"
-                  routerLinkActive="text-white bg-danger"
-                  [routerLinkActiveOptions]="{ exact: true }"
-                  >Emergency Campaigns</a
-                  >
-                </li>
-                <li (click)="closeSearchBar()">
-                  <a
-                    class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
-                    routerLink="/get-involved"
-                    routerLinkActive="text-white bg-primary"
-                    [routerLinkActiveOptions]="{ exact: true }"
-                    >Get Involved</a
-                    >
-                  </li>
-                  <li (click)="closeSearchBar()">
-                    <a
-                      class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
-                      routerLink="/blogs"
-                      routerLinkActive="text-white bg-primary"
-                      [routerLinkActiveOptions]="{ exact: true }"
-                      >Blog</a
-                      >
-                    </li>
-
-                    <li (click)="closeSearchBar()">
-                      <a
-                        class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
-                        routerLink="/about"
-                        routerLinkActive="text-white bg-primary"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        >About Us</a
-                        >
-                      </li>
-
-                      <li (click)="closeSearchBar()">
-                        <a
-                          class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
-                          routerLink="/careers"
-                          routerLinkActive="text-white bg-primary"
-                          [routerLinkActiveOptions]="{ exact: true }"
-                          >Careers</a
-                          >
-                        </li>
-                      </ul>
-                      <div class="flex gap-4 justify-center items-center relative">
-                        <app-icon-search (click)="toggleSearchBar()" />
-                        @if (isSearchBarVisible) {
-                          <app-search-bar
-                            class="absolute top-[4.5rem] z-30 -start-56"
-                            />
-                        }
-                        <a
-                          class="hidden xl:block text-white bg-primary py-2 px-3"
-                          routerLink="/projects"
-                          >Donate Now</a
-                          >
-                          @if (!isUserAuthed) {
-                            <a class="flex items-center" routerLink="/login" aria-label="profile">
-                              <app-icon-profile />
-                            </a>
-                          } @else {
-                            <button class="flex items-center" [matMenuTriggerFor]="menu">
-                              <app-icon-profile />
-                            </button>
-                            <mat-menu #menu="matMenu">
-                              <a routerLink="/profile" mat-menu-item>Account</a>
-                              <a routerLink="/profile/donations" mat-menu-item>Donations</a>
-                              <button mat-menu-item (click)="onLogout()">Logout</button>
-                            </mat-menu>
-                          }
-                          <button
-                            class="flex xl:hidden justify-center items-center w-12 rounded-full bg-white"  aria-label="side-nav"
-                            (click)="openSideNav()"
-                            >
-                            <app-icon-hamburger />
-                          </button>
-                        </div>
-                      </div>
-                    </nav>
-                  </header>
+        } @else {
+        <button class="flex items-center" [matMenuTriggerFor]="menu">
+          <app-icon-profile />
+        </button>
+        <mat-menu #menu="matMenu">
+          <a routerLink="/profile" mat-menu-item>Account</a>
+          <a routerLink="/profile/donations" mat-menu-item>Donations</a>
+          <button mat-menu-item (click)="onLogout()">Logout</button>
+        </mat-menu>
+        }
+        <button
+          class="flex xl:hidden justify-center items-center w-12 rounded-full bg-white"
+          aria-label="side-nav"
+          (click)="openSideNav()"
+        >
+          <app-icon-hamburger />
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>

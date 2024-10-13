@@ -14,7 +14,7 @@ import { ICarouselSlide } from '../../../shared/interfaces/carousel-slide.interf
 import { CarouselService } from '../../../core/services/layout/carousel.service';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { CommonModule } from '@angular/common';
-import {  Autoplay, Navigation } from 'swiper/modules';
+import { Autoplay, Navigation } from 'swiper/modules';
 import Swiper from 'swiper';
 
 @Component({
@@ -36,12 +36,24 @@ export class MainSliderComponent implements OnInit {
   swiperElement = signal<SwiperContainer | null>(null);
 
   private carouselService: CarouselService = inject(CarouselService);
-
+  private observer: IntersectionObserver | null = null;
   ngOnInit(): void {
-     Swiper.use([Autoplay, Navigation]);
+    Swiper.use([Autoplay, Navigation]);
     this.onGetHomeCarousel();
+    this.initIntersectionObserver();
   }
-
+  private initIntersectionObserver(): void {
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const slide = entry.target as HTMLElement;
+          const imgSrc = slide.getAttribute('data-bg'); // Get the image URL from data attribute
+          slide.style.backgroundImage = `url(${imgSrc})`; // Set the background image
+          this.observer?.unobserve(slide); // Stop observing this slide
+        }
+      });
+    });
+  }
   onGetHomeCarousel(): void {
     this.carouselService.getHomeCarousel().subscribe({
       next: (res: IApiResponse<ICarouselSlide[]>) => {
@@ -62,7 +74,7 @@ export class MainSliderComponent implements OnInit {
         preloadImages: false,
         autoplay: {
           delay: 3500,
-          disableOnInteraction: true,
+          disableOnInteraction: false,
         },
         slidesPerView: 1,
         navigation: {
@@ -73,10 +85,16 @@ export class MainSliderComponent implements OnInit {
 
       this.swiperElement.set(swiperElementConstructor);
       this.swiperElement().initialize();
+      // Observe each slide for lazy loading
+      const slides = document.querySelectorAll('.swiper-slide');
+      slides.forEach((slide) => {
+        this.observer?.observe(slide);
+      });
     }
   }
 
   ngOnDestroy(): void {
     this.swiperElement().remove();
+    this.observer?.disconnect(); // Clean up the observer
   }
 }
