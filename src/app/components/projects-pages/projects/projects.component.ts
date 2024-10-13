@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CategoriesFilterComponent } from '../../../shared/components/categories-filter/categories-filter.component';
 import { ProjectService } from '../../../core/services/projects/project.service';
 import { ICategory } from '../../../shared/interfaces/category-interface';
@@ -27,7 +27,6 @@ import { filter } from 'rxjs';
     BreadcrumbComponent,
     ButtonLinkComponent,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsComponent implements OnInit {
   projectCategories: ICategory[];

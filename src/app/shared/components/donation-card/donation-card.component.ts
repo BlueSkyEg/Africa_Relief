@@ -1,27 +1,26 @@
-import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
+import {Component, Input, inject } from '@angular/core';
 import {IconDonorAvatarsComponent} from "../../icons/donor-avatars/icon-donor-avatars.component";
 import {ButtonComponent} from "../form/button/button.component";
-import {MatSelectModule} from "@angular/material/select";
+import {MatSelect,MatOption} from "@angular/material/select";
 import {FormsModule} from "@angular/forms";
-import {MatCheckbox} from "@angular/material/checkbox";
 import { CommonModule } from '@angular/common';
 import { IDonationForm } from '../../interfaces/donation/donation-form.interface';
 import { Router } from '@angular/router';
-
+import { MatCheckbox } from '@angular/material/checkbox';
 @Component({
   selector: 'app-donation-card',
   standalone: true,
   imports: [
-    CommonModule,
+  CommonModule,
     IconDonorAvatarsComponent,
     ButtonComponent,
-    MatSelectModule,
+    MatSelect,
+    MatOption,
     FormsModule,
-    MatCheckbox,
+    MatCheckbox
   ],
   templateUrl: './donation-card.component.html',
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DonationCardComponent {
   @Input() donationForm: IDonationForm;

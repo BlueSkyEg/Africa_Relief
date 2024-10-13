@@ -1,5 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {animate, style, transition, trigger} from "@angular/animations";
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-form-error',
@@ -7,16 +6,6 @@ import {animate, style, transition, trigger} from "@angular/animations";
   imports: [],
   templateUrl: './error.component.html',
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    trigger('errorAnimation', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('100ms', style({ opacity: 1 })),
-      ]),
-      transition(':leave', [animate('100ms', style({ opacity: 0 }))]),
-    ]),
-  ],
 })
 export class ErrorComponent {
   @Input() hasError: boolean = true;

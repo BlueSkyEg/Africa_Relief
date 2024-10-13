@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewChild, inject } from '@angular/core';
+import {Component, ViewChild, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   MatStepperModule,
@@ -49,7 +49,6 @@ import * as countryCodes from 'country-codes-list';
     ExpressCheckoutElementComponent,
     CardElementsComponent,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DonationComponent {
   @ViewChild(CardElementsComponent) stripeCardElements: CardElementsComponent;

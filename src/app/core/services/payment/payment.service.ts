@@ -16,11 +16,11 @@ export class PaymentService {
     return this.http.get<IApiResponse<IStripeIntent>>(environment.apiUrl + '/payment/setup-intent');
   }
 
-  createPayment(data): Observable<IApiResponse<IStripeIntent>> {
+  createPayment(data:any): Observable<IApiResponse<IStripeIntent>> {
     return this.http.post<IApiResponse<IStripeIntent>>(environment.apiUrl + '/payment', data);
   }
 
-  createExpressCheckoutPayment(data): Observable<IApiResponse<IStripeIntent>> {
+  createExpressCheckoutPayment(data:any): Observable<IApiResponse<IStripeIntent>> {
     return this.http.post<IApiResponse<IStripeIntent>>(environment.apiUrl + '/payment/express-checkout', data);
   }
 }

@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   Input,
@@ -27,7 +26,6 @@ import Swiper from 'swiper';
   templateUrl: './blog-slider.component.html',
   styles: ``,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogSliderComponent implements OnInit {
   @Input() slides: IImage[];

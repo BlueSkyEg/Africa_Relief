@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal, ViewChild } from '@angular/core';
+import {  Component, computed, inject, signal, ViewChild } from '@angular/core';
 import { LabelComponent } from "../../../../shared/components/form/label/label.component";
 import { FieldComponent } from "../../../../shared/components/form/field/field.component";
 import { IApiResponse } from '../../../../shared/interfaces/api-response-interface';
@@ -26,7 +26,6 @@ import { IBillingDetails } from '../../../../shared/interfaces/payment/billing-d
   ],
   templateUrl: './card-elements.component.html',
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardElementsComponent {
   @ViewChild(StripeCardNumberComponent) card: StripeCardNumberComponent;
@@ -52,11 +51,17 @@ export class CardElementsComponent {
   elementsOptions: StripeElementsOptions = {
     locale: 'en',
   };
+  isLoading = true;
 
   ngOnInit(): void {
     this.paymentService.setupPaymentIntent().subscribe({
-      next: (res: IApiResponse<IStripeIntent>) =>
-        (this.elementsOptions.clientSecret = res.data.client_secret),
+      next: (res: IApiResponse<IStripeIntent>) => {
+        this.elementsOptions.clientSecret = res.data.client_secret;
+        this.isLoading = false;
+      },
+      error: () => {
+        this.isLoading = false; 
+      },
     });
   }
 

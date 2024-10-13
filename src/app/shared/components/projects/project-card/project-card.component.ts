@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {  Component, Input } from '@angular/core';
 import { ButtonLinkComponent } from "../../button-link/button-link.component";
 import { IProjectCard } from '../../../interfaces/project/project-card-interface';
 import { RouterModule } from '@angular/router';
@@ -16,7 +16,6 @@ import { ImgPlaceholderDirective } from '../../../directives/img-placeholder.dir
     ButtonLinkComponent,
     ImgPlaceholderDirective,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectCardComponent {
   @Input() project: IProjectCard;

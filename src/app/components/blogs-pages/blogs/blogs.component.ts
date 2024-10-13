@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CategoriesFilterComponent } from '../../../shared/components/categories-filter/categories-filter.component';
 import { BlogService } from '../../../core/services/blogs/blog.service';
 import { ICategory } from '../../../shared/interfaces/category-interface';

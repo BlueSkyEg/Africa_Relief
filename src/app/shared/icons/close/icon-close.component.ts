@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 @Component({
   selector: 'app-icon-close',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgClass],
   template: `
     <svg
       class="cursor-pointer"

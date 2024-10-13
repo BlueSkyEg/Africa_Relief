@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   OnInit,
@@ -39,7 +38,6 @@ import Swiper from 'swiper';
   templateUrl: './project-categories-slider.component.html',
   styles: ``,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectCategoriesSliderComponent implements OnInit {
   swiperElement = signal<SwiperContainer | null>(null);
