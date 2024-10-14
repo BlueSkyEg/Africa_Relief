@@ -1,10 +1,10 @@
+import { NgClass } from '@angular/common';
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-icon-arrow-right',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgClass],
   template: `
     <svg
       xmlns="http://www.w3.org/2000/svg"

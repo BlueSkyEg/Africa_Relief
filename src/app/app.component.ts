@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component,ChangeDetectionStrategy, OnInit, inject} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, inject} from '@angular/core';
 import {NavigationEnd, Router, RouterModule} from '@angular/router';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {CommonModule} from "@angular/common";
@@ -27,7 +27,6 @@ import { GoogleTagManagerService } from 'angular-google-tag-manager';
   ],
   templateUrl: './app.component.html',
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   opened: boolean = false;

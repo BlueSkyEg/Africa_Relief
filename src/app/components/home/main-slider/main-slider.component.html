@@ -12,6 +12,7 @@
       class="flex items-end text-white min-w-full h-[776px] max-h-screen py-24 bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black after:bg-opacity-60 after:block"
       [style.background-image]="'url(' + slide.image.src + ')'"
       [style.background-color]="'#ccc'"
+      [attr.data-bg]="slide.image.src"
       loading="lazy"
     >
       <div class="container z-10">
@@ -88,8 +89,8 @@
         class="main-slider-next cursor-pointer"
         aria-label="Next slide"
         tabindex="0"
-                aria-controls="main-slider-id"
-role="button"
+        aria-controls="main-slider-id"
+        role="button"
       />
     </div>
   </div>

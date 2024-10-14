@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import { Component, Input} from '@angular/core';
 import {animate, style, transition, trigger} from "@angular/animations";
 import {ReactiveFormsModule} from "@angular/forms";
-import {CommonModule} from "@angular/common";
+import { NgClass} from "@angular/common";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {IconCloseComponent} from "../../icons/close/icon-close.component";
 
@@ -11,12 +11,11 @@ import {IconCloseComponent} from "../../icons/close/icon-close.component";
   imports: [
     ReactiveFormsModule,
     MatAutocompleteModule,
-    CommonModule,
     IconCloseComponent,
+    NgClass
   ],
   templateUrl: './modal.component.html',
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('overlayAnimation', [
       transition(':enter', [

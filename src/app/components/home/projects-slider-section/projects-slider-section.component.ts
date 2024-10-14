@@ -1,11 +1,18 @@
-import {ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal} from '@angular/core';
-import {IconArrowLeftComponent} from "../../../shared/icons/arrows/arrow-left/icon-arrow-left.component";
-import {IconArrowRightComponent} from "../../../shared/icons/arrows/arrow-right/icon-arrow-right.component";
-import {ButtonLinkComponent} from "../../../shared/components/button-link/button-link.component";
-import {IconDirective} from "../../../shared/directives/icon.directive";
-import {RouterModule} from "@angular/router";
-import {SwiperContainer} from "swiper/swiper-element";
-import {SwiperOptions} from "swiper/types";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
+import { IconArrowLeftComponent } from '../../../shared/icons/arrows/arrow-left/icon-arrow-left.component';
+import { IconArrowRightComponent } from '../../../shared/icons/arrows/arrow-right/icon-arrow-right.component';
+import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
+import { IconDirective } from '../../../shared/directives/icon.directive';
+import { RouterModule } from '@angular/router';
+import { SwiperContainer } from 'swiper/swiper-element';
+import { SwiperOptions } from 'swiper/types';
 import { ProjectService } from '../../../core/services/projects/project.service';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
@@ -16,6 +23,8 @@ import { ImgPlaceholderDirective } from '../../../shared/directives/img-placehol
 import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { Autoplay, Navigation } from 'swiper/modules';
+import Swiper from 'swiper';
 @Component({
   selector: 'app-projects-slider-section',
   standalone: true,
@@ -50,6 +59,7 @@ export class ProjectsSliderSectionComponent implements OnInit {
       .subscribe(() => {
         this.setCanonicalURL(window.location.href);
       });
+    Swiper.use([Autoplay, Navigation]);
     this.onGetProjects();
   }
   setCanonicalURL(url: string) {
@@ -115,4 +125,3 @@ export class ProjectsSliderSectionComponent implements OnInit {
     this.swiperElement().remove();
   }
 }
-

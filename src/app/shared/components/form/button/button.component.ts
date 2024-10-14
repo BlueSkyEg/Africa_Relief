@@ -1,15 +1,15 @@
 import {Component, Input} from '@angular/core';
-import {CommonModule} from "@angular/common";
+import {NgClass, NgStyle} from "@angular/common";
 
 @Component({
   selector: 'app-form-button',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgClass,NgStyle],
   templateUrl: './button.component.html',
-  styleUrl: './button.component.scss'
+  styleUrl: './button.component.scss',
 })
 export class ButtonComponent {
-  @Input() appearance: 'filled'|'outlined';
+  @Input() appearance: 'filled' | 'outlined';
   @Input() disabled: boolean = false;
   @Input() fullWidth: boolean = false;
 }

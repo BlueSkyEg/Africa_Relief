@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {MainSliderComponent} from "./main-slider/main-slider.component";
 import {ProjectCategoriesSliderComponent} from "../../shared/components/projects/project-categories-slider/project-categories-slider.component";
 import {ProjectsSliderSectionComponent} from "./projects-slider-section/projects-slider-section.component";
@@ -12,7 +12,6 @@ import { IconZelleComponent } from "../../shared/icons/payment-gateways/zelle/ic
 import { IDonationForm } from '../../shared/interfaces/donation/donation-form.interface';
 import { IconEnvelopeComponent } from "../../shared/icons/envelope/icon-envelope.component";
 import { IconPinComponent } from "../../shared/icons/pin/icon-pin.component";
-import { animate, style, transition, trigger } from '@angular/animations';
 import { IconCloseComponent } from "../../shared/icons/close/icon-close.component";
 import { DonationFormService } from '../../core/services/donation/donation-form.service';
 import { IApiResponse } from '../../shared/interfaces/api-response-interface';
@@ -24,7 +23,7 @@ import { IconVideoPlayComponent } from '../../shared/icons/video-play/icon-video
 import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-
+import { animate, style, transition, trigger } from '@angular/animations';
 @Component({
   selector: 'app-home',
   standalone: true,
