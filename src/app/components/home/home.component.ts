@@ -23,12 +23,21 @@ import { IconVideoPlayComponent } from '../../shared/icons/video-play/icon-video
 import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-
+import { animate, style, transition, trigger } from '@angular/animations';
 @Component({
   selector: 'app-home',
   standalone: true,
   templateUrl: './home.component.html',
   styles: ``,
+  animations: [
+    trigger('overlayAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('100ms', style({ opacity: 0.75 })),
+      ]),
+      transition(':leave', [animate('100ms', style({ opacity: 0 }))]),
+    ]),
+  ],
   imports: [
     MainSliderComponent,
     ProjectCategoriesSliderComponent,

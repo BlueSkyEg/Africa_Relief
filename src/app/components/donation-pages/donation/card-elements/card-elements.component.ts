@@ -60,7 +60,7 @@ export class CardElementsComponent {
         this.isLoading = false;
       },
       error: () => {
-        this.isLoading = false; 
+        this.isLoading = false;
       },
     });
   }

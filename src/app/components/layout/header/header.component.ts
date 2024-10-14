@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  HostListener,
+} from '@angular/core';
 import { Router, RouterModule} from "@angular/router";
 import {LayoutService} from "../../../core/services/layout/layout.service";
 import {ButtonLinkComponent} from "../../../shared/components/button-link/button-link.component";
@@ -10,6 +15,7 @@ import { IconHamburgerComponent } from "../../../shared/icons/hamburger/icon-ham
 import { IconProfileComponent } from "../../../shared/icons/profile/icon-profile.component";
 import { IconSearchComponent } from '../../../shared/icons/search/icon-search.component';
 import { SearchBarComponent } from '../../../shared/components/search-bar/search-bar.component';
+import { NgClass } from '@angular/common';
 
 
 @Component({
@@ -25,6 +31,7 @@ import { SearchBarComponent } from '../../../shared/components/search-bar/search
     SearchBarComponent,
     MatMenu,
     MatMenuTrigger,
+    NgClass,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -32,7 +39,7 @@ export class HeaderComponent {
   isUserAuthed: boolean = false;
   // Boolean flag to control the visibility of the search bar
   isSearchBarVisible = false;
-
+  isAboutMenuVisible = false;
   router: Router = inject(Router);
   layoutService: LayoutService = inject(LayoutService);
   authService: AuthService = inject(AuthService);
@@ -54,7 +61,27 @@ export class HeaderComponent {
   openSideNav(): void {
     this.layoutService.sideNavSubject.next(true);
   }
+  toggleAboutMenu() {
+    this.isAboutMenuVisible = !this.isAboutMenuVisible;
+  }
+  closeAboutMenu() {
+    this.isAboutMenuVisible = false;
+  }
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const menuButton = document.querySelector('.relative button');
+    const menu = document.querySelector('.relative ul');
 
+    if (
+      menuButton &&
+      !menuButton.contains(target) &&
+      menu &&
+      !menu.contains(target)
+    ) {
+      this.closeAboutMenu();
+    }
+  }
   onLogout() {
     this.authService.logout().subscribe({
       next: (res: IApiResponse<null>) => {

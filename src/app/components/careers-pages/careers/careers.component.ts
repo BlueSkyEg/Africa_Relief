@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import {  Component, OnInit, inject } from '@angular/core';
 import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
 import { ICareer } from '../../../shared/interfaces/career/career.interface';
 import { CareerService } from '../../../core/services/careers/career.service';
@@ -25,7 +25,6 @@ import { filter } from 'rxjs';
     ButtonLinkComponent,
     ImgPlaceholderDirective,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CareersComponent implements OnInit {
   careers: ICareer[] = [];
