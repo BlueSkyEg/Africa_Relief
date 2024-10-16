@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { GuestGuard } from './core/Guards/guest.guard';
 import { AuthGuard } from './core/Guards/auth.guard';
 import { YoussefAbdallahComponent } from './components/about/youssef-abdallah/youssef-abdallah.component';
+import { StockDonationsComponent } from './components/get-involved/stock-donations/stock-donations.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -83,6 +84,11 @@ export const routes: Routes = [
         (m) => m.GetInvolvedComponent
       ),
   },
+  {
+    path: 'get-involved/stock-donations',
+    component: StockDonationsComponent,
+  },
+
   {
     path: 'contact',
     title: 'Contact Us',

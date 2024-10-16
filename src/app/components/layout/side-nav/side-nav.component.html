@@ -150,16 +150,60 @@
     </li>
 
     <li class="border-top border-gray-light">
-      <button
-        (click)="onRouterNavigate('/get-involved')"
-        class="flex p-4 w-full"
-        routerLink="/get-involved"
-        routerLinkActive="text-white bg-primary"
-        [routerLinkActiveOptions]="{ exact: true }"
+      <div class="flex justify-between items-center">
+        <button
+          class="flex p-4 flex-1"
+          (click)="openGetInvolvedMenu = !openGetInvolvedMenu"
+        >
+          Get Involved
+        </button>
+        <span
+          class="p-[16px]"
+          (click)="openGetInvolvedMenu = !openGetInvolvedMenu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="9"
+            viewBox="0 0 12 9"
+            fill="none"
+          >
+            <path
+              d="M6 8.37498L0 2.37498L1.4 0.974976L6 5.57498L10.6 0.974976L12 2.37498L6 8.37498Z"
+              fill="#403F3E"
+            />
+          </svg>
+        </span>
+      </div>
+      <ul
+        class="h-auto max-h-0 overflow-hidden transition-all"
+        [ngClass]="{ 'max-h-[400px]': openGetInvolvedMenu }"
       >
-        Get Involved
-      </button>
+        <li class="border-top border-gray-light">
+          <button
+            (click)="onRouterNavigate('/get-involved')"
+            class="flex p-4 ms-6 w-full"
+            routerLink="/get-involved"
+            routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Volunteer
+          </button>
+        </li>
+        <li class="border-top border-gray-light">
+          <button
+            (click)="onRouterNavigate('/get-involved/stock-donations')"
+            class="flex p-4 ms-6 w-full"
+            routerLink="/get-involved/stock-donations"
+            routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Stock Donations
+          </button>
+        </li>
+      </ul>
     </li>
+
     <li class="border-top border-gray-light">
       <button
         (click)="onRouterNavigate('/blogs')"

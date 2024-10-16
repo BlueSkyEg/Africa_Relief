@@ -39,14 +39,59 @@
             >Emergency Campaigns</a
           >
         </li>
-        <li (click)="closeSearchBar()">
-          <a
-            class="flex justify-center items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary"
-            routerLink="/get-involved"
-            routerLinkActive="text-white bg-primary"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >Get Involved</a
+        <li class="relative">
+          <button
+            class="flex items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary group get-involved-button"
+            aria-haspopup="true"
+            (click)="togglegGetInvolvedMenu()"
           >
+            Get Involved
+            <span
+              class="ml-2 transition-transform group-hover:fill-white"
+              [ngClass]="{ 'rotate-180': isGetInvolvedMenuVisible }"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="9"
+                viewBox="0 0 12 9"
+                class="transition-colors text-black group-hover:text-white"
+              >
+                <path
+                  d="M6 8.37498L0 2.37498L1.4 0.974976L6 5.57498L10.6 0.974976L12 2.37498L6 8.37498Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </button>
+
+          <ul
+            class="absolute left-0 bg-white shadow-lg transition-all max-h-0 overflow-hidden z-30 get-involved-menu"
+            [ngClass]="{ 'max-h-96': isGetInvolvedMenuVisible }"
+          >
+            <li>
+              <a
+                class="flex  items-center py-2 px-3 transition-colors hover:text-primary"
+                routerLink="/get-involved"
+                routerLinkActive="text-primary"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="closeGetInvolvedMenu()"
+              >
+                Volunteer
+              </a>
+            </li>
+            <li>
+              <a
+                class="flex  items-center py-2 px-3 transition-colors hover:text-primary"
+                routerLink="/get-involved/stock-donations"
+                routerLinkActive="text-primary"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="closeGetInvolvedMenu()"
+              >
+                Stock Donations
+              </a>
+            </li>
+          </ul>
         </li>
         <li (click)="closeSearchBar()">
           <a
@@ -59,7 +104,7 @@
         </li>
         <li class="relative ">
           <button
-            class="flex items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary group"
+            class="flex items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary group about-us-button"
             aria-haspopup="true"
             (click)="toggleAboutMenu()"
           >
@@ -84,7 +129,7 @@
           </button>
 
           <ul
-            class="absolute left-0 bg-white shadow-lg transition-all max-h-0 overflow-hidden z-30"
+            class="absolute left-0 bg-white shadow-lg transition-all max-h-0 overflow-hidden z-30 about-us-menu"
             [ngClass]="{ 'max-h-96': isAboutMenuVisible }"
           >
             <li>
