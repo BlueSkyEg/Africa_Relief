@@ -13,7 +13,7 @@ import { LayoutService } from '../../../core/services/layout/layout.service';
 export class SideNavComponent {
   openChildMenu: boolean = false;
   openAboutMenu: boolean = false;
-
+  openGetInvolvedMenu:boolean=false;
   router: Router = inject(Router);
   layoutService: LayoutService = inject(LayoutService);
 
