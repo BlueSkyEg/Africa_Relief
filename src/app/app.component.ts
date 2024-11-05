@@ -1,7 +1,7 @@
-import {ChangeDetectorRef, Component, OnInit, inject} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, PLATFORM_ID, inject} from '@angular/core';
 import {NavigationEnd, Router, RouterModule} from '@angular/router';
 import {MatSidenavModule} from "@angular/material/sidenav";
-import {CommonModule} from "@angular/common";
+import {CommonModule, isPlatformBrowser} from "@angular/common";
 import {HeaderComponent} from "./components/layout/header/header.component";
 import {FooterComponent} from "./components/layout/footer/footer.component";
 import {SideNavComponent} from "./components/layout/side-nav/side-nav.component";
@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
   layoutService: LayoutService = inject(LayoutService);
   authService: AuthService = inject(AuthService);
   cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+  platformId: object = inject(PLATFORM_ID);
 
   // Initialize Google Tag Manager
   gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
@@ -43,8 +44,10 @@ export class AppComponent implements OnInit {
   // firebaseService: FirebaseService = inject(FirebaseService);
 
   constructor() {
-    // Add Google Tag Manager Scripts to Dom
-    this.gtmService.addGtmToDom();
+    if (isPlatformBrowser(this.platformId)) {
+      // Add Google Tag Manager Scripts to Dom
+      this.gtmService.addGtmToDom();
+    }
   }
 
   ngOnInit(): void {
