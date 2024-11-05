@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, PLATFORM_ID } from '@angular/core';
 import { BreadcrumbComponent } from "../../../shared/components/breadcrumb/breadcrumb.component";
 import { AccordionComponent } from "../../../shared/components/accordion/accordion.component";
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ICareer } from '../../../shared/interfaces/career/career.interface';
 import { CareerService } from '../../../core/services/careers/career.service';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormElementDirective } from '../../../shared/directives/form-element.directive';
 import { IconPaperclipComponent } from "../../../shared/icons/paperclip/icon-paperclip.component";
 import { JobApplicationService } from '../../../core/services/jobApplication/job-application.service';
@@ -50,8 +50,8 @@ export class SingleCareerComponent {
   fb: FormBuilder = inject(FormBuilder);
   jobApplicationService: JobApplicationService = inject(JobApplicationService);
   _snackBar: MatSnackBar = inject(MatSnackBar);
-  metaService: MetaService = inject(MetaService);
-  _metaService: Meta = inject(Meta);
+  _MetaService: MetaService = inject(MetaService);
+  private platformId = inject(PLATFORM_ID);
   careerForm = this.fb.group({
     name: ['', [Validators.required, StringValidator()]],
     email: ['', [Validators.required, EmailValidator()]],
@@ -71,14 +71,15 @@ export class SingleCareerComponent {
   });
 
   ngOnInit(): void {
-    this.setCanonicalURL(window.location.href);
+    if (isPlatformBrowser(this.platformId)) {
+      this._MetaService.setCanonicalURL(window.location.href);
 
-    // Update the canonical URL on route changes
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.setCanonicalURL(window.location.href);
-      });
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this._MetaService.setCanonicalURL(window.location.href);
+        });
+    }
     this.activeRoute.paramMap.subscribe({
       next: (route) => {
         this.careerService.getCareer(route.get('slug')).subscribe({
@@ -86,7 +87,7 @@ export class SingleCareerComponent {
             if (res.success) {
               this.career = res.data;
               this.careerForm.controls.careerSlug.setValue(res.data.slug);
-              this.metaService.setMetaData(
+              this._MetaService.setMetaData(
                 this.career.meta_data,
                 this.career.created_at
               );
@@ -96,24 +97,6 @@ export class SingleCareerComponent {
           },
         });
       },
-    });
-  }
-  setCanonicalURL(url: string) {
-    let link: HTMLLinkElement =
-      document.querySelector("link[rel='canonical']") || null;
-
-    if (link) {
-      link.setAttribute('href', url);
-    } else {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', url);
-      document.head.appendChild(link);
-    }
-    // Set og:url
-    this._metaService.updateTag({
-      property: 'og:url',
-      content: url,
     });
   }
   onSubmitJobApplicationForm(): void {

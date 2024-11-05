@@ -4,6 +4,7 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   signal,
   inject,
+  PLATFORM_ID,
 } from '@angular/core';
 import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
 import { IconArrowLeftComponent } from '../../../shared/icons/arrows/arrow-left/icon-arrow-left.component';
@@ -13,7 +14,7 @@ import { SwiperContainer } from 'swiper/swiper-element';
 import { ICarouselSlide } from '../../../shared/interfaces/carousel-slide.interface';
 import { CarouselService } from '../../../core/services/layout/carousel.service';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Autoplay, Navigation } from 'swiper/modules';
 import Swiper from 'swiper';
 
@@ -37,22 +38,27 @@ export class MainSliderComponent implements OnInit {
 
   private carouselService: CarouselService = inject(CarouselService);
   private observer: IntersectionObserver | null = null;
+  private platformId = inject(PLATFORM_ID);
   ngOnInit(): void {
-    Swiper.use([Autoplay, Navigation]);
-    this.onGetHomeCarousel();
-    this.initIntersectionObserver();
+    if (isPlatformBrowser(this.platformId)) {
+      Swiper.use([Autoplay, Navigation]);
+      this.onGetHomeCarousel();
+      this.initIntersectionObserver();
+    }
   }
   private initIntersectionObserver(): void {
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const slide = entry.target as HTMLElement;
-          const imgSrc = slide.getAttribute('data-bg'); // Get the image URL from data attribute
-          slide.style.backgroundImage = `url(${imgSrc})`; // Set the background image
-          this.observer?.unobserve(slide); // Stop observing this slide
-        }
+    if (isPlatformBrowser(this.platformId)) {
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const slide = entry.target as HTMLElement;
+            const imgSrc = slide.getAttribute('data-bg');
+            slide.style.backgroundImage = `url(${imgSrc})`;
+            this.observer?.unobserve(slide);
+          }
+        });
       });
-    });
+    }
   }
   onGetHomeCarousel(): void {
     this.carouselService.getHomeCarousel().subscribe({
@@ -64,37 +70,43 @@ export class MainSliderComponent implements OnInit {
   }
 
   onLoadSwiperSlider(): void {
-    const swiperElementConstructor: SwiperContainer =
-      document.querySelector('.main-slider');
+    if (isPlatformBrowser(this.platformId)) {
+      const swiperElementConstructor: SwiperContainer =
+        document.querySelector('.main-slider');
 
-    if (swiperElementConstructor) {
-      Object.assign(swiperElementConstructor, {
-        loop: true,
-        lazy: true,
-        preloadImages: false,
-        autoplay: {
-          delay: 3500,
-          disableOnInteraction: false,
-        },
-        slidesPerView: 1,
-        navigation: {
-          nextEl: '.main-slider-next',
-          prevEl: '.main-slider-prev',
-        },
-      });
+      if (swiperElementConstructor) {
+        Object.assign(swiperElementConstructor, {
+          loop: true,
+          lazy: true,
+          preloadImages: false,
+          autoplay: {
+            delay: 3500,
+            disableOnInteraction: false,
+          },
+          slidesPerView: 1,
+          navigation: {
+            nextEl: '.main-slider-next',
+            prevEl: '.main-slider-prev',
+          },
+        });
 
-      this.swiperElement.set(swiperElementConstructor);
-      this.swiperElement().initialize();
-      // Observe each slide for lazy loading
-      const slides = document.querySelectorAll('.swiper-slide');
-      slides.forEach((slide) => {
-        this.observer?.observe(slide);
-      });
+        this.swiperElement.set(swiperElementConstructor);
+        this.swiperElement().initialize();
+        // Observe each slide for lazy loading
+        if (isPlatformBrowser(this.platformId)) {
+          const slides = document.querySelectorAll('.swiper-slide');
+          slides.forEach((slide) => {
+            this.observer?.observe(slide);
+          });
+        }
+      }
     }
   }
 
   ngOnDestroy(): void {
-    this.swiperElement().remove();
-    this.observer?.disconnect(); // Clean up the observer
+    if (isPlatformBrowser(this.platformId)) {
+      this.swiperElement()?.remove();
+      this.observer?.disconnect();
+    }
   }
 }

@@ -4,7 +4,7 @@ import { Directive, ElementRef, Input, PLATFORM_ID, Renderer2, inject } from '@a
 @Directive({
   selector: '[appImgPlaceholder]',
   standalone: true,
-  
+
 })
 
 export class ImgPlaceholderDirective {
@@ -28,7 +28,6 @@ export class ImgPlaceholderDirective {
   }
 
   private initImage() {
-    // do not evaluate on SSR
     if (isPlatformServer(this.platformId)) {
       return;
     }

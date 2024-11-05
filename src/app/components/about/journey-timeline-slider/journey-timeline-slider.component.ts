@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, PLATFORM_ID, Renderer2, inject, signal } from '@angular/core';
 import { IconArrowLeftComponent } from '../../../shared/icons/arrows/arrow-left/icon-arrow-left.component';
 import { IconArrowRightComponent } from '../../../shared/icons/arrows/arrow-right/icon-arrow-right.component';
 import { SwiperContainer } from 'swiper/element';
@@ -10,6 +10,8 @@ import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { Autoplay, Navigation } from 'swiper/modules';
 import Swiper from 'swiper';
+import { MetaService } from '../../../core/services/meta-data/meta.service';
+import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'app-journey-timeline-slider',
   standalone: true,
@@ -22,11 +24,13 @@ import Swiper from 'swiper';
     ImgPlaceholderDirective,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JourneyTimeLineSliderComponent implements OnInit {
-  metaService: Meta = inject(Meta);
   router: Router = inject(Router);
+  _MetaService: MetaService = inject(MetaService);
+  private platformId = inject(PLATFORM_ID);
+  private renderer: Renderer2 = inject(Renderer2);
+  swiperElement = signal<SwiperContainer | null>(null);
 
   slides = [
     {
@@ -76,20 +80,25 @@ export class JourneyTimeLineSliderComponent implements OnInit {
     },
   ];
 
-  swiperElement = signal<SwiperContainer | null>(null);
   ngOnInit(): void {
-    this.setCanonicalURL(window.location.href);
+    if (isPlatformBrowser(this.platformId)) {
+      this._MetaService.setCanonicalURL(window.location.href);
 
-    // Update the canonical URL on route changes
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.setCanonicalURL(window.location.href);
-      });
-     Swiper.use([Autoplay, Navigation]);
-    const swiperElementConstructor: SwiperContainer = document.querySelector(
-      '.journey-timeline-slider'
-    );
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this._MetaService.setCanonicalURL(window.location.href);
+        });
+
+      // Initialize Swiper only in the browser
+      Swiper.use([Autoplay, Navigation]);
+      this.initializeSwiper();
+    }
+  }
+  private initializeSwiper(): void {
+    const swiperElementConstructor: SwiperContainer =
+      this.renderer.selectRootElement('.journey-timeline-slider', true);
+
     const swiperOptions: SwiperOptions = {
       slidesPerView: 'auto',
       navigation: {
@@ -98,30 +107,14 @@ export class JourneyTimeLineSliderComponent implements OnInit {
         prevEl: '.timeline-slide-prev',
       },
     };
-    Object.assign(swiperElementConstructor!, swiperOptions);
+
+    Object.assign(swiperElementConstructor, swiperOptions);
     this.swiperElement.set(swiperElementConstructor as SwiperContainer);
     this.swiperElement()?.initialize();
   }
 
-  setCanonicalURL(url: string) {
-    let link: HTMLLinkElement =
-      document.querySelector("link[rel='canonical']") || null;
-
-    if (link) {
-      link.setAttribute('href', url);
-    } else {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', url);
-      document.head.appendChild(link);
-    }
-    // Set og:url
-    this.metaService.updateTag({
-      property: 'og:url',
-      content: url,
-    });
-  }
   ngOnDestroy(): void {
-    this.swiperElement().remove();
-  }
+    if (isPlatformBrowser(this.platformId)) {
+      this.swiperElement().remove();
+    }  }
 }

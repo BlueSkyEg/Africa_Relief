@@ -1,18 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
 import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
-import { IconFollowComponent } from '../../../shared/icons/follow/icon-follow.component';
 import { IconClickComponent } from '../../../shared/icons/click/icon-click.component';
-import { IconSelectComponent } from '../../../shared/icons/select/icon-select.component';
-import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
 import { IconArrowRightComponent } from '../../../shared/icons/arrows/arrow-right/icon-arrow-right.component';
+import { IconCompleteComponent } from '../../../shared/icons/complete/icon-complete.component';
 
 @Component({
   selector: 'app-stock-donations',
   standalone: true,
-  imports: [BreadcrumbComponent ,IconFollowComponent,IconClickComponent,IconSelectComponent  ,IconArrowRightComponent] ,
+  imports: [
+    BreadcrumbComponent,
+    IconClickComponent,
+    IconCompleteComponent,
+    IconArrowRightComponent,
+  ],
   templateUrl: './stock-donations.component.html',
-  styleUrl: './stock-donations.component.scss'
 })
-export class StockDonationsComponent {
+export class StockDonationsComponent implements OnInit {
+  constructor(private titleService: Title, private metaService: Meta) {}
 
+  ngOnInit(): void {
+    this.setMetaData();
+  }
+
+  private setMetaData(): void {
+    this.titleService.setTitle(
+      'Make a Difference with Stock Donations to ARCD | Africa Relief'
+    );
+    this.metaService.updateTag({
+      name: 'description',
+      content:
+        "Support ARCD's mission through Stock Donations. Make a lasting impact by donating stocks online and helping drive meaningful change in our communities. Donate today!",
+    });
+  }
 }

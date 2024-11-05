@@ -1,7 +1,7 @@
-import {  Component, inject } from '@angular/core';
+import {  Component, inject, PLATFORM_ID } from '@angular/core';
 import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { DonationCardComponent } from '../../../shared/components/donation-card/donation-card.component';
 import { IconQuoteComponent } from '../../../shared/icons/quote/icon-quote.component';
 import { ShareButtonsComponent } from '../../../shared/components/share-buttons/share-buttons.component';
@@ -37,18 +37,18 @@ export class SingleBlogComponent {
   router: Router = inject(Router);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   blogService: BlogService = inject(BlogService);
-  metaService: MetaService = inject(MetaService);
-  _metaService: Meta = inject(Meta);
-
+  _MetaService: MetaService = inject(MetaService);
+  private platformId = inject(PLATFORM_ID);
   ngOnInit(): void {
-    this.setCanonicalURL(window.location.href);
+    if (isPlatformBrowser(this.platformId)) {
+      this._MetaService.setCanonicalURL(window.location.href);
 
-    // Update the canonical URL on route changes
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.setCanonicalURL(window.location.href);
-      });
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this._MetaService.setCanonicalURL(window.location.href);
+        });
+    }
 
     this.activeRoute.paramMap.subscribe({
       next: (route) => {
@@ -56,7 +56,7 @@ export class SingleBlogComponent {
           next: (res: IApiResponse<IBlog | null>) => {
             if (res.success) {
               this.blog = res.data;
-              this.metaService.setMetaData(
+              this._MetaService.setMetaData(
                 this.blog.meta_data,
                 this.blog.created_at
               );
@@ -70,24 +70,6 @@ export class SingleBlogComponent {
     });
   }
 
-  setCanonicalURL(url: string) {
-    let link: HTMLLinkElement =
-      document.querySelector("link[rel='canonical']") || null;
-
-    if (link) {
-      link.setAttribute('href', url);
-    } else {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', url);
-      document.head.appendChild(link);
-    }
-    // Set og:url
-    this._metaService.updateTag({
-      property: 'og:url',
-      content: url,
-    });
-  }
   processBlogContents(): void {
     this.blog.contents.forEach((content) => {
       if (

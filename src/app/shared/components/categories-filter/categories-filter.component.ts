@@ -1,7 +1,14 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  PLATFORM_ID,
+  ViewChild,
+} from '@angular/core';
 import { ICategory } from '../../interfaces/category-interface';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
@@ -10,7 +17,6 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
   templateUrl: './categories-filter.component.html',
   styleUrl: './categories-filter.component.scss',
   imports: [RouterModule, CommonModule, NgScrollbarModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoriesFilterComponent {
   @Input() categories: ICategory[];
@@ -21,7 +27,10 @@ export class CategoriesFilterComponent {
   private startX: number;
   private scrollLeft: number;
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(
+    private elementRef: ElementRef,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   startDrag(event: MouseEvent) {
     if (event.button === 0) {
@@ -47,9 +56,11 @@ export class CategoriesFilterComponent {
   endDrag() {
     if (this.isDragging) {
       this.isDragging = false;
-      const container =
-        this.elementRef.nativeElement.querySelector('.container');
-      container.classList.remove('dragging');
+      if (isPlatformBrowser(this.platformId)) {
+        const container =
+          this.elementRef.nativeElement.querySelector('.container');
+        container.classList.remove('dragging');
+      }
     }
   }
 }

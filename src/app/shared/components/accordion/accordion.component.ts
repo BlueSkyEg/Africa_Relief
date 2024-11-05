@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   ElementRef,
   Input,
@@ -17,7 +16,6 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser'; // Import Do
   templateUrl: './accordion.component.html',
   styleUrl: './accordion.component.scss',
   imports: [CommonModule, IconChevronDownComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccordionComponent {
   @ViewChildren('accordion') accordionList: QueryList<ElementRef>;

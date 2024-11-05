@@ -49,6 +49,6 @@ export const appConfig: ApplicationConfig = {
     { provide: 'googleTagManagerId', useValue: 'GTM-5RKGQ3HS' },
     provideClientHydration(),
     provideClientHydration(),
-    provideAnimationsAsync(),
+    provideAnimationsAsync(), provideClientHydration(),
   ],
 };

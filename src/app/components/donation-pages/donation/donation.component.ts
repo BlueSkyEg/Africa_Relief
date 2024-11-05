@@ -1,4 +1,10 @@
-import {Component, ViewChild, inject } from '@angular/core';
+import {
+  Component,
+  Inject,
+  PLATFORM_ID,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   MatStepperModule,
@@ -10,7 +16,7 @@ import { FormElementDirective } from '../../../shared/directives/form-element.di
 import { ErrorComponent } from '../../../shared/components/form/error/error.component';
 import { Observable, map } from 'rxjs';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { PaymentService } from '../../../core/services/payment/payment.service';
 import { PaymentMethodResult } from '@stripe/stripe-js';
 import { StripeService } from 'ngx-stripe';
@@ -65,6 +71,7 @@ export class DonationComponent {
   stepperOrientation: Observable<StepperOrientation>;
   coverFees: boolean = false;
   feePercentage: number = 2.9;
+  checkoutFormDisabled: boolean = false;
 
   router: Router = inject(Router);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
@@ -75,8 +82,10 @@ export class DonationComponent {
   _stripeService: StripeService = inject(StripeService);
   _snackBar: MatSnackBar = inject(MatSnackBar);
   _gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
+  isBrowser: boolean;
+  constructor(@Inject(PLATFORM_ID) private platformId: any) {
+    this.isBrowser = isPlatformBrowser(platformId);
 
-  constructor() {
     this.stepperOrientation = this._breakpointObserver
       .observe('(min-width: 800px)')
       .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
@@ -113,18 +122,18 @@ export class DonationComponent {
   });
 
   ngOnInit() {
-    this.authService.authedUserSubject.asObservable().subscribe({
-      next: (user: IUser) => {
-        this.personalDetailsForm.patchValue({
-          name: user?.name,
-          email: user?.email,
-          phone: user?.phone,
-        });
-      },
-    });
+    if (this.isBrowser) {
+      this.authService.authedUserSubject.asObservable().subscribe({
+        next: (user: IUser) => {
+          this.personalDetailsForm.patchValue({
+            name: user?.name,
+            email: user?.email,
+            phone: user?.phone,
+          });
+        },
+      });
+    }
   }
-
-  checkoutFormDisabled: boolean = false;
 
   onMakeDonation() {
     this.checkoutFormDisabled = true;
@@ -141,8 +150,9 @@ export class DonationComponent {
       finalAmount = finalAmount * (1 + this.feePercentage / 100);
     }
     // Set donationStarted key in session storage
-    sessionStorage.setItem('donationStarted', JSON.stringify(true));
-
+ if (this.isBrowser) {
+   sessionStorage.setItem('donationStarted', JSON.stringify(true));
+ }
     // make donation process
     const { name, email, phone } = this.personalDetailsForm.getRawValue();
     const { city, country, addressLine1, addressLine2, postalCode, state } =
@@ -284,15 +294,19 @@ export class DonationComponent {
   }
   //DataLayer
   onFillPersonalDetails() {
-    (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push({
-      event: 'UserFilledPersonalDetailsForm(firstStage)',
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'UserFilledPersonalDetailsForm(firstStage)',
+      });
+    }
   }
   onFillBillingAddress() {
-    (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push({
-      event: 'UserFilledBillingAddressForm(SecondStage)',
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'UserFilledBillingAddressForm(SecondStage)',
+      });
+    }
   }
 }

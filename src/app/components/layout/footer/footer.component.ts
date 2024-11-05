@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {  Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
 import { CommonModule } from '@angular/common';
@@ -30,7 +30,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     IconDirective,
     ButtonComponent,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
   openExploreAccordion: boolean = false;

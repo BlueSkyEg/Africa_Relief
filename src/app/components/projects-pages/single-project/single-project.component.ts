@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import {  Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { IProject } from '../../../shared/interfaces/project/project-interface';
 import { ProjectService } from '../../../core/services/projects/project.service';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { IconQuoteComponent } from "../../../shared/icons/quote/icon-quote.component";
 import { ButtonLinkComponent } from "../../../shared/components/button-link/button-link.component";
 import { BlogCardComponent } from "../../../shared/components/blogs/blog-card/blog-card.component";
@@ -49,19 +49,19 @@ export class SingleProjectComponent implements OnInit {
   router: Router = inject(Router);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   projectService: ProjectService = inject(ProjectService);
-  metaService: MetaService = inject(MetaService);
-  _metaService: Meta = inject(Meta);
+  _MetaService: MetaService = inject(MetaService);
+  private platformId = inject(PLATFORM_ID);
 
   ngOnInit(): void {
-    this.setCanonicalURL(window.location.href);
+    if (isPlatformBrowser(this.platformId)) {
+      this._MetaService.setCanonicalURL(window.location.href);
 
-    // Update the canonical URL on route changes
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.setCanonicalURL(window.location.href);
-      });
-
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this._MetaService.setCanonicalURL(window.location.href);
+        });
+    }
     this.activeRoute.paramMap.subscribe({
       next: (route) => {
         this.projectService.getProject(route.get('slug')).subscribe({
@@ -69,7 +69,7 @@ export class SingleProjectComponent implements OnInit {
             if (res.success) {
               this.project = res.data;
 
-              this.metaService.setMetaData(
+              this._MetaService.setMetaData(
                 this.project.meta_data,
                 this.project.created_at
               );
@@ -83,24 +83,6 @@ export class SingleProjectComponent implements OnInit {
     });
   }
 
-  setCanonicalURL(url: string) {
-    let link: HTMLLinkElement =
-      document.querySelector("link[rel='canonical']") || null;
-
-    if (link) {
-      link.setAttribute('href', url);
-    } else {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', url);
-      document.head.appendChild(link);
-    }
-    // Set og:url
-    this._metaService.updateTag({
-      property: 'og:url',
-      content: url,
-    });
-  }
   formatItem(item: string): string {
     const boldPattern = /\*\*(.*?)\*\*/;
 
