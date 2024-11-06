@@ -147,7 +147,7 @@ export class DonationComponent {
     let finalAmount = this.donationAmount;
 
     if (this.coverFees) {
-      finalAmount = finalAmount * (1 + this.feePercentage / 100);
+      finalAmount = (finalAmount * (1 + this.feePercentage / 100))+0.30;
     }
     // Set donationStarted key in session storage
  if (this.isBrowser) {

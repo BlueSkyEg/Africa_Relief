@@ -1,21 +1,26 @@
-import {  Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { IProject } from '../../../shared/interfaces/project/project-interface';
 import { ProjectService } from '../../../core/services/projects/project.service';
-import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterModule,
+} from '@angular/router';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { IconQuoteComponent } from "../../../shared/icons/quote/icon-quote.component";
-import { ButtonLinkComponent } from "../../../shared/components/button-link/button-link.component";
-import { BlogCardComponent } from "../../../shared/components/blogs/blog-card/blog-card.component";
-import { IconLinkedinComponent } from "../../../shared/icons/social-media/linkedin/icon-linkedin.component";
-import { IconYoutubeComponent } from "../../../shared/icons/social-media/youtube/icon-youtube.component";
-import { IconInstagramComponent } from "../../../shared/icons/social-media/instagram/icon-instagram.component";
-import { IconFacebookComponent } from "../../../shared/icons/social-media/facebook/icon-facebook.component";
+import { IconQuoteComponent } from '../../../shared/icons/quote/icon-quote.component';
+import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
+import { BlogCardComponent } from '../../../shared/components/blogs/blog-card/blog-card.component';
+import { IconLinkedinComponent } from '../../../shared/icons/social-media/linkedin/icon-linkedin.component';
+import { IconYoutubeComponent } from '../../../shared/icons/social-media/youtube/icon-youtube.component';
+import { IconInstagramComponent } from '../../../shared/icons/social-media/instagram/icon-instagram.component';
+import { IconFacebookComponent } from '../../../shared/icons/social-media/facebook/icon-facebook.component';
 import { IconDirective } from '../../../shared/directives/icon.directive';
-import { ShareButtonsComponent } from "../../../shared/components/share-buttons/share-buttons.component";
-import { BreadcrumbComponent } from "../../../shared/components/breadcrumb/breadcrumb.component";
-import { DonationCardComponent } from "../../../shared/components/donation-card/donation-card.component";
-import { RelatedProjectsComponent } from "./related-projects/related-projects.component";
+import { ShareButtonsComponent } from '../../../shared/components/share-buttons/share-buttons.component';
+import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
+import { DonationCardComponent } from '../../../shared/components/donation-card/donation-card.component';
+import { RelatedProjectsComponent } from './related-projects/related-projects.component';
 import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
 import { MetaService } from '../../../core/services/meta-data/meta.service';
 import { filter } from 'rxjs';
@@ -71,7 +76,8 @@ export class SingleProjectComponent implements OnInit {
 
               this._MetaService.setMetaData(
                 this.project.meta_data,
-                this.project.created_at
+                this.project.created_at,
+                this.project.featured_image
               );
               console.log(this.project.meta_data);
             } else {

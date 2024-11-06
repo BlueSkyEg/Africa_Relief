@@ -1,4 +1,8 @@
-import { Inject, Injectable, PLATFORM_ID, Renderer2, inject } from '@angular/core';
+import {
+  Injectable,
+  PLATFORM_ID,
+  inject,
+} from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { IMetadata } from '../../../shared/interfaces/imetadata';
 import { isPlatformBrowser, Location } from '@angular/common';
@@ -12,7 +16,11 @@ export class MetaService {
   private _metaService = inject(Meta);
   private _location = inject(Location);
   private platformId = inject(PLATFORM_ID);
-  setMetaData(metaData: IMetadata, createdAt?: string): void {
+  setMetaData(
+    metaData: IMetadata,
+    createdAt?: string,
+    featured_image?: any
+  ): void {
     if (isPlatformBrowser(this.platformId)) {
       // <title>meta_title</title>;
       if (metaData.meta_title) {
@@ -40,6 +48,16 @@ export class MetaService {
         this._metaService.updateTag({
           name: 'twitter:description',
           content: metaData.meta_description,
+        });
+      }
+      if (featured_image) {
+        this._metaService.updateTag({
+          property: 'og:image',
+          content: featured_image.src,
+        });
+        this._metaService.updateTag({
+          name: 'twitter:image',
+          content: featured_image.src,
         });
       }
       if (metaData.meta_keywords) {
