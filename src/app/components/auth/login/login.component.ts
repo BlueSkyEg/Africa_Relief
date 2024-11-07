@@ -37,7 +37,6 @@ export class LoginComponent {
   showPassword: boolean = false;
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   platformId = inject(PLATFORM_ID);
-  isBrowser = isPlatformBrowser(this.platformId);
   authService: AuthService = inject(AuthService);
   fb: FormBuilder = inject(FormBuilder);
   _snackBar: MatSnackBar = inject(MatSnackBar);
@@ -47,7 +46,7 @@ export class LoginComponent {
   //   email: ['', [Validators.required, Validators.email]]
   // });
   ngOnInit(): void {
-    if (this.isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       this._MetaService.setCanonicalURL(window.location.href);
 
       this.router.events
@@ -79,7 +78,7 @@ export class LoginComponent {
       next: (res) => {
         if (res.success) {
           this.authService.authedUserSubject.next(res.data.user);
-            if (this.isBrowser) {
+            if (isPlatformBrowser(this.platformId)) {
           localStorage.setItem(
             'accessToken',
             JSON.stringify(res.data.accessToken)

@@ -48,9 +48,8 @@ export class SignupComponent {
   router: Router = inject(Router);
   _MetaService: MetaService = inject(MetaService);
   platformId = inject(PLATFORM_ID);
-  isBrowser = isPlatformBrowser(this.platformId);
   ngOnInit(): void {
-    if (this.isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       this._MetaService.setCanonicalURL(window.location.href);
 
       this.router.events
@@ -76,7 +75,7 @@ export class SignupComponent {
       next: (res) => {
         if (res.success) {
           this.authService.authedUserSubject.next(res.data.user);
-          if(this.isBrowser){
+          if(isPlatformBrowser(this.platformId)){
           localStorage.setItem(
             'accessToken',
             JSON.stringify(res.data.accessToken)

@@ -102,10 +102,12 @@ export class ProjectsSliderSectionComponent implements OnInit {
     }
   }
   check() {
-    (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push({
-      event: 'Button Donate Clicked',
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'Button Donate Clicked',
+      });
+    }
   }
   ngOnDestroy(): void {
     if (this.swiperElement()) {
