@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
 
   // Initialize Google Tag Manager
   gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
-  platformId: Object = inject(PLATFORM_ID);
+
   // Initialize Firebase Notification
   // firebaseService: FirebaseService = inject(FirebaseService);
 
