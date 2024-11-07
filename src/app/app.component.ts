@@ -1,12 +1,19 @@
-import {ChangeDetectorRef, Component, OnInit, inject} from '@angular/core';
-import {NavigationEnd, Router, RouterModule} from '@angular/router';
-import {MatSidenavModule} from "@angular/material/sidenav";
-import {CommonModule} from "@angular/common";
-import {HeaderComponent} from "./components/layout/header/header.component";
-import {FooterComponent} from "./components/layout/footer/footer.component";
-import {SideNavComponent} from "./components/layout/side-nav/side-nav.component";
-import {LayoutService} from "./core/services/layout/layout.service";
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  PLATFORM_ID,
+  inject,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './components/layout/header/header.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
+import { SideNavComponent } from './components/layout/side-nav/side-nav.component';
+import { LayoutService } from './core/services/layout/layout.service';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AuthService } from './core/services/auth/auth.service';
 import { IApiResponse } from './shared/interfaces/api-response-interface';
 import { IUser } from './shared/interfaces/auth/user.interface';
@@ -38,26 +45,30 @@ export class AppComponent implements OnInit {
 
   // Initialize Google Tag Manager
   gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
-
+  platformId: Object = inject(PLATFORM_ID);
   // Initialize Firebase Notification
   // firebaseService: FirebaseService = inject(FirebaseService);
 
   constructor() {
     // Add Google Tag Manager Scripts to Dom
-    this.gtmService.addGtmToDom();
+    if (isPlatformBrowser(this.platformId)) {
+      this.gtmService.addGtmToDom();
+    }
   }
 
   ngOnInit(): void {
     // Push Google Tag Manager Page View Event
-    this.router.events.forEach((item) => {
-      if (item instanceof NavigationEnd) {
-        const gtmTag = {
-          event: 'page',
-          pageName: item.url,
-        };
-        this.gtmService.pushTag(gtmTag);
-      }
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      this.router.events.forEach((item) => {
+        if (item instanceof NavigationEnd) {
+          const gtmTag = {
+            event: 'page',
+            pageName: item.url,
+          };
+          this.gtmService.pushTag(gtmTag);
+        }
+      });
+    }
 
     // Toggle Side Nav
     this.layoutService.sideNavSubject.asObservable().subscribe({

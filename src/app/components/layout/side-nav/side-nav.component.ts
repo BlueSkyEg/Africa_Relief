@@ -28,7 +28,7 @@ export class SideNavComponent {
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.checkScreenSize(); // Check screen size on resize if running in the browser
+      this.checkScreenSize(); 
     }
   }
 
