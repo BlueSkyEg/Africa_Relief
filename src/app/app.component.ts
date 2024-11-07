@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
   layoutService: LayoutService = inject(LayoutService);
   authService: AuthService = inject(AuthService);
   cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
-  platformId: object = inject(PLATFORM_ID);
+  platformId: Object = inject(PLATFORM_ID);
 
   // Initialize Google Tag Manager
   gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
