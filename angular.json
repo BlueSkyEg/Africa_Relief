@@ -64,7 +64,9 @@
             ],
             "scripts": [],
             "server": "src/main.server.ts",
-            "prerender": true,
+            "prerender": {
+              "routesFile": "src/assets/routes.txt"
+            },
             "ssr": {
               "entry": "server.ts"
             }

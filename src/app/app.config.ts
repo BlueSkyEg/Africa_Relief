@@ -1,8 +1,8 @@
-import {ApplicationConfig, importProvidersFrom, isDevMode} from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
 import { InMemoryScrollingFeature, InMemoryScrollingOptions, TitleStrategy, provideRouter, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {HttpClientModule, provideHttpClient, withFetch, withInterceptors} from "@angular/common/http";
+import { provideHttpClient, withFetch, withInterceptors } from "@angular/common/http";
 import { CustomTitleService } from './core/services/layout/custom-title.service';
 import { RequestOptionsInterceptor } from './core/interceptors/request-options.interceptor';
 import { loaderInterceptor } from './core/interceptors/loader.interceptor';
@@ -10,7 +10,7 @@ import { provideNgxStripe } from 'ngx-stripe';
 import { environment } from '../environments/environment';
 import { AuthorizeInterceptor } from './core/interceptors/authorize.interceptor';
 import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
-import { provideClientHydration } from '@angular/platform-browser';
+import { provideClientHydration, withHttpTransferCacheOptions } from '@angular/platform-browser';
 
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
@@ -24,7 +24,11 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, inMemoryScrollingFeature),
     provideAnimationsAsync(),
-    importProvidersFrom(HttpClientModule),
+    provideClientHydration(
+      withHttpTransferCacheOptions({
+        includePostRequests: true
+      })
+    ),
     provideHttpClient(
       withFetch(),
       withInterceptors([
