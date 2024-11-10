@@ -68,15 +68,17 @@ export class ProjectsComponent implements OnInit {
     this.activeRoute.paramMap.subscribe({
       next: (params) => {
         const currentSlug = params.get('slug');
-        this.isPaginationLastPage = false;
-        this.paginationPageNum = 1;
-        this.projects = [];
+        this.resetPagination();
         this.onGetProject(currentSlug);
         this.onGetProjects();
       },
     });
   }
-
+  resetPagination(): void {
+    this.isPaginationLastPage = false;
+    this.paginationPageNum = 1;
+    this.projects = [];
+  }
   onGetProject(currentSlug: string) {
     if (currentSlug) {
       const matchingCategory = this.projectCategories?.find(

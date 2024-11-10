@@ -50,7 +50,6 @@ import * as countryCodes from 'country-codes-list';
     FieldComponent,
     LabelComponent,
     ErrorComponent,
-    ButtonComponent,
     FormElementDirective,
     ExpressCheckoutElementComponent,
     CardElementsComponent,
