@@ -79,7 +79,6 @@ export class SingleProjectComponent implements OnInit {
                 this.project.created_at,
                 this.project.featured_image
               );
-              console.log(this.project.meta_data);
             } else {
               this.router.navigate(['/404']);
             }

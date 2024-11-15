@@ -1,13 +1,7 @@
 export const environment = {
   appUrl: 'http://127.0.0.1:4200',
-  //appUrl: 'https://trusted-formerly-filly.ngrok-free.app',
-  //apiUrl: 'testing.africareliefa1.sg-host.com/api',
-  // apiUrl: 'https://server.africa-relief.org/api',
   // apiUrl: 'http://10.1.1.155:8000/api',
-  // apiUrl: 'https://backend.africareliefa1.sg-host.com/api',
-  // apiUrl: 'https://staging3.africareliefa1.sg-host.com/api',
-  apiUrl: 'http://server.africareleif.com/api',
-  // apiUrl: 'https://testing.africareliefa1.sg-host.com/api',
+  apiUrl: 'https://staging-backend.africa-relief.com/api',
 
   stripePublicKey:
     'pk_test_51KhKggKvfkJQMMfWXwnofeDI9QO7jSLGTWVv7VxW4DcYR9oMGcBYMCxbYBUfi7GPolwRLYf5VTWqmR2u9RDwYUHD00Z3MHfdWW',
