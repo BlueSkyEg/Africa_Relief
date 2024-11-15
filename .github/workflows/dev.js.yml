@@ -1,9 +1,9 @@
-name: Deploy Angular Project to DigitalOcean
+name: Deploy Angular Project to DigitalOcean (Testing Environment)
 
 on:
   push:
     branches:
-      - install-ssr
+      - development
 
 jobs:
   deploy:
@@ -26,8 +26,9 @@ jobs:
           ssh-keyscan -H "$SERVER_IP" >> ~/.ssh/known_hosts
           # SSH into the server and run deployment commands
           ssh -i ~/.ssh/id_africa_relief $SERVER_USER@$SERVER_IP << 'EOF'
-            cd /var/www/html/Africa_Relief
-            git pull origin install-ssr
+            cd /var/www/html/staging.africa-relief.com
+            git pull origin development
             npm install
-            npx ng build --configuration=production
+            npx ng build --configuration=production --output-path=dist/tmp
+            cp -rf dist/tmp/* dist/africa-relief/
           EOF
