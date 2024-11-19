@@ -117,7 +117,7 @@ export class DonationComponent {
 
   checkoutForm = this.fb.group({
     billingComment: ['', [StringValidator(0, 500, true)]],
-    coverFees: [false], // Added control for covering fees
+    coverFees: [false],
   });
 
   ngOnInit() {
@@ -143,15 +143,14 @@ export class DonationComponent {
 
     // Calculate donation amount, including fees if applicable
     this.coverFees = this.checkoutForm.get('coverFees')?.value || false;
-    let finalAmount = this.donationAmount;
-
-    if (this.coverFees) {
-      finalAmount = (finalAmount * (1 + this.feePercentage / 100))+0.30;
-    }
+    // let finalAmount = this.donationAmount;
+    // if (this.coverFees) {
+    //   finalAmount = (finalAmount * (1 + this.feePercentage / 100))+0.30;
+    // }
     // Set donationStarted key in session storage
- if (this.isBrowser) {
-   sessionStorage.setItem('donationStarted', JSON.stringify(true));
- }
+    if (this.isBrowser) {
+      sessionStorage.setItem('donationStarted', JSON.stringify(true));
+    }
     // make donation process
     const { name, email, phone } = this.personalDetailsForm.getRawValue();
     const { city, country, addressLine1, addressLine2, postalCode, state } =
@@ -172,7 +171,8 @@ export class DonationComponent {
     this.phone = phone;
     this.city = city;
     this.country = country;
-
+    const finalAmount = this.donationAmount;
+    this.coverFees = this.checkoutForm.get('coverFees')?.value || false;
     this.stripeCardElements.createPaymentMethod(billingDetails).subscribe({
       next: (res: PaymentMethodResult) => {
         if (res.error) {
@@ -214,22 +214,25 @@ export class DonationComponent {
     const { name, email } = this.personalDetailsForm.getRawValue();
     const { billingComment } = this.checkoutForm.getRawValue();
 
-    return this.paymentService.createPayment({
+    const paymentData = {
       name: name,
       email: email,
-      amount: finalAmount, // Send the final amount including fees if applicable
+      amount: finalAmount,
       donationFormId: this.donationFormId,
       stripePaymentMethodId: stripePaymentMethodId,
       recurringPeriod: this.recurringPeriod,
       anonymousDonation: false,
       savePaymentMethod: this.recurringPeriod ? true : false,
       billingComment: billingComment,
-    });
+      coverFees: this.coverFees,
+    };
+    return this.paymentService.createPayment(paymentData);
   }
   // Handle 3D Secure Authentication (OTP)
   handleCardAction(clientSecret: string): void {
     this._stripeService.confirmCardPayment(clientSecret).subscribe({
       next: (res) => {
+        console.log(res);
         if (res.error) {
           this._snackBar.open(res.error.message, '✖', {
             panelClass: 'failure-snackbar',

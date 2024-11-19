@@ -18,7 +18,7 @@ import { isPlatformBrowser } from '@angular/common';
   selector: 'app-projects',
   standalone: true,
   templateUrl: './projects.component.html',
-  imports: [InfiniteScrollModule, ProjectCardComponent, ButtonLinkComponent],
+  imports: [InfiniteScrollModule, ProjectCardComponent],
 })
 export class ProjectsComponent {
   projects: IProjectCard[] = [];
