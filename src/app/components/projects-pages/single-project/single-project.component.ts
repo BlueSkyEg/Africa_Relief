@@ -24,7 +24,6 @@ import { RelatedProjectsComponent } from './related-projects/related-projects.co
 import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
 import { MetaService } from '../../../core/services/meta-data/meta.service';
 import { filter } from 'rxjs';
-import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-single-project',
@@ -34,14 +33,7 @@ import { Meta } from '@angular/platform-browser';
   imports: [
     RouterModule,
     CommonModule,
-    IconDirective,
     IconQuoteComponent,
-    ButtonLinkComponent,
-    BlogCardComponent,
-    IconLinkedinComponent,
-    IconYoutubeComponent,
-    IconInstagramComponent,
-    IconFacebookComponent,
     ShareButtonsComponent,
     BreadcrumbComponent,
     DonationCardComponent,

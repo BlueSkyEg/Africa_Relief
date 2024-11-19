@@ -23,8 +23,6 @@ export class ScriptLoaderService {
      document.head.appendChild(script);
    }
   }
-
-  // Initialize the donation plugin
   initializeDonationPlugin() {
     if (typeof window['DD'] === 'function') {
       window['DD']();

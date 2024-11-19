@@ -25,7 +25,6 @@ export class EmergencyComponent {
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this._MetaService.setCanonicalURL(window.location.href);
-
       this.router.events
         .pipe(filter((event) => event instanceof NavigationEnd))
         .subscribe(() => {

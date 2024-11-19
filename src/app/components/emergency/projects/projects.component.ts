@@ -9,7 +9,6 @@ import { IApiResponse } from '../../../shared/interfaces/api-response-interface'
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ProjectCardComponent } from '../../../shared/components/projects/project-card/project-card.component';
-import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { MetaService } from '../../../core/services/meta-data/meta.service';
@@ -32,9 +31,9 @@ export class ProjectsComponent {
   router: Router = inject(Router);
 
   ngOnInit(): void {
+    this.onGetProjects()
     if (isPlatformBrowser(this.platformId)) {
       this._MetaService.setCanonicalURL(window.location.href);
-
       this.router.events
         .pipe(filter((event) => event instanceof NavigationEnd))
         .subscribe(() => {

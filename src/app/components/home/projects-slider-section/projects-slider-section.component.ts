@@ -17,10 +17,8 @@ import { ProjectService } from '../../../core/services/projects/project.service'
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 import { IProjectCard } from '../../../shared/interfaces/project/project-card-interface';
-import { ProjectCardComponent } from '../../../shared/components/projects/project-card/project-card.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
-import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { Autoplay, Navigation } from 'swiper/modules';
@@ -32,7 +30,6 @@ import { MetaService } from '../../../core/services/meta-data/meta.service';
   imports: [
     CommonModule,
     RouterModule,
-    ProjectCardComponent,
     IconArrowLeftComponent,
     IconArrowRightComponent,
     ButtonLinkComponent,
