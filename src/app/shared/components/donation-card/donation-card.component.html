@@ -1,8 +1,7 @@
 <div class="flex flex-col gap-6 p-4 bg-white border border-gray-light">
   <div
-    class="flex justify-center items-center gap-2 p-4 border border-gray-medium"
-  >
-    <img src="assets/images/shared/donors.webp" class="xl:w-[40%] w-[30%]  md:w-[20%]" alt="donors"/>
+    class="flex justify-center items-center gap-2 p-4 border border-gray-medium">
+    <img  loading="lazy" class="xl:w-[40%] w-[30%]  md:w-[20%]" alt="donors" src="assets/images/shared/donors.webp">
     <p>+1650 Donors</p>
   </div>
   @if (donationForm.fullyFundLevel) {
@@ -29,6 +28,7 @@
         <div
           class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-primary hover:border-primary hover:text-white peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white"
         >
+
           @if (!level.name) {
           <span>{{ "$" + level.amount }}</span>
           } @else {

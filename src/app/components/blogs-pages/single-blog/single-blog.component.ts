@@ -100,4 +100,11 @@ export class SingleBlogComponent {
       }
     });
   }
+
+  formatItem(item: string): string {
+    const boldPattern = /\*(.*?)\*/;
+    return item
+      .replace(boldPattern, '<span class="font-medium ">$1</span>')
+      .replace(/\*\*/g, '');
+  }
 }

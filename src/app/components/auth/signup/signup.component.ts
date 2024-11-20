@@ -25,7 +25,6 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmailValidator } from '../../../core/validators/email.validator';
 import { StringValidator } from '../../../core/validators/string.validator';
-import { Meta } from '@angular/platform-browser';
 import { filter } from 'rxjs';
 import { MetaService } from '../../../core/services/meta-data/meta.service';
 

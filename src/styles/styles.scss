@@ -103,3 +103,7 @@ body {
   background-color: #205926 !important;
   color: #fefefe;
 }
+::selection {
+  background-color: #205926;
+  color: #ffffff;
+}

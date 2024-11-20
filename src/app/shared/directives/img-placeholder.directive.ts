@@ -1,25 +1,13 @@
-import { isPlatformServer } from '@angular/common';
-import { Directive, ElementRef, Input, PLATFORM_ID, Renderer2, inject } from '@angular/core';
+import { Directive, ElementRef, Input, Renderer2, inject } from '@angular/core';
 
 @Directive({
   selector: '[appImgPlaceholder]',
   standalone: true,
-  
 })
-
 export class ImgPlaceholderDirective {
-
-  /**
-   * Every time the src input changes, we will try to resolve the resource (url or image location)
-   * When using SSR, the initImage method will not try to resolve the image
-   * Attaching the g-skeleton css class we create some grey pulsing background, indicating to the user that the image is loading
-   * When the img.src is resolved we display the image or a placeholder when it fails
-   */
-
   defaultLocalImage = 'assets/images/logo.webp';
 
   @Input({ required: true }) src: string | null | undefined = null;
-  private platformId: Object = inject(PLATFORM_ID);
   private element: ElementRef = inject(ElementRef);
   private renderer: Renderer2 = inject(Renderer2);
 
@@ -28,11 +16,6 @@ export class ImgPlaceholderDirective {
   }
 
   private initImage() {
-    // do not evaluate on SSR
-    if (isPlatformServer(this.platformId)) {
-      return;
-    }
-
     // show placeholder image before image is loaded
     this.setImage(this.defaultLocalImage);
     this.renderer.addClass(this.element.nativeElement, 'img-placeholder');
