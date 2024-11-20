@@ -1,18 +1,17 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, SimpleChanges } from '@angular/core';
+import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { BlogService } from '../../core/services/blogs/blog.service';
 import { IBlogCard } from '../../shared/interfaces/blog/blog-card-interface';
 import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcrumb.component';
 import { BlogCardComponent } from '../../shared/components/blogs/blog-card/blog-card.component';
-import { NotFoundIconComponent } from '../../shared/icons/search/not-found-icon-search.component';
 import { NotFoundSearchResultComponent } from '../../shared/components/not-found-search-result/not-found-search-result.component';
 import { ProjectService } from '../../core/services/projects/project.service';
 import { IProjectCard } from '../../shared/interfaces/project/project-card-interface';
 import { ProjectCardComponent } from '../../shared/components/projects/project-card/project-card.component';
-import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { MetaService } from '../../core/services/meta-data/meta.service';
 @Component({
   selector: 'app-search-results',
   standalone: true,
@@ -20,14 +19,12 @@ import { filter } from 'rxjs';
     BlogCardComponent,
     CommonModule,
     BreadcrumbComponent,
-    NotFoundIconComponent,
     NotFoundSearchResultComponent,
     RouterLink,
     RouterLinkActive,
     ProjectCardComponent,
   ],
   templateUrl: './search-results.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchResultsComponent implements OnInit {
   blogs: IBlogCard[] = [];
@@ -43,18 +40,19 @@ export class SearchResultsComponent implements OnInit {
     private blogService: BlogService,
     private projectService: ProjectService
   ) {}
-  metaService: Meta = inject(Meta);
+  _MetaService: MetaService = inject(MetaService);
+  private platformId = inject(PLATFORM_ID);
   router: Router = inject(Router);
   ngOnInit() {
-    this.setCanonicalURL(window.location.href);
+    if (isPlatformBrowser(this.platformId)) {
+      this._MetaService.setCanonicalURL(window.location.href);
 
-    // Update the canonical URL on route changes
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.setCanonicalURL(window.location.href);
-      });
-
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this._MetaService.setCanonicalURL(window.location.href);
+        });
+    }
     this.activatedRoute.params.subscribe((params) => {
       this.searchTerm = params['term'] || '';
       this.currentPage = 1;
@@ -67,24 +65,6 @@ export class SearchResultsComponent implements OnInit {
     });
   }
 
-  setCanonicalURL(url: string) {
-    let link: HTMLLinkElement =
-      document.querySelector("link[rel='canonical']") || null;
-
-    if (link) {
-      link.setAttribute('href', url);
-    } else {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', url);
-      document.head.appendChild(link);
-    }
-    // Set og:url
-    this.metaService.updateTag({
-      property: 'og:url',
-      content: url,
-    });
-  }
   getResults(page: number) {
     this.isLoading = true;
     if (this.type === 'blogs') {

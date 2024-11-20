@@ -7,17 +7,24 @@ import { environment } from '../../../../environments/environment';
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CareerService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getCareers(page: number, perPage: number = 6): Observable<IApiResponse<IPaginatedData<ICareer[]>>> {
-    return this.http.get<IApiResponse<IPaginatedData<ICareer[]>>>(environment.apiUrl + '/careers', {params: {page: page, perPage: perPage}})
+  getCareers(
+    page: number,
+    perPage: number = 6
+  ): Observable<IApiResponse<IPaginatedData<ICareer[]>>> {
+    return this.http.get<IApiResponse<IPaginatedData<ICareer[]>>>(
+      environment.apiUrl + '/careers',
+      { params: { page: page, perPage: perPage } }
+    );
   }
 
   getCareer(careerSlug: string): Observable<IApiResponse<ICareer>> {
-    return this.http.get<IApiResponse<ICareer>>(environment.apiUrl + '/careers/' + careerSlug)
+    return this.http.get<IApiResponse<ICareer>>(
+      environment.apiUrl + '/careers/' + careerSlug
+    );
   }
 }

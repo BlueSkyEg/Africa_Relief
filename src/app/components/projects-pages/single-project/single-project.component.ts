@@ -1,25 +1,29 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { IProject } from '../../../shared/interfaces/project/project-interface';
 import { ProjectService } from '../../../core/services/projects/project.service';
-import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterModule,
+} from '@angular/router';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
-import { CommonModule } from '@angular/common';
-import { IconQuoteComponent } from "../../../shared/icons/quote/icon-quote.component";
-import { ButtonLinkComponent } from "../../../shared/components/button-link/button-link.component";
-import { BlogCardComponent } from "../../../shared/components/blogs/blog-card/blog-card.component";
-import { IconLinkedinComponent } from "../../../shared/icons/social-media/linkedin/icon-linkedin.component";
-import { IconYoutubeComponent } from "../../../shared/icons/social-media/youtube/icon-youtube.component";
-import { IconInstagramComponent } from "../../../shared/icons/social-media/instagram/icon-instagram.component";
-import { IconFacebookComponent } from "../../../shared/icons/social-media/facebook/icon-facebook.component";
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { IconQuoteComponent } from '../../../shared/icons/quote/icon-quote.component';
+import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
+import { BlogCardComponent } from '../../../shared/components/blogs/blog-card/blog-card.component';
+import { IconLinkedinComponent } from '../../../shared/icons/social-media/linkedin/icon-linkedin.component';
+import { IconYoutubeComponent } from '../../../shared/icons/social-media/youtube/icon-youtube.component';
+import { IconInstagramComponent } from '../../../shared/icons/social-media/instagram/icon-instagram.component';
+import { IconFacebookComponent } from '../../../shared/icons/social-media/facebook/icon-facebook.component';
 import { IconDirective } from '../../../shared/directives/icon.directive';
-import { ShareButtonsComponent } from "../../../shared/components/share-buttons/share-buttons.component";
-import { BreadcrumbComponent } from "../../../shared/components/breadcrumb/breadcrumb.component";
-import { DonationCardComponent } from "../../../shared/components/donation-card/donation-card.component";
-import { RelatedProjectsComponent } from "./related-projects/related-projects.component";
+import { ShareButtonsComponent } from '../../../shared/components/share-buttons/share-buttons.component';
+import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
+import { DonationCardComponent } from '../../../shared/components/donation-card/donation-card.component';
+import { RelatedProjectsComponent } from './related-projects/related-projects.component';
 import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
 import { MetaService } from '../../../core/services/meta-data/meta.service';
 import { filter } from 'rxjs';
-import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-single-project',
@@ -29,14 +33,7 @@ import { Meta } from '@angular/platform-browser';
   imports: [
     RouterModule,
     CommonModule,
-    IconDirective,
     IconQuoteComponent,
-    ButtonLinkComponent,
-    BlogCardComponent,
-    IconLinkedinComponent,
-    IconYoutubeComponent,
-    IconInstagramComponent,
-    IconFacebookComponent,
     ShareButtonsComponent,
     BreadcrumbComponent,
     DonationCardComponent,
@@ -49,19 +46,19 @@ export class SingleProjectComponent implements OnInit {
   router: Router = inject(Router);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   projectService: ProjectService = inject(ProjectService);
-  metaService: MetaService = inject(MetaService);
-  _metaService: Meta = inject(Meta);
+  _MetaService: MetaService = inject(MetaService);
+  private platformId = inject(PLATFORM_ID);
 
   ngOnInit(): void {
-    this.setCanonicalURL(window.location.href);
+    if (isPlatformBrowser(this.platformId)) {
+      this._MetaService.setCanonicalURL(window.location.href);
 
-    // Update the canonical URL on route changes
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.setCanonicalURL(window.location.href);
-      });
-
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this._MetaService.setCanonicalURL(window.location.href);
+        });
+    }
     this.activeRoute.paramMap.subscribe({
       next: (route) => {
         this.projectService.getProject(route.get('slug')).subscribe({
@@ -69,9 +66,10 @@ export class SingleProjectComponent implements OnInit {
             if (res.success) {
               this.project = res.data;
 
-              this.metaService.setMetaData(
+              this._MetaService.setMetaData(
                 this.project.meta_data,
-                this.project.created_at
+                this.project.created_at,
+                this.project.featured_image
               );
               console.log(this.project.meta_data);
             } else {
@@ -83,24 +81,6 @@ export class SingleProjectComponent implements OnInit {
     });
   }
 
-  setCanonicalURL(url: string) {
-    let link: HTMLLinkElement =
-      document.querySelector("link[rel='canonical']") || null;
-
-    if (link) {
-      link.setAttribute('href', url);
-    } else {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', url);
-      document.head.appendChild(link);
-    }
-    // Set og:url
-    this._metaService.updateTag({
-      property: 'og:url',
-      content: url,
-    });
-  }
   formatItem(item: string): string {
     const boldPattern = /\*\*(.*?)\*\*/;
 

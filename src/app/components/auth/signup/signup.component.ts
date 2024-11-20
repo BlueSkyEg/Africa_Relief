@@ -1,6 +1,16 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { AbstractControlOptions, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
+import {
+  AbstractControlOptions,
+  FormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterModule,
+} from '@angular/router';
 import { FormElementDirective } from '../../../shared/directives/form-element.directive';
 import { FieldComponent } from '../../../shared/components/form/field/field.component';
 import { LabelComponent } from '../../../shared/components/form/label/label.component';
@@ -10,13 +20,14 @@ import { IconEyeComponent } from '../../../shared/icons/eye/icon-eye.component';
 import { IconEyeOffComponent } from '../../../shared/icons/eye-off/icon-eye-off.component';
 import { PasswordValidator } from '../../../core/validators/password.validator';
 import { MatchPasswordValidator } from '../../../core/validators/match-password.validator';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmailValidator } from '../../../core/validators/email.validator';
 import { StringValidator } from '../../../core/validators/string.validator';
 import { Meta } from '@angular/platform-browser';
 import { filter } from 'rxjs';
+import { MetaService } from '../../../core/services/meta-data/meta.service';
 
 @Component({
   selector: 'app-signup',
@@ -35,7 +46,6 @@ import { filter } from 'rxjs';
     IconEyeComponent,
     IconEyeOffComponent,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignupComponent {
   showPassword: boolean = false;
@@ -45,17 +55,19 @@ export class SignupComponent {
   fb: FormBuilder = inject(FormBuilder);
   authService: AuthService = inject(AuthService);
   _snackBar: MatSnackBar = inject(MatSnackBar);
-  metaService: Meta = inject(Meta);
   router: Router = inject(Router);
+  _MetaService: MetaService = inject(MetaService);
+  platformId = inject(PLATFORM_ID);
   ngOnInit(): void {
-    this.setCanonicalURL(window.location.href);
+    if (isPlatformBrowser(this.platformId)) {
+      this._MetaService.setCanonicalURL(window.location.href);
 
-    // Update the canonical URL on route changes
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.setCanonicalURL(window.location.href);
-      });
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this._MetaService.setCanonicalURL(window.location.href);
+        });
+    }
   }
   signupForm = this.fb.group(
     {
@@ -66,38 +78,24 @@ export class SignupComponent {
     },
     { validator: [MatchPasswordValidator()] } as AbstractControlOptions
   );
-  setCanonicalURL(url: string) {
-    let link: HTMLLinkElement =
-      document.querySelector("link[rel='canonical']") || null;
 
-    if (link) {
-      link.setAttribute('href', url);
-    } else {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', url);
-      document.head.appendChild(link);
-    }
-    // Set og:url
-    this.metaService.updateTag({
-      property: 'og:url',
-      content: url,
-    });
-  }
   onSignup() {
     this.signupFormDisabled = true;
     this.authService.register(this.signupForm.value).subscribe({
       next: (res) => {
         if (res.success) {
           this.authService.authedUserSubject.next(res.data.user);
-          localStorage.setItem(
-            'accessToken',
-            JSON.stringify(res.data.accessToken)
-          );
-          localStorage.setItem(
-            'tokenExpiresAt',
-            JSON.stringify(res.data.tokenExpiresAt)
-          );
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem(
+              'accessToken',
+              JSON.stringify(res.data.accessToken)
+            );
+            localStorage.setItem(
+              'tokenExpiresAt',
+              JSON.stringify(res.data.tokenExpiresAt)
+            );
+          }
+
           this.authService.checkRedirectUrl(this.activeRoute);
         } else if (res.message == 'validation error') {
           for (const control in res.errors) {

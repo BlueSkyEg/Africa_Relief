@@ -4,4 +4,5 @@ export interface IMetadata {
   meta_description: string;
   meta_robots: string;
   meta_og_type: string;
+  meta_image: string;
 }

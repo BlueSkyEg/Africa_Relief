@@ -1,6 +1,11 @@
 <div class="flex flex-col gap-10 lg:gap-20 mb-10 lg:mb-20">
   <app-main-slider />
-
+<!-- ticker  -->
+ <div class="text-center font-medium text-2xl">
+  <p class="mb-28">As of today, ARCD has reached</p>
+  <div class="text-primary text-[200px] mb-28 font-normal font-roboto">{{ displayCount | number }}</div>
+    <p>people in Africa and in crises around the world.</p>
+ </div>
   <!-- Donation Card Section -->
   <div class="container flex flex-col xl:flex-row justify-between gap-6">
     <div class="flex flex-col gap-6 xl:w-[718px]">
@@ -9,11 +14,13 @@
       </h2>
       <figure class="relative h-full bg-gray-light">
         <img
-        width="full" height="full"
+          width="full"
+          height="full"
           class="h-full object-cover object-center"
           src="/assets/images/home/Equal-Opportunity-to-Children.webp"
           alt="ALL Children Deserve an Equal Opportunity to Succeed in Life.webp"
-          width="300" height="300"
+          width="300"
+          height="300"
         />
         <div
           class="flex items-center absolute gap-1 top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 pe-4 bg-black text-white cursor-pointer"
@@ -120,7 +127,7 @@
         <h1 class="text-heading-3 md:text-heading-1 mb-5">
           Africa Relief: A Leading Non-Profit Organization in NJ
         </h1>
-        <p class="text-xl  hidden md:block">
+        <p class="text-xl hidden md:block">
           As a premier non-profit organization based in New Jersey, we are
           deeply<br />
           committed to enriching lives across Africa through a spectrum of<br />
@@ -128,11 +135,9 @@
         </p>
         <p class="text-sm md:hidden">
           As a premier non-profit organization based in New Jersey, we are
-          deeply
-          committed to enriching lives across Africa through a spectrum of
-          humanitarian projects.
+          deeply committed to enriching lives across Africa through a spectrum
+          of humanitarian projects.
         </p>
-
       </div>
     </div>
   </div>
@@ -156,7 +161,7 @@
         [icon]="true"
       />
     </div>
-  <app-project-categories-slider/>
+    <app-project-categories-slider />
   </div>
 
   <!-- Donate Through Zelle -->
@@ -181,7 +186,7 @@
             <app-icon-envelope />
             info&#64;arcdus.org
           </a>
-          <a
+          <!-- <a
             class="flex items-center gap-2 p-3 border border-white w-fit"
             href="https://www.google.com/maps/place/65+Kingsland+Ave+%232,+Clifton,+NJ+07014,+USA/@40.8220369,-74.1305663,17z/data=!3m1!4b1!4m5!3m4!1s0x89c2ff53b0d250eb:0x85d6d40ce61b0d3d!8m2!3d40.8220329!4d-74.1279914?entry=ttu"
             target="_blank"
@@ -189,7 +194,7 @@
           >
             <app-icon-pin />
             65 Kingsland Ave, Suite#2, Clifton, NJ 07014
-          </a>
+          </a> -->
         </div>
       </div>
     </div>
@@ -204,28 +209,36 @@
   }
 
   <!-- Donate Through Venmo -->
-  <div #donateThroughVenmo class="py-12 text-white bg-primary bg-[url('/assets/images/shared/wave-bg.webp')] bg-cover bg-no-repeat">
+  <div
+    #donateThroughVenmo
+    class="py-12 text-white bg-primary bg-[url('/assets/images/shared/wave-bg.webp')] bg-cover bg-no-repeat"
+  >
     <div class="container">
       <div class="flex flex-col gap-4">
         <div class="flex items-center gap-2">
-          <app-icon-venmo class="scale-75"/>
+          <app-icon-venmo class="scale-75" />
           <span class="text-body-2-md">Venmo</span>
         </div>
         <h2 class="text-heading-2">Donate Through Venmo</h2>
         <div class="flex flex-col lg:flex-row gap-4">
           <div class="flex items-center gap-2 p-3 border border-white w-fit">
-            <app-icon-user/>
+            <app-icon-user />
             &#64;Africa-Relief
           </div>
-          <a class="flex items-center gap-2 p-3 border border-white w-fit" href="tel:+12012821385" target="_blank" rel="nofollow" aria-label="phone">
-            <app-icon-phone/>
+          <a
+            class="flex items-center gap-2 p-3 border border-white w-fit"
+            href="tel:+12012821385"
+            target="_blank"
+            rel="nofollow"
+            aria-label="phone"
+          >
+            <app-icon-phone />
             201-282-1385
           </a>
         </div>
       </div>
     </div>
   </div>
-
 
   <app-safe-and-easy-donation />
 

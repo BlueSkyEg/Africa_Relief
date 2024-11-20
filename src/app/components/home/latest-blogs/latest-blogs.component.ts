@@ -1,7 +1,11 @@
-import {ChangeDetectionStrategy, Component, OnInit, inject} from '@angular/core';
-import {BlogCardComponent} from "../../../shared/components/blogs/blog-card/blog-card.component";
-import {ButtonLinkComponent} from "../../../shared/components/button-link/button-link.component";
-import {IBlogCard} from "../../../shared/interfaces/blog/blog-card-interface";
+import {
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
+import { BlogCardComponent } from '../../../shared/components/blogs/blog-card/blog-card.component';
+import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
+import { IBlogCard } from '../../../shared/interfaces/blog/blog-card-interface';
 import { BlogService } from '../../../core/services/blogs/blog.service';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';

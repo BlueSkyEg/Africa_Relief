@@ -1,157 +1,143 @@
 <div class="container mt-4 mb-10 lg:mb-20">
   @if (blog) {
-    <!-- Breadcrumb -->
-    <app-breadcrumb
-      basePath="/blogs"
-      baseName="Blogs"
-      [currentName]="blog.title"
-      />
+  <!-- Breadcrumb -->
+  <app-breadcrumb basePath="/blogs" baseName="Blogs" [currentName]="blog.title" />
 
-      <!-- blog Container -->
-      <div class="grid lg:grid-cols-3 gap-6 mt-6">
-        <!-- blog Summary -->
-        <div class="flex flex-col gap-6 lg:col-span-2">
-          <!-- blog title -->
-          <h1 class="text-heading-1">{{ blog.title | titlecase }}</h1>
-          <p class="text-body-2-md">{{ blog.created_at | date : "MMMM, Y" }}</p>
+  <!-- blog Container -->
+  <div class="grid lg:grid-cols-3 gap-6 mt-6">
+    <!-- blog Summary -->
+    <div class="flex flex-col gap-6 lg:col-span-2">
+      <!-- blog title -->
+      <h1 class="text-heading-1">{{ blog.title | titlecase }}</h1>
+      <p class="text-body-2-md">{{ blog.created_at | date : "MMMM, Y" }}</p>
 
-          <!-- blog image -->
-          <div class="relative">
-            <div class="w-full h-[480px] bg-gray-light">
-              <img width="full" height="full"
-                class="h-full object-cover object-center"
-                appImgPlaceholder
-                [src]="blog.featured_image.src"
-                [alt]="blog.featured_image.alt_text"
-                loading="lazy"
-                />
-              </div>
-              <div class="absolute bottom-0 start-0 bg-secondary py-1 px-3">
-                @for (category of blog.categories; track category; let idx = $index) {
-                  <a [routerLink]="'/blogs/category/' + category.slug">{{
-                    category.name | titlecase
-                  }}</a>
-                  @if (blog.categories.length > idx + 1 ) {
-                    <span>, </span>
-                    } }
-                  </div>
-                </div>
+      <!-- blog image -->
+      <div class="relative">
+        <div class="w-full h-[480px] bg-gray-light">
+          <img width="full" height="full" class="h-full object-cover object-center" appImgPlaceholder
+            [src]="blog.featured_image.src" [alt]="blog.featured_image.alt_text" loading="lazy" />
+        </div>
+        @for (category of blog.categories; track category; let idx = $index) {
+        <div class="absolute bottom-0 start-0 bg-secondary py-1 px-3">
+          <a [routerLink]="'/blogs/category/' + category.slug">{{
+            category.name | titlecase
+            }}</a>
+          @if (blog.categories.length > idx + 1 ) {
+          <span>, </span>
+          }
+        </div>
+        }
+      </div>
 
-                <div class="flex flex-col gap-2">
-                  <p class="text-body-2">
-                    Location:
-                    <span class="text-body-2-md">{{ blog.location | titlecase }}</span>
-                  </p>
-                  <p class="text-body-2">
-                    Implementation Date:
-                    <span class="text-body-2-md">{{
-                      blog.implementation_date | date : "MMMM, Y"
-                    }}</span>
-                  </p>
-                </div>
-              </div>
+      <div class="flex flex-col gap-2">
+        <p class="text-body-2">
+          Location:
+          <span class="text-body-2-md">{{ blog.location | titlecase }}</span>
+        </p>
+        <p class="text-body-2">
+          Implementation Date:
+          <span class="text-body-2-md">{{
+            blog.implementation_date | date : "MMMM, Y"
+            }}</span>
+        </p>
+      </div>
+    </div>
 
-              <!-- Donation Card -->
-              <app-donation-card [donationForm]="blog.donation_form" />
+    <!-- Donation Card -->
+    <app-donation-card [donationForm]="blog.donation_form" />
 
-              <!-- blog content -->
-              <div class="flex flex-col gap-6 lg:col-span-2">
-                <div class="flex flex-col gap-6">
-                  @for (content of blog.contents; track content.order; let idx = $index) {
-                    <div class="flex flex-col gap-3">
-                      <!-- heading -->
-                      @if(content.type=="heading") { @if (!idx) {
-                        <div class="flex items-start gap-2">
-                          <app-icon-quote class="mt-2" />
+    <!-- blog content -->
+    <div class="flex flex-col gap-6 lg:col-span-2">
+      <div class="flex flex-col gap-6">
+        @for (content of blog.contents; track content.order; let idx = $index) {
+        <div class="flex flex-col gap-3">
+          <!-- heading -->
+          @if(content.type=="heading") { @if (!idx) {
+          <div class="flex items-start gap-2">
+            <app-icon-quote class="mt-2" />
 
-                          <h2 class="text-body-1-inter">{{ content.body }}</h2>
-                        </div>
-                      } @else {
-                        <h2 class="text-body-1-inter">{{ content.body }}</h2>
-                        }}
-                        <!-- paragraph -->
-                        @if(content.type=='paragraph'){ @if(content.quotedText){
-                          <p class="text-body-2">
-                            @if (content.beforeQuote) {
-                              {{ content.beforeQuote }}
-                            }
-                            @if (content.quotedText) {
-                              <div
-                                class="text-l my-4 border-l-2 border-gray-medium ps-2 ms-3 font-semibold"
-                                >
-                                “{{ content.quotedText }}”
-                              </div>
-                            }
-                            @if (content.afterQuote) {
-                              {{ content.afterQuote }}
-                            }
-                          </p>
-                        } @else {
-                          <p class="text-body-2">{{ content.body }}</p>
-                          } }
-                          <!-- Image -->
-                          @if (content.type === 'image') {
-                            <div class="my-6">
-                              <img
-                                [src]="content.body.src"
-                                [alt]="content.body.alt_text"
-                                class="w-full h-auto"
-                                />
-                              </div>
-                            }
-                          </div>
-                        }
-                      </div>
+            <h2 class="text-body-1-inter">{{ content.body }}</h2>
+          </div>
+          } @else {
+          <h2 class="text-body-1-inter">{{ content.body }}</h2>
+          }}
+          <!-- paragraph -->
+          @if(content.type=='paragraph'){ @if(content.quotedText){
+          <p class="text-body-2">
+            @if (content.beforeQuote) {
+            {{ content.beforeQuote }}
+            }
+            @if (content.quotedText) {
+          <div class="text-l my-4 border-l-2 border-gray-medium ps-2 ms-3 font-semibold">
+            “{{ content.quotedText }}”
+          </div>
+          }
+          @if (content.afterQuote) {
+          {{ content.afterQuote }}
+          }
+          </p>
+          } @else {
+          <p class="text-body-2">{{ content.body }}</p>
+          } }
+          <!-- Image -->
+          @if (content.type === 'image') {
+          <div class="my-6">
+            <img [src]="content.body.src" [alt]="content.body.alt_text" class="w-full h-auto" />
+          </div>
+          }
+        </div>
+        }
+      </div>
 
-                      <!-- gallery -->
-                      @if (blog.gallery.length) {
-                        <app-blog-slider [slides]="blog.gallery" />
-                      }
+      <!-- gallery -->
+      @if (blog.gallery.length) {
+      <app-blog-slider [slides]="blog.gallery" />
+      }
 
-                      <app-share-buttons />
-                    </div>
-                  </div>
+      <app-share-buttons />
+    </div>
+  </div>
 
-                  <!-- Related Blogs -->
-                  <app-related-blogs [currentBlogSlug]="blog.slug" />
-                } @else () {
-                  <div class="animate-pulse bg-gray-light h-4 w-7/12"></div>
-                  <div class="animate-pulse grid lg:grid-cols-3 gap-10 mt-6">
-                    <div class="flex flex-col gap-6 lg:col-span-2">
-                      <div class="bg-gray-light h-4 w-4/6"></div>
-                      <div class="bg-gray-light h-4 w-3/6"></div>
-                      <div class="bg-gray-light h-4 w-2/6"></div>
-                      <div class="bg-gray-light h-[480px]"></div>
-                      <div class="bg-gray-light h-4 w-2/6"></div>
-                      <div class="bg-gray-light h-4 w-3/6"></div>
-                    </div>
+  <!-- Related Blogs -->
+  <app-related-blogs [currentBlogSlug]="blog.slug" />
+  } @else () {
+  <div class="animate-pulse bg-gray-light h-4 w-7/12"></div>
+  <div class="animate-pulse grid lg:grid-cols-3 gap-10 mt-6">
+    <div class="flex flex-col gap-6 lg:col-span-2">
+      <div class="bg-gray-light h-4 w-4/6"></div>
+      <div class="bg-gray-light h-4 w-3/6"></div>
+      <div class="bg-gray-light h-4 w-2/6"></div>
+      <div class="bg-gray-light h-[480px]"></div>
+      <div class="bg-gray-light h-4 w-2/6"></div>
+      <div class="bg-gray-light h-4 w-3/6"></div>
+    </div>
 
-                    <div class="flex flex-col gap-6 p-4 h-fit bg-white">
-                      <div class="bg-gray-light h-16"></div>
-                      <div class="bg-gray-light h-12"></div>
-                      <div class="flex flex-col gap-4">
-                        <div class="bg-gray-light h-3 w-2/6"></div>
-                        <div class="bg-gray-light h-10"></div>
-                        <div class="flex gap-4">
-                          <div class="bg-gray-light h-10 w-2/6"></div>
-                          <div class="bg-gray-light h-10 w-2/6"></div>
-                          <div class="bg-gray-light h-10 w-2/6"></div>
-                        </div>
-                      </div>
-                      <div class="bg-gray-light h-10"></div>
-                      <div class="bg-gray-light h-10"></div>
-                    </div>
+    <div class="flex flex-col gap-6 p-4 h-fit bg-white">
+      <div class="bg-gray-light h-16"></div>
+      <div class="bg-gray-light h-12"></div>
+      <div class="flex flex-col gap-4">
+        <div class="bg-gray-light h-3 w-2/6"></div>
+        <div class="bg-gray-light h-10"></div>
+        <div class="flex gap-4">
+          <div class="bg-gray-light h-10 w-2/6"></div>
+          <div class="bg-gray-light h-10 w-2/6"></div>
+          <div class="bg-gray-light h-10 w-2/6"></div>
+        </div>
+      </div>
+      <div class="bg-gray-light h-10"></div>
+      <div class="bg-gray-light h-10"></div>
+    </div>
 
-                    <div class="flex flex-col gap-10 lg:col-span-2">
-                      <div class="flex flex-col gap-6">
-                        <div class="bg-gray-light h-4 w-4/6"></div>
-                        <div class="bg-gray-light h-40"></div>
-                      </div>
-                      <div class="flex flex-col gap-6">
-                        <div class="bg-gray-light h-4 w-4/6"></div>
-                        <div class="bg-gray-light h-40"></div>
-                      </div>
-                    </div>
-                  </div>
-                }
-              </div>
+    <div class="flex flex-col gap-10 lg:col-span-2">
+      <div class="flex flex-col gap-6">
+        <div class="bg-gray-light h-4 w-4/6"></div>
+        <div class="bg-gray-light h-40"></div>
+      </div>
+      <div class="flex flex-col gap-6">
+        <div class="bg-gray-light h-4 w-4/6"></div>
+        <div class="bg-gray-light h-40"></div>
+      </div>
+    </div>
+  </div>
+  }
+</div>

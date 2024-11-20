@@ -278,10 +278,10 @@
       <ng-template matStepLabel>checkout</ng-template>
       <ng-template matStepContent>
         <form class="mt-4" [formGroup]="checkoutForm">
-          
+
           <app-card-elements #stripeCardElements />
           <!-- Cover Fees Checkbox -->
-          <!-- <div class="my-4">
+          <div class="my-4">
             <label class="inline-flex items-center">
               <input
                 type="checkbox"
@@ -292,7 +292,7 @@
                 >Would you like to cover the transaction fees?</span
               >
             </label>
-          </div> -->
+          </div>
           <app-form-field>
             <app-form-label>Comment</app-form-label>
             <textarea

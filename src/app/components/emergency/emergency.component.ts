@@ -1,54 +1,35 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcrumb.component';
-import { ButtonLinkComponent } from '../../shared/components/button-link/button-link.component';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ProjectsComponent } from './projects/projects.component';
-import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { MetaService } from '../../core/services/meta-data/meta.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-emergency',
   standalone: true,
   imports: [
     BreadcrumbComponent,
-    ButtonLinkComponent,
     RouterLink,
     RouterLinkActive,
-    RouterOutlet,
     ProjectsComponent,
   ],
   templateUrl: './emergency.component.html',
 })
 export class EmergencyComponent {
-  metaService: Meta = inject(Meta);
+  _MetaService: MetaService = inject(MetaService);
+  private platformId = inject(PLATFORM_ID);
   router: Router = inject(Router);
   ngOnInit(): void {
-    this.setCanonicalURL(window.location.href);
-
-    // Update the canonical URL on route changes
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.setCanonicalURL(window.location.href);
-      });
-  }
-  setCanonicalURL(url: string) {
-    let link: HTMLLinkElement =
-      document.querySelector("link[rel='canonical']") || null;
-
-    if (link) {
-      link.setAttribute('href', url);
-    } else {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', url);
-      document.head.appendChild(link);
+    if (isPlatformBrowser(this.platformId)) {
+      this._MetaService.setCanonicalURL(window.location.href);
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this._MetaService.setCanonicalURL(window.location.href);
+        });
     }
-    // Set og:url
-    this.metaService.updateTag({
-      property: 'og:url',
-      content: url,
-    });
   }
 }

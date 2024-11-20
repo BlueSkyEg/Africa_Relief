@@ -1,5 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
-import { AbstractControlOptions, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnInit, inject } from '@angular/core';
+import {
+  AbstractControlOptions,
+  FormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { FormElementDirective } from '../../../shared/directives/form-element.directive';
 import { FieldComponent } from '../../../shared/components/form/field/field.component';
 import { LabelComponent } from '../../../shared/components/form/label/label.component';
@@ -12,7 +17,7 @@ import { MatchPasswordValidator } from '../../../core/validators/match-password.
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth/auth.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-reset-password',
@@ -30,7 +35,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   ],
   templateUrl: './reset-password.component.html',
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResetPasswordComponent implements OnInit {
   resetPasswordFormDisabled: boolean = false;

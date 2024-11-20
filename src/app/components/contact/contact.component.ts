@@ -1,8 +1,13 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { BreadcrumbComponent } from "../../shared/components/breadcrumb/breadcrumb.component";
-import { IconPinComponent } from "../../shared/icons/pin/icon-pin.component";
-import { IconEnvelopeComponent } from "../../shared/icons/envelope/icon-envelope.component";
-import { IconPhoneComponent } from "../../shared/icons/phone/icon-phone.component";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  PLATFORM_ID,
+} from '@angular/core';
+import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcrumb.component';
+import { IconPinComponent } from '../../shared/icons/pin/icon-pin.component';
+import { IconEnvelopeComponent } from '../../shared/icons/envelope/icon-envelope.component';
+import { IconPhoneComponent } from '../../shared/icons/phone/icon-phone.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormElementDirective } from '../../shared/directives/form-element.directive';
 import { FieldComponent } from '../../shared/components/form/field/field.component';
@@ -16,6 +21,8 @@ import { StringValidator } from '../../core/validators/string.validator';
 import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
+import { MetaService } from '../../core/services/meta-data/meta.service';
 
 @Component({
   selector: 'app-contact',
@@ -41,36 +48,21 @@ export class ContactComponent {
   fb: FormBuilder = inject(FormBuilder);
   contactService: ContactService = inject(ContactService);
   _snackBar: MatSnackBar = inject(MatSnackBar);
-  metaService: Meta = inject(Meta);
+  _MetaService: MetaService = inject(MetaService);
+  private platformId = inject(PLATFORM_ID);
   router: Router = inject(Router);
   ngOnInit(): void {
-    this.setCanonicalURL(window.location.href);
+    if (isPlatformBrowser(this.platformId)) {
+      this._MetaService.setCanonicalURL(window.location.href);
 
-    // Update the canonical URL on route changes
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.setCanonicalURL(window.location.href);
-      });
-  }
-  setCanonicalURL(url: string) {
-    let link: HTMLLinkElement =
-      document.querySelector("link[rel='canonical']") || null;
-
-    if (link) {
-      link.setAttribute('href', url);
-    } else {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', url);
-      document.head.appendChild(link);
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this._MetaService.setCanonicalURL(window.location.href);
+        });
     }
-    // Set og:url
-    this.metaService.updateTag({
-      property: 'og:url',
-      content: url,
-    });
   }
+
   contactForm = this.fb.group({
     name: ['', [Validators.required, StringValidator()]],
     email: ['', [Validators.required, Validators.email]],

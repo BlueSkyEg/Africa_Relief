@@ -1,45 +1,29 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ButtonLinkComponent } from "../../shared/components/button-link/button-link.component";
-import { Meta } from '@angular/platform-browser';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { ButtonLinkComponent } from '../../shared/components/button-link/button-link.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
+import { MetaService } from '../../core/services/meta-data/meta.service';
 @Component({
   selector: 'app-page-not-found',
   standalone: true,
   templateUrl: './page-not-found.component.html',
   styles: ``,
   imports: [ButtonLinkComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageNotFoundComponent {
-  metaService: Meta = inject(Meta);
+  _MetaService: MetaService = inject(MetaService);
+  private platformId = inject(PLATFORM_ID);
   router: Router = inject(Router);
   ngOnInit(): void {
-    this.setCanonicalURL(window.location.href);
+    if (isPlatformBrowser(this.platformId)) {
+      this._MetaService.setCanonicalURL(window.location.href);
 
-    // Update the canonical URL on route changes
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.setCanonicalURL(window.location.href);
-      });
-  }
-  setCanonicalURL(url: string) {
-    let link: HTMLLinkElement =
-      document.querySelector("link[rel='canonical']") || null;
-
-    if (link) {
-      link.setAttribute('href', url);
-    } else {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', url);
-      document.head.appendChild(link);
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this._MetaService.setCanonicalURL(window.location.href);
+        });
     }
-    // Set og:url
-    this.metaService.updateTag({
-      property: 'og:url',
-      content: url,
-    });
   }
 }

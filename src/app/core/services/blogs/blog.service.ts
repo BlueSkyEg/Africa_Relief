@@ -43,7 +43,7 @@ export class BlogService {
 
   getRelatedBlogs(blogSlug: string): Observable<IApiResponse<IBlogCard[]>> {
     return this.http.get<IApiResponse<IBlogCard[]>>(
-      environment.apiUrl + '/blogs/related/'+blogSlug
+      environment.apiUrl + '/blogs/related/' + blogSlug
     );
   }
 
@@ -62,7 +62,7 @@ export class BlogService {
     perPage: number = 9
   ): Observable<IApiResponse<IPaginatedData<IBlogCard[]>>> {
     const url = `${environment.apiUrl}/blogs/search/${searchTerm}`;
-    const params = {page: page, perPage: perPage};
+    const params = { page: page, perPage: perPage };
     return this.http.get<IApiResponse<IPaginatedData<IBlogCard[]>>>(url, {
       params,
     });

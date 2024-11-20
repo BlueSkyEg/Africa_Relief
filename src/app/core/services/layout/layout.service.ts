@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject} from "rxjs";
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LayoutService {
-
-  constructor() { }
+  constructor() {}
 
   /*
   - Mobile Side Nav
   */
-  sideNavSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  sideNavSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
 
   /*
   - Progress Bar

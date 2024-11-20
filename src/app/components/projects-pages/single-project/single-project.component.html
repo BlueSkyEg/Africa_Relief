@@ -21,16 +21,17 @@
             loading="lazy"
           />
         </div>
+        @for (category of project.categories; track category; let idx = $index)
+        { @if(category.name) {
         <div class="absolute bottom-0 start-0 bg-secondary py-1 px-3">
-          @for (category of project.categories; track category; let idx =
-          $index) {
           <a [routerLink]="'/projects/category/' + category.slug">{{
             category.name | titlecase
           }}</a>
           @if (project.categories.length > idx + 1 ) {
           <span>, </span>
-          } }
+          }
         </div>
+        } }
       </div>
       <!-- project title -->
       <h1 class="text-heading-1">{{ project.title | titlecase }}</h1>

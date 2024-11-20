@@ -6,21 +6,30 @@ import { IApiResponse } from '../../../shared/interfaces/api-response-interface'
 import { IStripeIntent } from '../../../shared/interfaces/payment/stripe-intent.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PaymentService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   setupPaymentIntent(): Observable<IApiResponse<IStripeIntent>> {
-    return this.http.get<IApiResponse<IStripeIntent>>(environment.apiUrl + '/payment/setup-intent');
+    return this.http.get<IApiResponse<IStripeIntent>>(
+      environment.apiUrl + '/payment/setup-intent'
+    );
   }
 
-  createPayment(data:any): Observable<IApiResponse<IStripeIntent>> {
-    return this.http.post<IApiResponse<IStripeIntent>>(environment.apiUrl + '/payment', data);
+  createPayment(data: any): Observable<IApiResponse<IStripeIntent>> {
+    return this.http.post<IApiResponse<IStripeIntent>>(
+      environment.apiUrl + '/payment',
+      data
+    );
   }
 
-  createExpressCheckoutPayment(data:any): Observable<IApiResponse<IStripeIntent>> {
-    return this.http.post<IApiResponse<IStripeIntent>>(environment.apiUrl + '/payment/express-checkout', data);
+  createExpressCheckoutPayment(
+    data: any
+  ): Observable<IApiResponse<IStripeIntent>> {
+    return this.http.post<IApiResponse<IStripeIntent>>(
+      environment.apiUrl + '/payment/express-checkout',
+      data
+    );
   }
 }

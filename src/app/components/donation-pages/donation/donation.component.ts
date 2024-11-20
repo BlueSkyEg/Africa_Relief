@@ -1,4 +1,10 @@
-import {Component, ViewChild, inject } from '@angular/core';
+import {
+  Component,
+  Inject,
+  PLATFORM_ID,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   MatStepperModule,
@@ -10,7 +16,7 @@ import { FormElementDirective } from '../../../shared/directives/form-element.di
 import { ErrorComponent } from '../../../shared/components/form/error/error.component';
 import { Observable, map } from 'rxjs';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { PaymentService } from '../../../core/services/payment/payment.service';
 import { PaymentMethodResult } from '@stripe/stripe-js';
 import { StripeService } from 'ngx-stripe';
@@ -44,7 +50,6 @@ import * as countryCodes from 'country-codes-list';
     FieldComponent,
     LabelComponent,
     ErrorComponent,
-    ButtonComponent,
     FormElementDirective,
     ExpressCheckoutElementComponent,
     CardElementsComponent,
@@ -65,6 +70,7 @@ export class DonationComponent {
   stepperOrientation: Observable<StepperOrientation>;
   coverFees: boolean = false;
   feePercentage: number = 2.9;
+  checkoutFormDisabled: boolean = false;
 
   router: Router = inject(Router);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
@@ -75,8 +81,10 @@ export class DonationComponent {
   _stripeService: StripeService = inject(StripeService);
   _snackBar: MatSnackBar = inject(MatSnackBar);
   _gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
+  isBrowser: boolean;
+  constructor(@Inject(PLATFORM_ID) private platformId: any) {
+    this.isBrowser = isPlatformBrowser(platformId);
 
-  constructor() {
     this.stepperOrientation = this._breakpointObserver
       .observe('(min-width: 800px)')
       .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
@@ -109,22 +117,22 @@ export class DonationComponent {
 
   checkoutForm = this.fb.group({
     billingComment: ['', [StringValidator(0, 500, true)]],
-    coverFees: [false], // Added control for covering fees
+    coverFees: [false],
   });
 
   ngOnInit() {
-    this.authService.authedUserSubject.asObservable().subscribe({
-      next: (user: IUser) => {
-        this.personalDetailsForm.patchValue({
-          name: user?.name,
-          email: user?.email,
-          phone: user?.phone,
-        });
-      },
-    });
+    if (this.isBrowser) {
+      this.authService.authedUserSubject.asObservable().subscribe({
+        next: (user: IUser) => {
+          this.personalDetailsForm.patchValue({
+            name: user?.name,
+            email: user?.email,
+            phone: user?.phone,
+          });
+        },
+      });
+    }
   }
-
-  checkoutFormDisabled: boolean = false;
 
   onMakeDonation() {
     this.checkoutFormDisabled = true;
@@ -135,14 +143,14 @@ export class DonationComponent {
 
     // Calculate donation amount, including fees if applicable
     this.coverFees = this.checkoutForm.get('coverFees')?.value || false;
-    let finalAmount = this.donationAmount;
-
-    if (this.coverFees) {
-      finalAmount = finalAmount * (1 + this.feePercentage / 100);
-    }
+    // let finalAmount = this.donationAmount;
+    // if (this.coverFees) {
+    //   finalAmount = (finalAmount * (1 + this.feePercentage / 100))+0.30;
+    // }
     // Set donationStarted key in session storage
-    sessionStorage.setItem('donationStarted', JSON.stringify(true));
-
+    if (this.isBrowser) {
+      sessionStorage.setItem('donationStarted', JSON.stringify(true));
+    }
     // make donation process
     const { name, email, phone } = this.personalDetailsForm.getRawValue();
     const { city, country, addressLine1, addressLine2, postalCode, state } =
@@ -163,7 +171,8 @@ export class DonationComponent {
     this.phone = phone;
     this.city = city;
     this.country = country;
-
+    const finalAmount = this.donationAmount;
+    this.coverFees = this.checkoutForm.get('coverFees')?.value || false;
     this.stripeCardElements.createPaymentMethod(billingDetails).subscribe({
       next: (res: PaymentMethodResult) => {
         if (res.error) {
@@ -205,22 +214,25 @@ export class DonationComponent {
     const { name, email } = this.personalDetailsForm.getRawValue();
     const { billingComment } = this.checkoutForm.getRawValue();
 
-    return this.paymentService.createPayment({
+    const paymentData = {
       name: name,
       email: email,
-      amount: finalAmount, // Send the final amount including fees if applicable
+      amount: finalAmount,
       donationFormId: this.donationFormId,
       stripePaymentMethodId: stripePaymentMethodId,
       recurringPeriod: this.recurringPeriod,
       anonymousDonation: false,
       savePaymentMethod: this.recurringPeriod ? true : false,
       billingComment: billingComment,
-    });
+      coverFees: this.coverFees,
+    };
+    return this.paymentService.createPayment(paymentData);
   }
   // Handle 3D Secure Authentication (OTP)
   handleCardAction(clientSecret: string): void {
     this._stripeService.confirmCardPayment(clientSecret).subscribe({
       next: (res) => {
+        console.log(res);
         if (res.error) {
           this._snackBar.open(res.error.message, '✖', {
             panelClass: 'failure-snackbar',
@@ -284,15 +296,19 @@ export class DonationComponent {
   }
   //DataLayer
   onFillPersonalDetails() {
-    (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push({
-      event: 'UserFilledPersonalDetailsForm(firstStage)',
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'UserFilledPersonalDetailsForm(firstStage)',
+      });
+    }
   }
   onFillBillingAddress() {
-    (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push({
-      event: 'UserFilledBillingAddressForm(SecondStage)',
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'UserFilledBillingAddressForm(SecondStage)',
+      });
+    }
   }
 }

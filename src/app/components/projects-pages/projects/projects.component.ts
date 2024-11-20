@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { CategoriesFilterComponent } from '../../../shared/components/categories-filter/categories-filter.component';
 import { ProjectService } from '../../../core/services/projects/project.service';
 import { ICategory } from '../../../shared/interfaces/category-interface';
@@ -11,10 +11,9 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 import { MetaService } from '../../../core/services/meta-data/meta.service';
-import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
-import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'app-projects',
   standalone: true,
@@ -25,7 +24,6 @@ import { filter } from 'rxjs';
     CategoriesFilterComponent,
     ProjectCardComponent,
     BreadcrumbComponent,
-    ButtonLinkComponent,
   ],
 })
 export class ProjectsComponent implements OnInit {
@@ -39,8 +37,8 @@ export class ProjectsComponent implements OnInit {
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   projectService: ProjectService = inject(ProjectService);
   breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
-  metaService: MetaService = inject(MetaService);
-  _metaService: Meta = inject(Meta);
+  _MetaService: MetaService = inject(MetaService);
+  private platformId = inject(PLATFORM_ID);
   router: Router = inject(Router);
   constructor() {
     // Determine pagination perPage number based on screen size
@@ -50,15 +48,15 @@ export class ProjectsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setCanonicalURL(window.location.href);
+    if (isPlatformBrowser(this.platformId)) {
+      this._MetaService.setCanonicalURL(window.location.href);
 
-    // Update the canonical URL on route changes
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.setCanonicalURL(window.location.href);
-      });
-
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this._MetaService.setCanonicalURL(window.location.href);
+        });
+    }
     this.projectService.getProjectCategories().subscribe({
       next: (res: IApiResponse<ICategory[]>) => {
         this.projectCategories = res.data;
@@ -68,32 +66,16 @@ export class ProjectsComponent implements OnInit {
     this.activeRoute.paramMap.subscribe({
       next: (params) => {
         const currentSlug = params.get('slug');
-        this.isPaginationLastPage = false;
-        this.paginationPageNum = 1;
-        this.projects = [];
+        this.resetPagination();
         this.onGetProject(currentSlug);
         this.onGetProjects();
       },
     });
   }
-
-  setCanonicalURL(url: string) {
-    let link: HTMLLinkElement =
-      document.querySelector("link[rel='canonical']") || null;
-
-    if (link) {
-      link.setAttribute('href', url);
-    } else {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', url);
-      document.head.appendChild(link);
-    }
-    // Set og:url
-    this._metaService.updateTag({
-      property: 'og:url',
-      content: url,
-    });
+  resetPagination(): void {
+    this.isPaginationLastPage = false;
+    this.paginationPageNum = 1;
+    this.projects = [];
   }
   onGetProject(currentSlug: string) {
     if (currentSlug) {
@@ -101,7 +83,7 @@ export class ProjectsComponent implements OnInit {
         (category) => category.slug === currentSlug
       );
       if (matchingCategory) {
-        this.metaService.setMetaData(matchingCategory.meta_data);
+        this._MetaService.setMetaData(matchingCategory.meta_data);
       }
     }
   }

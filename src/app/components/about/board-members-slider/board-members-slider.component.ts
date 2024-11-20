@@ -2,27 +2,27 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   Component,
   OnInit,
+  PLATFORM_ID,
+  Renderer2,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { IconArrowLeftComponent } from '../../../shared/icons/arrows/arrow-left/icon-arrow-left.component';
 import { IconArrowRightComponent } from '../../../shared/icons/arrows/arrow-right/icon-arrow-right.component';
 import { IconDirective } from '../../../shared/directives/icon.directive';
 import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
-import { Meta } from '@angular/platform-browser';
 import {
   NavigationEnd,
-  Router,
-  RouterLink,
-  RouterOutlet,
+  Router
 } from '@angular/router';
 import { filter } from 'rxjs';
 import { SwiperContainer } from 'swiper/element';
-import { SwiperOptions} from 'swiper/types';
+import { SwiperOptions } from 'swiper/types';
 import { Autoplay, Navigation } from 'swiper/modules';
 import Swiper from 'swiper';
+import { MetaService } from '../../../core/services/meta-data/meta.service';
+import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'app-board-members-slider',
   standalone: true,
@@ -33,11 +33,8 @@ import Swiper from 'swiper';
     IconArrowLeftComponent,
     IconArrowRightComponent,
     ImgPlaceholderDirective,
-    RouterLink,
-    RouterOutlet,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoardMembersSliderComponent implements OnInit {
   members = [
@@ -117,40 +114,31 @@ export class BoardMembersSliderComponent implements OnInit {
   ];
 
   swiperElement = signal<SwiperContainer | null>(null);
-  metaService: Meta = inject(Meta);
   router: Router = inject(Router);
-
-  setCanonicalURL(url: string) {
-    let link: HTMLLinkElement =
-      document.querySelector("link[rel='canonical']") || null;
-
-    if (link) {
-      link.setAttribute('href', url);
-    } else {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', url);
-      document.head.appendChild(link);
-    }
-    // Set og:url
-    this.metaService.updateTag({
-      property: 'og:url',
-      content: url,
-    });
-  }
+  _MetaService: MetaService = inject(MetaService);
+  private platformId = inject(PLATFORM_ID);
+  private renderer: Renderer2 = inject(Renderer2);
   ngOnInit(): void {
-    this.setCanonicalURL(window.location.href);
+    if (isPlatformBrowser(this.platformId)) {
+      this._MetaService.setCanonicalURL(window.location.href);
 
-    // Update the canonical URL on route changes
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.setCanonicalURL(window.location.href);
-      });
-     Swiper.use([Autoplay, Navigation]);
-    const swiperElementConstructor: SwiperContainer = document.querySelector(
-      '.board-members-slider'
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this._MetaService.setCanonicalURL(window.location.href);
+        });
+
+      // Initialize Swiper only in the browser
+      Swiper.use([Autoplay, Navigation]);
+      this.initializeSwiper();
+    }
+  }
+  private initializeSwiper(): void {
+    const swiperElementConstructor = this.renderer.selectRootElement(
+      '.board-members-slider',
+      true
     );
+
     const swiperOptions: SwiperOptions = {
       loop: true,
       slidesPerView: 'auto',
@@ -161,7 +149,8 @@ export class BoardMembersSliderComponent implements OnInit {
         prevEl: '.board-member-slide-prev',
       },
     };
-    Object.assign(swiperElementConstructor!, swiperOptions);
+
+    Object.assign(swiperElementConstructor, swiperOptions);
     this.swiperElement.set(swiperElementConstructor as SwiperContainer);
     this.swiperElement()?.initialize();
   }
@@ -169,6 +158,8 @@ export class BoardMembersSliderComponent implements OnInit {
     this.router.navigate(['/about/executive-director']);
   }
   ngOnDestroy(): void {
-    this.swiperElement().remove();
+    if (isPlatformBrowser(this.platformId)) {
+      this.swiperElement().remove();
+    }
   }
 }

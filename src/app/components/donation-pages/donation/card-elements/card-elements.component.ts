@@ -1,13 +1,26 @@
-import {  Component, computed, inject, signal, ViewChild } from '@angular/core';
-import { LabelComponent } from "../../../../shared/components/form/label/label.component";
-import { FieldComponent } from "../../../../shared/components/form/field/field.component";
+import { Component, computed, inject, signal, ViewChild } from '@angular/core';
+import { LabelComponent } from '../../../../shared/components/form/label/label.component';
+import { FieldComponent } from '../../../../shared/components/form/field/field.component';
 import { IApiResponse } from '../../../../shared/interfaces/api-response-interface';
 import { IStripeIntent } from '../../../../shared/interfaces/payment/stripe-intent.interface';
-import { PaymentMethodResult, StripeCardCvcElementChangeEvent, StripeCardElementOptions, StripeCardExpiryElementChangeEvent, StripeCardNumberElementChangeEvent, StripeElementsOptions } from '@stripe/stripe-js';
-import { StripeCardCvcComponent, StripeCardExpiryComponent, StripeCardGroupDirective, StripeCardNumberComponent, StripeService } from 'ngx-stripe';
+import {
+  PaymentMethodResult,
+  StripeCardCvcElementChangeEvent,
+  StripeCardElementOptions,
+  StripeCardExpiryElementChangeEvent,
+  StripeCardNumberElementChangeEvent,
+  StripeElementsOptions,
+} from '@stripe/stripe-js';
+import {
+  StripeCardCvcComponent,
+  StripeCardExpiryComponent,
+  StripeCardGroupDirective,
+  StripeCardNumberComponent,
+  StripeService,
+} from 'ngx-stripe';
 import { PaymentService } from '../../../../core/services/payment/payment.service';
 import { FormElementDirective } from '../../../../shared/directives/form-element.directive';
-import { ErrorComponent } from "../../../../shared/components/form/error/error.component";
+import { ErrorComponent } from '../../../../shared/components/form/error/error.component';
 import { Observable } from 'rxjs';
 import { IBillingDetails } from '../../../../shared/interfaces/payment/billing-details.interface';
 
@@ -17,7 +30,6 @@ import { IBillingDetails } from '../../../../shared/interfaces/payment/billing-d
   imports: [
     LabelComponent,
     FieldComponent,
-    FormElementDirective,
     StripeCardNumberComponent,
     StripeCardCvcComponent,
     StripeCardExpiryComponent,
