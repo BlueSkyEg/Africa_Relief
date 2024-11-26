@@ -40,5 +40,6 @@ export class RelatedBlogsComponent {
     this.blogService.getRelatedBlogs(this.currentBlogSlug).subscribe({
       next: (res: IApiResponse<IBlogCard[]>) => (this.blogs = res.data),
     });
+
   }
 }

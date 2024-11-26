@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
 import { EmployerComponent } from '../../../shared/icons/employee/icon-employee.component';
 import { SubmitIconComponent } from '../../../shared/icons/submit/icon-submit.component';
@@ -19,29 +19,36 @@ import { filter } from 'rxjs';
   templateUrl: './gift-matching.component.html',
 })
 export class GiftMatchingComponent implements OnInit {
+  private readonly pluginUrl =
+    'https://doublethedonation.com/api/js/ddplugin.js';
+
   constructor(
     private scriptLoader: ScriptLoaderService,
     private router: Router
   ) {}
-  ngOnInit() {
-    this.loadScriptOnNavigation();
 
-    // Listen for navigation events and reload the script
+  ngOnInit() {
+    this.loadAndInitializePlugin();
+
+    // Reload script on navigation to this component
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
-        this.loadScriptOnNavigation(); // Ensure script is reloaded when navigating back to this page
+        this.loadAndInitializePlugin();
       });
   }
 
-  ngAfterViewChecked() {
-    // Make sure the donation plugin is initialized after the view is checked
-    this.scriptLoader.initializeDonationPlugin();
-  }
+  private loadAndInitializePlugin() {
+    this.scriptLoader.injectDDConfig(); // Ensure the config is loaded first
 
-  loadScriptOnNavigation() {
-    if (typeof window !== 'undefined') {
-      this.scriptLoader.loadScript();
-    }
+    this.scriptLoader
+      .loadScript(this.pluginUrl)
+      .then(() => {
+        console.log('Donation Plugin Script loaded successfully');
+        this.scriptLoader.initializeDonationPlugin(); // Initialize after load
+      })
+      .catch((err) =>
+        console.error('Error loading Donation Plugin Script:', err)
+      );
   }
 }

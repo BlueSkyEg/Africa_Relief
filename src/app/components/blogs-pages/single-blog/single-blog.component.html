@@ -38,13 +38,16 @@
           Implementation Date:
           <span class="text-body-2-md">{{
             blog.implementation_date | date : "MMMM, Y"
-            }}</span>
+            }}
+</span>
         </p>
+
       </div>
+
     </div>
 
     <!-- Donation Card -->
-    <app-donation-card [donationForm]="blog.donation_form" />
+    <app-donation-card [donationForm]="blog.donation_form" [donationFormTitle]="blog.title"/>
 
     <!-- blog content -->
     <div class="flex flex-col gap-6 lg:col-span-2">
@@ -100,7 +103,8 @@
 
   <!-- Related Blogs -->
   <app-related-blogs [currentBlogSlug]="blog.slug" />
-  } @else () {
+  }
+  @else () {
   <div class="animate-pulse bg-gray-light h-4 w-7/12"></div>
   <div class="animate-pulse grid lg:grid-cols-3 gap-10 mt-6">
     <div class="flex flex-col gap-6 lg:col-span-2">
@@ -111,8 +115,8 @@
       <div class="bg-gray-light h-4 w-2/6"></div>
       <div class="bg-gray-light h-4 w-3/6"></div>
     </div>
-
-    <div class="flex flex-col gap-6 p-4 h-fit bg-white">
+    @if(blog?.donation_form){
+   <div class="flex flex-col gap-6 p-4 h-fit bg-white">
       <div class="bg-gray-light h-16"></div>
       <div class="bg-gray-light h-12"></div>
       <div class="flex flex-col gap-4">
@@ -127,6 +131,7 @@
       <div class="bg-gray-light h-10"></div>
       <div class="bg-gray-light h-10"></div>
     </div>
+    }
 
     <div class="flex flex-col gap-10 lg:col-span-2">
       <div class="flex flex-col gap-6">

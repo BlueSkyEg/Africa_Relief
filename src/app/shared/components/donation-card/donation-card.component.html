@@ -1,7 +1,7 @@
+@if(donationForm?.id) {
 <div class="flex flex-col gap-6 p-4 bg-white border border-gray-light">
-  <div
-    class="flex justify-center items-center gap-2 p-4 border border-gray-medium">
-    <img  loading="lazy" class="xl:w-[40%] w-[30%]  md:w-[20%]" alt="donors" src="assets/images/shared/donors.webp">
+  <div class="flex justify-center items-center gap-2 p-4 border border-gray-medium">
+    <img loading="lazy" class="xl:w-[40%] w-[30%] md:w-[20%]" alt="donors" src="assets/images/shared/donors.webp" />
     <p>+1650 Donors</p>
   </div>
   @if (donationForm.fullyFundLevel) {
@@ -18,17 +18,9 @@
     <div class="flex flex-wrap gap-3">
       @for (level of donationForm.levels; track level) {
       <label class="flex flex-1">
-        <input
-          class="peer appearance-none"
-          type="radio"
-          name="amount"
-          [value]="level.amount"
-          [(ngModel)]="amount"
-        />
+        <input class="peer appearance-none" type="radio" name="amount" [value]="level.amount" [(ngModel)]="amount" />
         <div
-          class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-primary hover:border-primary hover:text-white peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white"
-        >
-
+          class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-primary hover:border-primary hover:text-white peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white">
           @if (!level.name) {
           <span>{{ "$" + level.amount }}</span>
           } @else {
@@ -38,22 +30,12 @@
       </label>
       }
     </div>
-    <input
-      class="py-3 mt-3 px-6 text-center border border-gray-medium outline-none"
-      type="number"
-      [(ngModel)]="amount"
-      placeholder="$ Custom Amount"
-    />
+    <input class="py-3 mt-3 px-6 text-center border border-gray-medium outline-none" type="number" [(ngModel)]="amount"
+      placeholder="$ Custom Amount" />
   </div>
-  <div
-    class="flex justify-between items-center gap-1 py-3 pe-4 ps-1 border border-gray-medium"
-  >
-    <mat-checkbox
-      color="primary"
-      [(ngModel)]="makeRecurringDonation"
-      class="ms-0"
-      >Make this donation every</mat-checkbox
-    >
+  <div class="flex justify-between items-center gap-1 py-3 pe-4 ps-1 border border-gray-medium">
+    <mat-checkbox color="primary" [(ngModel)]="makeRecurringDonation" class="ms-0">Make this donation
+      every</mat-checkbox>
     <div class="min-w-[80px] shrink-0">
       <mat-select [(value)]="recurringPeriod">
         @for (period of donationForm.recurring_periods; track period) {
@@ -62,12 +44,8 @@
       </mat-select>
     </div>
   </div>
-  <app-form-button
-    appearance="filled"
-    [fullWidth]="true"
-    [disabled]="!amount"
-    (click)="onMakeDonation()"
-    >Donate Now</app-form-button
-  >
+  <app-form-button appearance="filled" [fullWidth]="true" [disabled]="!amount" (click)="onMakeDonation()">Donate
+    Now</app-form-button>
   <ng-content></ng-content>
 </div>
+}

@@ -22,7 +22,8 @@
           />
         </div>
         @for (category of project.categories; track category; let idx = $index)
-        { @if(category.name) {
+        {
+          @if(category.name) {
         <div class="absolute bottom-0 start-0 bg-secondary py-1 px-3">
           <a [routerLink]="'/projects/category/' + category.slug">{{
             category.name | titlecase
@@ -40,8 +41,7 @@
     </div>
 
     <!-- Donation Card -->
-    <app-donation-card [donationForm]="project.donation_form" />
-
+    <app-donation-card [donationForm]="project.donation_form"  [donationFormTitle]="project.title"/>
     <!-- project content -->
     <div class="flex flex-col gap-6 lg:col-span-2">
       <div class="flex flex-col gap-6">
