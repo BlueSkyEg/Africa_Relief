@@ -24,7 +24,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { MetaService } from '../../core/services/meta-data/meta.service';
-import { isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -51,13 +51,13 @@ import { isPlatformBrowser } from '@angular/common';
     DonationCardComponent,
     IconZelleComponent,
     IconEnvelopeComponent,
-    IconPinComponent,
     IconCloseComponent,
     IconVenmoComponent,
     IconCashAppComponent,
     IconPhoneComponent,
     IconUserComponent,
     IconVideoPlayComponent,
+    CommonModule,
   ],
 })
 export class HomeComponent {
@@ -68,6 +68,9 @@ export class HomeComponent {
   _MetaService: MetaService = inject(MetaService);
   private platformId = inject(PLATFORM_ID);
   router: Router = inject(Router);
+  targetCount = 6078834;
+  displayCount = 1;
+  duration = 3000;
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -81,6 +84,7 @@ export class HomeComponent {
         });
     }
     this.onGetHomeDonationForm();
+    this.startCountAnimation();
   }
   onGetHomeDonationForm(): void {
     this.donationFormService.getHomeDonationForm().subscribe({
@@ -100,5 +104,15 @@ export class HomeComponent {
     if (isPlatformBrowser(this.platformId)) {
       document.body.style.overflow = this.videoModalOpened ? 'hidden' : 'auto';
     }
+  }
+  startCountAnimation(): void {
+    const increment = Math.ceil(this.targetCount / (this.duration / 16.67));
+    const interval = setInterval(() => {
+      this.displayCount += increment;
+      if (this.displayCount >= this.targetCount) {
+        this.displayCount = this.targetCount;
+        clearInterval(interval);
+      }
+    }, 16.67);
   }
 }

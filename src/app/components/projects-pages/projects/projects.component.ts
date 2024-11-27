@@ -11,7 +11,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 import { MetaService } from '../../../core/services/meta-data/meta.service';
-import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
@@ -25,7 +24,6 @@ import { isPlatformBrowser } from '@angular/common';
     CategoriesFilterComponent,
     ProjectCardComponent,
     BreadcrumbComponent,
-    ButtonLinkComponent,
   ],
 })
 export class ProjectsComponent implements OnInit {

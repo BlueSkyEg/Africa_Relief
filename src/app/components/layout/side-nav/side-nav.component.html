@@ -201,6 +201,17 @@
             Donate Stock
           </button>
         </li>
+        <li class="border-top border-gray-light">
+          <button
+            (click)="onRouterNavigate('/get-involved/gift-matching')"
+            class="flex p-4 ms-6 w-full"
+            routerLink="/get-involved/gift-matching"
+            routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Matching Gifts
+          </button>
+        </li>
       </ul>
     </li>
 

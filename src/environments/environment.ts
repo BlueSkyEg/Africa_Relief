@@ -1,4 +1,6 @@
 export const environment = {
+  // appUrl: 'https://africa-relief.com/',
+  // apiUrl: 'https://server.africa-relief.com/api',
   appUrl: 'https://staging.africa-relief.com/',
   apiUrl: 'https://staging-backend.africa-relief.com/api',
 

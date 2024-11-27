@@ -25,7 +25,6 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   imports: [
     CommonModule,
     RouterModule,
-    ButtonLinkComponent,
     MatMenuModule,
     IconHamburgerComponent,
     IconProfileComponent,
