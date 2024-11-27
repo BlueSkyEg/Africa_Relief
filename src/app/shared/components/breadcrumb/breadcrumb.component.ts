@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {  Component, Input } from '@angular/core';
 import { IconDoubleArrowComponent } from "../../icons/arrows/double-arrow/icon-double-arrow.component";
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './breadcrumb.component.html',
   styles: ``,
   imports: [RouterModule, CommonModule, IconDoubleArrowComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BreadcrumbComponent {
   @Input() basePath: string | null = null;

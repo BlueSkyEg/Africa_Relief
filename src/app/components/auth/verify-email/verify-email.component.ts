@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import {  Component, OnInit, inject } from '@angular/core';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { ButtonLinkComponent } from "../../../shared/components/button-link/button-link.component";
@@ -9,7 +9,6 @@ import { ButtonLinkComponent } from "../../../shared/components/button-link/butt
   templateUrl: './verify-email.component.html',
   styles: ``,
   imports: [ButtonLinkComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VerifyEmailComponent implements OnInit {
   emailVerified: boolean = null;

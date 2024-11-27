@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {  Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FormElementDirective } from '../../../shared/directives/form-element.directive';
@@ -24,7 +24,6 @@ import { EmailValidator } from '../../../core/validators/email.validator';
   ],
   templateUrl: './forgot-password.component.html',
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ForgotPasswordComponent {
   forgetPasswordFormDisabled: boolean = false;

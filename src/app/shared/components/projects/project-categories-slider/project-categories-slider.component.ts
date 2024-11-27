@@ -2,8 +2,12 @@ import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   OnInit,
+  OnDestroy,
+  Inject,
+  PLATFORM_ID,
   signal,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { IconFoodComponent } from '../../../icons/projects/food/icon-food.component';
 import { IconEducationComponent } from '../../../icons/projects/education/icon-education.component';
 import { IconMedicalComponent } from '../../../icons/projects/medical/icon-medical.component';
@@ -19,6 +23,7 @@ import { SwiperContainer } from 'swiper/swiper-element';
 import { SwiperOptions } from 'swiper/types';
 import { Autoplay, Navigation } from 'swiper/modules';
 import Swiper from 'swiper';
+
 @Component({
   selector: 'app-project-categories-slider',
   standalone: true,
@@ -39,38 +44,46 @@ import Swiper from 'swiper';
   styles: ``,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class ProjectCategoriesSliderComponent implements OnInit {
+export class ProjectCategoriesSliderComponent implements OnInit, OnDestroy {
   swiperElement = signal<SwiperContainer | null>(null);
-  ngOnInit(): void {
-    Swiper.use([Autoplay, Navigation]);
 
-    const swiperElementConstructor: SwiperContainer = document.querySelector(
-      '.project-categories-slider'
-    );
-    const swiperOptions: SwiperOptions = {
-      loop: true,
-      slidesPerView: 1,
-      spaceBetween: 24,
-      navigation: {
-        enabled: true,
-        nextEl: '.category-slide-next',
-        prevEl: '.category-slide-prev',
-      },
-      breakpoints: {
-        640: {
-          slidesPerView: 2,
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      Swiper.use([Autoplay, Navigation]);
+
+      const swiperElementConstructor: SwiperContainer = document.querySelector(
+        '.project-categories-slider'
+      );
+      const swiperOptions: SwiperOptions = {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 24,
+        navigation: {
+          enabled: true,
+          nextEl: '.category-slide-next',
+          prevEl: '.category-slide-prev',
         },
-        1024: {
-          slidesPerView: 3,
+        breakpoints: {
+          640: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
         },
-      },
-    };
-    Object.assign(swiperElementConstructor!, swiperOptions);
-    this.swiperElement.set(swiperElementConstructor as SwiperContainer);
-    this.swiperElement()?.initialize();
+      };
+
+      Object.assign(swiperElementConstructor!, swiperOptions);
+      this.swiperElement.set(swiperElementConstructor as SwiperContainer);
+      this.swiperElement()?.initialize();
+    }
   }
 
   ngOnDestroy(): void {
-    this.swiperElement().remove();
+    if (isPlatformBrowser(this.platformId) && this.swiperElement()) {
+      this.swiperElement().remove();
+    }
   }
 }

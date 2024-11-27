@@ -35,7 +35,6 @@
             class="flex justify-center text-danger items-center py-2 px-3 transition-colors hover:text-white hover:bg-danger"
             routerLink="/emergency"
             routerLinkActive="text-white bg-danger"
-            [routerLinkActiveOptions]="{ exact: true }"
             >Emergency Campaigns</a
           >
         </li>
@@ -43,7 +42,7 @@
           <button
             class="flex items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary group get-involved-button"
             aria-haspopup="true"
-            (click)="togglegGetInvolvedMenu()"
+            (click)="toggleGetInvolvedMenu()"
           >
             Get Involved
             <span
@@ -71,7 +70,7 @@
           >
             <li>
               <a
-                class="flex  items-center py-2 px-3 transition-colors hover:text-primary"
+                class="flex items-center py-2 px-3 transition-colors hover:text-primary"
                 routerLink="/get-involved"
                 routerLinkActive="text-primary"
                 [routerLinkActiveOptions]="{ exact: true }"
@@ -82,13 +81,24 @@
             </li>
             <li>
               <a
-                class="flex  items-center py-2 px-3 transition-colors hover:text-primary"
+                class="flex items-center py-2 px-3 transition-colors hover:text-primary"
                 routerLink="/get-involved/stock-donations"
                 routerLinkActive="text-primary"
                 [routerLinkActiveOptions]="{ exact: true }"
                 (click)="closeGetInvolvedMenu()"
               >
-                Stock Donations
+                Donate Stock
+              </a>
+            </li>
+            <li>
+              <a
+                class="flex items-center py-2 px-3 transition-colors hover:text-primary"
+                routerLink="/get-involved/gift-matching"
+                routerLinkActive="text-primary"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="closeGetInvolvedMenu()"
+              >
+                Matching Gifts
               </a>
             </li>
           </ul>
@@ -102,7 +112,7 @@
             >Blog</a
           >
         </li>
-        <li class="relative ">
+        <li class="relative">
           <button
             class="flex items-center py-2 px-3 transition-colors hover:text-white hover:bg-primary group about-us-button"
             aria-haspopup="true"
@@ -140,7 +150,7 @@
                 [routerLinkActiveOptions]="{ exact: true }"
                 (click)="closeAboutMenu()"
               >
-                Mission Impact
+                Mission& Impact
               </a>
             </li>
             <li>
@@ -173,7 +183,7 @@
         }
         <a
           class="hidden xl:block text-white bg-primary py-2 px-3"
-          routerLink="/projects"
+          routerLink="/projects/help-where-it-is-most-needed"
           >Donate Now</a
         >
         @if (!isUserAuthed) {

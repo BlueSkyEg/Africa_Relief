@@ -1,23 +1,24 @@
-import {Component, Input, inject } from '@angular/core';
-import {IconDonorAvatarsComponent} from "../../icons/donor-avatars/icon-donor-avatars.component";
-import {ButtonComponent} from "../form/button/button.component";
-import {MatSelect,MatOption} from "@angular/material/select";
-import {FormsModule} from "@angular/forms";
+import { Component, Input, inject } from '@angular/core';
+import { ButtonComponent } from '../form/button/button.component';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IDonationForm } from '../../interfaces/donation/donation-form.interface';
 import { Router } from '@angular/router';
 import { MatCheckbox } from '@angular/material/checkbox';
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
 @Component({
   selector: 'app-donation-card',
   standalone: true,
   imports: [
-  CommonModule,
-    IconDonorAvatarsComponent,
+    CommonModule,
     ButtonComponent,
     MatSelect,
     MatOption,
     FormsModule,
-    MatCheckbox
+    MatCheckbox,
   ],
   templateUrl: './donation-card.component.html',
   styles: ``,
@@ -28,18 +29,25 @@ export class DonationCardComponent {
   makeRecurringDonation: boolean = false;
   recurringPeriod: 'day' | 'week' | 'month' | 'year' = 'month';
 
-  router: Router = inject(Router);
+  private router: Router = inject(Router);
+  private platformId = inject(PLATFORM_ID);
+
   onMakeDonation() {
     // check if donation amount is a positive value and greater than 1$
     if (isNaN(this.amount) || this.amount < 1) return;
-    //data layer
-    (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push({
-      event: 'donationEventBeforeTheUserFillTheForm',
-      donationAmount: this.amount,
-      donationFormId: this.donationForm.id,
-      donationFormTitle: this.donationForm.title,
-    });
+
+    // Check if running in the browser before accessing window
+    if (isPlatformBrowser(this.platformId)) {
+      // Data layer
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'donationEventBeforeTheUserFillTheForm',
+        donationAmount: this.amount,
+        donationFormId: this.donationForm.id,
+        donationFormTitle: this.donationForm.title,
+      });
+    }
+
     this.router.navigate(['/donation'], {
       queryParams: {
         form: this.donationForm.id,

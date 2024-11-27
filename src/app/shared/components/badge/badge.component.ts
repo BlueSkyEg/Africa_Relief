@@ -1,5 +1,5 @@
 
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-badge',
@@ -7,7 +7,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   imports: [],
   templateUrl: './badge.component.html',
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BadgeComponent {
   @Input() type: 'success' | 'danger' | 'warning' | 'safe' | 'info';

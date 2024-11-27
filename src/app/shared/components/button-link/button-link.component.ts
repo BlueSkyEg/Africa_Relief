@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { IconArrowRightComponent } from '../../icons/arrows/arrow-right/icon-arrow-right.component';
@@ -9,7 +9,6 @@ import { IconArrowRightComponent } from '../../icons/arrows/arrow-right/icon-arr
   templateUrl: './button-link.component.html',
   styleUrls: ['./button-link.component.scss'],
   imports: [CommonModule, RouterModule, IconArrowRightComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonLinkComponent {
   @Input() label: string;

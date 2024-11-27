@@ -3,6 +3,7 @@ import { GuestGuard } from './core/Guards/guest.guard';
 import { AuthGuard } from './core/Guards/auth.guard';
 import { YoussefAbdallahComponent } from './components/about/youssef-abdallah/youssef-abdallah.component';
 import { StockDonationsComponent } from './components/get-involved/stock-donations/stock-donations.component';
+import { GiftMatchingComponent } from './components/get-involved/gift-matching/gift-matching.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -88,7 +89,10 @@ export const routes: Routes = [
     path: 'get-involved/stock-donations',
     component: StockDonationsComponent,
   },
-
+  {
+    path: 'get-involved/gift-matching',
+    component: GiftMatchingComponent,
+  },
   {
     path: 'contact',
     title: 'Contact Us',

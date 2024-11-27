@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import { Component, Input} from '@angular/core';
 import {RouterModule} from "@angular/router";
 import {IconArrowRightComponent} from "../../../icons/arrows/arrow-right/icon-arrow-right.component";
 import {IBlogCard} from "../../../../shared/interfaces/blog/blog-card-interface";
@@ -16,7 +16,6 @@ import { ImgPlaceholderDirective } from '../../../directives/img-placeholder.dir
   ],
   templateUrl: './blog-card.component.html',
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogCardComponent {
   @Input() blog: IBlogCard;

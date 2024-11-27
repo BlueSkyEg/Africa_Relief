@@ -1,5 +1,5 @@
 
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {  Component } from '@angular/core';
 import { IconSearchComponent } from '../../icons/search/icon-search.component';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
   imports: [IconSearchComponent, FormsModule],
   templateUrl: './search-bar.component.html',
   styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchBarComponent {
   searchTerm: string = '';

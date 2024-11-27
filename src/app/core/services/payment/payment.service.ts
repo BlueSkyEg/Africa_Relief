@@ -18,6 +18,7 @@ export class PaymentService {
 
   createPayment(data:any): Observable<IApiResponse<IStripeIntent>> {
     return this.http.post<IApiResponse<IStripeIntent>>(environment.apiUrl + '/payment', data);
+
   }
 
   createExpressCheckoutPayment(data:any): Observable<IApiResponse<IStripeIntent>> {

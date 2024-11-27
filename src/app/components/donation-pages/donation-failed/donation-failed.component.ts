@@ -1,8 +1,14 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ButtonLinkComponent } from "../../../shared/components/button-link/button-link.component";
-import { Meta } from '@angular/platform-browser';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  PLATFORM_ID,
+} from '@angular/core';
+import { ButtonLinkComponent } from '../../../shared/components/button-link/button-link.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
+import { MetaService } from '../../../core/services/meta-data/meta.service';
 
 @Component({
   selector: 'app-donation-failed',
@@ -13,36 +19,25 @@ import { filter } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DonationFailedComponent {
-  metaService: Meta = inject(Meta);
+  _MetaService: MetaService = inject(MetaService);
+  private platformId = inject(PLATFORM_ID);
   router: Router = inject(Router);
+
+  isUserRedirectedDuringDonation: boolean = false;
+
   ngOnInit(): void {
-    this.setCanonicalURL(window.location.href);
+    if (isPlatformBrowser(this.platformId)) {
+      this._MetaService.setCanonicalURL(window.location.href);
 
-    // Update the canonical URL on route changes
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.setCanonicalURL(window.location.href);
-      });
-  }
-  setCanonicalURL(url: string) {
-    let link: HTMLLinkElement =
-      document.querySelector("link[rel='canonical']") || null;
+      const donationStarted = sessionStorage.getItem('donationStarted');
+      this.isUserRedirectedDuringDonation =
+        JSON.parse(donationStarted) ?? false;
 
-    if (link) {
-      link.setAttribute('href', url);
-    } else {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', url);
-      document.head.appendChild(link);
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this._MetaService.setCanonicalURL(window.location.href);
+        });
     }
-    // Set og:url
-    this.metaService.updateTag({
-      property: 'og:url',
-      content: url,
-    });
   }
-  isUserRedirectedDuringDonation: boolean =
-    JSON.parse(sessionStorage.getItem('donationStarted')) ?? false;
 }

@@ -1,9 +1,10 @@
-import { Component, Input} from '@angular/core';
-import {animate, style, transition, trigger} from "@angular/animations";
-import {ReactiveFormsModule} from "@angular/forms";
-import { NgClass} from "@angular/common";
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
-import {IconCloseComponent} from "../../icons/close/icon-close.component";
+import { Component, Input, Inject, PLATFORM_ID } from '@angular/core';
+import { animate, style, transition, trigger } from '@angular/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgClass } from '@angular/common';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { IconCloseComponent } from '../../icons/close/icon-close.component';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-modal',
@@ -12,7 +13,7 @@ import {IconCloseComponent} from "../../icons/close/icon-close.component";
     ReactiveFormsModule,
     MatAutocompleteModule,
     IconCloseComponent,
-    NgClass
+    NgClass,
   ],
   templateUrl: './modal.component.html',
   styles: ``,
@@ -40,13 +41,19 @@ export class ModalComponent {
   @Input() title: string;
   @Input() maxWidth: string = '612px';
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
   openModal() {
     this.modalOpened = true;
-    document.body.style.overflow = 'hidden';
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.style.overflow = 'hidden'; 
+    }
   }
 
   closeModal() {
     this.modalOpened = false;
-    document.body.style.overflow = 'auto';
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.style.overflow = 'auto'; 
+    }
   }
 }

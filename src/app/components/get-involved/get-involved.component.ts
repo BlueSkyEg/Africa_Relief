@@ -1,14 +1,21 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { BreadcrumbComponent } from "../../shared/components/breadcrumb/breadcrumb.component";
-import { BecomeVolunteerFormSectionComponent } from "./become-volunteer-form-section/become-volunteer-form-section.component";
-import { ButtonLinkComponent } from "../../shared/components/button-link/button-link.component";
-import { AccordionComponent } from "../../shared/components/accordion/accordion.component";
-import {MatExpansionModule} from '@angular/material/expansion';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  PLATFORM_ID,
+} from '@angular/core';
+import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcrumb.component';
+import { BecomeVolunteerFormSectionComponent } from './become-volunteer-form-section/become-volunteer-form-section.component';
+import { ButtonLinkComponent } from '../../shared/components/button-link/button-link.component';
+import { AccordionComponent } from '../../shared/components/accordion/accordion.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { ImgPlaceholderDirective } from '../../shared/directives/img-placeholder.directive';
 import { IContent } from '../../shared/interfaces/content-interface';
 import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { MetaService } from '../../core/services/meta-data/meta.service';
+import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'app-get-involved',
   standalone: true,
@@ -25,35 +32,19 @@ import { filter } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GetInvolvedComponent {
-  metaService: Meta = inject(Meta);
+  _MetaService: MetaService = inject(MetaService);
+  private platformId = inject(PLATFORM_ID);
   router: Router = inject(Router);
   ngOnInit(): void {
-    this.setCanonicalURL(window.location.href);
+    if (isPlatformBrowser(this.platformId)) {
+      this._MetaService.setCanonicalURL(window.location.href);
 
-    // Update the canonical URL on route changes
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.setCanonicalURL(window.location.href);
-      });
-  }
-  setCanonicalURL(url: string) {
-    let link: HTMLLinkElement =
-      document.querySelector("link[rel='canonical']") || null;
-
-    if (link) {
-      link.setAttribute('href', url);
-    } else {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      link.setAttribute('href', url);
-      document.head.appendChild(link);
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this._MetaService.setCanonicalURL(window.location.href);
+        });
     }
-    // Set og:url
-    this.metaService.updateTag({
-      property: 'og:url',
-      content: url,
-    });
   }
   accordionsContent: IContent[] = [
     {
