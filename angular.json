@@ -40,7 +40,7 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "sourceMap": true,
-            "outputPath": "dist",
+            "outputPath": "dist/africa-relief",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -65,9 +65,7 @@
             "scripts": [
             ],
             "server": "src/main.server.ts",
-            "prerender": {
-              "routesFile": "src/assets/routes.txt"
-            },
+            "prerender": false,
             "ssr": {
               "entry": "server.ts"
             }
