@@ -1,6 +1,6 @@
 export const environment = {
   appUrl: 'https://africa-relief.com/',
-  apiUrl: 'http://server.africa-relief.com/api',
+  apiUrl: 'https://server.africa-relief.com/api',
 
   stripePublicKey:
     'pk_live_51KhKggKvfkJQMMfW0hSPRSpZs2iBzNcZnVViGzdDLSuIERWTihXBi50dYKHuRed6B2S L9vkNKZWmzVgaL83u4SN500zIYT2UJB',
