@@ -11,7 +11,6 @@ import { DonationCardComponent } from '../../shared/components/donation-card/don
 import { IconZelleComponent } from '../../shared/icons/payment-gateways/zelle/icon-zelle.component';
 import { IDonationForm } from '../../shared/interfaces/donation/donation-form.interface';
 import { IconEnvelopeComponent } from '../../shared/icons/envelope/icon-envelope.component';
-import { IconPinComponent } from '../../shared/icons/pin/icon-pin.component';
 import { IconCloseComponent } from '../../shared/icons/close/icon-close.component';
 import { DonationFormService } from '../../core/services/donation/donation-form.service';
 import { IApiResponse } from '../../shared/interfaces/api-response-interface';

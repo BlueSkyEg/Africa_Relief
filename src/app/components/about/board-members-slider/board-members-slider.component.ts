@@ -16,8 +16,6 @@ import { Meta } from '@angular/platform-browser';
 import {
   NavigationEnd,
   Router,
-  RouterLink,
-  RouterOutlet,
 } from '@angular/router';
 import { filter } from 'rxjs';
 import { SwiperContainer } from 'swiper/element';
@@ -36,8 +34,6 @@ import { isPlatformBrowser } from '@angular/common';
     IconArrowLeftComponent,
     IconArrowRightComponent,
     ImgPlaceholderDirective,
-    RouterLink,
-    RouterOutlet,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

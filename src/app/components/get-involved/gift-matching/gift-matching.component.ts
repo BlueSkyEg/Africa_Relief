@@ -3,9 +3,6 @@ import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/bread
 import { EmployerComponent } from '../../../shared/icons/employee/icon-employee.component';
 import { SubmitIconComponent } from '../../../shared/icons/submit/icon-submit.component';
 import { GiftIconComponent } from '../../../shared/icons/gift/icon-gift.component';
-import { ScriptLoaderService } from '../../../core/services/script-loader.service';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-gift-matching',

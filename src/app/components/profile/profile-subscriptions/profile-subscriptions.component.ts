@@ -11,7 +11,6 @@ import { IApiResponse } from '../../../shared/interfaces/api-response-interface'
 import { ISubscription } from '../../../shared/interfaces/subscription.interface';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ModalComponent } from '../../../shared/components/modal/modal.component';
-import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { MetaService } from '../../../core/services/meta-data/meta.service';

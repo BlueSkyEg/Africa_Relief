@@ -9,7 +9,7 @@ import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/bread
   templateUrl: './youssef-abdallah.component.html',
 })
 export class YoussefAbdallahComponent implements OnInit {
-  constructor(private meta: Meta, private title: Title) {}
+  constructor( private title: Title) {}
 
   ngOnInit(): void {
     this.setMetaData();
