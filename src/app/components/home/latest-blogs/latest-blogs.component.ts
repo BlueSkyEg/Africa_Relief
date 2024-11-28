@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit, inject} from '@angular/core';
+import {Component, OnInit, inject} from '@angular/core';
 import {BlogCardComponent} from "../../../shared/components/blogs/blog-card/blog-card.component";
 import {ButtonLinkComponent} from "../../../shared/components/button-link/button-link.component";
 import {IBlogCard} from "../../../shared/interfaces/blog/blog-card-interface";

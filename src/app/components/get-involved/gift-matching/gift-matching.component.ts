@@ -3,9 +3,6 @@ import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/bread
 import { EmployerComponent } from '../../../shared/icons/employee/icon-employee.component';
 import { SubmitIconComponent } from '../../../shared/icons/submit/icon-submit.component';
 import { GiftIconComponent } from '../../../shared/icons/gift/icon-gift.component';
-import { ScriptLoaderService } from '../../../core/services/script-loader.service';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-gift-matching',
@@ -19,29 +16,15 @@ import { filter } from 'rxjs';
   templateUrl: './gift-matching.component.html',
 })
 export class GiftMatchingComponent implements OnInit {
-  constructor(
-    private scriptLoader: ScriptLoaderService,
-    private router: Router
-  ) {}
-  ngOnInit() {
-    this.loadScriptOnNavigation();
 
-    // Listen for navigation events and reload the script
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.loadScriptOnNavigation(); // Ensure script is reloaded when navigating back to this page
-      });
+  ngOnInit(): void {
+  this.loadScript();
   }
 
-  ngAfterViewChecked() {
-    // Make sure the donation plugin is initialized after the view is checked
-    this.scriptLoader.initializeDonationPlugin();
-  }
-
-  loadScriptOnNavigation() {
-    if (typeof window !== 'undefined') {
-      this.scriptLoader.loadScript();
-    }
+  loadScript() {
+    const script = document.createElement('script');
+    script.src = 'https://doublethedonation.com/api/js/ddplugin.js';
+    script.async = true;
+    document.body.appendChild(script);
   }
 }

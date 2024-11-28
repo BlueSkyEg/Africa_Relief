@@ -1,4 +1,4 @@
-import {  Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { ButtonLinkComponent } from "../../../shared/components/button-link/button-link.component";

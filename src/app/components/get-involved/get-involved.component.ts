@@ -11,7 +11,6 @@ import { AccordionComponent } from '../../shared/components/accordion/accordion.
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ImgPlaceholderDirective } from '../../shared/directives/img-placeholder.directive';
 import { IContent } from '../../shared/interfaces/content-interface';
-import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { MetaService } from '../../core/services/meta-data/meta.service';

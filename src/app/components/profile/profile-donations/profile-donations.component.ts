@@ -28,10 +28,6 @@ import { MetaService } from '../../../core/services/meta-data/meta.service';
     CommonModule,
     BadgeComponent,
     ModalComponent,
-    ButtonComponent,
-    IconEnvelopeComponent,
-    IconPhoneComponent,
-    IconPinComponent,
   ],
 })
 export class ProfileDonationsComponent implements OnInit {

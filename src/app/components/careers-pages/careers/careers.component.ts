@@ -9,7 +9,6 @@ import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interf
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
-import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { MetaService } from '../../../core/services/meta-data/meta.service';

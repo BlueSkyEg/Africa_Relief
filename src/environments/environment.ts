@@ -1,11 +1,9 @@
 export const environment = {
-  // appUrl: 'https://africa-relief.com/',
-  // apiUrl: 'https://server.africa-relief.com/api',
-  appUrl: 'https://staging.africa-relief.com/',
+  appUrl: 'https://staging.africa-relief.com',
   apiUrl: 'https://staging-backend.africa-relief.com/api',
 
-  stripePublicKey:
-    'pk_test_51KhKggKvfkJQMMfWXwnofeDI9QO7jSLGTWVv7VxW4DcYR9oMGcBYMCxbYBUfi7GPolwRLYf5VTWqmR2u9RDwYUHD00Z3MHfdWW',
+  stripePublicKey: 'pk_test_51KhKggKvfkJQMMfWXwnofeDI9QO7jSLGTWVv7VxW4DcYR9oMGcBYMCxbYBUfi7GPolwRLYf5VTWqmR2u9RDwYUHD00Z3MHfdWW',
+
   firebaseConfig: {
     apiKey: 'AIzaSyD7r8IkddHE6OoX_-PGkLug-IgIMCI31vc',
     authDomain: 'africa-relief-413f9.firebaseapp.com',

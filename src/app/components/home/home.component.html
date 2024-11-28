@@ -1,11 +1,15 @@
 <div class="flex flex-col gap-10 lg:gap-20 mb-10 lg:mb-20">
   <app-main-slider />
-<!-- ticker  -->
- <div class="text-center font-medium text-2xl">
-  <p class="mb-28">As of today, ARCD has reached</p>
-  <div class="text-primary text-[200px] mb-28 font-normal font-roboto">{{ displayCount | number }}</div>
+  <!-- ticker  -->
+  <div class="text-center font-medium text-base lg:text-2xl">
+    <p class="mb-28">As of today, ARCD has reached</p>
+    <div
+      class="text-primary text-[100px] lg:text-[200px] mb-28 font-normal font-roboto"
+    >
+      {{ displayCount | number }}
+    </div>
     <p>people in Africa and in crises around the world.</p>
- </div>
+  </div>
   <!-- Donation Card Section -->
   <div class="container flex flex-col xl:flex-row justify-between gap-6">
     <div class="flex flex-col gap-6 xl:w-[718px]">

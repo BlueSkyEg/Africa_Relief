@@ -1,6 +1,5 @@
 import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { ButtonLinkComponent } from '../../shared/components/button-link/button-link.component';
-import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
