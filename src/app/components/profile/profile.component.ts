@@ -1,7 +1,6 @@
 import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BadgeComponent } from '../../shared/components/badge/badge.component';
-import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { MetaService } from '../../core/services/meta-data/meta.service';
@@ -11,7 +10,7 @@ import { isPlatformBrowser } from '@angular/common';
   standalone: true,
   templateUrl: './profile.component.html',
   styles: ``,
-  imports: [RouterModule, BadgeComponent],
+  imports: [RouterModule],
 })
 export class ProfileComponent {
   _MetaService: MetaService = inject(MetaService);

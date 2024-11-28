@@ -9,7 +9,6 @@ import { IconPdfComponent } from "../../shared/icons/pdf/icon-pdf.component";
 import { IconDownloadComponent } from "../../shared/icons/download/icon-download.component";
 import { BoardMembersSliderComponent } from "./board-members-slider/board-members-slider.component";
 import { ImgPlaceholderDirective } from '../../shared/directives/img-placeholder.directive';
-import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';

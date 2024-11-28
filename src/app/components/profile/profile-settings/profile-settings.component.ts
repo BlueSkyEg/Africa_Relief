@@ -32,7 +32,6 @@ import { FileValidator } from '../../../core/validators/file.validator';
 import { EmailValidator } from '../../../core/validators/email.validator';
 import { StringValidator } from '../../../core/validators/string.validator';
 import { PhoneValidator } from '../../../core/validators/phone.validator';
-import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { MetaService } from '../../../core/services/meta-data/meta.service';
@@ -52,7 +51,6 @@ import { MetaService } from '../../../core/services/meta-data/meta.service';
     IconEyeComponent,
     IconEyeOffComponent,
     IconEditComponent,
-    IconSpinnerComponent,
     ModalComponent,
   ],
 })

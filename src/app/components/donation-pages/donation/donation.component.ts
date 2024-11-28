@@ -22,7 +22,6 @@ import { PaymentMethodResult } from '@stripe/stripe-js';
 import { StripeService } from 'ngx-stripe';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ButtonComponent } from '../../../shared/components/form/button/button.component';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { IUser } from '../../../shared/interfaces/auth/user.interface';

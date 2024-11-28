@@ -6,7 +6,6 @@ import { ButtonLinkComponent } from "../../../../shared/components/button-link/b
 import { ProjectCardComponent } from "../../../../shared/components/projects/project-card/project-card.component";
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { Meta } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
 import { MetaService } from '../../../../core/services/meta-data/meta.service';
 

@@ -5,7 +5,6 @@ import { SwiperContainer } from 'swiper/element';
 import {  SwiperOptions } from 'swiper/types';
 import { IconDirective } from '../../../shared/directives/icon.directive';
 import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
-import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { Autoplay, Navigation } from 'swiper/modules';

@@ -1,4 +1,4 @@
-import {  Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { BlogService } from '../../core/services/blogs/blog.service';
 import { IApiResponse } from '../../shared/interfaces/api-response-interface';
 import { IGalleryImage } from '../../shared/interfaces/blog/gallery-image.interface';
@@ -9,7 +9,6 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { IPaginatedData } from '../../shared/interfaces/paginated-data.interface';
 import { ImgPlaceholderDirective } from '../../shared/directives/img-placeholder.directive';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { MetaService } from '../../core/services/meta-data/meta.service';

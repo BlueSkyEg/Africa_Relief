@@ -19,7 +19,6 @@ import {
   StripeService,
 } from 'ngx-stripe';
 import { PaymentService } from '../../../../core/services/payment/payment.service';
-import { FormElementDirective } from '../../../../shared/directives/form-element.directive';
 import { ErrorComponent } from '../../../../shared/components/form/error/error.component';
 import { Observable } from 'rxjs';
 import { IBillingDetails } from '../../../../shared/interfaces/payment/billing-details.interface';

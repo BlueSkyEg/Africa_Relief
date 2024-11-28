@@ -19,7 +19,6 @@ import { StringValidator } from '../../../core/validators/string.validator';
 import { EmailValidator } from '../../../core/validators/email.validator';
 import { FileValidator } from '../../../core/validators/file.validator';
 import { MetaService } from '../../../core/services/meta-data/meta.service';
-import { Meta } from '@angular/platform-browser';
 import { NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
 @Component({
@@ -30,14 +29,8 @@ import { filter } from 'rxjs';
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    FormElementDirective,
     BreadcrumbComponent,
     AccordionComponent,
-    FieldComponent,
-    LabelComponent,
-    ErrorComponent,
-    ButtonComponent,
-    IconPaperclipComponent,
   ],
 })
 export class SingleCareerComponent {

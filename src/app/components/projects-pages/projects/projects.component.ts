@@ -46,7 +46,6 @@ export class ProjectsComponent implements OnInit {
       next: (value) => (this.paginationPerPage = value.matches ? 9 : 5),
     });
   }
-
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this._MetaService.setCanonicalURL(window.location.href);
