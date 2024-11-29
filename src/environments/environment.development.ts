@@ -1,6 +1,6 @@
 export const environment = {
   appUrl: 'http://127.0.0.1:4200',
-  apiUrl: 'https://staging-backend.africa-relief.com/api',
+  apiUrl: 'https://staging-backend.africarelief.org/api',
   //apiUrl: 'http://10.1.1.155:8000/api',
 
   stripePublicKey:
