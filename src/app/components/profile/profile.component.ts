@@ -1,6 +1,5 @@
 import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { BadgeComponent } from '../../shared/components/badge/badge.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { MetaService } from '../../core/services/meta-data/meta.service';
