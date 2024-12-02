@@ -52,6 +52,7 @@
               "src/favicon.ico",
               "src/.htaccess",
               "src/assets",
+              "src/robots.txt",
               {
                 "glob": "**/*",
                 "input": "src/assets/.well-known",
