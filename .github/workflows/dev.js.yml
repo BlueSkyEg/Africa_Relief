@@ -29,6 +29,4 @@ jobs:
             cd /var/www/html/staging.africarelief.org
             git pull origin development
             npm install
-            npx ng build --configuration=production --output-path=dist/tmp
-            mkdir -p dist/africa-relief/ && rsync -av --delete dist/tmp/ dist/africa-relief/
           EOF
