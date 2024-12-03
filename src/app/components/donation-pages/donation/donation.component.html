@@ -52,11 +52,12 @@
           </app-form-field>
           <!-- contribution Checkbox -->
           <div class="my-4">
-            <mat-checkbox color="primary" [(ngModel)]="isChecked" [ngModelOptions]="{standalone: true}" class="ms-0" (change)="onCheckboxChange()">I
+            <mat-checkbox color="primary" [(ngModel)]="isChecked" [ngModelOptions]="{standalone: true}" class="ms-0"
+              (change)="onCheckboxChange()">I
               would like to dedicate this donation to someone</mat-checkbox>
           </div>
           @if(isChecked){
-            <app-form-field>
+          <app-form-field>
             <app-form-label>Dedication type</app-form-label>
             <input appFormElement type="text" placeholder="Dedication type" [matAutocomplete]="Dedication"
               (input)="filterDedication(dedicationInput.value)" #dedicationInput autocomplete="off"
@@ -69,17 +70,18 @@
                 }}</mat-option>
               }
             </mat-autocomplete>
-                                      <app-form-error [hasError]="
+            <app-form-error [hasError]="
                 personalDetailsForm.get('contributionType').hasError('required') &&
                 personalDetailsForm.get('contributionType').touched
               ">Contribution Type is required.</app-form-error>
-            </app-form-field>
+          </app-form-field>
           <app-form-field>
-            <app-form-label>Who is this donation {{personalDetailsForm.controls.contributionType.value}}?</app-form-label>
+            <app-form-label>Who is this donation
+              {{personalDetailsForm.controls.contributionType.value}}?</app-form-label>
             <input type="text" formControlName="contributionName"
               class="w-full px-3 py-2 bg-white border border-gray-medium focus:outline-none"
               placeholder="E.g., John Doe." />
-                          <app-form-error [hasError]="
+            <app-form-error [hasError]="
                 personalDetailsForm.get('contributionName').hasError('required') &&
                 personalDetailsForm.get('contributionName').touched
               ">Contribution Name is required.</app-form-error>
@@ -202,8 +204,8 @@
           <app-card-elements #stripeCardElements />
           <!-- Cover Fees Checkbox -->
           <div class="my-4">
-            <mat-checkbox formControlName="coverFees"  color="primary" class="ms-0">I
-             Would you like to cover the transaction fees?</mat-checkbox>
+            <mat-checkbox formControlName="coverFees" color="primary" class="ms-0">I
+              Would you like to cover the transaction fees?</mat-checkbox>
           </div>
           <app-form-field>
             <app-form-label>Comment</app-form-label>

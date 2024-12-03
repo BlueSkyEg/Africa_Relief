@@ -9,4 +9,6 @@ export interface IUser {
   img: string
   created_at: string
   updated_at: string
+  contributionType?:string
+  contributionName?:string
 }
