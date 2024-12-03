@@ -135,6 +135,8 @@ export class DonationComponent {
             name: user?.name,
             email: user?.email,
             phone: user?.phone,
+            contributionName: user?.contributionName,
+            contributionType: user?.contributionType
           });
         },
       });
@@ -173,11 +175,9 @@ export class DonationComponent {
       addressLine2,
       postalCode,
       state,
+
     };
-    const contribution = {
-      contributionName,
-      contributionType
-    };
+
     // Proceed with donation
     this.name = name;
     this.email = email;
@@ -199,8 +199,9 @@ export class DonationComponent {
           return;
         }
 
-        this.createPayment(res.paymentMethod.id, finalAmount.toString(), contribution).subscribe({
+        this.createPayment(res.paymentMethod.id, finalAmount.toString()).subscribe({
           next: (res: IApiResponse<IStripeIntent>) => {
+
             if (res?.data?.status === 'succeeded') {
               this.pushTagConfirmDonationEvent();
               this.router.navigateByUrl('/donation-confirmation');
@@ -221,15 +222,15 @@ export class DonationComponent {
   createPayment(
     stripePaymentMethodId: string,
     finalAmount: any,
-    contribution: { contributionName: string, contributionType: string }
   ): Observable<IApiResponse<IStripeIntent>> {
-    const { name, email } = this.personalDetailsForm.getRawValue();
+    const { name, email, contributionName, contributionType } = this.personalDetailsForm.getRawValue();
     const { billingComment } = this.checkoutForm.getRawValue();
 
     const paymentData = {
       name: name,
       email: email,
-      contribution: contribution,
+      contributionName: contributionName,
+      contributionType: contributionType,
       amount: finalAmount,
       donationFormId: this.donationFormId,
       stripePaymentMethodId: stripePaymentMethodId,
