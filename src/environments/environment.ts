@@ -3,6 +3,10 @@ export const environment = {
   apiUrl: 'https://staging-backend.africarelief.org/api',
 
   stripePublicKey: 'pk_test_51KhKggKvfkJQMMfWXwnofeDI9QO7jSLGTWVv7VxW4DcYR9oMGcBYMCxbYBUfi7GPolwRLYf5VTWqmR2u9RDwYUHD00Z3MHfdWW',
+ // appUrl: 'https://africarelief.org',
+  apiUrl: 'https://server.africarelief.org/api',
+
+  stripePublicKey:'pk_live_51KhKggKvfkJQMMfW0hSPRSpZs2iBzNcZnVViGzdDLSuIERWTihXBi50dYKHuRed6B2SL9vkNKZWmzVgaL83u4SN500zIYT2UJB',
 
   firebaseConfig: {
     apiKey: 'AIzaSyD7r8IkddHE6OoX_-PGkLug-IgIMCI31vc',
