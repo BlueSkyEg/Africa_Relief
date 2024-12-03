@@ -1,7 +1,6 @@
 export const environment = {
   appUrl: 'https://staging.africarelief.org',
   apiUrl: 'https://staging-backend.africarelief.org/api',
-
   stripePublicKey: 'pk_test_51KhKggKvfkJQMMfWXwnofeDI9QO7jSLGTWVv7VxW4DcYR9oMGcBYMCxbYBUfi7GPolwRLYf5VTWqmR2u9RDwYUHD00Z3MHfdWW',
 
   firebaseConfig: {

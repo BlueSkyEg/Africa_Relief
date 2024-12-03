@@ -5,7 +5,7 @@ import {
   ViewChild,
   inject,
 } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   MatStepperModule,
   StepperOrientation,
@@ -35,7 +35,7 @@ import { CardElementsComponent } from './card-elements/card-elements.component';
 import { IBillingDetails } from '../../../shared/interfaces/payment/billing-details.interface';
 import { IStripeIntent } from '../../../shared/interfaces/payment/stripe-intent.interface';
 import * as countryCodes from 'country-codes-list';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @Component({
   selector: 'app-donation',
   standalone: true,
@@ -52,6 +52,8 @@ import * as countryCodes from 'country-codes-list';
     FormElementDirective,
     ExpressCheckoutElementComponent,
     CardElementsComponent,
+    FormsModule,
+    MatCheckboxModule
   ],
 })
 export class DonationComponent {
@@ -60,6 +62,8 @@ export class DonationComponent {
   name: string;
   email: string;
   phone: string;
+  contributionType: string;
+  contributionName: string;
   city: string;
   country: string;
   donationFormId: string;
@@ -70,7 +74,7 @@ export class DonationComponent {
   coverFees: boolean = false;
   feePercentage: number = 2.9;
   checkoutFormDisabled: boolean = false;
-
+  isChecked: boolean = false;
   router: Router = inject(Router);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   fb: FormBuilder = inject(FormBuilder);
@@ -102,6 +106,9 @@ export class DonationComponent {
     name: ['', [Validators.required, StringValidator()]],
     email: ['', [Validators.required, EmailValidator()]],
     phone: ['', [Validators.required, PhoneValidator()]],
+    contributionType: ['', [Validators.required]],
+    contributionName: ['', [Validators.required]],
+
   });
 
   billingDetailsForm = this.fb.group({
@@ -120,6 +127,7 @@ export class DonationComponent {
   });
 
   ngOnInit() {
+    this.updateContributionValidators();
     if (this.isBrowser) {
       this.authService.authedUserSubject.asObservable().subscribe({
         next: (user: IUser) => {
@@ -131,29 +139,30 @@ export class DonationComponent {
         },
       });
     }
+    if (this.filtereddedications.length > 0) {
+      this.personalDetailsForm.controls.contributionType.setValue(this.filtereddedications[0]);
+    }
   }
 
   onMakeDonation() {
     this.checkoutFormDisabled = true;
 
     // exit if donation form or card are invalid
-    if (this.checkoutForm.invalid || !this.stripeCardElements.isCardValid())
-      return;
+    if (this.checkoutForm.invalid || !this.stripeCardElements.isCardValid()) return;
 
     // Calculate donation amount, including fees if applicable
     this.coverFees = this.checkoutForm.get('coverFees')?.value || false;
-    // let finalAmount = this.donationAmount;
-    // if (this.coverFees) {
-    //   finalAmount = (finalAmount * (1 + this.feePercentage / 100))+0.30;
-    // }
+
     // Set donationStarted key in session storage
     if (this.isBrowser) {
       sessionStorage.setItem('donationStarted', JSON.stringify(true));
     }
-    // make donation process
-    const { name, email, phone } = this.personalDetailsForm.getRawValue();
-    const { city, country, addressLine1, addressLine2, postalCode, state } =
-      this.billingDetailsForm.getRawValue();
+
+    // Get personal details and billing details
+    const { name, email, phone, contributionType, contributionName } = this.personalDetailsForm.getRawValue();
+    const { city, country, addressLine1, addressLine2, postalCode, state } = this.billingDetailsForm.getRawValue();
+
+    // Prepare billing details
     const billingDetails: IBillingDetails = {
       name,
       email,
@@ -165,27 +174,32 @@ export class DonationComponent {
       postalCode,
       state,
     };
+    const contribution = {
+      contributionName,
+      contributionType
+    };
+    // Proceed with donation
     this.name = name;
     this.email = email;
+    this.contributionName = contributionName;
+    this.contributionType = contributionType;
     this.phone = phone;
     this.city = city;
     this.country = country;
+
     const finalAmount = this.donationAmount;
     this.coverFees = this.checkoutForm.get('coverFees')?.value || false;
+
     this.stripeCardElements.createPaymentMethod(billingDetails).subscribe({
       next: (res: PaymentMethodResult) => {
         if (res.error) {
-          this._snackBar.open(res.error.message, '✖', {
-            panelClass: 'failure-snackbar',
-          });
+          this._snackBar.open(res.error.message, '✖', { panelClass: 'failure-snackbar' });
           this.checkoutFormDisabled = false;
           this.pushTagFailedDonationEvent(res.error.message);
           return;
         }
-        this.createPayment(
-          res.paymentMethod.id,
-          finalAmount.toString()
-        ).subscribe({
+
+        this.createPayment(res.paymentMethod.id, finalAmount.toString(), contribution).subscribe({
           next: (res: IApiResponse<IStripeIntent>) => {
             if (res?.data?.status === 'succeeded') {
               this.pushTagConfirmDonationEvent();
@@ -193,9 +207,7 @@ export class DonationComponent {
             } else if (res?.data?.status === 'requires_action') {
               this.handleCardAction(res.data.client_secret);
             } else {
-              this._snackBar.open('Your card was declined.', '✖', {
-                panelClass: 'failure-snackbar',
-              });
+              this._snackBar.open('Your card was declined.', '✖', { panelClass: 'failure-snackbar' });
               this.pushTagFailedDonationEvent('Your card was declined.');
               this.checkoutFormDisabled = false;
             }
@@ -208,7 +220,8 @@ export class DonationComponent {
   // Handle Payment
   createPayment(
     stripePaymentMethodId: string,
-    finalAmount: any
+    finalAmount: any,
+    contribution: { contributionName: string, contributionType: string }
   ): Observable<IApiResponse<IStripeIntent>> {
     const { name, email } = this.personalDetailsForm.getRawValue();
     const { billingComment } = this.checkoutForm.getRawValue();
@@ -216,6 +229,7 @@ export class DonationComponent {
     const paymentData = {
       name: name,
       email: email,
+      contribution: contribution,
       amount: finalAmount,
       donationFormId: this.donationFormId,
       stripePaymentMethodId: stripePaymentMethodId,
@@ -225,6 +239,7 @@ export class DonationComponent {
       billingComment: billingComment,
       coverFees: this.coverFees,
     };
+    console.log('Payment Data:', paymentData);
     return this.paymentService.createPayment(paymentData);
   }
   // Handle 3D Secure Authentication (OTP)
@@ -285,13 +300,27 @@ export class DonationComponent {
         el.countryNameEn.toLowerCase().includes(searchTerm.toLowerCase())
       );
   }
+  //filter dedicationTypes
+  dedicationTypes = ['In Memory Of', 'In Honor Of'];
+  filtereddedications = this.dedicationTypes;
+
+  filterDedication(searchTerm: string): void {
+    this.filtereddedications = this.dedicationTypes.filter((dedication) =>
+      dedication.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }
 
   onChangeCountry(country: countryCodes.CountryData) {
     this.billingDetailsForm.controls.country.setValue(country.countryCode);
   }
-
+  onChangeDedication(dedication: string): void {
+    this.personalDetailsForm.controls.contributionType.setValue(dedication);
+  }
   getOptionText(option: countryCodes.CountryData) {
     return option ? option.countryNameEn : null;
+  }
+  getOptionTextDetection(option: string): string {
+    return option ? option : null;
   }
   //DataLayer
   onFillPersonalDetails() {
@@ -310,4 +339,24 @@ export class DonationComponent {
       });
     }
   }
+  onCheckboxChange() {
+    this.updateContributionValidators();
+  }
+  updateContributionValidators() {
+    if (this.isChecked) {
+      // Make fields required
+      this.personalDetailsForm.get('contributionType')?.setValidators([Validators.required]);
+      this.personalDetailsForm.get('contributionName')?.setValidators([Validators.required]);
+    } else {
+      // Make fields optional
+      this.personalDetailsForm.get('contributionType')?.clearValidators();
+      this.personalDetailsForm.get('contributionName')?.clearValidators();
+      this.personalDetailsForm.get('contributionType')?.setValue(null);
+      this.personalDetailsForm.get('contributionName')?.setValue(null);
+    }
+    // Update the form validation status after modifying validators
+    this.personalDetailsForm.get('contributionType')?.updateValueAndValidity();
+    this.personalDetailsForm.get('contributionName')?.updateValueAndValidity();
+  }
+
 }

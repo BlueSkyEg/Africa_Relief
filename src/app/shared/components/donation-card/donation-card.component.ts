@@ -25,10 +25,10 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class DonationCardComponent {
   @Input() donationForm: IDonationForm;
+  @Input() donationFormTitle: string = '';
   amount: number;
   makeRecurringDonation: boolean = false;
   recurringPeriod: 'day' | 'week' | 'month' | 'year' = 'month';
-
   private router: Router = inject(Router);
   private platformId = inject(PLATFORM_ID);
 
@@ -44,14 +44,17 @@ export class DonationCardComponent {
         event: 'donationEventBeforeTheUserFillTheForm',
         donationAmount: this.amount,
         donationFormId: this.donationForm.id,
-        donationFormTitle: this.donationForm.title,
+        // donationFormTitle: this.donationForm.title,
+        donationFormTitle: this.donationFormTitle
       });
-    }
+      console.log(this.donationForm);
 
+    }
     this.router.navigate(['/donation'], {
       queryParams: {
         form: this.donationForm.id,
-        title: this.donationForm.title,
+        //title: this.donationForm.title,
+        title: this.donationFormTitle,
         amount: this.amount,
         recurringPeriod: this.makeRecurringDonation
           ? this.recurringPeriod

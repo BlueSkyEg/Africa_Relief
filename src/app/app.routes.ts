@@ -92,6 +92,7 @@ export const routes: Routes = [
   {
     path: 'get-involved/gift-matching',
     component: GiftMatchingComponent,
+    runGuardsAndResolvers: 'always'
   },
   {
     path: 'contact',

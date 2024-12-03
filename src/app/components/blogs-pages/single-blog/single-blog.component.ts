@@ -44,6 +44,7 @@ export class SingleBlogComponent {
   _MetaService: MetaService = inject(MetaService);
   private platformId = inject(PLATFORM_ID);
   ngOnInit(): void {
+    console.log(this.blog)
     if (isPlatformBrowser(this.platformId)) {
       this._MetaService.setCanonicalURL(window.location.href);
       this.router.events
@@ -59,6 +60,7 @@ export class SingleBlogComponent {
           next: (res: IApiResponse<IBlog | null>) => {
             if (res.success) {
               this.blog = res.data;
+              console.log(this.blog.donation_form);
               this._MetaService.setMetaData(
                 this.blog.meta_data,
                 this.blog.created_at,
@@ -70,10 +72,9 @@ export class SingleBlogComponent {
             }
           },
         });
-      },
+      }
     });
   }
-
   processBlogContents(): void {
     this.blog.contents.forEach((content) => {
       if (
@@ -99,5 +100,12 @@ export class SingleBlogComponent {
         }
       }
     });
+  }
+
+  formatItem(item: string): string {
+    const boldPattern = /\*(.*?)\*/;
+    return item
+      .replace(boldPattern, '<span class="font-medium ">$1</span>')
+      .replace(/\*\*/g, '');
   }
 }
