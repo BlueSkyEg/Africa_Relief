@@ -4,7 +4,7 @@
   <div class="text-center font-medium text-base lg:text-2xl">
     <p class="mb-28">As of today, ARCD has reached</p>
     <div
-      class="text-primary text-[100px] lg:text-[200px] mb-28 font-normal font-roboto"
+      class="text-primary text-6xl lg:text-[200px] mb-28 font-normal font-roboto"
     >
       {{ displayCount | number }}
     </div>
@@ -38,6 +38,7 @@
     @if (donationForm) {
     <app-donation-card
       [donationForm]="donationForm"
+      [donationFormTitle]="donationForm?.title"
       class="flex-1 xl:max-w-[600px]"
     >
       <div
