@@ -79,7 +79,7 @@
 
 
   <!-- Pagination Controls -->
-  @if ((type === 'blogs' && blogs?.length > 0) || (type === 'projects' && projects?.length > 0)) {
+  @if (((type === 'blogs' && blogs?.length > 0) || (type === 'projects' && projects?.length > 0)) && totalPages>1) {
     <div
       class="mt-4 flex justify-center"
       >
