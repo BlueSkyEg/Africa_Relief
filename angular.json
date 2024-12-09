@@ -63,8 +63,7 @@
               "src/styles/_angular-material.scss",
               "src/styles/styles.scss"
             ],
-            "scripts": [
-            ],
+            "scripts": [],
             "server": "src/main.server.ts",
             "prerender": false,
             "ssr": {

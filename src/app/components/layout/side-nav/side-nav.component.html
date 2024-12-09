@@ -150,6 +150,17 @@
     </li>
 
     <li class="border-top border-gray-light">
+      <button
+        (click)="onRouterNavigate('/zakat-calculator')"
+        class="flex p-4 w-full"
+        routerLink="/zakat-calculator"
+        routerLinkActive="text-white bg-primary"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Zakat Calculator
+      </button>
+    </li>
+    <li class="border-top border-gray-light">
       <div class="flex justify-between items-center">
         <button
           class="flex p-4 flex-1"
@@ -202,15 +213,15 @@
           </button>
         </li>
         <li class="border-top border-gray-light">
-          <button
-            (click)="onRouterNavigate('/get-involved/gift-matching')"
+          <a
             class="flex p-4 ms-6 w-full"
-            routerLink="/get-involved/gift-matching"
+            href="https://doublethedonation.com/match/africa-relief-and-community-development--XDe1d?mpid="
+            target="_blank"
             routerLinkActive="text-white bg-primary"
             [routerLinkActiveOptions]="{ exact: true }"
           >
             Matching Gifts
-          </button>
+          </a>
         </li>
       </ul>
     </li>

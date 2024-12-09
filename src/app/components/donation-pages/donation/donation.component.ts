@@ -26,7 +26,6 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { IUser } from '../../../shared/interfaces/auth/user.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { GoogleTagManagerService } from 'angular-google-tag-manager';
 import { StringValidator } from '../../../core/validators/string.validator';
 import { EmailValidator } from '../../../core/validators/email.validator';
 import { PhoneValidator } from '../../../core/validators/phone.validator';
@@ -36,6 +35,7 @@ import { IBillingDetails } from '../../../shared/interfaces/payment/billing-deta
 import { IStripeIntent } from '../../../shared/interfaces/payment/stripe-intent.interface';
 import * as countryCodes from 'country-codes-list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
 @Component({
   selector: 'app-donation',
   standalone: true,
@@ -201,7 +201,7 @@ export class DonationComponent {
 
         this.createPayment(res.paymentMethod.id, finalAmount.toString()).subscribe({
           next: (res: IApiResponse<IStripeIntent>) => {
-    
+
             if (res?.data?.status === 'succeeded') {
               this.pushTagConfirmDonationEvent();
               this.router.navigateByUrl('/donation-confirmation');
@@ -229,13 +229,14 @@ export class DonationComponent {
     const paymentData = {
       name: name,
       email: email,
-      contribution:[
-        {
-          contributionName: contributionName,
-          contributionType: contributionType,
-        }
-      ]
-,
+      contribution: this.isChecked
+        ? [
+          {
+            contributionName: contributionName,
+            contributionType: contributionType,
+          },
+        ]
+        : null,
       amount: finalAmount,
       donationFormId: this.donationFormId,
       stripePaymentMethodId: stripePaymentMethodId,
@@ -245,7 +246,6 @@ export class DonationComponent {
       billingComment: billingComment,
       coverFees: this.coverFees,
     };
-    console.log('Payment Data:', paymentData);
     return this.paymentService.createPayment(paymentData);
   }
   // Handle 3D Secure Authentication (OTP)

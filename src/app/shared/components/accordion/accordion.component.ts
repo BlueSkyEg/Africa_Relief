@@ -5,17 +5,15 @@ import {
   QueryList,
   ViewChildren,
 } from '@angular/core';
-import { IconChevronDownComponent } from '../../icons/arrows/chevron-down/icon-chevron-down.component';
 import { CommonModule } from '@angular/common';
 import { IContent } from '../../interfaces/content-interface';
-import { IImage } from '../../interfaces/image-interface';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser'; // Import DomSanitizer
+import { DomSanitizer } from '@angular/platform-browser'; // Import DomSanitizer
 @Component({
   selector: 'app-accordion',
   standalone: true,
   templateUrl: './accordion.component.html',
   styleUrl: './accordion.component.scss',
-  imports: [CommonModule, IconChevronDownComponent],
+  imports: [CommonModule],
 })
 export class AccordionComponent {
   @ViewChildren('accordion') accordionList: QueryList<ElementRef>;
