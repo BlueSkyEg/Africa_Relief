@@ -18,7 +18,7 @@ import { AuthService } from './core/services/auth/auth.service';
 import { IApiResponse } from './shared/interfaces/api-response-interface';
 import { IUser } from './shared/interfaces/auth/user.interface';
 // import { FirebaseService } from './core/services/firebase/firebase.service';
-import { GoogleTagManagerService } from 'angular-google-tag-manager';
+// import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-root',
@@ -45,31 +45,31 @@ export class AppComponent implements OnInit {
   platformId: Object = inject(PLATFORM_ID);
 
   // Initialize Google Tag Manager
-  gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
+  // gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
 
   // Initialize Firebase Notification
   // firebaseService: FirebaseService = inject(FirebaseService);
 
   constructor() {
     // Add Google Tag Manager Scripts to Dom
-    if (isPlatformBrowser(this.platformId)) {
-      this.gtmService.addGtmToDom();
-    }
+    // if (isPlatformBrowser(this.platformId)) {
+    //   this.gtmService.addGtmToDom();
+    // }
   }
 
   ngOnInit(): void {
     // Push Google Tag Manager Page View Event
-    if (isPlatformBrowser(this.platformId)) {
-      this.router.events.forEach((item) => {
-        if (item instanceof NavigationEnd) {
-          const gtmTag = {
-            event: 'page',
-            pageName: item.url,
-          };
-          this.gtmService.pushTag(gtmTag);
-        }
-      });
-    }
+    // if (isPlatformBrowser(this.platformId)) {
+    //   this.router.events.forEach((item) => {
+    //     if (item instanceof NavigationEnd) {
+    //       const gtmTag = {
+    //         event: 'page',
+    //         pageName: item.url,
+    //       };
+    //       this.gtmService.pushTag(gtmTag);
+    //     }
+    //   });
+    // }
 
     // Toggle Side Nav
     this.layoutService.sideNavSubject.asObservable().subscribe({

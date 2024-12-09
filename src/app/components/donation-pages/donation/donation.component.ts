@@ -35,7 +35,7 @@ import { IBillingDetails } from '../../../shared/interfaces/payment/billing-deta
 import { IStripeIntent } from '../../../shared/interfaces/payment/stripe-intent.interface';
 import * as countryCodes from 'country-codes-list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { GoogleTagManagerService } from 'angular-google-tag-manager';
+// import { GoogleTagManagerService } from 'angular-google-tag-manager';
 @Component({
   selector: 'app-donation',
   standalone: true,
@@ -83,7 +83,7 @@ export class DonationComponent {
   _breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
   _stripeService: StripeService = inject(StripeService);
   _snackBar: MatSnackBar = inject(MatSnackBar);
-  _gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
+  // _gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
   isBrowser: boolean;
   constructor(@Inject(PLATFORM_ID) private platformId: any) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -282,7 +282,7 @@ export class DonationComponent {
       },
       recurringPeriod: this.recurringPeriod,
     };
-    this._gtmService.pushTag(gtmTag);
+    // this._gtmService.pushTag(gtmTag);
   }
 
   // Push Google Tag Manager Donation Failed Event
@@ -291,7 +291,7 @@ export class DonationComponent {
       event: 'donationFaild',
       faildReason: donationFaildReason,
     };
-    this._gtmService.pushTag(gtmTag);
+    // this._gtmService.pushTag(gtmTag);
   }
 
   // Filter Countries by Name
