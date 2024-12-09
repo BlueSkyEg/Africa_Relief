@@ -104,12 +104,20 @@
           <app-form-field>
             <app-form-label>Country*</app-form-label>
             <input appFormElement type="text" placeholder="Select Country" [matAutocomplete]="countryAutocomplete"
-              (input)="filterCountries(countryInput.value)" #countryInput autocomplete="off" />
-            <mat-autocomplete requireSelection #countryAutocomplete="matAutocomplete" [displayWith]="getOptionText"
+              (input)="filterCountries(countryInput.value)" #countryInput autocomplete="off" value="egypt">
+            <!-- <mat-autocomplete requireSelection #countryAutocomplete="matAutocomplete" [displayWith]="getOptionText"
               (optionSelected)="onChangeCountry($event.option.value)">
               @for (country of filteredCountries; track country) {
               <mat-option [value]="country">{{
                 country.countryNameEn
+                }}</mat-option>
+              }
+            </mat-autocomplete> -->
+            <mat-autocomplete requireSelection #countryAutocomplete="matAutocomplete" [displayWith]="getOptionText"
+              (optionSelected)="onChangeCountry($event.option.value)">
+              @for (country of filteredCountries; track country) {
+              <mat-option [value]="country">{{
+                country
                 }}</mat-option>
               }
             </mat-autocomplete>

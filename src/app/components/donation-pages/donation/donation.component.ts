@@ -34,7 +34,7 @@ import { ExpressCheckoutElementComponent } from './express-checkout-element/expr
 import { CardElementsComponent } from './card-elements/card-elements.component';
 import { IBillingDetails } from '../../../shared/interfaces/payment/billing-details.interface';
 import { IStripeIntent } from '../../../shared/interfaces/payment/stripe-intent.interface';
-import * as countryCodes from 'country-codes-list';
+//import * as countryCodes from 'country-codes-list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 @Component({
   selector: 'app-donation',
@@ -201,7 +201,7 @@ export class DonationComponent {
 
         this.createPayment(res.paymentMethod.id, finalAmount.toString()).subscribe({
           next: (res: IApiResponse<IStripeIntent>) => {
-    
+
             if (res?.data?.status === 'succeeded') {
               this.pushTagConfirmDonationEvent();
               this.router.navigateByUrl('/donation-confirmation');
@@ -295,14 +295,22 @@ export class DonationComponent {
   }
 
   // Filter Countries by Name
-  countries: countryCodes.CountryData[] = countryCodes.all();
-  filteredCountries: countryCodes.CountryData[] = this.countries;
-
+  //countries: countryCodes.CountryData[] = countryCodes.all();
+  countries= ["gjjgj",'kgkgkg'];
+  //filteredCountries: countryCodes.CountryData[] = this.countries;
+  filteredCountries=this.countries;
+  // filterCountries(searchTerm: string): void {
+  //   this.filteredCountries = Object.entries(this.countries)
+  //     .map((e) => e[1])
+  //     .filter((el) =>
+  //       el.countryNameEn.toLowerCase().includes(searchTerm.toLowerCase())
+  //     );
+  // }
   filterCountries(searchTerm: string): void {
     this.filteredCountries = Object.entries(this.countries)
       .map((e) => e[1])
       .filter((el) =>
-        el.countryNameEn.toLowerCase().includes(searchTerm.toLowerCase())
+        el.toLowerCase().includes(searchTerm.toLowerCase())
       );
   }
   //filter dedicationTypes
@@ -315,13 +323,19 @@ export class DonationComponent {
     );
   }
 
-  onChangeCountry(country: countryCodes.CountryData) {
+  // onChangeCountry(country: countryCodes.CountryData) {
+  //   this.billingDetailsForm.controls.country.setValue(country.countryCode);
+  // }
+  onChangeCountry(country) {
     this.billingDetailsForm.controls.country.setValue(country.countryCode);
   }
   onChangeDedication(dedication: string): void {
     this.personalDetailsForm.controls.contributionType.setValue(dedication);
   }
-  getOptionText(option: countryCodes.CountryData) {
+  // getOptionText(option: countryCodes.CountryData) {
+  //   return option ? option.countryNameEn : null;
+  // }
+  getOptionText(option) {
     return option ? option.countryNameEn : null;
   }
   getOptionTextDetection(option: string): string {
