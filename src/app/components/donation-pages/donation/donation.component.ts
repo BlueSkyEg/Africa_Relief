@@ -229,13 +229,14 @@ export class DonationComponent {
     const paymentData = {
       name: name,
       email: email,
-      contribution:[
-        {
-          contributionName: contributionName,
-          contributionType: contributionType,
-        }
-      ]
-,
+      contribution: this.isChecked
+        ? [
+          {
+            contributionName: contributionName,
+            contributionType: contributionType,
+          },
+        ]
+        : null,
       amount: finalAmount,
       donationFormId: this.donationFormId,
       stripePaymentMethodId: stripePaymentMethodId,
