@@ -245,7 +245,6 @@ export class DonationComponent {
       billingComment: billingComment,
       coverFees: this.coverFees,
     };
-    console.log('Payment Data:', paymentData);
     return this.paymentService.createPayment(paymentData);
   }
   // Handle 3D Secure Authentication (OTP)

@@ -4,124 +4,173 @@
   <h2 class="text-heading-2 font-medium bg-red-600 mb-4">Empower your giving with precision</h2>
   <span class="text-body-2 ">Calculate your Zakat effortlessly with our intuitive Zakat
     calculator.</span>
-  <div class="my-6  relative">
+  <div class="my-6  lg:relative">
     <img src="/assets/images/zakat-calculator/zakat-calculator.png" />
     <div #myDiv
-      class="bg-white w-11/12 absolute top-[75%] left-1/2 transform -translate-x-1/2  py-8 flex flex-col items-center justify-center border border-gray-light">
-      <div class="py-8 flex flex-col items-center justify-center w-full border-b border-gray-light">
-        <p class="mb-2 text-body-1-roboto">Nisab Threshold as of March 2024 <span class="text-primary">$6,000</span></p>
-        <p class="text-body-2">(smd on the value of 85 grams of 24K gold)</p>
+      class="my-4 mx-auto lg:my-0 bg-white w-11/12 lg:absolute lg:top-[75%] lg:left-1/2 lg:transform lg:-translate-x-1/2 py-2 lg:py-8 flex flex-col items-center justify-center border border-gray-light">
+      <div class="py-2 lg:py-8 flex flex-col items-center justify-center w-full border-b border-gray-light">
+        <p class="mb-2 text-lg lg:text-body-1-roboto ">Nisab Threshold as of March 2024 <span
+            class="text-primary">$6,000</span></p>
+        <p class="text-xs lg:text-body-2">(smd on the value of 85 grams of 24K gold)</p>
+
       </div>
       <div class="border-b border-gray-light w-full">
-        <div class="flex flex-col justify-center  px-24 my-7 gap-10 ">
-          <div class="flex items-center justify-between text-body-1-inter">
+        <div class="flex flex-col justify-center px-24 my-4 lg:my-7 lg:gap-10 gap-5 ">
+          <div class="text-xl font-medium my-1 flex flex-col items-center justify-center lg:hidden">
+            <p class="my-2 ">Calculate Your Zakat in U.S. Dollars</p>
+            <p class="text-primary">Assets and Liabilities</p>
+          </div>
+          <div class="hidden lg:flex items-center justify-between text-body-1-inter">
             <p>Assets and Liabilities</p>
             <p>Value in U.S. Dollars</p>
           </div>
           <!-- Net Cash -->
-          <div class="flex items-center justify-between">
-            <label for="net-cash" class="text-gray-dark text-2xl font-normal">Net Cash <span class="text-base block">
+          <div class="flex flex-col items-center justify-center lg:justify-between lg:flex-row w-1/2 mx-auto lg:w-full">
+            <label for="net-cash" class="text-gray-dark text-base lg:text-2xl font-normal">Net Cash <span
+                class="lg:text-base text-sm lg:block">
                 (At Home or in Bank Account)
               </span></label>
-            <input type="number" id="net-cash" [(ngModel)]="netCash"
-              class="focus:outline-none border border-gray-medium px-3 py-2">
-          </div>
-
-          <!-- Resale Value of Shares -->
-          <div class="flex items-center justify-between">
-            <label for="resale-value-of-shares" class="text-gray-dark text-2xl font-normal">Resale Value of
-              Shares</label>
-            <input type="number" id="resale-value-of-shares" [(ngModel)]="resaleValueOfShares"
-              class="focus:outline-none border border-gray-medium px-3 py-2">
-          </div>
-
-          <!-- Merchandise & Profits -->
-          <div class="flex items-center justify-between">
-            <label for="merchandise-profits" class="text-gray-dark text-2xl font-normal">Merchandise & Profits</label>
-            <input type="number" id="merchandise-profits" [(ngModel)]="merchandiseProfits"
-              class="focus:outline-none border border-gray-medium px-3 py-2">
-          </div>
-
-          <!-- Gold & Silver -->
-          <div class="flex items-center justify-between">
-            <label for="gold-silver" class="text-gray-dark text-2xl font-normal">Gold & Silver</label>
-            <input type="number" id="gold-silver" [(ngModel)]="goldSilver"
-              class="focus:outline-none border border-gray-medium px-3 py-2">
-          </div>
-          <!-- Other Income -->
-          <div class="flex items-center justify-between">
-            <label for="other-income" class="text-gray-dark text-2xl font-normal">Other Income</label>
-            <input type="number" id="other-income" [(ngModel)]="otherIncome"
-              class="focus:outline-none border border-gray-medium px-3 py-2">
-          </div>
-        </div>
-      </div>
-      <div class="border-b border-gray-light w-full">
-        <!-- Total of Assets Liable for Zakat  -->
-        <div class="flex flex-col justify-center  px-24 my-7 gap-10 ">
-          <div class="flex items-center justify-between">
-            <label for="total-of-assets-liable-for-zakat" class="text-primary text-2xl font-medium">Total of Assets
-              Liable for Zakat</label>
-            <div class="relative">
-              <input type="number" id="total-of-assets-liable-for-zakat"
-                class="focus:outline-none border border-gray-medium px-3 py-2" [value]="totalAssets" disabled>
+            <div class="relative w-full lg:w-auto">
+              <input type="number" id="net-cash" [(ngModel)]="netCash"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
             </div>
           </div>
+          <!-- Resale Value of Shares -->
+          <div class="flex flex-col items-center justify-center lg:justify-between lg:flex-row w-1/2 mx-auto lg:w-full">
+            <label for="resale-value-of-shares" class="text-gray-dark text-base lg:text-2xl font-normal">Resale Value of
+              Shares</label>
+            <div class="relative w-full lg:w-auto">
+              <input type="number" id="resale-value-of-shares" [(ngModel)]="resaleValueOfShares"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
+              <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
+                <app-icon-dollar-sign />
+              </div>
+            </div>
+
+          </div>
+          <!-- Merchandise & Profits -->
+          <div class="flex flex-col items-center justify-center lg:justify-between lg:flex-row w-1/2 mx-auto lg:w-full">
+            <label for="merchandise-profits" class="text-gray-dark text-base lg:text-2xl font-normal">Merchandise &
+              Profits <span class="lg:text-base lg:block hidden">
+                (Inventory of Merchandise in wholesale price, any company assets are excluded)
+              </span></label>
+            <div class="relative w-full lg:w-auto">
+              <input type="number" id="merchandise-profits" [(ngModel)]="merchandiseProfits"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
+              <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
+                <app-icon-dollar-sign />
+              </div>
+            </div>
+
+          </div>
+          <!-- Gold & Silver -->
+          <div class="flex flex-col items-center justify-center lg:justify-between lg:flex-row w-1/2 mx-auto lg:w-full">
+            <label for="gold-silver" class="text-gray-dark text-base lg:text-2xl font-normal">Gold & Silver (at current
+              value)
+              <span class="lg:text-base lg:block hidden">
+                (Used for saving and trading). Personal wear and accessories are excluded.
+              </span></label>
+            <div class="relative w-full lg:w-auto">
+              <input type="number" id="gold-silver" [(ngModel)]="goldSilver"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
+              <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
+                <app-icon-dollar-sign />
+              </div>
+            </div>
+
+          </div>
+          <!-- Other Income -->
+          <div class="flex flex-col items-center justify-center lg:justify-between lg:flex-row w-1/2 mx-auto lg:w-full">
+            <label for="other-income" class="text-gray-dark text-base lg:text-2xl font-normal">Other Income</label>
+            <div class="relative w-full lg:w-auto">
+              <input type="number" id="other-income" [(ngModel)]="otherIncome"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
+              <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
+                <app-icon-dollar-sign />
+              </div>
+            </div>
+
+          </div>
+          <!-- Total of Assets Liable for Zakat  -->
+          <div class="flex flex-col items-center justify-center lg:justify-between lg:flex-row w-1/2 mx-auto lg:w-full">
+            <label for="total-of-assets-liable-for-zakat" class="text-primary text-base lg:text-2xl font-medium">Total
+              of Assets
+              Liable for Zakat</label>
+            <div class="relative w-full lg:w-auto">
+              <input type="number" id="total-of-assets-liable-for-zakat"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [value]="totalAssets" disabled>
+              <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
+                <app-icon-dollar-sign />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-b border-gray-light w-full">
+        <div class="flex flex-col justify-center  px-24 my-4 lg:my-7 gap-5 lg:gap-10 ">
           <!--Deduct Debts-->
-          <div class="flex items-center justify-between">
-            <label for="deduct-debts" class="text-gray-dark text-2xl font-normal">Deduct Debts</label>
-            <div class="relative">
-              <input type="number" id="deduct-debts" class="focus:outline-none border border-gray-medium px-3 py-2"
-                [(ngModel)]="deductDebts">
+          <div class="flex flex-col items-center justify-center lg:justify-between lg:flex-row w-1/2 mx-auto lg:w-full">
+            <label for="deduct-debts" class="text-gray-dark text-base lg:text-2xl font-normal">Deduct Debts</label>
+            <div class="relative w-full lg:w-auto">
+              <input type="number" id="deduct-debts"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [(ngModel)]="deductDebts">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
             </div>
           </div>
           <!--Deduct Expenses -->
-          <div class="flex items-center justify-between">
-            <label for="deduct-expenses" class="text-gray-dark text-2xl font-normal">Deduct Expenses</label>
-            <div class="relative">
-              <input type="number" id="deduct-expenses" class="focus:outline-none border border-gray-medium px-3 py-2"
-                [(ngModel)]="deductExpenses">
+          <div class="flex flex-col items-center justify-center lg:justify-between lg:flex-row w-1/2 mx-auto lg:w-full">
+            <label for="deduct-expenses" class="text-gray-dark text-base lg:text-2xl font-normal">Deduct
+              Expenses</label>
+            <div class="relative w-full lg:w-auto">
+              <input type="number" id="deduct-expenses"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [(ngModel)]="deductExpenses">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
             </div>
           </div>
           <!--Ensure that the Zakat-Eligible -->
-          <div class="flex items-center justify-between">
-            <label for="zakat-eligible" class="text-primary text-2xl font-medium">Ensure that the Zakat-Eligible Total
-              <br>
-              is equal to or exceeds Nisab by $6000.</label>
-            <div class="relative">
-              <input type="number" id="zakat-eligible" class="focus:outline-none border border-gray-medium px-3 py-2"
-                [value]="6000" disabled>
+          <div class="flex flex-col items-center justify-center lg:justify-between lg:flex-row w-1/2 mx-auto lg:w-full">
+            <label for="zakat-eligible" class="text-primary text-base lg:text-2xl font-medium"> <span
+                class="block lg:hidden">Ensure that Zakat-Eligible Total Exceeds Nisab </span><span
+                class="hidden lg:block">
+                Ensure that the Zakat-Eligible Total
+                <br>
+                is equal to or exceeds Nisab by $6000.
+              </span></label>
+            <div class="relative w-full lg:w-auto">
+              <input type="number" id="zakat-eligible"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [value]="6000" disabled>
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
             </div>
           </div>
           <!-- Zakat-Eligible -->
-          <div class="flex items-center justify-between">
-            <label for="zakat-eligible" class="text-primary text-2xl font-medium">Zakat-Eligible Total </label>
-            <div class="relative">
-              <input type="number" id="zakat-eligible" class="focus:outline-none border border-gray-medium px-3 py-2"
-                [value]="zakatEligable" disabled>
+          <div class="flex flex-col items-center justify-center lg:justify-between lg:flex-row w-1/2 mx-auto lg:w-full">
+            <label for="zakat-eligible" class="text-primary text-base lg:text-2xl font-medium">Zakat-Eligible Total
+            </label>
+            <div class="relative w-full lg:w-auto">
+              <input type="number" id="zakat-eligible"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [value]="zakatEligable" disabled>
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
             </div>
           </div>
           <!-- Zakat-Eligible Total -->
-          <div class="flex items-center justify-between">
-            <label for="your-zakat" class="text-primary text-2xl font-medium">Your Zakat (2.5% x Zakat-Eligible
+          <div
+            class="flex flex-col items-center justify-center lg:justify-between lg:flex-row w-1/2 mx-auto lg:w-full ">
+            <label for="your-zakat" class="text-primary text-base lg:text-2xl font-medium">Your Zakat (2.5% x
+              Zakat-Eligible
               Total)</label>
-            <div class="relative">
-              <input type="number" id="your-zakat" class="focus:outline-none border border-gray-medium px-3 py-2"
+            <div class="relative  w-full lg:w-auto">
+              <input type="number" id="your-zakat" class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
                 [value]="zakatEligableTotal" disabled>
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
@@ -133,47 +182,56 @@
       <div class="border-b border-gray-light w-full">
         <div class="flex flex-col justify-center  px-24 my-7 gap-10 ">
           <!--Produce and Rent Income-->
-          <div class="flex items-center justify-between">
-            <label for="produce-and-rent-income" class="text-gray-dark text-2xl font-normal">Produce and Rent
-              Income</label>
-            <div class="relative">
+          <div class="flex flex-col items-center justify-center lg:justify-between lg:flex-row w-1/2 mx-auto lg:w-full">
+            <label for="produce-and-rent-income" class="text-gray-dark text-base lg:text-2xl font-normal">Produce and
+              RentIncome
+              <ul class="text-base font-normal  ps-2 lg:block hidden">
+                <li>Rent includes cars, houses, and machines</li>
+                <li>Produce includes Honey and Dairy products..etc</li>
+              </ul>
+            </label>
+            <div class="relative w-full lg:w-auto">
               <input type="number" id="produce-and-rent-income"
-                class="focus:outline-none border border-gray-medium px-3 py-2 " [(ngModel)]="produceRentincome">
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full " [(ngModel)]="produceRentincome">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
             </div>
           </div>
           <!--deduct-expenses-->
-          <div class="flex items-center justify-between">
-            <label for="deduct-expenses" class="text-gray-dark text-2xl font-normal">Deduct Expenses.</label>
-            <div class="relative">
-              <input type="number" id="deduct-expenses" class="focus:outline-none border border-gray-medium px-3 py-2"
-                [(ngModel)]="expenses">
+          <div class="flex flex-col items-center justify-center lg:justify-between lg:flex-row w-1/2 mx-auto lg:w-full">
+            <label for="deduct-expenses" class="text-gray-dark text-base lg:text-2xl font-normal">Deduct
+              Expenses.</label>
+            <div class="relative w-full lg:w-auto">
+              <input type="number" id="deduct-expenses"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [(ngModel)]="expenses">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
             </div>
           </div>
           <!--Zakat-Eligible Total-->
-          <div class="flex items-center justify-between">
-            <label for="zakat-eligible-total" class="text-primary text-2xl font-medium">Zakat-Eligible Total</label>
-            <div class="relative">
+          <div class="flex flex-col items-center justify-center lg:justify-between lg:flex-row w-1/2 mx-auto lg:w-full">
+            <label for="zakat-eligible-total" class="text-primary text-base lg:text-2xl font-medium">Zakat-Eligible
+              Total</label>
+            <div class="relative w-full lg:w-auto">
               <input type="number" id="zakat-eligible-total"
-                class="focus:outline-none border border-gray-medium px-3 py-2" [value]="propertyZakatEligibleTotal"
-                disabled>
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
+                [value]="propertyZakatEligibleTotal" disabled>
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
             </div>
           </div>
           <!-- Zakat-Eligible amount-->
-          <div class="flex items-center justify-between">
-            <label for="total-zakat" class="text-primary text-2xl font-medium">Total Zakat of Property Held (5% x
+          <div class="flex flex-col items-center justify-center lg:justify-between lg:flex-row w-1/2 mx-auto lg:w-full">
+            <label for="total-zakat" class="text-primary text-base lg:text-2xl font-medium">Total Zakat of Property Held
+              (5% x
               Zakat-Eligible Total)</label>
-            <div class="relative">
-              <input type="number" id="total-zakat" class="focus:outline-none border border-gray-medium px-3 py-2"
-                [value]="TotalpropertyZakatAmount" disabled="">
+            <div class="relative w-full lg:w-auto">
+              <input type="number" id="total-zakat"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [value]="TotalpropertyZakatAmount"
+                disabled="">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -182,20 +240,22 @@
         </div>
       </div>
       <div class=" w-full">
-        <div class="flex flex-col justify-center  px-24 my-7 gap-10 ">
+        <div class="flex flex-col justify-center  px-24 my-4 lg:my-7 gap-10 ">
           <div class="flex items-center justify-between">
-            <p class="font-bold text-primary text-2xl">Total zakat</p>
-            <div class="flex gap-2 items-center">
-              <p>{{ total | currency }}</p>
-              <a class="cursor-pointer text-white bg-primary py-2 px-3"
-                routerLink="/projects/help-where-it-is-most-needed">Donate Now</a>
+            <p class="font-bold text-primary text-base lg:text-2xl">Total zakat</p>
+            <div class="flex gap-4 lg:gap-8 items-center">
+              <p class="text-base lg:text-body-1-inter">{{ total | currency }}</p>
+              <app-form-button appearance="filled" [fullWidth]="true" [disabled]="!total"
+                (click)="onMakeDonation()">Donate
+                Now</app-form-button>
+
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div [style.height.px]="divHeight"></div>
+  <div class="hidden lg:block" [style.height.px]="divHeight"></div>
   <h2 class="text-heading-2 mb-5">Frequent Asked Question</h2>
   <div class="flex flex-col gap-6 mb-6">
     @for (content of contentList; track content.order; let idx = $index;) {

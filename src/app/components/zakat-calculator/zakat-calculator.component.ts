@@ -1,6 +1,8 @@
 import {
   Component,
   ElementRef,
+  inject,
+  PLATFORM_ID,
   QueryList,
   ViewChild,
   ViewChildren,
@@ -8,8 +10,10 @@ import {
 import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcrumb.component';
 import { IconDollarSignComponent } from '../../shared/icons/dollar-sign/icon-dollar-sign.component';
 import { IconChevronDownComponent } from '../../shared/icons/arrows/chevron-down/icon-chevron-down.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { ButtonComponent } from '../../shared/components/form/button/button.component';
 
 @Component({
   selector: 'app-zakat-calculator',
@@ -19,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     IconDollarSignComponent,
     IconChevronDownComponent,
     CommonModule,
-    FormsModule
+    FormsModule,
+    ButtonComponent
   ],
   templateUrl: './zakat-calculator.component.html',
   styles: `
@@ -120,7 +125,7 @@ export class ZakatCalculatorComponent {
   }
 
   ngAfterViewInit(): void {
-    this.divHeight = this.myDiv.nativeElement.offsetHeight - 130;
+    this.divHeight = this.myDiv.nativeElement.offsetHeight - 100;
   }
 
   toggolAccordion(targetAccordion: HTMLElement): void {
@@ -130,5 +135,35 @@ export class ZakatCalculatorComponent {
       }
     });
     targetAccordion.classList.toggle('active');
+  }
+  private platformId = inject(PLATFORM_ID);
+  private router: Router = inject(Router);
+  makeRecurringDonation: boolean = false;
+  recurringPeriod: 'day' | 'week' | 'month' | 'year' = 'month';
+
+  onMakeDonation() {
+    if (isNaN(this.total) || this.total < 1) return;
+
+    if (isPlatformBrowser(this.platformId)) {
+      // Data layer
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'donationEventBeforeTheUserFillTheForm',
+        donationAmount: this.total,
+        donationFormId: 14707,
+        donationFormTitle: 'Zakat-Al-Mal'
+      });
+
+    }
+    this.router.navigate(['/donation'], {
+      queryParams: {
+        form: 14707,
+        title: 'Zakat-Al-Mal',
+        amount: this.total,
+        recurringPeriod: this.makeRecurringDonation
+          ? this.recurringPeriod
+          : null,
+      },
+    });
   }
 }
