@@ -14,13 +14,15 @@
       </div>
       <div class="border-b border-gray-light w-full">
         <div class="flex flex-col justify-center  px-24 my-7 gap-10 ">
-          <div class="flex items-center justify-between">
-            <p class="text-body-1-inter">Assets and Liabilities</p>
-            <p class="text-body-1-inter">Value in U.S. Dollars</p>
+          <div class="flex items-center justify-between text-body-1-inter">
+            <p>Assets and Liabilities</p>
+            <p>Value in U.S. Dollars</p>
           </div>
           <!-- Net Cash -->
           <div class="flex items-center justify-between">
-            <label for="net-cash" class="text-gray-dark text-2xl font-normal">Net Cash</label>
+            <label for="net-cash" class="text-gray-dark text-2xl font-normal">Net Cash <span class="text-base block">
+                (At Home or in Bank Account)
+              </span></label>
             <input type="number" id="net-cash" [(ngModel)]="netCash"
               class="focus:outline-none border border-gray-medium px-3 py-2">
           </div>
