@@ -27,6 +27,7 @@ jobs:
           # SSH into the server and run deployment commands
           ssh -i ~/.ssh/id_africa_relief $SERVER_USER@$SERVER_IP << 'EOF'
             cd /var/www/html/staging.africarelief.org
+            git reset --hard
             git pull origin development
             npm install
             npx ng build --configuration=production --output-path=dist/tmp
