@@ -34,7 +34,7 @@ import { ExpressCheckoutElementComponent } from './express-checkout-element/expr
 import { CardElementsComponent } from './card-elements/card-elements.component';
 import { IBillingDetails } from '../../../shared/interfaces/payment/billing-details.interface';
 import { IStripeIntent } from '../../../shared/interfaces/payment/stripe-intent.interface';
-//import * as countryCodes from 'country-codes-list';
+import * as countryCodes from 'country-codes-list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 @Component({
   selector: 'app-donation',
@@ -295,22 +295,14 @@ export class DonationComponent {
   }
 
   // Filter Countries by Name
-  //countries: countryCodes.CountryData[] = countryCodes.all();
-  countries= ["gjjgj",'kgkgkg'];
-  //filteredCountries: countryCodes.CountryData[] = this.countries;
-  filteredCountries=this.countries;
-  // filterCountries(searchTerm: string): void {
-  //   this.filteredCountries = Object.entries(this.countries)
-  //     .map((e) => e[1])
-  //     .filter((el) =>
-  //       el.countryNameEn.toLowerCase().includes(searchTerm.toLowerCase())
-  //     );
-  // }
+  countries: countryCodes.CountryData[] = countryCodes.all();
+  filteredCountries: countryCodes.CountryData[] = this.countries;
+
   filterCountries(searchTerm: string): void {
     this.filteredCountries = Object.entries(this.countries)
       .map((e) => e[1])
       .filter((el) =>
-        el.toLowerCase().includes(searchTerm.toLowerCase())
+        el.countryNameEn.toLowerCase().includes(searchTerm.toLowerCase())
       );
   }
   //filter dedicationTypes
@@ -323,19 +315,13 @@ export class DonationComponent {
     );
   }
 
-  // onChangeCountry(country: countryCodes.CountryData) {
-  //   this.billingDetailsForm.controls.country.setValue(country.countryCode);
-  // }
-  onChangeCountry(country) {
+  onChangeCountry(country: countryCodes.CountryData) {
     this.billingDetailsForm.controls.country.setValue(country.countryCode);
   }
   onChangeDedication(dedication: string): void {
     this.personalDetailsForm.controls.contributionType.setValue(dedication);
   }
-  // getOptionText(option: countryCodes.CountryData) {
-  //   return option ? option.countryNameEn : null;
-  // }
-  getOptionText(option) {
+  getOptionText(option: countryCodes.CountryData) {
     return option ? option.countryNameEn : null;
   }
   getOptionTextDetection(option: string): string {
