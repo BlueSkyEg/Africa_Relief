@@ -201,7 +201,7 @@ export class DonationComponent {
 
         this.createPayment(res.paymentMethod.id, finalAmount.toString()).subscribe({
           next: (res: IApiResponse<IStripeIntent>) => {
-
+    
             if (res?.data?.status === 'succeeded') {
               this.pushTagConfirmDonationEvent();
               this.router.navigateByUrl('/donation-confirmation');
@@ -229,8 +229,13 @@ export class DonationComponent {
     const paymentData = {
       name: name,
       email: email,
-      contributionName: contributionName,
-      contributionType: contributionType,
+      contribution:[
+        {
+          contributionName: contributionName,
+          contributionType: contributionType,
+        }
+      ]
+,
       amount: finalAmount,
       donationFormId: this.donationFormId,
       stripePaymentMethodId: stripePaymentMethodId,
@@ -247,7 +252,6 @@ export class DonationComponent {
   handleCardAction(clientSecret: string): void {
     this._stripeService.confirmCardPayment(clientSecret).subscribe({
       next: (res) => {
-        console.log(res);
         if (res.error) {
           this._snackBar.open(res.error.message, '✖', {
             panelClass: 'failure-snackbar',
