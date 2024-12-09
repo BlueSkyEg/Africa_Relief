@@ -26,7 +26,6 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { IUser } from '../../../shared/interfaces/auth/user.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { GoogleTagManagerService } from 'angular-google-tag-manager';
 import { StringValidator } from '../../../core/validators/string.validator';
 import { EmailValidator } from '../../../core/validators/email.validator';
 import { PhoneValidator } from '../../../core/validators/phone.validator';
@@ -36,6 +35,7 @@ import { IBillingDetails } from '../../../shared/interfaces/payment/billing-deta
 import { IStripeIntent } from '../../../shared/interfaces/payment/stripe-intent.interface';
 import * as countryCodes from 'country-codes-list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
 @Component({
   selector: 'app-donation',
   standalone: true,
