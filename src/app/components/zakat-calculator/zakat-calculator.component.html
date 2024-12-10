@@ -7,16 +7,15 @@
   <div class="my-6  lg:relative">
     <img src="/assets/images/zakat-calculator/zakat-calculator.png" />
     <div #myDiv
-      class="my-4 mx-auto lg:my-0 bg-white w-11/12 lg:absolute lg:top-[75%] lg:left-1/2 lg:transform lg:-translate-x-1/2 py-2 lg:py-8 flex flex-col items-center justify-center border border-gray-light">
+      class="my-4 mx-auto xl:my-0 bg-white w-11/12 xl:absolute xl:top-[75%] xl:left-1/2 xl:transform xl:-translate-x-1/2 py-2 xl:py-8 flex flex-col items-center justify-center border border-gray-light">
       <div class="py-2 lg:py-8 flex flex-col items-center justify-center w-full border-b border-gray-light">
-        <p class="mb-2 text-lg lg:text-body-1-roboto p-2 sm:p-0">Nisab Threshold as of March 2024 <span
+        <p class="mb-2 text-lg lg:text-body-1-roboto p-2 sm:p-0">Nisab Threshold as of March 2025 <span
             class="text-primary">$6,000</span></p>
-        <p class="text-xs lg:text-body-2">(smd on the value of 85 grams of 24K gold)</p>
-
+        <p class="text-xs lg:text-body-2">(smd on the value of 87.48 grams of 24K gold)</p>
       </div>
       <div class="border-b border-gray-light w-full">
         <div class="flex flex-col justify-center px-5  lg:px-24 my-4 lg:my-7 lg:gap-10 gap-5 ">
-          <div class="text-xl font-medium my-1 flex flex-col justify-center lg:hidden">
+          <div class="text-xl font-medium my-1 flex flex-col sm:items-center justify-center lg:hidden">
             <p class="my-2 ">Calculate Your Zakat in U.S. Dollars</p>
             <p class="text-primary">Assets and Liabilities</p>
           </div>
@@ -26,14 +25,14 @@
           </div>
           <!-- Net Cash -->
           <div
-            class="flex flex-col justify-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
+            class="flex flex-col justify-center lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
             <label for="net-cash" class="text-gray-dark text-base lg:text-2xl font-normal">Net Cash <span
                 class="lg:text-base text-sm lg:block">
                 (At Home or in Bank Account)
               </span></label>
             <div class="relative w-full lg:w-auto">
-              <input type="number" id="net-cash" [(ngModel)]="netCash"
-                class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" id="net-cash"
+                [(ngModel)]="netCash" class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -41,11 +40,12 @@
           </div>
           <!-- Resale Value of Shares -->
           <div
-            class="flex flex-col  justify-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
+            class="flex flex-col  justify-center lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
             <label for="resale-value-of-shares" class="text-gray-dark text-base lg:text-2xl font-normal">Resale Value of
               Shares</label>
             <div class="relative w-full lg:w-auto">
-              <input type="number" id="resale-value-of-shares" [(ngModel)]="resaleValueOfShares"
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value"
+                id="resale-value-of-shares" [(ngModel)]="resaleValueOfShares"
                 class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
@@ -55,13 +55,14 @@
           </div>
           <!-- Merchandise & Profits -->
           <div
-            class="flex flex-col justify-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
+            class="flex flex-col justify-center lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
             <label for="merchandise-profits" class="text-gray-dark text-base lg:text-2xl font-normal">Merchandise &
               Profits <span class="lg:text-base lg:block hidden">
                 (Inventory of Merchandise in wholesale price, any company assets are excluded)
               </span></label>
             <div class="relative w-full lg:w-auto">
-              <input type="number" id="merchandise-profits" [(ngModel)]="merchandiseProfits"
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value"
+                id="merchandise-profits" [(ngModel)]="merchandiseProfits"
                 class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
@@ -71,14 +72,15 @@
           </div>
           <!-- Gold & Silver -->
           <div
-            class="flex flex-col  justify-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
+            class="flex flex-col  justify-center lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
             <label for="gold-silver" class="text-gray-dark text-base lg:text-2xl font-normal">Gold & Silver (at current
               value)
               <span class="lg:text-base lg:block hidden">
                 (Used for saving and trading). Personal wear and accessories are excluded.
               </span></label>
             <div class="relative w-full lg:w-auto">
-              <input type="number" id="gold-silver" [(ngModel)]="goldSilver"
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value"
+                id="gold-silver" [(ngModel)]="goldSilver"
                 class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
@@ -88,10 +90,11 @@
           </div>
           <!-- Other Income -->
           <div
-            class="flex flex-col  justify-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
+            class="flex flex-col  justify-center lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
             <label for="other-income" class="text-gray-dark text-base lg:text-2xl font-normal">Other Income</label>
             <div class="relative w-full lg:w-auto">
-              <input type="number" id="other-income" [(ngModel)]="otherIncome"
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value"
+                id="other-income" [(ngModel)]="otherIncome"
                 class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
@@ -101,12 +104,13 @@
           </div>
           <!-- Total of Assets Liable for Zakat  -->
           <div
-            class="flex flex-col justify-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
+            class="flex flex-col justify-center lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
             <label for="total-of-assets-liable-for-zakat" class="text-primary text-base lg:text-2xl font-medium">Total
               of Assets
               Liable for Zakat</label>
             <div class="relative w-full lg:w-auto">
-              <input type="number" id="total-of-assets-liable-for-zakat"
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value"
+                id="total-of-assets-liable-for-zakat"
                 class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [value]="totalAssets" disabled>
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
@@ -119,11 +123,12 @@
         <div class="flex flex-col justify-center px-5  lg:px-24 my-4 lg:my-7 gap-5 lg:gap-10 ">
           <!--Deduct Debts-->
           <div
-            class="flex flex-col  justify-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
+            class="flex flex-col  justify-center lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
             <label for="deduct-debts" class="text-gray-dark text-base lg:text-2xl font-normal">Deduct Debts</label>
             <div class="relative w-full lg:w-auto">
-              <input type="number" id="deduct-debts"
-                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [(ngModel)]="deductDebts">
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value"
+                id="deduct-debts" class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
+                [(ngModel)]="deductDebts">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -131,12 +136,13 @@
           </div>
           <!--Deduct Expenses -->
           <div
-            class="flex flex-col  justify-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
+            class="flex flex-col  justify-center lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
             <label for="deduct-expenses" class="text-gray-dark text-base lg:text-2xl font-normal">Deduct
               Expenses</label>
             <div class="relative w-full lg:w-auto">
-              <input type="number" id="deduct-expenses"
-                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [(ngModel)]="deductExpenses">
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value"
+                id="deduct-expenses" class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
+                [(ngModel)]="deductExpenses">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -144,7 +150,7 @@
           </div>
           <!--Ensure that the Zakat-Eligible -->
           <div
-            class="flex flex-col  justify-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
+            class="flex flex-col  justify-center lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
             <label for="zakat-eligible" class="text-primary text-base lg:text-2xl font-medium"> <span
                 class="block lg:hidden">Ensure that Zakat-Eligible Total Exceeds Nisab </span><span
                 class="hidden lg:block">
@@ -153,8 +159,9 @@
                 is equal to or exceeds Nisab by $6000.
               </span></label>
             <div class="relative w-full lg:w-auto">
-              <input type="number" id="zakat-eligible"
-                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [value]="6000" disabled>
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value"
+                id="zakat-eligible" class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [value]="6000"
+                disabled>
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -162,12 +169,13 @@
           </div>
           <!-- Zakat-Eligible -->
           <div
-            class="flex flex-col  justify-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
+            class="flex flex-col  justify-center lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
             <label for="zakat-eligible" class="text-primary text-base lg:text-2xl font-medium">Zakat-Eligible Total
             </label>
             <div class="relative w-full lg:w-auto">
-              <input type="number" id="zakat-eligible"
-                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [value]="zakatEligable" disabled>
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value"
+                id="zakat-eligible" class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
+                [value]="zakatEligable" disabled>
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -175,13 +183,14 @@
           </div>
           <!-- Zakat-Eligible Total -->
           <div
-            class="flex flex-col justify-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full ">
+            class="flex flex-col justify-center lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full ">
             <label for="your-zakat" class="text-primary text-base lg:text-2xl font-medium">Your Zakat (2.5% x
               Zakat-Eligible
               Total)</label>
             <div class="relative  w-full lg:w-auto">
-              <input type="number" id="your-zakat" class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
-                [value]="zakatEligableTotal" disabled>
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" id="your-zakat"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [value]="zakatEligableTotal"
+                disabled>
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -193,7 +202,7 @@
         <div class="flex flex-col justify-center px-5  lg:px-24 my-7 gap-10 ">
           <!--Produce and Rent Income-->
           <div
-            class="flex flex-col justify-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
+            class="flex flex-col justify-center  lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
             <label for="produce-and-rent-income" class="text-gray-dark text-base lg:text-2xl font-normal">Produce and
               RentIncome
               <ul class="text-base font-normal  ps-2 lg:block hidden">
@@ -201,22 +210,25 @@
                 <li>Produce includes Honey and Dairy products..etc</li>
               </ul>
             </label>
+
             <div class="relative w-full lg:w-auto">
-              <input type="number" id="produce-and-rent-income"
-                class="focus:outline-none border border-gray-medium px-3 py-2 w-full " [(ngModel)]="produceRentincome">
-              <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value"
+                id="produce-and-rent-income" class="focus:outline-none border border-gray-medium px-3 py-2 w-full "
+                [(ngModel)]="produceRentincome">
+              <div class="absolute inset-y-0 end-0 flex items-center  pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
             </div>
           </div>
           <!--deduct-expenses-->
           <div
-            class="flex flex-col justify-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
+            class="flex flex-col justify-center lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
             <label for="deduct-expenses" class="text-gray-dark text-base lg:text-2xl font-normal">Deduct
               Expenses.</label>
             <div class="relative w-full lg:w-auto">
-              <input type="number" id="deduct-expenses"
-                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [(ngModel)]="expenses">
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value"
+                id="deduct-expenses" class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
+                [(ngModel)]="expenses">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -224,12 +236,12 @@
           </div>
           <!--Zakat-Eligible Total-->
           <div
-            class="flex flex-col  justify-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
+            class="flex flex-col  justify-center lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
             <label for="zakat-eligible-total" class="text-primary text-base lg:text-2xl font-medium">Zakat-Eligible
               Total</label>
             <div class="relative w-full lg:w-auto">
-              <input type="number" id="zakat-eligible-total"
-                class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value"
+                id="zakat-eligible-total" class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
                 [value]="propertyZakatEligibleTotal" disabled>
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
@@ -238,14 +250,14 @@
           </div>
           <!-- Zakat-Eligible amount-->
           <div
-            class="flex flex-col justify-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
+            class="flex flex-col justify-center lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
             <label for="total-zakat" class="text-primary text-base lg:text-2xl font-medium">Total Zakat of Property Held
               (5% x
               Zakat-Eligible Total)</label>
             <div class="relative w-full lg:w-auto">
-              <input type="number" id="total-zakat"
-                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [value]="TotalpropertyZakatAmount"
-                disabled="">
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value"
+                id="total-zakat" class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
+                [value]="TotalpropertyZakatAmount" disabled="">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -256,11 +268,12 @@
       <div class=" w-full">
         <div class="flex flex-col justify-center px-5  lg:px-24 my-4 lg:my-7 gap-10 ">
           <div class="flex items-center justify-between">
-            <p class="font-bold text-primary text-sm sm:text-base lg:text-2xl">Total zakat</p>
+            <p class="font-bold text-primary text-sm sm:text-base lg:text-2xl">Total zakat <span class="text-xs text-gray-dark
+              ">(This Value Is Rounded)</span></p>
             <div class="flex gap-2 sm:gap-4 lg:gap-8 items-center">
-              <p class="text-sm sm:text-base lg:text-body-1-inter">{{ total | currency }}</p>
-              <app-form-button appearance="filled" [fullWidth]="true" [disabled]="total<=0"
-                (click)="onMakeDonation()"><span class="text-xs lg:text-base">Donate Now</span></app-form-button>
+              {{ total | number: '1.0-0' | currency }} <app-form-button appearance="filled" [fullWidth]="true"
+                [disabled]="total<=0" (click)="onMakeDonation()"><span class="text-xs lg:text-base">Donate
+                  Now</span></app-form-button>
 
             </div>
           </div>
@@ -268,7 +281,7 @@
       </div>
     </div>
   </div>
-  <div class="hidden lg:block" [style.height.px]="divHeight"></div>
+  <div class="hidden xl:block" [style.height.px]="divHeight"></div>
   <h2 class="text-heading-2 mb-5">Frequent Asked Question</h2>
   <div class="flex flex-col gap-6 mb-6">
     @for (content of contentList; track content.order; let idx = $index;) {

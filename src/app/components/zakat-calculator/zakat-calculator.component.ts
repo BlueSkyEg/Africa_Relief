@@ -75,7 +75,7 @@ export class ZakatCalculatorComponent {
     {
       order: 6, type: 'paragraph', body: '"Nisab" is the minimum wealth threshold for a Muslim to be eligible for Zakat, aligning with “Zakat payment guidelines.” This threshold is equivalent to 3 ounces of gold (or 85 grams of 24k gold). Our Zakat calculator, adhering to the “Zakat calculation formula,” is updated with the latest gold values (note: this can vary daily)."Hawl" marks one lunar year’s possession of Zakat assets, crucial for “calculating Zakat for savings” if they meet Nisab and have been held for Hawl, the Zakat due is 2.5%.Some Zakat types, like crops, don’t require Hawl, being due at harvest.For detailed guidance, consult a local imam or scholar.'
     },
-    { order: 7, type: 'heading', body: 'How much is zakat Al-Fitr 2024?' },
+    { order: 7, type: 'heading', body: 'How much is zakat Al-Fitr 2025?' },
     {
       order: 8, type: 'paragraph', body: 'Zakat is 15$ for each person in the family young or old.'
     },
@@ -142,14 +142,14 @@ export class ZakatCalculatorComponent {
   recurringPeriod: 'day' | 'week' | 'month' | 'year' = 'month';
 
   onMakeDonation() {
-    if (isNaN(this.total) || this.total < 1) return;
-
+    const roundedTotal = Math.round(this.total);
+    if (isNaN(roundedTotal) || roundedTotal < 1) return;
     if (isPlatformBrowser(this.platformId)) {
       // Data layer
       (window as any).dataLayer = (window as any).dataLayer || [];
       (window as any).dataLayer.push({
         event: 'donationEventBeforeTheUserFillTheForm',
-        donationAmount: this.total,
+        donationAmount: roundedTotal,
         donationFormId: 14707,
         donationFormTitle: 'Zakat-Al-Mal'
       });
@@ -159,11 +159,24 @@ export class ZakatCalculatorComponent {
       queryParams: {
         form: 14707,
         title: 'Zakat-Al-Mal',
-        amount: this.total,
+        amount: roundedTotal,
         recurringPeriod: this.makeRecurringDonation
           ? this.recurringPeriod
           : null,
       },
     });
+  }
+  validateKeyPress(event: KeyboardEvent): void {
+    // Allow only digits and prevent the negative symbol
+    const charCode = event.key.charCodeAt(0);
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
+
+  validateInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    // Replace any non-digit character and ensure positive values
+    input.value = input.value.replace(/[^0-9]/g, '');
   }
 }
