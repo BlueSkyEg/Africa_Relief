@@ -256,12 +256,11 @@
       <div class=" w-full">
         <div class="flex flex-col justify-center px-5  lg:px-24 my-4 lg:my-7 gap-10 ">
           <div class="flex items-center justify-between">
-            <p class="font-bold text-primary text-base lg:text-2xl">Total zakat</p>
-            <div class="flex gap-4 lg:gap-8 items-center">
-              <p class="text-base lg:text-body-1-inter">{{ total | currency }}</p>
+            <p class="font-bold text-primary text-sm sm:text-base lg:text-2xl">Total zakat</p>
+            <div class="flex gap-2 sm:gap-4 lg:gap-8 items-center">
+              <p class="text-sm sm:text-base lg:text-body-1-inter">{{ total | currency }}</p>
               <app-form-button appearance="filled" [fullWidth]="true" [disabled]="total<=0"
-                (click)="onMakeDonation()">Donate
-                Now</app-form-button>
+                (click)="onMakeDonation()"><span class="text-xs lg:text-base">Donate Now</span></app-form-button>
 
             </div>
           </div>
