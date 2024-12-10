@@ -271,7 +271,7 @@
             <p class="font-bold text-primary text-sm sm:text-base lg:text-2xl">Total zakat <span class="text-xs text-gray-dark
               ">(This Value Is Rounded)</span></p>
             <div class="flex gap-2 sm:gap-4 lg:gap-8 items-center">
-              {{ total | number: '1.0-0' | currency }} <app-form-button appearance="filled" [fullWidth]="true"
+              {{ total | currency }} <app-form-button appearance="filled" [fullWidth]="true"
                 [disabled]="total<=0" (click)="onMakeDonation()"><span class="text-xs lg:text-base">Donate
                   Now</span></app-form-button>
 

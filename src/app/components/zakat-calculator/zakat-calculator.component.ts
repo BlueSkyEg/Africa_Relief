@@ -102,7 +102,7 @@ export class ZakatCalculatorComponent {
   //Expenses
   deductDebts: number = null;
   deductExpenses: number = null;
-
+  roundedTotal: number = this.total;
   get zakatEligable() {
     return this.totalAssets - (this.deductDebts + this.deductExpenses);
   }
@@ -121,7 +121,7 @@ export class ZakatCalculatorComponent {
     return this.propertyZakatEligibleTotal * 0.05
   }
   get total() {
-    return this.zakatEligableTotal + this.TotalpropertyZakatAmount
+    return Math.round(this.zakatEligableTotal + this.TotalpropertyZakatAmount)
   }
 
   ngAfterViewInit(): void {
@@ -142,14 +142,14 @@ export class ZakatCalculatorComponent {
   recurringPeriod: 'day' | 'week' | 'month' | 'year' = 'month';
 
   onMakeDonation() {
-    const roundedTotal = Math.round(this.total);
-    if (isNaN(roundedTotal) || roundedTotal < 1) return;
+    this.roundedTotal = Math.round(this.total);
+    if (isNaN(this.roundedTotal) || this.roundedTotal < 1) return;
     if (isPlatformBrowser(this.platformId)) {
       // Data layer
       (window as any).dataLayer = (window as any).dataLayer || [];
       (window as any).dataLayer.push({
         event: 'donationEventBeforeTheUserFillTheForm',
-        donationAmount: roundedTotal,
+        donationAmount: this.roundedTotal,
         donationFormId: 14707,
         donationFormTitle: 'Zakat-Al-Mal'
       });
@@ -159,7 +159,7 @@ export class ZakatCalculatorComponent {
       queryParams: {
         form: 14707,
         title: 'Zakat-Al-Mal',
-        amount: roundedTotal,
+        amount: this.roundedTotal,
         recurringPeriod: this.makeRecurringDonation
           ? this.recurringPeriod
           : null,
