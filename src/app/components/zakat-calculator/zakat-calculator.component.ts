@@ -12,7 +12,7 @@ import { IconDollarSignComponent } from '../../shared/icons/dollar-sign/icon-dol
 import { IconChevronDownComponent } from '../../shared/icons/arrows/chevron-down/icon-chevron-down.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { ButtonComponent } from '../../shared/components/form/button/button.component';
 
 @Component({

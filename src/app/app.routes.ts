@@ -97,8 +97,11 @@ export const routes: Routes = [
   },
   {
     path: 'zakat-calculator',
-    component: ZakatCalculatorComponent ,
-    runGuardsAndResolvers: 'always'
+    title: 'Zakat Calculator',
+    loadComponent: () =>
+      import('./components/zakat-calculator/zakat-calculator.component').then(
+        (m) => m.ZakatCalculatorComponent
+      ),
   },
   {
     path: 'contact',
