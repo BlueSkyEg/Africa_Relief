@@ -179,4 +179,11 @@ export class ZakatCalculatorComponent {
     // Replace any non-digit character and ensure positive values
     input.value = input.value.replace(/[^0-9]/g, '');
   }
+  limitDigits(event: KeyboardEvent, maxDigits: number): void {
+    const input = event.target as HTMLInputElement;
+    if (input.value.length >= maxDigits) {
+      event.preventDefault();
+    }
+  }
+
 }
