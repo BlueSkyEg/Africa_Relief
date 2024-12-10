@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -11,15 +12,20 @@
 }
 
 @layer utilities {
+
   /* Hide scrollbar for Chrome, Safari, and Opera */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   /* Hide scrollbar for IE, Edge, and Firefox */
   .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
+
   /* Body 1/Inter */
   .text-body-1-inter {
     @apply text-xl md:text-2xl;
@@ -82,9 +88,18 @@ img {
 img.img-placeholder {
   @apply relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 animate-pulse;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-#dd-container .lets-check{
-  background-color: #205926 !important;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::selection {
+  background-color: #205926;
   color: #fefefe;
 }

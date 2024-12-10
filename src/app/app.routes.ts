@@ -3,6 +3,7 @@ import { GuestGuard } from './core/Guards/guest.guard';
 import { AuthGuard } from './core/Guards/auth.guard';
 import { YoussefAbdallahComponent } from './components/about/youssef-abdallah/youssef-abdallah.component';
 import { StockDonationsComponent } from './components/get-involved/stock-donations/stock-donations.component';
+import { ZakatCalculatorComponent } from './components/zakat-calculator/zakat-calculator.component';
 import { GiftMatchingComponent } from './components/get-involved/gift-matching/gift-matching.component';
 
 export const routes: Routes = [
@@ -93,6 +94,14 @@ export const routes: Routes = [
     path: 'get-involved/gift-matching',
     component: GiftMatchingComponent,
     runGuardsAndResolvers: 'always'
+  },
+  {
+    path: 'zakat-calculator',
+    title: 'Zakat Calculator',
+    loadComponent: () =>
+      import('./components/zakat-calculator/zakat-calculator.component').then(
+        (m) => m.ZakatCalculatorComponent
+      ),
   },
   {
     path: 'contact',

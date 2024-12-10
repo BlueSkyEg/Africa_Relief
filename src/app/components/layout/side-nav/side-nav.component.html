@@ -1,214 +1,123 @@
 <nav>
-  <button
-    class="bg-white outline-none border-none w-full flex justify-end p-5"
-    (click)="closeSideNav()"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="14"
-      height="14"
-      viewBox="0 0 14 14"
-      fill="none"
-    >
-      <path
-        d="M1.4 14L0 12.6L5.6 7L0 1.4L1.4 0L7 5.6L12.6 0L14 1.4L8.4 7L14 12.6L12.6 14L7 8.4L1.4 14Z"
-        fill="#57585C"
-      />
+  <button class="bg-white outline-none border-none w-full flex justify-end p-5" (click)="closeSideNav()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M1.4 14L0 12.6L5.6 7L0 1.4L1.4 0L7 5.6L12.6 0L14 1.4L8.4 7L14 12.6L12.6 14L7 8.4L1.4 14Z"
+        fill="#57585C" />
     </svg>
   </button>
   <ul class="text-xs sm:text-base">
     <li class="border-top border-gray-light">
-      <button
-        (click)="onRouterNavigate('/home')"
-        class="flex p-4 w-full"
-        routerLink="/home"
-        routerLinkActive="text-white bg-primary"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
+      <button (click)="onRouterNavigate('/home')" class="flex p-4 w-full" routerLink="/home"
+        routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{ exact: true }">
         Home
       </button>
     </li>
     <li class="border-top border-gray-light">
       <div class="flex justify-between items-center">
-        <button
-          (click)="onRouterNavigate('/projects')"
-          class="flex p-4 flex-1"
-          routerLink="/projects"
-          routerLinkActive="text-white bg-primary"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
+        <button (click)="onRouterNavigate('/projects')" class="flex p-4 flex-1" routerLink="/projects"
+          routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{ exact: true }">
           Our Projects
         </button>
         <span class="p-[16px]" (click)="openChildMenu = !openChildMenu">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="12"
-            height="9"
-            viewBox="0 0 12 9"
-            fill="none"
-          >
-            <path
-              d="M6 8.37498L0 2.37498L1.4 0.974976L6 5.57498L10.6 0.974976L12 2.37498L6 8.37498Z"
-              fill="#403F3E"
-            />
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
+            <path d="M6 8.37498L0 2.37498L1.4 0.974976L6 5.57498L10.6 0.974976L12 2.37498L6 8.37498Z" fill="#403F3E" />
           </svg>
         </span>
       </div>
-      <ul
-        class="h-auto max-h-0 overflow-hidden transition-all"
-        [ngClass]="{ 'max-h-[400px]': openChildMenu }"
-      >
+      <ul class="h-auto max-h-0 overflow-hidden transition-all" [ngClass]="{ 'max-h-[400px]': openChildMenu }">
         <li class="border-top border-gray-light">
-          <button
-            (click)="onRouterNavigate('/projects/category/water')"
-            class="flex p-4 ms-6 w-full"
-            routerLink="/projects/category/water"
-            routerLinkActive="text-white bg-primary"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <button (click)="onRouterNavigate('/projects/category/water')" class="flex p-4 ms-6 w-full"
+            routerLink="/projects/category/water" routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }">
             Water
           </button>
         </li>
         <li class="border-top border-gray-light">
-          <button
-            (click)="onRouterNavigate('/projects/category/education')"
-            class="flex p-4 ms-6 w-full"
-            routerLink="/projects/category/education"
-            routerLinkActive="text-white bg-primary"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <button (click)="onRouterNavigate('/projects/category/education')" class="flex p-4 ms-6 w-full"
+            routerLink="/projects/category/education" routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }">
             Education
           </button>
         </li>
         <li class="border-top border-gray-light">
-          <button
-            (click)="onRouterNavigate('/projects/category/food-aid')"
-            class="flex p-4 ms-6 w-full"
-            routerLink="/projects/category/food-aid"
-            routerLinkActive="text-white bg-primary"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <button (click)="onRouterNavigate('/projects/category/food-aid')" class="flex p-4 ms-6 w-full"
+            routerLink="/projects/category/food-aid" routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }">
             Food Aid
           </button>
         </li>
         <li class="border-top border-gray-light">
-          <button
-            (click)="onRouterNavigate('/projects/category/medical-help')"
-            class="flex p-4 ms-6 w-full"
-            routerLink="/projects/category/medical-help"
-            routerLinkActive="text-white bg-primary"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <button (click)="onRouterNavigate('/projects/category/medical-help')" class="flex p-4 ms-6 w-full"
+            routerLink="/projects/category/medical-help" routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }">
             Medical Help
           </button>
         </li>
         <li class="border-top border-gray-light">
-          <button
-            (click)="onRouterNavigate('/projects/category/orphan-sponsorship')"
-            class="flex p-4 ms-6 w-full"
-            routerLink="/projects/category/orphan-sponsorship"
-            routerLinkActive="text-white bg-primary"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <button (click)="onRouterNavigate('/projects/category/orphan-sponsorship')" class="flex p-4 ms-6 w-full"
+            routerLink="/projects/category/orphan-sponsorship" routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }">
             Orphan Sponsorship
           </button>
         </li>
         <li class="border-top border-gray-light">
-          <button
-            (click)="onRouterNavigate('/projects/category/zakat')"
-            class="flex p-4 ms-6 w-full"
-            routerLink="/projects/category/zakat"
-            routerLinkActive="text-white bg-primary"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <button (click)="onRouterNavigate('/projects/category/zakat')" class="flex p-4 ms-6 w-full"
+            routerLink="/projects/category/zakat" routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }">
             Zakat
           </button>
         </li>
         <li class="border-top border-gray-light">
-          <button
-            (click)="onRouterNavigate('/projects/category/ramadan')"
-            class="flex p-4 ms-6 w-full"
-            routerLink="/projects/category/ramadan"
-            routerLinkActive="text-white bg-primary"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <button (click)="onRouterNavigate('/projects/category/ramadan')" class="flex p-4 ms-6 w-full"
+            routerLink="/projects/category/ramadan" routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }">
             Ramadan
           </button>
         </li>
       </ul>
     </li>
     <li class="border-top border-gray-light">
-      <button
-        (click)="onRouterNavigate('/emergency')"
-        class="flex p-4 w-full"
-        routerLink="/emergency"
-        routerLinkActive="text-white bg-primary"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
+      <button (click)="onRouterNavigate('/emergency')" class="flex p-4 w-full" routerLink="/emergency"
+        routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{ exact: true }">
         Emergency Campaigns
       </button>
     </li>
 
     <li class="border-top border-gray-light">
+      <button (click)="onRouterNavigate('/zakat-calculator')" class="flex p-4 w-full" routerLink="/zakat-calculator"
+        routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{ exact: true }">
+        Zakat Calculator
+      </button>
+    </li>
+    <li class="border-top border-gray-light">
       <div class="flex justify-between items-center">
-        <button
-          class="flex p-4 flex-1"
-          (click)="openGetInvolvedMenu = !openGetInvolvedMenu"
-        >
+        <button class="flex p-4 flex-1" (click)="openGetInvolvedMenu = !openGetInvolvedMenu">
           Get Involved
         </button>
-        <span
-          class="p-[16px]"
-          (click)="openGetInvolvedMenu = !openGetInvolvedMenu"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="12"
-            height="9"
-            viewBox="0 0 12 9"
-            fill="none"
-          >
-            <path
-              d="M6 8.37498L0 2.37498L1.4 0.974976L6 5.57498L10.6 0.974976L12 2.37498L6 8.37498Z"
-              fill="#403F3E"
-            />
+        <span class="p-[16px]" (click)="openGetInvolvedMenu = !openGetInvolvedMenu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
+            <path d="M6 8.37498L0 2.37498L1.4 0.974976L6 5.57498L10.6 0.974976L12 2.37498L6 8.37498Z" fill="#403F3E" />
           </svg>
         </span>
       </div>
-      <ul
-        class="h-auto max-h-0 overflow-hidden transition-all"
-        [ngClass]="{ 'max-h-[400px]': openGetInvolvedMenu }"
-      >
+      <ul class="h-auto max-h-0 overflow-hidden transition-all" [ngClass]="{ 'max-h-[400px]': openGetInvolvedMenu }">
         <li class="border-top border-gray-light">
-          <button
-            (click)="onRouterNavigate('/get-involved')"
-            class="flex p-4 ms-6 w-full"
-            routerLink="/get-involved"
-            routerLinkActive="text-white bg-primary"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <button (click)="onRouterNavigate('/get-involved')" class="flex p-4 ms-6 w-full" routerLink="/get-involved"
+            routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{ exact: true }">
             Volunteer
           </button>
         </li>
         <li class="border-top border-gray-light">
-          <button
-            (click)="onRouterNavigate('/get-involved/stock-donations')"
-            class="flex p-4 ms-6 w-full"
-            routerLink="/get-involved/stock-donations"
-            routerLinkActive="text-white bg-primary"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <button (click)="onRouterNavigate('/get-involved/stock-donations')" class="flex p-4 ms-6 w-full"
+            routerLink="/get-involved/stock-donations" routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }">
             Donate Stock
           </button>
         </li>
         <li class="border-top border-gray-light">
-          <button
-            (click)="onRouterNavigate('/get-involved/gift-matching')"
-            class="flex p-4 ms-6 w-full"
-            routerLink="/get-involved/gift-matching"
-            routerLinkActive="text-white bg-primary"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <button (click)="onRouterNavigate('/get-involved/gift-matching')" class="flex p-4 ms-6 w-full"
+            routerLink="/get-involved/gift-matching" routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }">
             Matching Gifts
           </button>
         </li>
@@ -216,75 +125,41 @@
     </li>
 
     <li class="border-top border-gray-light">
-      <button
-        (click)="onRouterNavigate('/blogs')"
-        class="flex p-4 w-full"
-        routerLink="/blogs"
-        routerLinkActive="text-white bg-primary"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
+      <button (click)="onRouterNavigate('/blogs')" class="flex p-4 w-full" routerLink="/blogs"
+        routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{ exact: true }">
         Blog
       </button>
     </li>
     <li class="border-top border-gray-light mb-5">
       <div class="flex justify-between items-center">
-        <button
-          class="flex p-4 flex-1"
-          (click)="openAboutMenu = !openAboutMenu"
-        >
+        <button class="flex p-4 flex-1" (click)="openAboutMenu = !openAboutMenu">
           About Us
         </button>
         <span class="p-[16px]" (click)="openAboutMenu = !openAboutMenu">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="12"
-            height="9"
-            viewBox="0 0 12 9"
-            fill="none"
-          >
-            <path
-              d="M6 8.37498L0 2.37498L1.4 0.974976L6 5.57498L10.6 0.974976L12 2.37498L6 8.37498Z"
-              fill="#403F3E"
-            />
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
+            <path d="M6 8.37498L0 2.37498L1.4 0.974976L6 5.57498L10.6 0.974976L12 2.37498L6 8.37498Z" fill="#403F3E" />
           </svg>
         </span>
       </div>
-      <ul
-        class="h-auto max-h-0 overflow-hidden transition-all"
-        [ngClass]="{ 'max-h-[400px]': openAboutMenu }"
-      >
+      <ul class="h-auto max-h-0 overflow-hidden transition-all" [ngClass]="{ 'max-h-[400px]': openAboutMenu }">
         <li class="border-top border-gray-light">
-          <button
-            (click)="onRouterNavigate('/about')"
-            class="flex p-4 ms-6 w-full"
-            routerLink="/about"
-            routerLinkActive="text-white bg-primary"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <button (click)="onRouterNavigate('/about')" class="flex p-4 ms-6 w-full" routerLink="/about"
+            routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{ exact: true }">
             Mission & Impact
           </button>
         </li>
         <li class="border-top border-gray-light">
-          <button
-            (click)="onRouterNavigate('/about/executive-director')"
-            class="flex p-4 ms-6 w-full"
-            routerLink="/about/executive-director"
-            routerLinkActive="text-white bg-primary"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <button (click)="onRouterNavigate('/about/executive-director')" class="flex p-4 ms-6 w-full"
+            routerLink="/about/executive-director" routerLinkActive="text-white bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }">
             Executive Director
           </button>
         </li>
       </ul>
     </li>
     <li class="border-y border-gray-light">
-      <button
-        (click)="onRouterNavigate('/careers')"
-        class="flex p-4 w-full"
-        routerLink="/careers"
-        routerLinkActive="text-white bg-primary"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
+      <button (click)="onRouterNavigate('/careers')" class="flex p-4 w-full" routerLink="/careers"
+        routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{ exact: true }">
         Careers
       </button>
     </li>

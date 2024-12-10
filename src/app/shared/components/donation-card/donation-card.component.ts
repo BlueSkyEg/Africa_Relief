@@ -62,4 +62,17 @@ export class DonationCardComponent {
       },
     });
   }
+  validateKeyPress(event: KeyboardEvent): void {
+    // Allow only digits and prevent the negative symbol
+    const charCode = event.key.charCodeAt(0);
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
+
+  validateInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    // Replace any non-digit character and ensure positive values
+    input.value = input.value.replace(/[^0-9]/g, '');
+  }
 }
