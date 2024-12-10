@@ -90,18 +90,18 @@ export class ZakatCalculatorComponent {
   ];
   summary = false;
   // Assets
-  netCash: number = 0;
-  resaleValueOfShares: number = 0;
-  merchandiseProfits: number = 0;
-  goldSilver: number = 0;
-  otherIncome: number = 0;
+  netCash: number = null;
+  resaleValueOfShares: number = null;
+  merchandiseProfits: number = null;
+  goldSilver: number = null;
+  otherIncome: number = null;
   get totalAssets(): number {
     return this.netCash + this.resaleValueOfShares + this.merchandiseProfits + this.goldSilver + this.otherIncome;
   }
 
   //Expenses
-  deductDebts: number = 0;
-  deductExpenses: number = 0;
+  deductDebts: number = null;
+  deductExpenses: number = null;
 
   get zakatEligable() {
     return this.totalAssets - (this.deductDebts + this.deductExpenses);
@@ -112,8 +112,8 @@ export class ZakatCalculatorComponent {
     }
     return 0;
   }
-  produceRentincome: number = 0;
-  expenses: number = 0;
+  produceRentincome: number = null;
+  expenses: number = null;
   get propertyZakatEligibleTotal() {
     return this.produceRentincome - this.expenses;
   }

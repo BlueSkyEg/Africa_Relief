@@ -56,10 +56,13 @@
               </a>
             </li>
             <li>
-              <a class="flex items-center py-2 px-3 transition-colors hover:text-primary"
-                href="https://doublethedonation.com/match/africa-relief-and-community-development--XDe1d?mpid="
-                target="_blank" routerLinkActive="text-primary" [routerLinkActiveOptions]="{ exact: true }"
-                (click)="closeGetInvolvedMenu()">
+              <a
+                class="flex items-center py-2 px-3 transition-colors hover:text-primary"
+                routerLink="/get-involved/gift-matching"
+                routerLinkActive="text-primary"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="closeGetInvolvedMenu()"
+              >
                 Matching Gifts
               </a>
             </li>
