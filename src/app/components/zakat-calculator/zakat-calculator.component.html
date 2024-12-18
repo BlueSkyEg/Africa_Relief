@@ -31,7 +31,8 @@
                 (At Home or in Bank Account)
               </span></label>
             <div class="relative w-full lg:w-auto">
-              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)" id="net-cash"
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number"
+                placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)" id="net-cash"
                 [(ngModel)]="netCash" class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
@@ -44,9 +45,9 @@
             <label for="resale-value-of-shares" class="text-gray-dark text-base lg:text-2xl font-normal">Resale Value of
               Shares</label>
             <div class="relative w-full lg:w-auto">
-              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)"
-                id="resale-value-of-shares" [(ngModel)]="resaleValueOfShares"
-                class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number"
+                placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)" id="resale-value-of-shares"
+                [(ngModel)]="resaleValueOfShares" class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -61,9 +62,9 @@
                 (Inventory of Merchandise in wholesale price, any company assets are excluded)
               </span></label>
             <div class="relative w-full lg:w-auto">
-              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)"
-                id="merchandise-profits" [(ngModel)]="merchandiseProfits"
-                class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number"
+                placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)" id="merchandise-profits"
+                [(ngModel)]="merchandiseProfits" class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -79,9 +80,9 @@
                 (Used for saving and trading). Personal wear and accessories are excluded.
               </span></label>
             <div class="relative w-full lg:w-auto">
-              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)"
-                id="gold-silver" [(ngModel)]="goldSilver"
-                class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number"
+                placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)" id="gold-silver"
+                [(ngModel)]="goldSilver" class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -93,9 +94,9 @@
             class="flex flex-col  justify-center lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
             <label for="other-income" class="text-gray-dark text-base lg:text-2xl font-normal">Other Income</label>
             <div class="relative w-full lg:w-auto">
-              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)"
-                id="other-income" [(ngModel)]="otherIncome"
-                class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number"
+                placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)" id="other-income"
+                [(ngModel)]="otherIncome" class="focus:outline-none border border-gray-medium px-3 py-2 w-full">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -109,7 +110,8 @@
               of Assets
               Liable for Zakat</label>
             <div class="relative w-full lg:w-auto">
-              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)"
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number"
+                placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)"
                 id="total-of-assets-liable-for-zakat"
                 class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [value]="totalAssets" disabled>
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
@@ -126,9 +128,9 @@
             class="flex flex-col  justify-center lg:items-center lg:justify-between lg:flex-row w-full sm:w-3/4 md:w-1/2 mx-auto lg:w-full">
             <label for="deduct-debts" class="text-gray-dark text-base lg:text-2xl font-normal">Deduct Debts</label>
             <div class="relative w-full lg:w-auto">
-              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)"
-                id="deduct-debts" class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
-                [(ngModel)]="deductDebts">
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number"
+                placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)" id="deduct-debts"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [(ngModel)]="deductDebts">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -140,9 +142,9 @@
             <label for="deduct-expenses" class="text-gray-dark text-base lg:text-2xl font-normal">Deduct
               Expenses</label>
             <div class="relative w-full lg:w-auto">
-              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)"
-                id="deduct-expenses" class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
-                [(ngModel)]="deductExpenses">
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number"
+                placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)" id="deduct-expenses"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [(ngModel)]="deductExpenses">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -159,9 +161,9 @@
                 is equal to or exceeds Nisab by $6000.
               </span></label>
             <div class="relative w-full lg:w-auto">
-              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)"
-                id="zakat-eligible" class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [value]="6000"
-                disabled>
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number"
+                placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)" id="zakat-eligible"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [value]="6000" disabled>
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -173,9 +175,9 @@
             <label for="zakat-eligible" class="text-primary text-base lg:text-2xl font-medium">Zakat-Eligible Total
             </label>
             <div class="relative w-full lg:w-auto">
-              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)"
-                id="zakat-eligible" class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
-                [value]="zakatEligable" disabled>
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number"
+                placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)" id="zakat-eligible"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [value]="zakatEligable" disabled>
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -188,7 +190,8 @@
               Zakat-Eligible
               Total)</label>
             <div class="relative  w-full lg:w-auto">
-              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)" id="your-zakat"
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number"
+                placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)" id="your-zakat"
                 class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [value]="zakatEligableTotal"
                 disabled>
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
@@ -212,9 +215,9 @@
             </label>
 
             <div class="relative w-full lg:w-auto">
-              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)"
-                id="produce-and-rent-income" class="focus:outline-none border border-gray-medium px-3 py-2 w-full "
-                [(ngModel)]="produceRentincome">
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number"
+                placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)" id="produce-and-rent-income"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full " [(ngModel)]="produceRentincome">
               <div class="absolute inset-y-0 end-0 flex items-center  pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -226,9 +229,9 @@
             <label for="deduct-expenses" class="text-gray-dark text-base lg:text-2xl font-normal">Deduct
               Expenses.</label>
             <div class="relative w-full lg:w-auto">
-              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)"
-                id="deduct-expenses" class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
-                [(ngModel)]="expenses">
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number"
+                placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)" id="deduct-expenses"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [(ngModel)]="expenses">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -240,8 +243,9 @@
             <label for="zakat-eligible-total" class="text-primary text-base lg:text-2xl font-medium">Zakat-Eligible
               Total</label>
             <div class="relative w-full lg:w-auto">
-              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)"
-                id="zakat-eligible-total" class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number"
+                placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)" id="zakat-eligible-total"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
                 [value]="propertyZakatEligibleTotal" disabled>
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
@@ -255,9 +259,10 @@
               (5% x
               Zakat-Eligible Total)</label>
             <div class="relative w-full lg:w-auto">
-              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number" placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)"
-                id="total-zakat" class="focus:outline-none border border-gray-medium px-3 py-2 w-full"
-                [value]="TotalpropertyZakatAmount" disabled="">
+              <input (keypress)="validateKeyPress($event)" (input)="validateInput($event)" type="number"
+                placeholder="Enter a Valid Value" (keypress)="limitDigits($event, 12)" id="total-zakat"
+                class="focus:outline-none border border-gray-medium px-3 py-2 w-full" [value]="TotalpropertyZakatAmount"
+                disabled="">
               <div class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none">
                 <app-icon-dollar-sign />
               </div>
@@ -271,8 +276,8 @@
             <p class="font-bold text-primary text-sm sm:text-base lg:text-2xl">Total zakat <span class="text-xs text-gray-dark
               ">(This Value Is Rounded)</span></p>
             <div class="flex gap-2 sm:gap-4 lg:gap-8 items-center">
-              {{ total | currency }} <app-form-button appearance="filled" [fullWidth]="true"
-                [disabled]="total<=0" (click)="onMakeDonation()"><span class="text-xs lg:text-base">Donate
+              {{ total | currency }} <app-form-button appearance="filled" [fullWidth]="true" [disabled]="total<=0"
+                (click)="onMakeDonation()"><span class="text-xs lg:text-base">Donate
                   Now</span></app-form-button>
 
             </div>

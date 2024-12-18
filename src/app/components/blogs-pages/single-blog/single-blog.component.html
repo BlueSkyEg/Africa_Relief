@@ -39,7 +39,7 @@
           <span class="text-body-2-md">{{
             blog.implementation_date | date : "MMMM, Y"
             }}
-</span>
+          </span>
         </p>
 
       </div>
@@ -47,7 +47,7 @@
     </div>
 
     <!-- Donation Card -->
-    <app-donation-card [donationForm]="blog.donation_form" [donationFormTitle]="blog.title"/>
+    <app-donation-card [donationForm]="blog.donation_form" [donationFormTitle]="blog.title" />
 
     <!-- blog content -->
     <div class="flex flex-col gap-6 lg:col-span-2">
@@ -80,7 +80,7 @@
           }
           </p>
           } @else {
-              <p class="text-body-2" [innerHTML]="formatItem(content.body)"></p>
+          <p class="text-body-2" [innerHTML]="formatItem(content.body)"></p>
           } }
           <!-- Image -->
           @if (content.type === 'image') {
@@ -115,8 +115,7 @@
       <div class="bg-gray-light h-4 w-2/6"></div>
       <div class="bg-gray-light h-4 w-3/6"></div>
     </div>
-    @if(blog?.donation_form){
-   <div class="flex flex-col gap-6 p-4 h-fit bg-white">
+    <div class="flex flex-col gap-6 p-4 h-fit bg-white">
       <div class="bg-gray-light h-16"></div>
       <div class="bg-gray-light h-12"></div>
       <div class="flex flex-col gap-4">
@@ -131,8 +130,6 @@
       <div class="bg-gray-light h-10"></div>
       <div class="bg-gray-light h-10"></div>
     </div>
-    }
-
     <div class="flex flex-col gap-10 lg:col-span-2">
       <div class="flex flex-col gap-6">
         <div class="bg-gray-light h-4 w-4/6"></div>
