@@ -1,8 +1,8 @@
 export const environment = {
   appUrl: 'http://127.0.0.1:4200',
   //apiUrl: 'https://staging-backend.africarelief.org/api',
-  apiUrl: 'https://staging-backend.africarelief.org/api',
-// apiUrl: 'http://192.168.3.144:8000/api',
+ apiUrl: 'https://staging-backend.africarelief.org/api',
+ // apiUrl: 'http://192.168.0.173:8000/api',
  // apiUrl: 'https://staging3.africareliefa1.sg-host.com/api',
   // apiUrl: 'https://staging-backend.africarelief.org/api',
   stripePublicKey:
