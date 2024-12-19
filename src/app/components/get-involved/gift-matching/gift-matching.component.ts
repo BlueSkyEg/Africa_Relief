@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component} from '@angular/core';
 import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
 import { EmployerComponent } from '../../../shared/icons/employee/icon-employee.component';
 import { SubmitIconComponent } from '../../../shared/icons/submit/icon-submit.component';

@@ -1,4 +1,4 @@
-import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { Component, inject, PLATFORM_ID, signal } from '@angular/core';
 import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
 import {
   ActivatedRoute,
@@ -43,6 +43,7 @@ export class SingleBlogComponent {
   blogService: BlogService = inject(BlogService);
   _MetaService: MetaService = inject(MetaService);
   private platformId = inject(PLATFORM_ID);
+  isDontationForm = signal<Boolean>(false);
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this._MetaService.setCanonicalURL(window.location.href);
@@ -52,13 +53,13 @@ export class SingleBlogComponent {
           this._MetaService.setCanonicalURL(window.location.href);
         });
     }
-
     this.activeRoute.paramMap.subscribe({
       next: (route) => {
         this.blogService.getBlog(route.get('slug')).subscribe({
           next: (res: IApiResponse<IBlog | null>) => {
             if (res.success) {
               this.blog = res.data;
+
               this._MetaService.setMetaData(
                 this.blog.meta_data,
                 this.blog.created_at,

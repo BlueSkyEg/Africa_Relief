@@ -1,42 +1,75 @@
 @switch (type) {
-  @case ('success') {
-    <div class="flex justify-center items-center gap-1 py-1 px-2 w-fit rounded-lg bg-success bg-opacity-10">
-      <svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6" fill="none">
-        <circle cx="3.5" cy="3" r="3" class="fill-success"/>
-      </svg>
-      <span class="text-body-3 text-success">{{ label }}</span>
-    </div>
-  }
-  @case ('danger') {
-    <div class="flex justify-center items-center gap-1 py-1 px-2 w-fit rounded-lg bg-danger bg-opacity-10">
-      <svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6" fill="none">
-        <circle cx="3.5" cy="3" r="3" class="fill-danger"/>
-      </svg>
-      <span class="text-body-3 text-danger">{{ label }}</span>
-    </div>
-  }
-  @case ('warning') {
-    <div class="flex justify-center items-center gap-1 py-1 px-2 w-fit rounded-lg bg-warning bg-opacity-10">
-      <svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6" fill="none">
-        <circle cx="3.5" cy="3" r="3" class="fill-warning"/>
-      </svg>
-      <span class="text-body-3 text-warning">{{ label }}</span>
-    </div>
-  }
-  @case ('info') {
-    <div class="flex justify-center items-center gap-1 py-1 px-2 w-fit rounded-lg bg-gray-dark bg-opacity-10">
-      <svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6" fill="none">
-        <circle cx="3.5" cy="3" r="3" class="fill-gray-dark"/>
-      </svg>
-      <span class="text-body-3 text-gray-dark">{{ label }}</span>
-    </div>
-  }
-  @case ('safe') {
-    <div class="flex justify-center items-center gap-1 py-1 px-2 w-fit rounded-lg bg-safe bg-opacity-10">
-      <svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6" fill="none">
-        <circle cx="3.5" cy="3" r="3" class="fill-safe"/>
-      </svg>
-      <span class="text-body-3 text-safe">{{ label }}</span>
-    </div>
-  }
+@case ('success') {
+<div class="flex justify-center items-center gap-1 py-1 px-3 w-fit rounded-lg bg-success bg-opacity-10"
+  [ngClass]="{'rounded-[24px]  ': size=='small'}">
+  <div [ngClass]="{'hidden': size=='small'}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6" fill="none">
+      <circle cx="3.5" cy="3" r="3" class="fill-success" />
+    </svg>
+  </div>
+  <span class=" text-success"
+    [ngClass]="{'text-xs sm:text-base font-medium': size=='small','text-body-3':size=='default','text-lg sm:text-base font-medium':size=='lg'}">{{
+    label
+    }}</span>
+</div>
+}
+@case ('danger') {
+<div class="flex justify-center items-center gap-1 py-1 px-3 w-fit rounded-lg bg-danger bg-opacity-10"
+  [ngClass]="{'rounded-[24px]  ': size=='small'}">
+  <div [ngClass]="{'hidden': size=='small'}">
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6" fill="none">
+      <circle cx="3.5" cy="3" r="3" class="fill-danger" />
+    </svg>
+  </div>
+  <span class=" text-danger"
+    [ngClass]="{'text-xs sm:text-base font-medium': size=='small','text-body-3':size=='default','text-lg sm:text-base font-medium':size=='lg'}">{{
+    label
+    }}</span>
+</div>
+}
+@case ('warning') {
+<div class="flex justify-center items-center gap-1 py-1 px-3 w-fit rounded-lg bg-warning bg-opacity-10"
+  [ngClass]="{'rounded-[24px]  ': size=='small'}">
+  <div [ngClass]="{'hidden': size=='small'}">
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6" fill="none">
+      <circle cx="3.5" cy="3" r="3" class="fill-warning" />
+    </svg>
+  </div>
+  <span class=" text-warning"
+    [ngClass]="{'text-xs sm:text-base font-medium': size=='small','text-body-3':size=='default','text-lg sm:text-base font-medium':size=='lg'}">{{
+    label
+    }}</span>
+</div>
+}
+@case ('info') {
+<div class="flex justify-center items-center gap-1 py-1 px-3 w-fit rounded-lg bg-gray-dark bg-opacity-10"
+  [ngClass]="{'rounded-[24px]  ': size=='small'}">
+  <div [ngClass]="{'hidden': size=='small'}">
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6" fill="none">
+      <circle cx="3.5" cy="3" r="3" class="fill-gray-dark" />
+    </svg>
+  </div>
+  <span class=" text-gray-dark"
+    [ngClass]="{'text-xs sm:text-base font-medium': size=='small','text-body-3':size=='default','text-lg sm:text-base font-medium':size=='lg'}">{{
+    label }}</span>
+</div>
+}
+@case ('safe') {
+<div class="flex justify-center items-center gap-1 py-1 px-3 w-fit rounded-lg bg-safe bg-opacity-10"
+  [ngClass]="{'rounded-[24px]  ': size=='small'}">
+  <div [ngClass]="{'hidden': size=='small'}">
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6" fill="none">
+      <circle cx="3.5" cy="3" r="3" class="fill-safe" />
+    </svg>
+  </div>
+  <span class=" text-safe"
+    [ngClass]="{'text-xs sm:text-base font-medium': size=='small','text-body-3':size=='default','text-lg sm:text-base font-medium':size=='lg'}">{{
+    label
+    }}</span>
+</div>
+}
 }

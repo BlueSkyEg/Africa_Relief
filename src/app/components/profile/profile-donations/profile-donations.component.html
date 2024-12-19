@@ -1,91 +1,163 @@
-<div class="flex flex-col gap-8 ">
+<div class="flex flex-col gap-8">
   <h1 class="text-body-1-roboto text-primary pt-8 ps-8">Donation History</h1>
-  <div class="min-w-[400px] overflow-x-auto sm:whitespace-nowrap">
+  <div class="min-w-[400px] overflow-x-auto whitespace-nowrap hidden md:block">
     <table class="w-full table-auto">
-  <thead>
-    <tr class="bg-gray-light text-left">
-      <th class="w-1/5 text-sm sm:text-body-3 py-3 px-2 sm:px-6">Amount</th>
-      <th class="w-1/5 text-sm sm:text-body-3 py-3 px-2 sm:px-6">Project</th>
-      <th class="w-1/5 text-sm sm:text-body-3 py-3 px-2 sm:px-6">Date</th>
-      <th class="w-1/5 text-sm sm:text-body-3 py-3 px-2 sm:px-6">Status</th>
-      <th class="w-1/5 text-sm sm:text-body-3 py-3 px-2 sm:px-6 sticky end-0 bg-gray-light">Actions</th>
-    </tr>
-  </thead>
+      <thead>
+        <tr class="bg-gray-light text-left">
+          <th class="text-sm font-normal lg:text-body-3 py-3 px-3 lg:px-6">Amount</th>
+          <th class="text-sm font-normal lg:text-body-3 py-3 px-3 lg:px-6">Project</th>
+          <th class="text-sm font-normal lg:text-body-3 py-3 px-3 lg:px-6">Date</th>
+          <th class="text-sm font-normal lg:text-body-3 py-3 px-3 lg:px-6">Status</th>
+          <th class="text-sm font-normal lg:text-body-3 py-3 px-3 lg:px-6 sticky end-0 bg-gray-light"></th>
+        </tr>
+      </thead>
       <tbody>
         @defer () {
-          @for (donation of donations; track donation.id) {
-            <tr class="sm:p-3 text-sm sm:text-body-3 bg-white">
-              <td class="py-3 sm:px-6 text-primary w-1/5">{{donation.amount | currency}}</td>
-              <td class="py-3 sm:px-6 w-1/5">{{donation.donation_form.title | titlecase}}</td>
-              <td class="py-3 sm:px-6 w-1/5">{{donation.completed_date | date}}</td>
-              @switch (donation.status) {
-                @case ('succeeded') {
-                  <td class="py-3  sm:px-6 w-1/5"><app-badge type="success" label="Succeeded"/></td>
-                }
-                @case ('incomplete') {
-                  <td class="py-3  sm:px-6 w-1/5"><app-badge type="info" label="Incomplete"/></td>
-                }
-                @case ('failed') {
-                  <td class="py-3  sm:px-6 w-1/5"><app-badge type="danger" label="Failed"/></td>
-                }
-                @case ('refunded') {
-                  <td class="py-3  sm:px-6 w-1/5" ><app-badge type="safe" label="Refunded"/></td>
-                }
-              }
-              <td class="py-3  sm:px-6 sticky end-0 bg-white">
-                <button class="text-gray-dark border border-gray-light py-2 " (click)="onViewReceipt(donation)">View Receipt</button>
-              </td>
-            </tr>
+        @for (donation of donations; track donation.id) {
+        <tr class="p-2 lg:p-3 text-sm font-normal lg:text-body-3 bg-white">
+          <td class="py-3 px-3 lg:px-6 text-primary">{{donation.amount | currency}}</td>
+          <td class="py-3 px-3 lg:px-6">{{donation.donation_form.title | titlecase}}</td>
+          <td class="py-3 px-3 lg:px-6">{{donation.completed_date | date}}</td>
+          @switch (donation.status) {
+          @case ('succeeded') {
+          <td class="py-3 px-3 lg:px-6"><app-badge type="success" label="Succeeded" /></td>
           }
-          @empty {
-            <tr>
-              <td class="p-8 text-center" colspan="5">No donations founded...</td>
-            </tr>
+          @case ('incomplete') {
+          <td class="py-3 px-3 lg:px-6"><app-badge type="info" label="Incomplete" /></td>
           }
+          @case ('failed') {
+          <td class="py-3 px-3 lg:px-6"><app-badge type="danger" label="Failed" /></td>
+          }
+          @case ('refunded') {
+          <td class="py-3 px-3 lg:px-6"><app-badge type="safe" label="Refunded" /></td>
+          }
+          }
+          <td class="py-3 px-3 lg:px-6 sticky end-0 bg-white">
+            <button class="text-gray-dark border border-gray-light py-2 px-3" (click)="onViewReceipt(donation)">View
+              Receipt</button>
+          </td>
+        </tr>
+        }
+        @empty {
+        <tr>
+          <td class="p-8 text-center" colspan="5">No donations found...</td>
+        </tr>
+        }
         }
         @placeholder (minimum 1s) {
-          @for (item of [0,1,2,3]; track $index) {
-            <tr class="animate-pulse sm:p-3 text-body-3">
-              <td><div class="bg-gray-light h-10 my-4"></div></td>
-              <td><div class="bg-gray-light h-10 ml-4 my-4"></div></td>
-              <td><div class="bg-gray-light h-10 ml-4 my-4"></div></td>
-              <td><div class="bg-gray-light h-10 ml-4 my-4"></div></td>
-              <td><div class="bg-gray-light h-10 ml-4 my-4"></div></td>
-            </tr>
-          }
+        @for (item of [0,1,2,3]; track $index) {
+        <tr class="animate-pulse p-3 text-body-3">
+          <td>
+            <div class="bg-gray-light h-10 my-4"></div>
+          </td>
+          <td>
+            <div class="bg-gray-light h-10 ml-4 my-4"></div>
+          </td>
+          <td>
+            <div class="bg-gray-light h-10 ml-4 my-4"></div>
+          </td>
+          <td>
+            <div class="bg-gray-light h-10 ml-4 my-4"></div>
+          </td>
+          <td>
+            <div class="bg-gray-light h-10 ml-4 my-4"></div>
+          </td>
+        </tr>
+        }
         }
       </tbody>
     </table>
   </div>
+  <!-- smal screens -->
+  @defer () {
+
+  @for (donation of donations; track donation.id) {
+  <div class="block md:hidden border border-[#E4E3E9]  w-[90%] mx-auto mb-3">
+    <div class="p-4 border-b border-[#E4E3E9]">
+      <div class="flex justify-between items-center mb-4">
+        <div class="text-sm sm:text-base  font-medium">
+          <p class="text-[#86898E] "> Project</p>
+          <p>{{donation.donation_form.title | titlecase}}</p>
+        </div>
+        <div class=" text-sm sm:text-base font-medium">
+          <p class="text-[#86898E]">Status</p>
+          @switch (donation.status) {
+          @case ('succeeded') {
+          <app-badge size="small" type="success" label="Succeeded" />
+          }
+          @case ('incomplete') {
+          <app-badge size="small" type="info" label="Incomplete" />
+          }
+          @case ('failed') {
+          <app-badge size="small" type="danger" label="Failed" />
+          }
+          @case ('refunded') {
+          <app-badge size="small" type="safe" label="Refunded" />
+          }
+          }
+        </div>
+      </div>
+      <div class="text-sm sm:text-base  font-medium">
+        <p class="text-[#86898E] "> Date</p>
+        <p>{{donation.completed_date | date}}</p>
+      </div>
+    </div>
+    <div class="p-4 flex items-center justify-between">
+      <div class=" font-medium">
+        <p class="text-[#86898E] text-sm "> Amount</p>
+        <p class="text-[#328C3C] text-[20px]">{{donation.amount | currency}}</p>
+      </div>
+      <div>
+        <button class="text-[#328C3C] border border-gray-light py-1 px-4" (click)="onViewReceipt(donation)">View
+          Receipt</button>
+      </div>
+    </div>
+  </div>
+  }
+  @empty {
+  <div class="block md:hidden">
+    <p class="p-8 text-center">No subscriptions found...</p>
+  </div>
+  }
+  }
+  @placeholder (minimum 1s) {
+  @for (item of [0,1,2,3]; track $index) {
+  <div class="animate-pulse p-3 text-sm font-normal lg:text-body-3 w-[90%] mx-auto mb-3 block md:hidden">
+    <div>
+      <div class="bg-gray-light h-52"></div>
+    </div>
+  </div>
+  }
+  }
 </div>
 
 <!-- View Receipt Modal -->
 <app-modal title="Payment Receipt" maxWidth="500px" #receiptModal>
   @if (receiptDonation) {
-    <div class="flex flex-col w-full gap-4">
-      <div class="flex flex-col items-center gap-2 border border-gray-light py-4  sm:px-6">
-        <img class="w-20 h-20" src="assets/images/logo.webp" alt="Africa Relief Logo" loading="lazy">
-        <h2 class="text-body-2-md text-center">Africa Relief & Community Development</h2>
-      </div>
-      <div class="flex flex-col gap-3 border border-gray-light py-4  sm:px-6">
-        <h3 class="text-body-3 !font-semibold">Donor Information</h3>
-        <hr class="text-gray-light">
-        <ul>
-          <li>Name: <span class="text-body-3">{{receiptDonation.payment_method?.name | titlecase}}</span></li>
-          <li>Email: <span class="text-body-3">{{receiptDonation.payment_method?.email}}</span></li>
-        </ul>
-      </div>
-      <div class="flex flex-col gap-3 border border-gray-light py-4  sm:px-6">
-        <h3 class="text-body-3 !font-semibold">Payment Information</h3>
-        <hr class="text-gray-light">
-        <ul>
-          <li>Payment ID: <span class="text-body-3">{{receiptDonation.id}}</span></li>
-          <li>Amount: <span class="text-body-3">{{receiptDonation.amount | currency}}</span></li>
-          <li>Date of Payment: <span class="text-body-3">{{receiptDonation.completed_date | date}}</span></li>
-          <li>Project Name: <span class="text-body-3">{{receiptDonation.donation_form.title | titlecase}}</span></li>
-        </ul>
-      </div>
-      <!-- <app-form-button appearance="outlined" [fullWidth]="true">Print</app-form-button> -->
+  <div class="flex flex-col w-full gap-4">
+    <div class="flex flex-col items-center gap-2 border border-gray-light py-4 px-6">
+      <img class="w-20 h-20" src="assets/images/logo.webp" alt="Africa Relief Logo" loading="lazy">
+      <h2 class="text-body-2-md text-center">Africa Relief & Community Development</h2>
     </div>
+    <div class="flex flex-col gap-3 border border-gray-light py-4 px-6">
+      <h3 class="text-body-3 !font-semibold">Donor Information</h3>
+      <hr class="text-gray-light">
+      <ul>
+        <li>Name: <span class="text-body-3">{{receiptDonation.payment_method.name | titlecase}}</span></li>
+        <li>Email: <span class="text-body-3">{{receiptDonation.payment_method.email}}</span></li>
+      </ul>
+    </div>
+    <div class="flex flex-col gap-3 border border-gray-light py-4 px-6">
+      <h3 class="text-body-3 !font-semibold">Payment Information</h3>
+      <hr class="text-gray-light">
+      <ul>
+        <li>Payment ID: <span class="text-body-3">{{receiptDonation.id}}</span></li>
+        <li>Amount: <span class="text-body-3">{{receiptDonation.amount | currency}}</span></li>
+        <li>Date of Payment: <span class="text-body-3">{{receiptDonation.completed_date | date}}</span></li>
+        <li>Project Name: <span class="text-body-3">{{receiptDonation.donation_form.title | titlecase}}</span></li>
+      </ul>
+    </div>
+    <!-- <app-form-button appearance="outlined" [fullWidth]="true">Print</app-form-button> -->
+  </div>
   }
 </app-modal>
