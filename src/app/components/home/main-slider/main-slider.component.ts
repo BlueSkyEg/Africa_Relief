@@ -64,6 +64,7 @@ export class MainSliderComponent implements OnInit {
     this.carouselService.getHomeCarousel().subscribe({
       next: (res: IApiResponse<ICarouselSlide[]>) => {
         this.slides = res.data;
+        console.log(this.slides);
         this.onLoadSwiperSlider();
       },
     });
