@@ -41,10 +41,11 @@
   </swiper-container>
 
   <!-- Slider Navigation -->
-  <div class="absolute w-full top-0 pt-24 translate-y-0 md:pt-0 md:top-1/2 md:-translate-y-1/2 z-10">
+  @if(slides.length>1)
+  { <div class="absolute w-full top-0 pt-24 translate-y-0 md:pt-0 md:top-1/2 md:-translate-y-1/2 z-10">
     <div class="container flex justify-normal lg:justify-between items-center gap-6">
       <app-icon-arrow-left appIcon color="black" class="main-slider-next cursor-pointer" />
       <app-icon-arrow-right appIcon color="black" class="main-slider-prev cursor-pointer" />
     </div>
-  </div>
+  </div>}
 </div>
