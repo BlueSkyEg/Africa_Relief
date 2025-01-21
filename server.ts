@@ -4,6 +4,7 @@ import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
+import { RESPONSE } from './server.token';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -17,12 +18,31 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
 
+  // Mocked backend or JSON file with redirects
+const fetchRedirects = async () => {
+  // Replace with API call or JSON file path
+  return [
+    { from: '/old-route-1', to: '/new-route-1', statusCode: 301 },
+    { from: '/old-route-2', to: '/new-route-2', statusCode: 301 },
+  ];
+};
+
+// Handle redirects dynamically
+server.use(async (req, res, next) => {
+  const redirects = await fetchRedirects();
+  const redirect = redirects.find((r) => r.from === req.path);
+
+  if (redirect) {
+    res.redirect(redirect.statusCode, redirect.to);
+  } else {
+    next();
+  }
+});
+
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
-  server.get('*.*', express.static(browserDistFolder, {
-    maxAge: '1y'
-  }));
+  server.get('*.*', express.static(browserDistFolder, {maxAge: '1y'}));
 
   // All regular routes use the Angular engine
   server.get('*', (req, res, next) => {
@@ -34,9 +54,12 @@ export function app(): express.Express {
         documentFilePath: indexHtml,
         url: `${protocol}://${headers.host}${originalUrl}`,
         publicPath: browserDistFolder,
-        providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
+        providers: [
+          { provide: APP_BASE_HREF, useValue: baseUrl },
+          { provide: RESPONSE, useValue: res }
+        ],
       })
-      .then((html) => res.send(html))
+      .then((html) => !res.headersSent ? res.send(html) : undefined)
       .catch((err) => next(err));
   });
 
@@ -44,7 +67,7 @@ export function app(): express.Express {
 }
 
 function run(): void {
-  const port = process.env['PORT'] || 4000;
+  const port = process.env['PORT'] || 4200;
 
   // Start up the Node server
   const server = app();
