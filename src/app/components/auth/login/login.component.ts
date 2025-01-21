@@ -1,4 +1,4 @@
-import {  Component, inject, PLATFORM_ID } from '@angular/core';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { FieldComponent } from "../../../shared/components/form/field/field.component";
 import { LabelComponent } from "../../../shared/components/form/label/label.component";
 import { FormElementDirective } from '../../../shared/directives/form-element.directive';
@@ -7,13 +7,11 @@ import { ErrorComponent } from "../../../shared/components/form/error/error.comp
 import { ButtonComponent } from "../../../shared/components/form/button/button.component";
 import { IconEyeComponent } from "../../../shared/icons/eye/icon-eye.component";
 import { IconEyeOffComponent } from "../../../shared/icons/eye-off/icon-eye-off.component";
-import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmailValidator } from '../../../core/validators/email.validator';
-import { filter } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
-import { MetaService } from '../../../core/services/meta-data/meta.service';
 
 @Component({
   selector: 'app-login',
@@ -40,22 +38,10 @@ export class LoginComponent {
   authService: AuthService = inject(AuthService);
   fb: FormBuilder = inject(FormBuilder);
   _snackBar: MatSnackBar = inject(MatSnackBar);
-  router: Router = inject(Router);
-  _MetaService: MetaService = inject(MetaService);
   // accessDonorDashboardForm = this.fb.group({
   //   email: ['', [Validators.required, Validators.email]]
   // });
-  ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this._MetaService.setCanonicalURL(window.location.href);
 
-      this.router.events
-        .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe(() => {
-          this._MetaService.setCanonicalURL(window.location.href);
-        });
-    }
-  }
   loginForm = this.fb.group({
     email: ['', [Validators.required, EmailValidator()]],
     password: ['', [Validators.required, Validators.minLength]],

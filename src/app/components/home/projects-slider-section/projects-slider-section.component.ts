@@ -19,11 +19,8 @@ import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interf
 import { IProjectCard } from '../../../shared/interfaces/project/project-card-interface';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
 import { Autoplay, Navigation } from 'swiper/modules';
 import Swiper from 'swiper';
-import { MetaService } from '../../../core/services/meta-data/meta.service';
 @Component({
   selector: 'app-projects-slider-section',
   standalone: true,
@@ -45,20 +42,9 @@ export class ProjectsSliderSectionComponent implements OnInit {
   swiperElement = signal<SwiperContainer | null>(null);
 
   projectService: ProjectService = inject(ProjectService);
-  _MetaService: MetaService = inject(MetaService);
   private platformId = inject(PLATFORM_ID);
-  router: Router = inject(Router);
 
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this._MetaService.setCanonicalURL(window.location.href);
-
-      this.router.events
-        .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe(() => {
-          this._MetaService.setCanonicalURL(window.location.href);
-        });
-    }
     Swiper.use([Autoplay, Navigation]);
     this.onGetProjects();
   }

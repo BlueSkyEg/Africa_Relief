@@ -1,14 +1,9 @@
-import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { IProject } from '../../../shared/interfaces/project/project-interface';
 import { ProjectService } from '../../../core/services/projects/project.service';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  Router,
-  RouterModule,
-} from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { IconQuoteComponent } from '../../../shared/icons/quote/icon-quote.component';
 import { ShareButtonsComponent } from '../../../shared/components/share-buttons/share-buttons.component';
 import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
@@ -16,7 +11,6 @@ import { DonationCardComponent } from '../../../shared/components/donation-card/
 import { RelatedProjectsComponent } from './related-projects/related-projects.component';
 import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
 import { MetaService } from '../../../core/services/meta-data/meta.service';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-single-project',
@@ -39,19 +33,9 @@ export class SingleProjectComponent implements OnInit {
   router: Router = inject(Router);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   projectService: ProjectService = inject(ProjectService);
-  _MetaService: MetaService = inject(MetaService);
-  private platformId = inject(PLATFORM_ID);
+  metaService: MetaService = inject(MetaService);
 
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this._MetaService.setCanonicalURL(window.location.href);
-
-      this.router.events
-        .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe(() => {
-          this._MetaService.setCanonicalURL(window.location.href);
-        });
-    }
     this.activeRoute.paramMap.subscribe({
       next: (route) => {
         this.projectService.getProject(route.get('slug')).subscribe({
@@ -59,7 +43,7 @@ export class SingleProjectComponent implements OnInit {
             if (res.success) {
               this.project = res.data;
 
-              this._MetaService.setMetaData(
+              this.metaService.setMetaData(
                 this.project.meta_data,
                 this.project.created_at,
                 this.project.featured_image

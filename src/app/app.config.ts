@@ -50,10 +50,6 @@ export const appConfig: ApplicationConfig = {
       },
     },
     // Configure Google Tag Manager
-    { provide: 'googleTagManagerId', useValue: 'GTM-NN7RVK8' },
-    provideClientHydration(),
-    provideClientHydration(),
-    provideAnimationsAsync(),
-    provideClientHydration(),
+    // { provide: 'googleTagManagerId', useValue: 'GTM-NN7RVK8' },
   ],
 };

@@ -1,19 +1,16 @@
-import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CategoriesFilterComponent } from '../../../shared/components/categories-filter/categories-filter.component';
 import { BlogService } from '../../../core/services/blogs/blog.service';
 import { ICategory } from '../../../shared/interfaces/category-interface';
 import { BlogCardComponent } from '../../../shared/components/blogs/blog-card/blog-card.component';
 import { IBlogCard } from '../../../shared/interfaces/blog/blog-card-interface';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MetaService } from '../../../core/services/meta-data/meta.service';
-import { filter } from 'rxjs';
-import { Meta } from '@angular/platform-browser';
-import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-blogs',
@@ -37,9 +34,8 @@ export class BlogsComponent implements OnInit {
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   blogService: BlogService = inject(BlogService);
   breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
-  _MetaService: MetaService = inject(MetaService);
-  private platformId = inject(PLATFORM_ID);
-  router: Router = inject(Router);
+  metaService: MetaService = inject(MetaService);
+
   constructor() {
     // Determine pagination perPage number based on screen size
     this.breakpointObserver.observe('(min-width: 800px)').subscribe({
@@ -48,16 +44,6 @@ export class BlogsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this._MetaService.setCanonicalURL(window.location.href);
-
-      this.router.events
-        .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe(() => {
-          this._MetaService.setCanonicalURL(window.location.href);
-        });
-    }
-
     // Get blog categories
     this.blogService.getBlogCategories().subscribe({
       next: (res: IApiResponse<ICategory[]>) =>
@@ -82,7 +68,7 @@ export class BlogsComponent implements OnInit {
         (blog) => blog.slug === currentSlug
       );
       if (matchingProject) {
-        this._MetaService.setMetaData(matchingProject.meta_data);
+        this.metaService.setMetaData(matchingProject.meta_data);
       }
     }
   }

@@ -1,6 +1,6 @@
 import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FormElementDirective } from '../../../shared/directives/form-element.directive';
 import { FieldComponent } from '../../../shared/components/form/field/field.component';
 import { LabelComponent } from '../../../shared/components/form/label/label.component';
@@ -15,9 +15,6 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmailValidator } from '../../../core/validators/email.validator';
 import { StringValidator } from '../../../core/validators/string.validator';
-import { Meta } from '@angular/platform-browser';
-import { filter } from 'rxjs';
-import { MetaService } from '../../../core/services/meta-data/meta.service';
 
 @Component({
   selector: 'app-signup',
@@ -45,20 +42,8 @@ export class SignupComponent {
   fb: FormBuilder = inject(FormBuilder);
   authService: AuthService = inject(AuthService);
   _snackBar: MatSnackBar = inject(MatSnackBar);
-  router: Router = inject(Router);
-  _MetaService: MetaService = inject(MetaService);
   platformId = inject(PLATFORM_ID);
-  ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this._MetaService.setCanonicalURL(window.location.href);
 
-      this.router.events
-        .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe(() => {
-          this._MetaService.setCanonicalURL(window.location.href);
-        });
-    }
-  }
   signupForm = this.fb.group(
     {
       name: ['', [Validators.required, StringValidator()]],

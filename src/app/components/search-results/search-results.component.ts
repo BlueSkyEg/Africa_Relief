@@ -1,6 +1,6 @@
-import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { BlogService } from '../../core/services/blogs/blog.service';
 import { IBlogCard } from '../../shared/interfaces/blog/blog-card-interface';
 import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcrumb.component';
@@ -9,9 +9,7 @@ import { NotFoundSearchResultComponent } from '../../shared/components/not-found
 import { ProjectService } from '../../core/services/projects/project.service';
 import { IProjectCard } from '../../shared/interfaces/project/project-card-interface';
 import { ProjectCardComponent } from '../../shared/components/projects/project-card/project-card.component';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
-import { MetaService } from '../../core/services/meta-data/meta.service';
+
 @Component({
   selector: 'app-search-results',
   standalone: true,
@@ -40,19 +38,8 @@ export class SearchResultsComponent implements OnInit {
     private blogService: BlogService,
     private projectService: ProjectService
   ) {}
-  _MetaService: MetaService = inject(MetaService);
-  private platformId = inject(PLATFORM_ID);
-  router: Router = inject(Router);
-  ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      this._MetaService.setCanonicalURL(window.location.href);
 
-      this.router.events
-        .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe(() => {
-          this._MetaService.setCanonicalURL(window.location.href);
-        });
-    }
+  ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
       this.searchTerm = params['term'] || '';
       this.currentPage = 1;
