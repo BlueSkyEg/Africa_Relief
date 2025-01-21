@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
 import { RESPONSE } from './server.token';
+import { existsSync, readFileSync } from 'node:fs';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -20,11 +21,14 @@ export function app(): express.Express {
 
   // Mocked backend or JSON file with redirects
 const fetchRedirects = async () => {
-  // Replace with API call or JSON file path
-  return [
-    { from: '/old-route-1', to: '/new-route-1', statusCode: 301 },
-    { from: '/old-route-2', to: '/new-route-2', statusCode: 301 },
-  ];
+  const redirectsFilePath = join(browserDistFolder, '/assets/redirects.json');
+
+  let redirects = [];
+  if (existsSync(redirectsFilePath)) {
+    redirects = JSON.parse(readFileSync(redirectsFilePath, 'utf-8'));
+  }
+
+  return redirects;
 };
 
 // Handle redirects dynamically

@@ -1,0 +1,502 @@
+[
+  {
+    "from": "/about-us/",
+    "to": "/about",
+    "statusCode": 301
+  },
+  {
+    "from": "/project/artisanal-water-well/",
+    "to": "/projects/artisanal-water-well",
+    "statusCode": 301
+  },
+  {
+    "from": "/project/food-basket/",
+    "to": "/projects/food-basket",
+    "statusCode": 301
+  },
+  {
+    "from": "/project/health-care/",
+    "to": "/projects/health-care",
+    "statusCode": 301
+  },
+  {
+    "from": "/project/hearing-aid-device/",
+    "to": "/projects/hearing-aid-device",
+    "statusCode": 301
+  },
+  {
+    "from": "/project/iftar-meal/",
+    "to": "/projects/iftar-meal",
+    "statusCode": 301
+  },
+  {
+    "from": "/project/orphans-sponsorship/",
+    "to": "/projects/orphans-sponsorship",
+    "statusCode": 301
+  },
+  {
+    "from": "/project/solar-water-well/",
+    "to": "/projects/solar-water-well",
+    "statusCode": 301
+  },
+  {
+    "from": "/project/students-sponsorship/",
+    "to": "/projects/students-sponsorship",
+    "statusCode": 301
+  },
+  {
+    "from": "/project/surface-water-well/",
+    "to": "/projects/surface-water-well",
+    "statusCode": 301
+  },
+  {
+    "from": "/project/zakat-al-fitr/",
+    "to": "/projects/zakat-al-fitr",
+    "statusCode": 301
+  },
+  {
+    "from": "/project/zakat-al-mal/",
+    "to": "/projects/zakat-al-mal",
+    "statusCode": 301
+  },
+  {
+    "from": "/food-aid/",
+    "to": "/projects/category/food-aid",
+    "statusCode": 301
+  },
+  {
+    "from": "/food-campaign-evergreen/",
+    "to": "/projects/category/food-aid",
+    "statusCode": 301
+  },
+  {
+    "from": "/health/",
+    "to": "/projects/category/medical-help",
+    "statusCode": 301
+  },
+  {
+    "from": "/project-category/food-aid/",
+    "to": "/blogs/category/food-aid",
+    "statusCode": 301
+  },
+  {
+    "from": "/project-category/ramadan/",
+    "to": "/blogs/category/ramadan",
+    "statusCode": 301
+  },
+  {
+    "from": "/project-category/water/",
+    "to": "/blogs/category/water",
+    "statusCode": 301
+  },
+  {
+    "from": "/project-category/zakat/",
+    "to": "/blogs/category/zakat",
+    "statusCode": 301
+  },
+  {
+    "from": "/project-category/education/",
+    "to": "/blogs/category/education",
+    "statusCode": 301
+  },
+  {
+    "from": "/project-category/medical-help/",
+    "to": "/blogs/category/medical-help",
+    "statusCode": 301
+  },
+  {
+    "from": "/project-category/orphan-sponsorship/",
+    "to": "/blogs/category/orphan-sponsorship",
+    "statusCode": 301
+  },
+  {
+    "from": "/project-category/crisis/",
+    "to": "/blogs/category/crisis",
+    "statusCode": 301
+  },
+  {
+    "from": "/ramadan-donation/",
+    "to": "/projects/category/ramadan",
+    "statusCode": 301
+  },
+  {
+    "from": "/food-aid/",
+    "to": "/projects/category/food-aid",
+    "statusCode": 301
+  },
+  {
+    "from": "/zakat/",
+    "to": "/projects/category/zakat",
+    "statusCode": 301
+  },
+  {
+    "from": "/education/",
+    "to": "/projects/category/education",
+    "statusCode": 301
+  },
+  {
+    "from": "/blog/",
+    "to": "/blogs",
+    "statusCode": 301
+  },
+  {
+    "from": "/blog/2/",
+    "to": "/blogs",
+    "statusCode": 301
+  },
+  {
+    "from": "/blog/3/",
+    "to": "/blogs",
+    "statusCode": 301
+  },
+  {
+    "from": "/blog/4/",
+    "to": "/blogs",
+    "statusCode": 301
+  },
+  {
+    "from": "/blog/5/",
+    "to": "/blogs",
+    "statusCode": 301
+  },
+  {
+    "from": "/career/",
+    "to": "/careers",
+    "statusCode": 301
+  },
+  {
+    "from": "/career/director-of-development/",
+    "to": "/careers/director-of-development",
+    "statusCode": 301
+  },
+  {
+    "from": "/career/donor-care-associate/",
+    "to": "/careers/donor-care-associate",
+    "statusCode": 301
+  },
+  {
+    "from": "/sudan-donations/",
+    "to": "/projects/sudan-emergency",
+    "statusCode": 301
+  },
+  {
+    "from": "/donating-stock/",
+    "to": "/get-involved/stock-donations",
+    "statusCode": 301
+  },
+  {
+    "from": "/product/cataract-surgery/",
+    "to": "/projects/cataract-surgery",
+    "statusCode": 301
+  },
+  {
+    "from": "/product/emergency-in-gambia/",
+    "to": "/emergency/projects",
+    "statusCode": 301
+  },
+  {
+    "from": "/product/food-basket/",
+    "to": "/projects/food-basket",
+    "statusCode": 301
+  },
+  {
+    "from": "/product/qurbani-cow/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/product/qurbani-sheep-250/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/product/qurbani-sheep1/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/product/surface-water-well/",
+    "to": "/projects/surface-water-well",
+    "statusCode": 301
+  },
+  {
+    "from": "/product/zakat-al-fitr/",
+    "to": "/projects/zakat-al-fitr",
+    "statusCode": 301
+  },
+  {
+    "from": "/giving-tuesday-africa/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/event/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/elevate-africa-from-poverty-event/",
+    "to": "/emergency/projects",
+    "statusCode": 301
+  },
+  {
+    "from": "/emergency-morocco-earthquake-response/",
+    "to": "/emergency/projects",
+    "statusCode": 301
+  },
+  {
+    "from": "/emergency/gaza-donation/",
+    "to": "/emergency/projects",
+    "statusCode": 301
+  },
+  {
+    "from": "/emergency/sudan-donations/",
+    "to": "/emergency/projects",
+    "statusCode": 301
+  },
+  {
+    "from": "/first-emergency-response-outside-of-africa-in-gaza/",
+    "to": "/emergency/projects",
+    "statusCode": 301
+  },
+  {
+    "from": "/medical-equipment-delivery/",
+    "to": "/blogs/medical-equipment-delivery",
+    "statusCode": 301
+  },
+  {
+    "from": "/back-to-school/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/dhul-hijjah-campaign/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/orphans-campaign-evergreen/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/udhiya-qurbani-campaign-test/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/udhiya-qurbani-campaign/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/water-campaign-evergreen/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/ramadan-10-nights-campaign/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/ramadan-education-campaign/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/ramadan-food-aid-campaign/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/ramadan-orphan-campaign/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/ramadan-water-crisis-campaign/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/health-campaign-evergreen/",
+    "to": "/",
+    "statusCode": 301
+  },
+  {
+    "from": "/celebrating-eid-al-adha-usa/",
+    "to": "/blogs/celebrating-eid-al-adha-usa",
+    "statusCode": 301
+  },
+  {
+    "from": "/zakat-on-gold-in-islam/",
+    "to": "/blogs/zakat-on-gold-in-islam",
+    "statusCode": 301
+  },
+  {
+    "from": "/africa-hunger-crisis/",
+    "to": "/blogs/africa-hunger-crisis",
+    "statusCode": 301
+  },
+  {
+    "from": "/africa-water-crisis/",
+    "to": "/blogs/africa-water-crisis",
+    "statusCode": 301
+  },
+  {
+    "from": "/al-bir-and-at-taqwa-well/",
+    "to": "/blogs/al-bir-and-at-taqwa-well",
+    "statusCode": 301
+  },
+  {
+    "from": "/bait-al-maqdes-artesian-well/",
+    "to": "/blogs/bait-al-maqdes-artesian-well",
+    "statusCode": 301
+  },
+  {
+    "from": "/bir-al-walidayn-school/",
+    "to": "/blogs/bir-al-walidayn-school",
+    "statusCode": 301
+  },
+  {
+    "from": "/how-much-is-qurbani/",
+    "to": "/blogs/how-much-is-qurbani",
+    "statusCode": 301
+  },
+  {
+    "from": "/how-to-donate-qurbani-usa/",
+    "to": "/blogs/how-to-donate-qurbani-usa",
+    "statusCode": 301
+  },
+  {
+    "from": "/is-qurbani-farz-or-sunnah/",
+    "to": "/blogs/is-qurbani-farz-or-sunnah",
+    "statusCode": 301
+  },
+  {
+    "from": "/mariame-diawara-and-fatoumata-tiemoko-well/",
+    "to": "/blogs/mariame-diawara-and-fatoumata-tiemoko-well",
+    "statusCode": 301
+  },
+  {
+    "from": "/medical-equipment-delivery/",
+    "to": "/blogs/medical-equipment-delivery",
+    "statusCode": 301
+  },
+  {
+    "from": "/new-jersey-well/",
+    "to": "/blogs/new-jersey-well",
+    "statusCode": 301
+  },
+  {
+    "from": "/nurturing-families-meat-distribution-initiative/",
+    "to": "/blogs/nurturing-families-meat-distribution-initiative",
+    "statusCode": 301
+  },
+  {
+    "from": "/orphans-in-africa/",
+    "to": "/blogs/orphans-in-africa",
+    "statusCode": 301
+  },
+  {
+    "from": "/sadaqah-wells/",
+    "to": "/blogs/sadaqah-wells",
+    "statusCode": 301
+  },
+  {
+    "from": "/salah-alzoobi-mosque/",
+    "to": "/blogs/salah-alzoobi-mosque",
+    "statusCode": 301
+  },
+  {
+    "from": "/starting-small-businesses-for-families/",
+    "to": "/blogs/starting-small-businesses-for-families",
+    "statusCode": 301
+  },
+  {
+    "from": "/strategic-partnerships-in-tanzania/",
+    "to": "/blogs/strategic-partnerships-in-tanzania",
+    "statusCode": 301
+  },
+  {
+    "from": "/strengthening-partnerships-in-ghana/",
+    "to": "/blogs/strengthening-partnerships-in-ghana",
+    "statusCode": 301
+  },
+  {
+    "from": "/sudan-donations/",
+    "to": "/blogs/sudan-donations",
+    "statusCode": 301
+  },
+  {
+    "from": "/sustainable-income-initiative/",
+    "to": "/blogs/sustainable-income-initiative",
+    "statusCode": 301
+  },
+  {
+    "from": "/donate-money-instead-qurbani/",
+    "to": "/blogs/donate-money-instead-qurbani",
+    "statusCode": 301
+  },
+  {
+    "from": "/qurbani-rules-udhiyah-guidelines/",
+    "to": "/blogs/qurbani-rules-udhiyah-guidelines",
+    "statusCode": 301
+  },
+  {
+    "from": "/recipients-of-zakat/",
+    "to": "/blogs/recipients-of-zakat",
+    "statusCode": 301
+  },
+  {
+    "from": "/repentance-well/",
+    "to": "/blogs/repentance-well",
+    "statusCode": 301
+  },
+  {
+    "from": "/what-is-qurbani/",
+    "to": "/blogs/what-is-qurbani",
+    "statusCode": 301
+  },
+  {
+    "from": "/what-is-zakat-al-mal/",
+    "to": "/blogs/what-is-zakat-al-mal",
+    "statusCode": 301
+  },
+  {
+    "from": "/what-is-zakat-in-islam/",
+    "to": "/blogs/what-is-zakat-in-islam",
+    "statusCode": 301
+  },
+  {
+    "from": "/where-to-donate-qurbani-meat/",
+    "to": "/blogs/where-to-donate-qurbani-meat",
+    "statusCode": 301
+  },
+  {
+    "from": "/who-is-eligible-for-qurbani/",
+    "to": "/blogs/who-is-eligible-for-qurbani",
+    "statusCode": 301
+  },
+  {
+    "from": "/zakat-al-mal-vs-zakat-al-fitr/",
+    "to": "/blogs/zakat-al-mal-vs-zakat-al-fitr",
+    "statusCode": 301
+  },
+  {
+    "from": "/hajja-muyassar-hassan-shuaib-mosque-water-well/",
+    "to": "/blogs/hajja-muyassar-hassan-shuaib-mosque-water-well",
+    "statusCode": 301
+  },
+  {
+    "from": "/brushy-creek-islamic-center-food-project/",
+    "to": "/blogs/brushy-creek-islamic-center-food-project",
+    "statusCode": 301
+  },
+  {
+    "from": "/current-issues-in-africa/",
+    "to": "/blogs/current-issues-in-africa",
+    "statusCode": 301
+  }
+  ]
