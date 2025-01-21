@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
   platformId: Object = inject(PLATFORM_ID);
 
   // Initialize Google Tag Manager
-  // gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
+  gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
 
   // Initialize Firebase Notification
   // firebaseService: FirebaseService = inject(FirebaseService);
@@ -64,17 +64,17 @@ export class AppComponent implements OnInit {
     this.metaService.setCanonicalURL();
 
     // Push Google Tag Manager Page View Event
-    // if (isPlatformBrowser(this.platformId)) {
-    //   this.router.events.forEach((item) => {
-    //     if (item instanceof NavigationEnd) {
-    //       const gtmTag = {
-    //         event: 'page',
-    //         pageName: item.url,
-    //       };
-    //       this.gtmService.pushTag(gtmTag);
-    //     }
-    //   });
-    // }
+    if (isPlatformBrowser(this.platformId)) {
+      this.router.events.forEach((item) => {
+        if (item instanceof NavigationEnd) {
+          const gtmTag = {
+            event: 'page',
+            pageName: item.url,
+          };
+          this.gtmService.pushTag(gtmTag);
+        }
+      });
+    }
 
     // Toggle Side Nav
     this.layoutService.sideNavSubject.asObservable().subscribe({
