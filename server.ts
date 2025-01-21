@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
 import { RESPONSE } from './server.token';
+import { existsSync, readFileSync } from 'node:fs';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -19,25 +20,28 @@ export function app(): express.Express {
   server.set('views', browserDistFolder);
 
   // Mocked backend or JSON file with redirects
-const fetchRedirects = async () => {
-  // Replace with API call or JSON file path
-  return [
-    { from: '/old-route-1', to: '/new-route-1', statusCode: 301 },
-    { from: '/old-route-2', to: '/new-route-2', statusCode: 301 },
-  ];
-};
+  const fetchRedirects = async () => {
+    const redirectsFilePath = join(process.cwd(), 'dist/africa-relief/browser/assets/redirects.json');
 
-// Handle redirects dynamically
-server.use(async (req, res, next) => {
-  const redirects = await fetchRedirects();
-  const redirect = redirects.find((r) => r.from === req.path);
+    let redirects = [];
+    if (existsSync(redirectsFilePath)) {
+      redirects = JSON.parse(readFileSync(redirectsFilePath, 'utf-8'));
+    }
 
-  if (redirect) {
-    res.redirect(redirect.statusCode, redirect.to);
-  } else {
-    next();
-  }
-});
+    return redirects;
+  };
+
+  // Handle redirects dynamically
+  server.use(async (req, res, next) => {
+    const redirects = await fetchRedirects();
+    const redirect = redirects.find((r) => r.from === req.path);
+
+    if (redirect) {
+      res.redirect(redirect.statusCode, redirect.to);
+    } else {
+      next();
+    }
+  });
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });

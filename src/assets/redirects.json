@@ -1,0 +1,4 @@
+[
+  { "from": "/old-route-1", "to": "/new-route-1", "statusCode": 301 },
+  { "from": "/old-route-2", "to": "/new-route-2", "statusCode": 301 }
+]
