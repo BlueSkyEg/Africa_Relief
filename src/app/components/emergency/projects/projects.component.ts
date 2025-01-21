@@ -1,18 +1,12 @@
-import {
-  Component,
-  inject,
-  PLATFORM_ID,
-} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IProjectCard } from '../../../shared/interfaces/project/project-card-interface';
 import { ProjectService } from '../../../core/services/projects/project.service';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ProjectCardComponent } from '../../../shared/components/projects/project-card/project-card.component';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
-import { MetaService } from '../../../core/services/meta-data/meta.service';
-import { isPlatformBrowser } from '@angular/common';
+
+
 @Component({
   selector: 'app-projects',
   standalone: true,
@@ -26,20 +20,9 @@ export class ProjectsComponent {
   isPaginationLastPage: boolean = false;
   loading: boolean = false;
   projectService: ProjectService = inject(ProjectService);
-  _MetaService: MetaService = inject(MetaService);
-  private platformId = inject(PLATFORM_ID);
-  router: Router = inject(Router);
 
   ngOnInit(): void {
     this.onGetProjects()
-    if (isPlatformBrowser(this.platformId)) {
-      this._MetaService.setCanonicalURL(window.location.href);
-      this.router.events
-        .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe(() => {
-          this._MetaService.setCanonicalURL(window.location.href);
-        });
-    }
   }
   onGetProjects() {
     if (!this.isPaginationLastPage && !this.loading) {

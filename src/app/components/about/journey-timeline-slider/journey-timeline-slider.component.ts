@@ -5,11 +5,8 @@ import { SwiperContainer } from 'swiper/element';
 import {  SwiperOptions } from 'swiper/types';
 import { IconDirective } from '../../../shared/directives/icon.directive';
 import { ImgPlaceholderDirective } from '../../../shared/directives/img-placeholder.directive';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
 import { Autoplay, Navigation } from 'swiper/modules';
 import Swiper from 'swiper';
-import { MetaService } from '../../../core/services/meta-data/meta.service';
 import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'app-journey-timeline-slider',
@@ -25,8 +22,6 @@ import { isPlatformBrowser } from '@angular/common';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class JourneyTimeLineSliderComponent implements OnInit {
-  router: Router = inject(Router);
-  _MetaService: MetaService = inject(MetaService);
   private platformId = inject(PLATFORM_ID);
   private renderer: Renderer2 = inject(Renderer2);
   swiperElement = signal<SwiperContainer | null>(null);
@@ -81,14 +76,6 @@ export class JourneyTimeLineSliderComponent implements OnInit {
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this._MetaService.setCanonicalURL(window.location.href);
-
-      this.router.events
-        .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe(() => {
-          this._MetaService.setCanonicalURL(window.location.href);
-        });
-
       // Initialize Swiper only in the browser
       Swiper.use([Autoplay, Navigation]);
       this.initializeSwiper();

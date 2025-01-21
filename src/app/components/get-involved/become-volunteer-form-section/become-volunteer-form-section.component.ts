@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  PLATFORM_ID,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormElementDirective } from '../../../shared/directives/form-element.directive';
 import { FieldComponent } from '../../../shared/components/form/field/field.component';
 import { LabelComponent } from '../../../shared/components/form/label/label.component';
@@ -14,10 +9,7 @@ import { VolunteerService } from '../../../core/services/volunteer/volunteer.ser
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { StringValidator } from '../../../core/validators/string.validator';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
-import { isPlatformBrowser } from '@angular/common';
-import { MetaService } from '../../../core/services/meta-data/meta.service';
+
 @Component({
   selector: 'app-become-volunteer-form-section',
   standalone: true,
@@ -38,21 +30,7 @@ export class BecomeVolunteerFormSectionComponent {
   fb: FormBuilder = inject(FormBuilder);
   volunteerService: VolunteerService = inject(VolunteerService);
   _snackBar: MatSnackBar = inject(MatSnackBar);
-  _MetaService: MetaService = inject(MetaService);
-  private platformId = inject(PLATFORM_ID);
-  router: Router = inject(Router);
 
-  ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this._MetaService.setCanonicalURL(window.location.href);
-
-      this.router.events
-        .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe(() => {
-          this._MetaService.setCanonicalURL(window.location.href);
-        });
-    }
-  }
   becomeVolunteerForm = this.fb.group({
     name: ['', [Validators.required, StringValidator()]],
     email: ['', [Validators.required, Validators.email]],
