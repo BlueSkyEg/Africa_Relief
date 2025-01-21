@@ -1,4 +1,4 @@
-import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BlogService } from '../../core/services/blogs/blog.service';
 import { IApiResponse } from '../../shared/interfaces/api-response-interface';
 import { IGalleryImage } from '../../shared/interfaces/blog/gallery-image.interface';
@@ -8,10 +8,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { IPaginatedData } from '../../shared/interfaces/paginated-data.interface';
 import { ImgPlaceholderDirective } from '../../shared/directives/img-placeholder.directive';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
-import { MetaService } from '../../core/services/meta-data/meta.service';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-gallery',
   standalone: true,
@@ -36,9 +34,7 @@ export class GalleryComponent implements OnInit {
   loading: boolean = false;
   blogService: BlogService = inject(BlogService);
   breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
-  _MetaService: MetaService = inject(MetaService);
-  private platformId = inject(PLATFORM_ID);
-  router: Router = inject(Router);
+
   constructor() {
     // Determine pagination perPage number based on screen size
     this.breakpointObserver.observe('(min-width: 800px)').subscribe({
@@ -47,15 +43,6 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this._MetaService.setCanonicalURL(window.location.href);
-
-      this.router.events
-        .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe(() => {
-          this._MetaService.setCanonicalURL(window.location.href);
-        });
-    }
     this.onGetGallery();
   }
 

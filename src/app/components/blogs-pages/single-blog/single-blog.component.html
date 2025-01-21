@@ -15,7 +15,7 @@
       <div class="relative">
         <div class="w-full h-[480px] bg-gray-light">
           <img width="full" height="full" class="h-full object-cover object-center" appImgPlaceholder
-            [src]="blog.featured_image.src" [alt]="blog.featured_image.alt_text" loading="lazy" />
+            [src]="blog.featured_image.src" [alt]="blog.featured_image.alt_text" loading="eager" />
         </div>
         @for (category of blog.categories; track category; let idx = $index) {
         <div class="absolute bottom-0 start-0 bg-secondary py-1 px-3">

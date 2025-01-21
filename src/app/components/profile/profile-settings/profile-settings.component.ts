@@ -1,16 +1,6 @@
-import {
-  Component,
-  OnInit,
-  PLATFORM_ID,
-  ViewChild,
-  inject,
-} from '@angular/core';
-import {
-  AbstractControlOptions,
-  FormBuilder,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { Platform } from '@angular/cdk/platform';
+import { Component, OnInit, PLATFORM_ID, ViewChild, inject } from '@angular/core';
+import { AbstractControlOptions, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatchPasswordValidator } from '../../../core/validators/match-password.validator';
 import { PasswordValidator } from '../../../core/validators/password.validator';
 import { FieldComponent } from '../../../shared/components/form/field/field.component';
@@ -24,7 +14,6 @@ import { IconEyeOffComponent } from '../../../shared/icons/eye-off/icon-eye-off.
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { IUser } from '../../../shared/interfaces/auth/user.interface';
 import { IconEditComponent } from '../../../shared/icons/edit/icon-edit.component';
-import { IconSpinnerComponent } from '../../../shared/icons/spinner/icon-spinner.component';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ModalComponent } from '../../../shared/components/modal/modal.component';
@@ -32,9 +21,7 @@ import { FileValidator } from '../../../core/validators/file.validator';
 import { EmailValidator } from '../../../core/validators/email.validator';
 import { StringValidator } from '../../../core/validators/string.validator';
 import { PhoneValidator } from '../../../core/validators/phone.validator';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
-import { MetaService } from '../../../core/services/meta-data/meta.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-profile-settings',
   standalone: true,
@@ -60,20 +47,8 @@ export class ProfileSettingsComponent implements OnInit {
   fb: FormBuilder = inject(FormBuilder);
   authService: AuthService = inject(AuthService);
   _snackBar: MatSnackBar = inject(MatSnackBar);
-  _MetaService: MetaService = inject(MetaService);
   private platformId = inject(PLATFORM_ID);
-  isBrowser = isPlatformBrowser(this.platformId); // Determine if running on browser
   ngOnInit(): void {
-    if (this.isBrowser) {
-      this._MetaService.setCanonicalURL(window.location.href);
-
-      this.router.events
-        .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe(() => {
-          this._MetaService.setCanonicalURL(window.location.href);
-        });
-    }
-
     this.setAuthUserInfoToEditProfileForm();
   }
 
@@ -238,7 +213,7 @@ export class ProfileSettingsComponent implements OnInit {
       .subscribe({
         next: (res: IApiResponse<IUser>) => {
           if (res.success) {
-            if (this.isBrowser) {
+            if (isPlatformBrowser(this.platformId)) {
               localStorage.clear();
             }
             this.router.navigateByUrl('/login');

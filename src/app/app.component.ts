@@ -19,6 +19,7 @@ import { IApiResponse } from './shared/interfaces/api-response-interface';
 import { IUser } from './shared/interfaces/auth/user.interface';
 // import { FirebaseService } from './core/services/firebase/firebase.service';
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
+import { MetaService } from './core/services/meta-data/meta.service';
 
 @Component({
   selector: 'app-root',
@@ -50,6 +51,8 @@ export class AppComponent implements OnInit {
   // Initialize Firebase Notification
   // firebaseService: FirebaseService = inject(FirebaseService);
 
+  private metaService: MetaService = inject(MetaService);
+
   constructor() {
     // Add Google Tag Manager Scripts to Dom
     // if (isPlatformBrowser(this.platformId)) {
@@ -58,6 +61,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.metaService.setCanonicalURL();
+
     // Push Google Tag Manager Page View Event
     // if (isPlatformBrowser(this.platformId)) {
     //   this.router.events.forEach((item) => {

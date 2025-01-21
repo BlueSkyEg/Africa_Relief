@@ -37,25 +37,16 @@ export class ProjectsComponent implements OnInit {
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   projectService: ProjectService = inject(ProjectService);
   breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
-  _MetaService: MetaService = inject(MetaService);
-  private platformId = inject(PLATFORM_ID);
-  router: Router = inject(Router);
+  metaService: MetaService = inject(MetaService);
+
   constructor() {
     // Determine pagination perPage number based on screen size
     this.breakpointObserver.observe('(min-width: 800px)').subscribe({
       next: (value) => (this.paginationPerPage = value.matches ? 9 : 5),
     });
   }
-  ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this._MetaService.setCanonicalURL(window.location.href);
 
-      this.router.events
-        .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe(() => {
-          this._MetaService.setCanonicalURL(window.location.href);
-        });
-    }
+  ngOnInit(): void {
     this.projectService.getProjectCategories().subscribe({
       next: (res: IApiResponse<ICategory[]>) => {
         this.projectCategories = res.data;
@@ -82,7 +73,7 @@ export class ProjectsComponent implements OnInit {
         (category) => category.slug === currentSlug
       );
       if (matchingCategory) {
-        this._MetaService.setMetaData(matchingCategory.meta_data);
+        this.metaService.setMetaData(matchingCategory.meta_data);
       }
     }
   }
