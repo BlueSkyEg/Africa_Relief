@@ -5,6 +5,7 @@ import { YoussefAbdallahComponent } from './components/about/youssef-abdallah/yo
 import { StockDonationsComponent } from './components/get-involved/stock-donations/stock-donations.component';
 import { ZakatCalculatorComponent } from './components/zakat-calculator/zakat-calculator.component';
 import { GiftMatchingComponent } from './components/get-involved/gift-matching/gift-matching.component';
+import { PrivacyComponent } from './components/privacy/privacy.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -89,6 +90,10 @@ export const routes: Routes = [
   {
     path: 'get-involved/stock-donations',
     component: StockDonationsComponent,
+  },
+  {
+    path: 'home/privacy',
+    component: PrivacyComponent,
   },
   {
     path: 'get-involved/gift-matching',
