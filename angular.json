@@ -53,6 +53,7 @@
               "src/.htaccess",
               "src/assets",
               "src/robots.txt",
+              "src/redirects.json",
               {
                 "glob": "**/*",
                 "input": "src/assets/.well-known",
