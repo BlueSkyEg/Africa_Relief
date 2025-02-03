@@ -53,6 +53,7 @@
               "src/.htaccess",
               "src/assets",
               "src/robots.txt",
+              "src/sitemap.xml",
               "src/redirects.json",
               {
                 "glob": "**/*",

@@ -1,3 +1,7 @@
 User-agent: *
 Disallow: /admin/
-Allow: /
+Disallow: /login
+Disallow: /forgot-password
+Disallow: /checkout
+Disallow: /cart
+Disallow: /current_url
