@@ -5,7 +5,7 @@ import { YoussefAbdallahComponent } from './components/about/youssef-abdallah/yo
 import { StockDonationsComponent } from './components/get-involved/stock-donations/stock-donations.component';
 import { ZakatCalculatorComponent } from './components/zakat-calculator/zakat-calculator.component';
 import { GiftMatchingComponent } from './components/get-involved/gift-matching/gift-matching.component';
-import { PrivacyComponent } from './components/privacy/privacy.component';
+import { PrivacyPolicyComponent } from './components/privacy/privacy-policy.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -92,8 +92,8 @@ export const routes: Routes = [
     component: StockDonationsComponent,
   },
   {
-    path: 'home/privacy',
-    component: PrivacyComponent,
+    path: 'privacy-policy',
+    component: PrivacyPolicyComponent,
   },
   {
     path: 'get-involved/gift-matching',

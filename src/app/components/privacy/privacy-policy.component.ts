@@ -6,9 +6,9 @@ import { CommonModule } from '@angular/common';
   selector: 'app-privacy',
   standalone: true,
   imports: [BreadcrumbComponent,CommonModule,],
-  templateUrl: './privacy.component.html',
+  templateUrl: './privacy-policy.component.html',
 })
-export class PrivacyComponent {
+export class PrivacyPolicyComponent {
   openDropdownId: string | null = null;
   toggleDropdown(id: string){
     this.openDropdownId = this.openDropdownId === id ? null : id;
