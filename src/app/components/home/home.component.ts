@@ -19,6 +19,8 @@ import { IconUserComponent } from '../../shared/icons/user/icon-user.component';
 import { IconVideoPlayComponent } from '../../shared/icons/video-play/icon-video-play.component';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CommonModule, DOCUMENT } from '@angular/common';
+import { IconZelleComponent } from "../../shared/icons/payment-gateways/zelle/icon-zelle.component";
+import { IconEnvelopeComponent } from "../../shared/icons/envelope/icon-envelope.component";
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -50,7 +52,9 @@ import { CommonModule, DOCUMENT } from '@angular/common';
     IconUserComponent,
     IconVideoPlayComponent,
     CommonModule,
-  ],
+    IconZelleComponent,
+    IconEnvelopeComponent
+],
 })
 export class HomeComponent {
   videoModalOpened: Boolean = false;
