@@ -266,10 +266,13 @@
         >
       </app-form-field>
       <div class="flex items-center justify-between gap-2">
-        <button (click)="deleteAccount()" class="flex justify-center items-center self-stretch gap-2 py-2 sm:py-3 px-3 sm:px-6 bg-danger text-white ">
+        <button (click)="openModal()" class="flex justify-center items-center self-stretch gap-2 py-2 sm:py-3 px-3 sm:px-6 bg-danger text-white ">
           Delete Account
         </button>
-
+    <app-confirm-modal *ngIf="isModalOpen" title="Confirm Deletion"
+      message="Are you sure you want to delete your account? This action is irreversible." (confirm)="deleteAccount()"
+      (cancel)="closeModal()">
+    </app-confirm-modal>
       <app-form-button
         class="flex justify-end"
         appearance="filled"
