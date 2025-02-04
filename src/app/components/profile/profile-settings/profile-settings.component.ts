@@ -254,4 +254,28 @@ export class ProfileSettingsComponent implements OnInit {
 
     this.passwordStrenth = tempPasswordStrenth;
   }
+
+
+  /*
+-------------------------------
+-- Delete Account
+-------------------------------
+*/
+  deleteAccount() {
+    this.authService.DeleteAccount().subscribe({
+      next: (res: IApiResponse<null>) => {
+        console.log('Account deleted successfully', res);
+        if (res.success){
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('tokenExpiresAt');
+          this.router.navigateByUrl('/login');
+        }
+            },
+      error: (error) => {
+        console.error('Error deleting account', error);
+
+      },
+    });
+  }
+
 }

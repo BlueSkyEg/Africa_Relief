@@ -1,12 +1,12 @@
 <div class="container  my-10 lg:mb-20 ">
   <app-breadcrumb currentName="Privacy Policy" appreance="primary" />
-  <div class="main-container flex w-[1248px] flex-col gap-[24px] items-start flex-nowrap relative mx-auto mb-0 mt-6">
+  <div class=" flex   flex-col container items-start flex-nowrap  mx-auto mb-0 mt-6">
     <span
-      class="flex w-[824px] h-[112px] justify-start items-start shrink-0 font-['Roboto_Serif'] text-[48px] font-medium leading-[56px] text-primary relative text-left">Privacy
+      class="flex justify-start items-start  font-['Roboto_Serif'] text-xl lg:text-[48px] font-semibold lg:leading-[56px] my-2 text-primary  text-left">Privacy
       Statement for Africa Relief and Community Development</span><span
-      class="h-[32px] self-stretch shrink-0 basis-auto font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left whitespace-nowrap z-[1]">Last
+      class=" text-lg lg:text-[18px] font-normal leading-[32px] text-[#403f3e] m-5 text-left whitespace-nowrap ">Last
       Updated: January 30, 2025</span><span
-      class="flex w-[1248px] h-[128px] justify-start items-start self-stretch shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left z-[2]">At
+      class=" flex  justify-start items-start self-stretch shrink-0 font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e] m-5 text-left ">At
       Africa Relief and Community Development, we are committed to
       protecting your privacy. This statement describes the practices, policies,
       and procedures related to our website located at africarelief.org,
@@ -14,14 +14,16 @@
       we may use that information, with whom we share it, how we safeguard that
       information, and the choices you have regarding our collection, use, and
       disclosure of your information.</span><span
-      class="flex w-[1248px] h-[64px] justify-start items-start self-stretch shrink-0 font-['Inter'] text-[16px] font-normal leading-[32px] text-[#403f3e] relative text-left z-[3]">[Please
+      class="flex justify-start items-start self-stretch shrink-0 font-['Inter'] text-[16px] font-normal leading-[32px] text-[#403f3e]  text-left z-[3]">[Please
       note that this Privacy Statement applies only to our online
       information-gathering and dissemination practices occurring on our website
       and does not apply to any of our practices conducted offline.]</span>
+
+    <!--Block 1-->
     <div
-      class="flex cursor-pointer pt-[16px] pr-[16px] pb-[16px] pl-[16px] gap-[24px] items-center self-stretch shrink-0 flex-nowrap border-solid border-b border-b-[#cccccc] relative z-[4]">
+      class="flex cursor-pointer p-4 justify-between items-center self-stretch shrink-0  border-solid border-b border-b-[#cccccc]">
       <span (click)="toggleDropdown('one')"
-        class="h-[32px] grow shrink-0 basis-auto font-['Roboto_Serif'] text-[24px] font-medium leading-[32px] text-[#1f1f1f] relative text-left whitespace-nowrap z-[5]">Information
+        class="font-['Roboto_Serif'] lg:text-[24px] font-medium leading-[32px] text-[#1f1f1f]  text-left">Information
         We Collect and How We Use That Information</span>
       <svg (click)="toggleDropdown('one')" xmlns="http://www.w3.org/2000/svg"
         class="cursor-pointer h-6 w-6 ml-2 transition-transform duration-300 ease-in-out"
@@ -30,21 +32,21 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
       </svg>
     </div>
-    <div *ngIf="openDropdownId=='one'">
+    <div *ngIf="openDropdownId=='one'" class="mx-5">
       <span
-        class="flex w-[612px] h-[32px] justify-start items-start shrink-0 basis-auto font-['Inter'] text-[20px] font-medium leading-[32px] text-[#1f1f1f] relative text-left whitespace-nowrap z-[7]">Personal
+        class="flex  justify-start items-start font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e] m-5 text-left">Personal
         Information You Provide</span><span
-        class="flex w-[1248px] h-[160px] justify-start items-start self-stretch shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left z-[8]">We
+        class="flex  justify-start items-start font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e] m-5 text-left">We
         may collect a range of Personal Information. “Personal Information”
         means any information that is linked or reasonably linkable to an
         identified or identifiable natural person. Personal Information does not
         include de-identified data or publicly available information.
         <br /><br />Personal Information you provide to us through the website or
         otherwise may include:</span>
-      <div class="self-stretch shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] relative text-left z-[9]">
+      <div class=" font-['Inter'] lg:text-[20px] font-normal lg:leading-[32px]  text-left">
         <span
-          class="font-['Inter'] text-[20px] font-semibold leading-[32px] text-[#403f3e] relative text-left">Donate:</span><span
-          class="font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left">
+          class="font-['Inter'] lg:text-[20px] font-semibold lg:leading-[32px] text-[#403f3e]  text-left">Donate:</span><span
+          class="flex  justify-start items-start  font-['Inter'] lg:text-[20px] font-normal lg:leading-[32px] text-[#403f3e] m-3 text-left">
           If you donate through our website via the “donate” option, you will be
           asked to provide certain Personal Information, such as your phone
           number, name, and home address, as well as your credit card billing
@@ -53,26 +55,27 @@
           donation (and may be used again if you opt to make recurring donations)
           and will not be stored or used for any other purpose.</span>
       </div>
-      <div class="w-[1248px] shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] relative text-left z-10">
+      <div class="  font-['Inter'] lg:text-[20px] font-normal lg:leading-[32px]  text-left z-10">
         <span
-          class="font-['Inter'] text-[20px] font-semibold leading-[32px] text-[#403f3e] relative text-left">Newsletter:
-        </span><span class="font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left">If
+          class="font-['Inter'] lg:text-[20px] font-semibold lg:leading-[32px] text-[#403f3e]  text-left">Newsletter:
+        </span><span
+          class="flex  justify-start items-start  font-['Inter'] lg:text-[20px] font-normal lg:leading-[32px] text-[#403f3e] m-2 text-left">If
           you opt to sign up for our email newsletter [or opt to subscribe to
           any one of our “content feeds”], we will ask you to provide certain
           Personal Information, including your email address.</span>
       </div>
-      <div class="w-[1248px] shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] relative text-left z-[11]">
-        <span class="font-['Inter'] text-[20px] font-semibold leading-[32px] text-[#403f3e] relative text-left">Contact
+      <div class="font-['Inter'] lg:text-[20px] font-normal lg:leading-[32px]  text-left ">
+        <span class="font-['Inter'] lg:text-[20px] font-semibold lg:leading-[32px] text-[#403f3e]  text-left">Contact
           us/provide feedback:</span><span
-          class="font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left">
+          class="flex  justify-start items-start  font-['Inter'] lg:text-[20px] font-normal lg:leading-[32px] text-[#403f3e] m-5 text-left">
           If you opt to contact us, you will be asked to provide us certain
           Personal Information. The information we collect may include your name,
           email address, address, and phone number.</span>
       </div>
-      <div class="w-[1248px] shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] relative text-left z-[12]">
+      <div class=" shrink-0 font-['Inter'] lg:text-[20px] font-normal lg:leading-[32px] text-left">
         <span
-          class="font-['Inter'] text-[20px] font-semibold leading-[32px] text-[#403f3e] relative text-left">Logins:</span><span
-          class="font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left">
+          class="font-['Inter'] lg:text-[20px] font-semibold lg:leading-[32px] text-[#403f3e]  text-left">Logins:</span><span
+          class="flex  justify-start items-start  font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e] m-5 text-left">
           If you opt to login or register for access to additional tools available
           on our website, please note that we will have access to certain of the
           Personal Information that you provide us in the registration process and
@@ -80,10 +83,10 @@
           and an account password.</span>
       </div>
       <span
-        class="flex w-[824px] h-[32px] justify-start items-start shrink-0 basis-auto font-['Inter'] text-[20px] font-medium leading-[32px] text-[#1f1f1f] relative text-left whitespace-nowrap z-[13]">Any
+        class="flex  justify-start items-start  font-['Inter'] lg:text-[20px] font-medium lg:leading-[32px] text-[#1f1f1f]  text-left ">Any
         of the information you provide to us may be used in one of the
         following ways:</span><span
-        class="flex w-[1248px] h-[480px] justify-start items-start self-stretch shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left z-[14]">To
+        class="flex  justify-start items-start  font-['Inter'] lg:text-[20px] font-normallg: leading-[32px] text-[#403f3e] m-3 text-left">To
         process donations that you make and to send you receipts for those
         donations.<br />To provide and operate the website.<br />To personalize
         your experience (your information helps us to better respond to your
@@ -103,14 +106,14 @@
         fraudulent, harmful, unauthorized, unethical or illegal activity.<br />With
         your consent. In some cases, we may specifically ask you for your consent
         to collect, use or share your Personal Information.</span><span
-        class="flex w-[1248px] h-[64px] justify-start items-start self-stretch shrink-0 font-['Inter'] text-[16px] font-normal leading-[32px] text-[#403f3e] relative text-left z-[15]">*
+        class="flex justify-start items-start  font-['Inter'] lg:text-[16px] font-normal lg:leading-[32px] text-[#403f3e]  text-left">*
         You hereby grant ARCD a non-exclusive, worldwide, royalty-free,
         sub-licensable license to utilize any information or feedback, comments,
         ideas, proposals and suggestions for improvements that may be provided by
         you to us.</span><span
-        class="flex w-[612px] h-[32px] justify-start items-start shrink-0 basis-auto font-['Inter'] text-[20px] font-medium leading-[32px] text-[#1f1f1f] relative text-left whitespace-nowrap z-[16]">Personal
+        class="flex  justify-start items-start font-['Inter'] lg:text-[20px] font-medium lg:leading-[32px] text-[#1f1f1f]  text-left">Personal
         Information That We Collect Automatically</span><span
-        class="flex w-[1248px] h-[128px] justify-start items-start shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left z-[17]">We
+        class=" shrink-0 flex  justify-start items-start  font-['Inter'] lg:text-[20px] font-normal lg:leading-[32px] text-[#403f3e] m-3 text-left ">We
         also collect certain Personal Information by automated means when you
         visit the website. The information may include usage information, such as
         [the numbers and frequency of users to the website, pages visited, web
@@ -118,23 +121,23 @@
         and similar data]. When gathered, this data is often used in the
         aggregate, and not in a manner that is intended to identify you
         personally. </span><span
-        class="flex w-[1248px] h-[64px] justify-start items-start self-stretch shrink-0 font-['Inter'] text-[16px] font-normal leading-[32px] text-[#403f3e] relative text-left z-[18]">[This
+        class="flex justify-start items-start  font-['Inter'] text-[16px] font-normal leading-[32px] text-[#403f3e]  text-left z-[18]">[This
         type of aggregate information may be shared with third parties at
         any time, including advertisers, marketers, and machine learning vendors
         or service providers.]</span><span
-        class="flex w-[1248px] h-[64px] justify-start items-start shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left z-[19]">In
+        class="flex  justify-start items-start  font-['Inter'] lg:text-[20px] font-normal lg:leading-[32px] text-[#403f3e] m-5 text-left">In
         addition to the third-party tracking services mentioned above, we also
         collect this information through various other means, including "cookies,"
         "web beacons" and IP addresses, as further explained below.</span><span
-        class="flex w-[1248px] h-[64px] justify-start items-start self-stretch shrink-0 font-['Inter'] text-[16px] font-normal leading-[32px] text-[#403f3e] relative text-left z-20">[In
+        class="fflex  justify-start items-start  font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e] m-5 text-left">[In
         conjunction with advertisements that we may serve on the website, we
         also may use “ad pixels” and/or “trackers” that follow and track your
         activities from an ad placement to specific website use/activities.]</span>
 
-      <div class="w-[1248px] shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] relative text-left z-[21]">
+      <div class=" shrink-0 font-['Inter'] lg:text-[20px] font-normal leading-[32px]  text-left z-[21]">
         <span
-          class="font-['Inter'] text-[20px] font-semibold leading-[32px] text-[#403f3e] relative text-left">Cookies:</span><span
-          class="font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left">
+          class="font-['Inter'] lg:text-[20px] font-semibold leading-[32px] text-[#403f3e]  text-left">Cookies:</span><span
+          class="flex  justify-start items-start  font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e] m-5 text-left">
           <br />A cookie is a piece of information that a web server may place on
           your computer when you visit a website. Cookies are commonly used by
           websites to improve the user experience. Many cookies last only through
@@ -161,10 +164,10 @@
           cookie information gathered by these companies in the same manner as
           stated in this Privacy Statement.</span>
       </div>
-      <div class="w-[1248px] shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] relative text-left z-[22]">
-        <span class="font-['Inter'] text-[20px] font-semibold leading-[32px] text-[#403f3e] relative text-left">Web
+      <div class=" shrink-0 font-['Inter'] lg:text-[20px] font-normal  lg:leading-[32px]  text-left z-[22]">
+        <span class="font-['Inter'] lg:text-[20px] font-semibold  lg:leading-[32px] text-[#403f3e]  text-left">Web
           Beacon:</span><span
-          class="font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left">
+          class="flex  justify-start items-start  font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e] m-5 text-left">
           <br />Certain pages on the website contain “web beacons” (also known as
           Internet tags, pixel tags and clear GIFs). These web beacons allow third
           parties to obtain information such as the IP Address (defined below) of
@@ -179,10 +182,11 @@
           when the email was opened, how many times it was forwarded, and which
           URLs (links within the email) were clicked.</span>
       </div>
-      <div class="w-[1248px] shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] relative text-left z-[23]">
-        <span class="font-['Inter'] text-[20px] font-semibold leading-[32px] text-[#403f3e] relative text-left">IP
+      <div class=" shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px]  text-left z-[23]">
+        <span class="font-['Inter'] text-[20px] font-semibold leading-[32px] text-[#403f3e]  text-left">IP
           Addresses:<br /></span><span
-          class="font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left">When you visit
+          class="flex  justify-start items-start  font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e] m-5 text-left">When
+          you visit
           and interact with the website, we and third parties with
           whom we have contracted to provide services for us may collect Internet
           Protocol addresses (each an “IP Address”), as well as browser type,
@@ -198,10 +202,12 @@
           website or for other lawful purposes.</span>
       </div>
     </div>
+
+    <!--block 2-->
     <div
-      class="flex pt-[16px] pr-[16px] pb-[16px] pl-[16px] gap-[24px] items-center self-stretch shrink-0 flex-nowrap border-solid border-b border-b-[#cccccc] relative z-[24]">
+      class="flex cursor-pointer p-4 justify-between items-center self-stretch shrink-0  border-solid border-b border-b-[#cccccc]">
       <span (click)="toggleDropdown('two')"
-        class="h-[32px] grow shrink-0 basis-auto font-['Roboto_Serif'] text-[24px] font-medium leading-[32px] text-[#1f1f1f] relative text-left whitespace-nowrap z-[25]">How
+        class="font-['Roboto_Serif'] lg:text-[24px] font-medium leading-[32px] text-[#1f1f1f]  text-left">How
         We Protect Your Information</span>
       <svg (click)="toggleDropdown('two')" xmlns="http://www.w3.org/2000/svg"
         class="cursor-pointer h-6 w-6 ml-2 transition-transform duration-300 ease-in-out"
@@ -211,15 +217,17 @@
       </svg>
     </div>
     <span *ngIf="openDropdownId=='two'"
-      class="flex w-[1248px] h-[96px] justify-start items-start self-stretch shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left z-[27]">We
+      class="flex  justify-start items-start font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e] m-5 text-left">We
       implement reasonable security measures to protect your Personal
       Information from unauthorized access and misuse. However, security risk is
       inherent in all internet and information technologies, and we cannot
       guarantee the security of your Personal Information.</span>
+
+    <!--Block 3-->
     <div
-      class="flex pt-[16px] pr-[16px] pb-[16px] pl-[16px] gap-[24px] items-center self-stretch shrink-0 flex-nowrap border-solid border-b border-b-[#cccccc] relative z-[28]">
+      class="flex cursor-pointer p-4 justify-between items-center self-stretch shrink-0  border-solid border-b border-b-[#cccccc]">
       <span (click)="toggleDropdown('third')"
-        class="h-[32px] grow shrink-0 basis-auto font-['Roboto_Serif'] text-[24px] font-medium leading-[32px] text-[#1f1f1f] relative text-left whitespace-nowrap z-[29]">How
+        class="font-['Roboto_Serif'] lg:text-[24px] font-medium leading-[32px] text-[#1f1f1f]  text-left ">How
         We Share Your Information</span>
       <svg (click)="toggleDropdown('third')" xmlns="http://www.w3.org/2000/svg"
         class="cursor-pointer h-6 w-6 ml-2 transition-transform duration-300 ease-in-out"
@@ -230,19 +238,19 @@
     </div>
     <div *ngIf="openDropdownId=='third'">
       <span
-        class="flex w-[1248px] h-[64px] justify-start items-start self-stretch shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left z-[31]">We
+        class="flex  justify-start items-start font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e] m-5 text-left">We
         do not share your Personal Information with third parties without your
         consent, except in the circumstances described below. Note that we have
         strict confidentiality agreements with any third parties with whom we may
         share your Personal Information.</span><span
-        class="h-[32px] self-stretch shrink-0 basis-auto font-['Inter'] text-[16px] font-normal leading-[32px] text-[#403f3e] relative text-left whitespace-nowrap z-[32]">[Affiliates:
+        class=" font-['Inter'] text-[16px] font-normal leading-[32px] text-[#403f3e]  text-left ">[Affiliates:
         We may share your Personal Information with our corporate
         parent, subsidiaries, and affiliates, for purposes consistent with this
         Privacy Statement.]</span>
-      <div class="w-[1248px] shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] relative text-left z-[33]">
-        <span class="font-['Inter'] text-[20px] font-semibold leading-[32px] text-[#403f3e] relative text-left">Service
+      <div class="font-['Inter'] lg:text-[20px] font-normal   text-left">
+        <span class="font-['Inter'] lg:text-[20px] font-semibold  text-[#403f3e]  text-left">Service
           providers:</span><span
-          class="font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left">
+          class="flex  justify-start items-start  font-['Inter'] lg:text-[20px] font-normal  text-[#403f3e] m-2 text-left">
           We may share your Personal Information with third party companies and
           individuals that provide services on our behalf or help us operate our
           business (such as customer support, hosting, analytics, email delivery,
@@ -252,20 +260,20 @@
           from using or disclosing your information for any other purpose.</span>
       </div>
       <span
-        class="flex w-[1248px] h-[64px] justify-start items-start self-stretch shrink-0 font-['Inter'] text-[16px] font-normal leading-[32px] text-[#403f3e] relative text-left z-[34]">[Professional
+        class="flex  justify-start items-start font-['Inter'] lg:text-[20px] font-normal  text-[#403f3e] m-2 text-left">[Professional
         advisors: We may disclose your Personal Information to
         professional advisors, such as lawyers, bankers, auditors, and insurers,
         where necessary in the course of the professional services that they
         render to us.]</span>
-      <div class="w-[1248px] shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] relative text-left z-[35]">
-        <span class="font-['Inter'] text-[20px] font-semibold leading-[32px] text-[#403f3e] relative text-left">For
+      <div class=" shrink-0 font-['Inter'] lg:text-[20px] font-normal   text-left z-[35]">
+        <span class="font-['Inter'] lg:text-[20px] font-semibold  text-[#403f3e]  text-left">For
           compliance, fraud prevention, and safety:</span><span
-          class="font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left">
+          class="flex  justify-start items-start font-['Inter'] lg:text-[20px] font-normal  text-[#403f3e] m-5 text-left">
           We may share your Personal Information for the compliance, fraud
           prevention, and safety purposes described above.<br /></span><span
-          class="font-['Inter'] text-[20px] font-semibold leading-[32px] text-[#403f3e] relative text-left">Business
+          class="font-['Inter'] lg:text-[20px] font-semibold  text-[#403f3e]  text-left">Business
           transfers:</span><span
-          class="font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left">
+          class="flex  justify-start items-start font-['Inter'] lg:text-[20px] font-normal  text-[#403f3e] m-5 text-left">
           We may sell, transfer or otherwise share some or all of our business or
           assets, including your Personal Information, in connection with a
           business transaction (or potential business transaction) such as a
@@ -274,10 +282,12 @@
           efforts to require the recipient to honor the Privacy Statement.</span>
       </div>
     </div>
+
+    <!--Block 4-->
     <div
-      class="flex pt-[16px] cursor-pointer pr-[16px] pb-[16px] pl-[16px] gap-[24px] items-center self-stretch shrink-0 flex-nowrap border-solid border-b border-b-[#cccccc] relative z-[36]">
+      class="flex cursor-pointer p-4 justify-between items-center self-stretch shrink-0  border-solid border-b border-b-[#cccccc]">
       <span (click)="toggleDropdown('fourth')"
-        class="h-[32px]  grow shrink-0 basis-auto font-['Roboto_Serif'] text-[24px] font-medium leading-[32px] text-[#1f1f1f] relative text-left whitespace-nowrap z-[37]">Third
+        class="font-['Roboto_Serif'] lg:text-[24px] font-medium leading-[32px] text-[#1f1f1f]  text-left ">Third
         Party Websites</span>
       <svg (click)="toggleDropdown('fourth')" xmlns="http://www.w3.org/2000/svg"
         class="cursor-pointer h-6 w-6 ml-2 transition-transform duration-300 ease-in-out"
@@ -287,7 +297,7 @@
       </svg>
     </div>
     <span *ngIf="openDropdownId=='fourth'"
-      class="flex w-[1248px] h-[224px] justify-start items-start self-stretch shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left z-[39]">We
+      class="flex  justify-start items-start font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e] m-5 text-left">We
       provide links to a variety of third-party social media sites and/or
       websites – such as Facebook, X, and LinkedIn - to provide you additional
       venues in which you can learn about, share, and discuss the activities of
@@ -300,10 +310,12 @@
       the content or information of these websites, any products, services,
       advertising, or opportunities that may be offered through these websites,
       or any other use of the linked websites.</span>
+
+    <!--Block 5-->
     <div
-      class="flex cursor-pointer pt-[16px] pr-[16px] pb-[16px] pl-[16px] gap-[24px] items-center self-stretch shrink-0 flex-nowrap border-solid border-b border-b-[#cccccc] relative z-40">
+      class="flex cursor-pointer p-4 justify-between items-center self-stretch shrink-0  border-solid border-b border-b-[#cccccc]">
       <span (click)="toggleDropdown('5')"
-        class="h-[32px] grow shrink-0 basis-auto font-['Roboto_Serif'] text-[24px] font-medium leading-[32px] text-[#1f1f1f] relative text-left whitespace-nowrap z-[41]">How
+        class=" font-['Roboto_Serif'] lg:text-[24px] font-medium leading-[32px] text-[#1f1f1f]  text-left">How
         Long We Retain Your Information</span>
       <svg (click)="toggleDropdown('5')" xmlns="http://www.w3.org/2000/svg"
         class="cursor-pointer h-6 w-6 ml-2 transition-transform duration-300 ease-in-out"
@@ -312,9 +324,10 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
       </svg>
     </div>
-    <div *ngIf="openDropdownId=='5'"
-      class="self-stretch shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] relative text-left z-[43]">
-      <span class="font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left">We will
+    <div *ngIf="openDropdownId=='5'" class="font-['Inter'] lg:text-[20px] font-normal leading-[32px]  text-left">
+      <span
+        class="flex  justify-start items-start font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e] m-5 text-left">We
+        will
         retain your Personal Information for as long as your account is
         active or as is reasonable and customary given the nature of the
         relationship you have with ARCD. Please note we may need to retain
@@ -323,16 +336,18 @@
         records, which will not be removed from such locations. If you wish to
         cancel your account or request that we no longer use your information to
         provide you services, contact us at</span><span
-        class="font-['Inter'] text-[20px] font-semibold leading-[32px] text-[#403f3e] relative text-left">
+        class="font-['Inter'] lg:text-[20px] font-semibold leading-[32px] text-[#403f3e]  text-left">
         info&#64;arcdus.org.</span><span
-        class="font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left">
+        class="flex  justify-start items-start  font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e] m-5 text-left">
         We will retain and use your information as necessary to comply with our
         legal obligations, resolve disputes, and enforce our agreements.</span>
     </div>
+
+    <!--block 6-->
     <div
-      class="flex cursor-pointer pt-[16px] pr-[16px] pb-[16px] pl-[16px] gap-[24px] items-center self-stretch shrink-0 flex-nowrap border-solid border-b border-b-[#cccccc] relative z-[44]">
+      class="flex cursor-pointer p-4 justify-between items-center self-stretch shrink-0  border-solid border-b border-b-[#cccccc]">
       <span (click)="toggleDropdown('6')"
-        class="h-[32px] grow shrink-0 basis-auto font-['Roboto_Serif'] text-[24px] font-medium leading-[32px] text-[#1f1f1f] relative text-left whitespace-nowrap z-[45]">Your
+        class="font-['Roboto_Serif'] lg:text-[24px] font-medium leading-[32px] text-[#1f1f1f]  text-left ">Your
         Rights to Your Personal Information</span>
       <svg (click)="toggleDropdown('6')" xmlns="http://www.w3.org/2000/svg"
         class="cursor-pointer h-6 w-6 ml-2 transition-transform duration-300 ease-in-out"
@@ -341,19 +356,22 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
       </svg>
     </div>
-    <div *ngIf="openDropdownId=='6'"
-      class="self-stretch shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] relative text-left z-[47]">
-      <span class="font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left">You have the
+    <div *ngIf="openDropdownId=='6'" class="self-stretch shrink-0 font-['Inter'] lg:text-[20px] font-normal  text-left">
+      <span
+        class="flex  justify-start items-start self-stretch shrink-0 font-['Inter'] lg:text-[20px] font-normal  text-[#403f3e] m-5 text-left">You
+        have the
         right to access, correct, or delete your personal
         information. You can also opt- out of receiving promotional
         communications from us. If you would like to exercise these rights,
         please contact us at </span><span
-        class="font-['Inter'] text-[20px] font-semibold leading-[32px] text-[#403f3e] relative text-left">info&#64;arcdus.org.</span>
+        class="font-['Inter'] lg:text-[20px] font-semibold leading-[32px] text-[#403f3e] ms-5 text-left">info&#64;arcdus.org.</span>
     </div>
+
+    <!--block 7-->
     <div
-      class="flex cursor-auto pt-[16px] pr-[16px] pb-[16px] pl-[16px] gap-[24px] items-center self-stretch shrink-0 flex-nowrap border-solid border-b border-b-[#cccccc] relative z-[48]">
+      class="flex cursor-pointer p-4 justify-between items-center self-stretch shrink-0  border-solid border-b border-b-[#cccccc]">
       <span (click)="toggleDropdown('7')"
-        class="h-[32px] grow shrink-0 basis-auto font-['Roboto_Serif'] text-[24px] font-medium leading-[32px] text-[#1f1f1f] relative text-left whitespace-nowrap z-[49]">Transfer
+        class=" font-['Roboto_Serif'] lg:text-[24px] font-medium leading-[32px] text-[#1f1f1f]  text-left ">Transfer
         of Information/Data to Other Countries</span>
       <svg (click)="toggleDropdown('7')" xmlns="http://www.w3.org/2000/svg"
         class="cursor-pointer h-6 w-6 ml-2 transition-transform duration-300 ease-in-out"
@@ -363,7 +381,7 @@
       </svg>
     </div>
     <span *ngIf="openDropdownId=='7'"
-      class="flex w-[1248px] h-[128px] justify-start items-start self-stretch shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left z-[51]">Please
+      class="flex  justify-start items-start self-stretch shrink-0 font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e] m-5 text-left">Please
       note that our website is hosted in the United States and are
       governed by United States law. If you are visiting the website from
       outside the United States, please be aware that your Personal Information
@@ -371,10 +389,11 @@
       our servers are located and our central database is operated. The data
       protection and other laws of the United States and other countries might
       not be as comprehensive as those in your country.</span>
+    <!--block 8-->
     <div
-      class="flex cursor-pointer pt-[16px] pr-[16px] pb-[16px] pl-[16px] gap-[24px] items-center self-stretch shrink-0 flex-nowrap border-solid border-b border-b-[#cccccc] relative z-[52]">
+      class="flex cursor-pointer p-4 justify-between items-center self-stretch shrink-0  border-solid border-b border-b-[#cccccc]">
       <span (click)="toggleDropdown('8')"
-        class="h-[32px] grow shrink-0 basis-auto font-['Roboto_Serif'] text-[24px] font-medium leading-[32px] text-[#1f1f1f] relative text-left whitespace-nowrap z-[53]">Children
+        class=" font-['Roboto_Serif'] lg:text-[24px] font-medium leading-[32px] text-[#1f1f1f]  text-left ">Children
         and Privacy</span>
       <svg (click)="toggleDropdown('8')" xmlns="http://www.w3.org/2000/svg"
         class="cursor-pointer h-6 w-6 ml-2 transition-transform duration-300 ease-in-out"
@@ -384,22 +403,26 @@
       </svg>
     </div>
     <div *ngIf="openDropdownId=='8'"
-      class="self-stretch shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] relative text-left z-[55]">
-      <span class="font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left">We do not
+      class="self-stretch shrink-0 font-['Inter'] lg:text-[20px] font-normal leading-[32px]  text-left">
+      <span
+        class="flex  justify-start items-start self-stretch shrink-0 font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e] m-5 text-left ">We
+        do not
         knowingly collect, use, or disclose Personal Information
         about children under the age of 16. If you are under the age of 16, you
         must ask your parent or guardian to assist you while accessing/viewing
         our website. If you are the parent or guardian of a child under 16 years
         of age and believe that they have disclosed Personal Information to us,
         please contact us at </span><span
-        class="font-['Inter'] text-[20px] font-semibold leading-[32px] text-[#403f3e] relative text-left">info&#64;arcdus.org</span><span
-        class="font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left">
+        class="font-['Inter'] lg:text-[20px] font-semibold leading-[32px] text-[#403f3e]  text-left">info&#64;arcdus.org</span><span
+        class="font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e]  text-left">
         and we will promptly address the situation.</span>
     </div>
+
+    <!--Block 10-->
     <div
-      class="flex pt-[16px] pr-[16px] pb-[16px] pl-[16px] gap-[24px] items-center self-stretch shrink-0 flex-nowrap border-solid border-b border-b-[#cccccc] relative z-[56]">
+      class="flex cursor-pointer p-4 justify-between items-center self-stretch shrink-0  border-solid border-b border-b-[#cccccc]">
       <span (click)="toggleDropdown('10')"
-        class="h-[32px] grow shrink-0 basis-auto font-['Roboto_Serif'] text-[24px] font-medium leading-[32px] text-[#1f1f1f] relative text-left whitespace-nowrap z-[57]">Changes
+        class=" font-['Roboto_Serif'] lg:text-[24px] font-medium leading-[32px] text-[#1f1f1f]  text-left">Changes
         to Our Privacy Statement</span>
       <svg (click)="toggleDropdown('10')" xmlns="http://www.w3.org/2000/svg"
         class="cursor-pointer h-6 w-6 ml-2 transition-transform duration-300 ease-in-out"
@@ -409,7 +432,7 @@
       </svg>
     </div>
     <span *ngIf="openDropdownId=='10'"
-      class="flex w-[1248px] h-[224px] justify-start items-start self-stretch shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left z-[59]">We
+      class="flex  justify-start items-start self-stretch shrink-0 font-['Inter'] lg:text-[20px] font-normal leading-[32px] text-[#403f3e] m-5 text-left ">We
       reserve the right to modify this Privacy Statement at any time. If we
       make material changes to this statement, we will notify you by updating
       the date of the statement and posting it on our website. We may (and if
@@ -420,53 +443,40 @@
       effective upon our posting the new terms. In all cases, your continued use
       of the website after the posting of any modified Privacy Statement
       indicates your acceptance of the revisions.</span>
-    <div
-      class="flex pt-[16px] pr-[16px] pb-[16px] pl-[16px] gap-[24px] items-center self-stretch shrink-0 flex-nowrap border-solid border-b border-b-[#cccccc] relative z-[60]">
+
+    <!-- Contact us -->
+    <ng-container>
+      <div class="flex p-4  ">
+        <span class=" font-['Roboto_Serif'] text-[24px] font-medium  text-[#1f1f1f]  text-left">How
+          to Contact Us</span>
+
+      </div>
       <span
-        class="h-[32px] grow shrink-0 basis-auto font-['Roboto_Serif'] text-[24px] font-medium leading-[32px] text-[#1f1f1f] relative text-left whitespace-nowrap z-[61]">How
-        to Contact Us</span>
-      <div class="w-[32px] h-[32px] shrink-0  bg-[length:100%_100%] bg-no-repeat relative z-[62]">
-      </div>
-    </div>
-    <span
-      class="flex w-[1248px] h-[128px] justify-start items-start self-stretch shrink-0 font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left overflow-hidden z-[63]">
-      we are grateful for your support. If you have any questions about ARCD
-      Privacy Statement,<br />please contact us: <br /><br />Africa Relief and Community Development</span>
-    <div class="flex w-[612px] flex-col gap-[12px] items-end shrink-0 flex-nowrap relative z-[64]">
-      <div
-        class="flex pt-[16px] pr-[16px] pb-[16px] pl-[16px] gap-[12px] items-center self-stretch shrink-0 flex-nowrap bg-[#fff] border-solid border border-[#dedede] relative z-[65]">
-        <!-- <div
-          class="w-[24px] h-[24px] shrink-0 bg-cover bg-no-repeat relative overflow-hidden z-[66]">
-        </div> -->
-        <span
-          class="h-[32px] shrink-0 basis-auto font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left whitespace-nowrap z-[67]">65
-          Kingsland Ave Suite#2, Clifton, NJ 07014</span>
-      </div>
-      <div class="flex flex-col items-end self-stretch shrink-0 flex-nowrap relative z-[68]">
-        <div class="flex gap-[12px] items-start self-stretch shrink-0 flex-nowrap relative z-[69]">
-          <div
-            class="flex pt-[16px] pr-[16px] pb-[16px] pl-[16px] gap-[12px] items-center grow shrink-0 basis-0 flex-nowrap bg-[#fff] border-solid border border-[#dedede] relative z-[70]">
-            <!-- <div
-              class="w-[24px] h-[24px] shrink-0 bg-cover bg-no-repeat relative overflow-hidden z-[71]">
-            </div> -->
+        class="flex px-5 justify-start items-start self-stretch shrink-0  font-['Inter'] lg:text-[20px] font-normal  text-[#403f3e]  text-left overflow-hidden ">
+        we are grateful for your support. If you have any questions about ARCD
+        Privacy Statement,<br />please contact us: <br /><br />Africa Relief and Community Development</span>
+      <div class="flex flex-col gap-2  my-2">
+        <div class="flex p-4  bg-[#fff] border-solid border border-[#dedede]  ">
+          <span class=" text-[20px]  leading-[32px] text-[#403f3e]  text-left ">65
+            Kingsland Ave Suite#2, Clifton, NJ 07014</span>
+        </div>
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex p-4 bg-[#fff] border-solid border w-full border-[#dedede] ">
+
             <a href="mailto:info@arcdus.org" onclick="window.open('mailto:info@arcdus.org'); return false;"
-              class="h-[32px] shrink-0 basis-auto font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left whitespace-nowrap z-[72]">
+              class="text-[20px] font-normal leading-[32px] text-[#403f3e]  text-left ">
               info&#64;arcdus.org
             </a>
           </div>
-          <div
-            class="flex pt-[16px] pr-[16px] pb-[16px] pl-[16px] gap-[12px] items-center grow shrink-0 basis-0 flex-nowrap bg-[#fff] border-solid border border-[#dedede] relative z-[73]">
-            <!-- <div
-              class="w-[24px] h-[24px] shrink-0 bg-cover bg-no-repeat relative overflow-hidden z-[74]">
-            </div> -->
+          <div class="flex p-4 gap-[12px]  bg-[#fff] border-solid border w-full border-[#dedede]">
             <a href="tel:+17322462360" onclick="window.open('tel:+17322462360'); return false;"
-              class="h-[32px] shrink-0 basis-auto font-['Inter'] text-[20px] font-normal leading-[32px] text-[#403f3e] relative text-left whitespace-nowrap z-[75]">
+              class="text-[20px] font-normal leading-[32px] text-[#403f3e]  text-left ">
               (732) 246-2360
             </a>
           </div>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 
 

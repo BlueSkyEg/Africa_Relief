@@ -265,6 +265,11 @@
           >{{ changeProfilePassworedForm.errors?.['mismatch'] }}</app-form-error
         >
       </app-form-field>
+      <div class="flex items-center justify-between gap-2">
+        <button (click)="deleteAccount()" class="flex justify-center items-center self-stretch gap-2 py-2 sm:py-3 px-3 sm:px-6 bg-danger text-white ">
+          Delete Account
+        </button>
+
       <app-form-button
         class="flex justify-end"
         appearance="filled"
@@ -274,6 +279,7 @@
         "
         >Update Password</app-form-button
       >
+      </div>
     </form>
   </div>
   } @else {
