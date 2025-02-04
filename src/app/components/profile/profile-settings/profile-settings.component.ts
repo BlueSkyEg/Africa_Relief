@@ -22,6 +22,7 @@ import { EmailValidator } from '../../../core/validators/email.validator';
 import { StringValidator } from '../../../core/validators/string.validator';
 import { PhoneValidator } from '../../../core/validators/phone.validator';
 import { Router } from '@angular/router';
+import { ConfirmModalComponent } from "./confirm-modal/confirm-modal.component";
 @Component({
   selector: 'app-profile-settings',
   standalone: true,
@@ -39,9 +40,11 @@ import { Router } from '@angular/router';
     IconEyeOffComponent,
     IconEditComponent,
     ModalComponent,
-  ],
+    ConfirmModalComponent
+],
 })
 export class ProfileSettingsComponent implements OnInit {
+  isModalOpen = false;
   user: IUser;
   router: Router = inject(Router);
   fb: FormBuilder = inject(FormBuilder);
@@ -269,6 +272,8 @@ export class ProfileSettingsComponent implements OnInit {
           localStorage.removeItem('accessToken');
           localStorage.removeItem('tokenExpiresAt');
           this.router.navigateByUrl('/login');
+          this.isModalOpen = false;
+
         }
             },
       error: (error) => {
@@ -277,5 +282,13 @@ export class ProfileSettingsComponent implements OnInit {
       },
     });
   }
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
 
 }
