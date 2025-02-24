@@ -16,6 +16,12 @@ export const routes: Routes = [
       import('./components/home/home.component').then((m) => m.HomeComponent),
   },
   {
+    path: 'donation-page',
+    title: 'Donation Page',
+    loadComponent: () =>
+      import('./components/donation-page/donation-page.component').then((m) => m.DonationPageComponent),
+  },
+  {
     path: 'blogs',
     title: 'Blogs',
     loadComponent: () =>
