@@ -78,7 +78,7 @@ import { IconExpandMoreComponent } from '../../shared/icons/expand-more/icon-eye
     IconOrphanComponent,
     MatSelect,
     IconExpandMoreComponent,
-    MatFormField
+    MatFormField,
   ],
   templateUrl: './donation-page.component.html',
 })
@@ -139,12 +139,30 @@ export class DonationPageComponent {
   //orphan project
   orphanGeneral: boolean = false;
   orphanSponsorship: boolean = false;
-  selectedAmount = 50;
+  selectedAmount = 0;
   selectedOrphans = 1;
-  totalAmount = 50;
+  totalAmount = 0;
 
   updateTotal() {
-    this.totalAmount = this.selectedAmount * this.selectedOrphans;
+    if (this.orphanSponsorship) {
+      this.totalAmount = this.selectedAmount * this.selectedOrphans;
+    } else {
+      this.selectedAmount = 0;
+      this.totalAmount = 0;
+    }
+  }
+  resetAmount() {
+    if (!this.orphanGeneral) {
+      this.amount = 0;
+    }
+  }
+
+  resetSponsorship() {
+    if (!this.orphanSponsorship) {
+      this.selectedAmount = 0;
+      this.selectedOrphans = 1;
+      this.totalAmount=0; // Reset to default value if needed
+    }
   }
   // Injected services
   router: Router = inject(Router);
@@ -244,7 +262,6 @@ export class DonationPageComponent {
   // Select category
   selectCategory(categoryId: number) {
     this.amount = 0;
-    this.totalAmount = 0;
     this.selectedAmount = 0;
     this.selectedOrphans = 1;
     this.totalAmount = 0;

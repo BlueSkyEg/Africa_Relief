@@ -62,10 +62,10 @@
       @if(project.title== "Help Give Orphaned Children a Brighter Future") {
       <div class="my-4 flex items-center ">
         <div class="w-1/2">
-          <mat-checkbox [(ngModel)]="orphanGeneral">Orphan General</mat-checkbox>
+          <mat-checkbox [(ngModel)]="orphanGeneral"  (change)="resetAmount()">Orphan General</mat-checkbox>
         </div>
         <div class="w-1/2">
-          <mat-checkbox [(ngModel)]="orphanSponsorship">Orphan sponsorship</mat-checkbox>
+          <mat-checkbox [(ngModel)]="orphanSponsorship"  (change)="resetSponsorship()">Orphan sponsorship</mat-checkbox>
         </div>
       </div>
 
@@ -111,7 +111,7 @@
             <div class="w-5/12">
               <label class="flex flex-1">
                 <input class="peer appearance-none" type="radio" name="orphenAmount" [value]="50"
-                  [(ngModel)]="selectedAmount" (change)="updateTotal()" />
+                  [(ngModel)]="selectedAmount" (ngModelChange)="updateTotal()" />
                 <div
                   class="flex justify-center items-center w-full py-3 px-9 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
                   <span>$50 per orphan (month)</span>
@@ -121,7 +121,7 @@
             <div class="w-5/12">
               <label class="flex flex-1">
                 <input class="peer appearance-none" type="radio" name="orphenAmount" [value]="600"
-                  [(ngModel)]="selectedAmount" (change)="updateTotal()" />
+                  [(ngModel)]="selectedAmount" (ngModelChange)="updateTotal()" />
                 <div
                   class="flex justify-center items-center w-full py-3 px-9 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
                   <span>$600 per orphan (year)</span>
