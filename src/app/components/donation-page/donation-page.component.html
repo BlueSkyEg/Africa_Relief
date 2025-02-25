@@ -171,14 +171,16 @@
         }
       </div>
       <div class="my-4 flex items-center justify-between  ">
-        <mat-checkbox [(ngModel)]="wellsChecked" (change)="getProjects('water');onCategoriesCheckboxChange()">Wells</mat-checkbox>
-        <mat-checkbox [(ngModel)]="foodChecked" (change)="getProject('food-basket');onCategoriesCheckboxChange()" >Food Aid</mat-checkbox>
-        <mat-checkbox [(ngModel)]="educationChecked"(change)="onCategoriesCheckboxChange()" >Education Centers</mat-checkbox>
-        <mat-checkbox>Food 3</mat-checkbox>
-        <mat-checkbox>Food 4</mat-checkbox>
+        <mat-checkbox [(ngModel)]="wellsChecked"
+          (change)="getProjects('water');onCategoriesCheckboxChange()">Wells</mat-checkbox>
+        <mat-checkbox [(ngModel)]="foodChecked" (change)="getProject('food-basket');onCategoriesCheckboxChange()">Food
+          Aid</mat-checkbox>
+        <mat-checkbox [(ngModel)]="educationChecked" (change)="onCategoriesCheckboxChange()">Education
+          Centers</mat-checkbox>
+        <mat-checkbox [(ngModel)]="healthChecked" (change)="onCategoriesCheckboxChange()">Health</mat-checkbox>
 
       </div>
-      <div >
+      <div>
         <div *ngIf="wellsChecked" class="my-3">
           <div class="flex flex-col gap-2 ">
             <h3>Choose amount for (Wells) *
@@ -204,69 +206,119 @@
           <div class="flex flex-col gap-2 ">
             <h3>Choose amount for (Food Aid) *
             </h3>
-        <!--Donation Amounts-->
+            <!--Donation Amounts-->
 
-          <div class="flex flex-wrap gap-3">
-            @for (level of amounts; track level) {
-            <label class="flex flex-1">
-              <input class="peer appearance-none" type="radio" name="amount" [value]="level.amount" [(ngModel)]="amount" />
-              <div
-                class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
-                @if (!level.name) {
-                <span>{{ "$" + level.amount }}</span>
-                } @else {
-                <span>{{ level.name }}</span>
-                }
-              </div>
-            </label>
-            }
-            <label class="flex flex-1">
-              <input
-                class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
-                type="number" [(ngModel)]="amount" placeholder="$ Custom Amount" (keypress)="validateKeyPress($event)"
-                (input)="validateInput($event)" /></label>
+            <div class="flex flex-wrap gap-3">
+              @for (level of amounts; track level) {
+              <label class="flex flex-1">
+                <input class="peer appearance-none" type="radio" name="amount" [value]="level.amount"
+                  [(ngModel)]="amount" />
+                <div
+                  class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                  @if (!level.name) {
+                  <span>{{ "$" + level.amount }}</span>
+                  } @else {
+                  <span>{{ level.name }}</span>
+                  }
+                </div>
+              </label>
+              }
+              <label class="flex flex-1">
+                <input
+                  class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
+                  type="number" [(ngModel)]="amount" placeholder="$ Custom Amount" (keypress)="validateKeyPress($event)"
+                  (input)="validateInput($event)" /></label>
+            </div>
           </div>
         </div>
-        </div>
-                <div *ngIf="educationChecked" class="my-3">
-<label class="flex flex-1 relative">
-  <div
-    class="px-1 flex justify-center items-center w-full py-3 border border-gray-medium cursor-pointer transition-colors ease-in-out">
-    <mat-select [(ngModel)]="selectedProjectSlug" (selectionChange)="onProjectSelect($event.value)">
-      <mat-option *ngFor="let project of customProjects" [value]="project.slug">
-        {{ project.title }}
-      </mat-option>
-    </mat-select>
-  </div>
-</label>
+        <div *ngIf="educationChecked" class="my-3">
+          <label class="flex flex-col flex-1 relative">
 
-<!-- Display selected project details -->
-<div *ngIf="selectedProject">
-        <div class="flex flex-col gap-2 my-4">
-          <h3>Choose amount for {{selectedProject.title}}
-          </h3>
-          <div class="flex flex-wrap gap-3">
-            @for (level of selectedProject.donation_form.levels; track level) {
-            <label class="flex flex-1">
-              <input class="peer appearance-none" type="radio" name="amount" [value]="level.amount" [(ngModel)]="amount" />
-              <div
-                class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
-                @if (!level.name) {
-                <span>{{ "$" + level.amount }}</span>
-                } @else {
-                <span>{{ level.name }}</span>
+            <div class="mb-1">Choose Education Centers Projects
+            </div>
+            <div
+              class="px-1 flex justify-center items-center w-full py-3 border border-gray-medium cursor-pointer transition-colors ease-in-out">
+              <mat-select [(ngModel)]="selectedProjectSlug" (selectionChange)="onProjectSelect($event.value)">
+                <mat-option *ngFor="let project of customProjects" [value]="project.slug">
+                  {{ project.title }}
+                </mat-option>
+              </mat-select>
+            </div>
+          </label>
+
+          <!-- Display selected project details -->
+          <div *ngIf="selectedProject">
+            <div class="flex flex-col gap-2 my-4">
+              <h3>Choose amount for {{selectedProject.title}}
+              </h3>
+              <div class="flex flex-wrap gap-3">
+                @for (level of selectedProject.donation_form.levels; track level) {
+                <label class="flex flex-1">
+                  <input class="peer appearance-none" type="radio" name="amount" [value]="level.amount"
+                    [(ngModel)]="amount" />
+                  <div
+                    class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                    @if (!level.name) {
+                    <span>{{ "$" + level.amount }}</span>
+                    } @else {
+                    <span>{{ level.name }}</span>
+                    }
+                  </div>
+                </label>
                 }
+                <label class="flex flex-1">
+                  <input
+                    class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
+                    type="number" [(ngModel)]="amount" placeholder="$ Custom Amount"
+                    (keypress)="validateKeyPress($event)" (input)="validateInput($event)" /></label>
               </div>
-            </label>
-            }
-            <label class="flex flex-1">
-              <input
-                class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
-                type="number" [(ngModel)]="amount" placeholder="$ Custom Amount" (keypress)="validateKeyPress($event)"
-                (input)="validateInput($event)" /></label>
+            </div>
           </div>
+
+
         </div>
-</div>
+                <div *ngIf="healthChecked" class="my-3">
+                  <label class="flex flex-col flex-1 relative">
+
+                    <div class="mb-1">Choose Health Care Projects
+                    </div>
+                    <div
+                      class="px-1 flex justify-center items-center w-full py-3 border border-gray-medium cursor-pointer transition-colors ease-in-out">
+                      <mat-select [(ngModel)]="selectedProjectSlug" (selectionChange)="onProjectSelect($event.value)">
+                        <mat-option *ngFor="let project of healthProjects" [value]="project.slug">
+                          {{ project.title }}
+                        </mat-option>
+                      </mat-select>
+                    </div>
+                  </label>
+
+                  <!-- Display selected project details -->
+                  <div *ngIf="selectedProject">
+                    <div class="flex flex-col gap-2 my-4">
+                      <h3>Choose amount for {{selectedProject.title}}
+                      </h3>
+                      <div class="flex flex-wrap gap-3">
+                        @for (level of selectedProject.donation_form.levels; track level) {
+                        <label class="flex flex-1">
+                          <input class="peer appearance-none" type="radio" name="amount" [value]="level.amount" [(ngModel)]="amount" />
+                          <div
+                            class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                            @if (!level.name) {
+                            <span>{{ "$" + level.amount }}</span>
+                            } @else {
+                            <span>{{ level.name }}</span>
+                            }
+                          </div>
+                        </label>
+                        }
+                        <label class="flex flex-1">
+                          <input
+                            class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
+                            type="number" [(ngModel)]="amount" placeholder="$ Custom Amount" (keypress)="validateKeyPress($event)"
+                            (input)="validateInput($event)" /></label>
+                      </div>
+                    </div>
+                  </div>
 
 
                 </div>

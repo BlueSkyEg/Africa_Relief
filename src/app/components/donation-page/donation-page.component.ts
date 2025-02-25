@@ -174,8 +174,8 @@ export class DonationPageComponent {
   }
   onCategoriesCheckboxChange() {
     this.amount = 0;
-        this.selectedProject = null;
-        this.selectedProjectSlug = null;
+    this.selectedProject = null;
+    this.selectedProjectSlug = null;
   }
   resetSponsorship() {
     if (!this.orphanSponsorship) {
@@ -188,6 +188,11 @@ export class DonationPageComponent {
     { title: 'Sponsorship For African Students', slug: 'students-sponsorship' },
     { title: 'Educational Center', slug: 'educational-center' },
     { title: 'School Bag Donation', slug: 'school-bag-donation' },
+  ];
+  healthProjects = [
+    { title: 'Cataract Surgery', slug: 'cataract-surgery' },
+    { title: 'Health Care Initiatives', slug: 'health-care' },
+    { title: 'Donate Hearing Aid Device', slug: 'hearing-aid-device' },
   ];
   // Injected services
   router: Router = inject(Router);
