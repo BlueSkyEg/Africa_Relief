@@ -56,6 +56,7 @@ import { ICategory } from '../../shared/interfaces/category-interface';
 import { IProject } from '../../shared/interfaces/project/project-interface';
 import { MatSelect, MatOption, MatFormField } from '@angular/material/select';
 import { IconExpandMoreComponent } from '../../shared/icons/expand-more/icon-eye.component';
+import { IProjectCard } from '../../shared/interfaces/project/project-card-interface';
 
 @Component({
   selector: 'app-donation-page',
@@ -79,6 +80,7 @@ import { IconExpandMoreComponent } from '../../shared/icons/expand-more/icon-eye
     MatSelect,
     IconExpandMoreComponent,
     MatFormField,
+    IconEarthComponent,
   ],
   templateUrl: './donation-page.component.html',
 })
@@ -133,6 +135,7 @@ export class DonationPageComponent {
   displayedCategories: ICategory[] = [];
   amounts: any[] = [];
   project: IProject = null;
+  projects: IProjectCard[] = [];
   makeRecurringDonation: boolean = false;
   recurringPeriod: 'day' | 'week' | 'month' | 'year' = 'month';
   recurring_periods: any = [];
@@ -142,7 +145,20 @@ export class DonationPageComponent {
   selectedAmount = 0;
   selectedOrphans = 1;
   totalAmount = 0;
+  //categories
+  wellsChecked: boolean = false;
+  healthChecked: boolean = false;
+  foodChecked: boolean = false;
+  educationChecked: boolean = false;
+  selectedProjectSlug: string | null = null;
+  selectedProject: any = null; // Stores project details
 
+  onProjectSelect(slug: string) {
+    this.amount = 0;
+    if (slug) {
+      this.getProject(slug);
+    }
+  }
   updateTotal() {
     if (this.orphanSponsorship) {
       this.totalAmount = this.selectedAmount * this.selectedOrphans;
@@ -156,14 +172,23 @@ export class DonationPageComponent {
       this.amount = 0;
     }
   }
-
+  onCategoriesCheckboxChange() {
+    this.amount = 0;
+        this.selectedProject = null;
+        this.selectedProjectSlug = null;
+  }
   resetSponsorship() {
     if (!this.orphanSponsorship) {
       this.selectedAmount = 0;
       this.selectedOrphans = 1;
-      this.totalAmount=0; // Reset to default value if needed
+      this.totalAmount = 0; // Reset to default value if needed
     }
   }
+  customProjects = [
+    { title: 'Sponsorship For African Students', slug: 'students-sponsorship' },
+    { title: 'Educational Center', slug: 'educational-center' },
+    { title: 'School Bag Donation', slug: 'school-bag-donation' },
+  ];
   // Injected services
   router: Router = inject(Router);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
@@ -247,6 +272,7 @@ export class DonationPageComponent {
     this.projectService.getProject(slug).subscribe({
       next: (res: IApiResponse<IProject>) => {
         this.project = res.data;
+        this.selectedProject = res.data;
         this.amounts = res.data.donation_form.levels;
         this.recurring_periods = res.data.donation_form.recurring_periods;
         this.donationFormId = res.data.donation_form.id;
@@ -255,6 +281,44 @@ export class DonationPageComponent {
       },
       error: (err) => {
         console.error('Error fetching project:', err);
+      },
+    });
+  }
+  projectsWithAmounts: any[] = [];
+
+  getProjects(slug: string) {
+    this.projectService.getProjects(1, 9, slug).subscribe({
+      next: (res) => {
+        if (res.data && res.data.data) {
+          this.projectsWithAmounts = res.data.data.map((project: any) => ({
+            title: project.title,
+            slug: project.slug, // Needed to fetch donation amounts
+            amounts: [], // Will be populated later
+          }));
+
+          // Fetch donation amounts for each project
+          this.projectsWithAmounts.forEach((project) => {
+            this.getProjectAmounts(project.slug);
+          });
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching projects:', err);
+      },
+    });
+  }
+
+  getProjectAmounts(slug: string) {
+    this.projectService.getProject(slug).subscribe({
+      next: (res) => {
+        // Find project in the list and update its amounts
+        const project = this.projectsWithAmounts.find((p) => p.slug === slug);
+        if (project && res.data.donation_form) {
+          project.amounts = res.data.donation_form.levels || [];
+        }
+      },
+      error: (err) => {
+        console.error(`Error fetching donation levels for ${slug}:`, err);
       },
     });
   }
@@ -269,6 +333,9 @@ export class DonationPageComponent {
     this.orphanSponsorship = false;
     this.orphanGeneral = false;
     this.isChecked = false;
+    this.selectedProject = null;
+    this.selectedProjectSlug = null;
+    this.project = undefined;
     this.selectedCategoryId =
       this.selectedCategoryId === categoryId ? null : categoryId;
   }

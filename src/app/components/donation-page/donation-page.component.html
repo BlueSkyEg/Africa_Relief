@@ -19,7 +19,7 @@
     @for (Category of Categories; track Category.id) {
     <div class="border border-gray-light px-6 h-[320px] cursor-pointer transition-all duration-300"
       [ngClass]="{ 'bg-primary': selectedCategoryId === Category.id }"
-      (click)="selectCategory(Category.id); getProject(Category.slug)">
+      (click)="selectCategory(Category.id); (Category.id === 1 || Category.id === 2) && getProject(Category.slug)">
       <div class="flex flex-col justify-center gap-4 h-full">
         <div class="flex items-center gap-4">
           <div class="flex p-3 justify-center items-center [background:var(--new-secondary,#FFBD59)]">
@@ -46,7 +46,8 @@
     }
   </div>
   @if(selectedCategoryId !== null) {
-  <div class="max-w-5xl mx-auto ">
+  @if(selectedCategoryId==1 || selectedCategoryId==2)
+  { <div class="max-w-5xl mx-auto ">
     <div class=" mb-12" [ngClass]="{ 'bg-white p-1': project.title== 'Help Give Orphaned Children a Brighter Future' }">
       <div class="flex items-center gap-2 mb-6">
         <div class="p-2 rounded-full bg-primary">
@@ -62,10 +63,10 @@
       @if(project.title== "Help Give Orphaned Children a Brighter Future") {
       <div class="my-4 flex items-center ">
         <div class="w-1/2">
-          <mat-checkbox [(ngModel)]="orphanGeneral"  (change)="resetAmount()">Orphan General</mat-checkbox>
+          <mat-checkbox [(ngModel)]="orphanGeneral" (change)="resetAmount()">Orphan General</mat-checkbox>
         </div>
         <div class="w-1/2">
-          <mat-checkbox [(ngModel)]="orphanSponsorship"  (change)="resetSponsorship()">Orphan sponsorship</mat-checkbox>
+          <mat-checkbox [(ngModel)]="orphanSponsorship" (change)="resetSponsorship()">Orphan sponsorship</mat-checkbox>
         </div>
       </div>
 
@@ -156,7 +157,135 @@
         </div>
       </div>
     </div>
+  </div>}
+  @else {
+  <div class="max-w-5xl mx-auto ">
+    <div class=" mb-12">
+      <div class="flex items-center gap-2 mb-6">
+        @if(selectedCategoryId==3) {
+        <div class="p-2 rounded-full bg-primary">
+          <app-icon-earth />
+
+        </div>
+        <span class="text-2xl font-medium leading-8">Wells,health, Kits,Education</span>
+        }
+      </div>
+      <div class="my-4 flex items-center justify-between  ">
+        <mat-checkbox [(ngModel)]="wellsChecked" (change)="getProjects('water');onCategoriesCheckboxChange()">Wells</mat-checkbox>
+        <mat-checkbox [(ngModel)]="foodChecked" (change)="getProject('food-basket');onCategoriesCheckboxChange()" >Food Aid</mat-checkbox>
+        <mat-checkbox [(ngModel)]="educationChecked"(change)="onCategoriesCheckboxChange()" >Education Centers</mat-checkbox>
+        <mat-checkbox>Food 3</mat-checkbox>
+        <mat-checkbox>Food 4</mat-checkbox>
+
+      </div>
+      <div >
+        <div *ngIf="wellsChecked" class="my-3">
+          <div class="flex flex-col gap-2 ">
+            <h3>Choose amount for (Wells) *
+            </h3>
+            <div class="flex flex-wrap gap-3">
+              @for (project of projectsWithAmounts; track $index) {
+              <label class="flex flex-1">
+                <input class="peer appearance-none" type="radio" name="amount" [value]="project.amounts[0].amount"
+                  [(ngModel)]="amount" />
+
+                <div
+                  class="flex gap-2  justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                  <span>{{ project.title }}</span>
+                  <span>${{project.amounts[0].amount}}</span>
+                </div>
+              </label>
+
+              }
+            </div>
+          </div>
+        </div>
+        <div *ngIf="foodChecked" class="my-3">
+          <div class="flex flex-col gap-2 ">
+            <h3>Choose amount for (Food Aid) *
+            </h3>
+        <!--Donation Amounts-->
+
+          <div class="flex flex-wrap gap-3">
+            @for (level of amounts; track level) {
+            <label class="flex flex-1">
+              <input class="peer appearance-none" type="radio" name="amount" [value]="level.amount" [(ngModel)]="amount" />
+              <div
+                class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                @if (!level.name) {
+                <span>{{ "$" + level.amount }}</span>
+                } @else {
+                <span>{{ level.name }}</span>
+                }
+              </div>
+            </label>
+            }
+            <label class="flex flex-1">
+              <input
+                class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
+                type="number" [(ngModel)]="amount" placeholder="$ Custom Amount" (keypress)="validateKeyPress($event)"
+                (input)="validateInput($event)" /></label>
+          </div>
+        </div>
+        </div>
+                <div *ngIf="educationChecked" class="my-3">
+<label class="flex flex-1 relative">
+  <div
+    class="px-1 flex justify-center items-center w-full py-3 border border-gray-medium cursor-pointer transition-colors ease-in-out">
+    <mat-select [(ngModel)]="selectedProjectSlug" (selectionChange)="onProjectSelect($event.value)">
+      <mat-option *ngFor="let project of customProjects" [value]="project.slug">
+        {{ project.title }}
+      </mat-option>
+    </mat-select>
   </div>
+</label>
+
+<!-- Display selected project details -->
+<div *ngIf="selectedProject">
+        <div class="flex flex-col gap-2 my-4">
+          <h3>Choose amount for {{selectedProject.title}}
+          </h3>
+          <div class="flex flex-wrap gap-3">
+            @for (level of selectedProject.donation_form.levels; track level) {
+            <label class="flex flex-1">
+              <input class="peer appearance-none" type="radio" name="amount" [value]="level.amount" [(ngModel)]="amount" />
+              <div
+                class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                @if (!level.name) {
+                <span>{{ "$" + level.amount }}</span>
+                } @else {
+                <span>{{ level.name }}</span>
+                }
+              </div>
+            </label>
+            }
+            <label class="flex flex-1">
+              <input
+                class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
+                type="number" [(ngModel)]="amount" placeholder="$ Custom Amount" (keypress)="validateKeyPress($event)"
+                (input)="validateInput($event)" /></label>
+          </div>
+        </div>
+</div>
+
+
+                </div>
+      </div>
+    </div>
+    <div class="  border-t border-t-gray-medium ">
+      <div class="flex justify-between items-center gap-1 py-3 pe-4 ps-1 border border-gray-medium mt-12">
+        <mat-checkbox color="primary" [(ngModel)]="makeRecurringDonation" class="ms-0">Make this donation
+          every</mat-checkbox>
+        <div class="min-w-[80px] shrink-0">
+          <mat-select [(value)]="recurringPeriod">
+            @for (period of recurring_periods; track period) {
+            <mat-option value="{{ period }}">{{ period | titlecase }}</mat-option>
+            }
+          </mat-select>
+        </div>
+      </div>
+    </div>
+  </div> }
   } @if(amount || totalAmount){
   <form [formGroup]="donationForm" class="max-w-5xl mx-auto my-12">
     <!-- contribution Checkbox -->
