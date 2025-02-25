@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ICategory } from '../../../shared/interfaces/category-interface';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment.development';
 import { IBlogCard } from '../../../shared/interfaces/blog/blog-card-interface';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { IBlog } from '../../../shared/interfaces/blog/blog-interface';

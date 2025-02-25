@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { IStripeIntent } from '../../../shared/interfaces/payment/stripe-intent.interface';
+import { environment } from '../../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'

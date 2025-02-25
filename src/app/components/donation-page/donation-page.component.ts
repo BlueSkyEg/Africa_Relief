@@ -54,7 +54,8 @@ import { IconRightComponent } from '../../shared/icons/right/icon-right.componen
 import { ProjectService } from '../../core/services/projects/project.service';
 import { ICategory } from '../../shared/interfaces/category-interface';
 import { IProject } from '../../shared/interfaces/project/project-interface';
-import { MatSelect, MatOption } from '@angular/material/select';
+import { MatSelect, MatOption, MatFormField } from '@angular/material/select';
+import { IconExpandMoreComponent } from '../../shared/icons/expand-more/icon-eye.component';
 
 @Component({
   selector: 'app-donation-page',
@@ -76,7 +77,8 @@ import { MatSelect, MatOption } from '@angular/material/select';
     IconRightComponent,
     IconOrphanComponent,
     MatSelect,
-
+    IconExpandMoreComponent,
+    MatFormField
   ],
   templateUrl: './donation-page.component.html',
 })
@@ -133,10 +135,17 @@ export class DonationPageComponent {
   project: IProject = null;
   makeRecurringDonation: boolean = false;
   recurringPeriod: 'day' | 'week' | 'month' | 'year' = 'month';
-  recurring_periods:any=[]
+  recurring_periods: any = [];
   //orphan project
   orphanGeneral: boolean = false;
   orphanSponsorship: boolean = false;
+  selectedAmount = 50;
+  selectedOrphans = 1;
+  totalAmount = 50;
+
+  updateTotal() {
+    this.totalAmount = this.selectedAmount * this.selectedOrphans;
+  }
   // Injected services
   router: Router = inject(Router);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
@@ -159,7 +168,9 @@ export class DonationPageComponent {
     this.updateContributionValidators();
     this.loadUserData();
     if (this.filteredDedications.length > 0) {
-      this.donationForm.controls.contributionType.setValue(this.filteredDedications[0]);
+      this.donationForm.controls.contributionType.setValue(
+        this.filteredDedications[0]
+      );
     }
   }
 
@@ -219,7 +230,7 @@ export class DonationPageComponent {
       next: (res: IApiResponse<IProject>) => {
         this.project = res.data;
         this.amounts = res.data.donation_form.levels;
-        this.recurring_periods=res.data.donation_form.recurring_periods
+        this.recurring_periods = res.data.donation_form.recurring_periods;
         this.donationFormId = res.data.donation_form.id;
         this.donationFormTitle = res.data.title; // Set title from response
         console.log('Project Data:', res.data);
@@ -232,7 +243,15 @@ export class DonationPageComponent {
 
   // Select category
   selectCategory(categoryId: number) {
-    this.amount=0;
+    this.amount = 0;
+    this.totalAmount = 0;
+    this.selectedAmount = 0;
+    this.selectedOrphans = 1;
+    this.totalAmount = 0;
+    this.donationForm.reset();
+    this.orphanSponsorship = false;
+    this.orphanGeneral = false;
+    this.isChecked = false;
     this.selectedCategoryId =
       this.selectedCategoryId === categoryId ? null : categoryId;
   }
@@ -253,10 +272,15 @@ export class DonationPageComponent {
   onMakeDonation() {
     console.log('Donation Form:', this.donationForm);
     if (this.donationForm.invalid) {
-      console.log('Form is invalid', this.donationForm.errors, this.donationForm.getRawValue());
+      console.log(
+        'Form is invalid',
+        this.donationForm.errors,
+        this.donationForm.getRawValue()
+      );
       return;
     }
-    if (this.donationForm.invalid || !this.stripeCardElements.isCardValid()) return;
+    if (this.donationForm.invalid || !this.stripeCardElements.isCardValid())
+      return;
 
     this.coverFees = this.donationForm.get('coverFees')?.value || false;
 
@@ -267,7 +291,20 @@ export class DonationPageComponent {
     const formData = this.donationForm.getRawValue();
     console.log('Form Data:', formData);
 
-    const { firstName, lastName, email, phone, contributionType, contributionName, city, country, addressLine1, addressLine2, postalCode, state } = formData;
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      contributionType,
+      contributionName,
+      city,
+      country,
+      addressLine1,
+      addressLine2,
+      postalCode,
+      state,
+    } = formData;
 
     const billingDetails: any = {
       firstName,
@@ -282,7 +319,7 @@ export class DonationPageComponent {
       state,
     };
 
-    const finalAmount = this.amount;
+    const finalAmount = this.amount + this.totalAmount;
     this.coverFees = this.donationForm.get('coverFees')?.value || false;
 
     this.stripeCardElements.createPaymentMethod(billingDetails).subscribe({
@@ -341,11 +378,11 @@ export class DonationPageComponent {
       email: email,
       contribution: this.isChecked
         ? [
-          {
-            contributionName: contributionName,
-            contributionType: contributionType,
-          },
-        ]
+            {
+              contributionName: contributionName,
+              contributionType: contributionType,
+            },
+          ]
         : null,
       amount: finalAmount,
       donationFormId: this.donationFormId.toString(),
@@ -363,9 +400,9 @@ export class DonationPageComponent {
       isRecurring: this.recurringPeriod ? true : false,
       contribution: this.isChecked
         ? {
-          contributionName: contributionName,
-          contributionType: contributionType,
-        }
+            contributionName: contributionName,
+            contributionType: contributionType,
+          }
         : null,
     });
 
@@ -480,8 +517,12 @@ export class DonationPageComponent {
   updateContributionValidators() {
     if (this.isChecked) {
       // Make fields required
-      this.donationForm.get('contributionType')?.setValidators([Validators.required]);
-      this.donationForm.get('contributionName')?.setValidators([Validators.required]);
+      this.donationForm
+        .get('contributionType')
+        ?.setValidators([Validators.required]);
+      this.donationForm
+        .get('contributionName')
+        ?.setValidators([Validators.required]);
     } else {
       // Make fields optional
       this.donationForm.get('contributionType')?.clearValidators();
@@ -493,7 +534,6 @@ export class DonationPageComponent {
     this.donationForm.get('contributionType')?.updateValueAndValidity();
     this.donationForm.get('contributionName')?.updateValueAndValidity();
   }
-
 
   //amounts
   validateKeyPress(event: KeyboardEvent): void {
@@ -509,5 +549,4 @@ export class DonationPageComponent {
     // Replace any non-digit character and ensure positive values
     input.value = input.value.replace(/[^0-9]/g, '');
   }
-
 }
