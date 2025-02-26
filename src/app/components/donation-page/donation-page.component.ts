@@ -37,7 +37,7 @@ import { IUser } from '../../shared/interfaces/auth/user.interface';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { CardElementsComponent } from '../donation-pages/donation/card-elements/card-elements.component';
 import { Observable } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PaymentService } from '../../core/services/payment/payment.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StripeService } from 'ngx-stripe';
@@ -54,7 +54,7 @@ import { IconRightComponent } from '../../shared/icons/right/icon-right.componen
 import { ProjectService } from '../../core/services/projects/project.service';
 import { ICategory } from '../../shared/interfaces/category-interface';
 import { IProject } from '../../shared/interfaces/project/project-interface';
-import { MatSelect, MatOption, MatFormField } from '@angular/material/select';
+import { MatSelect, MatOption, MatFormField, MatLabel } from '@angular/material/select';
 import { IconExpandMoreComponent } from '../../shared/icons/expand-more/icon-eye.component';
 import { IProjectCard } from '../../shared/interfaces/project/project-card-interface';
 
@@ -78,9 +78,9 @@ import { IProjectCard } from '../../shared/interfaces/project/project-card-inter
     IconRightComponent,
     IconOrphanComponent,
     MatSelect,
-    IconExpandMoreComponent,
-    MatFormField,
     IconEarthComponent,
+    IconIslamComponent,
+    RouterLink
   ],
   templateUrl: './donation-page.component.html',
 })
@@ -130,8 +130,7 @@ export class DonationPageComponent {
   coverFees: boolean = false;
   feePercentage: number = 2.9;
   isChecked: boolean = false;
-  selectedCategoryId: number | null = null;
-  projectCategories: ICategory[];
+  selectedCategoryIds: number[] = [];  projectCategories: ICategory[];
   displayedCategories: ICategory[] = [];
   amounts: any[] = [];
   project: IProject = null;
@@ -153,6 +152,28 @@ export class DonationPageComponent {
   selectedProjectSlug: string | null = null;
   selectedProject: any = null; // Stores project details
 
+  iftarMealChecked: boolean = false;
+  zakatAlMalChecked: boolean = false;
+  zakatAlFitrChecked: boolean = false;
+  iftarMealAmounts: any[] = [];
+  zakatAlMalAmounts: any[] = [];
+  zakatAlFitrAmounts: any[] = [];
+  iftarMealAmount:number = 0;
+  zakatAlMalAmount:number = 0;
+  zakatAlFitrAmount:number = 0;
+  totalIftarMealAmount:number=0;
+  totalZakatAlFitrAmount: number = 0;
+  selectedMeals:number=1;
+  selectedZakatAlFitrAmount: number = 1;
+
+  updateIftarMealTotal() {
+    this.totalIftarMealAmount = this.iftarMealAmounts[0].amount * this.selectedMeals;
+return this.totalIftarMealAmount;
+  }
+  updateZakatAlFitrTotal() {
+    this.totalZakatAlFitrAmount = this.zakatAlFitrAmounts[0].amount * this.selectedZakatAlFitrAmount;
+    return this.totalZakatAlFitrAmount;
+  }
   onProjectSelect(slug: string) {
     this.amount = 0;
     if (slug) {
@@ -176,6 +197,38 @@ export class DonationPageComponent {
     this.amount = 0;
     this.selectedProject = null;
     this.selectedProjectSlug = null;
+    this.iftarMealAmount=0;
+    this.totalIftarMealAmount=0;
+    this.totalZakatAlFitrAmount=0;
+    this.zakatAlFitrAmount=0;
+    this.zakatAlMalAmount=0;
+  }
+  onIftarMealCheckboxChange() {
+    if (this.iftarMealChecked) {
+      this.getProject('iftar-meal');
+    }
+    this.selectedProject = null;
+    this.selectedProjectSlug = null;
+    this.selectedMeals=1;
+     this.totalIftarMealAmount = 0;
+
+  }
+  onZakatAlFitrCheckboxChange() {
+    if (this.zakatAlFitrChecked) {
+      this.getProject('zakat-al-fitr');
+    }
+    this.selectedProject = null;
+    this.selectedProjectSlug = null;
+    this.selectedZakatAlFitrAmount=1;
+    this.totalZakatAlFitrAmount=0;
+
+
+  }
+  onZakatAlMalCheckboxChange() {
+    this.selectedProject = null;
+    this.selectedProjectSlug = null;
+    this.zakatAlMalAmount = 0;
+
   }
   resetSponsorship() {
     if (!this.orphanSponsorship) {
@@ -205,13 +258,29 @@ export class DonationPageComponent {
   _snackBar: MatSnackBar = inject(MatSnackBar);
   _gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
   projectService: ProjectService = inject(ProjectService);
-
+route:ActivatedRoute = inject(ActivatedRoute);
   isBrowser: boolean;
   constructor(@Inject(PLATFORM_ID) private platformId: any) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      const categoryId = +params['category'];
+      const projectSlug = params['project'];
+      const amount = +params['amount'];
+
+      if (categoryId && projectSlug && amount) {
+        this.selectCategory(categoryId);
+        this.getProject(projectSlug);
+        if (projectSlug =='zakat-al-mal'){
+          this.zakatAlMalAmount=amount;
+          this.zakatAlMalChecked=true;
+        }
+
+
+      }
+    });
     this.getCategories();
     this.updateContributionValidators();
     this.loadUserData();
@@ -278,7 +347,22 @@ export class DonationPageComponent {
       next: (res: IApiResponse<IProject>) => {
         this.project = res.data;
         this.selectedProject = res.data;
-        this.amounts = res.data.donation_form.levels;
+
+        // Update the correct amounts array based on the slug
+        if (slug === 'iftar-meal') {
+              this.iftarMealAmounts = res.data.donation_form.levels;
+              this.totalIftarMealAmount=this.iftarMealAmounts[0].amount;
+        } else if (slug === 'zakat-al-mal') {
+          this.zakatAlMalAmounts = res.data.donation_form.levels;
+        } else if (slug === 'zakat-al-fitr') {
+          this.zakatAlFitrAmounts = res.data.donation_form.levels;
+          this.totalZakatAlFitrAmount = this.zakatAlFitrAmounts[0].amount;
+        }
+        else{
+          this.amounts = res.data.donation_form.levels;
+
+        }
+
         this.recurring_periods = res.data.donation_form.recurring_periods;
         this.donationFormId = res.data.donation_form.id;
         this.donationFormTitle = res.data.title; // Set title from response
@@ -330,7 +414,29 @@ export class DonationPageComponent {
 
   // Select category
   selectCategory(categoryId: number) {
+    const index = this.selectedCategoryIds.indexOf(categoryId);
+    if (index === -1) {
+      // Add the category if it's not already selected
+      this.selectedCategoryIds.push(categoryId);
+    } else {
+      // Remove the category if it's already selected
+      this.selectedCategoryIds.splice(index, 1);
+    }
+    // this.selectedCategoryId =
+    //   this.selectedCategoryId === categoryId ? null : categoryId;
     this.amount = 0;
+    this.totalAmount = 0;
+    this.totalIftarMealAmount=0;
+    this.zakatAlMalAmount=0;
+    this.zakatAlFitrAmount=0;
+    this.iftarMealAmount=0;
+    this.iftarMealChecked=false;
+    this.zakatAlMalChecked=false;
+    this.zakatAlFitrChecked=false;
+    this.wellsChecked = false;
+    this.healthChecked=false;
+    this.educationChecked=false;
+    this.foodChecked=false;
     this.selectedAmount = 0;
     this.selectedOrphans = 1;
     this.totalAmount = 0;
@@ -341,8 +447,7 @@ export class DonationPageComponent {
     this.selectedProject = null;
     this.selectedProjectSlug = null;
     this.project = undefined;
-    this.selectedCategoryId =
-      this.selectedCategoryId === categoryId ? null : categoryId;
+
   }
 
   // Get icon components
@@ -408,7 +513,7 @@ export class DonationPageComponent {
       state,
     };
 
-    const finalAmount = this.amount + this.totalAmount;
+    const finalAmount = this.amount + this.totalAmount +  this.totalIftarMealAmount + this.totalZakatAlFitrAmount + this.zakatAlMalAmount;
     this.coverFees = this.donationForm.get('coverFees')?.value || false;
 
     this.stripeCardElements.createPaymentMethod(billingDetails).subscribe({
@@ -467,11 +572,11 @@ export class DonationPageComponent {
       email: email,
       contribution: this.isChecked
         ? [
-            {
-              contributionName: contributionName,
-              contributionType: contributionType,
-            },
-          ]
+          {
+            contributionName: contributionName,
+            contributionType: contributionType,
+          },
+        ]
         : null,
       amount: finalAmount,
       donationFormId: this.donationFormId.toString(),
@@ -489,9 +594,9 @@ export class DonationPageComponent {
       isRecurring: this.recurringPeriod ? true : false,
       contribution: this.isChecked
         ? {
-            contributionName: contributionName,
-            contributionType: contributionType,
-          }
+          contributionName: contributionName,
+          contributionType: contributionType,
+        }
         : null,
     });
 
