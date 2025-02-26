@@ -13,7 +13,6 @@ import { isPlatformBrowser } from '@angular/common';
   styles: '',
   imports: [
     IconLinkedinComponent,
-    IconInstagramComponent,
     IconFacebookComponent,
     IconTwitterComponent,
   ],

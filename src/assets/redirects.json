@@ -498,5 +498,13 @@
     "from": "/current-issues-in-africa/",
     "to": "/blogs/current-issues-in-africa",
     "statusCode": 301
+  },
+  {
+    "from": "/donations/health",
+    "statusCode": 410
+  },
+  {
+    "from": "/blogs/first-emergency-response-outside-of-africa-in-gaza",
+    "statusCode": 410
   }
-  ]
+]

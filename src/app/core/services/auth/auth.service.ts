@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
@@ -111,4 +111,20 @@ export class AuthService {
       this.router.navigateByUrl('/home');
     }
   }
+
+
+  DeleteAccount(): Observable<IApiResponse<null>> {
+    const accessToken = this.getToken(); // Get the token from localStorage
+    if (!accessToken) {
+      throw new Error('No access token found. User might not be authenticated.');
+    }
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${accessToken}`
+    });
+
+    return this.http.delete<IApiResponse<null>>(environment.apiUrl + '/user', { headers });
+  }
+
+
 }

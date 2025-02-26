@@ -36,8 +36,12 @@ server.use(async (req, res, next) => {
   const redirects = await fetchRedirects();
   const redirect = redirects.find((r) => r.from === req.path);
 
-  if (redirect) {
-    res.redirect(redirect.statusCode, redirect.to);
+  if(redirect) {
+    if(redirect.statusCode === 301) {
+      res.redirect(redirect.statusCode, redirect.to);
+    } else if(redirect.statusCode === 410) {
+      res.status(410).send('This page has been permanently removed.');
+    }
   } else {
     next();
   }

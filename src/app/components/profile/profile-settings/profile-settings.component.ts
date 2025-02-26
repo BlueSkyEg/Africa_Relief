@@ -22,6 +22,7 @@ import { EmailValidator } from '../../../core/validators/email.validator';
 import { StringValidator } from '../../../core/validators/string.validator';
 import { PhoneValidator } from '../../../core/validators/phone.validator';
 import { Router } from '@angular/router';
+import { ConfirmModalComponent } from "./confirm-modal/confirm-modal.component";
 @Component({
   selector: 'app-profile-settings',
   standalone: true,
@@ -39,9 +40,11 @@ import { Router } from '@angular/router';
     IconEyeOffComponent,
     IconEditComponent,
     ModalComponent,
-  ],
+    ConfirmModalComponent
+],
 })
 export class ProfileSettingsComponent implements OnInit {
+  isModalOpen = false;
   user: IUser;
   router: Router = inject(Router);
   fb: FormBuilder = inject(FormBuilder);
@@ -254,4 +257,38 @@ export class ProfileSettingsComponent implements OnInit {
 
     this.passwordStrenth = tempPasswordStrenth;
   }
+
+
+  /*
+-------------------------------
+-- Delete Account
+-------------------------------
+*/
+  deleteAccount() {
+    this.authService.DeleteAccount().subscribe({
+      next: (res: IApiResponse<null>) => {
+        console.log('Account deleted successfully', res);
+        if (res.success){
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('tokenExpiresAt');
+          this.router.navigateByUrl('/login');
+          this.isModalOpen = false;
+
+        }
+            },
+      error: (error) => {
+        console.error('Error deleting account', error);
+
+      },
+    });
+  }
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+
 }
