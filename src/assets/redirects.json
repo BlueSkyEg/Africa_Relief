@@ -506,5 +506,30 @@
   {
     "from": "/blogs/first-emergency-response-outside-of-africa-in-gaza",
     "statusCode": 410
-  }
+  },
+  {
+    "from": "/projects/category/back-to-school",
+    "to": "/projects/category/education",
+    "statusCode": 301
+  },
+  {
+    "from": "/projects/category/zakat",
+    "to": "/projects/category/islamic-giving",
+    "statusCode": 301
+  },
+  {
+    "from": "/projects/category/ramadan",
+    "to": "/projects/category/islamic-giving",
+    "statusCode": 301
+  },
+  {
+    "from": "/projects/category/crisis",
+    "to": "/projects/category/emergency-response",
+    "statusCode": 301
+  },
+  {
+    "from": "/projects/category/medical-help",
+    "to": "/projects/category/healthcare",
+    "statusCode": 301
+  },
 ]
