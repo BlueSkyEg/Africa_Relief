@@ -531,5 +531,5 @@
     "from": "/projects/category/medical-help",
     "to": "/projects/category/healthcare",
     "statusCode": 301
-  },
+  }
 ]
