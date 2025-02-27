@@ -196,7 +196,7 @@ export class DonationPageComponent {
   amount2: number = 0;
   project1: any = [];
   project2: any = [];
-  
+
   updateIftarMealTotal() {
     this.totalIftarMealAmount =
       this.iftarMealAmounts[0].amount * this.selectedMeals;
@@ -467,6 +467,7 @@ export class DonationPageComponent {
 
   // Select category
   selectCategory(categoryId: number) {
+    this.donationFormId = null; 
     const index = this.selectedCategoryIds.indexOf(categoryId);
     if (index === -1) {
       this.selectedCategoryIds.push(categoryId);
@@ -476,6 +477,7 @@ export class DonationPageComponent {
       switch (categoryId) {
         case 1:
           this.amount1 = 0;
+          this.project1=null;
           break;
 
         case 2: // Category 2: Sponsor an orphan
@@ -485,6 +487,7 @@ export class DonationPageComponent {
           this.orphanSponsorship = false;
           this.orphanGeneral = false;
           this.amount2 = 0;
+          this.project2 = null;
           break;
 
         case 3: // Category 3: Wells, health, Food, Education
