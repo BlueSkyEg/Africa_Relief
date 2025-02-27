@@ -652,7 +652,7 @@ console.log('finalAmounr');
       amount: finalAmount,
       donationFormId: this.donationFormId.toString(),
       stripePaymentMethodId: stripePaymentMethodId,
-      recurringPeriod: this.recurringPeriod,
+      recurringPeriod: this.makeRecurringDonation ? this.recurringPeriod : null,
       anonymousDonation: anonymousDonation || false,
       savePaymentMethod: this.recurringPeriod ? true : false,
       billingComment: billingComment,
@@ -705,7 +705,7 @@ console.log('finalAmounr');
         city: this.city,
         country: this.country,
       },
-      recurringPeriod: this.recurringPeriod,
+      recurringPeriod: this.makeRecurringDonation ? this.recurringPeriod : null,
     };
     this._gtmService.pushTag(gtmTag);
   }
