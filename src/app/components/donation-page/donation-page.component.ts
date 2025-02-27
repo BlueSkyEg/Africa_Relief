@@ -169,8 +169,8 @@ export class DonationPageComponent {
   selectedProjectSlug: string | null = null;
   selectedProject: any = null; // Stores project details
 
-  wellsAmount: number=0;
-  foodAmount: number=0;
+  wellsAmount: number = 0;
+  foodAmount: number = 0;
   selectedWellsProject: any = null;
   selectedFoodProject: any = null;
   selectedFoodSlug: string | null = null;
@@ -220,15 +220,23 @@ export class DonationPageComponent {
       this.amount = 0;
     }
   }
+
   onCategoriesCheckboxChange() {
-    this.amount = 0;
-    this.selectedProject = null;
-    this.selectedProjectSlug = null;
-    this.iftarMealAmount = 0;
-    this.totalIftarMealAmount = 0;
-    this.totalZakatAlFitrAmount = 0;
-    this.zakatAlFitrAmount = 0;
-    this.zakatAlMalAmount = 0;
+     if (!this.wellsChecked) {
+       this.wellsAmount = 0;
+     }
+     if (!this.foodChecked) {
+       this.foodAmount = 0;
+     }
+     if(!this.healthChecked){
+       this.healthAmount = 0;
+       this.selectedHealthProject=null;
+     }
+     if(!this.educationChecked){
+      this.selectedEducationProject=null;
+      this.educationAmount = 0;
+     }
+
   }
   onIftarMealCheckboxChange() {
     if (this.iftarMealChecked) {
@@ -256,18 +264,20 @@ export class DonationPageComponent {
   // Component TypeScript
   onEducationProjectSelect(slug: string) {
     this.selectedEducationProjectSlug = slug;
-     this.projectService.getProject(slug).subscribe({
+    this.projectService.getProject(slug).subscribe({
       next: (res: IApiResponse<IProject>) => {
-        this.selectedEducationProject = res.data;}});
+        this.selectedEducationProject = res.data;
+      },
+    });
   }
 
   onHealthProjectSelect(slug: string) {
     this.selectedHealthProjectSlug = slug;
-     this.projectService.getProject(slug).subscribe({
-       next: (res: IApiResponse<IProject>) => {
-         this.selectedHealthProject = res.data;
-       },
-     });
+    this.projectService.getProject(slug).subscribe({
+      next: (res: IApiResponse<IProject>) => {
+        this.selectedHealthProject = res.data;
+      },
+    });
   }
   resetSponsorship() {
     if (!this.orphanSponsorship) {
@@ -415,7 +425,7 @@ export class DonationPageComponent {
     this.projectService.getProjects(1, 9, slug).subscribe({
       next: (res) => {
         if (res.data && res.data.data) {
-          console.log(res.data)
+          console.log(res.data);
           this.projectsWithAmounts = res.data.data.map((project: any) => ({
             title: project.title,
 
@@ -454,38 +464,56 @@ export class DonationPageComponent {
   selectCategory(categoryId: number) {
     const index = this.selectedCategoryIds.indexOf(categoryId);
     if (index === -1) {
-      // Add the category if it's not already selected
       this.selectedCategoryIds.push(categoryId);
     } else {
-      // Remove the category if it's already selected
       this.selectedCategoryIds.splice(index, 1);
-    }
-    // this.selectedCategoryId =
-    //   this.selectedCategoryId === categoryId ? null : categoryId;
-    this.amount = 0;
-    this.totalAmount = 0;
-    this.totalIftarMealAmount = 0;
-    this.zakatAlMalAmount = 0;
-    this.zakatAlFitrAmount = 0;
-    this.iftarMealAmount = 0;
-    this.iftarMealChecked = false;
-    this.zakatAlMalChecked = false;
-    this.zakatAlFitrChecked = false;
-    this.wellsChecked = false;
-    this.healthChecked = false;
-    this.educationChecked = false;
-    this.foodChecked = false;
-    this.selectedAmount = 0;
-    this.selectedOrphans = 1;
-    this.totalAmount = 0;
-    this.donationForm.reset();
-    this.orphanSponsorship = false;
-    this.orphanGeneral = false;
-    this.isChecked = false;
-    this.selectedProject = null;
-    this.selectedProjectSlug = null;
-  }
 
+      switch (categoryId) {
+        case 1:
+          this.amount1 = 0;
+          break;
+
+        case 2: // Category 2: Sponsor an orphan
+          this.selectedAmount = 0;
+          this.selectedOrphans = 1;
+          this.totalAmount = 0;
+          this.orphanSponsorship = false;
+          this.orphanGeneral = false;
+          this.amount2 = 0;
+          break;
+
+        case 3: // Category 3: Wells, health, Food, Education
+          this.wellsChecked = false;
+          this.healthChecked = false;
+          this.educationChecked = false;
+          this.foodChecked = false;
+          this.wellsAmount = 0;
+          this.foodAmount = 0;
+          this.educationAmount = 0;
+          this.healthAmount = 0;
+          this.selectedEducationProject = null;
+          this.selectedHealthProject = null;
+          break;
+
+        case 4: // Category 4: Islamic giving
+          this.iftarMealChecked = false;
+          this.zakatAlMalChecked = false;
+          this.zakatAlFitrChecked = false;
+          this.iftarMealAmount = 0;
+          this.totalIftarMealAmount = 0;
+          this.zakatAlMalAmount = 0;
+          this.zakatAlFitrAmount = 0;
+          this.totalZakatAlFitrAmount = 0;
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    this.donationForm.reset();
+    this.isChecked = false;
+  }
   // Get icon components
   getComponent(iconName: string): Type<any> | null {
     const iconMap: Record<string, Type<any>> = {
@@ -553,7 +581,11 @@ export class DonationPageComponent {
     this.totalAmount +
       this.totalIftarMealAmount +
       this.totalZakatAlFitrAmount +
-      this.zakatAlMalAmount+this.healthAmount+this.wellsAmount+this.educationAmount+this.foodAmount
+      this.zakatAlMalAmount +
+      this.healthAmount +
+      this.wellsAmount +
+      this.educationAmount +
+      this.foodAmount;
     this.coverFees = this.donationForm.get('coverFees')?.value || false;
 
     this.stripeCardElements.createPaymentMethod(billingDetails).subscribe({
