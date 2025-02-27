@@ -5,7 +5,7 @@
 * Browsers: last 4 version
 */
 
-.container {
+.containerr {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -18,12 +18,12 @@
   /* Indicate that dragging is possible */
 }
 
-.container.dragging {
+.containerr.dragging {
   cursor: -webkit-grabbing;
   cursor: grabbing;
   /* Indicate that dragging is active */
 }
 
-.container a {
+.containerr a {
   display: inline-block;
 }

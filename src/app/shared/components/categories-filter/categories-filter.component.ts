@@ -68,4 +68,10 @@ export class CategoriesFilterComponent {
       }
     }
   }
+  getCleanDescription(description: string): string {
+    if (!description) return '';
+
+    // Remove all `\r\n`, `\n`, and `\r` from the string
+    return description.replace(/(\r\n|\n|\r|\\r\\n)/g, '<br/> ').trim();
+  }
 }
