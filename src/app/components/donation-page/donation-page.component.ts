@@ -530,11 +530,6 @@ export class DonationPageComponent {
   onMakeDonation() {
     console.log('Donation Form:', this.donationForm);
     if (this.donationForm.invalid) {
-      console.log(
-        'Form is invalid',
-        this.donationForm.errors,
-        this.donationForm.getRawValue()
-      );
       return;
     }
     if (this.donationForm.invalid || !this.stripeCardElements.isCardValid())
@@ -577,7 +572,7 @@ export class DonationPageComponent {
       state,
     };
 
-    const finalAmount = this.amount1 + this.amount2;
+    const finalAmount = this.amount1 + this.amount2+
     this.totalAmount +
       this.totalIftarMealAmount +
       this.totalZakatAlFitrAmount +
