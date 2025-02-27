@@ -267,6 +267,7 @@ export class DonationPageComponent {
     this.projectService.getProject(slug).subscribe({
       next: (res: IApiResponse<IProject>) => {
         this.selectedEducationProject = res.data;
+        this.donationFormId = this.selectedEducationProject.donation_form.id;
       },
     });
   }
@@ -276,6 +277,9 @@ export class DonationPageComponent {
     this.projectService.getProject(slug).subscribe({
       next: (res: IApiResponse<IProject>) => {
         this.selectedHealthProject = res.data;
+                this.donationFormId =
+                  this.selectedHealthProject.donation_form.id;
+
       },
     });
   }
@@ -572,8 +576,7 @@ export class DonationPageComponent {
       state,
     };
 
-    const finalAmount = this.amount1 + this.amount2+
-    this.totalAmount +
+    const finalAmount = this.amount1 + this.amount2+this.totalAmount +
       this.totalIftarMealAmount +
       this.totalZakatAlFitrAmount +
       this.zakatAlMalAmount +
@@ -582,7 +585,8 @@ export class DonationPageComponent {
       this.educationAmount +
       this.foodAmount;
     this.coverFees = this.donationForm.get('coverFees')?.value || false;
-
+console.log('finalAmounr');
+    console.log(finalAmount);
     this.stripeCardElements.createPaymentMethod(billingDetails).subscribe({
       next: (res: PaymentMethodResult) => {
         if (res.error) {
