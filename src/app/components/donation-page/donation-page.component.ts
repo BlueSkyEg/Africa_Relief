@@ -223,34 +223,50 @@ export class DonationPageComponent {
   }
 
   onCategoriesCheckboxChange() {
-     if (!this.wellsChecked) {
-       this.wellsAmount = 0;
-     }
-     if (!this.foodChecked) {
-       this.foodAmount = 0;
-     }
-     if(!this.healthChecked){
-       this.healthAmount = 0;
-       this.selectedHealthProject=null;
-     }
-     if(!this.educationChecked){
-      this.selectedEducationProject=null;
-      this.educationAmount = 0;
-     }
+    console.log(this.getSelectedProjectsAndAmounts());
+    if (!this.wellsChecked) {
+      this.wellsAmount = 0;
+      this.selectedWellsProject = null;
+      this.donationFormId = null;
+    }
+    if (!this.foodChecked) {
+      this.foodAmount = 0;
+      this.selectedFoodProject = null;
 
+      this.donationFormId = null;
+    }
+    if (!this.healthChecked) {
+      this.healthAmount = 0;
+      this.selectedHealthProject = null;
+      this.selectedHealthProject = null;
+
+      this.donationFormId = null;
+    }
+    if (!this.educationChecked) {
+      this.selectedEducationProject = null;
+      this.educationAmount = 0;
+      this.selectedEducationProject = null;
+
+      this.donationFormId = null;
+    }
   }
   onIftarMealCheckboxChange() {
     if (this.iftarMealChecked) {
       this.getProject('iftar-meal');
+    } else {
+      this.donationFormId = null;
     }
     this.selectedProject = null;
     this.selectedProjectSlug = null;
     this.selectedMeals = 1;
     this.totalIftarMealAmount = 0;
   }
+
   onZakatAlFitrCheckboxChange() {
     if (this.zakatAlFitrChecked) {
       this.getProject('zakat-al-fitr');
+    } else {
+      this.donationFormId = null;
     }
     this.selectedProject = null;
     this.selectedProjectSlug = null;
@@ -264,25 +280,33 @@ export class DonationPageComponent {
   }
   // Component TypeScript
   onEducationProjectSelect(slug: string) {
-    this.selectedEducationProjectSlug = slug;
-    this.projectService.getProject(slug).subscribe({
-      next: (res: IApiResponse<IProject>) => {
-        this.selectedEducationProject = res.data;
-        this.donationFormId = this.selectedEducationProject.donation_form.id;
-      },
-    });
+    if (slug) {
+      this.selectedEducationProjectSlug = slug;
+      this.projectService.getProject(slug).subscribe({
+        next: (res: IApiResponse<IProject>) => {
+          this.selectedEducationProject = res.data;
+          this.donationFormId = this.selectedEducationProject.donation_form.id;
+        },
+      });
+    } else {
+      this.selectedEducationProject = null;
+      this.donationFormId = null;
+    }
   }
 
   onHealthProjectSelect(slug: string) {
-    this.selectedHealthProjectSlug = slug;
-    this.projectService.getProject(slug).subscribe({
-      next: (res: IApiResponse<IProject>) => {
-        this.selectedHealthProject = res.data;
-                this.donationFormId =
-                  this.selectedHealthProject.donation_form.id;
-
-      },
-    });
+    if (slug) {
+      this.selectedHealthProjectSlug = slug;
+      this.projectService.getProject(slug).subscribe({
+        next: (res: IApiResponse<IProject>) => {
+          this.selectedHealthProject = res.data;
+          this.donationFormId = this.selectedHealthProject.donation_form.id;
+        },
+      });
+    } else {
+      this.selectedHealthProject = null;
+      this.donationFormId = null;
+    }
   }
   resetSponsorship() {
     if (!this.orphanSponsorship) {
@@ -395,34 +419,39 @@ export class DonationPageComponent {
 
   // Get project details
   getProject(slug: string) {
-    this.projectService.getProject(slug).subscribe({
-      next: (res: IApiResponse<IProject>) => {
-        this.selectedProject = res.data;
-        // Update the correct amounts array based on the slug
-        if (slug === 'iftar-meal') {
-          this.iftarMealAmounts = res.data.donation_form.levels;
-          this.totalIftarMealAmount = this.iftarMealAmounts[0].amount;
-        } else if (slug === 'zakat-al-mal') {
-          this.zakatAlMalAmounts = res.data.donation_form.levels;
-        } else if (slug === 'zakat-al-fitr') {
-          this.zakatAlFitrAmounts = res.data.donation_form.levels;
-          this.totalZakatAlFitrAmount = this.zakatAlFitrAmounts[0].amount;
-        } else if (slug === 'help-where-it-is-most-needed') {
-          this.project1 = res.data;
-        } else if (slug === 'orphans-sponsorship') {
-          this.project2 = res.data;
-        } else if (slug === 'food-basket') {
-          this.selectedFoodProject = res.data;
-        }
-        this.recurring_periods = res.data.donation_form.recurring_periods;
-        this.donationFormId = res.data.donation_form.id;
-        this.donationFormTitle = res.data.title; // Set title from response
-        console.log('Project Data:', res.data);
-      },
-      error: (err) => {
-        console.error('Error fetching project:', err);
-      },
-    });
+    if (slug) {
+      this.projectService.getProject(slug).subscribe({
+        next: (res: IApiResponse<IProject>) => {
+          this.selectedProject = res.data;
+          // Update the correct amounts array based on the slug
+          if (slug === 'iftar-meal') {
+            this.iftarMealAmounts = res.data.donation_form.levels;
+            this.totalIftarMealAmount = this.iftarMealAmounts[0].amount;
+          } else if (slug === 'zakat-al-mal') {
+            this.zakatAlMalAmounts = res.data.donation_form.levels;
+          } else if (slug === 'zakat-al-fitr') {
+            this.zakatAlFitrAmounts = res.data.donation_form.levels;
+            this.totalZakatAlFitrAmount = this.zakatAlFitrAmounts[0].amount;
+          } else if (slug === 'help-where-it-is-most-needed') {
+            this.project1 = res.data;
+          } else if (slug === 'orphans-sponsorship') {
+            this.project2 = res.data;
+          } else if (slug === 'food-basket') {
+            this.selectedFoodProject = res.data;
+          }
+          this.recurring_periods = res.data.donation_form.recurring_periods;
+          this.donationFormId = res.data.donation_form.id;
+          this.donationFormTitle = res.data.title; // Set title from response
+          console.log('Project Data:', res.data);
+        },
+        error: (err) => {
+          console.error('Error fetching project:', err);
+        },
+      });
+    } else {
+      this.selectedProject = null;
+      this.donationFormId = null;
+    }
   }
   projectsWithAmounts: any[] = [];
 
@@ -477,8 +506,8 @@ export class DonationPageComponent {
       switch (categoryId) {
         case 1:
           this.amount1 = 0;
-          this.project1=null;
-              this.donationFormId = null;
+          this.project1 = null;
+          this.donationFormId = null;
 
           break;
 
@@ -490,7 +519,7 @@ export class DonationPageComponent {
           this.orphanGeneral = false;
           this.amount2 = 0;
           this.project2 = null;
-              this.donationFormId = null;
+          this.donationFormId = null;
 
           break;
 
@@ -505,7 +534,7 @@ export class DonationPageComponent {
           this.healthAmount = 0;
           this.selectedEducationProject = null;
           this.selectedHealthProject = null;
-              this.donationFormId = null;
+          this.donationFormId = null;
 
           break;
 
@@ -518,7 +547,7 @@ export class DonationPageComponent {
           this.zakatAlMalAmount = 0;
           this.zakatAlFitrAmount = 0;
           this.totalZakatAlFitrAmount = 0;
-              this.donationFormId = null;
+          this.donationFormId = null;
 
           break;
 
@@ -560,6 +589,14 @@ export class DonationPageComponent {
     const formData = this.donationForm.getRawValue();
     console.log('Form Data:', formData);
 
+    // Get selected projects and amounts
+    const selectedProjectsAndAmounts = this.getSelectedProjectsAndAmounts();
+
+    // Concatenate with billing comment
+    const billingComment = formData.billingComment
+      ? `${formData.billingComment}\n\nSelected Projects:\n${selectedProjectsAndAmounts}`
+      : `Selected Projects:\n${selectedProjectsAndAmounts}`;
+
     const {
       firstName,
       lastName,
@@ -586,7 +623,10 @@ export class DonationPageComponent {
       state,
     };
 
-    const finalAmount = this.amount1 + this.amount2+this.totalAmount +
+    const finalAmount =
+      this.amount1 +
+      this.amount2 +
+      this.totalAmount +
       this.totalIftarMealAmount +
       this.totalZakatAlFitrAmount +
       this.zakatAlMalAmount +
@@ -594,9 +634,7 @@ export class DonationPageComponent {
       this.wellsAmount +
       this.educationAmount +
       this.foodAmount;
-    this.coverFees = this.donationForm.get('coverFees')?.value || false;
-console.log('finalAmounr');
-    console.log(finalAmount);
+
     this.stripeCardElements.createPaymentMethod(billingDetails).subscribe({
       next: (res: PaymentMethodResult) => {
         if (res.error) {
@@ -609,7 +647,8 @@ console.log('finalAmounr');
 
         this.createPayment(
           res.paymentMethod.id,
-          finalAmount.toString()
+          finalAmount.toString(),
+          billingComment // Pass the updated billing comment
         ).subscribe({
           next: (res: IApiResponse<IStripeIntent>) => {
             console.log(res);
@@ -636,7 +675,8 @@ console.log('finalAmounr');
   // Handle Payment
   createPayment(
     stripePaymentMethodId: string,
-    finalAmount: any
+    finalAmount: any,
+    billingComment: string
   ): Observable<IApiResponse<IStripeIntent>> {
     const {
       firstName,
@@ -644,7 +684,6 @@ console.log('finalAmounr');
       email,
       contributionName,
       contributionType,
-      billingComment,
       anonymousDonation,
     } = this.donationForm.getRawValue();
 
@@ -665,9 +704,10 @@ console.log('finalAmounr');
       recurringPeriod: this.makeRecurringDonation ? this.recurringPeriod : null,
       anonymousDonation: anonymousDonation || false,
       savePaymentMethod: this.recurringPeriod ? true : false,
-      billingComment: billingComment,
+      billingComment: billingComment, // Use the updated billing comment
       coverFees: this.coverFees,
     };
+
     console.log('Payment Data:', {
       amount: finalAmount,
       donationFormId: this.donationFormId.toString(),
@@ -679,6 +719,7 @@ console.log('finalAmounr');
             contributionType: contributionType,
           }
         : null,
+      billingComment: billingComment, // Log the billing comment
     });
 
     return this.paymentService.createPayment(paymentData);
@@ -823,5 +864,66 @@ console.log('finalAmounr');
     const input = event.target as HTMLInputElement;
     // Replace any non-digit character and ensure positive values
     input.value = input.value.replace(/[^0-9]/g, '');
+  }
+
+  //track selected projects
+  getSelectedProjectsAndAmounts(): string {
+    let selectedProjects = [];
+
+    // Project 1
+    if (this.amount1 > 0 && this.project1) {
+      selectedProjects.push(`${this.project1.title}: $${this.amount1}`);
+    }
+
+    // Project 2 (Orphan Sponsorship)
+    if (this.amount2 > 0 && this.project2) {
+      selectedProjects.push(`${this.project2.title}: $${this.amount2}`);
+    }
+
+    // Orphan Sponsorship
+    if (this.totalAmount > 0) {
+      selectedProjects.push(`Orphan Sponsorship: $${this.totalAmount}`);
+    }
+
+    // Wells
+    if (this.wellsAmount > 0) {
+      selectedProjects.push(`Wells: $${this.wellsAmount}`);
+    }
+
+    // Food Aid
+    if (this.foodAmount > 0) {
+      selectedProjects.push(`Food Aid: $${this.foodAmount}`);
+    }
+
+    // Education
+    if (this.educationAmount > 0 && this.selectedEducationProject) {
+      selectedProjects.push(
+        `${this.selectedEducationProject.title}: $${this.educationAmount}`
+      );
+    }
+
+    // Health
+    if (this.healthAmount > 0 && this.selectedHealthProject) {
+      selectedProjects.push(
+        `${this.selectedHealthProject.title}: $${this.healthAmount}`
+      );
+    }
+
+    // Iftar Meal
+    if (this.totalIftarMealAmount > 0) {
+      selectedProjects.push(`Iftar Meal: $${this.totalIftarMealAmount}`);
+    }
+
+    // Zakat Al-Mal
+    if (this.zakatAlMalAmount > 0) {
+      selectedProjects.push(`Zakat Al-Mal: $${this.zakatAlMalAmount}`);
+    }
+
+    // Zakat Al-Fitr
+    if (this.totalZakatAlFitrAmount > 0) {
+      selectedProjects.push(`Zakat Al-Fitr: $${this.totalZakatAlFitrAmount}`);
+    }
+
+    return selectedProjects.join(', ');
   }
 }
