@@ -454,10 +454,14 @@ export class DonationPageComponent {
   selectCategory(categoryId: number) {
     const index = this.selectedCategoryIds.indexOf(categoryId);
     if (index === -1) {
+      // Add the category if it's not already selected
       this.selectedCategoryIds.push(categoryId);
     } else {
+      // Remove the category if it's already selected
       this.selectedCategoryIds.splice(index, 1);
     }
+    // this.selectedCategoryId =
+    //   this.selectedCategoryId === categoryId ? null : categoryId;
     this.amount = 0;
     this.totalAmount = 0;
     this.totalIftarMealAmount = 0;
