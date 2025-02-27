@@ -21,7 +21,7 @@ export class IconDirective implements OnInit {
       this.renderer.addClass(this.element.nativeElement, 'border');
       this.renderer.addClass(this.element.nativeElement, 'border-gray-light');
     } else {
-      this.renderer.addClass(this.element.nativeElement, 'bg-secondary');
+      this.renderer.addClass(this.element.nativeElement, 'bg-primary');
     }
   }
 }

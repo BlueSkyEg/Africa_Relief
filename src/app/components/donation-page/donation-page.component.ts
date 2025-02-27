@@ -457,6 +457,7 @@ export class DonationPageComponent {
         const project = this.projectsWithAmounts.find((p) => p.slug === slug);
         if (project && res.data.donation_form) {
           project.amounts = res.data.donation_form.levels || [];
+          this.donationFormId = res.data.donation_form.id;
         }
       },
       error: (err) => {
@@ -467,7 +468,6 @@ export class DonationPageComponent {
 
   // Select category
   selectCategory(categoryId: number) {
-    this.donationFormId = null; 
     const index = this.selectedCategoryIds.indexOf(categoryId);
     if (index === -1) {
       this.selectedCategoryIds.push(categoryId);
@@ -478,6 +478,8 @@ export class DonationPageComponent {
         case 1:
           this.amount1 = 0;
           this.project1=null;
+              this.donationFormId = null;
+
           break;
 
         case 2: // Category 2: Sponsor an orphan
@@ -488,6 +490,8 @@ export class DonationPageComponent {
           this.orphanGeneral = false;
           this.amount2 = 0;
           this.project2 = null;
+              this.donationFormId = null;
+
           break;
 
         case 3: // Category 3: Wells, health, Food, Education
@@ -501,6 +505,8 @@ export class DonationPageComponent {
           this.healthAmount = 0;
           this.selectedEducationProject = null;
           this.selectedHealthProject = null;
+              this.donationFormId = null;
+
           break;
 
         case 4: // Category 4: Islamic giving
@@ -512,6 +518,8 @@ export class DonationPageComponent {
           this.zakatAlMalAmount = 0;
           this.zakatAlFitrAmount = 0;
           this.totalZakatAlFitrAmount = 0;
+              this.donationFormId = null;
+
           break;
 
         default:
@@ -557,8 +565,6 @@ export class DonationPageComponent {
       lastName,
       email,
       phone,
-      contributionType,
-      contributionName,
       city,
       country,
       addressLine1,

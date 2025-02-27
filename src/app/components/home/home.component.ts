@@ -21,6 +21,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { IconZelleComponent } from "../../shared/icons/payment-gateways/zelle/icon-zelle.component";
 import { IconEnvelopeComponent } from "../../shared/icons/envelope/icon-envelope.component";
+import { IconHeaderComponent } from '../../shared/icons/number-header/icon-header.component';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -53,7 +54,8 @@ import { IconEnvelopeComponent } from "../../shared/icons/envelope/icon-envelope
     IconVideoPlayComponent,
     CommonModule,
     IconZelleComponent,
-    IconEnvelopeComponent
+    IconEnvelopeComponent,
+    IconHeaderComponent
 ],
 })
 export class HomeComponent {

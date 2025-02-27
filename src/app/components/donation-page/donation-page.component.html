@@ -448,16 +448,16 @@
                 class="flex-[1_0_0] text-[color:var(--Colors-Black,#1F1F1F)] [font-family:Inter] text-base font-medium leading-6">
                 2.5% of your disposable wealth<br />To make sure your Zakat is
                 accurate go through
-                <a class="cursor-pointer" routerLink="/zakat-calculator">Zakat Calculator</a>
+                <a class="cursor-pointer underline" routerLink="/zakat-calculator">Zakat Calculator</a>
               </div>
-              <div class="w-2/12">
+              <div class="md:w-2/12 w-full">
                 <label class="flex flex-1">
                   <input
                     class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
                     type="number" [(ngModel)]="zakatAlMalAmount" placeholder="$ Custom Amount"
                     (keypress)="validateKeyPress($event)" (input)="validateInput($event)" /></label>
               </div>
-              <div class="w-2/12 h-1"></div>
+              <div class="md:w-2/12 h-1"></div>
             </div>
           </div>
         </div>
@@ -767,12 +767,12 @@
           fees?</mat-checkbox>
       </div>
     </div>
-    <div class="bg-white border-t border-t-gray-medium p-6">
+    <div class="bg-white border-t border-t-gray-medium p-6 my-5">
       <p class="text-[color:var(--Colors-Dark-Grey,#403F3E)] [font-family:Inter] text-base font-medium leading-6">
         Thank you for your generosity
       </p>
-      <div class="flex items-center gap-6 justify-between">
-        <p class="font-roboto h-12 text-gray-dark text-[40px] font-medium leading-[48px]">
+      <div class="flex flex-col md:flex-row items-center gap-6 justify-between">
+        <p class="font-roboto  text-gray-dark text-[40px] font-medium leading-[48px]">
           <!-- waiting for sayeh calculation -->
           Donation Total:<span class="text-black">
             ${{
@@ -785,7 +785,7 @@
             }}</span>
         </p>
         <button
-          class="flex h-14 justify-center items-center gap-2 flex-[1_0_0] px-6 py-3 [font-family:Inter] text-base font-medium leading-6 disabled:text-white disabled:bg-gray-medium bg-primary"
+          class="flex h-14 justify-center items-center gap-2 md:flex-[1_0_0] w-full px-6 py-3 [font-family:Inter] text-base font-medium leading-6 disabled:text-white disabled:bg-gray-medium bg-primary"
           [disabled]="!stripeCardElements.isCardValid() || donationForm.invalid" (click)="onMakeDonation()">
           Complete your Donation
         </button>

@@ -11,24 +11,24 @@
           <h3 class="text-body-1-inter mb-6 mt-2 lg:max-w-[900px]">{{ slide.description }}</h3>
           @switch (slide.destination.type) {
           @case('project_category') {
-          <app-button-link appearance="filled-secondary" [label]="slide.destination.label | titlecase"
+          <app-button-link appearance="filled-primary" [label]="slide.destination.label | titlecase"
             [path]="'/projects/category/' + slide.destination.slug" />
           }
           @case('project_carousel') {
-          <app-button-link appearance="filled-secondary" [label]="slide.destination.label | titlecase"
+          <app-button-link appearance="filled-primary" [label]="slide.destination.label | titlecase"
             [path]="'/projects/' + slide.destination.slug" />
           }
 
           @case ('project') {
-          <app-button-link appearance="filled-secondary" [label]="slide.destination.label | titlecase"
+          <app-button-link appearance="filled-primary" [label]="slide.destination.label | titlecase"
             [path]="'/projects/' + slide.destination.slug" />
           }
           @case ('blog') {
-          <app-button-link appearance="filled-secondary" [label]="slide.destination.label | titlecase"
+          <app-button-link appearance="filled-primary" [label]="slide.destination.label | titlecase"
             [path]="'/blogs/' + slide.destination.slug" />
           }
           @case ('blog_category') {
-          <app-button-link appearance="filled-secondary" [label]="slide.destination.label | titlecase"
+          <app-button-link appearance="filled-primary" [label]="slide.destination.label | titlecase"
             [path]="'/blogs/category/' + slide.destination.slug" />
           }
           }
