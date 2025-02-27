@@ -28,9 +28,14 @@ export class ProjectsComponent {
     if (!this.isPaginationLastPage && !this.loading) {
       this.loading = true;
       this.projectService
-        .getProjects(this.paginationPageNum, this.paginationPerPage, 'crisis')
+        .getProjects(
+          this.paginationPageNum,
+          this.paginationPerPage,
+          'emergency-response'
+        )
         .subscribe({
           next: (res: IApiResponse<IPaginatedData<IProjectCard[]>>) => {
+            console.log(res);
             if (res.data && res.data.data) {
               this.projects.push(...res.data.data);
 
