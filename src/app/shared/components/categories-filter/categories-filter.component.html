@@ -1,32 +1,25 @@
-<div
-  (mousedown)="startDrag($event)"
-  (mousemove)="onDrag($event)"
-  (mouseup)="endDrag()"
-  (mouseleave)="endDrag()"
-  (contextmenu)="endDrag(); $event.preventDefault()"
-  class="container flex gap-3 overflow-x-scroll no-scrollbar"
-  ngxScrollable
->
-  <a
-    (mousedown)="startDrag($event)"
-    (contextmenu)="endDrag(); $event.preventDefault()"
-    [routerLink]="basePath"
-    routerLinkActive="bg-primary text-white hover:text-white"
-    [routerLinkActiveOptions]="{ exact: true }"
-    class="flex whitespace-nowrap justify-center items-center py-3 px-4 border border-gray-light hover:border-primary hover:text-primary transition-colors ease-in-out"
-  >
-    {{ baseTitle | titlecase }}
-  </a>
+<div (mousedown)="startDrag($event)" (mousemove)="onDrag($event)" (mouseup)="endDrag()" (mouseleave)="endDrag()"
+  (contextmenu)="endDrag(); $event.preventDefault()" class="container flex gap-3 overflow-x-scroll no-scrollbar"
+  ngxScrollable>
+  <div class="flex flex-col items-center w-fit">
+    <a (mousedown)="startDrag($event)" (contextmenu)="endDrag(); $event.preventDefault()" [routerLink]="basePath"
+      routerLinkActive="bg-primary text-white hover:text-white" [routerLinkActiveOptions]="{ exact: true }"
+      class="flex whitespace-nowrap justify-center items-center py-3 px-4 border border-gray-light hover:border-primary hover:text-primary transition-colors ease-in-out">
+      {{ baseTitle | titlecase }}
+    </a>
+  </div>
+
   @for (category of categories; track category) {
-  <a
-    [routerLink]="basePath + '/category/' + category.slug"
-    routerLinkActive="bg-primary text-white hover:text-white"
-    [routerLinkActiveOptions]="{ exact: true }"
-    class="flex whitespace-nowrap justify-center items-center py-3 px-4 border border-gray-light hover:border-primary hover:text-primary transition-colors ease-in-out"
-  >
-    {{ category.name | titlecase }}
-  </a>
-  } @empty {
+    <a [routerLink]="basePath + '/category/' + category.slug" routerLinkActive="bg-primary text-white hover:text-white"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="flex whitespace-nowrap justify-center items-center py-3 px-4 border border-gray-light hover:border-primary hover:text-primary transition-colors ease-in-out">
+      {{ category.name | titlecase }}
+    </a>
+
+
+  }
+
+  @empty {
   <div class="animate-pulse bg-gray-light h-12 w-32"></div>
   <div class="animate-pulse bg-gray-light h-12 w-32"></div>
   <div class="animate-pulse bg-gray-light h-12 w-32"></div>
@@ -34,3 +27,9 @@
   <div class="animate-pulse bg-gray-light h-12 w-32"></div>
   }
 </div>
+  @for (category of categories; track category) {
+    @if (activeCategorySlug === category.slug) {
+    <p class="capitalize my-4 container" [innerHTML]="category.description"></p>
+    }
+
+  }
