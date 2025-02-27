@@ -196,6 +196,7 @@ export class DonationPageComponent {
   amount2: number = 0;
   project1: any = [];
   project2: any = [];
+  
   updateIftarMealTotal() {
     this.totalIftarMealAmount =
       this.iftarMealAmounts[0].amount * this.selectedMeals;

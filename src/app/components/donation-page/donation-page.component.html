@@ -14,11 +14,12 @@
 <div class="my-20 container">
   <div class="font-roboto font-medium">
     <p class="text-gray-dark text-2xl leading-8">Help Is Our Goal</p>
-    <h2 class="w-[583px] text-5xl leading-[56px] text-[#1F1F1F]">Donate to:</h2>
+    <h2 class=" text-5xl leading-[56px] text-[#1F1F1F]">Donate to:</h2>
   </div>
-  <div class="grid grid-cols-4 items-center gap-6 mt-8 mb-24 w-full">
+  <div class="overflow-x-auto w-full mt-8 mb-24 ">
+  <div class="grid grid-cols-4 items-center gap-6 min-w-max lg:min-w-full">
     @for (Category of Categories; track Category.id) {
-    <div class="border border-gray-light px-6 h-[320px] cursor-pointer transition-all duration-300"
+    <div class="border border-gray-light px-6 h-[320px] cursor-pointer transition-all duration-300 "
       [ngClass]="{ 'bg-primary': selectedCategoryIds.includes(Category.id) }" (click)="
         selectCategory(Category.id);
         (Category.id === 1 || Category.id === 2) && getProject(Category.slug)
@@ -48,6 +49,7 @@
     </div>
     }
   </div>
+</div>
   @if(selectedCategoryIds.length > 0) {
   <!-- Template -->
   @if (selectedCategoryIds.includes(1)) {
@@ -359,9 +361,7 @@
     </div>
 
   </div>
-  }
-  }
-  @if(selectedCategoryIds.includes(4) ) {
+  }  @if(selectedCategoryIds.includes(4) ) {
   <div class="max-w-5xl mx-auto">
     <div class="mb-12">
       <div class="flex items-center gap-2 mb-6">
@@ -489,6 +489,8 @@
 
   </div>
   }
+  }
+
   @if(amount1 ||amount2 || totalAmount ||
   totalZakatAlFitrAmount||zakatAlMalAmount||totalIftarMealAmount ||
   healthAmount||educationAmount||wellsAmount||foodAmount ){
