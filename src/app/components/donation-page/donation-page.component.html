@@ -96,46 +96,96 @@
 
   @if (selectedCategoryIds.includes(2)) {
   <!-- Project 2 -->
-  <div class="max-w-5xl mx-auto" [ngClass]="{'border-b border-b-gray-medium pb-5 mb-5':selectedCategoryIds.includes(3)||selectedCategoryIds.includes(4)}">
-    <div class="mb-12">
-      <div class="flex items-center gap-2 mb-6">
-        <div class="p-2 rounded-full bg-primary">
-          <app-icon-orphan />
-
-        </div>
-        <span class="text-2xl font-medium leading-8">{{ project2.title }}</span>
+  <div class="max-w-5xl mx-auto bg-white p-1" [ngClass]="{'border-b border-b-gray-medium pb-5 mb-5':selectedCategoryIds.includes(3)||selectedCategoryIds.includes(4)}">
+  <div class="mb-12">
+    <div class="flex items-center gap-2 mb-6">
+      <div class="p-2 rounded-full bg-primary">
+        <app-icon-orphan />
       </div>
+      <span class="text-2xl font-medium leading-8">Orphan Sponsorship</span>
+    </div>
 
-      <!-- Project 2 Content -->
-      <div>
-        <!-- Donation Amounts for Project 2 -->
-        <div class="flex flex-col gap-2">
-          <h3>Choose amount for {{ project2.title }}</h3>
-          <div class="flex flex-wrap gap-3">
-            @for (level of project2.donation_form.levels; track level) {
+    <!-- Orphan General and Orphan Sponsorship Checkboxes -->
+    <div class="my-4 flex items-center">
+      <div class="w-1/2">
+        <mat-checkbox [(ngModel)]="orphanGeneral" (change)="resetAmount()">Orphan General</mat-checkbox>
+      </div>
+      <div class="w-1/2">
+        <mat-checkbox [(ngModel)]="orphanSponsorship" (change)="resetSponsorship()">Orphan Sponsorship</mat-checkbox>
+      </div>
+    </div>
+
+    <!-- Donation Amounts for Orphan General -->
+    @if(orphanGeneral) {
+    <div class="flex flex-col gap-2">
+      <h3>Choose amount for (General)*</h3>
+      <div class="flex flex-wrap gap-3">
+        @for (level of project2.donation_form.levels; track level) {
+        <label class="flex flex-1">
+          <input class="peer appearance-none" type="radio" name="amount2" [value]="level.amount" [(ngModel)]="amount2" />
+          <div
+            class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+            @if (!level.name) {
+            <span>{{ "$" + level.amount }}</span>
+            } @else {
+            <span>{{ level.name }}</span>
+            }
+          </div>
+        </label>
+        }
+        <label class="flex flex-1">
+          <input
+            class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
+            type="number" [(ngModel)]="amount2" placeholder="$ Custom Amount" (keypress)="validateKeyPress($event)"
+            (input)="validateInput($event)" />
+        </label>
+      </div>
+    </div>
+    }
+
+    <!-- Donation Amounts for Orphan Sponsorship -->
+    @if(orphanSponsorship) {
+    <div class="my-6">
+      <div class="flex flex-col gap-2">
+        <h3>Choose amount for (Sponsorship)*</h3>
+        <div class="flex items-center gap-3">
+          <div class="w-5/12">
             <label class="flex flex-1">
-              <input class="peer appearance-none" type="radio" name="amount2" [value]="level.amount"
-                [(ngModel)]="amount2" />
+              <input class="peer appearance-none" type="radio" name="orphenAmount" [value]="50"
+                [(ngModel)]="selectedAmount" (ngModelChange)="updateTotal()" />
               <div
-                class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
-                @if (!level.name) {
-                <span>{{ "$" + level.amount }}</span>
-                } @else {
-                <span>{{ level.name }}</span>
-                }
+                class="flex justify-center items-center w-full py-3 px-9 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                <span>$50 per orphan (month)</span>
               </div>
             </label>
-            }
+          </div>
+          <div class="w-5/12">
             <label class="flex flex-1">
-              <input
-                class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
-                type="number" [(ngModel)]="amount2" placeholder="$ Custom Amount" (keypress)="validateKeyPress($event)"
-                (input)="validateInput($event)" />
+              <input class="peer appearance-none" type="radio" name="orphenAmount" [value]="600"
+                [(ngModel)]="selectedAmount" (ngModelChange)="updateTotal()" />
+              <div
+                class="flex justify-center items-center w-full py-3 px-9 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                <span>$600 per orphan (year)</span>
+              </div>
+            </label>
+          </div>
+          <div class="w-2/12">
+            <label class="flex flex-1 relative">
+              <div
+                class="px-1 flex justify-center items-center w-full py-3 border border-gray-medium cursor-pointer transition-colors ease-in-out">
+                <mat-select [(value)]="selectedOrphans" (selectionChange)="updateTotal()">
+                  <mat-option *ngFor="let num of [1,2,3,4,5,6,7,8,9,10,15,20,25,50,75,100]" [value]="num">
+                    <span class="ps-3">{{ num }}</span>
+                  </mat-option>
+                </mat-select>
+              </div>
             </label>
           </div>
         </div>
       </div>
     </div>
+    }
+  </div>
   </div>
   }
   @if(selectedCategoryIds.includes(3) ) {
