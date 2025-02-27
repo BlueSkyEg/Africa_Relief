@@ -54,7 +54,12 @@ import { IconRightComponent } from '../../shared/icons/right/icon-right.componen
 import { ProjectService } from '../../core/services/projects/project.service';
 import { ICategory } from '../../shared/interfaces/category-interface';
 import { IProject } from '../../shared/interfaces/project/project-interface';
-import { MatSelect, MatOption, MatFormField, MatLabel } from '@angular/material/select';
+import {
+  MatSelect,
+  MatOption,
+  MatFormField,
+  MatLabel,
+} from '@angular/material/select';
 import { IconExpandMoreComponent } from '../../shared/icons/expand-more/icon-eye.component';
 import { IProjectCard } from '../../shared/interfaces/project/project-card-interface';
 
@@ -80,7 +85,7 @@ import { IProjectCard } from '../../shared/interfaces/project/project-card-inter
     MatSelect,
     IconEarthComponent,
     IconIslamComponent,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './donation-page.component.html',
 })
@@ -130,10 +135,11 @@ export class DonationPageComponent {
   coverFees: boolean = false;
   feePercentage: number = 2.9;
   isChecked: boolean = false;
-  selectedCategoryIds: number[] = [];  projectCategories: ICategory[];
+  selectedCategoryIds: number[] = [];
+  projectCategories: ICategory[];
   displayedCategories: ICategory[] = [];
   amounts: any[] = [];
-  project: IProject = null;
+
   projects: IProjectCard[] = [];
   makeRecurringDonation: boolean = false;
   recurringPeriod: 'day' | 'week' | 'month' | 'year' = 'month';
@@ -146,11 +152,31 @@ export class DonationPageComponent {
   totalAmount = 0;
   //categories
   wellsChecked: boolean = false;
-  healthChecked: boolean = false;
   foodChecked: boolean = false;
+
+  // Education Centers Projects
   educationChecked: boolean = false;
+  selectedEducationProjectSlug: string | null = null;
+  selectedEducationProject: any = null;
+  educationAmount: number = 0;
+
+  // Health Care Projects
+  healthChecked: boolean = false;
+  selectedHealthProjectSlug: string | null = null;
+  selectedHealthProject: any = null;
+  healthAmount: number = 0;
+
   selectedProjectSlug: string | null = null;
   selectedProject: any = null; // Stores project details
+
+  wellsAmount: number=0;
+  foodAmount: number=0;
+  selectedWellsProject: any = null;
+  selectedFoodProject: any = null;
+  selectedFoodSlug: string | null = null;
+  selectedEducationSlug: string | null = null;
+  selectedHealthSlug: string | null = null;
+  selectedWellsSlug: string | null = null;
 
   iftarMealChecked: boolean = false;
   zakatAlMalChecked: boolean = false;
@@ -158,28 +184,29 @@ export class DonationPageComponent {
   iftarMealAmounts: any[] = [];
   zakatAlMalAmounts: any[] = [];
   zakatAlFitrAmounts: any[] = [];
-  iftarMealAmount:number = 0;
-  zakatAlMalAmount:number = 0;
-  zakatAlFitrAmount:number = 0;
-  totalIftarMealAmount:number=0;
+  iftarMealAmount: number = 0;
+  zakatAlMalAmount: number = 0;
+  zakatAlFitrAmount: number = 0;
+  totalIftarMealAmount: number = 0;
   totalZakatAlFitrAmount: number = 0;
-  selectedMeals:number=1;
+  selectedMeals: number = 1;
   selectedZakatAlFitrAmount: number = 1;
 
+  amount1: number = 0;
+  amount2: number = 0;
+  project1: any = [];
+  project2: any = [];
   updateIftarMealTotal() {
-    this.totalIftarMealAmount = this.iftarMealAmounts[0].amount * this.selectedMeals;
-return this.totalIftarMealAmount;
+    this.totalIftarMealAmount =
+      this.iftarMealAmounts[0].amount * this.selectedMeals;
+    return this.totalIftarMealAmount;
   }
   updateZakatAlFitrTotal() {
-    this.totalZakatAlFitrAmount = this.zakatAlFitrAmounts[0].amount * this.selectedZakatAlFitrAmount;
+    this.totalZakatAlFitrAmount =
+      this.zakatAlFitrAmounts[0].amount * this.selectedZakatAlFitrAmount;
     return this.totalZakatAlFitrAmount;
   }
-  onProjectSelect(slug: string) {
-    this.amount = 0;
-    if (slug) {
-      this.getProject(slug);
-    }
-  }
+
   updateTotal() {
     if (this.orphanSponsorship) {
       this.totalAmount = this.selectedAmount * this.selectedOrphans;
@@ -197,11 +224,11 @@ return this.totalIftarMealAmount;
     this.amount = 0;
     this.selectedProject = null;
     this.selectedProjectSlug = null;
-    this.iftarMealAmount=0;
-    this.totalIftarMealAmount=0;
-    this.totalZakatAlFitrAmount=0;
-    this.zakatAlFitrAmount=0;
-    this.zakatAlMalAmount=0;
+    this.iftarMealAmount = 0;
+    this.totalIftarMealAmount = 0;
+    this.totalZakatAlFitrAmount = 0;
+    this.zakatAlFitrAmount = 0;
+    this.zakatAlMalAmount = 0;
   }
   onIftarMealCheckboxChange() {
     if (this.iftarMealChecked) {
@@ -209,9 +236,8 @@ return this.totalIftarMealAmount;
     }
     this.selectedProject = null;
     this.selectedProjectSlug = null;
-    this.selectedMeals=1;
-     this.totalIftarMealAmount = 0;
-
+    this.selectedMeals = 1;
+    this.totalIftarMealAmount = 0;
   }
   onZakatAlFitrCheckboxChange() {
     if (this.zakatAlFitrChecked) {
@@ -219,16 +245,29 @@ return this.totalIftarMealAmount;
     }
     this.selectedProject = null;
     this.selectedProjectSlug = null;
-    this.selectedZakatAlFitrAmount=1;
-    this.totalZakatAlFitrAmount=0;
-
-
+    this.selectedZakatAlFitrAmount = 1;
+    this.totalZakatAlFitrAmount = 0;
   }
   onZakatAlMalCheckboxChange() {
     this.selectedProject = null;
     this.selectedProjectSlug = null;
     this.zakatAlMalAmount = 0;
+  }
+  // Component TypeScript
+  onEducationProjectSelect(slug: string) {
+    this.selectedEducationProjectSlug = slug;
+     this.projectService.getProject(slug).subscribe({
+      next: (res: IApiResponse<IProject>) => {
+        this.selectedEducationProject = res.data;}});
+  }
 
+  onHealthProjectSelect(slug: string) {
+    this.selectedHealthProjectSlug = slug;
+     this.projectService.getProject(slug).subscribe({
+       next: (res: IApiResponse<IProject>) => {
+         this.selectedHealthProject = res.data;
+       },
+     });
   }
   resetSponsorship() {
     if (!this.orphanSponsorship) {
@@ -258,14 +297,14 @@ return this.totalIftarMealAmount;
   _snackBar: MatSnackBar = inject(MatSnackBar);
   _gtmService: GoogleTagManagerService = inject(GoogleTagManagerService);
   projectService: ProjectService = inject(ProjectService);
-route:ActivatedRoute = inject(ActivatedRoute);
+  route: ActivatedRoute = inject(ActivatedRoute);
   isBrowser: boolean;
   constructor(@Inject(PLATFORM_ID) private platformId: any) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       const categoryId = +params['category'];
       const projectSlug = params['project'];
       const amount = +params['amount'];
@@ -273,12 +312,10 @@ route:ActivatedRoute = inject(ActivatedRoute);
       if (categoryId && projectSlug && amount) {
         this.selectCategory(categoryId);
         this.getProject(projectSlug);
-        if (projectSlug =='zakat-al-mal'){
-          this.zakatAlMalAmount=amount;
-          this.zakatAlMalChecked=true;
+        if (projectSlug == 'zakat-al-mal') {
+          this.zakatAlMalAmount = amount;
+          this.zakatAlMalChecked = true;
         }
-
-
       }
     });
     this.getCategories();
@@ -345,24 +382,23 @@ route:ActivatedRoute = inject(ActivatedRoute);
   getProject(slug: string) {
     this.projectService.getProject(slug).subscribe({
       next: (res: IApiResponse<IProject>) => {
-        this.project = res.data;
         this.selectedProject = res.data;
-
         // Update the correct amounts array based on the slug
         if (slug === 'iftar-meal') {
-              this.iftarMealAmounts = res.data.donation_form.levels;
-              this.totalIftarMealAmount=this.iftarMealAmounts[0].amount;
+          this.iftarMealAmounts = res.data.donation_form.levels;
+          this.totalIftarMealAmount = this.iftarMealAmounts[0].amount;
         } else if (slug === 'zakat-al-mal') {
           this.zakatAlMalAmounts = res.data.donation_form.levels;
         } else if (slug === 'zakat-al-fitr') {
           this.zakatAlFitrAmounts = res.data.donation_form.levels;
           this.totalZakatAlFitrAmount = this.zakatAlFitrAmounts[0].amount;
+        } else if (slug === 'help-where-it-is-most-needed') {
+          this.project1 = res.data;
+        } else if (slug === 'orphans-sponsorship') {
+          this.project2 = res.data;
+        } else if (slug === 'food-basket') {
+          this.selectedFoodProject = res.data;
         }
-        else{
-          this.amounts = res.data.donation_form.levels;
-
-        }
-
         this.recurring_periods = res.data.donation_form.recurring_periods;
         this.donationFormId = res.data.donation_form.id;
         this.donationFormTitle = res.data.title; // Set title from response
@@ -379,8 +415,10 @@ route:ActivatedRoute = inject(ActivatedRoute);
     this.projectService.getProjects(1, 9, slug).subscribe({
       next: (res) => {
         if (res.data && res.data.data) {
+          console.log(res.data)
           this.projectsWithAmounts = res.data.data.map((project: any) => ({
             title: project.title,
+
             slug: project.slug, // Needed to fetch donation amounts
             amounts: [], // Will be populated later
           }));
@@ -426,17 +464,17 @@ route:ActivatedRoute = inject(ActivatedRoute);
     //   this.selectedCategoryId === categoryId ? null : categoryId;
     this.amount = 0;
     this.totalAmount = 0;
-    this.totalIftarMealAmount=0;
-    this.zakatAlMalAmount=0;
-    this.zakatAlFitrAmount=0;
-    this.iftarMealAmount=0;
-    this.iftarMealChecked=false;
-    this.zakatAlMalChecked=false;
-    this.zakatAlFitrChecked=false;
+    this.totalIftarMealAmount = 0;
+    this.zakatAlMalAmount = 0;
+    this.zakatAlFitrAmount = 0;
+    this.iftarMealAmount = 0;
+    this.iftarMealChecked = false;
+    this.zakatAlMalChecked = false;
+    this.zakatAlFitrChecked = false;
     this.wellsChecked = false;
-    this.healthChecked=false;
-    this.educationChecked=false;
-    this.foodChecked=false;
+    this.healthChecked = false;
+    this.educationChecked = false;
+    this.foodChecked = false;
     this.selectedAmount = 0;
     this.selectedOrphans = 1;
     this.totalAmount = 0;
@@ -446,8 +484,6 @@ route:ActivatedRoute = inject(ActivatedRoute);
     this.isChecked = false;
     this.selectedProject = null;
     this.selectedProjectSlug = null;
-    this.project = undefined;
-
   }
 
   // Get icon components
@@ -513,7 +549,11 @@ route:ActivatedRoute = inject(ActivatedRoute);
       state,
     };
 
-    const finalAmount = this.amount + this.totalAmount +  this.totalIftarMealAmount + this.totalZakatAlFitrAmount + this.zakatAlMalAmount;
+    const finalAmount = this.amount1 + this.amount2;
+    this.totalAmount +
+      this.totalIftarMealAmount +
+      this.totalZakatAlFitrAmount +
+      this.zakatAlMalAmount+this.healthAmount+this.wellsAmount+this.educationAmount+this.foodAmount
     this.coverFees = this.donationForm.get('coverFees')?.value || false;
 
     this.stripeCardElements.createPaymentMethod(billingDetails).subscribe({
@@ -572,11 +612,11 @@ route:ActivatedRoute = inject(ActivatedRoute);
       email: email,
       contribution: this.isChecked
         ? [
-          {
-            contributionName: contributionName,
-            contributionType: contributionType,
-          },
-        ]
+            {
+              contributionName: contributionName,
+              contributionType: contributionType,
+            },
+          ]
         : null,
       amount: finalAmount,
       donationFormId: this.donationFormId.toString(),
@@ -594,9 +634,9 @@ route:ActivatedRoute = inject(ActivatedRoute);
       isRecurring: this.recurringPeriod ? true : false,
       contribution: this.isChecked
         ? {
-          contributionName: contributionName,
-          contributionType: contributionType,
-        }
+            contributionName: contributionName,
+            contributionType: contributionType,
+          }
         : null,
     });
 
