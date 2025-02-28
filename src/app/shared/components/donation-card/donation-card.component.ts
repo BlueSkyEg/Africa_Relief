@@ -46,7 +46,6 @@ export class DonationCardComponent {
         // donationFormTitle: this.donationForm.title,
         donationFormTitle: this.donationFormTitle
       });
-      console.log(this.donationForm);
 
     }
     this.router.navigate(['/donation'], {

@@ -50,7 +50,6 @@ export class ProjectsComponent implements OnInit {
     this.projectService.getProjectCategories().subscribe({
       next: (res: IApiResponse<ICategory[]>) => {
         this.projectCategories = res.data;
-        console.log(this.projectCategories)
       },
     });
 
