@@ -99,11 +99,12 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
 #dd-container .lets-check:hover, #dd-container .lets-check:focus, .dtd-plugin .lets-check:hover, .dtd-plugin .lets-check:focus {
-    background-color: #205926;
-    color: #fefefe;
+    background-color: #FFBD59;
+    color: #000;
 }
 ::selection {
-  background-color: #205926;
-  color: #fefefe;
+  background-color: #FFBD59;
+  color: #000;
 }

@@ -6,7 +6,7 @@
 */
 
 .filled {
-  @apply text-white bg-primary disabled:text-white disabled:bg-gray-medium;
+  @apply text-black bg-primary disabled:text-white disabled:bg-gray-medium;
 }
 
 .outlined {

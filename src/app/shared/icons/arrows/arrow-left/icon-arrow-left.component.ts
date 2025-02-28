@@ -23,5 +23,5 @@ import { NgClass} from "@angular/common";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconArrowLeftComponent {
-  @Input() color: 'black' | 'primary' = 'primary';
+  @Input() color: 'black' | 'primary' = 'black';
 }

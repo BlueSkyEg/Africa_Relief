@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ICareer } from '../../../shared/interfaces/career/career.interface';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment.development';
 import { IPaginatedData } from '../../../shared/interfaces/paginated-data.interface';
 
 @Injectable({

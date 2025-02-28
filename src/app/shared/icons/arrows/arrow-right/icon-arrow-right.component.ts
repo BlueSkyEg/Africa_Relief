@@ -23,5 +23,5 @@ import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconArrowRightComponent {
-  @Input() color: 'black' | 'primary' = 'primary';
+  @Input() color: 'black' | 'primary' = 'black';
 }

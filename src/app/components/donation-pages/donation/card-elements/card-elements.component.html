@@ -1,27 +1,56 @@
 @if (elementsOptions.clientSecret) {
-  <ngx-stripe-card-group [elementsOptions]="elementsOptions">
-    <app-form-field>
+<ngx-stripe-card-group [elementsOptions]="elementsOptions">
+  <div class="flex items-center gap-2 w-full">
+    <app-form-field class="w-3/4">
       <app-form-label>Card Number*</app-form-label>
-      <div class="border border-gray-light py-3 px-4">
-        <ngx-stripe-card-number [options]="cardOptions" (change)="onCardNumberChange($event)"></ngx-stripe-card-number>
+      <div
+        class="  border bg-white border-gray-medium text-gray-900 text-sm  block w-full px-4 py-3"
+      >
+        <ngx-stripe-card-number
+          [options]="cardOptions"
+          (change)="onCardNumberChange($event)"
+        ></ngx-stripe-card-number>
       </div>
-      <app-form-error [hasError]="cardNumberError() != null">{{cardNumberError()}}</app-form-error>
+      <app-form-error [hasError]="cardNumberError() != null">{{
+        cardNumberError()
+      }}</app-form-error>
     </app-form-field>
-    <div class="flex gap-4">
-      <app-form-field class="flex-1">
-        <app-form-label>Expiration*</app-form-label>
-        <div class="border border-gray-light py-3 px-4">
-          <ngx-stripe-card-expiry [options]="cardOptions" (change)="onCardExpiryChange($event)"></ngx-stripe-card-expiry>
-        </div>
-        <app-form-error [hasError]="cardExpiryError() != null">{{cardExpiryError()}}</app-form-error>
-      </app-form-field>
-      <app-form-field class="flex-1">
-        <app-form-label>CVC*</app-form-label>
-        <div class="border border-gray-light py-3 px-4">
-          <ngx-stripe-card-cvc [options]="cardOptions" (change)="onCardCvvChange($event)"></ngx-stripe-card-cvc>
-        </div>
-        <app-form-error [hasError]="cardCvvError() != null">{{cardCvvError()}}</app-form-error>
-      </app-form-field>
-    </div>
-  </ngx-stripe-card-group>
+    <app-form-field class="w-1/4">
+      <app-form-label>CVC*</app-form-label>
+      <div
+        class=" border bg-white border-gray-medium text-gray-900 text-sm  block w-full px-4 py-3"
+      >
+        <ngx-stripe-card-cvc
+          [options]="cardOptions"
+          (change)="onCardCvvChange($event)"
+        ></ngx-stripe-card-cvc>
+      </div>
+      <app-form-error [hasError]="cardCvvError() != null">{{
+        cardCvvError()
+      }}</app-form-error>
+    </app-form-field>
+  </div>
+  <div class="flex items-center gap-2 w-full">
+    <app-form-field class="w-3/4">
+      <app-form-label>Cardholder Name *</app-form-label>
+      <input
+        type="text"
+        placeholder="Cardholder Name"
+        class="placeholder:font-normal placeholder:opacity-50 placeholder:text-lg border border-gray-medium text-gray-900  focus:ring-[#FFBD59] focus:border-[#FFBD59] block w-full px-4 py-3 focus:outline-none"
+      />
+    </app-form-field>
+    <app-form-field class="w-1/4">
+      <app-form-label>Expiration*</app-form-label>
+      <div class=" border border-gray-medium text-gray-900 bg-white block w-full px-4 py-[13px] ">
+        <ngx-stripe-card-expiry
+          [options]="cardOptions"
+          (change)="onCardExpiryChange($event)"
+        ></ngx-stripe-card-expiry>
+      </div>
+      <app-form-error [hasError]="cardExpiryError() != null">{{
+        cardExpiryError()
+      }}</app-form-error>
+    </app-form-field>
+  </div>
+</ngx-stripe-card-group>
 }

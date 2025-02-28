@@ -1,0 +1,803 @@
+<!-- Donation Header -->
+<div
+  class="relative w-full h-auto py-12 bg-[url('/assets/images/shared/archive-header-bg.webp')] bg-cover bg-no-repeat bg-[center_top] md:bg-[center_-100px] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black after:bg-opacity-60 after:block">
+  <div class="container flex flex-col lg:flex-row gap-4 text-white relative z-10">
+    <div class="basis-1/2 flex flex-col gap-2">
+      <app-breadcrumb currentName="Donate" appreance="white" />
+      <span class="text-white text-base font-normal leading-6">I Want to turn my compassion into hope for people in
+        need!
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="my-20 container">
+  <div class="font-roboto font-medium">
+    <p class="text-gray-dark text-2xl leading-8">Help Is Our Goal</p>
+    <h2 class=" text-5xl leading-[56px] text-[#1F1F1F]">Donate to:</h2>
+  </div>
+  <div class="overflow-x-auto w-full mt-8 mb-24 ">
+    <div class="grid grid-cols-4 items-center gap-6 min-w-max lg:min-w-full">
+      @for (Category of Categories; track Category.id) {
+      <div class="border border-gray-light px-6 h-[320px] cursor-pointer transition-all duration-300 "
+        [ngClass]="{ 'bg-primary': selectedCategoryIds.includes(Category.id) }" (click)="
+        selectCategory(Category.id);
+        (Category.id === 1 || Category.id === 2) && getProject(Category.slug)
+      ">
+        <div class="flex flex-col justify-center gap-4 h-full">
+          <div class="flex items-center gap-4">
+            <div class="flex p-3 justify-center items-center [background:var(--new-secondary,#FFBD59)]">
+              <ng-container *ngIf="getComponent(Category.iconName) as component">
+                <ng-container *ngComponentOutlet="component"></ng-container>
+              </ng-container>
+            </div>
+            <p class="[font-family:Inter] text-xl font-bold leading-8">
+              {{ Category.name }}
+            </p>
+          </div>
+          <div>
+            <div class="relative">
+              <img [src]="Category.imageSrc" class="object-cover w-full h-48" [alt]="Category.name" />
+              @if(selectedCategoryIds.includes(Category.id) ) {
+              <div class="absolute -end-[10px] -bottom-[10px]">
+                <app-icon-right />
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+  @if(selectedCategoryIds.length > 0) {
+  <!-- Template -->
+  @if (selectedCategoryIds.includes(1)) {
+  <!-- Project 1 -->
+  <div class="max-w-5xl mx-auto"
+    [ngClass]="{'border-b border-b-gray-medium pb-5 mb-5':selectedCategoryIds.includes(2)||selectedCategoryIds.includes(3)||selectedCategoryIds.includes(4)}">
+    <div class="mb-12">
+      <div class="flex items-center gap-2 mb-6">
+        <div class="p-2 rounded-full bg-primary">
+          <app-icon-help />
+        </div>
+        <span class="text-2xl font-medium leading-8">{{ project1.title }}</span>
+      </div>
+
+      <!-- Project 1 Content -->
+      <div class="overflow-x-auto">
+        <!-- Donation Amounts for Project 1 -->
+        <div class="flex flex-col gap-2">
+          <h3>Choose amount for {{ project1.title }}</h3>
+          <div class="w-full overflow-x-auto">
+            <div class="flex gap-3 ">
+              @for (level of project1.donation_form.levels; track level) {
+              <label class="flex-shrink-0 lg:flex-1">
+                <input class="peer hidden" type="radio" name="amount1" [value]="level.amount" [(ngModel)]="amount1" />
+                <div
+                  class="flex justify-center items-center w-24 sm:w-32 md:w-40 py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                  @if (!level.name) {
+                  <span>{{ "$" + level.amount }}</span>
+                  } @else {
+                  <span>{{ level.name }}</span>
+                  }
+                </div>
+              </label>
+              }
+              <label class="flex-shrink-0">
+                <input
+                  class=" md:w-40 bg-[#fafafa] py-3  border border-gray-medium outline-none text-center transition-colors ease-in-out"
+                  type="number" [ngModel]="amount1 > 0 ? amount1 : null"
+                  (ngModelChange)="amount1 = $event > 0 ? $event : null" placeholder="$ Custom Amount"
+                  (keypress)="validateKeyPress($event)" (input)="validateInput($event)" />
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  }
+  @if (selectedCategoryIds.includes(2)) {
+  <!-- Project 2 -->
+  <div class="max-w-5xl mx-auto bg-white p-1"
+    [ngClass]="{'border-b border-b-gray-medium pb-5 mb-5':selectedCategoryIds.includes(3)||selectedCategoryIds.includes(4)}">
+    <div class="mb-12">
+      <div class="flex items-center gap-2 mb-6">
+        <div class="p-2 rounded-full bg-primary">
+          <app-icon-orphan />
+        </div>
+        <span class="text-2xl font-medium leading-8">Orphan Sponsorship</span>
+      </div>
+
+      <!-- Orphan General and Orphan Sponsorship Checkboxes -->
+      <div class="my-4 flex items-center">
+        <div class="w-1/2">
+          <mat-checkbox [(ngModel)]="orphanGeneral" (change)="resetAmount()">Orphan General</mat-checkbox>
+        </div>
+        <div class="w-1/2">
+          <mat-checkbox [(ngModel)]="orphanSponsorship" (change)="resetSponsorship()">Orphan Sponsorship</mat-checkbox>
+        </div>
+      </div>
+
+      <!-- Donation Amounts for Orphan General -->
+      @if(orphanGeneral) {
+      <div class="overflow-x-auto">
+        <div class="flex flex-col gap-2">
+          <h3>Choose amount for (General)*</h3>
+          <div class="w-full overflow-x-auto">
+            <div class="flex flex-wrap gap-3  min-w-max">
+              @for (level of project2.donation_form.levels; track level) {
+              <label class="flex lg:flex-1 flex-shrink-0">
+                <input class="peer appearance-none" type="radio" name="amount2" [value]="level.amount"
+                  [(ngModel)]="amount2" />
+                <div
+                  class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                  @if (!level.name) {
+                  <span>{{ "$" + level.amount }}</span>
+                  } @else {
+                  <span>{{ level.name }}</span>
+                  }
+                </div>
+              </label>
+              }
+              <label class="flex flex-1">
+                <input
+                  class="w-40  flex justify-center items-center bg-[#fafafa]  py-3 px-0 border border-gray-medium outline-none text-center transition-colors ease-in-out"
+                  type="number" [ngModel]="amount2 > 0 ? amount2 : null"
+                  (ngModelChange)="amount2 = $event > 0 ? $event : null" placeholder="$ Custom Amount"
+                  (keypress)="validateKeyPress($event)" (input)="validateInput($event)" />
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+
+      <!-- Donation Amounts for Orphan Sponsorship -->
+      @if(orphanSponsorship) {
+      <div class="my-6">
+        <div class="flex flex-col gap-2">
+          <h3>Choose amount for (Sponsorship)*</h3>
+          <div class="w-full overflow-x-auto lg:overflow-x-hidden">
+            <div class="grid grid-cols-5 gap-3  min-w-max">
+              <div class="col-span-2">
+                <label class="flex flex-1">
+                  <input class="peer appearance-none" type="radio" name="orphenAmount" [value]="50"
+                    [(ngModel)]="selectedAmount" (ngModelChange)="updateTotal()" />
+                  <div
+                    class="flex justify-center items-center w-full py-3 px-9 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                    <span>$50 per orphan (month)</span>
+                  </div>
+                </label>
+              </div>
+              <div class="col-span-2">
+
+                <label class="flex flex-1 ">
+                  <input class="peer appearance-none" type="radio" name="orphenAmount" [value]="600"
+                    [(ngModel)]="selectedAmount" (ngModelChange)="updateTotal()" />
+                  <div
+                    class="flex justify-center items-center w-full py-3 px-9 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                    <span>$600 per orphan (year)</span>
+                  </div>
+                </label>
+              </div>
+              <div class="col-span-1">
+
+                <label class="flex flex-1 relative">
+                  <div
+                    class="px-1 flex justify-center items-center w-full py-3 border border-gray-medium cursor-pointer transition-colors ease-in-out">
+                    <mat-select [(value)]="selectedOrphans" (selectionChange)="updateTotal()">
+                      <mat-option *ngFor="let num of [1,2,3,4,5,6,7,8,9,10,15,20,25,50,75,100]" [value]="num">
+                        <span class="ps-3">{{ num }}</span>
+                      </mat-option>
+                    </mat-select>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5 ">SubTotal <span class="text-primary"> ${{totalAmount}}</span></div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+  }
+  @if(selectedCategoryIds.includes(3) ) {
+  <div class="max-w-5xl mx-auto"
+    [ngClass]="{'border-b border-b-gray-medium pb-5 mb-5':selectedCategoryIds.includes(4)}">
+    <div class="mb-12">
+      <div class="flex items-center gap-2 mb-6">
+        @if(selectedCategoryIds.includes(3)) {
+        <div class="p-2 rounded-full bg-primary">
+          <app-icon-earth />
+        </div>
+        <span class="text-2xl font-medium leading-8">Wells,health, Kits,Education</span>
+        }
+      </div>
+      <div class="my-4 flex flex-wrap items-center justify-between w-full gap-2">
+        <mat-checkbox [(ngModel)]="wellsChecked"
+          (change)="getProjects('water'); onCategoriesCheckboxChange()">Wells</mat-checkbox>
+        <mat-checkbox [(ngModel)]="foodChecked" (change)="getProject('food-basket'); onCategoriesCheckboxChange()">Food
+          Aid</mat-checkbox>
+        <mat-checkbox [(ngModel)]="educationChecked" (change)="onCategoriesCheckboxChange()">Education
+          Centers</mat-checkbox>
+        <mat-checkbox [(ngModel)]="healthChecked" (change)="onCategoriesCheckboxChange()">Health</mat-checkbox>
+      </div>
+      <div>
+        <div *ngIf="wellsChecked" class="my-3"
+          [ngClass]="{'border-b border-b-gray-medium pb-5':(foodChecked||educationChecked||healthChecked)}">
+          <div class="flex flex-col gap-2">
+            <h3>Choose amount for (Wells) *</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              @for (project of projectsWithAmounts; track $index) {
+              <label class="flex flex-1">
+                <!-- wells amount -->
+                <input class="peer appearance-none" type="radio" name="wellsAmount" [value]="project.amounts[0].amount"
+                  [(ngModel)]="wellsAmount" />
+
+                <div
+                  class="flex gap-2 justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                  <span>{{ project.title }}</span>
+                  <span>${{ project.amounts[0].amount }}</span>
+                </div>
+              </label>
+
+              }
+            </div>
+          </div>
+        </div>
+        <div *ngIf="foodChecked" class="my-3"
+          [ngClass]="{'border-b border-b-gray-medium pb-5':(educationChecked||healthChecked)}">
+          <div class="flex flex-col gap-2">
+            <h3>Choose amount for (Food Aid) *</h3>
+            <!--Donation Amounts-->
+            <div class="flex flex-wrap gap-3">
+              @for (level of selectedFoodProject.donation_form.levels; track level) {
+              <label class="flex flex-1">
+                <!--food mount-->
+                <input class="peer appearance-none" type="radio" name="foodAmount" [value]="level.amount"
+                  [(ngModel)]="foodAmount" />
+                <div
+                  class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                  @if (!level.name) {
+                  <span>{{ "$" + level.amount }}</span>
+                  } @else {
+                  <span>{{ level.name }}</span>
+                  }
+                </div>
+              </label>
+              }
+              <label class="flex flex-1">
+                <input
+                  class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
+                  type="number" [(ngModel)]="foodAmount" placeholder="$ Custom Amount"
+                  (keypress)="validateKeyPress($event)" (input)="validateInput($event)" /></label>
+            </div>
+          </div>
+        </div>
+        <!-- Education Projects -->
+        <div *ngIf="educationChecked" class="my-3" [ngClass]="{'border-b border-b-gray-medium pb-5':(healthChecked)}">
+          <label class="flex flex-col flex-1 relative">
+            <div class="mb-1">Choose Education Centers Projects</div>
+            <div
+              class="px-1 flex justify-center items-center w-full py-3 border border-gray-medium cursor-pointer transition-colors ease-in-out">
+              <mat-select [(ngModel)]="selectedEducationProjectSlug"
+                (selectionChange)="onEducationProjectSelect($event.value)">
+                <mat-option *ngFor="let project of customProjects" [value]="project.slug">
+                  {{ project.title }}
+                </mat-option>
+              </mat-select>
+            </div>
+          </label>
+
+          <!-- Display selected education project details -->
+          <div *ngIf="selectedEducationProject">
+            <div class="flex flex-col gap-2 my-4">
+              <h3>Choose amount for {{ selectedEducationProject.title }}</h3>
+              <div class="flex flex-wrap gap-3">
+                @for (level of selectedEducationProject.donation_form.levels; track level) {
+                <label class="flex flex-1">
+                  <input class="peer appearance-none" type="radio" name="educationAmount" [value]="level.amount"
+                    [(ngModel)]="educationAmount" />
+                  <div
+                    class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                    @if (!level.name) {
+                    <span>{{ "$" + level.amount }}</span>
+                    } @else {
+                    <span>{{ level.name }}</span>
+                    }
+                  </div>
+                </label>
+                }
+                <div class="w-full lg:w-fit">
+                  <label class="flex w-full">
+                    <input
+                      class=" bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
+                      type="number" [ngModel]="educationAmount > 0 ? educationAmount : null"
+                      (ngModelChange)="educationAmount = $event > 0 ? $event : null" placeholder="$ Custom Amount"
+                      (keypress)="validateKeyPress($event)" (input)="validateInput($event)" />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Health Projects -->
+        <div *ngIf="healthChecked" class="my-3">
+          <label class="flex flex-col flex-1 relative">
+            <div class="mb-1">Choose Health Care Projects</div>
+            <div
+              class="px-1 flex justify-center items-center w-full py-3 border border-gray-medium cursor-pointer transition-colors ease-in-out">
+              <mat-select [(ngModel)]="selectedHealthProjectSlug"
+                (selectionChange)="onHealthProjectSelect($event.value)">
+                <mat-option *ngFor="let project of healthProjects" [value]="project.slug">
+                  {{ project.title }}
+                </mat-option>
+              </mat-select>
+            </div>
+          </label>
+
+          <!-- Display selected health project details -->
+          <div *ngIf="selectedHealthProject">
+            <div class="flex flex-col gap-2 my-4">
+              <h3>Choose amount for {{ selectedHealthProject.title }}</h3>
+              <div class="flex flex-wrap gap-3">
+                @for (level of selectedHealthProject.donation_form.levels; track level) {
+                <label class="flex flex-1">
+                  <input class="peer appearance-none" type="radio" name="healthAmount" [value]="level.amount"
+                    [(ngModel)]="healthAmount" />
+                  <div
+                    class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                    @if (!level.name) {
+                    <span>{{ "$" + level.amount }}</span>
+                    } @else {
+                    <span>{{ level.name }}</span>
+                    }
+                  </div>
+                </label>
+                }
+                <div class="lg:w-fit w-full">
+                  <label class="flex w-full">
+                    <input
+                      class="bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
+                      type="number" [ngModel]="healthAmount > 0 ? healthAmount : null"
+                      (ngModelChange)="healthAmount = $event > 0 ? $event : null" placeholder="$ Custom Amount"
+                      (keypress)="validateKeyPress($event)" (input)="validateInput($event)" />
+                  </label>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  }
+  @if(selectedCategoryIds.includes(4) ) {
+  <div class="max-w-5xl mx-auto">
+    <div class="mb-12">
+      <div class="flex items-center gap-2 mb-6">
+        @if(selectedCategoryIds.includes(4)) {
+        <div class="p-2 rounded-full bg-primary">
+          <app-icon-islam />
+        </div>
+        <span class="text-2xl font-medium leading-8">Islamic Giving</span>
+        }
+      </div>
+      <div class="my-4 flex items-center justify-between">
+        <mat-checkbox [(ngModel)]="iftarMealChecked" (change)="onIftarMealCheckboxChange()">Ramadan Iftar
+          Meal</mat-checkbox>
+        <mat-checkbox [(ngModel)]="zakatAlMalChecked"
+          (change)="getProject('zakat-al-mal'); onZakatAlMalCheckboxChange()">Zakat Al-mal</mat-checkbox>
+        <mat-checkbox [(ngModel)]="zakatAlFitrChecked" (change)="onZakatAlFitrCheckboxChange()">Zakat
+          Al-fitr</mat-checkbox>
+      </div>
+      <div>
+        <div *ngIf="iftarMealChecked" class="my-3"
+          [ngClass]="{'border-b border-b-gray-medium pb-5':(zakatAlFitrChecked||zakatAlMalChecked)}">
+          <div class="flex flex-col gap-2">
+            <h3>Choose amount for (Ramadan Iftar Meal) *</h3>
+            <!--Donation Amounts-->
+            <div class="flex flex-wrap gap-12">
+              <div
+                class="flex-[1_0_0] text-[color:var(--Colors-Black,#1F1F1F)] [font-family:Inter] text-base font-medium leading-6">
+                Each food basket provides one family with nutritious food
+                through the month of Ramadan Price for one basket: 30$
+              </div>
+              <div class="w-2/12">
+                <label class="flex flex-1">
+                  <input class="peer appearance-none" type="radio" name="iftarMealAmount" [value]="totalIftarMealAmount"
+                    [(ngModel)]="totalIftarMealAmount" />
+                  <div
+                    class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                    <span>${{ totalIftarMealAmount
+                      }}</span>
+                  </div>
+                </label>
+              </div>
+              <div class="w-2/12">
+                <label class="flex flex-1 relative">
+                  <div
+                    class="px-1 flex justify-center items-center w-full py-3 border border-gray-medium cursor-pointer transition-colors ease-in-out">
+                    <mat-select [(value)]="selectedMeals" (selectionChange)="updateIftarMealTotal()">
+                      <mat-option *ngFor="
+                          let num of [
+                            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 75,
+                            100
+                          ]
+                        " [value]="num"><span class="ps-3"> {{ num }}</span></mat-option>
+                    </mat-select>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="zakatAlMalChecked" class="my-3"
+          [ngClass]="{'border-b border-b-gray-medium pb-5':(zakatAlFitrChecked)}">
+          <div class="flex flex-col gap-2">
+            <h3>Choose amount for (Zakat Al-mal) *</h3>
+            <!--Donation Amounts-->
+            <div class="flex flex-wrap gap-12">
+              <div
+                class="flex-[1_0_0] text-[color:var(--Colors-Black,#1F1F1F)] [font-family:Inter] text-base font-medium leading-6">
+                2.5% of your disposable wealth<br />To make sure your Zakat is
+                accurate go through
+                <a class="cursor-pointer underline" routerLink="/zakat-calculator">Zakat Calculator</a>
+              </div>
+              <div class="md:w-2/12 w-full">
+                <label class="flex flex-1">
+                  <input
+                    class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
+                    type="number" [(ngModel)]="zakatAlMalAmount" placeholder="$ Custom Amount"
+                    (keypress)="validateKeyPress($event)" (input)="validateInput($event)" /></label>
+              </div>
+              <div class="md:w-2/12 h-1"></div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="zakatAlFitrChecked" class="my-3">
+          <div class="flex flex-col gap-2">
+            <h3>Choose amount for (Zakat Al-fitr) *</h3>
+            <!--Donation Amounts-->
+            <div class="flex flex-wrap gap-12">
+              <div
+                class="flex-[1_0_0] text-[color:var(--Colors-Black,#1F1F1F)] [font-family:Inter] text-base font-medium leading-6">
+                Pay you zakat Al-Fitr for each household member yourself
+                included Price of one person: 15$
+              </div>
+              <div class="w-2/12">
+                <label class="flex flex-1">
+                  <input class="peer appearance-none" type="radio" name="zakatAlFitrAmount"
+                    [value]="totalZakatAlFitrAmount" [(ngModel)]="totalZakatAlFitrAmount" />
+                  <div
+                    class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-gray-dark hover:text-white peer-checked:bg-gray-dark peer-checked:border-gray-dark peer-checked:text-white">
+                    <span>${{ totalZakatAlFitrAmount
+
+                      }}</span>
+                  </div>
+                </label>
+              </div>
+              <div class="w-2/12">
+                <label class="flex flex-1 relative">
+                  <div
+                    class="px-1 flex justify-center items-center w-full py-3 border border-gray-medium cursor-pointer transition-colors ease-in-out">
+                    <mat-select [(value)]="selectedZakatAlFitrAmount" (selectionChange)="updateZakatAlFitrTotal()">
+                      <mat-option *ngFor="
+                          let num of [
+                            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 75,
+                            100
+                          ]
+                        " [value]="num"><span class="ps-3"> {{ num }}</span></mat-option>
+                    </mat-select>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  }
+  }
+
+  @if(amount1 ||amount2 || totalAmount ||
+  totalZakatAlFitrAmount||zakatAlMalAmount||totalIftarMealAmount ||
+  healthAmount||educationAmount||wellsAmount||foodAmount ){
+  <div class="border-t border-t-gray-medium ">
+    <div class="flex justify-between items-center gap-1 py-3 pe-4 ps-1 border border-gray-medium mt-12">
+      <mat-checkbox color="primary" [(ngModel)]="makeRecurringDonation" class="ms-0">Make this donation
+        every</mat-checkbox>
+      <div class="min-w-[80px] shrink-0">
+        <mat-select [(value)]="recurringPeriod">
+          @for (period of recurring_periods; track period) {
+          <mat-option value="{{ period }}">{{
+            period | titlecase
+            }}</mat-option>
+          }
+        </mat-select>
+      </div>
+    </div>
+  </div>
+  <form [formGroup]="donationForm" class="max-w-5xl mx-auto my-12">
+    <!-- contribution Checkbox -->
+    <div>
+      <div class="my-4 py-2.5" [ngClass]="{ 'mb-6': !isChecked, ' bg-primary !px-1.5': isChecked }">
+        <mat-checkbox [(ngModel)]="isChecked" [ngModelOptions]="{ standalone: true }" class="ms-0"
+          (change)="onCheckboxChange()">I would like to dedicate this donation to someone</mat-checkbox>
+      </div>
+      @if(isChecked) {
+      <div class="flex items-center gap-6 w-full">
+        <app-form-field class="w-1/2">
+          <app-form-label class="text-base font-medium leading-6">Dedication type</app-form-label>
+          <input appFormElement type="text" placeholder="Dedication type" [matAutocomplete]="Dedication"
+            (input)="filterDedication(dedicationInput.value)" #dedicationInput autocomplete="off"
+            [value]="donationForm.controls.contributionType.value"
+            class="w-full px-3 py-2 bg-white border border-gray-medium focus:outline-none" />
+          <mat-autocomplete requireSelection #Dedication="matAutocomplete" [displayWith]="getOptionTextDetection"
+            (optionSelected)="onChangeDedication($event.option.value)">
+            @for (dedication of filteredDedications; track dedication) {
+            <mat-option [value]="dedication">{{ dedication }}</mat-option>
+            }
+          </mat-autocomplete>
+          <app-form-error [hasError]="
+              donationForm.get('contributionType').hasError('required') &&
+              donationForm.get('contributionType').touched
+            ">Contribution Type is required.</app-form-error>
+        </app-form-field>
+        <app-form-field class="w-1/2">
+          <app-form-label class="text-[#1f1f1f1] text-base font-medium leading-6">Who is this donation
+            {{ donationForm.controls.contributionType.value }}?</app-form-label>
+          <input type="text" formControlName="contributionName"
+            class="w-full px-3 py-2 bg-white border border-gray-medium focus:outline-none"
+            placeholder="E.g., John Doe." />
+          <app-form-error [hasError]="
+              donationForm.get('contributionName').hasError('required') &&
+              donationForm.get('contributionName').touched
+            ">Contribution Name is required.</app-form-error>
+        </app-form-field>
+      </div>
+      }
+    </div>
+    <!--Personal Details-->
+    <div>
+      <div class="mb-6 w-full py-3 border-b border-gray-medium">
+        <div class="flex gap-2">
+          <div
+            class="flex w-6 h-6 justify-center items-center shrink-0 [background:#FFBD59] pl-[7.5px] pr-[7.4px] py-0 rounded-[50px]">
+            <span class="text-white text-base font-medium leading-6">1</span>
+          </div>
+          <p class="text-[rgba(0,0,0,0.87)] text-base font-medium leading-6">
+            Contact Details
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <app-form-field class="w-full">
+          <app-form-label>First Name*</app-form-label>
+          <input type="text" appFormElement formControlName="firstName" placeholder="First name"
+            class="placeholder:font-normal placeholder:opacity-50 placeholder:text-lg border border-gray-medium text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full px-4 py-3 focus:outline-none" />
+          <app-form-error [hasError]="
+              donationForm.get('firstName').hasError('required') &&
+              donationForm.get('firstName').touched
+            ">First Name is required.</app-form-error>
+          <app-form-error [hasError]="
+              donationForm.get('firstName').hasError('string') &&
+              donationForm.get('firstName').touched
+            ">{{ donationForm.get('firstName').errors?.['string'] }}</app-form-error>
+        </app-form-field>
+        <app-form-field class="w-full">
+          <app-form-label>Last Name*</app-form-label>
+          <input type="text" appFormElement formControlName="lastName" placeholder="Last name"
+            class="placeholder:font-normal placeholder:opacity-50 placeholder:text-lg border border-gray-medium text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full px-4 py-3 focus:outline-none" />
+          <app-form-error [hasError]="
+              donationForm.get('lastName').hasError('required') &&
+              donationForm.get('lastName').touched
+            ">last Name is required.</app-form-error>
+          <app-form-error [hasError]="
+              donationForm.get('lastName').hasError('string') &&
+              donationForm.get('lastName').touched
+            ">{{ donationForm.get('lastName').errors?.['string'] }}</app-form-error>
+        </app-form-field>
+      </div>
+      <div class="flex items-center gap-2">
+        <app-form-field class="w-full">
+          <app-form-label>Phone Number*</app-form-label>
+          <input type="tel" appFormElement formControlName="phone" placeholder="Phone Number"
+            class="placeholder:font-normal placeholder:opacity-50 placeholder:text-lg border border-gray-medium text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full px-4 py-3 focus:outline-none" />
+          <app-form-error [hasError]="
+              donationForm.get('phone').hasError('required') &&
+              donationForm.get('phone').touched
+            ">Phone is required.</app-form-error>
+          <app-form-error [hasError]="
+              donationForm.get('phone').hasError('pattern') &&
+              donationForm.get('phone').touched
+            ">{{ donationForm.get('phone').errors?.['pattern'] }}</app-form-error>
+        </app-form-field>
+        <app-form-field class="w-full">
+          <app-form-label>Email*</app-form-label>
+          <input type="text" appFormElement formControlName="email" placeholder="example@example.com"
+            class="placeholder:font-normal placeholder:opacity-50 placeholder:text-lg border border-gray-medium text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full px-4 py-3 focus:outline-none" />
+          <app-form-error [hasError]="
+              donationForm.get('email').hasError('required') &&
+              donationForm.get('email').touched
+            ">Email is required.</app-form-error>
+          <app-form-error [hasError]="
+              donationForm.get('email').hasError('pattern') &&
+              donationForm.get('email').touched
+            ">{{ donationForm.get('email').errors?.['pattern'] }}</app-form-error>
+        </app-form-field>
+      </div>
+    </div>
+    <!--Billing Details-->
+    <div>
+      <div class="mb-6 w-full py-3 border-b border-gray-medium">
+        <div class="flex gap-2">
+          <div
+            class="flex w-6 h-6 justify-center items-center shrink-0 [background:#FFBD59] pl-[7.5px] pr-[7.4px] py-0 rounded-[50px]">
+            <span class="text-white text-base font-medium leading-6">2</span>
+          </div>
+          <p class="text-[rgba(0,0,0,0.87)] text-base font-medium leading-6">
+            Billing Details
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <app-form-field class="w-full">
+          <app-form-label>Country*</app-form-label>
+          <input appFormElement type="text" placeholder="Select Country" [matAutocomplete]="countryAutocomplete"
+            (input)="filterCountries(countryInput.value)" #countryInput autocomplete="off"
+            class="placeholder:font-normal placeholder:opacity-50 placeholder:text-lg border border-gray-medium text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full px-4 py-3 focus:outline-none" />
+          <mat-autocomplete requireSelection #countryAutocomplete="matAutocomplete" [displayWith]="getOptionText"
+            (optionSelected)="onChangeCountry($event.option.value)">
+            @for (country of filteredCountries; track country) {
+            <mat-option [value]="country">{{
+              country.countryNameEn
+              }}</mat-option>
+            }
+          </mat-autocomplete>
+          <app-form-error [hasError]="
+              donationForm.get('country').hasError('required') &&
+              donationForm.get('country').touched
+            ">Country is required.</app-form-error>
+          <app-form-error [hasError]="
+              donationForm.get('country').hasError('pattern') &&
+              donationForm.get('country').touched
+            ">Please select from the options.</app-form-error>
+        </app-form-field>
+        <app-form-field class="w-full">
+          <app-form-label>State*</app-form-label>
+          <input appFormElement type="text" formControlName="state" placeholder="State"
+            class="placeholder:font-normal placeholder:opacity-50 placeholder:text-lg border border-gray-medium text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full px-4 py-3 focus:outline-none" />
+          <app-form-error [hasError]="
+              donationForm.get('state').hasError('required') &&
+              donationForm.get('state').touched
+            ">State is required</app-form-error>
+          <app-form-error [hasError]="
+              donationForm.get('state').hasError('string') &&
+              donationForm.get('state').touched
+            ">{{ donationForm.get('state').errors?.['string'] }}</app-form-error>
+        </app-form-field>
+      </div>
+      <app-form-field class="w-full">
+        <app-form-label>Address 1*</app-form-label>
+        <input appFormElement class="form-input" type="text" formControlName="addressLine1" placeholder="Address Line 1"
+          class="placeholder:font-normal placeholder:opacity-50 placeholder:text-lg border border-gray-medium text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full px-4 py-3 focus:outline-none" />
+        <app-form-error [hasError]="
+            donationForm.get('addressLine1').hasError('required') &&
+            donationForm.get('addressLine1').touched
+          ">Address 1 is required.</app-form-error>
+        <app-form-error [hasError]="
+            donationForm.get('addressLine1').hasError('string') &&
+            donationForm.get('addressLine1').touched
+          ">{{ donationForm.get('addressLine1').errors?.['string'] }}</app-form-error>
+      </app-form-field>
+      <app-form-field class="w-full">
+        <app-form-label>Address 2</app-form-label>
+        <input appFormElement class="form-input" type="text" formControlName="addressLine2" placeholder="Address Line 2"
+          class="placeholder:font-normal placeholder:opacity-50 placeholder:text-lg border border-gray-medium text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full px-4 py-3 focus:outline-none" />
+        <app-form-error [hasError]="
+            donationForm.get('addressLine2').hasError('string') &&
+            donationForm.get('addressLine2').touched
+          ">{{ donationForm.get('addressLine1').errors?.['string'] }}</app-form-error>
+      </app-form-field>
+      <div class="flex items-center gap-2">
+        <app-form-field class="w-full">
+          <app-form-label>City*</app-form-label>
+          <input appFormElement type="text" formControlName="city" placeholder="City"
+            class="placeholder:font-normal placeholder:opacity-50 placeholder:text-lg border border-gray-medium text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full px-4 py-3 focus:outline-none" />
+          <app-form-error [hasError]="
+              donationForm.get('city').hasError('required') &&
+              donationForm.get('city').touched
+            ">City is required</app-form-error>
+          <app-form-error [hasError]="
+              donationForm.get('city').hasError('string') &&
+              donationForm.get('city').touched
+            ">{{ donationForm.get('city').errors?.['string'] }}</app-form-error>
+        </app-form-field>
+        <app-form-field class="w-full">
+          <app-form-label>Zip Code*</app-form-label>
+          <input appFormElement type="number" formControlName="postalCode" placeholder="Zip Code"
+            class="placeholder:font-normal placeholder:opacity-50 placeholder:text-lg border border-gray-medium text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full px-4 py-3 focus:outline-none" />
+          <app-form-error [hasError]="
+              donationForm.get('postalCode').hasError('required') &&
+              donationForm.get('postalCode').touched
+            ">Zip Code is required</app-form-error>
+          <app-form-error [hasError]="
+              donationForm.get('postalCode').hasError('pattern') &&
+              donationForm.get('postalCode').touched
+            ">Zip Code is invalid.</app-form-error>
+        </app-form-field>
+      </div>
+    </div>
+    <!--Card Details-->
+    <div>
+      <div class="mb-6 w-full py-3 border-b border-gray-medium">
+        <div class="flex gap-2">
+          <div
+            class="flex w-6 h-6 justify-center items-center shrink-0 [background:#FFBD59] pl-[7.5px] pr-[7.4px] py-0 rounded-[50px]">
+            <span class="text-white text-base font-medium leading-6">3</span>
+          </div>
+          <p class="text-[rgba(0,0,0,0.87)] text-base font-medium leading-6">
+            Card Details
+          </p>
+        </div>
+      </div>
+      <app-card-elements #stripeCardElements />
+      <app-form-field>
+        <app-form-label>Comments</app-form-label>
+        <textarea appFormElement rows="6" formControlName="billingComment"
+          placeholder="Feel free to tell us any suggestions, comments or feedback..."
+          class="placeholder:font-normal placeholder:opacity-50 placeholder:text-lg border border-gray-medium text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full px-4 py-3 focus:outline-none"></textarea>
+        <app-form-error [hasError]="
+            donationForm.get('billingComment').hasError('maxlength') &&
+            donationForm.get('billingComment').touched
+          ">Comment must be less that 500 character</app-form-error>
+      </app-form-field>
+      <!-- Cover Fees Checkbox -->
+      <div class="mt-4 mb-20">
+        <mat-checkbox formControlName="coverFees" color="primary" class="ms-0">I Would you like to cover the transaction
+          fees?</mat-checkbox>
+      </div>
+    </div>
+    <div class="bg-white border-t border-t-gray-medium p-6 my-5">
+      <p class="text-[color:var(--Colors-Dark-Grey,#403F3E)] [font-family:Inter] text-base font-medium leading-6">
+        Thank you for your generosity
+      </p>
+      <div class="flex flex-col md:flex-row items-center gap-6 justify-between">
+        <p class="font-roboto  text-gray-dark text-[40px] font-medium leading-[48px]">
+          <!-- waiting for sayeh calculation -->
+          Donation Total:<span class="text-black">
+            ${{
+            amount1 +
+            amount2+
+            totalAmount+
+            totalIftarMealAmount+
+            totalZakatAlFitrAmount +
+            zakatAlMalAmount+healthAmount+educationAmount+foodAmount+wellsAmount
+            }}</span>
+        </p>
+        <button
+          class="flex h-14 justify-center items-center gap-2 md:flex-[1_0_0] w-full px-6 py-3 [font-family:Inter] text-base font-medium leading-6 disabled:text-white disabled:bg-gray-medium bg-primary"
+          [disabled]="!stripeCardElements.isCardValid() || donationForm.invalid" (click)="onMakeDonation()">
+          Complete your Donation
+        </button>
+      </div>
+    </div>
+  </form>
+  }
+  <div class="flex flex-col items-center my-10 justify-center py-3 gap-1 w-ful border border-gray-dark">
+    <p class="text-gray-dark text-center font-roboto text-[40px] font-medium leading-[48px]">
+      Thank <br />
+      YOU!
+    </p>
+    <app-icon-hand-heart />
+  </div>
+</div>

@@ -26,5 +26,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconPhoneComponent {
-  @Input() color: 'gray-dark' | 'white' = 'white';
+  @Input() color: 'gray-dark' | 'white' = 'gray-dark';
 }

@@ -31,7 +31,6 @@ export class DonationCardComponent {
   recurringPeriod: 'day' | 'week' | 'month' | 'year' = 'month';
   private router: Router = inject(Router);
   private platformId = inject(PLATFORM_ID);
-
   onMakeDonation() {
     // check if donation amount is a positive value and greater than 1$
     if (isNaN(this.amount) || this.amount < 1) return;

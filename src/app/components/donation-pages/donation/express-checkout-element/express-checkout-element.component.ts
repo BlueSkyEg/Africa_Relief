@@ -1,6 +1,6 @@
 import { Component, Inject, inject, Input, PLATFORM_ID, ViewChild } from '@angular/core';
 import { injectStripe, StripeElementsDirective, StripeExpressCheckoutComponent } from 'ngx-stripe';
-import { environment } from '../../../../../environments/environment';
+import { environment } from '../../../../../environments/environment.development';
 import { PaymentIntentResult, StripeElementsOptions, StripeExpressCheckoutElementClickEvent, StripeExpressCheckoutElementConfirmEvent, StripeExpressCheckoutElementOptions } from '@stripe/stripe-js';
 import { PaymentService } from '../../../../core/services/payment/payment.service';
 import { IApiResponse } from '../../../../shared/interfaces/api-response-interface';
