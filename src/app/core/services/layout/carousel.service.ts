@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ICarouselSlide } from '../../../shared/interfaces/carousel-slide.interface';
 import { Observable } from 'rxjs';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'

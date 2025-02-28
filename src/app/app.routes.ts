@@ -16,6 +16,14 @@ export const routes: Routes = [
       import('./components/home/home.component').then((m) => m.HomeComponent),
   },
   {
+    path: 'donation-page',
+    title: 'Donation Page',
+    loadComponent: () =>
+      import('./components/donation-page/donation-page.component').then(
+        (m) => m.DonationPageComponent
+      ),
+  },
+  {
     path: 'blogs',
     title: 'Blogs',
     loadComponent: () =>
@@ -98,7 +106,7 @@ export const routes: Routes = [
   {
     path: 'get-involved/gift-matching',
     component: GiftMatchingComponent,
-    runGuardsAndResolvers: 'always'
+    runGuardsAndResolvers: 'always',
   },
   {
     path: 'zakat-calculator',
@@ -117,7 +125,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'emergency',
+    path: 'emergency-response',
     title: 'Emergency Response',
     loadComponent: () =>
       import('./components/emergency/emergency.component').then(

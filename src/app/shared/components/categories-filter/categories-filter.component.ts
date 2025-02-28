@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ICategory } from '../../interfaces/category-interface';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
@@ -22,15 +22,20 @@ export class CategoriesFilterComponent {
   @Input() categories: ICategory[];
   @Input() basePath: string;
   @Input() baseTitle: string;
+  activeCategorySlug: string | null = null;
 
+  constructor(
+    private route: ActivatedRoute,
+    private elementRef: ElementRef,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.route.params.subscribe((params) => {
+      this.activeCategorySlug = params['slug'] || null;
+    });
+  }
   private isDragging = false;
   private startX: number;
   private scrollLeft: number;
-
-  constructor(
-    private elementRef: ElementRef,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
 
   startDrag(event: MouseEvent) {
     if (event.button === 0) {
@@ -62,5 +67,11 @@ export class CategoriesFilterComponent {
         container.classList.remove('dragging');
       }
     }
+  }
+  getCleanDescription(description: string): string {
+    if (!description) return '';
+
+    // Remove all `\r\n`, `\n`, and `\r` from the string
+    return description.replace(/(\r\n|\n|\r|\\r\\n)/g, '<br/> ').trim();
   }
 }

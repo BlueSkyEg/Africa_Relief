@@ -15,7 +15,7 @@ $my-primary-color: (
   200 : #90ac93,
   300 : #638b67,
   400 : #417247,
-  500 : #205926,
+  500 : #FFBD59,
   600 : #1c5122,
   700 : #18481c,
   800 : #133e17,
@@ -104,8 +104,8 @@ $AfricaReliefWebsite-theme: mat.define-light-theme((color: (primary: $AfricaReli
 // Snackbar Component
 .success-snackbar {
   --mdc-snackbar-container-color: white;
-  --mat-snack-bar-button-color: #205926;
-  --mdc-snackbar-supporting-text-color: #205926;
+  --mat-snack-bar-button-color: ##FFBD59;
+  --mdc-snackbar-supporting-text-color: #FFBD59;
 }
 
 .failure-snackbar {

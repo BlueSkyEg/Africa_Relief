@@ -3,7 +3,7 @@ import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IApiResponse } from '../../../shared/interfaces/api-response-interface';
 import { IAuthedUser } from '../../../shared/interfaces/auth/authed-user.interface';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment.development';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IUser } from '../../../shared/interfaces/auth/user.interface';
 import { isPlatformBrowser } from '@angular/common';

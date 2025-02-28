@@ -1,14 +1,16 @@
 <div class="flex flex-col gap-10 lg:gap-20 mb-10 lg:mb-20">
   <app-main-slider />
   <!-- ticker  -->
-  <div class="text-center font-medium text-base lg:text-2xl">
+  <div class="text-center font-medium text-base lg:text-2xl overflow-x-hidden   mx-4 lg:mx-0">
     <p class="mb-12">As of today, ARCD has reached</p>
-    <div
-      class="text-primary text-6xl lg:text-[200px] mb-12 font-normal font-roboto"
-    >
-      {{ displayCount | number }}
-    </div>
-    <p>People in Africa and in crises around the world.</p>
+<div class="relative flex items-center justify-center h-1/2 px-4">
+  <app-icon-header class="relative " />
+  <div class="absolute z-20 text-black text-6xl lg:text-[200px] font-normal font-roboto">
+    {{ displayCount | number }}
+  </div>
+</div>
+
+    <p class="my-16">People in Africa and in crises around the world.</p>
   </div>
   <!-- Donation Card Section -->
   <div class="container flex flex-col xl:flex-row justify-between gap-6">
@@ -168,18 +170,18 @@
 
   <!-- Donate Through Zelle -->
   <div #donateThroughZelle
-    class="py-12 text-white bg-primary bg-[url('/assets/images/shared/wave-bg.webp')] bg-cover bg-no-repeat">
+    class="py-12 text-black bg-primary bg-[url('/assets/images/shared/header4.png')] bg-cover bg-no-repeat">
     <div class="container">
       <div class="flex flex-col gap-4">
         <div class="flex items-center gap-2">
           <app-icon-zelle class="scale-75" />
-          <span class="text-body-2-md text-white">Zelle</span>
+          <span class="text-body-2-md text-black">Zelle</span>
         </div>
         <h2 class="text-heading-2">Donate Through Zelle</h2>
         <div class="flex flex-col lg:flex-row gap-4">
-          <a class="flex items-center gap-2 p-3 border border-white w-fit" href="mailto:info@arcdus.org" target="_blank"
+          <a class="flex items-center gap-2 p-3 border border-black w-fit" href="mailto:info@arcdus.org" target="_blank"
             rel="nofollow">
-            <app-icon-envelope />
+            <app-icon-envelope color="gray-dark" />
             info&#64;arcdus.org
           </a>
           <!-- <a
@@ -207,7 +209,7 @@
   <!-- Donate Through Venmo -->
   <div
     #donateThroughVenmo
-    class="py-12 text-white bg-primary bg-[url('/assets/images/shared/wave-bg.webp')] bg-cover bg-no-repeat"
+    class="py-12 text-black bg-primary bg-[url('/assets/images/shared/header4.png')] bg-cover bg-no-repeat"
   >
     <div class="container">
       <div class="flex flex-col gap-4">
@@ -217,12 +219,12 @@
         </div>
         <h2 class="text-heading-2">Donate Through Venmo</h2>
         <div class="flex flex-col lg:flex-row gap-4">
-          <div class="flex items-center gap-2 p-3 border border-white w-fit">
+          <div class="flex items-center gap-2 p-3 border border-black w-fit">
             <app-icon-user />
             &#64;Africa-Relief
           </div>
           <a
-            class="flex items-center gap-2 p-3 border border-white w-fit"
+            class="flex items-center gap-2 p-3 border border-black w-fit"
             href="tel:+12012821385"
             target="_blank"
             rel="nofollow"
@@ -248,7 +250,7 @@
   <!-- Donate Through Cash App -->
   <div
     #donateThroughCashApp
-    class="py-12 text-white bg-primary bg-[url('/assets/images/shared/wave-bg.webp')] bg-cover bg-no-repeat"
+    class="py-12 text-black bg-[url('/assets/images/shared/header4.png')] bg-cover bg-no-repeat"
   >
     <div class="container">
       <div class="flex flex-col gap-4">
@@ -257,7 +259,7 @@
           <span class="text-body-2-md">Cash app</span>
         </div>
         <h2 class="text-heading-2">Donate Through Cash app</h2>
-        <div class="flex items-center gap-2 p-3 border border-white w-fit">
+        <div class="flex items-center gap-2 p-3 border border-black w-fit">
           <app-icon-user />
           $AfricaRelief
         </div>

@@ -20,7 +20,7 @@
       <label class="flex flex-1">
         <input class="peer appearance-none" type="radio" name="amount" [value]="level.amount" [(ngModel)]="amount" />
         <div
-          class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-primary hover:border-primary hover:text-white peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white">
+          class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-primary hover:border-primary hover:text-white peer-checked:bg-primary peer-checked:border-primary peer-checked:text-black">
           @if (!level.name) {
           <span>{{ "$" + level.amount }}</span>
           } @else {
