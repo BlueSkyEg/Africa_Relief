@@ -17,27 +17,27 @@
     <h2 class=" text-5xl leading-[56px] text-[#1F1F1F]">Donate to:</h2>
   </div>
   <div class="overflow-x-auto w-full mt-8 mb-24 ">
-    <div class="flex items-center gap-6 min-w-full ">
+    <div class="flex items-center gap-6 w-full ">
       @for (Category of Categories; track Category.id) {
-      <div class="border border-gray-light px-6 h-[320px] cursor-pointer transition-all duration-300 "
+      <div class="border border-gray-light px-6 h-56 flex-shrink-0 md:flex-auto w-60 md:w-fit  md:h-[320px] cursor-pointer transition-all duration-300 "
         [ngClass]="{ 'bg-primary': selectedCategoryIds.includes(Category.id) }" (click)="
         selectCategory(Category.id);
         (Category.id === 1 || Category.id === 2) && getProject(Category.slug)
       ">
-        <div class="flex flex-col justify-center gap-4 h-full">
-          <div class="flex items-center gap-4">
-            <div class="flex p-3 justify-center items-center [background:var(--new-secondary,#FFBD59)]">
+        <div class="flex flex-col justify-center  gap-4 ">
+          <div class="flex items-center gap-4 mt-2 ">
+            <div class="flex p-2 md:p-3 justify-center items-center [background:var(--new-secondary,#FFBD59)]">
               <ng-container *ngIf="getComponent(Category.iconName) as component">
                 <ng-container *ngComponentOutlet="component"></ng-container>
               </ng-container>
             </div>
-            <p class="[font-family:Inter] text-base md:text-xl font-bold md:leading-8">
+            <p class="[font-family:Inter]   text-sm md:text-xl font-bold md:leading-8">
               {{ Category.name }}
             </p>
           </div>
-          <div>
-            <div class="relative">
-              <img [src]="Category.imageSrc" class="object-cover w-full h-48" [alt]="Category.name" />
+          <div >
+            <div class="relative ">
+              <img [src]="Category.imageSrc" class="object-cover w-full h-20  md:h-48" [alt]="Category.name" />
               @if(selectedCategoryIds.includes(Category.id) ) {
               <div class="absolute -end-[10px] -bottom-[10px]">
                 <app-icon-right />
