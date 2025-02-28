@@ -267,7 +267,6 @@ export class ProfileSettingsComponent implements OnInit {
   deleteAccount() {
     this.authService.DeleteAccount().subscribe({
       next: (res: IApiResponse<null>) => {
-        console.log('Account deleted successfully', res);
         if (res.success){
           localStorage.removeItem('accessToken');
           localStorage.removeItem('tokenExpiresAt');

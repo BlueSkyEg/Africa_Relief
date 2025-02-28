@@ -223,7 +223,6 @@ export class DonationPageComponent {
   }
 
   onCategoriesCheckboxChange() {
-    console.log(this.getSelectedProjectsAndAmounts());
     if (!this.wellsChecked) {
       this.wellsAmount = 0;
       this.selectedWellsProject = null;
@@ -442,10 +441,8 @@ export class DonationPageComponent {
           this.recurring_periods = res.data.donation_form.recurring_periods;
           this.donationFormId = res.data.donation_form.id;
           this.donationFormTitle = res.data.title; // Set title from response
-          console.log('Project Data:', res.data);
         },
         error: (err) => {
-          console.error('Error fetching project:', err);
         },
       });
     } else {
@@ -459,7 +456,6 @@ export class DonationPageComponent {
     this.projectService.getProjects(1, 9, slug).subscribe({
       next: (res) => {
         if (res.data && res.data.data) {
-          console.log(res.data);
           this.projectsWithAmounts = res.data.data.map((project: any) => ({
             title: project.title,
 
@@ -573,7 +569,6 @@ export class DonationPageComponent {
 
   // Make donation
   onMakeDonation() {
-    console.log('Donation Form:', this.donationForm);
     if (this.donationForm.invalid) {
       return;
     }
@@ -587,7 +582,6 @@ export class DonationPageComponent {
     }
 
     const formData = this.donationForm.getRawValue();
-    console.log('Form Data:', formData);
 
     // Get selected projects and amounts
     const selectedProjectsAndAmounts = this.getSelectedProjectsAndAmounts();
@@ -651,7 +645,6 @@ export class DonationPageComponent {
           billingComment // Pass the updated billing comment
         ).subscribe({
           next: (res: IApiResponse<IStripeIntent>) => {
-            console.log(res);
             if (res?.data?.status === 'succeeded') {
               this.pushTagConfirmDonationEvent();
               this.router.navigateByUrl('/donation-confirmation');
@@ -665,7 +658,6 @@ export class DonationPageComponent {
             }
           },
           error: (error) => {
-            console.log(error);
           },
         });
       },
@@ -708,19 +700,7 @@ export class DonationPageComponent {
       coverFees: this.coverFees,
     };
 
-    console.log('Payment Data:', {
-      amount: finalAmount,
-      donationFormId: this.donationFormId.toString(),
-      formData: this.donationForm.getRawValue(),
-      isRecurring: this.recurringPeriod ? true : false,
-      contribution: this.isChecked
-        ? {
-            contributionName: contributionName,
-            contributionType: contributionType,
-          }
-        : null,
-      billingComment: billingComment, // Log the billing comment
-    });
+
 
     return this.paymentService.createPayment(paymentData);
   }

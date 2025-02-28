@@ -1,6 +1,6 @@
 <header>
   <nav class="bg-white">
-    <div class="container flex justify-between xl:justify-normal items-center gap-8 py-4">
+    <div class="container flex justify-between xl:justify-normal items-center  sm:gap-5 md:gap-8 py-4">
       <a routerLink="/home">
         <img class="w-14 aspect-square" src="assets/images/logo.webp" alt="Africa Relief Logo" loading="eager" />
       </a>
@@ -112,12 +112,12 @@
             [routerLinkActiveOptions]="{ exact: true }">Careers</a>
         </li>
       </ul>
-      <div class="flex gap-4 justify-center items-center relative">
+      <div class="flex gap-1.5 md:gap-4 justify-center items-center relative">
         <app-icon-search (click)="toggleSearchBar()" />
         @if (isSearchBarVisible) {
         <app-search-bar class="absolute top-[4.5rem] z-30 -start-56" />
         }
-        <a class=" text-black bg-primary py-2 px-3"
+        <a class=" text-black bg-primary py-2 px-1 text-xs md:text-base md:px-3"
           routerLink="/donation-page">Donate Now</a>
         @if (!isUserAuthed) {
         <a class="flex items-center" routerLink="/login" aria-label="profile">

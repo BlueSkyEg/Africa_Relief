@@ -35,7 +35,6 @@ export class ProjectsComponent {
         )
         .subscribe({
           next: (res: IApiResponse<IPaginatedData<IProjectCard[]>>) => {
-            console.log(res);
             if (res.data && res.data.data) {
               this.projects.push(...res.data.data);
 
