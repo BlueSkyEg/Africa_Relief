@@ -283,7 +283,7 @@ export class DonationPageComponent {
       this.projectService.getProject(slug).subscribe({
         next: (res: IApiResponse<IProject>) => {
           this.selectedEducationProject = res.data;
-          this.donationFormId = this.selectedEducationProject.donation_form.id;
+          this.donationFormId = this.selectedEducationProject.donation_form?.id;
         },
       });
     } else {
@@ -298,7 +298,7 @@ export class DonationPageComponent {
       this.projectService.getProject(slug).subscribe({
         next: (res: IApiResponse<IProject>) => {
           this.selectedHealthProject = res.data;
-          this.donationFormId = this.selectedHealthProject.donation_form.id;
+          this.donationFormId = this.selectedHealthProject.donation_form?.id;
         },
       });
     } else {
@@ -425,9 +425,9 @@ export class DonationPageComponent {
           if (slug === 'iftar-meal') {
             this.totalIftarMealAmount = 30;
           } else if (slug === 'zakat-al-mal') {
-            this.zakatAlMalAmounts = res.data.donation_form.levels;
+            this.zakatAlMalAmounts = res.data.donation_form?.levels;
           } else if (slug === 'zakat-al-fitr') {
-            this.zakatAlFitrAmounts = res.data.donation_form.levels;
+            this.zakatAlFitrAmounts = res.data.donation_form?.levels;
             this.totalZakatAlFitrAmount = this.zakatAlFitrAmounts[0].amount;
           } else if (slug === 'help-where-it-is-most-needed') {
             this.project1 = res.data;
@@ -436,8 +436,8 @@ export class DonationPageComponent {
           } else if (slug === 'food-basket') {
             this.selectedFoodProject = res.data;
           }
-          this.recurring_periods = res.data.donation_form.recurring_periods;
-          this.donationFormId = res.data.donation_form.id;
+          this.recurring_periods = res.data.donation_form?.recurring_periods;
+          this.donationFormId = res.data.donation_form?.id;
           this.donationFormTitle = res.data.title; // Set title from response
         },
         error: (err) => {
@@ -479,8 +479,8 @@ export class DonationPageComponent {
         // Find project in the list and update its amounts
         const project = this.projectsWithAmounts.find((p) => p.slug === slug);
         if (project && res.data.donation_form) {
-          project.amounts = res.data.donation_form.levels || [];
-          this.donationFormId = res.data.donation_form.id;
+          project.amounts = res.data.donation_form?.levels || [];
+          this.donationFormId = res.data.donation_form?.id;
         }
       },
       error: (err) => {
