@@ -181,7 +181,6 @@ export class DonationPageComponent {
   iftarMealChecked: boolean = false;
   zakatAlMalChecked: boolean = false;
   zakatAlFitrChecked: boolean = false;
-  iftarMealAmounts: any[] = [];
   zakatAlMalAmounts: any[] = [];
   zakatAlFitrAmounts: any[] = [];
   iftarMealAmount: number = 0;
@@ -199,7 +198,7 @@ export class DonationPageComponent {
 
   updateIftarMealTotal() {
     this.totalIftarMealAmount =
-      this.iftarMealAmounts[0].amount * this.selectedMeals;
+      30 * this.selectedMeals;
     return this.totalIftarMealAmount;
   }
   updateZakatAlFitrTotal() {
@@ -424,8 +423,7 @@ export class DonationPageComponent {
           this.selectedProject = res.data;
           // Update the correct amounts array based on the slug
           if (slug === 'iftar-meal') {
-            this.iftarMealAmounts = res.data.donation_form.levels;
-            this.totalIftarMealAmount = this.iftarMealAmounts[0].amount;
+            this.totalIftarMealAmount = 30;
           } else if (slug === 'zakat-al-mal') {
             this.zakatAlMalAmounts = res.data.donation_form.levels;
           } else if (slug === 'zakat-al-fitr') {
