@@ -17,7 +17,7 @@
     <h2 class=" text-5xl leading-[56px] text-[#1F1F1F]">Donate to:</h2>
   </div>
   <div class="overflow-x-auto w-full mt-8 mb-24 ">
-    <div class="flex items-center gap-6 min-w-max lg:min-w-full">
+    <div class="flex items-center gap-6 min-w-full ">
       @for (Category of Categories; track Category.id) {
       <div class="border border-gray-light px-6 h-[320px] cursor-pointer transition-all duration-300 "
         [ngClass]="{ 'bg-primary': selectedCategoryIds.includes(Category.id) }" (click)="
@@ -31,7 +31,7 @@
                 <ng-container *ngComponentOutlet="component"></ng-container>
               </ng-container>
             </div>
-            <p class="[font-family:Inter] text-xl font-bold leading-8">
+            <p class="[font-family:Inter] text-base md:text-xl font-bold md:leading-8">
               {{ Category.name }}
             </p>
           </div>
