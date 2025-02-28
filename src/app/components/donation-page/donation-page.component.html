@@ -71,7 +71,7 @@
           <h3>Choose amount for {{ project1.title }}</h3>
           <div class="w-full">
             <div class="flex flex-wrap gap-3">
-              @for (level of project1.donation_form.levels; track level) {
+              @for (level of project1.donation_form?.levels; track level) {
               <label class="flex-1">
                 <input class="peer hidden" type="radio" name="amount1" [value]="level.amount" [(ngModel)]="amount1" />
                 <div
@@ -130,7 +130,7 @@
           <h3>Choose amount for (General)*</h3>
           <div class="w-full">
             <div class="flex flex-wrap gap-3">
-              @for (level of project2.donation_form.levels; track level) {
+              @for (level of project2.donation_form?.levels; track level) {
               <label class="flex flex-1">
                 <input class="peer appearance-none" type="radio" name="amount2" [value]="level.amount"
                   [(ngModel)]="amount2" />
@@ -259,7 +259,7 @@
             <h3>Choose amount for (Food Aid) *</h3>
             <!--Donation Amounts-->
             <div class="flex flex-wrap gap-3">
-              @for (level of selectedFoodProject.donation_form.levels; track level) {
+              @for (level of selectedFoodProject.donation_form?.levels; track level) {
               <label class="flex flex-1">
                 <!--food mount-->
                 <input class="peer appearance-none" type="radio" name="foodAmount" [value]="level.amount"
@@ -302,7 +302,7 @@
             <div class="flex flex-col gap-2 my-4">
               <h3>Choose amount for {{ selectedEducationProject.title }}</h3>
               <div class="flex flex-wrap gap-3">
-                @for (level of selectedEducationProject.donation_form.levels; track level) {
+                @for (level of selectedEducationProject.donation_form?.levels; track level) {
                 <label class="flex flex-1">
                   <input class="peer appearance-none" type="radio" name="educationAmount" [value]="level.amount"
                     [(ngModel)]="educationAmount" />
@@ -349,7 +349,7 @@
             <div class="flex flex-col gap-2 my-4">
               <h3>Choose amount for {{ selectedHealthProject.title }}</h3>
               <div class="flex flex-wrap gap-3">
-                @for (level of selectedHealthProject.donation_form.levels; track level) {
+                @for (level of selectedHealthProject.donation_form?.levels; track level) {
                 <label class="flex flex-1">
                   <input class="peer appearance-none" type="radio" name="healthAmount" [value]="level.amount"
                     [(ngModel)]="healthAmount" />

@@ -197,8 +197,7 @@ export class DonationPageComponent {
   project2: any = [];
 
   updateIftarMealTotal() {
-    this.totalIftarMealAmount =
-      30 * this.selectedMeals;
+    this.totalIftarMealAmount = 30 * this.selectedMeals;
     return this.totalIftarMealAmount;
   }
   updateZakatAlFitrTotal() {
@@ -250,7 +249,8 @@ export class DonationPageComponent {
   }
   onIftarMealCheckboxChange() {
     if (this.iftarMealChecked) {
-      this.getProject('iftar-meal');
+      this.getProject('sudan-emergency');
+      this.totalIftarMealAmount=30;
     } else {
       this.donationFormId = null;
     }
@@ -345,7 +345,6 @@ export class DonationPageComponent {
       const categoryId = +params['category'];
       const projectSlug = params['project'];
       const amount = +params['amount'];
-
       if (categoryId && projectSlug && amount) {
         this.selectCategory(categoryId);
         this.getProject(projectSlug);
@@ -422,7 +421,7 @@ export class DonationPageComponent {
         next: (res: IApiResponse<IProject>) => {
           this.selectedProject = res.data;
           // Update the correct amounts array based on the slug
-          if (slug === 'iftar-meal') {
+          if (slug === 'sudan-emergency') {
             this.totalIftarMealAmount = 30;
           } else if (slug === 'zakat-al-mal') {
             this.zakatAlMalAmounts = res.data.donation_form?.levels;
@@ -440,8 +439,7 @@ export class DonationPageComponent {
           this.donationFormId = res.data.donation_form?.id;
           this.donationFormTitle = res.data.title; // Set title from response
         },
-        error: (err) => {
-        },
+        error: (err) => {},
       });
     } else {
       this.selectedProject = null;
@@ -484,7 +482,7 @@ export class DonationPageComponent {
         }
       },
       error: (err) => {
-        console.error(`Error fetching donation levels for ${slug}:`, err);
+        console.error(`Error fetching donation levels? for ${slug}:`, err);
       },
     });
   }
@@ -549,8 +547,8 @@ export class DonationPageComponent {
           break;
       }
     }
-
     this.donationForm.reset();
+    this.loadUserData();
     this.isChecked = false;
   }
   // Get icon components
@@ -655,8 +653,7 @@ export class DonationPageComponent {
               this.pushTagFailedDonationEvent('Your card was declined.');
             }
           },
-          error: (error) => {
-          },
+          error: (error) => {},
         });
       },
     });
@@ -697,8 +694,6 @@ export class DonationPageComponent {
       billingComment: billingComment, // Use the updated billing comment
       coverFees: this.coverFees,
     };
-
-
 
     return this.paymentService.createPayment(paymentData);
   }
