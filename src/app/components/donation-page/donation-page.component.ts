@@ -181,7 +181,6 @@ export class DonationPageComponent {
   iftarMealChecked: boolean = false;
   zakatAlMalChecked: boolean = false;
   zakatAlFitrChecked: boolean = false;
-  iftarMealAmounts: any[] = [];
   zakatAlMalAmounts: any[] = [];
   zakatAlFitrAmounts: any[] = [];
   iftarMealAmount: number = 0;
@@ -198,8 +197,7 @@ export class DonationPageComponent {
   project2: any = [];
 
   updateIftarMealTotal() {
-    this.totalIftarMealAmount =
-      this.iftarMealAmounts[0].amount * this.selectedMeals;
+    this.totalIftarMealAmount = 30 * this.selectedMeals;
     return this.totalIftarMealAmount;
   }
   updateZakatAlFitrTotal() {
@@ -251,7 +249,8 @@ export class DonationPageComponent {
   }
   onIftarMealCheckboxChange() {
     if (this.iftarMealChecked) {
-      this.getProject('iftar-meal');
+      this.getProject('sudan-emergency');
+      this.totalIftarMealAmount=30;
     } else {
       this.donationFormId = null;
     }
@@ -284,7 +283,7 @@ export class DonationPageComponent {
       this.projectService.getProject(slug).subscribe({
         next: (res: IApiResponse<IProject>) => {
           this.selectedEducationProject = res.data;
-          this.donationFormId = this.selectedEducationProject.donation_form.id;
+          this.donationFormId = this.selectedEducationProject.donation_form?.id;
         },
       });
     } else {
@@ -299,7 +298,7 @@ export class DonationPageComponent {
       this.projectService.getProject(slug).subscribe({
         next: (res: IApiResponse<IProject>) => {
           this.selectedHealthProject = res.data;
-          this.donationFormId = this.selectedHealthProject.donation_form.id;
+          this.donationFormId = this.selectedHealthProject.donation_form?.id;
         },
       });
     } else {
@@ -346,7 +345,6 @@ export class DonationPageComponent {
       const categoryId = +params['category'];
       const projectSlug = params['project'];
       const amount = +params['amount'];
-
       if (categoryId && projectSlug && amount) {
         this.selectCategory(categoryId);
         this.getProject(projectSlug);
@@ -423,13 +421,12 @@ export class DonationPageComponent {
         next: (res: IApiResponse<IProject>) => {
           this.selectedProject = res.data;
           // Update the correct amounts array based on the slug
-          if (slug === 'iftar-meal') {
-            this.iftarMealAmounts = res.data.donation_form.levels;
-            this.totalIftarMealAmount = this.iftarMealAmounts[0].amount;
+          if (slug === 'sudan-emergency') {
+            this.totalIftarMealAmount = 30;
           } else if (slug === 'zakat-al-mal') {
-            this.zakatAlMalAmounts = res.data.donation_form.levels;
+            this.zakatAlMalAmounts = res.data.donation_form?.levels;
           } else if (slug === 'zakat-al-fitr') {
-            this.zakatAlFitrAmounts = res.data.donation_form.levels;
+            this.zakatAlFitrAmounts = res.data.donation_form?.levels;
             this.totalZakatAlFitrAmount = this.zakatAlFitrAmounts[0].amount;
           } else if (slug === 'help-where-it-is-most-needed') {
             this.project1 = res.data;
@@ -438,12 +435,11 @@ export class DonationPageComponent {
           } else if (slug === 'food-basket') {
             this.selectedFoodProject = res.data;
           }
-          this.recurring_periods = res.data.donation_form.recurring_periods;
-          this.donationFormId = res.data.donation_form.id;
+          this.recurring_periods = res.data.donation_form?.recurring_periods;
+          this.donationFormId = res.data.donation_form?.id;
           this.donationFormTitle = res.data.title; // Set title from response
         },
-        error: (err) => {
-        },
+        error: (err) => {},
       });
     } else {
       this.selectedProject = null;
@@ -481,12 +477,12 @@ export class DonationPageComponent {
         // Find project in the list and update its amounts
         const project = this.projectsWithAmounts.find((p) => p.slug === slug);
         if (project && res.data.donation_form) {
-          project.amounts = res.data.donation_form.levels || [];
-          this.donationFormId = res.data.donation_form.id;
+          project.amounts = res.data.donation_form?.levels || [];
+          this.donationFormId = res.data.donation_form?.id;
         }
       },
       error: (err) => {
-        console.error(`Error fetching donation levels for ${slug}:`, err);
+        console.error(`Error fetching donation levels? for ${slug}:`, err);
       },
     });
   }
@@ -551,8 +547,8 @@ export class DonationPageComponent {
           break;
       }
     }
-
     this.donationForm.reset();
+    this.loadUserData();
     this.isChecked = false;
   }
   // Get icon components
@@ -657,8 +653,7 @@ export class DonationPageComponent {
               this.pushTagFailedDonationEvent('Your card was declined.');
             }
           },
-          error: (error) => {
-          },
+          error: (error) => {},
         });
       },
     });
@@ -699,8 +694,6 @@ export class DonationPageComponent {
       billingComment: billingComment, // Use the updated billing comment
       coverFees: this.coverFees,
     };
-
-
 
     return this.paymentService.createPayment(paymentData);
   }
