@@ -536,7 +536,7 @@
     <div>
       <div class="my-4 py-2.5" [ngClass]="{ 'mb-6': !isChecked, ' bg-primary !px-1.5': isChecked }">
         <mat-checkbox [(ngModel)]="isChecked" [ngModelOptions]="{ standalone: true }" class="ms-0"
-          (change)="onCheckboxChange()">Would you like to cover the transaction fees?</mat-checkbox>
+          (change)="onCheckboxChange()">I would like to dedicate this donation to someone</mat-checkbox>
       </div>
       @if(isChecked) {
       <div class="flex items-center gap-6 w-full">
