@@ -277,7 +277,8 @@
               <label class="flex flex-1">
                 <input
                   class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
-                  type="number" [(ngModel)]="foodAmount" placeholder="$ Custom Amount"
+                  type="number" [ngModel]="foodAmount>0 ? foodAmount : null"
+                  (ngModelChange)="foodAmount = $event > 0 ? $event : null" placeholder="$ Custom Amount"
                   (keypress)="validateKeyPress($event)" (input)="validateInput($event)" /></label>
             </div>
           </div>
@@ -458,7 +459,8 @@
                 <label class="flex flex-1">
                   <input
                     class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
-                    type="number" [(ngModel)]="zakatAlMalAmount" placeholder="$ Custom Amount"
+                    type="number" [ngModel]="zakatAlMalAmount>0?zakatAlMalAmount:null"
+                    (ngModelChange)="zakatAlMalAmount = $event > 0 ? $event : null" placeholder="$ Custom Amount"
                     (keypress)="validateKeyPress($event)" (input)="validateInput($event)" /></label>
               </div>
               <div class="md:w-2/12 h-1"></div>
@@ -535,7 +537,7 @@
     <div>
       <div class="my-4 py-2.5" [ngClass]="{ 'mb-6': !isChecked, ' bg-primary !px-1.5': isChecked }">
         <mat-checkbox [(ngModel)]="isChecked" [ngModelOptions]="{ standalone: true }" class="ms-0"
-          (change)="onCheckboxChange()">I would like to dedicate this donation to someone</mat-checkbox>
+          (change)="onCheckboxChange()">Would you like to cover the transaction fees?</mat-checkbox>
       </div>
       @if(isChecked) {
       <div class="flex items-center gap-6 w-full">
@@ -614,7 +616,7 @@
       <div class="flex items-center gap-2">
         <app-form-field class="w-full">
           <app-form-label>Phone Number*</app-form-label>
-          <input type="tel" appFormElement formControlName="phone" placeholder="Phone Number"
+          <input type="tel" appFormElement formControlName="phone" placeholder="eg. 999-999-999"
             class="placeholder:font-normal placeholder:opacity-50 placeholder:text-lg border border-gray-medium text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full px-4 py-3 focus:outline-none" />
           <app-form-error [hasError]="
               donationForm.get('phone').hasError('required') &&
