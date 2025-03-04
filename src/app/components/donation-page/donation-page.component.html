@@ -448,14 +448,14 @@
           <div class="flex flex-col gap-2">
             <h3>Choose amount for (Zakat Al-mal) *</h3>
             <!--Donation Amounts-->
-            <div class="flex flex-wrap gap-12">
+            <div class="flex flex-wrap items-center justify-center gap-12 w-full">
               <div
                 class="flex-[1_0_0] text-[color:var(--Colors-Black,#1F1F1F)] [font-family:Inter] text-base font-medium leading-6">
                 2.5% of your disposable wealth<br />To make sure your Zakat is
                 accurate go through
                 <a class="cursor-pointer underline" routerLink="/zakat-calculator">Zakat Calculator</a>
               </div>
-              <div class="md:w-2/12 w-full">
+              <div class="md:w-2/12 w-full flex flex-1 ">
                 <label class="flex flex-1">
                   <input
                     class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
@@ -463,7 +463,6 @@
                     (ngModelChange)="zakatAlMalAmount = $event > 0 ? $event : null" placeholder="$ Custom Amount"
                     (keypress)="validateKeyPress($event)" (input)="validateInput($event)" /></label>
               </div>
-              <div class="md:w-2/12 h-1"></div>
             </div>
           </div>
         </div>
@@ -769,8 +768,7 @@
       </app-form-field>
       <!-- Cover Fees Checkbox -->
       <div class="mt-4 mb-20">
-        <mat-checkbox formControlName="coverFees" color="primary" class="ms-0">I Would you like to cover the transaction
-          fees?</mat-checkbox>
+        <mat-checkbox formControlName="coverFees" color="primary" class="ms-0">Would you like to cover the transaction fees?</mat-checkbox>
       </div>
     </div>
     <div class="bg-white border-t border-t-gray-medium p-6 my-5">
