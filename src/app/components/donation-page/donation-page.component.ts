@@ -62,7 +62,8 @@ import {
 } from '@angular/material/select';
 import { IconExpandMoreComponent } from '../../shared/icons/expand-more/icon-eye.component';
 import { IProjectCard } from '../../shared/interfaces/project/project-card-interface';
-
+import { NewsletterService } from '../../core/services/newsletter/newsletter.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-donation-page',
   standalone: true,
@@ -86,6 +87,7 @@ import { IProjectCard } from '../../shared/interfaces/project/project-card-inter
     IconEarthComponent,
     IconIslamComponent,
     RouterLink,
+    MatProgressSpinnerModule
   ],
   templateUrl: './donation-page.component.html',
 })
@@ -180,11 +182,14 @@ export class DonationPageComponent {
 
   iftarMealChecked: boolean = false;
   zakatAlMalChecked: boolean = false;
+  aqiqahChecked: boolean = false;
   zakatAlFitrChecked: boolean = false;
   zakatAlMalAmounts: any[] = [];
   zakatAlFitrAmounts: any[] = [];
   iftarMealAmount: number = 0;
   zakatAlMalAmount: number = 0;
+  aqiqahAmount: number = 0;
+
   zakatAlFitrAmount: number = 0;
   totalIftarMealAmount: number = 0;
   totalZakatAlFitrAmount: number = 0;
@@ -196,6 +201,7 @@ export class DonationPageComponent {
   project1: any = [];
   project2: any = [];
 
+  isLoading: boolean = false;
   updateIftarMealTotal() {
     this.totalIftarMealAmount = 30 * this.selectedMeals;
     return this.totalIftarMealAmount;
@@ -276,6 +282,11 @@ export class DonationPageComponent {
     this.selectedProjectSlug = null;
     this.zakatAlMalAmount = 0;
   }
+  onaqiqahCheckedCheckboxChange() {
+    this.selectedProject = null;
+    this.selectedProjectSlug = null;
+    this.aqiqahAmount = 0;
+  }
   // Component TypeScript
   onEducationProjectSelect(slug: string) {
     if (slug) {
@@ -352,6 +363,10 @@ export class DonationPageComponent {
           this.zakatAlMalAmount = amount;
           this.zakatAlMalChecked = true;
         }
+        else if (projectSlug == 'aqiqah') {
+          this.aqiqahAmount = amount;
+          this.aqiqahChecked = true;
+        }
       }
     });
     this.getCategories();
@@ -372,7 +387,7 @@ export class DonationPageComponent {
     phone: ['', [Validators.required, PhoneValidator()]],
     contributionType: ['', [Validators.required]],
     contributionName: ['', [Validators.required]],
-
+    contactConsent: [false],
     // Billing Details
     country: ['', [Validators.required, Validators.pattern(/^[A-Z]{2}$/)]],
     addressLine1: ['', [Validators.required, StringValidator(2, 100, true)]],
@@ -537,6 +552,7 @@ export class DonationPageComponent {
           this.iftarMealAmount = 0;
           this.totalIftarMealAmount = 0;
           this.zakatAlMalAmount = 0;
+          this.aqiqahAmount = 0;
           this.zakatAlFitrAmount = 0;
           this.totalZakatAlFitrAmount = 0;
           this.donationFormId = null;
@@ -565,11 +581,11 @@ export class DonationPageComponent {
 
   // Make donation
   onMakeDonation() {
-    if (this.donationForm.invalid) {
+    if (this.donationForm.invalid || !this.stripeCardElements.isCardValid() || this.isLoading) {
       return;
     }
-    if (this.donationForm.invalid || !this.stripeCardElements.isCardValid())
-      return;
+
+    this.isLoading = true;
 
     this.coverFees = this.donationForm.get('coverFees')?.value || false;
 
@@ -620,6 +636,7 @@ export class DonationPageComponent {
       this.totalIftarMealAmount +
       this.totalZakatAlFitrAmount +
       this.zakatAlMalAmount +
+      this.aqiqahAmount +
       this.healthAmount +
       this.wellsAmount +
       this.educationAmount +
@@ -627,11 +644,13 @@ export class DonationPageComponent {
 
     this.stripeCardElements.createPaymentMethod(billingDetails).subscribe({
       next: (res: PaymentMethodResult) => {
+        this.onSubmitNewsLetterForm();
         if (res.error) {
           this._snackBar.open(res.error.message, '✖', {
             panelClass: 'failure-snackbar',
           });
           this.pushTagFailedDonationEvent(res.error.message);
+          this.isLoading = false;
           return;
         }
 
@@ -651,10 +670,16 @@ export class DonationPageComponent {
                 panelClass: 'failure-snackbar',
               });
               this.pushTagFailedDonationEvent('Your card was declined.');
+              this.isLoading = false; // Reset loading state on failure
             }
           },
-          error: (error) => {},
+          error: (error) => {
+            this.isLoading = false;
+          },
         });
+      },
+      error: (error) => {
+        this.isLoading = false;
       },
     });
   }
@@ -891,12 +916,40 @@ export class DonationPageComponent {
     if (this.zakatAlMalAmount > 0) {
       selectedProjects.push(`Zakat Al-Mal: $${this.zakatAlMalAmount}`);
     }
-
+    if (this.aqiqahAmount > 0) {
+      selectedProjects.push(`aqiqah: $${this.aqiqahAmount}`);
+    }
     // Zakat Al-Fitr
     if (this.totalZakatAlFitrAmount > 0) {
       selectedProjects.push(`Zakat Al-Fitr: $${this.totalZakatAlFitrAmount}`);
     }
 
     return selectedProjects.join(', ');
+  }
+
+
+
+  //subscribe news letter
+  newsletterService: NewsletterService = inject(NewsletterService);
+  onSubmitNewsLetterForm() {
+    // Check if the checkbox is checked
+    if (this.donationForm.get('contactConsent').value) {
+      this.newsletterService
+        .subscribeToNewsletter(this.donationForm.value.email)
+        .subscribe({
+          next: (res: IApiResponse<null>) => {
+            if (res.success) {
+            }
+          },
+          error: (err) => {
+          },
+        });
+    } else {
+      // Handle the case where the checkbox is not checked
+      console.log('User did not consent to being contacted.');
+    }
+  }
+  ngOnDestroy() {
+    this.isLoading = false;
   }
 }

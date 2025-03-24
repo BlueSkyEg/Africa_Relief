@@ -250,6 +250,12 @@
               </label>
 
               }
+              <label class="flex flex-1">
+                <input
+                  class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
+                  type="number" [ngModel]="wellsAmount>0 ? wellsAmount : null"
+                  (ngModelChange)="wellsAmount = $event > 0 ? $event : null" placeholder="$ Custom Amount"
+                  (keypress)="validateKeyPress($event)" (input)="validateInput($event)" /></label>
             </div>
           </div>
         </div>
@@ -396,11 +402,13 @@
       </div>
       <div class="my-4 flex flex-wrap items-center justify-between">
         <mat-checkbox [(ngModel)]="iftarMealChecked" (change)="onIftarMealCheckboxChange()">Ramadan Food Basket
-          </mat-checkbox>
+        </mat-checkbox>
         <mat-checkbox [(ngModel)]="zakatAlMalChecked"
           (change)="getProject('zakat-al-mal'); onZakatAlMalCheckboxChange()">Zakat Al-mal</mat-checkbox>
         <mat-checkbox [(ngModel)]="zakatAlFitrChecked" (change)="onZakatAlFitrCheckboxChange()">Zakat
           Al-fitr</mat-checkbox>
+        <mat-checkbox [(ngModel)]="aqiqahChecked"
+          (change)="getProject('aqiqah'); onaqiqahCheckedCheckboxChange()">Aqiqah</mat-checkbox>
       </div>
       <div>
         <div *ngIf="iftarMealChecked" class="my-3"
@@ -506,6 +514,23 @@
             </div>
           </div>
         </div>
+        <div *ngIf="aqiqahChecked" class="my-3" [ngClass]="{'border-b border-b-gray-medium pb-5':(aqiqahChecked)}">
+          <div class="flex flex-col gap-2">
+            <h3>Choose amount for aqiqah *</h3>
+            <!--Donation Amounts-->
+            <div class="flex flex-wrap items-center justify-center gap-12 w-full">
+
+              <div class="md:w-2/12 w-full flex flex-1 ">
+                <label class="flex flex-1">
+                  <input
+                    class="flex justify-center items-center bg-[#fafafa] w-full py-3 px-6 border border-gray-medium outline-none text-center transition-colors ease-in-out"
+                    type="number" [ngModel]="aqiqahAmount>0?aqiqahAmount:null"
+                    (ngModelChange)="aqiqahAmount = $event > 0 ? $event : null" placeholder="$ Custom Amount"
+                    (keypress)="validateKeyPress($event)" (input)="validateInput($event)" /></label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -514,7 +539,7 @@
   }
 
   @if(amount1 ||amount2 || totalAmount ||
-  totalZakatAlFitrAmount||zakatAlMalAmount||totalIftarMealAmount ||
+  totalZakatAlFitrAmount||zakatAlMalAmount|| aqiqahAmount||totalIftarMealAmount ||
   healthAmount||educationAmount||wellsAmount||foodAmount ){
   <div class="border-t border-t-gray-medium ">
     <div class="flex justify-between items-center gap-1 py-3 pe-4 ps-1 border border-gray-medium mt-12">
@@ -618,26 +643,35 @@
           <input type="tel" appFormElement formControlName="phone" placeholder="eg. 999-999-999"
             class="placeholder:font-normal placeholder:opacity-50 placeholder:text-lg border border-gray-medium text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full px-4 py-3 focus:outline-none" />
           <app-form-error [hasError]="
-              donationForm.get('phone').hasError('required') &&
-              donationForm.get('phone').touched
-            ">Phone is required.</app-form-error>
+        donationForm.get('phone').hasError('required') &&
+        donationForm.get('phone').touched
+      ">Phone is required.</app-form-error>
           <app-form-error [hasError]="
-              donationForm.get('phone').hasError('pattern') &&
-              donationForm.get('phone').touched
-            ">{{ donationForm.get('phone').errors?.['pattern'] }}</app-form-error>
+        donationForm.get('phone').hasError('pattern') &&
+        donationForm.get('phone').touched
+      ">{{ donationForm.get('phone').errors?.['pattern'] }}</app-form-error>
         </app-form-field>
-        <app-form-field class="w-full">
+        <app-form-field class="w-full relative">
           <app-form-label>Email*</app-form-label>
           <input type="text" appFormElement formControlName="email" placeholder="example@example.com"
             class="placeholder:font-normal placeholder:opacity-50 placeholder:text-lg border border-gray-medium text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full px-4 py-3 focus:outline-none" />
           <app-form-error [hasError]="
-              donationForm.get('email').hasError('required') &&
-              donationForm.get('email').touched
-            ">Email is required.</app-form-error>
+        donationForm.get('email').hasError('required') &&
+        donationForm.get('email').touched
+      ">Email is required.</app-form-error>
           <app-form-error [hasError]="
-              donationForm.get('email').hasError('pattern') &&
-              donationForm.get('email').touched
-            ">{{ donationForm.get('email').errors?.['pattern'] }}</app-form-error>
+        donationForm.get('email').hasError('pattern') &&
+        donationForm.get('email').touched
+      ">{{ donationForm.get('email').errors?.['pattern'] }}</app-form-error>
+
+          <!-- Checkbox for subscribe news letter  -->
+          <div class="absolute mt-4">
+            <label class="flex items-center space-x-2">
+              <input type="checkbox" formControlName="contactConsent"
+                class="w-4 h-4 text-primary border border-gray-medium rounded focus:ring-primary cursor-pointer" />
+              <span class="text-sm text-gray-700">It's Okay To Contact Me In The Future.</span>
+            </label>
+          </div>
         </app-form-field>
       </div>
     </div>
@@ -768,7 +802,8 @@
       </app-form-field>
       <!-- Cover Fees Checkbox -->
       <div class="mt-4 mb-20">
-        <mat-checkbox formControlName="coverFees" color="primary" class="ms-0">Would you like to cover the transaction fees?</mat-checkbox>
+        <mat-checkbox formControlName="coverFees" color="primary" class="ms-0">Would you like to cover the transaction
+          fees?</mat-checkbox>
       </div>
     </div>
     <div class="bg-white border-t border-t-gray-medium p-6 my-5">
@@ -785,14 +820,22 @@
             totalAmount+
             totalIftarMealAmount+
             totalZakatAlFitrAmount +
-            zakatAlMalAmount+healthAmount+educationAmount+foodAmount+wellsAmount
+            zakatAlMalAmount+aqiqahAmount+healthAmount+educationAmount+foodAmount+wellsAmount
             }}</span>
         </p>
         <button
           class="flex h-14 justify-center items-center gap-2 md:flex-[1_0_0] w-full px-6 py-3 [font-family:Inter] text-base font-medium leading-6 disabled:text-white disabled:bg-gray-medium bg-primary"
-          [disabled]="!stripeCardElements.isCardValid() || donationForm.invalid" (click)="onMakeDonation()">
+          [disabled]="!stripeCardElements.isCardValid() || donationForm.invalid || isLoading"
+          (click)="onMakeDonation()">
+          @if(isLoading)
+          {
+          <mat-spinner color="accent" diameter="24"></mat-spinner>
+          }
+          @else {
           Complete your Donation
+          }
         </button>
+
       </div>
     </div>
   </form>
