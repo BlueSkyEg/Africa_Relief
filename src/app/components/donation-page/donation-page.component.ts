@@ -928,17 +928,20 @@ export class DonationPageComponent {
   }
 
 
-
   //subscribe news letter
   newsletterService: NewsletterService = inject(NewsletterService);
   onSubmitNewsLetterForm() {
     // Check if the checkbox is checked
     if (this.donationForm.get('contactConsent').value) {
       this.newsletterService
-        .subscribeToNewsletter(this.donationForm.value.email)
+        .subscribeToNewsletter({ email: this.donationForm.value.email})
         .subscribe({
           next: (res: IApiResponse<null>) => {
+            console.log(res)
+            console.log({ email: this.donationForm.value.email })
             if (res.success) {
+              console.log(res)
+              console.log({ email: this.donationForm.value.email })
             }
           },
           error: (err) => {

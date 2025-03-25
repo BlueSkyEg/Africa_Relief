@@ -400,7 +400,7 @@
         <span class="text-2xl font-medium leading-8">Islamic Giving</span>
         }
       </div>
-      <div class="my-4 flex flex-wrap items-center justify-between">
+      <div class="my-4 md:flex md:flex-wrap md:items-center md:justify-between grid grid-cols-2 md:text-base text-xs">
         <mat-checkbox [(ngModel)]="iftarMealChecked" (change)="onIftarMealCheckboxChange()">Ramadan Food Basket
         </mat-checkbox>
         <mat-checkbox [(ngModel)]="zakatAlMalChecked"
@@ -474,7 +474,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="zakatAlFitrChecked" class="my-3">
+        <div *ngIf="zakatAlFitrChecked" class="my-3" [ngClass]="{'border-b border-b-gray-medium pb-5':(aqiqahChecked)}">
           <div class="flex flex-col gap-2">
             <h3>Choose amount for (Zakat Al-fitr) *</h3>
             <!--Donation Amounts-->
@@ -514,7 +514,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="aqiqahChecked" class="my-3" [ngClass]="{'border-b border-b-gray-medium pb-5':(aqiqahChecked)}">
+        <div *ngIf="aqiqahChecked" class="my-3" >
           <div class="flex flex-col gap-2">
             <h3>Choose amount for aqiqah *</h3>
             <!--Donation Amounts-->
