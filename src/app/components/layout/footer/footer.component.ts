@@ -45,6 +45,7 @@ export class FooterComponent {
 
   onSubmitNewsLetterForm() {
     this.newsletterFormDisabled = true;
+    console.log(this.newsletterForm.getRawValue())
     this.newsletterService
       .subscribeToNewsletter(this.newsletterForm.getRawValue())
       .subscribe({
