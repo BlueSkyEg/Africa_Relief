@@ -22,9 +22,9 @@
         <div
           class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-primary hover:border-primary hover:text-white peer-checked:bg-primary peer-checked:border-primary peer-checked:text-black">
           @if (!level.name) {
-          <span>{{ "$" + level.amount }}</span>
+          <span class="whitespace-nowrap">{{ "$" + level.amount }}</span>
           } @else {
-          <span>{{ level.name }}</span>
+          <span class="whitespace-nowrap">{{ level.name }}</span>
           }
         </div>
       </label>
