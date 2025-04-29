@@ -77,12 +77,17 @@
       </ul>
     </li>
     <li class="border-top border-gray-light">
-      <button (click)="onRouterNavigate('/emergency')" class="flex p-4 w-full" routerLink="/emergency"
+      <button (click)="onRouterNavigate('/emergency-response')" class="flex p-4 w-full" routerLink="/emergency-response"
         routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{ exact: true }">
-        Emergency Campaigns
+        Emergency
       </button>
     </li>
-
+    <li class="border-top border-gray-light">
+      <button (click)="onRouterNavigate('/campaigns')" class="flex p-4 w-full" routerLink="/campaigns"
+        routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{ exact: true }">
+        Campaigns
+      </button>
+    </li>
     <li class="border-top border-gray-light">
       <button (click)="onRouterNavigate('/zakat-calculator')" class="flex p-4 w-full" routerLink="/zakat-calculator"
         routerLinkActive="text-white bg-primary" [routerLinkActiveOptions]="{ exact: true }">

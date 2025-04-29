@@ -12,9 +12,11 @@ module.exports = {
     colors: {
       primary: "#FFBD59",
       secondary: "#FFD500",
+      tertiary: "#C3811D",
       "gray-dark": "#403F3E",
       "gray-medium": "#CCCCCC",
       "gray-light": "#DEDEDE",
+      "gray-semi-medium": "#7C7C7C",
       desert: "#F7F6F5",
       black: "#1F1F1F",
       white: "#FFFFFF",
@@ -22,6 +24,7 @@ module.exports = {
       danger: "#BA4444",
       warning: "#C28930",
       safe: "#307CC2",
+      transparent: "transparent",
     },
     fontFamily: {
       inter: ["Inter", "sans-serif"],
@@ -31,4 +34,3 @@ module.exports = {
   },
   plugins: [],
 };
-

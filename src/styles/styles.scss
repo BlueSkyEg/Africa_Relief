@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Roboto+Serif:wght@400&display=swap");
 @layer base {
 
   input[type="number"]::-webkit-inner-spin-button,
@@ -24,6 +24,24 @@
     /* IE and Edge */
     scrollbar-width: none;
     /* Firefox */
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    src: url('/assets/fonts/inter/Inter-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Roboto Serif';
+    src: url('/assets/fonts/roboto-serif/RobotoSerif-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
   }
 
   /* Body 1/Inter */
@@ -67,8 +85,6 @@
   }
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100;0,8..144,200;0,8..144,300;0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;0,8..144,800;0,8..144,900;1,8..144,100&display=swap');
-
 * {
   @apply m-0 p-0 box-border;
 }
@@ -100,10 +116,14 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-#dd-container .lets-check:hover, #dd-container .lets-check:focus, .dtd-plugin .lets-check:hover, .dtd-plugin .lets-check:focus {
-    background-color: #FFBD59;
-    color: #000;
+#dd-container .lets-check:hover,
+#dd-container .lets-check:focus,
+.dtd-plugin .lets-check:hover,
+.dtd-plugin .lets-check:focus {
+  background-color: #FFBD59;
+  color: #000;
 }
+
 ::selection {
   background-color: #FFBD59;
   color: #000;

@@ -1,0 +1,147 @@
+<div class="container my-10 lg:mb-20 min-h-screen">
+  <app-breadcrumb currentName="Qurbani" appreance="primary" />
+  <div class="mt-8 pb-10 border-b border-gray-light">
+    <div class="flex items-center  h-[640px] bg-cover bg-center p-8"
+      style="background-image: url('/assets/images/qurbani/qurbani.webp');">
+      <div class="bg-white p-8 font-medium w-full md:w-1/2 leading-8">
+        <p class="text-tertiary text-2xl mb-2">Qurbani/Udhiya</p>
+        <p class="text-2xl lg:text-[56px] leading-[150%] lg:leading-[64px] mb-6 [font-family:Inter] font-medium">
+          Celebrate Udhiya During Eid Al Adha
+        </p>
+        <p class="text-xl font-normal text-gray-dark">
+          The sacred occasion of Qurbani/Udhiya during Eid Al Adha is almost
+          upon us, marking not only the best time to celebrate with your loved
+          ones but also the perfect opportunity to manifest your devotion to
+          Allah (SWT). It’s a time to actively participate in the act of
+          Qurbani, sharing your blessings with those in need and embodying the
+          spirit of generosity and gratitude.
+        </p>
+      </div>
+    </div>
+
+  </div>
+  <div class="py-10 border-b border-gray-light">
+    <p class="text-tertiary mb-2 text-2xl font-medium leading-8">
+      From Your Heart to Their Homes
+    </p>
+    <p class="text-5xl font-medium mb-6 leading-[56px]">Udhiya in Africa</p>
+    <p class="text-gray-dark text-xl font-normal leading-8 mb-6">
+      For many families across Africa, Eid Al Adha represents a unique moment of
+      joy and gratitude, primarily because of the Udhiya donations from generous
+      individuals like you.<br /><br />
+
+      This sacred occasion might be the only time of the year they’ll get to
+      enjoy a meal that contains meat, a rare luxury brought directly by your
+      kindness. Through Udhiya in Africa, donors are making a tangible
+      difference, allowing children and families to partake in a delicious and
+      nutritious meal, possibly for the very first time.<br /><br />
+
+      Your contribution not only fulfills a religious obligation but also brings
+      smiles and nourishment to those in dire need.
+    </p>
+    <button class="px-6 py-3 bg-primary text-gray-dark text-base font-medium leading-6" routerLink="/projects">
+      Donate Through Africa Relief
+    </button>
+  </div>
+  <div class="pt-10 ">
+    <p class="text-tertiary mb-2 text-2xl font-medium leading-8">
+      Changing Lives One Donation at a Time
+    </p>
+    <p class="text-5xl font-medium mb-6 leading-[56px] ">
+      Udhiya Donation Packages
+    </p>
+    <p class="text-gray-dark text-base font-normal leading-8 mb-1">Countries we will serve this qurbani season</p>
+    <div class="flex items-center gap-2 flex-wrap md:w-[85%] xl:w-[90%]  md:mb-14 lg:mb-6 mb-16">
+      @for (country of countries; track $index) {
+      <div class="border border-gray-medium px-4 py-3 w-fit text-sm font-medium leading-6">{{country}}</div>
+      }
+    </div>
+
+    <div class="relative">
+      <div class="absolute bottom-[95%] md:bottom-[90%] end-0">
+        <app-icon-cow [width]="96" class="md:hidden" />
+        <app-icon-cow class="hidden md:block"/>
+      </div>
+      <div class="bg-white p-4 md:p-8 relative z-0 border border-gray-light mt-30 flex items-center gap-6">
+        <div class="flex flex-col items-center  gap-4 w-full lg:px-16">
+          <div>
+            <app-icon-sheep />
+            <p class="text-gray-darktext-base font-medium leading-6 mt-2  text-center">Sheep</p>
+          </div>
+          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-primary px-0 py-2">$300</div>
+          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-tertiary px-0 py-2">$100</div>
+          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-[#704B19] px-0 py-2">$200</div>
+        </div>
+        <div class="flex flex-col items-center gap-4 w-full lg:px-16">
+          <div>
+            <app-icon-cow-2 />
+            <p class="text-gray-darktext-base font-medium leading-6 mt-2 text-center">Cow</p>
+          </div>
+          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-primary px-0 py-2">$780</div>
+          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-tertiary px-0 py-2">$650</div>
+          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-[#704B19] px-0 py-2">$600</div>
+        </div>
+        <div class="flex flex-col items-center gap-4 w-full lg:px-16">
+          <div>
+            <app-icon-meat />
+            <p class="text-gray-darktext-base font-medium leading-6 mt-2 text-center">1/7 Cow share</p>
+          </div>
+          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-primary px-0 py-2">$112</div>
+          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-tertiary px-0 py-2">$93</div>
+          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-[#704B19] px-0 py-2">$86</div>
+        </div>
+      </div>
+    </div>
+    <div class="py-10 border-b border-gray-light">
+      <p class="text-tertiary mb-2 text-2xl font-medium leading-8">
+        From Your Heart to Their Homes
+      </p>
+      <p class="text-5xl font-medium mb-6 leading-[56px]">
+        Eid Al Adhd Donation
+      </p>
+      <p class="text-gray-dark text-xl font-normal leading-8 mb-6">
+        The Prophet (ﷺ) said, “No good deeds done on other days are superior to
+        those done on these (first ten days of Dhul Hijjah).”
+        <br /><br />
+        As we’re approaching Dhul Hijjah, make the first days of the “Month of
+        the Pilgrimage” count. Even if you can’t fulfill your Hajj duty,
+        there’re many ways to reap the immense blessings of this sacred month.
+        <br /><br />
+        Donating to those in need is your direct pathway to gain great rewards.
+        <br /><br />
+        At Africa Relief, we channel your generous donations to empower
+        vulnerable communities across Africa. It’s the best time of the year to
+        support our projects – Water, Food Aid, Health Initiative, Orphan
+        Sponsorships, Education.
+      </p>
+      <button class="px-6 py-3 bg-primary text-gray-dark text-base font-medium leading-6" routerLink="/projects">
+        Donate Now
+      </button>
+    </div>
+
+    <div class="pt-10 pb-5 flex items-center justify-between">
+      <div class="md:w-1/2">
+              <div>
+                <img class="w-full md:hidden block mb-7" src="/assets/images/qurbani/donation.webp" alt="donation" />
+              </div>
+        <p class="text-5xl font-medium mb-6 leading-[56px]">
+          Commemorate the Day of Arafah
+        </p>
+        <p class="text-gray-dark mb-6 text-xl font-normal leading-8">
+          You don’t only earn your protection from punishment this month. You
+          can also celebrate the day Allah (SWT) perfected his religion,
+          completed His favors upon his beloved Prophet Muhammad (PBUH), and
+          approved Islam as a way of life—the Day of Arafah. Make the most of it
+          by helping those in need have a decent life.
+        </p>
+
+        <button class="px-6 py-3 bg-primary text-gray-dark text-base font-medium leading-6" routerLink="/projects">
+          Donate Now
+        </button>
+      </div>
+      <div>
+        <img class="w-full hidden md:block" src="/assets/images/qurbani/donation.webp" alt="donation" />
+      </div>
+    </div>
+  </div>
+</div>
