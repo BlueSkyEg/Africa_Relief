@@ -18,16 +18,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './campaigns.component.scss'
 })
 export class CampaignsComponent {
-  value: number | null = null;
-  options = [
-    { label: 'None', value: null },
-    { label: 'One', value: 1 },
-    { label: 'Two', value: 2 },
-    { label: 'Three', value: 3 },
-  ];
-  onSelect(value: number | null) {
-    console.log(value);
-  }
+
   countries: string[] = [
     'Benin',
     'Burundi',
