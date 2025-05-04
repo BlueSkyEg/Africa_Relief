@@ -63,35 +63,54 @@
         <app-icon-cow class="hidden md:block" />
       </div>
       <div
-        class="bg-white p-2 sm:p-4 md:p-8 relative z-0 border border-gray-light mt-30 flex items-center gap-0.5 sm:gap-6">
-        <div class="flex flex-col items-center  gap-4 w-full lg:px-16">
-          <div>
-            <app-icon-sheep />
-            <p class="text-gray-darktext-base font-medium leading-6 mt-2  text-center">Sheep</p>
+        class="bg-white p-2 sm:p-4 md:px-8 md:py-4 relative z-0 border border-gray-light mt-30 flex items-stretch gap-0.5 sm:gap-6 flex-col  lg:flex-row">
+        <div class="flex flex-col justify-center gap-4 w-full">
+          <p class="text-gray-dark font-medium leading-6 mt-3 md:mt-0">Tier1</p>
+          <div class="bg-white border border-gray-light p-6 h-full">
+            <div class="flex items-center justify-between mb-2 ">
+              <p class="text-base font-medium leading-6 w-28">Sheep</p>
+              <div class="flex justify-center items-center gap-2 w-1/2 lg:flex-[1_0_0] bg-primary p-1">
+                <app-icon-sheep /> <span>$100</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <p class="text-base font-medium leading-6 w-28">1/7 Cow share</p>
+              <div class="flex justify-center items-center gap-2 w-1/2 lg:flex-[1_0_0] bg-primary p-1">
+                <app-icon-meat /> <span>$100</span>
+              </div>
+            </div>
           </div>
-          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-primary px-0 py-2">$300</div>
-          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-tertiary px-0 py-2">$100</div>
-          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-[#704B19] px-0 py-2">$200</div>
         </div>
-        <div class="flex flex-col items-center gap-4 w-full lg:px-16">
-          <div>
-            <app-icon-cow-2 />
-            <p class="text-gray-darktext-base font-medium leading-6 mt-2 text-center">Cow</p>
+        <div class="flex flex-col justify-center gap-4 w-full">
+          <p class="text-gray-dark font-medium leading-6 mt-3 md:mt-0">Tier2</p>
+          <div class="bg-white border border-gray-light p-6 h-full">
+            <div class="flex items-center justify-between mb-2">
+              <p class="text-base font-medium leading-6 w-28">Sheep</p>
+              <div class="flex justify-center items-center gap-2 w-1/2 lg:flex-[1_0_0] bg-tertiary p-1">
+                <app-icon-sheep /> <span>$200</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <p class="text-base font-medium leading-6 w-28">1/7 Cow share</p>
+              <div class="flex justify-center items-center gap-2 w-1/2 lg:flex-[1_0_0] bg-primary p-1">
+                <app-icon-meat /> <span>$100</span>
+              </div>
+            </div>
           </div>
-          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-primary px-0 py-2">$780</div>
-          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-tertiary px-0 py-2">$650</div>
-          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-[#704B19] px-0 py-2">$600</div>
         </div>
-        <div class="flex flex-col items-center gap-4 w-full lg:px-16">
-          <div>
-            <app-icon-meat />
-            <p class="text-gray-darktext-base font-medium leading-6 mt-2 text-center">1/7 Cow share</p>
+        <div class="flex flex-col justify-center gap-4 w-full">
+          <p class="text-gray-dark font-medium leading-6 mt-3 md:mt-0">Or</p>
+          <div class="bg-white border border-gray-light p-6 h-full flex items-center justify-center ">
+            <div class="flex items-center justify-between w-full h-full">
+              <p class="text-base font-medium leading-6 w-28">Full Cow</p>
+              <div class="flex justify-center items-center gap-2 w-1/2 lg:flex-[1_0_0] bg-[#885B1F] p-1 h-full">
+                <app-icon-cow-2 /> <span class="text-white">$700</span>
+              </div>
+            </div>
           </div>
-          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-primary px-0 py-2">$112</div>
-          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-tertiary px-0 py-2">$93</div>
-          <div class="flex flex-col justify-center items-center gap-2 self-stretch bg-[#704B19] px-0 py-2">$86</div>
         </div>
       </div>
+
     </div>
     <div class="py-10 border-b border-gray-light">
       <p class="text-tertiary mb-2 text-2xl font-medium leading-8">
