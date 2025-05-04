@@ -4,35 +4,40 @@
       <a routerLink="/home">
         <img class="w-14 aspect-square" src="assets/images/logo.webp" alt="Africa Relief Logo" loading="eager" />
       </a>
-      <ul class="flex-1 hidden xl:flex gap-3 lg:gap-1 lg:text-[15px]">
+      <ul class="flex-1 text-gray-semi-medium  hidden xl:flex gap-3 lg:gap-1 lg:text-[15px]">
         <li (click)="closeSearchBar()">
-          <a class="flex justify-center items-center py-2 px-3 transition-colors hover:text-black hover:bg-primary"
-            routerLink="/home" routerLinkActive="text-white bg-primary"
+          <a class="flex justify-center items-center border-b-2 border-transparent py-2 px-1 mx-1.5 transition-all hover:text-gray-dark "
+            routerLink="/home" routerLinkActive="text-tertiary border-b-2 border-b-tertiary"
             [routerLinkActiveOptions]="{ exact: true }">Home</a>
         </li>
         <li (click)="closeSearchBar()">
-          <a class="flex justify-center items-center py-2 px-3 transition-colors hover:text-black hover:bg-primary"
-            routerLink="/projects" routerLinkActive="text-white bg-primary"
+          <a class="flex justify-center items-center border-b-2 border-transparent py-2 px-1 mx-1.5 transition-all hover:text-gray-dark "
+            routerLink="/projects" routerLinkActive="text-tertiary border-b-2 border-b-tertiary"
             [routerLinkActiveOptions]="{ exact: true }">Our Projects</a>
         </li>
         <li (click)="closeSearchBar()">
-          <a class="flex justify-center text-danger items-center py-2 px-3 transition-colors hover:text-white hover:bg-danger"
-            routerLink="/emergency-response" routerLinkActive="text-white bg-danger">Emergency Campaigns</a>
+          <a class="flex justify-center bg-gradient-to-r from-[#EA4659] to-[#A61B2C] text-transparent bg-clip-text items-center border-b-2 border-transparent py-2 px-1 mx-1.5 transition-all hover:text-[#a61b2b] "
+            routerLink="/emergency-response" routerLinkActive="border-b-2 border-b-[#A61B2C]">Emergency </a>
         </li>
         <li (click)="closeSearchBar()">
-          <a class="flex justify-center items-center py-2 px-3 transition-colors hover:text-black hover:bg-primary"
-            routerLink="/zakat-calculator" routerLinkActive="text-white bg-primary"
+          <a class="flex justify-center bg-gradient-to-r from-[#FFBD59] to-[#B36C00] text-transparent bg-clip-text items-center border-b-2 border-transparent py-2 px-1 mx-1.5 transition-all hover:text-[#B36C00] "
+            routerLink="/campaigns" routerLinkActive=" border-b-2 border-b-tertiary"
+            [routerLinkActiveOptions]="{ exact: true }">Qurbani</a>
+        </li>
+        <li (click)="closeSearchBar()">
+          <a class="flex justify-center items-center border-b-2 border-transparent py-2 px-1 mx-1.5 transition-all hover:text-gray-dark "
+            routerLink="/zakat-calculator" routerLinkActive="text-tertiary border-b-2 border-b-tertiary"
             [routerLinkActiveOptions]="{ exact: true }">Zakat Calculator </a>
         </li>
         <li class="relative">
           <button
-            class="flex items-center py-2 px-3 transition-colors hover:text-black hover:bg-primary group get-involved-button"
+            class="flex items-center border-b-2 border-transparent py-2 px-1 mx-1.5 transition-all hover:text-gray-dark  group get-involved-button"
             aria-haspopup="true" (click)="toggleGetInvolvedMenu()">
             Get Involved
             <span class="ml-2 transition-transform group-hover:fill-white"
               [ngClass]="{ 'rotate-180': isGetInvolvedMenuVisible }">
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9"
-                class="transition-colors text-black group-hover:text-black">
+                class="transition-all text-black group-hover:text-black">
                 <path d="M6 8.37498L0 2.37498L1.4 0.974976L6 5.57498L10.6 0.974976L12 2.37498L6 8.37498Z"
                   fill="currentColor" />
               </svg>
@@ -42,46 +47,42 @@
           <ul class="absolute left-0 bg-white shadow-lg transition-all max-h-0 overflow-hidden z-30 get-involved-menu"
             [ngClass]="{ 'max-h-96': isGetInvolvedMenuVisible }">
             <li>
-              <a class="flex items-center py-2 px-3 transition-colors hover:text-primary" routerLink="/get-involved"
-                routerLinkActive="text-primary" [routerLinkActiveOptions]="{ exact: true }"
+              <a class="flex items-center border-b-2 border-transparent py-2 px-1 mx-1.5 transition-all hover:text-tertiary"
+                routerLink="/get-involved" routerLinkActive="text-tertiary" [routerLinkActiveOptions]="{ exact: true }"
                 (click)="closeGetInvolvedMenu()">
                 Volunteer
               </a>
             </li>
             <li>
-              <a class="flex items-center py-2 px-3 transition-colors hover:text-primary"
-                routerLink="/get-involved/stock-donations" routerLinkActive="text-primary"
+              <a class="flex items-center border-b-2 border-transparent py-2 px-1 mx-1.5 transition-all hover:text-tertiary"
+                routerLink="/get-involved/stock-donations" routerLinkActive="text-tertiary"
                 (click)="closeGetInvolvedMenu()">
                 Donate Stock
               </a>
             </li>
             <li>
-              <a
-                class="flex items-center py-2 px-3 transition-colors hover:text-primary"
-                routerLink="/get-involved/gift-matching"
-                routerLinkActive="text-primary"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="closeGetInvolvedMenu()"
-              >
+              <a class="flex items-center border-b-2 border-transparent py-2 px-1 mx-1.5 transition-all hover:text-tertiary"
+                routerLink="/get-involved/gift-matching" routerLinkActive="text-tertiary"
+                [routerLinkActiveOptions]="{ exact: true }" (click)="closeGetInvolvedMenu()">
                 Matching Gifts
               </a>
             </li>
           </ul>
         </li>
         <li (click)="closeSearchBar()">
-          <a class="flex justify-center items-center py-2 px-3 transition-colors hover:text-black hover:bg-primary"
-            routerLink="/blogs" routerLinkActive="text-white bg-primary"
+          <a class="flex justify-center items-center border-b-2 border-transparent py-2 px-1 mx-1.5 transition-all hover:text-gray-dark "
+            routerLink="/blogs" routerLinkActive="text-tertiary border-b-2 border-b-tertiary"
             [routerLinkActiveOptions]="{ exact: true }">Blog</a>
         </li>
         <li class="relative">
           <button
-            class="flex items-center py-2 px-3 transition-colors hover:text-black hover:bg-primary group about-us-button"
+            class="flex items-center border-b-2 border-transparent py-2 px-1 mx-1.5 transition-all hover:text-gray-dark  group about-us-button"
             aria-haspopup="true" (click)="toggleAboutMenu()">
             About Us
             <span class="ml-2 transition-transform group-hover:fill-white"
               [ngClass]="{ 'rotate-180': isAboutMenuVisible }">
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9"
-                class="transition-colors text-black group-hover:text-black">
+                class="transition-all text-black group-hover:text-black">
                 <path d="M6 8.37498L0 2.37498L1.4 0.974976L6 5.57498L10.6 0.974976L12 2.37498L6 8.37498Z"
                   fill="currentColor" />
               </svg>
@@ -91,15 +92,15 @@
           <ul class="absolute left-0 bg-white shadow-lg transition-all max-h-0 overflow-hidden z-30 about-us-menu"
             [ngClass]="{ 'max-h-96': isAboutMenuVisible }">
             <li>
-              <a class="flex justify-center items-center py-2 px-3 transition-colors hover:text-primary"
-                routerLink="/about" routerLinkActive="text-primary" [routerLinkActiveOptions]="{ exact: true }"
+              <a class="flex justify-center items-center border-b-2 border-transparent py-2 px-1 mx-1.5 transition-all hover:text-tertiary"
+                routerLink="/about" routerLinkActive="text-tertiary" [routerLinkActiveOptions]="{ exact: true }"
                 (click)="closeAboutMenu()">
                 Mission& Impact
               </a>
             </li>
             <li>
-              <a class="flex justify-center items-center py-2 px-3 transition-colors hover:text-primary"
-                routerLink="/about/executive-director" routerLinkActive="text-primary"
+              <a class="flex justify-center items-center border-b-2 border-transparent py-2 px-1 mx-1.5 transition-all hover:text-tertiary"
+                routerLink="/about/executive-director" routerLinkActive="text-tertiary"
                 [routerLinkActiveOptions]="{ exact: true }" (click)="closeAboutMenu()">
                 Executive Director
               </a>
@@ -107,8 +108,8 @@
           </ul>
         </li>
         <li (click)="closeSearchBar()">
-          <a class="flex justify-center items-center py-2 px-3 transition-colors hover:text-black hover:bg-primary"
-            routerLink="/careers" routerLinkActive="text-white bg-primary"
+          <a class="flex justify-center items-center border-b-2 border-transparent py-2 px-1 mx-1.5 transition-all hover:text-gray-dark "
+            routerLink="/careers" routerLinkActive="text-tertiary border-b-2 border-b-tertiary"
             [routerLinkActiveOptions]="{ exact: true }">Careers</a>
         </li>
       </ul>
@@ -117,8 +118,8 @@
         @if (isSearchBarVisible) {
         <app-search-bar class="absolute top-[4.5rem] z-30 -start-56" />
         }
-        <a class=" text-black bg-primary py-2 px-1 text-xs md:text-base md:px-3"
-          routerLink="/donation-page">Donate Now</a>
+        <a class=" text-black bg-primary py-2 px-1 text-xs md:text-base md:px-3" routerLink="/donation-page">Donate
+          Now</a>
         @if (!isUserAuthed) {
         <a class="flex items-center" routerLink="/login" aria-label="profile">
           <app-icon-profile />

@@ -13,7 +13,6 @@ import { IconEducationComponent } from '../../../icons/projects/education/icon-e
 import { IconMedicalComponent } from '../../../icons/projects/medical/icon-medical.component';
 import { IconWaterComponent } from '../../../icons/projects/water/icon-water.component';
 import { IconOrphanComponent } from '../../../icons/projects/orphan/icon-orphan.component';
-import { IconZakatComponent } from '../../../icons/projects/zakat/icon-zakat.component';
 import { IconRamadanComponent } from '../../../icons/projects/ramadan/icon-ramadan.component';
 import { ButtonLinkComponent } from '../../button-link/button-link.component';
 import { IconArrowLeftComponent } from '../../../icons/arrows/arrow-left/icon-arrow-left.component';
@@ -33,7 +32,6 @@ import Swiper from 'swiper';
     IconMedicalComponent,
     IconWaterComponent,
     IconOrphanComponent,
-    IconZakatComponent,
     IconRamadanComponent,
     ButtonLinkComponent,
     IconArrowLeftComponent,

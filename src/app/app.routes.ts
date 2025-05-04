@@ -16,6 +16,12 @@ export const routes: Routes = [
       import('./components/home/home.component').then((m) => m.HomeComponent),
   },
   {
+    path: 'campaigns',
+    title: 'Campaigns',
+    loadComponent: () =>
+      import('./components/campaigns/campaigns.component').then((m) => m.CampaignsComponent),
+  },
+  {
     path: 'donation-page',
     title: 'Donation Page',
     loadComponent: () =>
@@ -147,7 +153,7 @@ export const routes: Routes = [
       //   title: 'Crisis Blogs',
       //   loadComponent: () =>
       //     import('./components/emergency/blogs/blogs.component').then(
-      //       (m) => m.BlogsEmergeny
+      //       (m) => m.BlogsEmergency
       //     ),
       // },
     ],
