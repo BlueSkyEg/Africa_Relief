@@ -17,7 +17,7 @@ export const routes: Routes = [
   },
   {
     path: 'campaigns',
-    title: 'Campaigns',
+    title: 'Qurbani',
     loadComponent: () =>
       import('./components/campaigns/campaigns.component').then((m) => m.CampaignsComponent),
   },
