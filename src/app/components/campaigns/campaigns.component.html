@@ -20,28 +20,33 @@
     </div>
 
   </div>
-  <div class="py-10 border-b border-gray-light">
-    <p class="text-tertiary mb-2 text-2xl font-medium leading-8">
-      From Your Heart to Their Homes
-    </p>
-    <p class="text-5xl font-medium mb-6 leading-[56px]">Udhiya in Africa</p>
-    <p class="text-gray-dark text-xl font-normal leading-8 mb-6">
-      For many families across Africa, Eid Al Adha represents a unique moment of
-      joy and gratitude, primarily because of the Udhiya donations from generous
-      individuals like you.<br /><br />
+  <div class="flex flex-col md:grid md:grid-cols-6 lg:grid-cols-5 gap-10 py-10 border-b border-gray-light">
+    <div class="col-span-3">
+      <p class="text-tertiary mb-2 text-2xl font-medium leading-8">
+        From Your Heart to Their Homes
+      </p>
+      <p class="text-5xl font-medium mb-6 leading-[56px]">Udhiya in Africa</p>
+      <p class="text-gray-dark text-xl font-normal leading-8 mb-6">
+        For many families across Africa, Eid Al Adha represents a unique moment of
+        joy and gratitude, primarily because of the Udhiya donations from generous
+        individuals like you.<br /><br />
 
-      This sacred occasion might be the only time of the year they’ll get to
-      enjoy a meal that contains meat, a rare luxury brought directly by your
-      kindness. Through Udhiya in Africa, donors are making a tangible
-      difference, allowing children and families to partake in a delicious and
-      nutritious meal, possibly for the very first time.<br /><br />
+        This sacred occasion might be the only time of the year they’ll get to
+        enjoy a meal that contains meat, a rare luxury brought directly by your
+        kindness. Through Udhiya in Africa, donors are making a tangible
+        difference, allowing children and families to partake in a delicious and
+        nutritious meal, possibly for the very first time.<br /><br />
 
-      Your contribution not only fulfills a religious obligation but also brings
-      smiles and nourishment to those in dire need.
-    </p>
-    <button class="px-6 py-3 bg-primary text-gray-dark text-base font-medium leading-6" routerLink="/projects">
-      Donate Through Africa Relief
-    </button>
+        Your contribution not only fulfills a religious obligation but also brings
+        smiles and nourishment to those in dire need.
+      </p>
+      <button class="px-6 py-3 bg-primary text-gray-dark text-base font-medium leading-6" routerLink="/projects">
+        Donate Through Africa Relief
+      </button>
+    </div>
+    <div class="md:col-span-3 lg:col-span-2">
+      <app-donation-card [donationForm]="project.donation_form" [donationFormTitle]="project.title" />
+    </div>
   </div>
   <div class="pt-10 ">
     <p class="text-tertiary mb-2 text-2xl font-medium leading-8">
@@ -69,13 +74,13 @@
           <div class="bg-white border border-gray-light p-6 h-full">
             <div class="flex items-center justify-between mb-2 ">
               <p class="text-base font-medium leading-6 w-28">Sheep</p>
-              <div class="flex justify-center items-center gap-2 w-1/2 lg:flex-[1_0_0] bg-primary p-1">
+              <div class="flex justify-center items-center gap-2 w-1/2 lg:w-[184px] bg-primary p-1">
                 <app-icon-sheep /> <span>$100</span>
               </div>
             </div>
             <div class="flex items-center justify-between">
               <p class="text-base font-medium leading-6 w-28">1/7 Cow share</p>
-              <div class="flex justify-center items-center gap-2 w-1/2 lg:flex-[1_0_0] bg-primary p-1">
+              <div class="flex justify-center items-center gap-2 w-1/2 lg:w-[184px] bg-primary p-1">
                 <app-icon-meat />
                 <span>$100</span>
               </div>
@@ -87,13 +92,13 @@
           <div class="bg-white border border-gray-light p-6 h-full">
             <div class="flex items-center justify-between mb-2">
               <p class="text-base font-medium leading-6 w-28">Sheep</p>
-              <div class="flex justify-center items-center gap-2 w-1/2 lg:flex-[1_0_0] bg-tertiary p-1">
+              <div class="flex justify-center items-center gap-2 w-1/2 lg:w-[184px] bg-tertiary p-1">
                 <app-icon-sheep /> <span>$200</span>
               </div>
             </div>
             <div class="flex items-center justify-between">
               <p class="text-base font-medium leading-6 w-28">1/7 Cow share</p>
-              <div class="flex justify-center items-center gap-2 w-1/2 lg:flex-[1_0_0] bg-primary p-1">
+              <div class="flex justify-center items-center gap-2 w-1/2 lg:w-[184px] bg-primary p-1">
                 <app-icon-meat /> <span>$100</span>
               </div>
             </div>
@@ -104,7 +109,7 @@
           <div class="bg-white border border-gray-light p-6 h-full flex items-center justify-center ">
             <div class="flex items-center justify-between w-full h-full">
               <p class="text-base font-medium leading-6 w-28">Full Cow</p>
-              <div class="flex justify-center items-center gap-2 w-1/2 lg:flex-[1_0_0] bg-[#885B1F] p-1 h-full">
+              <div class="flex justify-center items-center gap-2 w-1/2 lg:w-[184px] bg-[#885B1F] p-1 h-full">
                 <app-icon-cow-2 /> <span class="text-white">$700</span>
               </div>
             </div>
@@ -132,7 +137,8 @@
         <br /><br />
         At Africa Relief, we channel your generous donations to empower
         vulnerable communities across Africa. It’s the best time of the year to
-        support our projects – Water is Life, Food Aid, Orphan Care, Education, Healthcare, Islamic Giving, Emergency Response.
+        support our projects – Water is Life, Food Aid, Orphan Care, Education, Healthcare, Islamic Giving,
+        Emergency Response.
       </p>
       <button class="px-6 py-3 bg-primary text-gray-dark text-base font-medium leading-6" routerLink="/projects">
         Donate Now

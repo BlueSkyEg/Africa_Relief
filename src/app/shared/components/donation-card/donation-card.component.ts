@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, SimpleChanges, inject } from '@angular/core';
 import { ButtonComponent } from '../form/button/button.component';
 import { MatSelect, MatOption } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
@@ -29,8 +29,20 @@ export class DonationCardComponent {
   amount: number;
   makeRecurringDonation: boolean = false;
   recurringPeriod: 'day' | 'week' | 'month' | 'year' = 'month';
+  selectedLevelIdentifier: string;
   private router: Router = inject(Router);
   private platformId = inject(PLATFORM_ID);
+
+  //to change the value of amount and custom amount when form changes
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['donationForm'] && !changes['donationForm'].firstChange) {
+      console.log(changes['donationForm'].currentValue);
+      this.amount = null;
+      this.selectedLevelIdentifier = null;
+      this.makeRecurringDonation = false;
+      this.recurringPeriod = 'month';
+    }
+  }
   onMakeDonation() {
     // check if donation amount is a positive value and greater than 1$
     if (isNaN(this.amount) || this.amount < 1) return;
@@ -73,4 +85,12 @@ export class DonationCardComponent {
     // Replace any non-digit character and ensure positive values
     input.value = input.value.replace(/[^0-9]/g, '');
   }
+  getLevelIdentifier(level: any): string {
+    return level.name ? `${level.amount}_${level.name}` : `${level.amount}`;
+  }
+  onLevelSelect(level: any) {
+    this.amount = level.amount;
+    this.selectedLevelIdentifier = this.getLevelIdentifier(level);
+  }
+
 }
