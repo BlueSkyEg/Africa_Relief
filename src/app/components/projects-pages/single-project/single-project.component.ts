@@ -41,6 +41,7 @@ export class SingleProjectComponent implements OnInit {
         this.projectService.getProject(route.get('slug')).subscribe({
           next: (res: IApiResponse<IProject | null>) => {
             if (res.success) {
+              console.log(res.data)
               this.project = res.data;
 
               this.metaService.setMetaData(

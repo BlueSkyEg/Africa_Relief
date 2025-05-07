@@ -1,7 +1,8 @@
-@if(donationForm?.id) {
+@if(donationForm?.id)
+{
 <div class="flex flex-col gap-6 p-4 bg-white border border-gray-light">
   <div class="flex justify-center items-center gap-2 p-4 border border-gray-medium">
-    <img loading="lazy" class="xl:w-[40%] w-[30%] md:w-[20%]" alt="donors" src="assets/images/shared/donors.webp" />
+    <img loading="lazy" class="xl:w-[40%] w-[30%] md:w-[30%]" alt="donors" src="assets/images/shared/donors.webp" />
     <p>+1650 Donors</p>
   </div>
   @if (donationForm.fullyFundLevel) {
@@ -16,9 +17,12 @@
   <div class="flex flex-col gap-2">
     <h3>Choose amount</h3>
     <div class="flex flex-wrap gap-3">
-      @for (level of donationForm.levels; track level) {
+      @for (level of donationForm.levels; track getLevelIdentifier(level)) {
       <label class="flex flex-1">
-        <input class="peer appearance-none" type="radio" name="amount" [value]="level.amount" [(ngModel)]="amount" />
+        <input class="peer appearance-none" type="radio" name="amount"
+        [value]="getLevelIdentifier(level)"
+        [(ngModel)]="selectedLevelIdentifier"
+        (change)="onLevelSelect(level)" />
         <div
           class="flex justify-center items-center w-full py-3 px-6 border border-gray-medium cursor-pointer transition-colors ease-in-out hover:bg-primary hover:border-primary hover:text-white peer-checked:bg-primary peer-checked:border-primary peer-checked:text-black">
           @if (!level.name) {
@@ -44,8 +48,9 @@
       </mat-select>
     </div>
   </div>
-  <app-form-button appearance="filled" [fullWidth]="true" [disabled]="!amount" (click)="onMakeDonation()">Donate
-    Now</app-form-button>
+  <app-form-button appearance="filled" [fullWidth]="true" [disabled]="!amount" (click)="onMakeDonation()">
+    Donate Now
+  </app-form-button>
   <ng-content></ng-content>
 </div>
 }

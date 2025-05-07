@@ -1,11 +1,7 @@
 <div class="container mt-4 mb-10 lg:mb-20">
   @if (project) {
   <!-- Breadcrumb -->
-  <app-breadcrumb
-    basePath="/projects"
-    baseName="Projects"
-    [currentName]="project.title"
-  />
+  <app-breadcrumb basePath="/projects" baseName="Projects" [currentName]="project.title" />
 
   <!-- Project Container -->
   <div class="grid lg:grid-cols-3 gap-6 mt-6">
@@ -13,21 +9,16 @@
     <div class="flex flex-col gap-6 lg:col-span-2">
       <div class="relative">
         <div class="w-full h-[480px] bg-gray-light">
-          <img
-            class="h-full object-cover object-center"
-            appImgPlaceholder
-            [src]="project.featured_image.src"
-            [alt]="project.featured_image.alt_text"
-            loading="lazy"
-          />
+          <img class="h-full object-cover object-center" appImgPlaceholder [src]="project.featured_image.src"
+            [alt]="project.featured_image.alt_text" loading="lazy" />
         </div>
         @for (category of project.categories; track category; let idx = $index)
         {
-          @if(category.name) {
+        @if(category.name) {
         <div class="absolute bottom-0 start-0 bg-secondary py-1 px-3">
           <a [routerLink]="'/projects/category/' + category.slug">{{
             category.name | titlecase
-          }}</a>
+            }}</a>
           @if (project.categories.length > idx + 1 ) {
           <span>, </span>
           }
@@ -39,9 +30,8 @@
       <!-- project summary -->
       <p class="p-6 bg-white border border-gray-light">{{ project.excerpt }}</p>
     </div>
-
     <!-- Donation Card -->
-    <app-donation-card [donationForm]="project.donation_form"  [donationFormTitle]="project.title"/>
+    <app-donation-card [donationForm]="project.donation_form" [donationFormTitle]="project.title" />
     <!-- project content -->
     <div class="flex flex-col gap-6 lg:col-span-2">
       <div class="flex flex-col gap-6">
